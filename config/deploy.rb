@@ -37,17 +37,10 @@ set :linked_files, %w{config/database.yml}
 namespace :deploy do
 desc "Restart passenger process"
 task :restart  do
-  run "touch #{current_path}/tmp/restart.txt"
+  "touch #{current_path}/tmp/restart.txt"
 end
  
 end
  
-namespace :db do
- 
-desc "Make symlink for database yml"
-  task :symlink do
-   run "ln -nfs #{shared_path}/config/database.yml #{current_path}/config/database.yml"
-  end
-end
 
-# after "deploy", "db:symlink"
+after "deploy", "deploy:restart"
