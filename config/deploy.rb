@@ -35,12 +35,23 @@ set :linked_files, %w{config/database.yml}
 # set :keep_releases, 5
 
 namespace :deploy do
-desc "Restart passenger process"
-task :restart  do
+ desc "Restart passenger process"
+ task :restart  do
   "touch #{current_path}/tmp/restart.txt"
-end
- 
+ end
+
+ desc "run bundle install" 
+ task :bundleI do 
+  "bundle install"
+ end 
+
+ desc "run compile less"
+ task :cless do
+  "rails generate bootstrap:install less"
+ end 
 end
  
 
+after "deploy", "deploy:bundleI"
+after "deploy", "deploy:cless"
 after "deploy", "deploy:restart"
