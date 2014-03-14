@@ -8,7 +8,10 @@ gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
-gem 'bootstrap-sass'
+gem "therubyracer"
+gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem "twitter-bootstrap-rails"
+
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -41,6 +44,6 @@ end
 
 # Use Capistrano for deployment
 gem 'capistrano', group: :development
-
+gem 'capistrano-rails', '~> 1.1'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
