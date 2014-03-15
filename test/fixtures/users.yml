@@ -3,7 +3,9 @@
 one:
   name: MyString
   email: MyString
+  approved: false
 
 two:
   name: MyString
   email: MyString
+  approved: false
