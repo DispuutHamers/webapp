@@ -14,7 +14,8 @@ gem "twitter-bootstrap-rails"
 # gem "bootstrap-sass"
 gem 'bcrypt'
 gem "bcrypt-ruby"
-
+gem "will_paginate"
+gem "bootstrap-will_paginate"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
