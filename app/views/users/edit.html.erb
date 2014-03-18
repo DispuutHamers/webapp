@@ -11,7 +11,7 @@
       <%= f.text_field :email %>
       
       <% if current_user.admin? %>
-      <%= f.label :approved %>
+      <%= f.label :approved, "Is dit ok?" %>
       <%= f.check_box :approved %>
       <% end %> 
 

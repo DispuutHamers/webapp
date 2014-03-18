@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
+  def feed
+    Quote.all
+  end
+  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

@@ -18,7 +18,7 @@ class QuotesController < ApplicationController
 
   def destroy
     @micropost.destroy
-    flash[:succes] = "Zie je nooit meer terrug" 
+    flash[:succes] "Zie je nooit meer terrug" 
     redirect_to root_url
   end
 

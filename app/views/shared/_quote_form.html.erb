@@ -3,5 +3,8 @@
   <div class="field">
     <%= f.text_area :text, placeholder: "Wat zei die lul?" %>
   </div>
+  <%= f.label :user_id %>
+  <% users_array = User.all.map { |city| [city.name, city.id] } %>
+  <%= f.select :user_id, options_for_select(users_array) %>
   <%= f.submit "Post", class: "btn btn-large btn-primary" %>
 <% end %>

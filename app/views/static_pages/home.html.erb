@@ -8,15 +8,17 @@
         <%= render 'shared/quote_form' %>
       </section>
     </aside>
+    <div class="span8">
+      <h3>Quote Feed</h3>
+      <%= render 'shared/feed' %>
+    </div>
   </div>
 <% else %>
 <div class="center hero-unit">
   <h1>Hamers zonder Sikkel</h1>
 
   <h2>
-    NYANTAA
+   defenestraties voorbehouden
   </h2>
-
-  <%= link_to "Sign up now!", signup_url, class: "btn btn-large btn-primary" %>
 </div>
 <% end %>
