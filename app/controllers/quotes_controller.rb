@@ -26,7 +26,7 @@ class QuotesController < ApplicationController
 
   private
     def admin_user
-      @quote = quote.find_by_id(params[:id])
+      @quote = Quote.find_by_id(params[:id])
       redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
     end
 
