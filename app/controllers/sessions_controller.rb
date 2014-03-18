@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       redirect_to user
     else
       flash.now[:error] = 'Deze gegevens werken niet'
-      render signin_path
+      render 'new'
     end
   end
 
