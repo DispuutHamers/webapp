@@ -1,2 +1,22 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<% if signed_in? %>
+  <div class="row">
+    <aside class="span4">
+      <section>
+        <%= render 'shared/user_info' %>
+      </section>
+      <section>
+        <%= render 'shared/micropost_form' %>
+      </section>
+    </aside>
+  </div>
+<% else %>
+<div class="center hero-unit">
+  <h1>Hamers zonder Sikkel</h1>
+
+  <h2>
+    NYANTAA
+  </h2>
+
+  <%= link_to "Sign up now!", signup_url, class: "btn btn-large btn-primary" %>
+</div>
+<% end %>

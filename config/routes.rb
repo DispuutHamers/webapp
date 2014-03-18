@@ -1,8 +1,8 @@
 Hamers::Application.routes.draw do
   root  'static_pages#home'  
 
-  resources :users
-  resources :quotes
+  resources :users  
+  resources :quotes, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup',  to: 'users#new',            via: 'get'

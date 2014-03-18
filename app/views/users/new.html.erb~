@@ -3,7 +3,7 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+      <%= render 'shared/error_messages' %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 

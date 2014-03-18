@@ -11,14 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317121910) do
+ActiveRecord::Schema.define(version: 20140317153715) do
 
   create_table "quotes", force: true do |t|
-    t.string   "name"
-    t.string   "quote"
+    t.string   "text"
+    t.integer  "user_id"
+    t.integer  "reporter"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "quotes", ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

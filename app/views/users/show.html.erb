@@ -9,5 +9,14 @@
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.quotes.any? %>
+      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
+      <ol class="microposts">
+        <%= render @quotes %>
+      </ol>
+      <%= will_paginate @quotes %>
+    <% end %>
+  </div>
 </div>
 

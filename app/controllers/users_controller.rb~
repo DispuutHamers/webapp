@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       user_params.delete(:password_confirmation)
     end
     if @user.update_attributes(user_params)
-      sign_in @user
+      sign_in current_user
       flash[:success] = "Profile updated"
       redirect_to @user
     else

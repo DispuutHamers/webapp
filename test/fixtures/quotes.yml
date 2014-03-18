@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  quote: MyString
+  text: MyString
+  user_id: 1
+  reporter: 1
 
 two:
-  name: MyString
-  quote: MyString
+  text: MyString
+  user_id: 1
+  reporter: 1
