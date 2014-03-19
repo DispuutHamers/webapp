@@ -1,0 +1,25 @@
+<%= form_for(@afmeldingen) do |f| %>
+  <% if @afmeldingen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@afmeldingen.errors.count, "error") %> prohibited this afmeldingen from being saved:</h2>
+
+      <ul>
+      <% @afmeldingen.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :reden %><br>
+    <%= f.text_field :reden %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

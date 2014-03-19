@@ -1,4 +1,6 @@
 Hamers::Application.routes.draw do
+  resources :afmeldingens
+
   root  'static_pages#home'  
 
   resources :users  
