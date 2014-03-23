@@ -1,0 +1,29 @@
+<h1>Listing afmeldingens</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reden</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @afmeldingens.each do |afmeldingen| %>
+      <tr>
+        <td><%= afmeldingen.reden %></td>
+        <td><%= afmeldingen.user_id %></td>
+        <td><%= link_to 'Show', afmeldingen %></td>
+        <td><%= link_to 'Edit', edit_afmeldingen_path(afmeldingen) %></td>
+        <td><%= link_to 'Destroy', afmeldingen, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Afmeldingen', new_afmeldingen_path %>

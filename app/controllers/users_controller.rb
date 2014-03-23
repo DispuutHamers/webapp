@@ -74,6 +74,6 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin?
+      redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or @user.admin?
     end
 end
