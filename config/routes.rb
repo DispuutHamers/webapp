@@ -3,8 +3,6 @@ Hamers::Application.routes.draw do
 
   resources :polls
 
-  resources :afmeldingens
-
   root  'static_pages#home'  
 
   resources :users  
