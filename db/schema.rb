@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140317153715) do
+ActiveRecord::Schema.define(version: 20140324171716) do
+
+  create_table "polls", force: true do |t|
+    t.string   "beschrijving"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "quotes", force: true do |t|
     t.string   "text"
@@ -36,5 +42,13 @@ ActiveRecord::Schema.define(version: 20140317153715) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.boolean  "result"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "poll_id"
+  end
 
 end
