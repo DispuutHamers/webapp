@@ -5,6 +5,7 @@ class VotesController < ApplicationController
   # POST /votes
   # POST /votes.json
   def create
+    ary = [0, 1]
     @vote = Vote.new(vote_params)
     @poll = Poll.find(params[:vote][:poll_id])
     current_user.vote!(@poll, params[:vote][:result])   

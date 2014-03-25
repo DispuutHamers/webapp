@@ -13,7 +13,6 @@
         <% end %>    
         <%= form_for(current_user.votes.build(poll_id: poll.id, result: 0)) do |f| %>
           <div><%= f.hidden_field :poll_id %></div>
-          <div><%= f.hidden_field :result %></div>
           <%= f.submit "Tegen (" + poll.votes.where(result: 0).count.to_s + ")", class: "btn btn-large btn-primary" %>
         <% end %>
       <% if current_user.admin? %>

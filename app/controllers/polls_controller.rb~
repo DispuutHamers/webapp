@@ -42,7 +42,7 @@ class PollsController < ApplicationController
   def update
     respond_to do |format|
       if @poll.update(poll_params)
-        format.html { redirect_to polls_path, notice: 'Poll was successfully updated.' }
+        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
