@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   end
   
   def vote!(poll, result)
-    votes.create!(poll_id: poll.id, result: result) unless votes.where(poll_id: poll.id, user_id: self.id).any?
+    self.votes.create!(poll_id: poll.id, result: result) unless votes.where(poll_id: poll.id, user_id: self.id).any?
   end
   
   def User.new_remember_token
