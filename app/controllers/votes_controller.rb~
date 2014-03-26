@@ -1,11 +1,11 @@
 class VotesController < ApplicationController
   include SessionsHelper
+  
   before_action :set_vote, only: [:destroy]
 
   # POST /votes
   # POST /votes.json
   def create
-    ary = [0, 1]
     @vote = Vote.new(vote_params)
     @poll = Poll.find(params[:vote][:poll_id])
     current_user.vote!(@poll, params[:vote][:result])   
@@ -23,6 +23,20 @@ class VotesController < ApplicationController
   end
 
   private
+    def admin_user
+      @quote = Quote.find_by_id(params[:id])
+      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
+    end
+
+   
+    def micropost_params
+      params.require(:quote).permit(:user_id, :text)
+    end
+    
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
       @vote = Vote.find(params[:id])
