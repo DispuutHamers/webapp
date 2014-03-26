@@ -1,6 +1,6 @@
 class VotesController < ApplicationController
   include SessionsHelper
-  before_action :admin_user, only [:destroy]
+  before_action :admin_user, only: [:destroy]
   before_action :set_vote, only: [:destroy]
   before_action :signed_in_user
 
