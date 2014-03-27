@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324171716) do
+ActiveRecord::Schema.define(version: 20140327150929) do
+
+  create_table "events", force: true do |t|
+    t.string   "beschrijving"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "polls", force: true do |t|
     t.string   "beschrijving"
@@ -28,6 +34,15 @@ ActiveRecord::Schema.define(version: 20140324171716) do
   end
 
   add_index "quotes", ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at", using: :btree
+
+  create_table "signups", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
