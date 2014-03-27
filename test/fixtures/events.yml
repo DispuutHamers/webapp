@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  reden: MyString
-  user_id: 1
+  beschrijving: MyString
 
 two:
-  reden: MyString
-  user_id: 1
+  beschrijving: MyString

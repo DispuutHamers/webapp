@@ -1,4 +1,6 @@
 Hamers::Application.routes.draw do
+  resources :events
+
   resources :votes
 
   resources :polls
