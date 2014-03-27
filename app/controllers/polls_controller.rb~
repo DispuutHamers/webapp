@@ -1,5 +1,6 @@
 class PollsController < ApplicationController
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:show, :edit, :update, :new, :create, :destroy]
 
   # GET /polls
   # GET /polls.json
@@ -42,7 +43,7 @@ class PollsController < ApplicationController
   def update
     respond_to do |format|
       if @poll.update(poll_params)
-        format.html { redirect_to @poll, notice: 'Poll was successfully updated.' }
+        format.html { redirect_to polls_path, notice: 'Poll was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,6 +63,15 @@ class PollsController < ApplicationController
   end
 
   private
+    def admin_user
+      @quote = Quote.find_by_id(params[:id])
+      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
+    end
+    
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
       @poll = Poll.find(params[:id])
