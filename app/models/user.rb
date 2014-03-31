@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   has_many :quotes
   has_many :votes, dependent: :destroy
+  has_many :signups, dependent: :destroy
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
@@ -10,7 +11,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
   def feed
-    Quote.all
+    Quote.where("created_at > ?", Time.now.beginning_of_day)
   end
   
   def vote!(poll, result)
