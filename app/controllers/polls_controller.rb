@@ -1,5 +1,7 @@
 class PollsController < ApplicationController
+  include SessionsHelper
   before_action :set_poll, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: [:show, :edit, :update, :new, :create, :destroy]
 
   # GET /polls
   # GET /polls.json
@@ -62,6 +64,15 @@ class PollsController < ApplicationController
   end
 
   private
+    def admin_user
+      @quote = Quote.find_by_id(params[:id])
+      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
+    end
+    
+    def signed_in_user
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_poll
       @poll = Poll.find(params[:id])

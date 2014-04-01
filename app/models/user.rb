@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  belongs_to :usergroup
   has_many :quotes
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
   def feed
-    Quote.all
+    Quote.where("created_at > ?", Time.now.beginning_of_day)
   end
   
   def vote!(poll, result)

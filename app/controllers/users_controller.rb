@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @quotes = @user.quotes.paginate(page: params[:page])
+    @quotes = @user.quotes.where("created_at > ?", Time.now.beginning_of_day).paginate(page: params[:page])
   end
 
   def new
