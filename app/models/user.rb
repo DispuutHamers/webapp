@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+  belongs_to :usergroup
   has_many :quotes
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
