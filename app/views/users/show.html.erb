@@ -11,7 +11,7 @@
   </aside>
   <div class="span8">
     <% if @user.quotes.any? %>
-      <h3>Quotes: (<%= @user.quotes.where("created_at > ?", Time.now.beginning_of_day).count %>)</h3>
+      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
       <ol class="microposts">
         <%= render @quotes %>
       </ol>

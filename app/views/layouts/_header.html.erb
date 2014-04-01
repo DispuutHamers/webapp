@@ -9,7 +9,8 @@
           <% if signed_in? %>
             <li><%= link_to "Users", users_path %></li>
             <li><%= link_to "Stemmingen", polls_path %></li>
-            <li id="fat-menu" class="dropdown">
+            <li><%= link_to "Borrels", events_path %></li>
+	    <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
