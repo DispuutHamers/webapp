@@ -6,7 +6,6 @@
   <nav>
     <ul>
       <% if signed_in? %> 
-      <li><%= link_to "Control Panel", "#" %></li>
       <% else %>
       <li><%= link_to "inloggen", signin_path %></li> 
       <li><%= link_to "Registreren", signup_path %></li>
