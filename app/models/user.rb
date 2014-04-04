@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
-  belongs_to :usergroup
+  has_many :groups, foreign_key: "user_id", dependent: :destroy
+  has_many :usergroups, through: :groups           
   has_many :quotes
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
-  def feed
+  def feed  
     Quote.all
   end
   
@@ -26,7 +27,19 @@ class User < ActiveRecord::Base
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
-
+  
+  def in_group?(group)
+    groups.find_by(group_id: group.id)
+  end
+  
+  def join_group!(group)
+    groups  .create!(group_id: group.id)
+  end
+  
+  def remove_group!(group)
+    groups.find_by(group_id: group.id).destroy!
+  end
+    
   def User.hash(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
