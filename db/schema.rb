@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324171716) do
+ActiveRecord::Schema.define(version: 20140404155402) do
+
+  create_table "afmeldingens", force: true do |t|
+    t.string   "reden"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.string   "beschrijving"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "groups", ["group_id"], name: "index_groups_on_group_id", using: :btree
+  add_index "groups", ["user_id", "group_id"], name: "index_groups_on_user_id_and_group_id", unique: true, using: :btree
+  add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
 
   create_table "polls", force: true do |t|
     t.string   "beschrijving"
@@ -28,6 +52,21 @@ ActiveRecord::Schema.define(version: 20140324171716) do
   end
 
   add_index "quotes", ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at", using: :btree
+
+  create_table "signups", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "status"
+    t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usergroups", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
