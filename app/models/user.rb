@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
   def feed
-    Quote.where("created_at > ?", Time.now.beginning_of_day)
+    Quote.all
   end
   
   def vote!(poll, result)
