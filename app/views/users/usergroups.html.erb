@@ -3,7 +3,7 @@
 
   <% @usergroups.each do |group| %>
     <li>   
-      <% if current_user.in_group?(group) %>
+      <% if @user.in_group?(group) %>
         <%= form_for(@user.groups.find_by(group_id: group.id, user_id: @user.id),
              html: { method: :delete }) do |f| %>
         <%= f.hidden_field :group_id %>

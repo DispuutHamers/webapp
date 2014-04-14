@@ -4,9 +4,9 @@
 	width: 20%;
 	position: fixed;
 	bottom: 0;
-	left: 0;
+	left: 40%;
 	
-	-webkit-transform: rotateX(60deg);
+	-webkit-transform: rotateX(0deg);
 	-webkit-transform-origin: center bottom 0;
 	-webkit-animation-name: sideways, bounce;
 	-webkit-animation-duration: 4.9s, 1s;

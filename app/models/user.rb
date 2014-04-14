@@ -29,14 +29,11 @@ class User < ActiveRecord::Base
   end
   
   def in_group?(group)
-    if !group
-       return false
-    end
-    groups.find_by(group_id: group.id)
+     groups.find_by(group_id: group.id)
   end
   
   def join_group!(group)
-    groups  .create!(group_id: group.id)
+    groups.create!(group_id: group.id)
   end
   
   def remove_group!(group)
