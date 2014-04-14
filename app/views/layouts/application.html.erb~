@@ -4,6 +4,9 @@
   <title>Hamers zonder Sikkel</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <% if current_user.in_group?(Usergroups.find_by(name: 'kutfeut')) %>
+  <script src="/kutfeut/kutfeut.js"></script>
+  <% end %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -14,6 +17,7 @@
       <% end %>
       <%= yield %>
       <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>

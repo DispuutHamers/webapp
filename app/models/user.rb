@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
   end
   
   def in_group?(group)
+    if !group
+       return false
+    end
     groups.find_by(group_id: group.id)
   end
   

@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   has_many :groups, foreign_key: "user_id", dependent: :destroy
-  has_many :usergroups, through: :group s           
+  has_many :usergroups, through: :groups           
   has_many :quotes
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
   def feed  
-    Quote.where("created_at > ?", Time.now.beginning_of_day)
+    Quote.all
   end
   
   def vote!(poll, result)
@@ -29,11 +29,14 @@ class User < ActiveRecord::Base
   end
   
   def in_group?(group)
+    if !group
+       return false;
+    end
     groups.find_by(group_id: group.id)
   end
   
   def join_group!(group)
-    groups.create!(group_id: group.id)
+    groups  .create!(group_id: group.id)
   end
   
   def remove_group!(group)
