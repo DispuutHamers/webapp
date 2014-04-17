@@ -3,6 +3,11 @@ class StaticPagesController < ApplicationController
   def home
     @quote = current_user.quotes.build if signed_in?
     @feed_items = current_user.feed.paginate(page: params[:page]) if signed_in?
+    @events = Event.find(:all, 
+        :order => "date", 
+        :conditions => ['date >= ?', Date.today],
+        :limit => "10"
+        )
   end
 
   def help

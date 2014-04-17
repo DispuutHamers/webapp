@@ -12,6 +12,16 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div class="field">
     <%= f.label :beschrijving %><br>
     <%= f.text_field :beschrijving %>
   </div>

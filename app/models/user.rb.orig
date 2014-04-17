@@ -1,8 +1,12 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
+<<<<<<< HEAD
+  belongs_to :usergroup
+=======
   has_many :groups, foreign_key: "user_id", dependent: :destroy
   has_many :usergroups, through: :groups           
+>>>>>>> usergroups
   has_many :quotes
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
@@ -12,8 +16,13 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
-  def feed  
+<<<<<<< HEAD
+  def feed
     Quote.all
+=======
+  def feed  
+    Quote.where("created_at > ?", Time.now.beginning_of_day)
+>>>>>>> usergroups
   end
   
   def vote!(poll, result)
@@ -29,11 +38,11 @@ class User < ActiveRecord::Base
   end
   
   def in_group?(group)
-     groups.find_by_id(group.id)
+    groups.find_by(group_id: group.id)
   end
   
   def join_group!(group)
-    groups.create!(group_id: group.id)
+    groups  .create!(group_id: group.id)
   end
   
   def remove_group!(group)

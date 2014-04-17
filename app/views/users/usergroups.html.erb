@@ -1,0 +1,23 @@
+<% if current_user.admin? %>
+<h1>Groepen</h1>
+
+  <% @usergroups.each do |group| %>
+    <li>   
+      <% if @user.in_group?(group) %>
+        <%= form_for(@user.groups.find_by(group_id: group.id, user_id: @user.id),
+             html: { method: :delete }) do |f| %>
+        <%= f.hidden_field :group_id %>
+        <%= f.hidden_field :user_id %>
+        <%= group.name %> | <%= f.submit "remove" %>
+        <% end %>
+      <% else %>
+        <%= form_for(@user.groups.new(group_id: group.id, user_id: @user.id)) do |f| %>
+        <%= f.hidden_field :group_id %>
+        <%= f.hidden_field :user_id %>
+        <%= group.name %> | <%= f.submit "add" %>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
