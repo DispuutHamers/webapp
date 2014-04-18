@@ -1,8 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Beschrijving:</strong>
-  <%= @event.beschrijving %>
-</p>
-
+<div class="row">
+  <aside class="span8">
+    <section><h1><%= @event.title %></h1></section>
+    <section><%= @event.date.strftime("%d/%m/%Y") %></section>
+    <section><%= @event.beschrijving %></section>
+  </aside>
+  <div class="span4">
+    <section>
+      <strong>Wie komen er:</strong>
+      <% @event.signups.where(status: true).each do |s| %>
+      <%= s.user.name %>, 
+      <% end %>
+      ..jij?
+        <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
+          <div><%= f.hidden_field :event_id %></div>
+          <div><%= f.hidden_field :user_id %></div>
+          <div><%= f.hidden_field :status %></div>
+          <%= f.submit "Ik zal aanwezig zijn.", class: "btn" %>
+        <% end %>
+    </section>
+    <section>
+	  <strong>Wie komen er niet: </strong>
+      <% @event.signups.where(status: false).each do |s| %>
+      <%= s.user.name %>, 
+      <% end %>
+      ..jij?
+        <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
+          <div><%= f.hidden_field :event_id %></div>
+          <div><%= f.hidden_field :user_id %></div>
+          <div><%= f.hidden_field :status %></div>
+          <%= f.submit "Ik zal niet aanwezig zijn.", class: "btn" %>
+        <% end %>
+    </section>
+  </div>
+</div>
 <%= link_to 'Back', events_path %>

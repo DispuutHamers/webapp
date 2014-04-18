@@ -6,6 +6,7 @@ Hamers::Application.routes.draw do
   resources :votes
 
   resources :polls
+  resources :signups
 
   root  'static_pages#home'  
 

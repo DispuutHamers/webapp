@@ -24,6 +24,14 @@ class User < ActiveRecord::Base
     self.votes.create!(poll_id: poll.id, result: result) 
   end
   
+  def sign!(event, status)
+    stemmen = signups.where(event_id: event.id, user_id: self.id)
+    if stemmen.any?
+      stemmen.each { |stem| stem.destroy! } 
+    end
+    self.signups.create!(event_id: event.id, status: status) 
+  end
+  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

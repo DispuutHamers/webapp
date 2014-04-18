@@ -1,20 +1,11 @@
 class SignupsController < ApplicationController
+  include SessionsHelper
   before_action :set_signup, only: [:show, :edit, :update, :destroy]
 
   # GET /signups
   # GET /signups.json
   def index
     @signups = Signup.all
-  end
-
-  # GET /signups/1
-  # GET /signups/1.json
-  def show
-  end
-
-  # GET /signups/new
-  def new
-    @signup = Signup.new
   end
 
   # GET /signups/1/edit
@@ -25,16 +16,9 @@ class SignupsController < ApplicationController
   # POST /signups.json
   def create
     @signup = Signup.new(signup_params)
-
-    respond_to do |format|
-      if @signup.save
-        format.html { redirect_to @signup, notice: 'Signup was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @signup }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @signup.errors, status: :unprocessable_entity }
-      end
-    end
+    @event = Event.find(params[:signup][:event_id])
+    current_user.sign!(@event, params[:signup][:status])   
+    redirect_to @event
   end
 
   # PATCH/PUT /signups/1
