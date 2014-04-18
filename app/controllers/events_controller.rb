@@ -71,7 +71,7 @@ class EventsController < ApplicationController
     end
     
     def admin_user
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
+      redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
     end
 
     def signed_in_user

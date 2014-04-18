@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
     in_group?(Usergroup.find_by(name: 'Triumviraat'))
   end
 
+  def schrijf_feut?
+    in_group?(Usergroup.find_by(name: 'Secretaris-generaal')
+  end
+
   private
 
     def create_remember_token
