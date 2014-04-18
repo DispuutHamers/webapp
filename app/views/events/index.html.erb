@@ -27,6 +27,6 @@
 </table>
 
 <br>
-<% if current_user.in_group?(Usergroup.find_by(name: 'Triumviraat')) %>
+<% if lid? %>
 <%= link_to 'New Event', new_event_path %>
 <% end %>

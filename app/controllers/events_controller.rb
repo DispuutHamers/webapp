@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include SessionsHelper
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :admin_user, only: [:destroy, :new, :update, :edit]
+  before_action :admin_user, only: [:destroy, :update, :edit]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
