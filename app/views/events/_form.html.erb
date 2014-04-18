@@ -20,11 +20,11 @@
     <%= f.label :date %>
     <%= f.date_select :date %>
   </div>
-
+  
   <div class="field">
-    <%= f.label :beschrijving %><br>
-    <%= f.text_field :beschrijving %>
+    <%= f.text_area :beschrijving, placeholder: "Wat gaan we doen?" %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
