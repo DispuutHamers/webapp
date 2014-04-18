@@ -43,6 +43,18 @@ class User < ActiveRecord::Base
   def User.hash(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
+  
+  def lid?
+    in_group?(Usergroup.find_by(name: 'lid'))
+  end
+
+  def alid?
+    in_group?(Usergroup.find_by(name: 'A-Lid'))
+  end
+  
+  def admin?
+    in_group?(Usergroup.find_by(name: 'Triumviraat'))
+  end
 
   private
 

@@ -1,19 +1,26 @@
 <h1>Update your profile</h1>
 
+	
 <div class="row">
-  <div class="span6 offset3">
+<aside class="span4">
+    <section>
+      <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails" target="_blank">change</a>
+    </section>
+    <% if current_user.admin? %>
+    <section>
+	<%= link_to "Groepen", usergroups_user_path(@user) %>
+    </section>
+    <% end %>
+  </aside>
+  <div class="span6">
     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 
       <%= f.label :email %>
-      <%= f.text_field :email %>
-      
-      <% if current_user.admin? %>
-      <%= f.label :approved, "Is dit ok?" %>
-      <%= f.check_box :approved %>
-      <% end %> 
+      <%= f.text_field :email %> 
 
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -23,8 +30,5 @@
 
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
-
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails" target="_blank">change</a>
-  </div>
+  </div> 
 </div>
