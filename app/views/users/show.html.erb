@@ -8,6 +8,11 @@
         <%= @user.name %>
       </h1>
     </section>
+    <section>
+	<% Usergroup.all.each do |g| %>
+	<%= g.name if @user.in_group?(g) %>
+ 	<% end %>
+    </section>
   </aside>
   <div class="span8">
     <% if @user.quotes.any? %>
