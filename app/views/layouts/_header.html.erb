@@ -5,7 +5,6 @@
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Home",    root_path %></li>
-          <li><%= link_to "Help",    help_path %></li>
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -15,6 +14,7 @@
                 <li><%= link_to "Leden", users_path %></li>
                 <li><%= link_to "Stemmingen", polls_path %></li>
                 <li><%= link_to "Activiteiten", events_path %></li>
+                <li><%= link_to "Bier", beers_path %></li>
               </ul>
             </li>
 	      <li id="fat-menu" class="dropdown">

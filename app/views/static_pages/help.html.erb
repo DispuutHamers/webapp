@@ -1,1 +1,4 @@
-<h1>Komt ooit wellicht nog eens af en toe misschien een keer.</h1>
+<%= @content.p_content %>
+<% if lid? || alid? %>
+<%= @content.content %>
+<% end %>

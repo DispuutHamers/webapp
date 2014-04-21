@@ -11,5 +11,6 @@ class StaticPagesController < ApplicationController
   end
 
   def help
+    @content = Static.find_by(title: "help") 
   end
 end

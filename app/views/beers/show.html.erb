@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <aside class="span8">
+    <% @beer.reviews.each do |r| %>
+    <section>
+      <p><i><%= link_to User.find(r.user_id).name, User.find(r.user_id) %></i> zei over dit bier: </p>
+      <p><%= r.description %></p>
+      <p>Dit biertje kreeg een: <%= r.rating %></p>
+    </section>
+    <% end %>
+  </aside> 
+  <div class="span2"> 
+    <section>
+    <%= image_tag(@beer.picture, :alt => @beer.name) %>
+    <table><tr><th width="30%"></th><th width="70%"></th></tr>
+    <tr><td>name:</td><td align="right"><%= @beer.name %></td></tr>
+    <tr><td>soort:</td><td align="right"><%= @beer.soort %></td></tr>
+    </table>
+    </section>
+  </div>
+</div>
+
+<%= link_to 'Review', reviews_beer_path(@beer) %> |
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_beer_path(@beer) %> |
+<% end %>
+<%= link_to 'Back', beers_path %>
