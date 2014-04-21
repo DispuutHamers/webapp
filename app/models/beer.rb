@@ -10,7 +10,7 @@ class Beer < ActiveRecord::Base
    self.reviews.each do |r| 
      cijfer = cijfer + r.rating
    end
-   return (cijfer / self.reviews.count)
+   return (cijfer / self.reviews.count) unless self.reviews.count == 0
  end 
  
 end
