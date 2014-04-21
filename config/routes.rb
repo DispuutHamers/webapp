@@ -19,7 +19,8 @@ Hamers::Application.routes.draw do
       get :usergroups
     end
   end
-  resources :reviews, only: [:create, :destroy]
+ 
+  resources :reviews, only: [:create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy]
   resources :usergroups, only: [:create, :destroy]
   resources :quotes, only: [:create, :destroy]

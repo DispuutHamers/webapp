@@ -6,7 +6,15 @@
     <section>
       <p><i><%= link_to User.find(r.user_id).name, User.find(r.user_id) %></i> zei over dit bier: </p>
       <p><%= r.description %></p>
-      <p>Dit biertje kreeg een: <%= r.rating %></p>
+      <p>Dit biertje kreeg een: <%= r.rating %>
+      <% if current_user == User.find(r.user_id) || current_user.admin? %>
+       | <%= link_to "edit", edit_review_path(r) %>
+       <% if current_user.admin? %>
+       | <%= link_to "destroy", r, method: :delete,
+                                  data: { confirm: "You sure?" } %>
+       <% end %>
+       <% end %> 
+      </p>
     </section>
     <% end %>
   </aside> 
