@@ -1,12 +1,19 @@
+<script type="text/javascript">
+$(document).ready(function() 
+    { 
+        $("#bier").tablesorter(); 
+    } 
+); 
+</script>
+
 <h1>Biertjes</h1>
 
-<table>
+<table id="bier" class="tablesorter">
   <thead>
     <tr>
       <th>Name</th>
       <th>Soort</th>
       <th>Cijfer</th>
-      <th></th>
       <% if current_user.admin? %>
       <th></th>
       <% end %>
@@ -19,7 +26,6 @@
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
         <td><%= beer.cijfer? %></td>
-        <td></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
