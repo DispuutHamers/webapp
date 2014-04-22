@@ -5,6 +5,10 @@
   <div class="field">
   <%= f.label :rating %>
   <%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] %>
+  <div class="field">
+    <%= f.label :proefdatum, "Proefdatum" %>
+    <%= f.date_select :proefdatum %>
+  </div>
   <%= f.hidden_field :user_id %>
   <%= f.hidden_field :beer_id %>
   </div>

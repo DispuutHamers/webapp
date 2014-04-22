@@ -2,11 +2,15 @@ class ReviewsController < ApplicationController
   include SessionsHelper
  
   def create
-    @user = User.find(params[:review][:user_id])
+    @review = Review.new(review_params)
     @beer = Beer.find(params[:review][:beer_id])
-    @rating = params[:review][:rating]
-    @beer.add_review!(@user, @rating, params[:review][:description])  
-    redirect_to @beer
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to @beer, notice: 'Review was successfully created.' }
+      else
+        format.html { render action: 'new' }
+      end
+    end
   end
   
   def edit
@@ -36,7 +40,7 @@ class ReviewsController < ApplicationController
   
   private 
     def review_params
-      params.require(:review).permit(:user_id, :beer_id, :description, :rating)
+      params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
     end
   
 end

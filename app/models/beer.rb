@@ -1,8 +1,8 @@
 class Beer < ActiveRecord::Base
  has_many :reviews
  
- def add_review!(user, rating, description)
-   self.reviews.create!(user_id: user.id, rating: rating, description: description)
+ def add_review!(user, rating, description, proefdatum)
+   self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)
  end
  
  def cijfer?

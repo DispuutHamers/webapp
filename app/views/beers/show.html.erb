@@ -6,7 +6,7 @@
     <section>
       <p><i><%= link_to User.find(r.user_id).name, User.find(r.user_id) %></i> zei over dit bier: </p>
       <p><%= r.description %></p>
-      <p>Dit biertje kreeg een: <%= r.rating %>
+      <p>Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op <i><%= r.proefdatum.strftime("%d/%m/%Y") %></i>
       <% if current_user == User.find(r.user_id) || current_user.admin? %>
        | <%= link_to "edit", edit_review_path(r) %>
        <% if current_user.admin? %>
@@ -24,6 +24,9 @@
     <table><tr><th width="30%"></th><th width="70%"></th></tr>
     <tr><td>name:</td><td align="right"><%= @beer.name %></td></tr>
     <tr><td>soort:</td><td align="right"><%= @beer.soort %></td></tr>
+    <tr><td>ALC:</td><td align="right"><%= @beer.percentage %></td></tr>
+    <tr><td>Brouwer:</td><td align="right"><%= @beer.brewer %></td></tr>
+    <tr><td>Land:</td><td align="right"><%= @beer.country %></td></tr>
     </table>
     </section>
   </div>
