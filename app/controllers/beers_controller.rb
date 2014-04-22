@@ -1,4 +1,5 @@
 class BeersController < ApplicationController
+  include SessionsHelper
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:index, :edit, :update]
   before_action :admin_user, only: [:destroy, :update, :edit]

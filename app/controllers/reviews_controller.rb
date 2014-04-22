@@ -2,10 +2,13 @@ class ReviewsController < ApplicationController
   include SessionsHelper
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :admin_user, only: [:destroy]
+  before_action :correct_user, only: [:edit, :update]
  
   def create
     @review = Review.new(review_params)
     @beer = Beer.find(params[:review][:beer_id])
+    reviews = User.find(params[:review][:user_id]).reviews.where(beer_id: @beer.id)
+    redirect_to @beer, notice: 'Doe es niet valsspelen' and return if reviews.any?
     respond_to do |format|
       if @review.save
         format.html { redirect_to @beer, notice: 'Review was successfully created.' }
@@ -47,6 +50,11 @@ class ReviewsController < ApplicationController
     
     def admin_user
       redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
+    end
+    
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin?
     end
 
     def signed_in_user
