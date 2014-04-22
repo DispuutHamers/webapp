@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
   end
 
   def schrijf_feut?
-    in_group?(Usergroup.find_by(name: 'Secretaris-generaal')
+    in_group?(Usergroup.find_by(name: 'Secretaris-generaal'))
   end
 
   private
