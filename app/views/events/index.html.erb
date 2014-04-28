@@ -7,11 +7,8 @@
       <th>Datum</th>
       <% if current_user.admin? %>
       <th></th>
-      <th></th>
       <% end %>
-      <% if current_user.schrijf_feut? %>
       <th></th>
-      <% end %>
     </tr>
   </thead>
 
@@ -20,6 +17,9 @@
       <tr>
         <td><%= link_to event.title, event %></td>
 	<td><%= event.date.strftime("%d/%m/%Y") %>
+        <% if current_user == event.user and !current_user.admin? and !current_user.schrijf_feut? %>
+        <td><%= link_to 'Edit', edit_event_path(event) %>
+        <% end %>
         <% if current_user.admin? %>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

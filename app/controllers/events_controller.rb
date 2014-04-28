@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
   include SessionsHelper
   before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :admin_user, only: [:destroy, :update, :edit]
+  before_action :admin_user, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:update, :edit]
 
   # GET /events
   # GET /events.json
@@ -68,6 +69,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def correct_user
+      @event.user == current_user
     end
     
     def admin_user
