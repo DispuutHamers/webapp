@@ -7,18 +7,25 @@
     <section><%= @event.beschrijving %></section>
   </aside>
   <div class="span4">
+    <% if @event.user_id != nil %>
+      <section>
+        Event door: <%= @event.user.name %>
+      </section>
+    <% end %>
     <section>
       <strong>Wie komen er:</strong>
       <% @event.signups.where(status: true).each do |s| %>
       <%= s.user.name %>, 
       <% end %>
       ..jij?
+	<% if @event.deadline != nil and @event.deadline > Time.now %>
         <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
           <div><%= f.hidden_field :event_id %></div>
           <div><%= f.hidden_field :user_id %></div>
           <div><%= f.hidden_field :status %></div>
           <%= f.submit "Ik zal aanwezig zijn.", class: "btn" %>
         <% end %>
+	<% end %>
     </section>
     <section>
 	  <strong>Wie komen er niet: </strong>
@@ -26,12 +33,14 @@
       <%= s.user.name %>, 
       <% end %>
       ..jij?
-        <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
+      <% if @event.deadline != nil and @event.deadline > Time.now %>
+      <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
           <div><%= f.hidden_field :event_id %></div>
           <div><%= f.hidden_field :user_id %></div>
           <div><%= f.hidden_field :status %></div>
           <%= f.submit "Ik zal niet aanwezig zijn.", class: "btn" %>
         <% end %>
+	<% end %>
     </section>
   </div>
 </div>
