@@ -4,9 +4,9 @@
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
-role :app, %w{jackozi@149.210.163.54}
-role :web, %w{jackozi@149.210.163.54}
-role :db,  %w{jackozi@149.210.163.54}
+role :app, %w{wiegaaternaardebeiaard@149.210.163.54}
+role :web, %w{wiegaaternaardebeiaard@149.210.163.54}
+role :db,  %w{wiegaaternaardebeiaard@149.210.163.54}
 set :rails_env, "production"
 # Extended Server Syntax
 # ======================

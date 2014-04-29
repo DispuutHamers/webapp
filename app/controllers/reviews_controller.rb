@@ -53,7 +53,7 @@ class ReviewsController < ApplicationController
     end
     
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.find(params[:user_id])
       redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin?
     end
 
