@@ -10,7 +10,9 @@
     </section>
     <section>
 	<% Usergroup.all.each do |g| %>
-	<%= g.name if @user.in_group?(g) %>
+	<% if @user.in_group?(g) %>
+        <%= g.name %><br/>
+	<% end %>
  	<% end %>
     </section>
   </aside>
