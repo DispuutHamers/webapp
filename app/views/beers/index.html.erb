@@ -27,7 +27,7 @@ $(document).ready(function()
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
         <td><%= beer.cijfer? %></td>
-	<td><%= Review.count(:conditions => ["beer_id = ?", beer.id]) %></td>
+	<td><%= beer.reviews.count %></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
