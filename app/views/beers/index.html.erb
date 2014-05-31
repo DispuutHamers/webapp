@@ -29,7 +29,7 @@ $(document).ready(function()
         <td><%= beer.reviews.average(:rating) %></td>
 	<td><%= beer.reviews.count %></td>
         <% if current_user.admin? %>
-        <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Verwijder', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>

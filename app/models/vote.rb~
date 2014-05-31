@@ -1,3 +1,0 @@
-class Vote < ActiveRecord::Base
-    has :user, :poll
-end
