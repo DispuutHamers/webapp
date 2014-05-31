@@ -11,7 +11,7 @@ $(document).ready(function()
 <table id="bier" class="tablesorter">
   <thead>
     <tr>
-      <th>Naam</th>
+      <th>Name</th>
       <th>Soort</th>
       <th>Cijfer</th>
       <th>Aantal reviews</th>
@@ -26,8 +26,13 @@ $(document).ready(function()
       <tr>
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
-        <td><%= beer.reviews.average(:rating) %></td>
+<<<<<<< HEAD
+        <td><%= beer.cijfer? %></td>
 	<td><%= beer.reviews.count %></td>
+=======
+        <td><%= beer.reviews.average(:rating) %></td>
+	<td><%= Review.count(:conditions => ["beer_id = ?", beer.id]) %></td>
+>>>>>>> 168a51cc981b1ecdfbc825401eada1d6005c0e9d
         <% if current_user.admin? %>
         <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -36,4 +41,4 @@ $(document).ready(function()
   </tbody>
 </table>
 <br>
-<%= link_to 'Nieuw Bier', new_beer_path %>
+<%= link_to 'New Beer', new_beer_path %>

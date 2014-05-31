@@ -8,8 +8,8 @@
     Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
   </span>
   <% if current_user.admin? %>
-    <%= link_to "delete", feed_item, method: :delete,
-                                     data: { confirm: "You sure?" },
+    <%= link_to "Verwijder", feed_item, method: :delete,
+                                     data: { confirm: "Weet je het zeker?" },
                                      title: feed_item.text %>
   <% end %>
 </li>
