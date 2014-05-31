@@ -1,11 +1,13 @@
-<h1>Listing events</h1>
+<h1>Activiteiten</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Beschrijving</th>
+      <th>Activiteit</th>
+      <th>Datum</th>
+      <% if current_user.admin? %>
       <th></th>
-      <th></th>
+      <% end %>
       <th></th>
     </tr>
   </thead>
@@ -13,15 +15,28 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.beschrijving %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to event.title, event %></td>
+	<td><%= event.date.strftime("%d/%m/%Y") %>
+        <% if current_user == event.user and !current_user.admin? and !current_user.schrijf_feut? %>
+        <td><%= link_to 'Wijzig', edit_event_path(event) %>
+        <% end %>
+        <% if current_user.admin? %>
+        <td><%= link_to 'Wijzig', edit_event_path(event) %></td>
+        <td><%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' } %></td>
+        <% end %>
+        <% if current_user.schrijf_feut? %>
+	<td><%= link_to 'Wijzig', edit_event_path(event) %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Event', new_event_path %>
+<% if lid? %>
+<<<<<<< HEAD
+<%= link_to 'Nieuwe activiteit', new_event_path %>
+=======
+<%= link_to 'Nieuw Evenement', new_event_path %>
+>>>>>>> 71f121e281eef18193114012309f0fb7e354a084
+<% end %>

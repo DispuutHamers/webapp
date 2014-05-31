@@ -2,5 +2,9 @@
 
 <%= render 'form' %>
 
+<<<<<<< HEAD
+<%= link_to 'Show', @poll %> |
+=======
 <%= link_to 'Laat zien', @poll %> |
+>>>>>>> 71f121e281eef18193114012309f0fb7e354a084
 <%= link_to 'Terug', polls_path %>
