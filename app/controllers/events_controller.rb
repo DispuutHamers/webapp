@@ -9,6 +9,21 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all.order(date: :desc)
+		respond_to do |w| 
+			w.html
+			w.ics do 
+		    feed = Event.find(:all, 
+													 :order => "date", 
+													 :conditions => ['date >= ?', Date.today], 
+													 :limit => "10")
+				calendar = Icalendar::Calendar.new
+				feed.each do |f|
+					calendar.add_event(f.to_ics)
+	      end
+				calendar.publish
+				render :text => calendar.to_ical
+			end
+		end
   end
 
   # GET /events/1

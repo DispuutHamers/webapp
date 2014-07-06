@@ -16,7 +16,8 @@
           <div><%= f.hidden_field :result %></div>
           <%= f.submit "Tegen (" + poll.votes.where(result: 0).count.to_s + ")", class: "btn btn-large btn-primary" %>
         <% end %>
-      <% if current_user.admin? %>
+    <% end %>    
+    <% if current_user.admin? %>
         | <%= link_to "edit", edit_poll_path(poll) %>
         | <%= link_to "delete", poll, method: :delete,
                                   data: { confirm: "You sure?" } %>
