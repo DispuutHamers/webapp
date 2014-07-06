@@ -1,5 +1,4 @@
 # config valid only for Capistrano 3.1
-lock '3.1.0'
 
 set :application, 'Hamers'
 set :repo_url, 'git@bitbucket.org:zuidemaj/hamers.git'
