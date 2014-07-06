@@ -13,12 +13,21 @@
         <% end %>    
         <%= form_for(current_user.votes.build(poll_id: poll.id, result: 0)) do |f| %>
           <div><%= f.hidden_field :poll_id %></div>
+          <div><%= f.hidden_field :result %></div>
           <%= f.submit "Tegen (" + poll.votes.where(result: 0).count.to_s + ")", class: "btn btn-large btn-primary" %>
         <% end %>
-      <% if current_user.admin? %>
+<<<<<<< HEAD
+    <% end %>    
+    <% if current_user.admin? %>
         | <%= link_to "edit", edit_poll_path(poll) %>
         | <%= link_to "delete", poll, method: :delete,
                                   data: { confirm: "You sure?" } %>
+=======
+      <% if current_user.admin? %>
+        | <%= link_to "Wijzig", edit_poll_path(poll) %>
+        | <%= link_to "Verwijder", poll, method: :delete,
+                                  data: { confirm: "Weet je het zeker?" } %>
+>>>>>>> c266ab239fb966985566751282d8496eba1d0b52
     <% end %>
     </li>
   <% end %>
@@ -27,5 +36,5 @@
 <%= will_paginate %>
 
 <% if current_user.admin? %>
-<%= link_to 'New Poll', new_poll_path %>
+<%= link_to 'Nieuwe stemming', new_poll_path %>
 <% end %>

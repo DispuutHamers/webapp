@@ -18,9 +18,9 @@
         <% end %>
     <% end %>    
     <% if current_user.admin? %>
-        | <%= link_to "edit", edit_poll_path(poll) %>
-        | <%= link_to "delete", poll, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+        | <%= link_to "Wijzig", edit_poll_path(poll) %>
+        | <%= link_to "Verwijder", poll, method: :delete,
+                                  data: { confirm: "Weet je het zeker?" } %>
     <% end %>
     </li>
   <% end %>
@@ -29,5 +29,5 @@
 <%= will_paginate %>
 
 <% if current_user.admin? %>
-<%= link_to 'New Poll', new_poll_path %>
+<%= link_to 'Nieuwe stemming', new_poll_path %>
 <% end %>

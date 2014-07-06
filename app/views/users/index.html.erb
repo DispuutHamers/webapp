@@ -1,20 +1,41 @@
+<script type="text/javascript">
+$(document).ready(function()
+    {
+	$("#user").tablesorter();
+    }
+);
+</script>
+
 <h1>Leden</h1>
+
+<table id="user" class="tablesorter">
+  <thead>
+    <tr>
+      <th>Naam</th>
+      <th>Aantal quotes</th>
+      <% if current_user.admin? %>
+      <th></th>
+      <% end %>
+    </tr>
+  </thead>
+
 
 <%= will_paginate %>	
 
-<ul class="users">
+ <tbody> 
   <% @users.each do |user| %>
-    <li>
-      <%= gravatar_for user, size: 52 %>
-      <%= link_to user.name, user %>
-      <%= Quote.count(:conditions => ["user_id = ?", user.id]) %>
-      <% if current_user.admin? && !current_user?(user) %>
-        | <%= link_to "edit", edit_user_path(user) %>
-        | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
-    </li>
-  <% end %>
-</ul>
+    <tr>
+      <td><%= gravatar_for user, size: 52 %>
+      <%= link_to user.name, user %></td>
+      <td><%= user.quotes.count %></td>
+      <td><% if current_user.admin? && !current_user?(user) %>
+        | <%= link_to "Wijzig", edit_user_path(user) %>
+        | <%= link_to "Verwijder", user, method: :delete,
+                                  data: { confirm: "Weet je het zeker?" } %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= will_paginate %>
