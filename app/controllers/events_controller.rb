@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   include SessionsHelper
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:edit, :update, :destroy]
   before_action :admin_user, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:update, :edit]
@@ -10,7 +10,9 @@ class EventsController < ApplicationController
   def index
     @events = Event.all.order(date: :desc)
 		respond_to do |w| 
-			w.html
+			w.html do 
+        redirect_to signin_url, notice: "Please sign in." unless signed_in?
+			end
 			w.ics do 
 		    feed = Event.find(:all, 
 													 :order => "date", 
