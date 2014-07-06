@@ -16,7 +16,6 @@
           <div><%= f.hidden_field :result %></div>
           <%= f.submit "Tegen (" + poll.votes.where(result: 0).count.to_s + ")", class: "btn btn-large btn-primary" %>
         <% end %>
-    <% end %>    
     <% if current_user.admin? %>
         | <%= link_to "Wijzig", edit_poll_path(poll) %>
         | <%= link_to "Verwijder", poll, method: :delete,
