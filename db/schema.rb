@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140706124819) do
 
-  create_table "afmeldingens", force: true do |t|
-    t.string   "reden"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "beers", force: true do |t|
     t.string   "name"
     t.string   "soort"

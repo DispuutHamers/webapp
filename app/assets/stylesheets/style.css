@@ -37,3 +37,10 @@ table.tablesorter thead tr .headerSortDown {
 table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
 background-color: #8dbdd8;
 }
+
+/* Bootstrap override */
+@media(max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+

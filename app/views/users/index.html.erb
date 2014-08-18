@@ -13,8 +13,9 @@ $(document).ready(function()
     <tr>
       <th>Naam</th>
       <th>Aantal quotes</th>
-      <% if current_user.admin? %>
-      <th></th>
+      <th>Aantal reviews</th>
+      <% if current_user.admin? && !current_user?(user) %>
+      <th>Admin stuff</th>
       <% end %>
     </tr>
   </thead>
@@ -28,7 +29,8 @@ $(document).ready(function()
       <td><%= gravatar_for user, size: 52 %>
       <%= link_to user.name, user %></td>
       <td><%= user.quotes.count %></td>
-      <td><% if current_user.admin? && !current_user?(user) %>
+      <td><%= user.reviews.count %></td>
+      <% if current_user.admin? && !current_user?(user) %><td>
         | <%= link_to "Wijzig", edit_user_path(user) %>
         | <%= link_to "Verwijder", user, method: :delete,
                                   data: { confirm: "Weet je het zeker?" } %></td>
