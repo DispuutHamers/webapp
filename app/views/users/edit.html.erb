@@ -4,7 +4,7 @@
 <div class="row">
 <aside class="span4">
     <section>
-      <%= gravatar_for @user %>
+      <%= gravatar_for @user, size: 120 %>
     <a href="http://gravatar.com/emails" target="_blank">Wijzig</a>
     </section>
     <% if current_user.admin? %>

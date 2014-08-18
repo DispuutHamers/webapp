@@ -20,17 +20,17 @@
 
   <div class="field">
     <%= f.label :date %>
-    <%= f.datetime_select :date %>
+    <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, :style => "width: 19%;" %>
   </div>
 
   <div class="field">
 		<%= f.label :end_time %>
-		<%= f.datetime_select :end_time %>
+		<%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, :style => "width: 19%;" %>
   </div>
   
   <div class="field">
     <%= f.label :deadline, "Inschrijf deadline" %><br>
-    <%= f.datetime_select :deadline %>
+    <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, :style => "width: 19%;" %>
   </div>
 
   <div class="field">
