@@ -1,10 +1,11 @@
 <h1>Activiteiten</h1>
 
-<table>
+<table class="events table table-hover">
   <thead>
     <tr>
       <th>Activiteit</th>
       <th>Datum</th>
+      <th>Aanwezig</th>
       <% if current_user.admin? %>
       <th></th>
       <% end %>
@@ -17,9 +18,13 @@
       <tr>
         <td><%= link_to event.title, event %></td>
 	<td><%= event.date.strftime("%d/%m/%Y") %>
+        <td><% event.signups.where(status: true).each do |s| %>
+            <%= s.user.name %>, 
+            <% end %> ..jij?
+        </td>
         <% if current_user == event.user and !current_user.admin? and !current_user.schrijf_feut? %>
         <td><%= link_to 'Wijzig', edit_event_path(event) %>
-        <% end %>
+        <% end %></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Wijzig', edit_event_path(event) %></td>
         <td><%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' } %></td>
