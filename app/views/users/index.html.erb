@@ -14,7 +14,7 @@ $(document).ready(function()
       <th>Naam</th>
       <th>Aantal quotes</th>
       <th>Aantal reviews</th>
-      <% if current_user.admin? && !current_user?(user) %>
+      <% if current_user.admin? %>
       <th>Admin stuff</th>
       <% end %>
     </tr>
