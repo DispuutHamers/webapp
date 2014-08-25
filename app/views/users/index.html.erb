@@ -31,7 +31,7 @@ $(document).ready(function()
       <td><%= user.quotes.count %></td>
       <td><%= user.reviews.count %></td>
       <% if current_user.admin? && !current_user?(user) %><td>
-        | <%= link_to "Wijzig", edit_user_path(user) %>
+        <%= link_to "Wijzig", edit_user_path(user) %>
         | <%= link_to "Verwijder", user, method: :delete,
                                   data: { confirm: "Weet je het zeker?" } %></td>
       <% end %>
