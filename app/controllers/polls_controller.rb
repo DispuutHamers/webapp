@@ -6,6 +6,7 @@ class PollsController < ApplicationController
   # GET /polls
   # GET /polls.json
   def index
+		redirect_to root_path if !current_user.lid?
     @polls = Poll.paginate(page: params[:page])
   end
 

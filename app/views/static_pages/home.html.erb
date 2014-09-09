@@ -10,10 +10,12 @@
       <section>
         <%= render 'shared/quote_form' %>
       </section>
-      <section>
-	<%= render 'shared/activiteiten' %>
+			<% if current_user.lid? %>
+			<section>
+	      <%= render 'shared/activiteiten' %>
       </section>
-    </aside>
+		  <% end %>
+		</aside>
     <div class="span8">
       <h3>Quote Feed</h3>
       <%= render 'shared/feed' %>
