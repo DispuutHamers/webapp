@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 
 set :application, 'Hamers'
-set :repo_url, 'git@bitbucket.org:zuidemaj/hamers.git'
+set :repo_url, 'git@bitbucket.org:jackozi/hamers.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }

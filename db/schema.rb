@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706124819) do
+ActiveRecord::Schema.define(version: 20141024224811) do
+
+  create_table "afmeldingens", force: true do |t|
+    t.string   "reden"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "beers", force: true do |t|
     t.string   "name"
@@ -45,6 +52,13 @@ ActiveRecord::Schema.define(version: 20140706124819) do
   add_index "groups", ["group_id"], name: "index_groups_on_group_id", using: :btree
   add_index "groups", ["user_id", "group_id"], name: "index_groups_on_user_id_and_group_id", unique: true, using: :btree
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
+
+  create_table "meetings", force: true do |t|
+    t.text     "agenda"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "polls", force: true do |t|
     t.string   "beschrijving"

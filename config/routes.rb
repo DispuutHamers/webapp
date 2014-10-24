@@ -1,4 +1,6 @@
 Hamers::Application.routes.draw do
+  resources :meetings
+
   resources :beers do
     member do
       get :reviews
@@ -26,6 +28,7 @@ Hamers::Application.routes.draw do
   resources :quotes, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
+	match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
   match '/register',  to: 'users#new',            via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
