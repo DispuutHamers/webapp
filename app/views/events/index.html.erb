@@ -13,6 +13,8 @@
     </tr>
   </thead>
 
+	<%= will_paginate %>
+
   <tbody>
     <% @events.each do |event| %>
       <tr>
@@ -36,6 +38,8 @@
     <% end %>
   </tbody>
 </table>
+
+<%= will_paginate %>
 
 <br>
 <% if lid? %>

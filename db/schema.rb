@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024224811) do
+ActiveRecord::Schema.define(version: 20141024234527) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -58,6 +58,9 @@ ActiveRecord::Schema.define(version: 20141024224811) do
     t.text     "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "onderwerp"
+    t.integer  "user_id"
+    t.datetime "date"
   end
 
   create_table "polls", force: true do |t|

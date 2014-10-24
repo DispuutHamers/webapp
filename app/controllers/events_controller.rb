@@ -11,6 +11,7 @@ class EventsController < ApplicationController
     @events = Event.all.order(date: :desc)
 		respond_to do |w| 
 			w.html do 
+				@events = Event.all.order(date: :desc).paginate(page: params[:page])
         #redirect_to root_path, notice: "Mag niet!." unless lid?
         redirect_to signin_url, notice: "Please sign in." unless signed_in?
 			end

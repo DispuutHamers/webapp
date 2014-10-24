@@ -1,14 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Agenda:</strong>
-  <%= @meeting.agenda %>
-</p>
+<div class="row">
+  <aside class="span8">
+    <section>
+      <p>Notulen</p>
+    </section>
+  </aside> 
+  <div class="span2"> 
+    <section>
+			Opening<br \>
+			Mededelingen<br \>
+			Vaststellen agenda<br \>
+			Secretarieel<br \>
+			&nbsp;&nbsp;Notulen<br \>
+			&nbsp;&nbsp;Actiepunten<br \>
+			&nbsp;&nbsp;&nbsp;&nbsp;Rob: Met de beveiliging bij de Gallery praten over restricties van de campus.<br \>
+			&nbsp;&nbsp;&nbsp;&nbsp;Gijs: Contact opnemen met NEST<br \>
+			&nbsp;&nbsp;&nbsp;&nbsp;Iedereen: Eet elke avond (ook vóór pandora).<br \>
+			&nbsp;&nbsp;&nbsp;&nbsp;Iedereen: Een puzzel maken en klaarmaken voor volgende vergadering.<br \>
+			Binnengekomen stukken<br \>
+			Verhaal<br \>
+			GEBAKborrel<br \>
+			Puzzels bespreken<br \>
+			W.V.T.T.K<br \>
+			Rondvraag<br \>
+			Volgende vergadering<br \>
+			Sluiting<br \>
+    </section>
+  </div>
+</div>
 
-<p>
-  <strong>Notes:</strong>
-  <%= @meeting.notes %>
-</p>
-
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<p>Genotuleerd door: <i><%= link_to User.find(8).name, User.find(8) %></i></p>
+<% if current_user.admin? %>
+<%= link_to "edit", '#' %> | 
+<% end %>
 <%= link_to 'Back', meetings_path %>
