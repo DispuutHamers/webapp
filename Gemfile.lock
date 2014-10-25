@@ -101,6 +101,7 @@ GEM
     rb-readline (0.5.1)
     rdoc (4.1.1)
       json (~> 1.4)
+    redcarpet (3.2.0)
     ref (1.0.5)
     sass (3.2.18)
     sass-rails (4.0.2)
@@ -164,6 +165,7 @@ DEPENDENCIES
   mysql2
   rails (= 4.0.3)
   rb-readline
+  redcarpet
   sass-rails (~> 4.0.0)
   sdoc
   therubyracer

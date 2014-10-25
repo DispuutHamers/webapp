@@ -28,6 +28,7 @@ Hamers::Application.routes.draw do
   resources :quotes, only: [:create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
 
+	match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
 	match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
   match '/register',  to: 'users#new',            via: 'get'

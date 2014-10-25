@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Needed for rails console
 gem 'rb-readline'
 gem 'icalendar'
+gem 'redcarpet' 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'

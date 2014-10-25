@@ -15,9 +15,13 @@
     <%= f.label :agenda %><br>
     <%= f.text_area :agenda %>
   </div>
-  <div class="field">
-    <%= f.label :notes %><br>
-    <%= f.text_area :notes %>
+	<div class="field">
+		<%= f.label :onderwerp%><br>
+		<%= f.text_field :onderwerp %>
+	</div>
+	<div class="field">
+	     <%= f.label :date %>
+	     <%= f.date_select :date, {:order => [:day, :month, :year], :use_month_names =>     ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober',     'November','December']}, :style => "width: 19%;" %>
   </div>
   <div class="actions">
     <%= f.submit %>

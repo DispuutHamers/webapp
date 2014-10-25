@@ -1,11 +1,12 @@
 class MeetingsController < ApplicationController
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
 	before_action :check_access
+	before_action :check_admin, only: [:notuleer, :edit, :update, :destroy, :create, :new]
 
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    @meetings = Meeting.all.paginate(page: params[:page])
   end
 
   # GET /meetings/1
@@ -20,6 +21,9 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
+  end
+
+  def notuleer
   end
 
   # POST /meetings
@@ -70,8 +74,12 @@ class MeetingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def meeting_params
-      params.require(:meeting).permit(:agenda, :notes)
+      params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :user_id)
     end
+
+		def check_admin
+			redirect_to root_path unless current_user.admin? || current_user.schrijf_feut?
+		end
 
 		def check_access
 			unless current_user.lid? 
