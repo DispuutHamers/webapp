@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  content: MyText
   title: MyString
-  content: MyString
-  p_content: MyString
+  public: false
 
 two:
+  content: MyText
   title: MyString
-  content: MyString
-  p_content: MyString
+  public: false

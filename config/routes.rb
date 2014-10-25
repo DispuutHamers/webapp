@@ -1,4 +1,6 @@
 Hamers::Application.routes.draw do
+  resources :public_pages
+
   resources :meetings
 
   resources :beers do
@@ -35,4 +37,5 @@ Hamers::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete' 
+	match '/:id', to: 'public_pages#show', via: 'get'
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StaticTest < ActiveSupport::TestCase
+class PublicPageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

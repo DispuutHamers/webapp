@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024234527) do
+ActiveRecord::Schema.define(version: 20141025154621) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -65,6 +65,14 @@ ActiveRecord::Schema.define(version: 20141024234527) do
 
   create_table "polls", force: true do |t|
     t.string   "beschrijving"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "public_pages", force: true do |t|
+    t.text     "content"
+    t.string   "title"
+    t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

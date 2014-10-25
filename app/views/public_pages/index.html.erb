@@ -1,0 +1,37 @@
+<script type="text/javascript">
+$(document).ready(function()
+    {
+	$("#pages").tablesorter();
+    }
+);
+</script>
+
+<h1>Vergaderingen</h1>
+
+<table id="pages" class="tablesorter table table-hover">
+  <thead>
+    <tr>
+      <th>openbaar</th>
+      <th>title</th>
+      <th>Admin stuff</th>
+    </tr>
+  </thead>
+
+
+<%= will_paginate %>	
+
+ <tbody> 
+  <% @public_pages.each do |m| %>
+    <tr>
+			<td><%= m.public %></td>
+      <td><%= link_to m.title, edit_public_page_path(m) %></td>
+      <td><%= link_to "Wijzig", edit_public_page_path(m) %>
+        | <%= link_to "Verwijder", m, method: :delete,
+                                  data: { confirm: "Weet je het zeker?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate %>
+<%= link_to "Add Pagina", new_public_page_path %>
