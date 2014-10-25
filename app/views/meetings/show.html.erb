@@ -3,12 +3,12 @@
 <div class="row">
   <aside class="span8">
     <section>
-			<%= markdown(@meeting.notes).html_safe %>
+			<%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil%>
     </section>
   </aside> 
   <div class="span2"> 
     <section>
-			<%= markdown(@meeting.agenda).html_safe %>
+			<%= markdown(@meeting.agenda).html_safe unless @meeting.agenda == nil %>
     </section>
   </div>
 </div>
