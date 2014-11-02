@@ -1,4 +1,5 @@
 class MeetingsController < ApplicationController
+	before_action :logged_in?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
 	before_action :check_access
 	before_action :admin_user?, only: [:notuleer, :edit, :update, :destroy, :create, :new]
