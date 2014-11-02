@@ -1,4 +1,5 @@
 class UsergroupsController < ApplicationController
+before_action :logged_in?
 before_action :admin_user?
 
 def index

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     end
 
     def admin_user?
+			logged_in?
       redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
     end
 end
