@@ -1,6 +1,6 @@
 class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
-	before_action :check_admin?, except: [:show]
+	before_action :admin_user?, except: [:show]
 
   # GET /public_pages
   # GET /public_pages.json
