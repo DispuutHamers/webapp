@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :usergroups, through: :groups           
   has_many :quotes
   has_many :reviews
+  has_many :motions
   has_many :events
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy

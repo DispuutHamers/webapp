@@ -1,16 +1,25 @@
-<h1>Listing motions</h1>
+<script type="text/javascript">
+$(document).ready(function()
+    {
+	$("#motion").tablesorter();
+    }
+);
+</script>
 
-<table>
+<h1>Moties</h1>
+
+<table id="motion" class="tablesorter table table-hover">
   <thead>
     <tr>
-      <th>Motion type</th>
+      <th>Type</th>
       <th>Subject</th>
       <th>Content</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>User</th>
+      <th>Actions</th>
     </tr>
   </thead>
+  
+  <%= will_paginate %>	
 
   <tbody>
     <% @motions.each do |motion| %>
@@ -18,14 +27,13 @@
         <td><%= motion.motion_type %></td>
         <td><%= motion.subject %></td>
         <td><%= motion.content %></td>
-        <td><%= link_to 'Show', motion %></td>
-        <td><%= link_to 'Edit', edit_motion_path(motion) %></td>
-        <td><%= link_to 'Destroy', motion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to motion.user.name, motion.user %></td>
+        <td><%= link_to 'Show', motion %> | 
+        <%= link_to 'Edit', edit_motion_path(motion) %> | 
+        <%= link_to 'Destroy', motion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Motion', new_motion_path %>
+<%= will_paginate %>

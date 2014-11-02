@@ -28,9 +28,23 @@
 								<li><%= link_to "Activiteiten", events_path %></li>
 								<li><%= link_to "Vergaderingen", meetings_path %></li>
 							  <% end %>
+								<li><%= link_to "Motie", new_motion_path %></li>
                 <li><%= link_to "Bier", beers_path %></li>
               </ul>
             </li>
+            <% if current_user.admin? %>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Triumviraat <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Groepen", groups_path %></li>
+								<li><%= link_to "Moties", motions_path %></li>
+								<li><%= link_to "Openbare Paginas", public_pages_path %></li>
+                <li><%= link_to "Download DB", dbdump_path %></li>
+              </ul>
+            </li>
+            <% end %>
 	      <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
@@ -44,18 +58,6 @@
                 </li>
               </ul>
             </li>
-            <% if current_user.admin? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Triumviraat <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Groepen", groups_path %></li>
-								<li><%= link_to "Openbare Paginas", public_pages_path %></li>
-                <li><%= link_to "Download DB", dbdump_path %></li>
-              </ul>
-            </li>
-            <% end %>
 					<% else %>
 									<% PublicPage.all.each do |pp| %>
 										<% if pp.public %>

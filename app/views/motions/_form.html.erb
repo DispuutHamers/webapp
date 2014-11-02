@@ -1,3 +1,9 @@
+<%	motions = [
+	["Motie van niet chill", "niet chill"],
+	["Motie van vet arelaxed", "vet arelaxed"],
+	["Motie van duurt lang", "duurt lang"]
+]
+%>
 <%= form_for(@motion) do |f| %>
   <% if @motion.errors.any? %>
     <div id="error_explanation">
@@ -12,16 +18,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :motion_type %><br>
-    <%= f.text_field :motion_type %>
+		<%= f.select :motion_type, options_for_select(motions) %>
   </div>
   <div class="field">
-    <%= f.label :subject %><br>
-    <%= f.text_field :subject %>
+    <%= f.text_field :subject, placeholder: "Wat is er stuk?" %>
   </div>
   <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, placeholder: "Huilie huilie in dit veld." %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,11 +1,12 @@
 class MotionsController < ApplicationController
   before_action :set_motion, only: [:show, :edit, :update, :destroy]
 	before_action :logged_in?
+	before_action :admin_user?, except: [:new, :create]
 
   # GET /motions
   # GET /motions.json
   def index
-    @motions = Motion.all
+    @motions = Motion.all.paginate(page: params[:page])
   end
 
   # GET /motions/1
@@ -26,14 +27,12 @@ class MotionsController < ApplicationController
   # POST /motions.json
   def create
     @motion = Motion.new(motion_params)
-
+		@motion.user_id = current_user.id
     respond_to do |format|
       if @motion.save
-        format.html { redirect_to @motion, notice: 'Motion was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @motion }
+        format.html { redirect_to root_path, notice: 'Je motie wordt behandeld.' }
       else
         format.html { render action: 'new' }
-        format.json { render json: @motion.errors, status: :unprocessable_entity }
       end
     end
   end
