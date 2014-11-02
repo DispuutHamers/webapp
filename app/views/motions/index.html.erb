@@ -1,0 +1,31 @@
+<h1>Listing motions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Motion type</th>
+      <th>Subject</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @motions.each do |motion| %>
+      <tr>
+        <td><%= motion.motion_type %></td>
+        <td><%= motion.subject %></td>
+        <td><%= motion.content %></td>
+        <td><%= link_to 'Show', motion %></td>
+        <td><%= link_to 'Edit', edit_motion_path(motion) %></td>
+        <td><%= link_to 'Destroy', motion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Motion', new_motion_path %>

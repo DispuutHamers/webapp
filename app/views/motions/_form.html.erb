@@ -1,0 +1,29 @@
+<%= form_for(@motion) do |f| %>
+  <% if @motion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@motion.errors.count, "error") %> prohibited this motion from being saved:</h2>
+
+      <ul>
+      <% @motion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :motion_type %><br>
+    <%= f.text_field :motion_type %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

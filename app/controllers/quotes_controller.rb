@@ -1,7 +1,6 @@
 class QuotesController < ApplicationController
-  include SessionsHelper
-  before_action :signed_in_user
-  before_action :admin_user, only: :destroy
+  before_action :logged_in?
+  before_action :admin_user?, only: [:destroy, :edit, :update]
 
   def index
   end
@@ -17,6 +16,12 @@ class QuotesController < ApplicationController
     end
   end
 
+	def edit
+	end
+
+	def update
+	end
+
   def destroy
     @quote.destroy
     flash[:succes] = "Zie je nooit meer terrug" 
@@ -25,12 +30,6 @@ class QuotesController < ApplicationController
 
 
   private
-    def admin_user
-      @quote = Quote.find_by_id(params[:id])
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
-    end
-
-   
     def micropost_params
       params.require(:quote).permit(:user_id, :text)
     end

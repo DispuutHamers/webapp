@@ -1,4 +1,6 @@
 Hamers::Application.routes.draw do
+  resources :motions
+
   resources :public_pages
 
   resources :meetings

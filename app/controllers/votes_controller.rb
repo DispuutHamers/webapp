@@ -1,8 +1,7 @@
 class VotesController < ApplicationController
-  include SessionsHelper
-  before_action :admin_user, only: [:destroy]
+  before_action :admin_user?, only: [:destroy]
   before_action :set_vote, only: [:destroy]
-  before_action :signed_in_user
+  before_action :logged_in?
 
   # POST /votes
   # POST /votes.json
@@ -24,15 +23,6 @@ class VotesController < ApplicationController
   end
 
   private
-    def admin_user
-      @quote = Quote.find_by_id(params[:id])
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
-    end
-    
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
-  
     # Use callbacks to share common setup or constraints between actions.
     def set_vote
       @vote = Vote.find(params[:id])

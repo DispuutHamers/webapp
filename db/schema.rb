@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141025154621) do
+ActiveRecord::Schema.define(version: 20141102172807) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20141025154621) do
     t.string   "onderwerp"
     t.integer  "user_id"
     t.datetime "date"
+  end
+
+  create_table "motions", force: true do |t|
+    t.string   "motion_type"
+    t.string   "subject"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "polls", force: true do |t|

@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
-  include SessionsHelper
-  before_action :admin_user
+  before_action :admin_user?
 
   def create
     @user = User.find(params[:group][:user_id])
@@ -15,9 +14,4 @@ class GroupsController < ApplicationController
     @user.remove_group!(@group)
     redirect_to usergroups_user_path(@user)
   end
-  
-  private
-    def admin_user
-        redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
-    end
 end

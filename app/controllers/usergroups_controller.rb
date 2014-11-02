@@ -1,6 +1,5 @@
 class UsergroupsController < ApplicationController
-include SessionsHelper
-before_action :admin_user
+before_action :admin_user?
 
 def index
 @usergroups = Usergroup.all

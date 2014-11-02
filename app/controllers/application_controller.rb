@@ -3,4 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 	include SessionsHelper
+
+    def logged_in?
+      redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    end
+
+    def admin_user?
+      redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
+    end
 end

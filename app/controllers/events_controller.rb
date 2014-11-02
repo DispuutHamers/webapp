@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   include SessionsHelper
-  before_action :signed_in_user, only: [:edit, :update, :destroy]
-  before_action :admin_user, only: :destroy
+  before_action :logged_in?, only: [:edit, :update, :destroy]
+  before_action :admin_user?, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:update, :edit]
 
@@ -94,14 +94,6 @@ class EventsController < ApplicationController
       @event.user == current_user
     end
     
-    def admin_user
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
-    end
-
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
 			params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date)

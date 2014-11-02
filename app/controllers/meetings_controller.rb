@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
 	before_action :check_access
-	before_action :check_admin, only: [:notuleer, :edit, :update, :destroy, :create, :new]
+	before_action :check_admin?, only: [:notuleer, :edit, :update, :destroy, :create, :new]
 
   # GET /meetings
   # GET /meetings.json
@@ -76,10 +76,6 @@ class MeetingsController < ApplicationController
     def meeting_params
       params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :user_id)
     end
-
-		def check_admin
-			redirect_to root_path unless current_user.admin? || current_user.schrijf_feut?
-		end
 
 		def check_access
 			unless current_user.lid? 

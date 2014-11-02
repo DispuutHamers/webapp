@@ -1,6 +1,6 @@
 class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
-	before_action :check_admin, except: [:show]
+	before_action :check_admin?, except: [:show]
 
   # GET /public_pages
   # GET /public_pages.json
@@ -69,10 +69,6 @@ class PublicPagesController < ApplicationController
     def set_public_page
       @public_page = PublicPage.find(params[:id])
     end
-
-		def check_admin
-			redirect_to root_path unless current_user.admin?
-		end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def public_page_params

@@ -1,7 +1,6 @@
 class ReviewsController < ApplicationController
-  include SessionsHelper
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :admin_user, only: [:destroy]
+  before_action :logged_in?, only: [:index, :edit, :update, :destroy]
+  before_action :admin_user?, only: [:destroy]
   before_action :correct_user, only: [:edit, :update]
  
   def create
@@ -48,18 +47,8 @@ class ReviewsController < ApplicationController
       params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
     end
     
-    def admin_user
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
-    end
-    
     def correct_user
       @user = Review.find(params[:id]).user
       redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin? or current_user.schrijf_feut?
     end
-
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
-
-  
 end

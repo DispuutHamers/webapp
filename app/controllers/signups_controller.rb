@@ -1,6 +1,7 @@
 class SignupsController < ApplicationController
-  include SessionsHelper
   before_action :set_signup, only: [:show, :edit, :update, :destroy]
+	before_action :admin_user?, only: [:index, :edit, :update]
+	before_action :logged_in?
 
   # GET /signups
   # GET /signups.json

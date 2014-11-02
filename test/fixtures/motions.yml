@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motion_type: MyString
+  subject: MyString
+  content: MyText
+
+two:
+  motion_type: MyString
+  subject: MyString
+  content: MyText

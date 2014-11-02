@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  include SessionsHelper
-  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in?, only: [:index, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user, only: [:destroy, :usergroups]
+  before_action :admin_user?, only: [:destroy, :usergroups]
 
   def index
     @users = User.paginate(page: params[:page])
@@ -64,17 +63,9 @@ class UsersController < ApplicationController
       end
     end
 
-    def admin_user
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
-    end
-
     def user_params
       params.require(:user).permit(:name, :email, :password, :approved,
                                    :password_confirmation)
-    end
-
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
 
     def correct_user

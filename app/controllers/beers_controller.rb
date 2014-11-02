@@ -1,8 +1,8 @@
 class BeersController < ApplicationController
   include SessionsHelper
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:index, :edit, :update]
-  before_action :admin_user, only: [:destroy, :update, :edit]
+  before_action :logged_in?, only: [:index, :edit, :update]
+  before_action :admin_user?, only: [:destroy, :update, :edit]
 
   # GET /beers
   # GET /beers.json
@@ -73,14 +73,6 @@ class BeersController < ApplicationController
       @beer = Beer.find(params[:id])
     end
     
-    def admin_user
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
-    end
-
-    def signed_in_user
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
       params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer)
