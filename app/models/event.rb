@@ -4,8 +4,8 @@ class Event < ActiveRecord::Base
 
  def to_ics
 	 event = Icalendar::Event.new
-	 event.dtstart = date.advance(:hours => -2).strftime("%Y%m%dT%H%M%S")
-	 event.dtend = end_time.advance(:hours => -2).strftime("%Y%m%dT%H%M%S")
+	 event.dtstart = date.advance(:hours => -1).strftime("%Y%m%dT%H%M%S")
+	 event.dtend = end_time.advance(:hours => -1).strftime("%Y%m%dT%H%M%S")
 	 event.summary = title
 	 event.description = beschrijving
 	 event.location = 'Zonder Sikkel Secret Hideout Extreme 9000++'
