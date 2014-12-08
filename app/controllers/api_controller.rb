@@ -4,7 +4,7 @@ class ApiController < ApplicationController
 
   def GET
 		@type = "user" if params[:request] == "user"
-		@type = "quote" if params[:request] == "user"
+		@type = "quote" if params[:request] == "quote"
 		@result = User.all if @type == "user" 
 		@result = Quote.all if @type == "quote" 
   end
