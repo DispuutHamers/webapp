@@ -3,10 +3,10 @@ class ApiController < ApplicationController
 	before_action :check_api_key, except: [:noaccess]
 
   def GET
-		@type = "user" if params[:request] = "user"
-		@type = "quote" if params[:request] = "user"
-		@result = User.all if @type = "user" 
-		@result = Quote.all if @type = "quote" 
+		@type = "user" if params[:request] == "user"
+		@type = "quote" if params[:request] == "user"
+		@result = User.all if @type == "user" 
+		@result = Quote.all if @type == "quote" 
   end
 
   def POST
