@@ -1,4 +1,9 @@
 Hamers::Application.routes.draw do
+  match 'api/v1/:key/:request', to: 'api#GET', via: 'get'
+  match 'api/v1/:key/:request', to: 'api#POST', via: 'post'
+  match 'api/v1/:key/:request', to: 'api#PUT', via: 'put'
+  match 'api/v1/:key/:request', to: 'api#DESTROY', via: 'destroy'
+	match '/api/v1/noaccess', to: 'api#noaccess', via: 'get'
   resources :motions
 
   resources :public_pages

@@ -12,6 +12,12 @@
 	<%= link_to "Groepen", usergroups_user_path(@user) %>
     </section>
     <% end %>
+    <section>
+			Api keys:<br /> 
+			<% @user.api_keys.each do |ak| %>
+				<%= ak.name %>: <%= ak.key %><br />
+			<% end %>
+    </section>
   </aside>
   <div class="span6">
     <%= form_for(@user) do |f| %>
