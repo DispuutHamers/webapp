@@ -15,7 +15,7 @@
     <section>
 			Api keys:<br /> 
 			<% @user.api_keys.each do |ak| %>
-				<%= ak.name %>: <%= ak.key %><br />
+				<%= ak.name %>: <%= link_to ak.key, ak %><br />
 			<% end %>
 			<%= form_for(ApiKey.new) do |f| %>
 				<%= f.text_field :name %>

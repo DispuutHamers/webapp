@@ -6,6 +6,10 @@ class ApiKeysController < ApplicationController
 		redirect_to request.referer
   end
 
+	def show
+		@key = RQRCode::QRCode.new(ApiKey.find(params[:id]).key).to_img.resize(200, 200).to_data_url
+	end
+
 	private
 		def api_key_params
 			params.require(:api_key).permit(:name)

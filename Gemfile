@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rb-readline'
 gem 'icalendar'
 gem 'redcarpet' 
+gem 'rqrcode_png'  
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
