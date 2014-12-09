@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
+
+	def generate_api_key(name)
+		ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
+	end
   
   def in_group?(group)
      groups.find_by(group_id: group.id)

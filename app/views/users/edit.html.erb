@@ -17,6 +17,10 @@
 			<% @user.api_keys.each do |ak| %>
 				<%= ak.name %>: <%= ak.key %><br />
 			<% end %>
+			<%= form_for(ApiKey.new) do |f| %>
+				<%= f.text_field :name %>
+				<%= f.submit "Add" %>
+			<% end %>
     </section>
   </aside>
   <div class="span6">

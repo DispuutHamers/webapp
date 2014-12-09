@@ -26,6 +26,6 @@ class ApiController < ApplicationController
 		def check_api_key
 			key = params[:key]
 			keyStore = ApiKey.where(key: key).first
-			redirect_to api_v1_noaccess_path unless keyStore != nil && @user = keyStore.user && @user.lid?
+			redirect_to api_v1_noaccess_path(format: :json) unless keyStore != nil && @user = keyStore.user && @user.lid?
 		end
 end
