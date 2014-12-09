@@ -19,12 +19,13 @@ class ApiController < ApplicationController
   end
 
 	def noaccess
+		render :status => :forbidden, :text => '{"status":"403","error":"Forbidden"}'
 	end
 
 	private 
 		def check_api_key
 			key = params[:key]
-			@user = ApiKey.where(key: key).first.user
-			redirect_to api_v1_noaccess_path unless @user != nil && @user.lid?
+			keyStore = ApiKey.where(key: key).first
+			redirect_to api_v1_noaccess_path unless keyStore != nil && @user = keyStore.user && @user.lid?
 		end
 end
