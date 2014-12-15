@@ -7,6 +7,7 @@ class QuotesController < ApplicationController
 
   def create
     @quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
+		@quote.reporter = current_user.id
     if @quote.save
       flash[:succes] = "Quote staat erop" 
       redirect_to root_url

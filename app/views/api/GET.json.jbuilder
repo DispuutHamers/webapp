@@ -9,3 +9,8 @@ if @type == "quote"
 		json.extract! quote, :id, :text, :user_id, :created_at
 	end
 end
+if @type == "event"
+	json.array!(@result) do |event|
+		json.extract! event, :beschrijving, :title, :deadline, :date, :user_id, :end_time
+	end
+end
