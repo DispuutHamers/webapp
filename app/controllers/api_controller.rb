@@ -6,9 +6,11 @@ class ApiController < ApplicationController
 		@type = "user" if params[:request] == "user"
 		@type = "quote" if params[:request] == "quote"
 		@type = "event" if params[:request] == "event"
+		@type = "beer" if params[:request] == "beer"
 		@result = User.all if @type == "user" 
 		@result = Quote.all if @type == "quote" 
 		@result = Event.all if @type == "event" 
+		@result = Beer.all if @type == "beer" 
   end
 
   def POST
