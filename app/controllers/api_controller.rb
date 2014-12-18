@@ -18,7 +18,7 @@ class ApiController < ApplicationController
 		@type = "event" if params[:request] == "event"
 		if @type == "quote" 
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
-			@quote.reporter = keyStore.user.id
+			@quote.reporter = @keyStore.user.id
 			if @quote.save 
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
