@@ -25,6 +25,15 @@ class ApiController < ApplicationController
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bas request"}]'
 			end
 		end
+		if @type == "event" 
+			@event = Event.new(event_params)
+			@event.user_id = @keyStore.user.id
+			if @event.save 
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bas request"}]'
+			end
+		end
   end
 
   def PUT
@@ -45,5 +54,9 @@ class ApiController < ApplicationController
 
 		def micropost_params
 			params.require(:quote).permit(:user_id, :text)
+		end
+
+		def event_params
+			params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date)
 		end
 end
