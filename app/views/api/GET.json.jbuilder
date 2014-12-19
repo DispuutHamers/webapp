@@ -18,3 +18,8 @@ if @type == "beer"
 		json.extract! beer, :name, :soort, :picture, :percentage, :brewer, :country
 	end
 end
+if @type == "review"
+	json.array!(@result) do |review|
+		json.extract! review, :beer_id, :user_id, :description, :rating, :created_at, :proefdatum
+	end
+end
