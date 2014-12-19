@@ -1,11 +1,9 @@
-<% @beer.each do |b| %>
 <h1>
-  <%= link_to b.name, b %>
+  <%= link_to @beer.name, @beer %>
 </h1>
 <span>
-  cijfer: <%= b.cijfer? %>
+  cijfer: <%= @beer.cijfer? %>
 </span>
 <span>
-  <%= pluralize(b.reviews.count, "review") %>
+  <%= pluralize(@beer.reviews.count, "review") %>
 </span>
-<% end %>
