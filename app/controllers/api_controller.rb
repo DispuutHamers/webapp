@@ -7,10 +7,12 @@ class ApiController < ApplicationController
 		@type = "quote" if params[:request] == "quote"
 		@type = "event" if params[:request] == "event"
 		@type = "beer" if params[:request] == "beer"
+		@type = "review" if params[:request] == "review"
 		@result = User.all if @type == "user" 
 		@result = Quote.all if @type == "quote" 
 		@result = Event.all if @type == "event" 
 		@result = Beer.all if @type == "beer" 
+		@result = Review.all if @type == "review" 
   end
 
   def POST
@@ -46,7 +48,7 @@ class ApiController < ApplicationController
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 			end
 		end
-		if @type = "motie"
+		if @type == "motie"
 			@motie = Motion.new(motion_params)
 			@motie.user_id = @keyStore.user.id
 			if @motie.save 
@@ -55,7 +57,7 @@ class ApiController < ApplicationController
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 			end
 		end
-		if @type = "beer"
+		if @type == "beer"
 			@beer = Beer.new(beer_params)
 			if @beer.save 
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
