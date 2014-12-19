@@ -5,7 +5,7 @@ Hamers::Application.routes.draw do
   match 'api/v1/:key/:request', to: 'api#DESTROY', via: 'destroy'
 	match '/api/v1/noaccess', to: 'api#noaccess', via: 'get'
   resources :motions
-	resources :api_keys, only: [:create, :show]
+	resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages
 
   resources :meetings
