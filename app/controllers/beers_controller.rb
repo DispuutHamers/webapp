@@ -72,9 +72,4 @@ class BeersController < ApplicationController
     def set_beer
       @beer = Beer.find(params[:id])
     end
-    
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def beer_params
-      params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer)
-    end
 end

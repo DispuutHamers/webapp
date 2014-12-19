@@ -15,4 +15,9 @@ module ParamsHelper
 	def motion_params
 		params.require(:motion).permit(:motion_type, :subject, :content)
 	end
+
+	def beer_params
+		params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer)
+	end
+
 end

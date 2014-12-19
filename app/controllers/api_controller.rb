@@ -46,6 +46,23 @@ class ApiController < ApplicationController
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 			end
 		end
+		if @type = "motie"
+			@motie = Motion.new(motion_params)
+			@motie.user_id = @keyStore.user.id
+			if @motie.save 
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
+			end
+		end
+		if @type = "beer"
+			@beer = Beer.new(beer_params)
+			if @beer.save 
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
+			end
+		end
   end
 
   def PUT
