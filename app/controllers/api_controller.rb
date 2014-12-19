@@ -10,7 +10,7 @@ class ApiController < ApplicationController
 		@type = "review" if params[:request] == "review"
 		@result = User.all if @type == "user" 
 		@result = Quote.all if @type == "quote" 
-		@result = Event.all if @type == "event" 
+		@result = Event.all.order("date") if @type == "event" 
 		@result = Beer.all if @type == "beer" 
 		@result = Review.all if @type == "review" 
   end
