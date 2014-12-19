@@ -93,9 +93,4 @@ class EventsController < ApplicationController
     def correct_user
       @event.user == current_user
     end
-    
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-			params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date)
-    end
 end

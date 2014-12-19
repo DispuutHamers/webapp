@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
  
   def create
     @review = Review.new(review_params)
-    @beer = Beer.find(params[:review][:beer_id])
+    @beer = Beer.find(params[:review][:beer_id]) # Nog nakijken voor injection
     reviews = User.find(params[:review][:user_id]).reviews.where(beer_id: @beer.id)
     redirect_to @beer, notice: 'Doe es niet valsspelen' and return if reviews.any?
     respond_to do |format|
@@ -43,10 +43,6 @@ class ReviewsController < ApplicationController
   end
   
   private 
-    def review_params
-      params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
-    end
-    
     def correct_user
       @user = Review.find(params[:id]).user
       redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin? or current_user.schrijf_feut?

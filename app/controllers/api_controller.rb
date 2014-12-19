@@ -16,6 +16,9 @@ class ApiController < ApplicationController
   def POST
 		@type = "quote" if params[:request] == "quote"
 		@type = "event" if params[:request] == "event"
+		@type = "review" if params[:request] == "review"
+		@type = "motie" if params[:request] == "motie"
+		@type = "beer" if params[:request] == "beer"
 		if @type == "quote" 
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
@@ -29,6 +32,15 @@ class ApiController < ApplicationController
 			@event = Event.new(event_params)
 			@event.user_id = @keyStore.user.id
 			if @event.save 
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bas request"}]'
+			end
+		end
+		if @type == "review" 
+			@review = Review.new(review_params) 
+			@review.user_id = @keyStore.user.id
+			if !Review.where(user_id: @review.user_id, beer_id: @review.beer_id).any? and @quote.save 
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bas request"}]'
@@ -59,4 +71,6 @@ class ApiController < ApplicationController
 		def event_params
 			params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date)
 		end
+
+		def 
 end
