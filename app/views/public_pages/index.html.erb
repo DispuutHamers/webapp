@@ -24,7 +24,7 @@ $(document).ready(function()
   <% @public_pages.each do |m| %>
     <tr>
 			<td><%= m.public %></td>
-      <td><%= link_to m.title, edit_public_page_path(m) %></td>
+      <td><%= link_to m.title, "/" + m.title %></td>
       <td><%= link_to "Wijzig", edit_public_page_path(m) %>
         | <%= link_to "Verwijder", m, method: :delete,
                                   data: { confirm: "Weet je het zeker?" } %></td>
