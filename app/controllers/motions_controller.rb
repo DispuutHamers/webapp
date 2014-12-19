@@ -66,9 +66,4 @@ class MotionsController < ApplicationController
     def set_motion
       @motion = Motion.find(params[:id])
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def motion_params
-      params.require(:motion).permit(:motion_type, :subject, :content)
-    end
 end
