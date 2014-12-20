@@ -11,6 +11,11 @@ end
 if @type == "event"
 	json.array!(@result) do |event|
 		json.extract! event, :beschrijving, :title, :deadline, :date, :user_id, :end_time
+		json.signups(event.signups) do |signup|
+			json.user_id signup.user_id
+		  json.status	signup.status
+		  json.created_at	signup.created_at
+		end
 	end
 end
 if @type == "beer"
