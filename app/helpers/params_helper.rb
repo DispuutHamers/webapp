@@ -9,7 +9,7 @@ module ParamsHelper
 	end
 
 	def event_params
-		params.require(:event).permit(:end_time, :deadline, :user_id, :bescrhijving, :title, :date)
+		params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date)
 	end
 
 	def motion_params
