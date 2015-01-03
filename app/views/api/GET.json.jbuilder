@@ -1,6 +1,8 @@
 if @type == "user"
 	json.array!(@result) do |user|
 		json.extract! user, :id, :name, :email
+		json.quotes user.quotes.count
+		json.reviews user.reviews.count
 	end
 end
 if @type == "quote"
@@ -10,7 +12,7 @@ if @type == "quote"
 end
 if @type == "event"
 	json.array!(@result) do |event|
-		json.extract! event, :beschrijving, :title, :deadline, :date, :user_id, :end_time
+		json.extract! event, :id, :beschrijving, :title, :deadline, :date, :user_id, :end_time
 		json.signups(event.signups) do |signup|
 			json.user_id signup.user_id
 		  json.status	signup.status
@@ -20,7 +22,7 @@ if @type == "event"
 end
 if @type == "beer"
 	json.array!(@result) do |beer|
-		json.extract! beer, :name, :soort, :picture, :percentage, :brewer, :country
+		json.extract! beer, :id, :name, :soort, :picture, :percentage, :brewer, :country
 	end
 end
 if @type == "review"
