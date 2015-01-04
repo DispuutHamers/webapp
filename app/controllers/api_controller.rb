@@ -21,6 +21,7 @@ class ApiController < ApplicationController
 		@type = "review" if params[:request] == "review"
 		@type = "motie" if params[:request] == "motie"
 		@type = "beer" if params[:request] == "beer"
+		@type = "signup" if params[:request] == "signup"
 		if @type == "quote" 
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
@@ -64,6 +65,10 @@ class ApiController < ApplicationController
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 			end
+		end
+		if @type == "signup"
+			@keyStore.user.sign!(Event.find(params[:signup][:event_id]), params[:signup][:status])
+			render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 		end
   end
 
