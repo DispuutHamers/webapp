@@ -23,7 +23,7 @@ class ApiKeysController < ApplicationController
 			params.require(:api_key).permit(:name)
 		end 
 
-		def current_user?
+		def correct_user?
 			redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user == ApiKey.find(params[:id]).user || current_user.admin?
 		end
 end
