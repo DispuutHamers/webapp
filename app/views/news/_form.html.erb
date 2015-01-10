@@ -22,12 +22,12 @@
     <%= f.select :cat, options_for_select(cats) %>
   </div>
   <div class="field">
-    <%= f.label :body, "Vertel dan.." %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="field">
     <%= f.label :title, "Wat moet erboven?" %><br>
     <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :body, "Vertel dan.." %><br>
+    <%= f.text_area :body %>
   </div>
   <div class="actions">
     <%= f.submit "Posten dan maar" %>
