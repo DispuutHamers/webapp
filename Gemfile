@@ -5,6 +5,7 @@ gem 'rb-readline'
 gem 'icalendar'
 gem 'redcarpet' 
 gem 'rqrcode_png'  
+gem 'bootstrap-glyphicons'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
