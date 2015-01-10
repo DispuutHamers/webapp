@@ -10117,12 +10117,12 @@ input {
 
 /* line 53, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline > li:not(.timeline-inverted) {
-  padding-right: 90px;
+  padding-right: 160px;
 }
 
 /* line 57, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline > li.timeline-inverted {
-  padding-left: 90px;
+  padding-left: 160px;
 }
 
 /* line 60, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
@@ -10172,11 +10172,31 @@ input {
 }
 
 /* line 100, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > a > li > .timeline-badge {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #999999;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+/* line 118, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline > li.timeline-inverted > .timeline-panel {
   float: right;
 }
 
-/* line 103, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 121, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline > li.timeline-inverted > .timeline-panel:before {
   border-left-width: 0;
   border-right-width: 15px;
@@ -10184,7 +10204,7 @@ input {
   right: auto;
 }
 
-/* line 109, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 127, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline > li.timeline-inverted > .timeline-panel:after {
   border-left-width: 0;
   border-right-width: 14px;
@@ -10192,44 +10212,44 @@ input {
   right: auto;
 }
 
-/* line 115, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 133, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-badge.primary {
   background-color: #2e6da4 !important;
 }
 
-/* line 118, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 136, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-badge.success {
   background-color: #3f903f !important;
 }
 
-/* line 121, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 139, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-badge.warning {
   background-color: #f0ad4e !important;
 }
 
-/* line 124, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 142, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-badge.danger {
   background-color: #d9534f !important;
 }
 
-/* line 127, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 145, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-badge.info {
   background-color: #5bc0de !important;
 }
 
-/* line 130, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 148, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-title {
   margin-top: 0;
   color: inherit;
 }
 
-/* line 135, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 153, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-body > p,
 .timeline-body > ul {
   margin-bottom: 0;
 }
 
-/* line 138, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+/* line 156, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
 .timeline-body > p + p {
   margin-top: 5px;
 }
