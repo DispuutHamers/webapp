@@ -24,9 +24,11 @@ $(document).ready(function()
   <tbody>
     <% @beers.each do |beer| %>
 			<% if beer.reviews.where("user_id = ?", current_user.id).empty? %>
-			<tr bgcolor="#FF3300">
+				<tr bgcolor="FCF8E3">
+			<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 5 %>
+				<tr bgcolor="DFF0D8">
 			<% else %>
-			<tr bgcolor="#00FF00">
+				<tr bgcolor="F2DEDE">
 			<% end %>
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
