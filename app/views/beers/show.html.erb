@@ -33,7 +33,7 @@
 </div>
 
 <%= link_to 'Review | ', reviews_beer_path(@beer) unless current_user.reviews.find_by(beer_id: @beer.id) %> 
-<% if current_user.admin? %>
+<% if current_user.admin? || current_user.dev? %>
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <% end %>
 <%= link_to 'Back', beers_path %>
