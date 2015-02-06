@@ -7,7 +7,6 @@
  *
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
- *
 
 
  */
@@ -9017,76 +9016,76 @@ a .icon-flip-vertical:before {
 }
 /* mixins, variables, etc. */
 /* universal */
-/* line 16, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 16, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 html {
   overflow-y: scroll;
 }
 
-/* line 20, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 20, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 body {
   padding-top: 60px;
 }
 
-/* line 24, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 24, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 section {
   overflow: auto;
 }
 
-/* line 28, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 28, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 textarea {
   resize: vertical;
 }
 
-/* line 32, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 32, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .center {
   text-align: center;
 }
-/* line 34, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 34, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .center h1 {
   margin-bottom: 10px;
 }
 
 /* microposts */
-/* line 41, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 41, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .microposts {
   list-style: none;
   margin: 10px 0 0 0;
 }
-/* line 45, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 45, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .microposts li {
   padding: 10px 0;
   border-top: 1px solid #e8e8e8;
 }
 
-/* line 50, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 50, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .content {
   display: block;
 }
 
-/* line 53, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 53, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .timestamp {
   color: #999999;
 }
 
-/* line 56, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 56, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .gravatar {
   float: left;
   margin-right: 10px;
 }
 
-/* line 61, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 61, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 aside textarea {
   height: 100px;
   margin-bottom: 5px;
 }
 
 /* Users index */
-/* line 69, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 69, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .users {
   list-style: none;
   margin: 0;
 }
-/* line 72, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 72, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .users li {
   overflow: auto;
   padding: 3px 0;
@@ -9097,12 +9096,12 @@ aside textarea {
 }
 
 /* typography */
-/* line 84, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 84, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-/* line 88, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 88, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -9110,7 +9109,7 @@ h1 {
   text-align: center;
 }
 
-/* line 95, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 95, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 h2 {
   font-size: 1.2em;
   letter-spacing: -1px;
@@ -9120,14 +9119,14 @@ h2 {
   color: #999999;
 }
 
-/* line 104, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 104, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 p {
   font-size: 1.1em;
   line-height: 1.7em;
 }
 
 /* header */
-/* line 112, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 112, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 #logo {
   float: left;
   margin-right: 10px;
@@ -9139,61 +9138,61 @@ p {
   font-weight: bold;
   line-height: 1;
 }
-/* line 122, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 122, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 #logo:hover {
   color: white;
   text-decoration: none;
 }
 
 /* footer */
-/* line 130, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 130, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 footer {
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: #999999;
 }
-/* line 135, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 135, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 footer a {
   color: #555555;
 }
-/* line 137, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 137, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 footer a:hover {
   color: #222222;
 }
-/* line 141, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 141, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 footer small {
   float: left;
 }
-/* line 144, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 144, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 footer ul {
   float: right;
   list-style: none;
 }
-/* line 147, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 147, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 footer ul li {
   float: left;
   margin-left: 10px;
 }
 
 /* sidebar */
-/* line 158, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 158, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 aside section {
   padding: 10px 0;
   border-top: 1px solid #999999;
 }
-/* line 161, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 161, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 aside section:first-child {
   border: 0;
   padding-top: 0;
 }
-/* line 165, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 165, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 aside section span {
   display: block;
   margin-bottom: 3px;
   line-height: 1;
 }
-/* line 170, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 170, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 aside section h1 {
   font-size: 1.4em;
   text-align: left;
@@ -9203,7 +9202,7 @@ aside section h1 {
 }
 
 /* forms */
-/* line 182, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 182, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -9213,106 +9212,1102 @@ input, textarea, select, .uneditable-input {
   box-sizing: border-box;
 }
 
-/* line 189, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 189, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 input {
   height: auto !important;
 }
 
-/* line 193, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 193, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 #error_explanation {
   color: #f00;
 }
-/* line 195, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 195, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 #error_explanation ul {
   list-style: none;
   margin: 0 0 18px 0;
 }
 
 /* other */
-/* line 205, /home/kennedy/development/hamers/app/assets/stylesheets/custom.css.scss */
+/* line 205, /home/jacko/rails/hamers/app/assets/stylesheets/custom.css.scss */
 .gravatar {
   float: left;
   margin-right: 10px;
 }
-/* line 1, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url(/assets/bootstrap/glyphiconshalflings-regular.eot);
+  src: url(/assets/bootstrap/glyphiconshalflings-regular.eot?#iefix) format("embedded-opentype"), url(/assets/bootstrap/glyphiconshalflings-regular.woff) format("woff"), url(/assets/bootstrap/glyphiconshalflings-regular.ttf) format("truetype"), url(/assets/bootstrap/glyphiconshalflings-regular.svg#glyphicons_halflingsregular) format("svg");
+}
+
+/* line 34, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon:before {
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 43, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-glass:before {
+  content: "\e001";
+}
+
+/* line 44, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-music:before {
+  content: "\e002";
+}
+
+/* line 45, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-search:before {
+  content: "\e003";
+}
+
+/* line 46, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-envelope:before {
+  content: "\2709";
+}
+
+/* line 47, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-heart:before {
+  content: "\e005";
+}
+
+/* line 48, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-star:before {
+  content: "\e006";
+}
+
+/* line 49, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-star-empty:before {
+  content: "\e007";
+}
+
+/* line 50, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-user:before {
+  content: "\e008";
+}
+
+/* line 51, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-film:before {
+  content: "\e009";
+}
+
+/* line 52, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-th-large:before {
+  content: "\e010";
+}
+
+/* line 53, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-th:before {
+  content: "\e011";
+}
+
+/* line 54, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-th-list:before {
+  content: "\e012";
+}
+
+/* line 55, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-ok:before {
+  content: "\e013";
+}
+
+/* line 56, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-remove:before {
+  content: "\e014";
+}
+
+/* line 57, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-zoom-in:before {
+  content: "\e015";
+}
+
+/* line 58, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-zoom-out:before {
+  content: "\e016";
+}
+
+/* line 59, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-off:before {
+  content: "\e017";
+}
+
+/* line 60, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-signal:before {
+  content: "\e018";
+}
+
+/* line 61, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-cog:before {
+  content: "\e019";
+}
+
+/* line 62, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-trash:before {
+  content: "\e020";
+}
+
+/* line 63, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-home:before {
+  content: "\e021";
+}
+
+/* line 64, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-file:before {
+  content: "\e022";
+}
+
+/* line 65, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-time:before {
+  content: "\e023";
+}
+
+/* line 66, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-road:before {
+  content: "\e024";
+}
+
+/* line 67, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-download-alt:before {
+  content: "\e025";
+}
+
+/* line 68, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-download:before {
+  content: "\e026";
+}
+
+/* line 69, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-upload:before {
+  content: "\e027";
+}
+
+/* line 70, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-inbox:before {
+  content: "\e028";
+}
+
+/* line 71, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-play-circle:before {
+  content: "\e029";
+}
+
+/* line 72, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-repeat:before {
+  content: "\e030";
+}
+
+/* line 73, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-refresh:before {
+  content: "\e031";
+}
+
+/* line 74, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-list-alt:before {
+  content: "\e032";
+}
+
+/* line 75, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-lock:before {
+  content: "\e033";
+}
+
+/* line 76, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-flag:before {
+  content: "\e034";
+}
+
+/* line 77, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-headphones:before {
+  content: "\e035";
+}
+
+/* line 78, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-volume-off:before {
+  content: "\e036";
+}
+
+/* line 79, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-volume-down:before {
+  content: "\e037";
+}
+
+/* line 80, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-volume-up:before {
+  content: "\e038";
+}
+
+/* line 81, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-qrcode:before {
+  content: "\e039";
+}
+
+/* line 82, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-barcode:before {
+  content: "\e040";
+}
+
+/* line 83, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-tag:before {
+  content: "\e041";
+}
+
+/* line 84, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-tags:before {
+  content: "\e042";
+}
+
+/* line 85, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-book:before {
+  content: "\e043";
+}
+
+/* line 86, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-bookmark:before {
+  content: "\e044";
+}
+
+/* line 87, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-print:before {
+  content: "\e045";
+}
+
+/* line 88, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-camera:before {
+  content: "\e046";
+}
+
+/* line 89, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-font:before {
+  content: "\e047";
+}
+
+/* line 90, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-bold:before {
+  content: "\e048";
+}
+
+/* line 91, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-italic:before {
+  content: "\e049";
+}
+
+/* line 92, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-text-height:before {
+  content: "\e050";
+}
+
+/* line 93, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-text-width:before {
+  content: "\e051";
+}
+
+/* line 94, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-align-left:before {
+  content: "\e052";
+}
+
+/* line 95, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-align-center:before {
+  content: "\e053";
+}
+
+/* line 96, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-align-right:before {
+  content: "\e054";
+}
+
+/* line 97, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-align-justify:before {
+  content: "\e055";
+}
+
+/* line 98, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-list:before {
+  content: "\e056";
+}
+
+/* line 99, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-indent-left:before {
+  content: "\e057";
+}
+
+/* line 100, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-indent-right:before {
+  content: "\e058";
+}
+
+/* line 101, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-facetime-video:before {
+  content: "\e059";
+}
+
+/* line 102, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-picture:before {
+  content: "\e060";
+}
+
+/* line 103, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-pencil:before {
+  content: "\270f";
+}
+
+/* line 104, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-map-marker:before {
+  content: "\e062";
+}
+
+/* line 105, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-adjust:before {
+  content: "\e063";
+}
+
+/* line 106, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-tint:before {
+  content: "\e064";
+}
+
+/* line 107, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-edit:before {
+  content: "\e065";
+}
+
+/* line 108, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-share:before {
+  content: "\e066";
+}
+
+/* line 109, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-check:before {
+  content: "\e067";
+}
+
+/* line 110, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-move:before {
+  content: "\e068";
+}
+
+/* line 111, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-step-backward:before {
+  content: "\e069";
+}
+
+/* line 112, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-fast-backward:before {
+  content: "\e070";
+}
+
+/* line 113, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-backward:before {
+  content: "\e071";
+}
+
+/* line 114, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-play:before {
+  content: "\e072";
+}
+
+/* line 115, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-pause:before {
+  content: "\e073";
+}
+
+/* line 116, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-stop:before {
+  content: "\e074";
+}
+
+/* line 117, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-forward:before {
+  content: "\e075";
+}
+
+/* line 118, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-fast-forward:before {
+  content: "\e076";
+}
+
+/* line 119, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-step-forward:before {
+  content: "\e077";
+}
+
+/* line 120, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-eject:before {
+  content: "\e078";
+}
+
+/* line 121, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-chevron-left:before {
+  content: "\e079";
+}
+
+/* line 122, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-chevron-right:before {
+  content: "\e080";
+}
+
+/* line 123, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-plus-sign:before {
+  content: "\e081";
+}
+
+/* line 124, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-minus-sign:before {
+  content: "\e082";
+}
+
+/* line 125, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-remove-sign:before {
+  content: "\e083";
+}
+
+/* line 126, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-ok-sign:before {
+  content: "\e084";
+}
+
+/* line 127, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-question-sign:before {
+  content: "\e085";
+}
+
+/* line 128, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-info-sign:before {
+  content: "\e086";
+}
+
+/* line 129, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-screenshot:before {
+  content: "\e087";
+}
+
+/* line 130, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-remove-circle:before {
+  content: "\e088";
+}
+
+/* line 131, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-ok-circle:before {
+  content: "\e089";
+}
+
+/* line 132, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-ban-circle:before {
+  content: "\e090";
+}
+
+/* line 133, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-arrow-left:before {
+  content: "\e091";
+}
+
+/* line 134, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-arrow-right:before {
+  content: "\e092";
+}
+
+/* line 135, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-arrow-up:before {
+  content: "\e093";
+}
+
+/* line 136, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-arrow-down:before {
+  content: "\e094";
+}
+
+/* line 137, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-share-alt:before {
+  content: "\e095";
+}
+
+/* line 138, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-resize-full:before {
+  content: "\e096";
+}
+
+/* line 139, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-resize-small:before {
+  content: "\e097";
+}
+
+/* line 140, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-plus:before {
+  content: "\002b";
+}
+
+/* line 141, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-minus:before {
+  content: "\2212";
+}
+
+/* line 142, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-asterisk:before {
+  content: "\002a";
+}
+
+/* line 143, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-exclamation-sign:before {
+  content: "\e101";
+}
+
+/* line 144, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-gift:before {
+  content: "\e102";
+}
+
+/* line 145, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-leaf:before {
+  content: "\e103";
+}
+
+/* line 146, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-fire:before {
+  content: "\e104";
+}
+
+/* line 147, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-eye-open:before {
+  content: "\e105";
+}
+
+/* line 148, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-eye-close:before {
+  content: "\e106";
+}
+
+/* line 149, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-warning-sign:before {
+  content: "\e107";
+}
+
+/* line 150, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-plane:before {
+  content: "\e108";
+}
+
+/* line 151, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-calendar:before {
+  content: "\e109";
+}
+
+/* line 152, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-random:before {
+  content: "\e110";
+}
+
+/* line 153, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-comment:before {
+  content: "\e111";
+}
+
+/* line 154, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-magnet:before {
+  content: "\e112";
+}
+
+/* line 155, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-chevron-up:before {
+  content: "\e113";
+}
+
+/* line 156, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-chevron-down:before {
+  content: "\e114";
+}
+
+/* line 157, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-retweet:before {
+  content: "\e115";
+}
+
+/* line 158, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-shopping-cart:before {
+  content: "\e116";
+}
+
+/* line 159, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-folder-close:before {
+  content: "\e117";
+}
+
+/* line 160, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-folder-open:before {
+  content: "\e118";
+}
+
+/* line 161, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-resize-vertical:before {
+  content: "\e119";
+}
+
+/* line 162, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-resize-horizontal:before {
+  content: "\e120";
+}
+
+/* line 163, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-hdd:before {
+  content: "\e121";
+}
+
+/* line 164, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-bullhorn:before {
+  content: "\e122";
+}
+
+/* line 165, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-bell:before {
+  content: "\e123";
+}
+
+/* line 166, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-certificate:before {
+  content: "\e124";
+}
+
+/* line 167, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-thumbs-up:before {
+  content: "\e125";
+}
+
+/* line 168, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-thumbs-down:before {
+  content: "\e126";
+}
+
+/* line 169, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-hand-right:before {
+  content: "\e127";
+}
+
+/* line 170, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-hand-left:before {
+  content: "\e128";
+}
+
+/* line 171, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-hand-up:before {
+  content: "\e129";
+}
+
+/* line 172, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-hand-down:before {
+  content: "\e130";
+}
+
+/* line 173, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-circle-arrow-right:before {
+  content: "\e131";
+}
+
+/* line 174, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-circle-arrow-left:before {
+  content: "\e132";
+}
+
+/* line 175, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-circle-arrow-up:before {
+  content: "\e133";
+}
+
+/* line 176, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-circle-arrow-down:before {
+  content: "\e134";
+}
+
+/* line 177, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-globe:before {
+  content: "\e135";
+}
+
+/* line 178, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-wrench:before {
+  content: "\e136";
+}
+
+/* line 179, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-tasks:before {
+  content: "\e137";
+}
+
+/* line 180, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-filter:before {
+  content: "\e138";
+}
+
+/* line 181, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-briefcase:before {
+  content: "\e139";
+}
+
+/* line 182, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-fullscreen:before {
+  content: "\e140";
+}
+
+/* line 183, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-dashboard:before {
+  content: "\e141";
+}
+
+/* line 184, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-paperclip:before {
+  content: "\e142";
+}
+
+/* line 185, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-heart-empty:before {
+  content: "\e143";
+}
+
+/* line 186, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-link:before {
+  content: "\e144";
+}
+
+/* line 187, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-phone:before {
+  content: "\e145";
+}
+
+/* line 188, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-pushpin:before {
+  content: "\e146";
+}
+
+/* line 189, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-euro:before {
+  content: "\20ac";
+}
+
+/* line 190, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-usd:before {
+  content: "\e148";
+}
+
+/* line 191, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-gbp:before {
+  content: "\e149";
+}
+
+/* line 192, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort:before {
+  content: "\e150";
+}
+
+/* line 193, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort-by-alphabet:before {
+  content: "\e151";
+}
+
+/* line 194, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort-by-alphabet-alt:before {
+  content: "\e152";
+}
+
+/* line 195, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort-by-order:before {
+  content: "\e153";
+}
+
+/* line 196, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort-by-order-alt:before {
+  content: "\e154";
+}
+
+/* line 197, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort-by-attributes:before {
+  content: "\e155";
+}
+
+/* line 198, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-sort-by-attributes-alt:before {
+  content: "\e156";
+}
+
+/* line 199, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-unchecked:before {
+  content: "\e157";
+}
+
+/* line 200, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-expand:before {
+  content: "\e158";
+}
+
+/* line 201, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-collapse:before {
+  content: "\e159";
+}
+
+/* line 202, /home/jacko/.rvm/gems/ruby-2.1.1/gems/bootstrap-glyphicons-0.0.1/app/assets/stylesheets/bootstrap/glyphicons.scss */
+.glyphicon-collapse-top:before {
+  content: "\e160";
+}
+
+/* line 3, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline {
+  list-style: none;
+  padding: 20px 0 20px;
+  position: relative;
+}
+
+/* line 8, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline:before {
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  content: " ";
+  width: 3px;
+  background-color: #eeeeee;
+  left: 50%;
+  margin-left: -1.5px;
+}
+
+/* line 18, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* line 23, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li:before,
+.timeline > li:after {
+  content: " ";
+  display: table;
+}
+
+/* line 27, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li:after {
+  clear: both;
+}
+
+/* line 31, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li:before,
+.timeline > li:after {
+  content: " ";
+  display: table;
+}
+
+/* line 35, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li:after {
+  clear: both;
+}
+
+/* line 38, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li > .timeline-panel {
+  width: 50%;
+  float: left;
+  border: 1px solid #d4d4d4;
+  border-radius: 2px;
+  padding: 20px;
+  position: relative;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+}
+
+/* line 49, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li.timeline-inverted + li:not(.timeline-inverted),
+.timeline > li:not(.timeline-inverted) + li.timeline-inverted {
+  margin-top: -60px;
+}
+
+/* line 53, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li:not(.timeline-inverted) {
+  padding-right: 160px;
+}
+
+/* line 57, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li.timeline-inverted {
+  padding-left: 160px;
+}
+
+/* line 60, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li > .timeline-panel:before {
+  position: absolute;
+  top: 26px;
+  right: -15px;
+  display: inline-block;
+  border-top: 15px solid transparent;
+  border-left: 15px solid #ccc;
+  border-right: 0 solid #ccc;
+  border-bottom: 15px solid transparent;
+  content: " ";
+}
+
+/* line 71, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li > .timeline-panel:after {
+  position: absolute;
+  top: 27px;
+  right: -14px;
+  display: inline-block;
+  border-top: 14px solid transparent;
+  border-left: 14px solid #fff;
+  border-right: 0 solid #fff;
+  border-bottom: 14px solid transparent;
+  content: " ";
+}
+
+/* line 82, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li > .timeline-badge {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #999999;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+/* line 100, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > a > li > .timeline-badge {
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.4em;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  margin-left: -25px;
+  background-color: #999999;
+  z-index: 100;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+/* line 118, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li.timeline-inverted > .timeline-panel {
+  float: right;
+}
+
+/* line 121, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li.timeline-inverted > .timeline-panel:before {
+  border-left-width: 0;
+  border-right-width: 15px;
+  left: -15px;
+  right: auto;
+}
+
+/* line 127, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline > li.timeline-inverted > .timeline-panel:after {
+  border-left-width: 0;
+  border-right-width: 14px;
+  left: -14px;
+  right: auto;
+}
+
+/* line 133, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-badge.primary {
+  background-color: #2e6da4 !important;
+}
+
+/* line 136, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-badge.success {
+  background-color: #3f903f !important;
+}
+
+/* line 139, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-badge.warning {
+  background-color: #f0ad4e !important;
+}
+
+/* line 142, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-badge.danger {
+  background-color: #d9534f !important;
+}
+
+/* line 145, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-badge.info {
+  background-color: #5bc0de !important;
+}
+
+/* line 148, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-title {
+  margin-top: 0;
+  color: inherit;
+}
+
+/* line 153, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-body > p,
+.timeline-body > ul {
+  margin-bottom: 0;
+}
+
+/* line 156, /home/jacko/rails/hamers/app/assets/stylesheets/news.css.scss */
+.timeline-body > p + p {
+  margin-top: 5px;
+}
 body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
-}
+  line-height: 18px; }
 
-/* line 9, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
-}
+  line-height: 18px; }
 
-/* line 15, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 pre {
   background-color: #eee;
   padding: 10px;
-  font-size: 11px;
-}
+  font-size: 11px; }
 
-/* line 21, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 a {
-  color: #000;
-}
-/* line 23, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
-a:visited {
-  color: #666;
-}
-/* line 26, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
-a:hover {
-  color: #fff;
-  background-color: #000;
-}
+  color: #000; }
+  a:visited {
+    color: #666; }
+  a:hover {
+    color: #fff;
+    background-color: #000; }
 
-/* line 33, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 div.field, div.actions {
-  margin-bottom: 10px;
-}
+  margin-bottom: 10px; }
 
-/* line 38, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 #notice {
-  color: green;
-}
+  color: green; }
 
-/* line 42, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
-  display: table;
-}
+  display: table; }
 
-/* line 48, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-/* line 55, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
-#error_explanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  margin-bottom: 0px;
-  background-color: #c00;
-  color: #fff;
-}
-/* line 65, /home/kennedy/development/hamers/app/assets/stylesheets/scaffolds.css.scss */
-#error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
-}
+  background-color: #f0f0f0; }
+  #error_explanation h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff; }
+  #error_explanation ul li {
+    font-size: 12px;
+    list-style: square; }
 /* tables */
 
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {

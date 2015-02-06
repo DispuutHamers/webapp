@@ -1,5 +1,7 @@
 class Beer < ActiveRecord::Base
  has_many :reviews
+ VALID_PERCENTAGE_REGEX = /\d?\d\.\d?%/i
+ validates :percentage, presence: true, format: { with: VALID_PERCENTAGE_REGEX }
  
  def add_review!(user, rating, description, proefdatum)
    self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)

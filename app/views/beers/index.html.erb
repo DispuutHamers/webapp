@@ -23,7 +23,13 @@ $(document).ready(function()
 
   <tbody>
     <% @beers.each do |beer| %>
-      <tr>
+			<% if beer.reviews.where("user_id = ?", current_user.id).empty? %>
+				<tr bgcolor="FCF8E3">
+			<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 5 %>
+				<tr bgcolor="DFF0D8">
+			<% else %>
+				<tr bgcolor="F2DEDE">
+			<% end %>
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
         <td><%= beer.reviews.average(:rating) %></td>

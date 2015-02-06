@@ -8,11 +8,15 @@ class ApiController < ApplicationController
 		@type = "event" if params[:request] == "event"
 		@type = "beer" if params[:request] == "beer"
 		@type = "review" if params[:request] == "review"
+		@type = "signup" if params[:request] == "signup" and params[:id] != nil
 		@result = User.all if @type == "user" 
-		@result = Quote.all if @type == "quote" 
+		@result = Event.find(params[:id]).signups if @type == "signup"
+		@result = Quote.all if @type == "quote" and params[:id] == nil
+		@result = User.find(params[:id]) if @type == "quote" and params[:id] != nil
 		@result = Event.all.order("date") if @type == "event" 
 		@result = Beer.all if @type == "beer" 
-		@result = Review.all if @type == "review" 
+		@result = Review.all if @type == "review" and params[:id] == nil 
+		@result = Beer.find(params[:id]).reviews if @type == "review" and params[:id] != nil
   end
 
   def POST
@@ -21,6 +25,7 @@ class ApiController < ApplicationController
 		@type = "review" if params[:request] == "review"
 		@type = "motie" if params[:request] == "motie"
 		@type = "beer" if params[:request] == "beer"
+		@type = "signup" if params[:request] == "signup"
 		if @type == "quote" 
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
@@ -64,6 +69,10 @@ class ApiController < ApplicationController
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 			end
+		end
+		if @type == "signup"
+			@keyStore.user.sign!(Event.find(params[:signup][:event_id]), params[:signup][:status])
+			render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 		end
   end
 
