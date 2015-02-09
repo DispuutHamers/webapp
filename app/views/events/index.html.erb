@@ -25,14 +25,14 @@
             <% end %> ..jij?
         </td>
         <% if current_user == event.user and !current_user.admin? and !current_user.schrijf_feut? %>
-        <td><%= link_to 'Wijzig', edit_event_path(event) %>
+        <td><%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %>
         <% end %></td>
         <% if current_user.admin? %>
-        <td><%= link_to 'Wijzig', edit_event_path(event) %></td>
-        <td><%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' } %></td>
+        <td><%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %></td>
+        <td><%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => "btn btn-danger" %></td>
         <% end %>
         <% if current_user.schrijf_feut? %>
-	<td><%= link_to 'Wijzig', edit_event_path(event) %></td>
+	<td><%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %></td>
 	<% end %>
       </tr>
     <% end %>
@@ -41,7 +41,8 @@
 
 <%= will_paginate %>
 
-<br>
 <% if lid? %>
-<%= link_to 'Nieuwe activiteit', new_event_path %>
+<div class="btn-group">
+  <%= link_to 'Nieuwe activiteit', new_event_path, :class => "btn btn-primary" %>
+</div>
 <% end %>
