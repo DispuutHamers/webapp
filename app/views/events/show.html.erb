@@ -3,7 +3,7 @@
 <div class="row">
   <aside class="span8">
     <section><h1><%= @event.title %></h1></section>
-    <section><%= @event.date.strftime("%d/%m/%Y") %></section>
+		<section><%= @event.date.strftime("%d/%m/%Y") %><% if @event.location != nil %> - <% @event.location %><% end %></section>
     <section><%= @event.beschrijving %></section>
   </aside>
   <div class="span4">

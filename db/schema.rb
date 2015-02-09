@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150110121305) do
+ActiveRecord::Schema.define(version: 20150209224327) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150110121305) do
     t.integer  "user_id"
     t.datetime "deadline"
     t.datetime "end_time"
+    t.string   "location"
   end
 
   create_table "groups", force: true do |t|
