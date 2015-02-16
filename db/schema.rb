@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209224327) do
-
-  create_table "afmeldingens", force: true do |t|
-    t.string   "reden"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20150216152307) do
 
   create_table "api_keys", force: true do |t|
     t.string   "key"
@@ -40,7 +33,7 @@ ActiveRecord::Schema.define(version: 20150209224327) do
   end
 
   create_table "events", force: true do |t|
-    t.string   "beschrijving"
+    t.text     "beschrijving"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
@@ -131,14 +124,6 @@ ActiveRecord::Schema.define(version: 20150209224327) do
     t.integer  "user_id"
     t.boolean  "status"
     t.string   "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "statics", force: true do |t|
-    t.string   "title"
-    t.string   "content"
-    t.string   "p_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
