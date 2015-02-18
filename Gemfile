@@ -6,6 +6,7 @@ gem 'icalendar'
 gem 'redcarpet' 
 gem 'rqrcode_png'  
 gem 'bootstrap-glyphicons'
+gem 'whenever', :require => false
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
