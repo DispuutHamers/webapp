@@ -4,7 +4,7 @@
   <aside class="span8">
     <section><h1><%= @event.title %></h1></section>
 		<section><%= @event.date.strftime("%d/%m/%Y") %><% if @event.location != nil and @event.location.length > 1 %> - <%= @event.location %><% end %></section>
-    <section><%= @event.beschrijving %></section>
+    <section><%= simple_format(@event.beschrijving) %></section>
   </aside>
   <div class="span4">
     <% if @event.user_id != nil %>
@@ -44,4 +44,9 @@
     </section>
   </div>
 </div>
-<%= link_to 'Terug', events_path, :class => "btn" %>
+<div class="btn-group">
+  <% if current_user.admin? || current_user.dev? %>
+    <%= link_to 'Edit', edit_event_path(@event), :class => "btn btn-info" %>
+  <% end %>
+  <%= link_to 'Terug', events_path, :class => "btn" %>
+</div>

@@ -5,7 +5,7 @@
     <% @beer.reviews.each do |r| %>
     <section>
       <p><i><%= link_to User.find(r.user_id).name, User.find(r.user_id) %></i> zei over dit bier: </p>
-      <p><%= r.description %></p>
+      <p><%= simple_format(r.description) %></p>
       <p>Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op <i><%= r.proefdatum.strftime("%d/%m/%Y") %></i>
       <% if current_user == User.find(r.user_id) || current_user.admin? %>
        | <%= link_to "edit", edit_review_path(r) %>
