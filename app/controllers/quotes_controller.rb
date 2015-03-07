@@ -27,6 +27,6 @@ class QuotesController < ApplicationController
 		@quote = Quote.find(params[:id])
     @quote.destroy
     flash[:succes] = "Zie je nooit meer terrug" 
-    redirect_to root_url
+    redirect_to request.referer
   end
 end
