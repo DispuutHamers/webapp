@@ -18,8 +18,13 @@ class SignupsController < ApplicationController
   def create
     @signup = Signup.new(signup_params)
     @event = Event.find(params[:signup][:event_id])
-    current_user.sign!(@event, params[:signup][:status])   
-    redirect_to @event
+		if @event.deadline > Time.now
+			current_user.sign!(@event, params[:signup][:status])   
+			flash[:success] = "Je staat erbij!"
+		else
+			flash[:error] = "De deadline is al verstreken" 
+		end
+		redirect_to @event
   end
 
   # PATCH/PUT /signups/1

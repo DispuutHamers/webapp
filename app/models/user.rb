@@ -29,11 +29,13 @@ class User < ActiveRecord::Base
   end
   
   def sign!(event, status)
-    stemmen = signups.where(event_id: event.id, user_id: self.id)
-    if stemmen.any?
-      stemmen.each { |stem| stem.destroy! } 
-    end
-    self.signups.create!(event_id: event.id, status: status) 
+		if event.deadline > Time.now
+			stemmen = signups.where(event_id: event.id, user_id: self.id)
+			if stemmen.any?
+				stemmen.each { |stem| stem.destroy! } 
+			end
+			self.signups.create!(event_id: event.id, status: status) 
+		end
   end
   
   def User.new_remember_token
