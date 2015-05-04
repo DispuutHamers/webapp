@@ -17,9 +17,13 @@
 		  <% end %>
 		</aside>
     <div class="span8">
-      <h3>Quote Feed</h3>
-      <%= render 'shared/feed' %>
+			<%= render 'shared/news_item' %>
+      
     </div>
+  </div>
+  <div class="row">
+	<h3>Quote Feed</h3>
+      <%= render 'shared/feed' %>
   </div>
 <% else %>
 <div class="center hero-unit">
