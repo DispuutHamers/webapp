@@ -20,4 +20,8 @@ module ParamsHelper
 		params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer)
 	end
 
+	def news_params
+		params.require(:news).permit(:cat, :body, :title, :image, :date)
+	end
+
 end

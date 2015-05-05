@@ -9,6 +9,7 @@ class ApiController < ApplicationController
 		@type = "beer" if params[:request] == "beer"
 		@type = "review" if params[:request] == "review"
 		@type = "signup" if params[:request] == "signup" and params[:id] != nil
+		@type = "news" if params[:request] == "news"
 		@result = User.all if @type == "user" 
 		@result = Event.find(params[:id]).signups if @type == "signup"
 		@result = Quote.all if @type == "quote" and params[:id] == nil
@@ -17,6 +18,7 @@ class ApiController < ApplicationController
 		@result = Beer.all if @type == "beer" 
 		@result = Review.all if @type == "review" and params[:id] == nil 
 		@result = Beer.find(params[:id]).reviews if @type == "review" and params[:id] != nil
+	  @result = News.all if @type = "news" 	
   end
 
   def POST
@@ -26,10 +28,20 @@ class ApiController < ApplicationController
 		@type = "motie" if params[:request] == "motie"
 		@type = "beer" if params[:request] == "beer"
 		@type = "signup" if params[:request] == "signup"
+		@type = "news" if params[:request] == "news"
 		if @type == "quote" 
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
 			if @quote.save 
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
+			end
+		end
+		if @type == "news" 
+			@news = News.new(news_params)
+			@news.user_id = @keyStore.user.id
+			if @news.save 
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
