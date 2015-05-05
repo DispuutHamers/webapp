@@ -18,7 +18,7 @@ class ApiController < ApplicationController
 		@result = Beer.all if @type == "beer" 
 		@result = Review.all if @type == "review" and params[:id] == nil 
 		@result = Beer.find(params[:id]).reviews if @type == "review" and params[:id] != nil
-	  @result = News.all if @type = "news" 	
+	  @result = News.all if @type == "news" 	
   end
 
   def POST
