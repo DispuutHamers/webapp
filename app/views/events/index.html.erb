@@ -17,7 +17,14 @@
 
   <tbody>
     <% @events.each do |event| %>
-      <tr>
+    <% if event.date.future?
+          class = "info"
+       else if event.date.today?
+          class = "success"
+       else
+          class = "active"
+       end%>
+      <tr class = "<%= class %>">
         <td><%= link_to event.title, event %></td>
 	<td><%= event.date.strftime("%d/%m/%Y") %>
         <td><% event.signups.where(status: true).each do |s| %>
