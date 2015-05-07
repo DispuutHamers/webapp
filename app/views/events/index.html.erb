@@ -26,8 +26,10 @@
         <td><% event.signups.where(status: true).each_with_index do |s, index| %><%= "," if index != 0 %> <%= s.user.name %><% end %><% if event.signups.where(status: true, user_id: current_user.id).empty? %>, ..jij?<% end %>
         </td>
         <% if current_user == event.user or current_user.admin? or current_user.schrijf_feut? %>
-        <td><%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %>
-        <% end %></td>
+        <td><%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %></td>
+        <% else %>
+        <td></td>
+        <% end %>
         <% if current_user.admin? %>
         <td><%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => "btn btn-danger" %></td>
         <% end %>
