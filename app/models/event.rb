@@ -13,4 +13,16 @@ class Event < ActiveRecord::Base
 	 event.url = "http://zondersikkel.nl/events/#{self.id}"
 	 event
  end
+
+ def future?
+	 self.date.future?
+ end
+
+ def today? 
+	 self.date.today?
+ end
+
+ def past?
+	 !self.date.future?
+ end
 end
