@@ -41,6 +41,7 @@ class ApiController < ApplicationController
 		if @type == "news" 
 			@news = News.new(news_params)
 			@news.user_id = @keyStore.user.id
+			@news.date = Date.now
 			if @news.save 
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
