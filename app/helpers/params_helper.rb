@@ -24,4 +24,7 @@ module ParamsHelper
 		params.require(:news).permit(:cat, :body, :title, :image, :date)
 	end
 
+	def device_params
+		params.require(:device).permit(:device_key)
+	end
 end

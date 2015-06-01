@@ -60,7 +60,13 @@ GEM
     commonjs (0.2.7)
     erubis (2.7.0)
     execjs (2.0.2)
+    gcm (0.1.0)
+      httparty
+      json
     hike (1.2.3)
+    httparty (0.13.5)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.11)
     icalendar (2.1.0)
     jbuilder (1.5.3)
@@ -81,6 +87,7 @@ GEM
     mime-types (2.4.3)
     minitest (5.5.0)
     multi_json (1.10.1)
+    multi_xml (0.5.5)
     mysql2 (0.3.15)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -168,6 +175,7 @@ DEPENDENCIES
   capistrano
   capistrano-rails (~> 1.1)
   coffee-rails (~> 4.0.0)
+  gcm
   icalendar
   jbuilder (~> 1.2)
   jquery-rails

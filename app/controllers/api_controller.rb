@@ -29,6 +29,16 @@ class ApiController < ApplicationController
 		@type = "beer" if params[:request] == "beer"
 		@type = "signup" if params[:request] == "signup"
 		@type = "news" if params[:request] == "news"
+		@type = "register" if params[:request] == "register" 
+		if @type == "register"
+			@device = Device.new(device_params)
+			@device.user_id = @keyStore.user.id
+			if @device.save 
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
+			end
+		end
 		if @type == "quote" 
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
