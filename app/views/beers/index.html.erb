@@ -14,6 +14,7 @@ $(document).ready(function()
       <th>Naam</th>
       <th>Soort</th>
       <th>Cijfer</th>
+			<th>Brouwer<th>
       <th>Aantal reviews</th>
       <% if current_user.admin? %>
       <th></th>
@@ -33,6 +34,7 @@ $(document).ready(function()
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
         <td><%= beer.reviews.average(:rating) %></td>
+				<td><%= beer.brewer %>
 	<td><%= beer.reviews.count %></td>
         <% if current_user.admin? %>
         <td><%= link_to 'Verwijder', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
