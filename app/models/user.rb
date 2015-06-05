@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    in_group?(Usergroup.find_by(name: 'Triumviraat'))
+    in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev?
   end
 
   def dev?
