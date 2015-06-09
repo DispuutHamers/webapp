@@ -31,8 +31,9 @@ class ApiController < ApplicationController
 		@type = "news" if params[:request] == "news"
 		@type = "register" if params[:request] == "register" 
 		if @type == "register"
-			@device = Device.new(device_params)
+			@device = @keyStore.user.devices.first ||= Device.new(device_params)
 			@device.user_id = @keyStore.user.id
+			@device.update_attributes(device_params)
 			if @device.save 
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
