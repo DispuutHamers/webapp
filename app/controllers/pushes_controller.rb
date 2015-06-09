@@ -9,14 +9,12 @@ class PushesController < ApplicationController
   def create
     @push = Push.new(push_params)
 
-		response = PUSH.send([@push.user.devices.first.device_key], @push.data)
+		response = PUSH.send([@push.user.devices.first.device_key], eval(@push.data))
 		@push.user_id = current_user.id 
-
-		@push.data = @push.data + " response was: " + response
 
     respond_to do |format|
       if @push.save
-        format.html { redirect_to @push, notice: 'Push was successfully created.' }
+        format.html { redirect_to new_push_path, notice: 'Push was successfully created.' }
         format.json { render action: 'show', status: :created, location: @push }
       else
         format.html { render action: 'new' }
