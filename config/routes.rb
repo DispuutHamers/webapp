@@ -1,4 +1,6 @@
 Hamers::Application.routes.draw do
+  resources :pushes, only: [:create, :new] 
+
   resources :news
 
   match 'api/v1/:key/:request', to: 'api#GET', via: 'get'

@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216152307) do
+ActiveRecord::Schema.define(version: 20150609152649) do
+
+  create_table "afmeldingens", force: true do |t|
+    t.string   "reden"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "api_keys", force: true do |t|
     t.string   "key"
@@ -30,6 +37,13 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.string   "percentage"
     t.string   "brewer"
     t.string   "country"
+  end
+
+  create_table "devices", force: true do |t|
+    t.integer  "user_id"
+    t.string   "device_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "events", force: true do |t|
@@ -99,6 +113,13 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.datetime "updated_at"
   end
 
+  create_table "pushes", force: true do |t|
+    t.integer  "user_id"
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "quotes", force: true do |t|
     t.string   "text"
     t.integer  "user_id"
@@ -124,6 +145,14 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.integer  "user_id"
     t.boolean  "status"
     t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statics", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "p_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

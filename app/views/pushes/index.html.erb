@@ -1,0 +1,27 @@
+<h1>Listing pushes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Data</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pushes.each do |push| %>
+      <tr>
+        <td><%= push.user_id %></td>
+        <td><%= push.data %></td>
+        <td><%= link_to 'Show', push %></td>
+        <td><%= link_to 'Edit', edit_push_path(push) %></td>
+        <td><%= link_to 'Destroy', push, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Push', new_push_path %>

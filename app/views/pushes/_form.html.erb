@@ -1,0 +1,25 @@
+<%= form_for(@push) do |f| %>
+  <% if @push.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@push.errors.count, "error") %> prohibited this push from being saved:</h2>
+
+      <ul>
+      <% @push.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br>
+		<%= f.text_area :data, value: "{ notification: { title: \"title\", body: \"body\", icon: \"ic_launcher\" }" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
