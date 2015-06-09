@@ -13,4 +13,4 @@ end
 #  self.include_root_in_json = true
 # end
 
-PUSH = GCM.new("AIzaSyD2FKnQcbZT6GnI_DND0fipUpcCpw4uPx0")
+PUSH = GCM.new("AIzaSyDGLwecOcHi9pgnwMaqXo3GwNuIeFCHslc")
