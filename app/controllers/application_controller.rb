@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
 		response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
 	end
 
+	def update_app(data)
+		keys = []
+		Device.all {|d| keys = keys + [d.device_key]}
+		PUSH.send(keys, eval(data))
+	end
 
 	def logged_in?
     redirect_to signin_url, notice: "Please sign in." unless signed_in?
@@ -19,6 +24,6 @@ class ApplicationController < ActionController::Base
 
 	def admin_user?
 		logged_in?
-    redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut? || current_user.dev?)
+    redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
   end
 end
