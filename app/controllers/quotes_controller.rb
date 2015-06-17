@@ -10,7 +10,7 @@ class QuotesController < ApplicationController
 		@quote.reporter = current_user.id
     if @quote.save
       flash[:succes] = "Quote staat erop" 
-			update_app("{ data: { quote: { id: \"#{quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", date: \"#{@quote.created_at}\"} } }")
+			update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", date: \"#{@quote.created_at}\"} } }")
       redirect_to root_url
     else
       @feed_items = []
