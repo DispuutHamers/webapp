@@ -46,7 +46,7 @@ class ApiController < ApplicationController
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
 			if @quote.save 
-				update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", date: \"#{@quote.created_at}\"} } }")
+				update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", created_at: \"#{@quote.created_at}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
