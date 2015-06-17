@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609152649) do
+ActiveRecord::Schema.define(version: 20150617132700) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150609152649) do
     t.string   "percentage"
     t.string   "brewer"
     t.string   "country"
+    t.string   "URL"
   end
 
   create_table "devices", force: true do |t|
