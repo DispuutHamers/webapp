@@ -46,6 +46,7 @@ class ApiController < ApplicationController
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
 			if @quote.save 
+				update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", date: \"#{@quote.created_at}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
@@ -65,6 +66,7 @@ class ApiController < ApplicationController
 			@event = Event.new(event_params)
 			@event.user_id = @keyStore.user.id
 			if @event.save 
+				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: \"#{@event.date}\", location: \"#{@event.location}\", deadline: \"#{@event.deadline}\", end_time: \"#{@event.end_time}\", title: \"#{@event.title}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
@@ -74,6 +76,7 @@ class ApiController < ApplicationController
 			@review = Review.new(review_params) 
 			@review.user_id = @keyStore.user.id
 			if !Review.where(user_id: @review.user_id, beer_id: @review.beer_id).any? and @review.save 
+				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: \"#{@review.proefdatum}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
@@ -91,6 +94,7 @@ class ApiController < ApplicationController
 		if @type == "beer"
 			@beer = Beer.new(beer_params)
 			if @beer.save 
+				update_app("{ data: { beer: { name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\"  } } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
