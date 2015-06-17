@@ -10,7 +10,9 @@ class ApiController < ApplicationController
 		@type = "review" if params[:request] == "review"
 		@type = "signup" if params[:request] == "signup" and params[:id] != nil
 		@type = "news" if params[:request] == "news"
-		@result = User.all if @type == "user" 
+		@type = "user" if params[:request] == "whoami"
+		@result = User.all if @type == "user" and params[:request] != "whoami" 
+		@result = [@keyStore.user] if @type == "user" and params[:request] == "whoami" 
 		@result = Event.find(params[:id]).signups if @type == "signup"
 		@result = Quote.all if @type == "quote" and params[:id] == nil
 		@result = User.find(params[:id]) if @type == "quote" and params[:id] != nil
