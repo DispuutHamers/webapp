@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 		Device.all.each do |d| 
 		 	keys << d.device_key
 		end
+		flash[:error] = "Pushed to: " + keys
 		PUSH.send(keys, eval(data))
 	end
 
