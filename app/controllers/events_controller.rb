@@ -48,6 +48,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     respond_to do |format|
       if @event.save
+				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: \"#{@event.date}\", location: \"#{@event.location}\", deadline: \"#{@event.deadline}\", end_time: \"#{@event.end_time}\", title: \"#{@event.title}\"} } }")
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
