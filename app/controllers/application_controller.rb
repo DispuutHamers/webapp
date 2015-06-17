@@ -14,7 +14,9 @@ class ApplicationController < ActionController::Base
 
 	def update_app(data)
 		keys = []
-		Device.all {|d| keys = keys + [d.device_key]}
+		Device.all.each do |d| 
+		 	keys << d.device_key
+		end
 		PUSH.send(keys, eval(data))
 	end
 
