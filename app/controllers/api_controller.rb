@@ -76,7 +76,7 @@ class ApiController < ApplicationController
 			@review = Review.new(review_params) 
 			@review.user_id = @keyStore.user.id
 			if !Review.where(user_id: @review.user_id, beer_id: @review.beer_id).any? and @review.save 
-				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: \"#{@review.proefdatum}\"} } }")
+				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: \"#{@review.proefdatum}\", created_at: \"#{@review.created_at}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
@@ -94,7 +94,7 @@ class ApiController < ApplicationController
 		if @type == "beer"
 			@beer = Beer.new(beer_params)
 			if @beer.save 
-				update_app("{ data: { beer: { name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\"  } } }")
+				update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\"  } } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'

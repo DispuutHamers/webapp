@@ -34,7 +34,7 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
-				update_app("{ data: { beer: { name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\"  } } }")
+				update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\"  } } }")
         format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @beer }
       else
