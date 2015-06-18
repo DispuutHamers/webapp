@@ -1,4 +1,5 @@
 Hamers::Application.routes.draw do
+  mount Documentation::Engine => "/docs"
   resources :pushes, only: [:create, :new] 
 
   resources :news

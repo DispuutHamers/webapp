@@ -8,6 +8,7 @@ gem 'rqrcode_png'
 gem 'bootstrap-glyphicons'
 gem 'whenever', :require => false
 gem 'gcm' 
+gem 'documentation', '~> 1.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'

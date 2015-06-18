@@ -47,6 +47,21 @@ ActiveRecord::Schema.define(version: 20150617132700) do
     t.datetime "updated_at"
   end
 
+  create_table "documentation_pages", force: true do |t|
+    t.string   "title"
+    t.string   "permalink"
+    t.text     "content"
+    t.text     "compiled_content"
+    t.integer  "parent_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "documentation_screenshots", force: true do |t|
+    t.string "alt_text"
+  end
+
   create_table "events", force: true do |t|
     t.text     "beschrijving"
     t.datetime "created_at"
@@ -98,6 +113,19 @@ ActiveRecord::Schema.define(version: 20150617132700) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "nifty_attachments", force: true do |t|
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.string   "token"
+    t.string   "digest"
+    t.string   "role"
+    t.string   "file_name"
+    t.string   "file_type"
+    t.binary   "data",        limit: 16777215
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "polls", force: true do |t|
