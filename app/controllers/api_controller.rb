@@ -66,7 +66,7 @@ class ApiController < ApplicationController
 			@event = Event.new(event_params)
 			@event.user_id = @keyStore.user.id
 			if @event.save 
-				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: \"#{@event.date}\", location: \"#{@event.location}\", deadline: \"#{@event.deadline}\", end_time: \"#{@event.end_time}\", title: \"#{@event.title}\"} } }")
+				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: \"#{@event.date.to_json}\", location: \"#{@event.location}\", deadline: \"#{@event.deadline}\", end_time: \"#{@event.end_time}\", title: \"#{@event.title}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
