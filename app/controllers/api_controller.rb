@@ -32,6 +32,7 @@ class ApiController < ApplicationController
 		@type = "signup" if params[:request] == "signup"
 		@type = "news" if params[:request] == "news"
 		@type = "register" if params[:request] == "register" 
+		@type = "arm" if params[:request] == "arms" 
 		if @type == "register"
 			@device = @keyStore.user.devices.first || Device.new(device_params)
 			@device.user_id = @keyStore.user.id
@@ -103,6 +104,15 @@ class ApiController < ApplicationController
 		if @type == "signup"
 			@keyStore.user.sign!(Event.find(params[:signup][:event_id]), params[:signup][:status])
 			render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+		end
+		if @type == "arm"
+			@arm = Arm.new(arm_params)
+			@arm.user_id = @keyStore.user.id
+			if @arm.save
+				update_app("{ data: { arm: { lat: \"#{@arm.lat}\", lon: \"#{@arm.lon}\", created_at: \"#{@arm.created_at}\" } } }")
+				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+			else 
+				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 		end
   end
 

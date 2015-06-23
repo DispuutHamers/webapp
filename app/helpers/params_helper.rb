@@ -27,4 +27,8 @@ module ParamsHelper
 	def device_params
 		params.require(:device).permit(:device_key)
 	end
+
+	def arm_params
+		params.requre(:arm).permit(:lat, :lon)
+	end
 end
