@@ -32,7 +32,7 @@ if @type == "event"
 end
 if @type == "beer"
 	json.array!(@result) do |beer|
-		json.extract! beer, :id, :name, :soort, :picture, :percentage, :brewer, :country, :URL. :created_at 
+		json.extract! beer, :id, :name, :soort, :picture, :percentage, :brewer, :country, :URL, :created_at 
 		json.cijfer beer.cijfer?
 	end
 end

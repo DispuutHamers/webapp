@@ -113,6 +113,7 @@ class ApiController < ApplicationController
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else 
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
+			end
 		end
   end
 
