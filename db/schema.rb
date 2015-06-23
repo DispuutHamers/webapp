@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617132700) do
+ActiveRecord::Schema.define(version: 20150623095026) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -24,6 +24,23 @@ ActiveRecord::Schema.define(version: 20150617132700) do
     t.string   "key"
     t.integer  "user_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "api_logs", force: true do |t|
+    t.string   "ip_addr"
+    t.string   "resource_call"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "key"
+  end
+
+  create_table "arms", force: true do |t|
+    t.string   "lat"
+    t.string   "lon"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

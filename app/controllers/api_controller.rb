@@ -3,6 +3,7 @@ class ApiController < ApplicationController
 	skip_before_filter :verify_authenticity_token, :only => [:POST]
 
   def GET
+		ApiLog.new(key: @keyStore, user_id: @keyStore.user.id, ip_addr: request.remote_ip, resource_call: params).save
 		@type = "user" if params[:request] == "user"
 		@type = "quote" if params[:request] == "quote"
 		@type = "event" if params[:request] == "event"
@@ -24,6 +25,7 @@ class ApiController < ApplicationController
   end
 
   def POST
+		ApiLog.new(key: @keyStore, user_id: @keyStore.user.id, ip_addr: request.remote_ip, resource_call: params).save
 		@type = "quote" if params[:request] == "quote"
 		@type = "event" if params[:request] == "event"
 		@type = "review" if params[:request] == "review"

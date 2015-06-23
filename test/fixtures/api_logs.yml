@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ip_addr: MyString
+  resource_call: MyString
+  user_id: 1
+
+two:
+  ip_addr: MyString
+  resource_call: MyString
+  user_id: 1

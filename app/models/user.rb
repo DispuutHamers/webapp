@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :motions
   has_many :events
+	has_many :api_logs
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
