@@ -49,7 +49,7 @@ class ApiController < ApplicationController
 			@quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 			@quote.reporter = @keyStore.user.id
 			if @quote.save 
-				update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", created_at: \"#{@quote.created_at}\"} } }")
+				update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", created_at: #{@quote.created_at.to_json}} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
@@ -69,7 +69,7 @@ class ApiController < ApplicationController
 			@event = Event.new(event_params)
 			@event.user_id = @keyStore.user.id
 			if @event.save 
-				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: \"#{@event.date.to_json}\", location: \"#{@event.location}\", deadline: \"#{@event.deadline}\", end_time: \"#{@event.end_time}\", title: \"#{@event.title}\"} } }")
+				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: #{@event.date.to_json}, location: \"#{@event.location}\", deadline: #{@event.deadline.to_json}, end_time: #{@event.end_time.to_json}, title: \"#{@event.title}\"} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
@@ -79,7 +79,7 @@ class ApiController < ApplicationController
 			@review = Review.new(review_params) 
 			@review.user_id = @keyStore.user.id
 			if !Review.where(user_id: @review.user_id, beer_id: @review.beer_id).any? and @review.save 
-				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: \"#{@review.proefdatum}\", created_at: \"#{@review.created_at}\"} } }")
+				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: #{@review.proefdatum.to_json}, created_at: #{@review.created_at.to_json}} } }")
 				render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 			else
 				render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'

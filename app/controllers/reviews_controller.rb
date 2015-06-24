@@ -10,7 +10,7 @@ class ReviewsController < ApplicationController
     redirect_to @beer, notice: 'Doe es niet valsspelen' and return if reviews.any?
     respond_to do |format|
       if @review.save
-				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: \"#{@review.proefdatum}\", created_at: \"#{@review.created_at}\"} } }")
+				update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: #{@review.proefdatum.to_json}, created_at: #{@review.created_at.to_json}} } }")
         format.html { redirect_to @beer, notice: 'Review was successfully created.' }
       else
         format.html { render action: 'new' }
