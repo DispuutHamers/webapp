@@ -6,7 +6,7 @@
 				<% end %>
 					<br /><br />
       <% @news.each do |n| %>
-        <% if n.cat != "e" %> 
+        <% if n.id.odd? %> 
             <li class="timeline-inverted">
         <% else %>
             <li>
