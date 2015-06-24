@@ -37,6 +37,9 @@ GEM
     bootstrap-will_paginate (0.0.10)
       will_paginate
     builder (3.2.2)
+    bullet (4.14.7)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     capistrano (3.2.1)
       i18n
       rake (>= 10.0.0)
@@ -181,6 +184,7 @@ GEM
     uglifier (2.5.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.9.0)
     whenever (0.9.4)
       chronic (>= 0.6.3)
     will_paginate (3.0.5)
@@ -194,6 +198,7 @@ DEPENDENCIES
   bcrypt-ruby
   bootstrap-glyphicons
   bootstrap-will_paginate
+  bullet
   capistrano
   capistrano-rails (~> 1.1)
   coffee-rails (~> 4.0.0)
