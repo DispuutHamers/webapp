@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150623120925) do
+ActiveRecord::Schema.define(version: 20150626070916) do
 
   create_table "afmeldingens", force: true do |t|
     t.string   "reden"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150623120925) do
 
   create_table "api_logs", force: true do |t|
     t.string   "ip_addr"
-    t.string   "resource_call"
+    t.text     "resource_call"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
