@@ -33,8 +33,8 @@ end
 if @type == "beer"
 	json.array!(@result) do |beer|
 		json.extract! beer, :id, :name, :soort, :picture, :percentage, :brewer, :country, :URL, :created_at 
-		json.cijfer beer.reviews.average(:rating)
-		#json.cijfer beer.cijfer?
+		#json.cijfer beer.reviews.average(:rating)
+		json.cijfer beer.cijfer?
 	end
 end
 if @type == "review"

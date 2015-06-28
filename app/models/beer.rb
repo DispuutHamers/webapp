@@ -8,7 +8,7 @@ class Beer < ActiveRecord::Base
  end
  
  def cijfer?
-   cijfer = 0
+   cijfer = 0.0
    self.reviews.each do |r| 
      cijfer = cijfer + r.rating
    end
