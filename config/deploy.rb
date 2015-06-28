@@ -1,4 +1,6 @@
 # config valid only for Capistrano 3.1
+require "whenever/capistrano"
+set :whenever_command, "bundle exec whenever"
 
 set :application, 'Hamers'
 set :repo_url, 'git@bitbucket.org:jackozi/hamers.git'
