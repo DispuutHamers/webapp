@@ -1,5 +1,8 @@
 class PushesController < ApplicationController
 	before_action :admin_user?
+	def index
+		@pushes = Push.paginate(page: params[:page], :per_page => 10)
+	end
 
   # GET /pushes/new
   def new

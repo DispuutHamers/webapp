@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 		 	keys << d.device_key
 		end
 		PUSH.send(keys, eval(data))
+		Push.new(data: eval(data)).save
 	end
 
 	def logged_in?
