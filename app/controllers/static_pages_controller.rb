@@ -8,4 +8,8 @@ class StaticPagesController < ApplicationController
 			@news = News.last(5).reverse
 		end
   end
+
+	def console
+		redirect_to root_path unless current_user and current_user.admin?
+	end
 end
