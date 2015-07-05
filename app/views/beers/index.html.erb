@@ -26,8 +26,10 @@ $(document).ready(function()
     <% @beers.each do |beer| %>
 			<% if beer.reviews.where("user_id = ?", current_user.id).empty? %>
 				<tr bgcolor="FCF8E3">
-			<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 5 %>
+				<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 6 %>
 				<tr bgcolor="DFF0D8">
+			<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 4 %>
+				<tr bgcolor="89c4f4">
 			<% else %>
 				<tr bgcolor="F2DEDE">
 			<% end %>
