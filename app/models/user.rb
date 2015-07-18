@@ -80,6 +80,15 @@ class User < ActiveRecord::Base
     in_group?(Usergroup.find_by(name: 'Developer'))
   end
 
+  def weight
+    cijfer = 0.0
+    reviews = Review.where(user_id: self.id)
+    reviews.each do |r|
+      cijfer = cijfer + r.rating
+    end
+    return 5.0 / (cijfer / reviews.count)
+  end
+
   def schrijf_feut?
     in_group?(Usergroup.find_by(name: 'Secretaris-generaal'))
   end

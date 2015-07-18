@@ -35,7 +35,7 @@ $(document).ready(function()
 			<% end %>
         <td><%= link_to beer.name, beer %></td>
         <td><%= beer.soort %></td>
-        <td><%= beer.reviews.average(:rating) %></td>
+        <td><%= beer.cijfer? %></td>
 				<td><%= beer.brewer %></td>
 	<td><%= beer.reviews.count %></td>
         <% if current_user.admin? %>
