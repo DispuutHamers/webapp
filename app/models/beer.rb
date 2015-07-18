@@ -14,7 +14,7 @@ class Beer < ActiveRecord::Base
      cijfer = cijfer + (r.rating * r.user.weight)
      avg = avg + r.user.weight
    end
-   return (cijfer / avg) unless self.reviews.count == 0
+   return '%.2f' % (cijfer / avg) unless self.reviews.count == 0
  end 
  
 end
