@@ -8,6 +8,7 @@ gem 'redcarpet'
 gem 'rqrcode_png'  
 gem 'bootstrap-glyphicons'
 gem 'whenever', :require => false
+gem 'nprogress-rails'
 gem 'gcm' 
 gem 'documentation', '~> 1.0.0'
 gem 'web-console', '~> 2.0'
