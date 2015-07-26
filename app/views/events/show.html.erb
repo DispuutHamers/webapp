@@ -1,7 +1,7 @@
 <div class="row">
   <aside class="span8">
     <section><h1><%= @event.title %></h1></section>
-		<section><%= @event.date.strftime("%d/%m/%Y") %><% if @event.location != nil and @event.location.length > 1 %> - <%= @event.location %><% end %></section>
+		<section><%= @event.date.strftime("%d/%m/%Y %H:%M") %> tot <%= @event.end_time.strftime("%d/%m/%Y %H:%M") %> <% if @event.location != nil and @event.location.length > 1 %> - <%= @event.location %><% end %></section>
     <section><%= simple_format(@event.beschrijving) %></section>
   </aside>
   <div class="span4">
@@ -39,6 +39,20 @@
           <%= f.submit "Ik zal niet aanwezig zijn.", class: "btn" %>
         <% end %>
 	<% end %>
+
+      <% if @event.location %>
+        <br \><br \>
+          <strong>Kaart: </strong><br \>
+      <iframe
+      width="300"
+      height="266"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8
+    &q=<%= @event.location %>" allowfullscreen>
+      </iframe>
+
+          <% end %>
+
     </section>
   </div>
 </div>
