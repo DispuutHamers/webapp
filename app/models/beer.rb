@@ -11,10 +11,9 @@ class Beer < ActiveRecord::Base
    cijfer = 0.0
    avg = 0.0
    self.reviews.each do |r|
-     weight = (r.user.weight - r.rating).abs
+     weight = 1 + (r.user.weight - r.rating).abs
      cijfer = cijfer + (r.rating * weight)
      avg = avg + weight
-     puts "#{cijfer} + #{avg}"
    end
    return '%.2f' % (cijfer / avg) unless self.reviews.count == 0
  end 
