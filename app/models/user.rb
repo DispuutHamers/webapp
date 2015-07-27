@@ -86,7 +86,7 @@ class User < ActiveRecord::Base
     reviews.each do |r|
       cijfer = cijfer + r.rating
     end
-    return 5.0 / (cijfer / reviews.count)
+    return (cijfer / reviews.count)
   end
 
   def schrijf_feut?

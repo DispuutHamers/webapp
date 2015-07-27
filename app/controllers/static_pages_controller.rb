@@ -12,4 +12,8 @@ class StaticPagesController < ApplicationController
 	def console
 		redirect_to root_path unless current_user and current_user.admin?
 	end
+
+	def statistics
+		redirect_to root_path unless signed_in?
+	end
 end

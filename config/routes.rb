@@ -50,6 +50,7 @@ Hamers::Application.routes.draw do
   match '/register',  to: 'users#new',            via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
+  match '/stats', to: 'static_pages#statistics', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete' 
 	match '/:id', to: 'public_pages#show', via: 'get'
 end
