@@ -16,6 +16,12 @@
 			Api keys:<br /> 
 			<% @user.api_keys.each do |ak| %>
 				<%= ak.name %>: <%= link_to ak.key, ak %> <%= link_to "x", ak, method: :delete, data: { confirm: "Zeker weten?" } %><br />
+				Last used: 
+				<% if log = ApiLog.where(key: ak.id).last %>
+					<%= log.created_at.strftime("%d/%m/%Y %H:%m") %> by: <%= log.ip_addr %>
+			<% else %>
+				Not yet used 
+			<% end %><br \>
 			<% end %>
 			<%= form_for(ApiKey.new) do |f| %>
 				<%= f.text_field :name %>

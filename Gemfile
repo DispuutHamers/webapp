@@ -3,13 +3,18 @@ source 'https://rubygems.org'
 # Needed for rails console
 gem 'rb-readline'
 gem 'icalendar'
+gem 'tzinfo'
 gem 'redcarpet' 
 gem 'rqrcode_png'  
 gem 'bootstrap-glyphicons'
 gem 'whenever', :require => false
+gem 'nprogress-rails'
+gem 'gcm' 
+gem 'documentation', '~> 1.0.0'
+gem 'web-console', '~> 2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.3'
 
 # Use mysql as the database for Active Record
 gem 'mysql2'
@@ -18,7 +23,7 @@ gem 'mysql2'
 gem 'sass-rails'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails', '2.2.8'
 # gem "bootstrap-sass"
 gem 'bcrypt'
 gem "bcrypt-ruby"

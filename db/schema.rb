@@ -11,12 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216152307) do
+ActiveRecord::Schema.define(version: 20150630074607) do
+
+  create_table "afmeldingens", force: true do |t|
+    t.string   "reden"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "api_keys", force: true do |t|
     t.string   "key"
     t.integer  "user_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "api_logs", force: true do |t|
+    t.string   "ip_addr"
+    t.text     "resource_call"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "key"
+  end
+
+  create_table "arms", force: true do |t|
+    t.string   "lat"
+    t.string   "lon"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,6 +54,29 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.string   "percentage"
     t.string   "brewer"
     t.string   "country"
+    t.string   "URL"
+  end
+
+  create_table "devices", force: true do |t|
+    t.integer  "user_id"
+    t.string   "device_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "documentation_pages", force: true do |t|
+    t.string   "title"
+    t.string   "permalink"
+    t.text     "content"
+    t.text     "compiled_content"
+    t.integer  "parent_id"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "documentation_screenshots", force: true do |t|
+    t.string "alt_text"
   end
 
   create_table "events", force: true do |t|
@@ -85,6 +132,19 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.integer  "user_id"
   end
 
+  create_table "nifty_attachments", force: true do |t|
+    t.integer  "parent_id"
+    t.string   "parent_type"
+    t.string   "token"
+    t.string   "digest"
+    t.string   "role"
+    t.string   "file_name"
+    t.string   "file_type"
+    t.binary   "data",        limit: 16777215
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "polls", force: true do |t|
     t.string   "beschrijving"
     t.datetime "created_at"
@@ -95,6 +155,13 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.text     "content"
     t.string   "title"
     t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pushes", force: true do |t|
+    t.integer  "user_id"
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -124,6 +191,14 @@ ActiveRecord::Schema.define(version: 20150216152307) do
     t.integer  "user_id"
     t.boolean  "status"
     t.string   "reason"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "statics", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "p_content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

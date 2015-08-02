@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
   include SessionsHelper
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
-  before_action :logged_in?, only: [:index, :edit, :update]
+  before_action :logged_in?, only: [:index, :edit, :update, :show]
   before_action :admin_user?, only: [:destroy, :update, :edit]
 
   # GET /beers
@@ -34,6 +34,7 @@ class BeersController < ApplicationController
 
     respond_to do |format|
       if @beer.save
+				update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\", created_at: #{@beer.created_at.to_json}  } } }")
         format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @beer }
       else

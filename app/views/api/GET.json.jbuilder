@@ -3,6 +3,11 @@ if @type == "user"
 		json.extract! user, :id, :name, :email
 		json.quotes user.quotes.count
 		json.reviews user.reviews.count
+		g_ids = []
+		user.groups.each do |g|
+			g_ids << Usergroup.find(g.group_id).name
+		end
+		json.in_groups g_ids
 	end
 end
 if @type == "quote"
@@ -27,12 +32,18 @@ if @type == "event"
 end
 if @type == "beer"
 	json.array!(@result) do |beer|
-		json.extract! beer, :id, :name, :soort, :picture, :percentage, :brewer, :country
+		json.extract! beer, :id, :name, :soort, :picture, :percentage, :brewer, :country, :URL, :created_at 
+		#json.cijfer beer.reviews.average(:rating)
 		json.cijfer beer.cijfer?
 	end
 end
 if @type == "review"
 	json.array!(@result) do |review|
 		json.extract! review, :beer_id, :user_id, :description, :rating, :created_at, :proefdatum
+	end
+end
+if @type == "news" 
+	json.array!(@result) do |news| 
+		json.extract! news, :cat, :body, :title, :image, :date
 	end
 end

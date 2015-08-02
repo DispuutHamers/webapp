@@ -1,4 +1,7 @@
 Hamers::Application.routes.draw do
+  mount Documentation::Engine => "/docs"
+  resources :pushes, only: [:index, :create, :new] 
+
   resources :news
 
   match 'api/v1/:key/:request', to: 'api#GET', via: 'get'
@@ -7,6 +10,7 @@ Hamers::Application.routes.draw do
   match 'api/v1/:key/:request', to: 'api#PUT', via: 'put'
   match 'api/v1/:key/:request', to: 'api#DESTROY', via: 'destroy'
 	match '/api/v1/noaccess', to: 'api#noaccess', via: 'get'
+	match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions
 	resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages
@@ -46,6 +50,7 @@ Hamers::Application.routes.draw do
   match '/register',  to: 'users#new',            via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
+  match '/stats', to: 'static_pages#statistics', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete' 
 	match '/:id', to: 'public_pages#show', via: 'get'
 end

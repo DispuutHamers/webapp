@@ -4,10 +4,12 @@ class User < ActiveRecord::Base
   has_many :groups, foreign_key: "user_id", dependent: :destroy
   has_many :usergroups, through: :groups           
   has_many :quotes
+	has_many :devices
 	has_many :api_keys
   has_many :reviews
   has_many :motions
   has_many :events
+	has_many :api_logs
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
@@ -29,11 +31,13 @@ class User < ActiveRecord::Base
   end
   
   def sign!(event, status)
-    stemmen = signups.where(event_id: event.id, user_id: self.id)
-    if stemmen.any?
-      stemmen.each { |stem| stem.destroy! } 
-    end
-    self.signups.create!(event_id: event.id, status: status) 
+		if event.deadline > Time.now
+			stemmen = signups.where(event_id: event.id, user_id: self.id)
+			if stemmen.any?
+				stemmen.each { |stem| stem.destroy! } 
+			end
+			self.signups.create!(event_id: event.id, status: status) 
+		end
   end
   
   def User.new_remember_token
@@ -69,11 +73,20 @@ class User < ActiveRecord::Base
   end
   
   def admin?
-    in_group?(Usergroup.find_by(name: 'Triumviraat'))
+    in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev?
   end
 
   def dev?
     in_group?(Usergroup.find_by(name: 'Developer'))
+  end
+
+  def weight
+    cijfer = 0.0
+    reviews = Review.where(user_id: self.id)
+    reviews.each do |r|
+      cijfer = cijfer + r.rating
+    end
+    return (cijfer / reviews.count)
   end
 
   def schrijf_feut?

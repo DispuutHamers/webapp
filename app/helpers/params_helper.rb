@@ -17,7 +17,18 @@ module ParamsHelper
 	end
 
 	def beer_params
-		params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer)
+		params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer, :URL)
 	end
 
+	def news_params
+		params.require(:news).permit(:cat, :body, :title, :image, :date)
+	end
+
+	def device_params
+		params.require(:device).permit(:device_key)
+	end
+
+	def arm_params
+		params.requre(:arm).permit(:lat, :lon)
+	end
 end

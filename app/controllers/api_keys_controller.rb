@@ -8,7 +8,9 @@ class ApiKeysController < ApplicationController
   end
 
 	def show
-		@key = RQRCode::QRCode.new(ApiKey.find(params[:id]).key).to_img.resize(200, 200).to_data_url
+		k = ApiKey.find(params[:id])
+		@key = RQRCode::QRCode.new(k.key).to_img.resize(200, 200).to_data_url
+		@logs = ApiLog.where(key: k.id).order(created_at: :desc).paginate(page: params[:page], :per_page => 10)
 	end
 
 	def destroy

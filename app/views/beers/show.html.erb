@@ -26,7 +26,10 @@
     <tr><td>soort:</td><td align="right"><%= @beer.soort %></td></tr>
     <tr><td>ALC:</td><td align="right"><%= @beer.percentage %></td></tr>
     <tr><td>Brouwer:</td><td align="right"><%= @beer.brewer %></td></tr>
-    <tr><td>Land:</td><td align="right"><%= @beer.country %></td></tr>
+		<tr><td>Land:</td><td align="right"><%= @beer.country %></td></tr>
+		<% if @beer.URL %>
+		<tr><td></td><td align="right"><%= link_to "Meer info", @beer.URL %></td></tr>
+		<% end %>
     </table>
     </section>
   </div>
@@ -34,7 +37,7 @@
 
 <div class="btn-group">
   <%= link_to 'Review', reviews_beer_path(@beer), :class => "btn btn-primary" unless current_user.reviews.find_by(beer_id: @beer.id) %> 
-  <% if current_user.admin? || current_user.dev? %>
+  <% if current_user.admin? %>
     <%= link_to 'Edit', edit_beer_path(@beer), :class => "btn btn-info" %>
   <% end %>
 <%= link_to 'Back', beers_path, :class => "btn" %>

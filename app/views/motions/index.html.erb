@@ -12,6 +12,7 @@ $(document).ready(function()
   <thead>
     <tr>
       <th>Type</th>
+			<th>Date</th>
       <th>Subject</th>
       <th>Content</th>
       <th>User</th>
@@ -25,6 +26,7 @@ $(document).ready(function()
     <% @motions.each do |motion| %>
       <tr>
         <td><%= motion.motion_type %></td>
+				<td><%= motion.created_at %></td>
         <td><%= motion.subject %></td>
         <td><%= motion.content %></td>
         <td><%= link_to motion.user.name, motion.user %></td>

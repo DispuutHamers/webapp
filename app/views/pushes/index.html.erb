@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pushes.each do |push| %>
+      <tr>
+        <td><%= push.data %></td>
+      </tr>
+    <% end %>
+  </tbody>
+	<%= will_paginate @pushes %>
+</table>
+
+<br>
