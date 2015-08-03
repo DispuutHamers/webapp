@@ -1,21 +1,20 @@
 <p id="notice"><%= notice %></p>
-
 <div class="row">
   <aside class="span8">
     <section>
-			<%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil%>
+      <%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil%>
     </section>
-  </aside> 
-  <div class="span2"> 
+  </aside>
+  <div class="span2">
     <section>
-			<%= markdown(@meeting.agenda).html_safe unless @meeting.agenda == nil %>
+      <%= markdown(@meeting.agenda).html_safe unless @meeting.agenda == nil %>
     </section>
   </div>
 </div>
 <% if @meeting.user_id != nil %>
-<p>Genotuleerd door: <i><%= link_to User.find(@meeting.user_id).name, User.find(@meeting.user_id) %></i></p>
+    <p>Genotuleerd door: <i><%= link_to User.find(@meeting.user_id).name, User.find(@meeting.user_id) %></i></p>
 <% end %>
 <% if current_user.admin? || current_user.schrijf_feut? %>
-	<%= link_to "edit", "/notuleer/#{@meeting.id}" %> | 
+    <%= link_to "edit", "/notuleer/#{@meeting.id}" %> |
 <% end %>
 <%= link_to 'Back', meetings_path %>

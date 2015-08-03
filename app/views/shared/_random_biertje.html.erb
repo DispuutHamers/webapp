@@ -2,8 +2,8 @@
   <%= link_to @beer.name, @beer %>
 </h1>
 <span>
-  cijfer: <%= @beer.cijfer? %>
+cijfer: <%= @beer.cijfer? %>
 </span>
 <span>
-  <%= pluralize(@beer.reviews.count, "review") %>
+<%= pluralize(@beer.reviews.count, "review") %>
 </span>

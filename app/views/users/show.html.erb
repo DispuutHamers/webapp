@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <div class="row">
   <aside class="span4">
     <section>
@@ -9,21 +8,20 @@
       </h1>
     </section>
     <section>
-	<% Usergroup.all.each do |g| %>
-	<% if @user.in_group?(g) %>
-        <%= g.name %><br/>
-	<% end %>
- 	<% end %>
+      <% Usergroup.all.each do |g| %>
+          <% if @user.in_group?(g) %>
+              <%= g.name %><br/>
+          <% end %>
+      <% end %>
     </section>
   </aside>
   <div class="span8">
     <% if @user.quotes.any? %>
-      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
-      <ol class="microposts">
-        <%= render @quotes %>
-      </ol>
-      <%= will_paginate @quotes %>
+        <h3>Quotes: (<%= @user.quotes.count %>)</h3>
+        <ol class="microposts">
+          <%= render @quotes %>
+        </ol>
+        <%= will_paginate @quotes %>
     <% end %>
   </div>
 </div>
-

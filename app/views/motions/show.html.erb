@@ -1,19 +1,15 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Motion type:</strong>
   <%= @motion.motion_type %>
 </p>
-
 <p>
   <strong>Subject:</strong>
   <%= @motion.subject %>
 </p>
-
 <p>
   <strong>Content:</strong>
   <%= @motion.content %>
 </p>
-
 <%= link_to 'Edit', edit_motion_path(@motion) %> |
 <%= link_to 'Back', motions_path %>

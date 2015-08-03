@@ -1,50 +1,44 @@
 <h1>Wijzig je profiel</h1>
-
-	
 <div class="row">
-<aside class="span4">
+  <aside class="span4">
     <section>
       <%= gravatar_for @user, size: 120 %>
-    <a href="http://gravatar.com/emails" target="_blank">Wijzig</a>
+      <a href="http://gravatar.com/emails" target="_blank">Wijzig</a>
     </section>
     <% if current_user.admin? %>
-    <section>
-	<%= link_to "Groepen", usergroups_user_path(@user) %>
-    </section>
+        <section>
+          <%= link_to "Groepen", usergroups_user_path(@user) %>
+        </section>
     <% end %>
     <section>
-			Api keys:<br /> 
-			<% @user.api_keys.each do |ak| %>
-				<%= ak.name %>: <%= link_to ak.key, ak %> <%= link_to "x", ak, method: :delete, data: { confirm: "Zeker weten?" } %><br />
-				Last used: 
-				<% if log = ApiLog.where(key: ak.id).last %>
-					<%= log.created_at.strftime("%d/%m/%Y %H:%m") %> by: <%= log.ip_addr %>
-			<% else %>
-				Not yet used 
-			<% end %><br \>
-			<% end %>
-			<%= form_for(ApiKey.new) do |f| %>
-				<%= f.text_field :name %>
-				<%= f.submit "Add" %>
-			<% end %>
+      Api keys:<br />
+      <% @user.api_keys.each do |ak| %>
+          <%= ak.name %>: <%= link_to ak.key, ak %> <%= link_to "x", ak, method: :delete, data: { confirm: "Zeker weten?" } %><br />
+          Last used:
+          <% if log = ApiLog.where(key: ak.id).last %>
+              <%= log.created_at.strftime("%d/%m/%Y %H:%m") %> by: <%= log.ip_addr %>
+          <% else %>
+              Not yet used
+          <% end %><br \>
+      <% end %>
+      <%= form_for(ApiKey.new) do |f| %>
+          <%= f.text_field :name %>
+          <%= f.submit "Add" %>
+      <% end %>
     </section>
   </aside>
   <div class="span6">
     <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :name, "Naam" %>
-      <%= f.text_field :name %>
-
-      <%= f.label :email, "Email" %>
-      <%= f.text_field :email %> 
-
-      <%= f.label :password, "Wachtwoord" %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.label :name, "Naam" %>
+        <%= f.text_field :name %>
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email %>
+        <%= f.label :password, "Wachtwoord" %>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
+        <%= f.password_field :password_confirmation %>
+        <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
     <% end %>
-  </div> 
+  </div>
 </div>

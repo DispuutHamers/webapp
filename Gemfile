@@ -64,3 +64,4 @@ gem 'capistrano', group: :development
 gem 'capistrano-rails', '~> 1.1'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'net-ssh', '!= 2.10.0'
