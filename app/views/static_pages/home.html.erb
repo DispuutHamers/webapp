@@ -1,30 +1,34 @@
 <% if signed_in? %>
-    <div class="row">
-      <aside class="span4">
-        <section>
-          <%= render 'shared/user_info' %>
-        </section>
-        <section>
-          <%= render 'shared/random_biertje' %>
-        </section>
-        <section>
-          <%= render 'shared/quote_form' %>
-        </section>
-        <% if current_user.lid? %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <aside>
             <section>
-              <%= render 'shared/activiteiten' %>
+              <%= render 'shared/user_info' %>
             </section>
-        <% end %>
-      </aside>
-      <div class="span8">
-        <%= render 'shared/feed' %>
+            <section>
+              <%= render 'shared/random_biertje' %>
+            </section>
+            <section>
+              <%= render 'shared/quote_form' %>
+            </section>
+            <% if current_user.lid? %>
+                <section>
+                  <%= render 'shared/activiteiten' %>
+                </section>
+            <% end %>
+          </aside>
+        </div>
+        <div class="col-md-8">
+          <%= render 'shared/feed' %>
+        </div>
+      </div>
+      <div class="row">
+        <%= render 'shared/news_item' %>
       </div>
     </div>
-    <div class="row">
-      <%= render 'shared/news_item' %>
-    </div>
 <% else %>
-    <div class="center jumbotron">
+    <div class="center hero-unit">
       <h1>Hamers zonder Sikkel</h1>
       <h2>defenestraties voorbehouden</h2>
     </div>
