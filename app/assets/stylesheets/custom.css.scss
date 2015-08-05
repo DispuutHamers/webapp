@@ -189,6 +189,16 @@ input {
   height: auto !important;
 }
 
+.date-select {
+  display: inline-block;
+  width: 33%;
+}
+
+.datetime-select {
+  display: inline-block;
+  width: 19%;
+}
+
 #error_explanation {
   color: #f00;
   ul {
@@ -205,3 +215,8 @@ input {
   float: left;
   margin-right: 10px;
 }
+
+.pagination {
+  width: 100%;
+}
+

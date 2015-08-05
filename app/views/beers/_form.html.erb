@@ -11,35 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :picture %><br>
-    <%= f.text_field :picture %>
+    <%= f.text_field :picture, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :soort %><br>
-    <%= f.text_field :soort %>
+    <%= f.text_field :soort, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :percentage %>
-    <%= f.text_field :percentage %>
+    <%= f.text_field :percentage, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :brewer %>
-    <%= f.text_field :brewer %>
+    <%= f.text_field :brewer, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :country %>
-    <%= f.text_field :country %>
+    <%= f.text_field :country, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :URL %>
-    <%= f.text_field :URL %>
+    <%= f.text_field :URL, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :Verstuur, class: "btn btn-primary" %>
   </div>
 <% end %>

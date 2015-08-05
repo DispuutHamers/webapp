@@ -3,11 +3,15 @@
   <div class="container">
     <%= form_for(:session, url: sessions_path) do |f| %>
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+         <span class="input-group-addon">
+         <i class="fa fa-envelope-o fa-fw"></i>
+         </span>
           <%= f.text_field :email, type: "text", class: "form-control", placeholder: "Email" %>
         </div>
         <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+         <span class="input-group-addon">
+         <i class="fa fa-key fa-fw"></i>
+         </span>
           <%= f.password_field :password, type: "password", class: "form-control", placeholder: "Wachtwoord" %>
         </div>
         <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>

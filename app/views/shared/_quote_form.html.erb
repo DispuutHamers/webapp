@@ -1,6 +1,6 @@
 <%= form_for(@quote) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <div class="field">
+    <div class="form-group">
       <%= f.text_area :text, placeholder: "Wat zei die lul?", class: "form-control" %>
     </div>
     <%= f.label :user_id %>

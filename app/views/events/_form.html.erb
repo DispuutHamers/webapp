@@ -13,26 +13,15 @@
     <div class="form-group">
       <%= f.label :title %>
       <%= f.text_field :title, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :location %>
+      <%= f.label :locatie %>
       <%= f.text_field :location, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :date %>
-      <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, :style => "width: 19%;" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :end_time %>
-      <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, :style => "width: 19%;" %>
-    </div>
-    <div class="form-group">
+      <%= f.label :date %><br>
+      <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: "form-control datetime-select" %><br>
+      <%= f.label :end_time %><br>
+      <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: "form-control datetime-select"  %><br>
       <%= f.label :deadline, "Inschrijf deadline" %><br>
-      <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, :style => "width: 19%;" %>
-    </div>
-    <div class="form-group">
+      <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: "form-control datetime-select"  %><br>
       <%= f.text_area :beschrijving, class: "form-control", placeholder: "Wat gaan we doen?" %>
     </div>
-    <%= f.submit :Verstuur, class: "btn btn-default" %>
-
+    <%= f.submit :Verstuur, class: "btn btn-primary" %>
 <% end %>

@@ -23,8 +23,8 @@
       <% end %>
       <%= form_for(ApiKey.new) do |f| %>
           <div class="form-group">
-            <%= f.text_field :name, class: "form-control" %>
-            <%= f.submit "Toevoegen" %>
+            <%= f.text_field :name, placeholder: "Naam", class: "form-control" %>
+            <%= f.submit "Toevoegen", class: "btn btn-default" %>
           </div>
       <% end %>
     </section>

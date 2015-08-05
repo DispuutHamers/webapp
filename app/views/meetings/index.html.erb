@@ -37,5 +37,5 @@
 </table>
 <%= will_paginate %>
 <% if current_user.admin? %>
-    <%= link_to "Add vergadering", new_meeting_path %>
+    <%= link_to "Add vergadering", new_meeting_path, class: "btn btn-block btn-primary" %>
 <% end %>
