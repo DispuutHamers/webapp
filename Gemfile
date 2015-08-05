@@ -10,8 +10,8 @@ gem 'bootstrap-glyphicons'
 gem 'whenever', :require => false
 gem 'nprogress-rails'
 gem 'gcm' 
-gem 'documentation', '~> 1.0.0'
-gem 'web-console', '~> 2.0'
+gem 'documentation'
+gem 'web-console'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -64,4 +64,3 @@ gem 'capistrano', group: :development
 gem 'capistrano-rails', '~> 1.1'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'net-ssh', '!= 2.10.0'
