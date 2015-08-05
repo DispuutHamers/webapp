@@ -1,9 +1,9 @@
 <h1>Wijzig je profiel</h1>
 <div class="row">
-  <aside class="span4">
+  <aside class="col-md-4">
     <section>
       <%= gravatar_for @user, size: 120 %>
-      <a href="http://gravatar.com/emails" target="_blank">Wijzig</a>
+      <a role="button" class="btn btn-default" href="http://gravatar.com/emails" target="_blank">Wijzig</a>
     </section>
     <% if current_user.admin? %>
         <section>
@@ -22,23 +22,27 @@
           <% end %><br \>
       <% end %>
       <%= form_for(ApiKey.new) do |f| %>
-          <%= f.text_field :name %>
-          <%= f.submit "Add" %>
+          <div class="form-group">
+            <%= f.text_field :name, class: "form-control" %>
+            <%= f.submit "Toevoegen" %>
+          </div>
       <% end %>
     </section>
   </aside>
-  <div class="span6">
+  <div class="col-md-6">
     <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :name, "Naam" %>
-        <%= f.text_field :name %>
-        <%= f.label :email, "Email" %>
-        <%= f.text_field :email %>
-        <%= f.label :password, "Wachtwoord" %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
-        <%= f.password_field :password_confirmation %>
-        <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
+        <div class="form-group">
+          <%= render 'shared/error_messages', object: f.object %>
+          <%= f.label :name, "Naam" %>
+          <%= f.text_field :name, class: "form-control" %>
+          <%= f.label :email, "Email" %>
+          <%= f.text_field :email, class: "form-control" %>
+          <%= f.label :password, "Wachtwoord" %>
+          <%= f.password_field :password, class: "form-control" %>
+          <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+          <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
+        </div>
     <% end %>
   </div>
 </div>

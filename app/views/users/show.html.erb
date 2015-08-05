@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <aside class="span4">
+  <aside class="col-md-4">
     <section>
       <h1>
         <%= gravatar_for @user, size: 96  %>
@@ -15,7 +15,7 @@
       <% end %>
     </section>
   </aside>
-  <div class="span8">
+  <div class="col-md-8">
     <% if @user.quotes.any? %>
         <h3>Quotes: (<%= @user.quotes.count %>)</h3>
         <ol class="microposts">

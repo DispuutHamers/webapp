@@ -36,7 +36,9 @@
       <td><%= beer.brewer %></td>
       <td><%= beer.reviews.count %></td>
       <% if current_user.admin? %>
-          <td><%= link_to 'Verwijder', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%= link_to 'Verwijder', beer, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
       <% end %>
       </tr>
   <% end %>

@@ -1,35 +1,33 @@
 <%	cats = [
-	["Extern", "e"],
-	["Dispuut", "d"],
-	["Leden", "l"]
+        ["Extern", "e"],
+        ["Dispuut", "d"],
+        ["Leden", "l"]
 ]
 %>
 <%= form_for(@news) do |f| %>
-  <% if @news.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
-
-      <ul>
-      <% @news.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @news.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+          <ul>
+            <% @news.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :cat, "Waar gaat dit nou weer over?¿?¿?" %><br>
+      <%= f.select :cat, options_for_select(cats), {}, {class: "form-control"} %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :cat, "Waar gaat dit nou weer over?¿?¿?" %><br>
-    <%= f.select :cat, options_for_select(cats) %>
-  </div>
-  <div class="field">
-    <%= f.label :title, "Wat moet erboven?" %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :body, "Vertel dan.." %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Posten dan maar" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :title, "Wat moet erboven?" %><br>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :body, "Vertel dan.." %><br>
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit :"Posten dan maar", class: "btn btn-default" %>
+    </div>
 <% end %>

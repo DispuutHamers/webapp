@@ -9,16 +9,16 @@
           </ul>
         </div>
     <% end %>
-    <div class="field">
-      <%= f.label :user_id %><br>
+    <div class="form-group">
+      <%= f.label :Hamer %><br>
       <% users_array = User.all.map { |user| [user.name, user.id] } %>
-      <%= f.select :user_id, options_for_select(users_array) %>
+      <%= f.select :user_id, options_for_select(users_array), {}, class: "form-control" %>
     </div>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :data %><br>
-      <%= f.text_area :data, value: "{ data: { title: \"title\", message: \"message\"} }" %>
+      <%= f.text_area :data, class: "form-control", value: "{ data: { title: \"title\", message: \"message\"} }" %>
     </div>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit :Verstuur, class: "btn btn-default" %>
     </div>
 <% end %>

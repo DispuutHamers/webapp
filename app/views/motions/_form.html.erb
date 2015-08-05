@@ -1,32 +1,30 @@
 <%	motions = [
-	["Motie van niet chill", "niet chill"],
-	["Motie van vet arelaxed", "vet arelaxed"],
-	["Motie van duurt lang", "duurt lang"]
+        ["Motie van niet chill", "niet chill"],
+        ["Motie van vet arelaxed", "vet arelaxed"],
+        ["Motie van duurt lang", "duurt lang"]
 ]
 %>
 <%= form_for(@motion) do |f| %>
-  <% if @motion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@motion.errors.count, "error") %> prohibited this motion from being saved:</h2>
-
-      <ul>
-      <% @motion.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+    <% if @motion.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@motion.errors.count, "error") %> prohibited this motion from being saved:</h2>
+          <ul>
+            <% @motion.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.select :motion_type, options_for_select(motions), {}, {class: "form-control"} %>
     </div>
-  <% end %>
-
-  <div class="field">
-		<%= f.select :motion_type, options_for_select(motions) %>
-  </div>
-  <div class="field">
-    <%= f.text_field :subject, placeholder: "Wat is er stuk?" %>
-  </div>
-  <div class="field">
-    <%= f.text_area :content, placeholder: "Huilie huilie in dit veld." %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.text_field :subject, placeholder: "Wat is er stuk?", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.text_area :content, placeholder: "Huilie huilie in dit veld.", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.submit :Verstuur, class: "btn btn-default" %>
+    </div>
 <% end %>

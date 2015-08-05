@@ -24,9 +24,11 @@
         <td><%= link_to m.onderwerp, m %></td>
         <% if current_user.admin? %>
             <td>
-              <%= link_to "Wijzig", edit_meeting_path(m) %>
-              | <%= link_to "Verwijder", m, method: :delete,
+              <div class="btn-group">
+                <%= link_to "Wijzig", edit_meeting_path(m), class: "btn btn-info" %>
+                <%= link_to "Verwijder", m, class: "btn btn-danger", method: :delete,
                             data: { confirm: "Weet je het zeker?" } %>
+              </div>
             </td>
         <% end %>
       </tr>

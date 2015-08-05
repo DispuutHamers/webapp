@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div class="row">
-  <aside class="span8">
+  <aside class="col-md-8">
     <% @beer.reviews.each do |r| %>
         <section>
           <p><i><%= link_to User.find(r.user_id).name, User.find(r.user_id) %></i> zei over dit bier: </p>
@@ -17,7 +17,7 @@
         </section>
     <% end %>
   </aside>
-  <div class="span2">
+  <div class="col-md-4">
     <section>
       <%= image_tag(@beer.picture, :alt => @beer.name) %>
       <table>
@@ -60,5 +60,5 @@
   <% if current_user.admin? %>
       <%= link_to 'Edit', edit_beer_path(@beer), :class => "btn btn-info" %>
   <% end %>
-  <%= link_to 'Back', beers_path, :class => "btn" %>
+  <%= link_to 'Back', beers_path, :class => "btn btn-default" %>
 </div>
