@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @beer %> |
-<%= link_to 'Terug', beers_path %>
+<div class="btn-group">
+    <%= link_to 'Show', @beer, class: "btn btn-default" %>
+    <%= link_to 'Terug', beers_path, class: "btn btn-default" %>
+</div>

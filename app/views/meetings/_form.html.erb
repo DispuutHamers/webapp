@@ -11,19 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :agenda %><br>
-    <%= f.text_area :agenda %>
+    <%= f.text_area :agenda, class: "form-control" %>
   </div>
-	<div class="field">
-		<%= f.label :onderwerp%><br>
-		<%= f.text_field :onderwerp %>
+	<div class="form-group">
+		<%= f.label :onderwerp %><br>
+		<%= f.text_field :onderwerp, class: "form-control" %>
 	</div>
-	<div class="field">
-	     <%= f.label :date %>
-	     <%= f.date_select :date, {:order => [:day, :month, :year], :use_month_names =>     ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober',     'November','December']}, :style => "width: 19%;" %>
+	<div class="form-group">
+	     <%= f.label :datum %><br>
+	     <%= f.date_select :date, {:order => [:day, :month, :year], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']}, class: "form-control date-select" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :Verstuur, class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -3,8 +3,8 @@
   <%= current_user.name %>
 </h1>
 <span>
-  <%= link_to "Mijn profiel", current_user %>
+<%= link_to "Mijn profiel", current_user %>
 </span>
 <span>
-  <%= pluralize(current_user.quotes.count, "quote") %>
+<%= pluralize(current_user.quotes.count, "quote") %>
 </span>

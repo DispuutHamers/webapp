@@ -1,19 +1,19 @@
 <center><img alt="Embedded Image" src="<%= @key %>" /></center>
 <br \><br \>
 <table>
-	<thead>
-		<tr>
-			<th>ip / time</th>
-			<th>call</th>
-		</tr>
-	</thead>
-	<tbody>
-			<% @logs.each do |l| %>
-				<tr>
-					<td><%= l.ip_addr%> / <%= l.created_at.strftime("%d/%m/%Y %H:%m") %></td>
-					<td><%= l.resource_call %></td>
-				</tr>
-			<% end %>
-	</tbody>
-	<%= will_paginate @logs %>
+  <thead>
+  <tr>
+    <th>ip / time</th>
+    <th>call</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @logs.each do |l| %>
+      <tr>
+        <td><%= l.ip_addr%> / <%= l.created_at.strftime("%d/%m/%Y %H:%m") %></td>
+        <td><%= l.resource_call %></td>
+      </tr>
+  <% end %>
+  </tbody>
+  <%= will_paginate @logs %>
 </table>
