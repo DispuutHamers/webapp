@@ -1,0 +1,16 @@
+<h1> Statistieken </h1>
+<div class="row">
+  <div class="col-md-4">
+    <h2> Aantal reviews </h2>
+    <%= line_chart  @cumulativeReviewData %>
+  </div>
+  <div class="col-md-4">
+    <h2> Aantal biertjes </h2> 
+    <%= line_chart  @cumulativeBeerData %>
+  </div>
+</div>
+<h2> Aantal quotes </h2>
+<%= line_chart  @cumulativeQuoteData %>
+<h2> Aantal activiteiten </h2>
+<%= line_chart  @cumulativeEventData %>
+

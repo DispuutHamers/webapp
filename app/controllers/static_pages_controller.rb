@@ -15,5 +15,16 @@ class StaticPagesController < ApplicationController
 
 	def statistics
 		redirect_to root_path unless signed_in?
+		@cumulativeReviewData = getCumulativeData Review	
+		@cumulativeBeerData = getCumulativeData Beer 
+		#@cumulativeQuoteData = getCumulativeData Quote
+		@cumulativeEventData = getCumulativeData Event
+                puts @cumulativeQuoteData
 	end
+
+	private
+		def getCumulativeData table
+			sum = 0
+			table.order("created_at asc").group("DATE(created_at)").count.map {|x,y|{ x => (sum += y)}}.reduce({}, :merge)
+		end
 end
