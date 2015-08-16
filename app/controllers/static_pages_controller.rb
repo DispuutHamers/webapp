@@ -20,7 +20,6 @@ class StaticPagesController < ApplicationController
 		@cumulativeBeerData = getCumulativeData Beer 
 		@cumulativeQuoteData = getCumulativeData Quote
 		@cumulativeEventData = getCumulativeData Event
-                puts @cumulativeQuoteData
 	end
 
 	private
