@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
   def home
 		if signed_in?
 			@beer = Beer.order("RAND()").first
+			@rQuote = Quote.order("RAND()").first
 			@quote = current_user.quotes.build 
 			@feed_items = current_user.feed.paginate(page: params[:page], :per_page => 8) 
 			@events = Event.order("date").where(['date >= ?', Date.today]).limit(10)
@@ -17,7 +18,7 @@ class StaticPagesController < ApplicationController
 		redirect_to root_path unless signed_in?
 		@cumulativeReviewData = getCumulativeData Review	
 		@cumulativeBeerData = getCumulativeData Beer 
-		#@cumulativeQuoteData = getCumulativeData Quote
+		@cumulativeQuoteData = getCumulativeData Quote
 		@cumulativeEventData = getCumulativeData Event
                 puts @cumulativeQuoteData
 	end

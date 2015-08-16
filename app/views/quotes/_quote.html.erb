@@ -1,11 +1,11 @@
 <li>
   <span class="content"><%= quote.text %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(quote.created_at) %> ago.
-  </span>
+   <span class="timestamp">
+   Posted <%= time_ago_in_words(quote.created_at) %> ago.
+   </span>
   <% if current_user.admin? %>
-    <%= link_to "delete", quote, method: :delete,
-                                     data: { confirm: "You sure?" },
-                                     title: quote.text %>
+      <%= link_to "delete", quote, method: :delete,
+                  data: { confirm: "You sure?" },
+                  title: quote.text %>
   <% end %>
 </li>

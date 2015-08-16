@@ -1,51 +1,47 @@
 <script type="text/javascript">
-$(document).ready(function() 
-    { 
-        $("#bier").tablesorter(); 
-    } 
-); 
+    $(document).ready(function()
+            {
+                $("#bier").tablesorter();
+            }
+    );
 </script>
-
 <h1>Biertjes</h1>
-
 <table id="bier" class="tablesorter table tablehover">
   <thead>
-    <tr>
-      <th>Naam</th>
-      <th>Soort</th>
-      <th>Cijfer</th>
-			<th>Brouwer</th>
-      <th>Aantal reviews</th>
-      <% if current_user.admin? %>
-				<th></th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @beers.each do |beer| %>
-			<% if beer.reviews.where("user_id = ?", current_user.id).empty? %>
-				<tr bgcolor="FCF8E3">
-				<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 6 %>
-				<tr bgcolor="DFF0D8">
-			<% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 4 %>
-				<tr bgcolor="89c4f4">
-			<% else %>
-				<tr bgcolor="F2DEDE">
-			<% end %>
-        <td><%= link_to beer.name, beer %></td>
-        <td><%= beer.soort %></td>
-        <td><%= beer.cijfer? %></td>
-				<td><%= beer.brewer %></td>
-	<td><%= beer.reviews.count %></td>
-        <% if current_user.admin? %>
-        <td><%= link_to 'Verwijder', beer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+  <tr>
+    <th>Naam</th>
+    <th>Soort</th>
+    <th>Cijfer</th>
+    <th>Brouwer</th>
+    <th>Aantal reviews</th>
+    <% if current_user.admin? %>
+        <th></th>
     <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @beers.each do |beer| %>
+      <% if beer.reviews.where("user_id = ?", current_user.id).empty? %>
+          <tr bgcolor="FCF8E3">
+      <% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 6 %>
+          <tr bgcolor="DFF0D8">
+      <% elsif beer.reviews.where("user_id = ?", current_user.id).take.rating > 4 %>
+          <tr bgcolor="89c4f4">
+      <% else %>
+          <tr bgcolor="F2DEDE">
+      <% end %>
+      <td><%= link_to beer.name, beer %></td>
+      <td><%= beer.soort %></td>
+      <td><%= beer.cijfer? %></td>
+      <td><%= beer.brewer %></td>
+      <td><%= beer.reviews.count %></td>
+      <% if current_user.admin? %>
+          <td>
+            <%= link_to 'Verwijder', beer, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+      <% end %>
+      </tr>
+  <% end %>
   </tbody>
 </table>
-<br>
-<div class="btn-group">
-  <%= link_to 'Nieuw bier', new_beer_path, :class => "btn btn-primary" %>
-</div>
+<%= link_to 'Nieuw bier', new_beer_path, :class => "btn btn-block btn-primary" %>

@@ -10,8 +10,8 @@ gem 'bootstrap-glyphicons'
 gem 'whenever', :require => false
 gem 'nprogress-rails'
 gem 'gcm' 
-gem 'documentation', '~> 1.0.0'
-gem 'web-console', '~> 2.0'
+gem 'documentation'
+gem 'web-console'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -23,7 +23,8 @@ gem 'mysql2'
 gem 'sass-rails'
 gem "therubyracer"
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-gem 'twitter-bootstrap-rails', '2.2.8'
+gem 'twitter-bootstrap-rails'
+gem 'font-awesome-rails'
 # gem "bootstrap-sass"
 gem 'bcrypt'
 gem "bcrypt-ruby"

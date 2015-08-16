@@ -10,6 +10,7 @@ $grayDarker: #222;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 /* universal */
 
 html {
@@ -17,7 +18,7 @@ html {
 }
 
 body {
- padding-top: 60px;
+ padding-top: 70px;
 }
 
 section {
@@ -115,7 +116,6 @@ p {
   color: white;
   text-transform: uppercase;
   letter-spacing: -1px;
-  padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   &:hover {
@@ -171,7 +171,7 @@ aside {
       text-align: left;
       letter-spacing: -1px;
       margin-bottom: 3px;
-      margin-top: 0px;
+      margin-top: 0;
     }
   }
 }
@@ -187,6 +187,16 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+
+.date-select {
+  display: inline-block;
+  width: 33%;
+}
+
+.datetime-select {
+  display: inline-block;
+  width: 19%;
 }
 
 #error_explanation {
@@ -205,3 +215,8 @@ input {
   float: left;
   margin-right: 10px;
 }
+
+.pagination {
+  width: 100%;
+}
+

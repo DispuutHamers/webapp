@@ -7,21 +7,21 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <% if signed_in? %>
-  <% if current_user.in_group?(Usergroup.find_by(name: 'kutfeut')) %>
-  <script src="/kutfeut/kutfeut.js"></script>
+      <% if current_user.in_group?(Usergroup.find_by(name: 'kutfeut')) %>
+          <script src="/kutfeut/kutfeut.js"></script>
+      <% end %>
   <% end %>
-  <% end %> 
   <%= csrf_meta_tags %>
 </head>
 <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
-    </div>
-  </body>
+<%= render 'layouts/header' %>
+<div class="container">
+  <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
+</body>
 </html>

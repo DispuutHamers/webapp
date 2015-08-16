@@ -1,73 +1,63 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
+<header>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-      <%= link_to "HAMERS", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home",    root_path %></li>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigationbar" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <%= link_to "HAMERS", root_path, class: "navbar-brand", id: "logo" %>
+      </div>
+      <div class="collapse navbar-collapse" id="navigationbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Home", root_path %></li>
+          <% PublicPage.all.each do |pp| %>
+              <% if pp.public %>
+                  <li><%= link_to pp.title, "/#{pp.title}" %></li>
+              <% end %>
+          <% end %>
           <% if signed_in? %>
-						<li id="fat-meny" class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-								Openbaar <b class="caret"></b>
-							</a>
-								<ul class="dropdown-menu">
-									<% PublicPage.all.each do |pp| %>
-										<% if pp.public %>
-											<li><%= link_to pp.title, "/#{pp.title}" %></li>
-										<% end %>
-									<% end %>
-							</ul>
-						</li>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Voor Leden <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Leden", users_path %></li>
-								<li><%= link_to "Activiteiten", events_path %></li>
-								<li><%= link_to "Vergaderingen", meetings_path %></li>
-								<li><%= link_to "Motie", new_motion_path %></li>
-                <li><%= link_to "Nieuws", news_index_path %></li>
-                <li><%= link_to "Bier", beers_path %></li>
-              </ul>
-            </li>
-            <% if current_user.admin? %>
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Triumviraat <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-								<li><%= link_to "Push", new_push_path %></li>
-                <li><%= link_to "Groepen", groups_path %></li>
-								<li><%= link_to "Moties", motions_path %></li>
-								<li><%= link_to "Openbare Paginas", public_pages_path %></li>
-                <li><%= link_to "Download DB", dbdump_path %></li>
-              </ul>
-            </li>
-            <% end %>
-	      <li id="fat-menu" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Account <b class="caret"></b>
-            </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Mijn Profiel", current_user %></li>
-                <li><%= link_to "Instellingen", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Uitloggen", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-					<% else %>
-									<% PublicPage.all.each do |pp| %>
-										<% if pp.public %>
-											<li><%= link_to pp.title, "/#{pp.title}" %></li>
-										<% end %>
-									<% end %>
-					<% end %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor Leden  <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Leden", users_path %></li>
+                  <li><%= link_to "Activiteiten", events_path %></li>
+                  <li><%= link_to "Vergaderingen", meetings_path %></li>
+                  <li><%= link_to "Motie", new_motion_path %></li>
+                  <li><%= link_to "Nieuws", news_index_path %></li>
+                  <li><%= link_to "Bier", beers_path %></li>
+                  <li><%= link_to "Statistieken", stats_path %></li>
+                </ul>
+              </li>
+              <% if current_user.admin? %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to "Push", new_push_path %></li>
+                      <li><%= link_to "Groepen", groups_path %></li>
+                      <li><%= link_to "Moties", motions_path %></li>
+                      <li><%= link_to "Openbare Paginas", public_pages_path %></li>
+                      <li><%= link_to "Download DB", dbdump_path %></li>
+                    </ul>
+                  </li>
+              <% end %>
+              <li id="fat-menu" class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Mijn Profiel", current_user %></li>
+                  <li><%= link_to "Instellingen", edit_user_path(current_user) %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Uitloggen", signout_path, method: "delete" %>
+                  </li>
+          <% end %>
+          </ul>
+          </li>
         </ul>
-      </nav>
+      </div>
     </div>
+  </nav>
   </div>
 </header>
-

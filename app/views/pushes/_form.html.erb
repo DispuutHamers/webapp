@@ -1,26 +1,24 @@
 <%= form_for(@push) do |f| %>
-  <% if @push.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@push.errors.count, "error") %> prohibited this push from being saved:</h2>
-
-      <ul>
-      <% @push.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @push.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@push.errors.count, "error") %> prohibited this push from being saved:</h2>
+          <ul>
+            <% @push.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :Hamer %><br>
+      <% users_array = User.all.map { |user| [user.name, user.id] } %>
+      <%= f.select :user_id, options_for_select(users_array), {}, class: "form-control" %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-		  <% users_array = User.all.map { |user| [user.name, user.id] } %>
-		  <%= f.select :user_id, options_for_select(users_array) %>
-  </div>
-  <div class="field">
-    <%= f.label :data %><br>
-		<%= f.text_area :data, value: "{ data: { title: \"title\", message: \"message\"} }" %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="form-group">
+      <%= f.label :data %><br>
+      <%= f.text_area :data, class: "form-control", value: "{ data: { title: \"title\", message: \"message\"} }" %>
+    </div>
+    <div class="actions">
+      <%= f.submit :Verstuur, class: "btn btn-default" %>
+    </div>
 <% end %>
