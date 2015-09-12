@@ -1,6 +1,6 @@
 class NicknamesController < ApplicationController
-  before_action :logged_in?, only: [:index, :new, :create, :update, :destroy]
-  before_action :admin_user?, only: [:update, :destroy]
+  before_action :logged_in?, only: [:index, :new, :create, :update, :destroy, :edit]
+  before_action :admin_user?, only: [:update, :destroy, :edit]
 
 
   def index
