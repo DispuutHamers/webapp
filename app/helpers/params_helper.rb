@@ -31,4 +31,8 @@ module ParamsHelper
 	def arm_params
 		params.requre(:arm).permit(:lat, :lon)
 	end
+ 
+        def nickname_params
+	      params.require(:nickname).permit(:user_id, :nickname, :description)
+        end
 end

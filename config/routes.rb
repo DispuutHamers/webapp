@@ -29,6 +29,7 @@ Hamers::Application.routes.draw do
 
   resources :polls
   resources :signups
+  resources :nicknames
 
   root  'static_pages#home'  
 
