@@ -26,7 +26,6 @@ class NicknamesController < ApplicationController
 
   def update
     @nickname = Nickname.find(params[:id])
-    puts @nickname
     if @nickname.update(nickname_params)
       flash[:success] = "Nickname aangepast"
       redirect_to nicknames_path      

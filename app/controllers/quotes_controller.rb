@@ -18,11 +18,18 @@ class QuotesController < ApplicationController
     end
   end
 
-	def edit
-	end
+  def edit
+    @quote = Quote.find(params[:id])
+    @userid = @quote.user_id
+  end
 
-	def update
-	end
+  def update
+    @quote = Quote.find(params[:id])
+    if @quote.update(micropost_params)
+      flash[:success] = "Quote aangepast"
+      redirect_to root_path 
+    end
+  end
 
   def destroy
 		@quote = Quote.find(params[:id])
