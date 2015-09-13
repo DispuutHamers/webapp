@@ -1,0 +1,32 @@
+<h1> Nicknames </h1>
+<%= link_to "Bijnaam toevoegen", new_nickname_path, class: "btn btn-info" %>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Bijnaam</th>
+    <th>Beschrijving</th>
+    <th>Aanmaakdatum</th>
+    <% if current_user.admin? %>
+	<th> Admin </th>
+    <%end%>
+  </tr>
+  </thead>
+  <tbody>
+  <% @nicknames.each do |nickname| %>
+      <tr>
+        <td><%= nickname.user.name %></td>
+        <td><%= nickname.nickname %>
+        <td><%= nickname.description %> </td>
+        <td><%= nickname.created_at %> </td>
+        <% if current_user.admin? %>
+          <td> 
+            <%= link_to "Wijzig", edit_nickname_path(nickname), class: "btn btn-info" %>
+            <%= link_to "Verwijder", nickname, class: "btn btn-danger", method: :delete,
+                              data: { confirm: "Weet je het zeker?" } %>
+          </td>
+        <% end %> 
+      </tr>
+  <% end %>
+  </tbody>
+</table>

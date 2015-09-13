@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630074607) do
+ActiveRecord::Schema.define(version: 20150912153124) do
+
+  create_table "afmeldingens", force: :cascade do |t|
+    t.string   "reden",      limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "key",        limit: 255
@@ -125,6 +132,16 @@ ActiveRecord::Schema.define(version: 20150630074607) do
     t.integer  "user_id",    limit: 4
   end
 
+  create_table "nicknames", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.string   "nickname",    limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "nicknames", ["user_id"], name: "index_nicknames_on_user_id", using: :btree
+
   create_table "nifty_attachments", force: :cascade do |t|
     t.integer  "parent_id",   limit: 4
     t.string   "parent_type", limit: 255
@@ -188,6 +205,14 @@ ActiveRecord::Schema.define(version: 20150630074607) do
     t.datetime "updated_at"
   end
 
+  create_table "statics", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "content",    limit: 255
+    t.string   "p_content",  limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "usergroups", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -216,4 +241,5 @@ ActiveRecord::Schema.define(version: 20150630074607) do
     t.integer  "poll_id",    limit: 4
   end
 
+  add_foreign_key "nicknames", "users"
 end

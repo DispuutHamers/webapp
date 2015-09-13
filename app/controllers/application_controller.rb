@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 		Device.all.each do |d| 
 		 	keys << d.device_key
 		end
-		Push.new(data: PUSH.send(keys, eval(data)).save)
+		Push.new(data: PUSH.send(keys, eval(data))).save
 		Push.new(data: eval(data)).save
 	end
 
