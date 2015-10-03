@@ -4,22 +4,35 @@ class User < ActiveRecord::Base
   has_many :groups, foreign_key: "user_id", dependent: :destroy
   has_many :usergroups, through: :groups           
   has_many :quotes
-	has_many :devices
-	has_many :api_keys
+  has_many :devices
+  has_many :api_keys
   has_many :reviews
   has_many :motions
   has_many :events
-	has_many :api_logs
+  has_many :api_logs
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
+  has_many :nicknames, dependent: :destroy
   validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
+  def name
+    name = read_attribute(:name)
+    nicknames = self.nicknames
+    if(self.nicknames.count > 0)
+      name = "(" + name + ")"
+      nicknames.order('created_at DESC').each do |n|
+        name =  n.nickname + " " + name
+      end
+    end
+    name
+  end
+
   def feed  
-    Quote.all
+    Quote.all.order("created_at DESC")
   end
   
   def vote!(poll, result)

@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
-	before_action :logged_in?
-	before_action :admin_user?, only: [:edit, :update, :destroy,]
+  before_action :logged_in?
+  before_action :admin_user?, only: [:edit, :update, :destroy,]
   before_action :set_news, only: [:show, :edit, :update, :destroy]
 
   # GET /news
@@ -33,6 +33,7 @@ class NewsController < ApplicationController
       if @news.save
         format.html { redirect_to news_index_path, notice: 'Ok.' }
         format.json { render action: 'show', status: :created, location: @news }
+        update_app("{ data: { news: { id: \"#{@news.id}\", title: \"#{@news.title}\", body: \"#{@news.body}\", created_at: #{@news.created_at.to_json}} } }")
       else
         format.html { render action: 'new' }
         format.json { render json: @news.errors, status: :unprocessable_entity }

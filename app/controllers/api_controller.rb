@@ -15,7 +15,7 @@ class ApiController < ApplicationController
 		@result = User.all if @type == "user" and params[:request] != "whoami" 
 		@result = [@keyStore.user] if @type == "user" and params[:request] == "whoami" 
 		@result = Event.find(params[:id]).signups if @type == "signup"
-		@result = Quote.all if @type == "quote" and params[:id] == nil
+		@result = @keyStore.user.feed.all if @type == "quote" and params[:id] == nil
 		@result = User.find(params[:id]) if @type == "quote" and params[:id] != nil
 		@result = Event.all.order("date") if @type == "event" 
 		@result = Beer.all if @type == "beer" 

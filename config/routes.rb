@@ -29,6 +29,7 @@ Hamers::Application.routes.draw do
 
   resources :polls
   resources :signups
+  resources :nicknames
 
   root  'static_pages#home'  
 
@@ -41,7 +42,7 @@ Hamers::Application.routes.draw do
   resources :reviews, only: [:create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy]
   resources :usergroups, only: [:create, :destroy]
-  resources :quotes, only: [:create, :destroy]
+  resources :quotes, only: [:create, :destroy, :update, :edit]
   resources :sessions, only: [:new, :create, :destroy]
 
 	match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'

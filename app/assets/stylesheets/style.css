@@ -17,7 +17,4 @@ table.events thead tr th, table.tablesorter tfoot tr th {
 
 /* Bootstrap override */
 @media(max-width: 979px) {
-  body {
-    padding-top: 0px;
-  }
 
