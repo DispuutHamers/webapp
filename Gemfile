@@ -21,15 +21,15 @@ gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'therubyracer'
+gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails'
 gem 'font-awesome-rails'
-# gem "bootstrap-sass"
+# gem 'bootstrap-sass'
 gem 'bcrypt'
-gem "bcrypt-ruby"
-gem "will_paginate"
-gem "bootstrap-will_paginate"
+gem 'bcrypt-ruby'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

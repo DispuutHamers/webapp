@@ -1,7 +1,7 @@
 class MotionsController < ApplicationController
   before_action :set_motion, only: [:show, :edit, :update, :destroy]
-	before_action :logged_in?
-	before_action :admin_user?, except: [:new, :create]
+  before_action :logged_in?
+  before_action :admin_user?, except: [:new, :create]
 
   # GET /motions
   # GET /motions.json
@@ -27,7 +27,7 @@ class MotionsController < ApplicationController
   # POST /motions.json
   def create
     @motion = Motion.new(motion_params)
-		@motion.user_id = current_user.id
+    @motion.user_id = current_user.id
     respond_to do |format|
       if @motion.save
         format.html { redirect_to root_path, notice: 'Je motie wordt behandeld.' }
@@ -62,8 +62,8 @@ class MotionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_motion
-      @motion = Motion.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_motion
+    @motion = Motion.find(params[:id])
+  end
 end

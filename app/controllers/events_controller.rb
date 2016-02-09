@@ -9,22 +9,22 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all.order(date: :desc)
-		respond_to do |w| 
-			w.html do 
-				@events = Event.all.order(date: :desc).paginate(page: params[:page])
+    respond_to do |w|
+      w.html do
+        @events = Event.all.order(date: :desc).paginate(page: params[:page])
         #redirect_to root_path, notice: "Mag niet!." unless lid?
         redirect_to signin_url, notice: "Please sign in." unless signed_in?
-			end
-			w.ics do 
-		    feed = Event.all.order("date").where(['date >= ?', Date.today]).limit(10)
-				calendar = Icalendar::Calendar.new
-				feed.each do |f|
-					calendar.add_event(f.to_ics)
-	      end
-				calendar.publish
-				render :text => calendar.to_ical
-			end
-		end
+      end
+      w.ics do
+        feed = Event.all.order("date").where(['date >= ?', Date.today]).limit(10)
+        calendar = Icalendar::Calendar.new
+        feed.each do |f|
+          calendar.add_event(f.to_ics)
+        end
+        calendar.publish
+        render :text => calendar.to_ical
+      end
+    end
   end
 
   # GET /events/1
@@ -48,7 +48,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     respond_to do |format|
       if @event.save
-				update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: #{@event.date.to_json}, location: \"#{@event.location}\", deadline: #{@event.deadline.to_json}, signups: [], end_time: #{@event.end_time.to_json}, title: \"#{@event.title}\"} } }")
+        update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: #{@event.date.to_json}, location: \"#{@event.location}\", deadline: #{@event.deadline.to_json}, signups: [], end_time: #{@event.end_time.to_json}, title: \"#{@event.title}\"} } }")
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
@@ -83,12 +83,12 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
-    def correct_user
-      @event.user == current_user
-    end
+  def correct_user
+    @event.user == current_user
+  end
 end

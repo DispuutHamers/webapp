@@ -8,7 +8,7 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @poll = Poll.find(params[:vote][:poll_id])
-    current_user.vote!(@poll, params[:vote][:result])   
+    current_user.vote!(@poll, params[:vote][:result])
     redirect_to polls_path
   end
 
@@ -23,13 +23,13 @@ class VotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_vote
-      @vote = Vote.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_vote
+    @vote = Vote.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def vote_params
-      params.require(:vote).permit(:user_id, :result, :poll_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def vote_params
+    params.require(:vote).permit(:user_id, :result, :poll_id)
+  end
 end

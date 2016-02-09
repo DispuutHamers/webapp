@@ -1,7 +1,7 @@
 class SignupsController < ApplicationController
   before_action :set_signup, only: [:show, :edit, :update, :destroy]
-	before_action :admin_user?, only: [:index, :edit, :update]
-	before_action :logged_in?
+  before_action :admin_user?, only: [:index, :edit, :update]
+  before_action :logged_in?
 
   # GET /signups
   # GET /signups.json
@@ -18,13 +18,13 @@ class SignupsController < ApplicationController
   def create
     @signup = Signup.new(signup_params)
     @event = Event.find(params[:signup][:event_id])
-		if @event.deadline > Time.now
-			current_user.sign!(@event, params[:signup][:status])   
-			flash[:success] = "Je staat erbij!"
-		else
-			flash[:error] = "De deadline is al verstreken" 
-		end
-		redirect_to @event
+    if @event.deadline > Time.now
+      current_user.sign!(@event, params[:signup][:status])
+      flash[:success] = "Je staat erbij!"
+    else
+      flash[:error] = "De deadline is al verstreken"
+    end
+    redirect_to @event
   end
 
   # PATCH/PUT /signups/1
@@ -52,13 +52,13 @@ class SignupsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_signup
-      @signup = Signup.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_signup
+    @signup = Signup.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def signup_params
-      params.require(:signup).permit(:event_id, :user_id, :status, :reason)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def signup_params
+    params.require(:signup).permit(:event_id, :user_id, :status, :reason)
+  end
 end
