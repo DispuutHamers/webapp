@@ -19,16 +19,21 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
   
-  def name
+  def name_with_nickname
     name = read_attribute(:name)
     nicknames = self.nicknames
     if(self.nicknames.count > 0)
-      name = "(" + name + ")"
-      nicknames.order('created_at DESC').each do |n|
-        name =  n.nickname + " " + name
-      end
+      name = self.nickname + "(" + name + ")"
     end
     name
+  end
+
+  def nickname
+    nickname  = "";
+    nicknames.order('created_at DESC').each do |n|
+      nickname =  n.nickname + " " + nickname
+    end
+    return nickname
   end
 
   def feed  

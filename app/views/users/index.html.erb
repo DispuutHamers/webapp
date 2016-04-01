@@ -22,7 +22,7 @@
   <% @users.each do |user| %>
       <tr>
         <td><%= gravatar_for user, size: 52 %>
-          <%= link_to user.name, user %>
+          <%= link_to user.name_with_nickname, user %>
         </td>
         <td><%= user.quotes.count %></td>
         <td><%= user.reviews.count %></td>
