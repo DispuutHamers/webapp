@@ -1,8 +1,8 @@
 class MeetingsController < ApplicationController
-	before_action :logged_in?
+  before_action :logged_in?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
-	before_action :check_access
-	before_action :admin_user?, only: [:notuleer, :edit, :update, :destroy, :create, :new]
+  before_action :check_access
+  before_action :admin_user?, only: [:notuleer, :edit, :update, :destroy, :create, :new]
 
   # GET /meetings
   # GET /meetings.json
@@ -68,19 +68,19 @@ class MeetingsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def meeting_params
-      params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def meeting_params
+    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :user_id)
+  end
 
-		def check_access
-			unless current_user.lid? 
-				redirect_to root_path
-			end
-		end
+  def check_access
+    unless current_user.lid?
+      redirect_to root_path
+    end
+  end
 end

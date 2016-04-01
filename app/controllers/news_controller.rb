@@ -27,8 +27,8 @@ class NewsController < ApplicationController
   # POST /news.json
   def create
     @news = News.new(news_params)
-		@news.user_id = current_user.id
-		@news.date = Time.now
+    @news.user_id = current_user.id
+    @news.date = Time.now
     respond_to do |format|
       if @news.save
         format.html { redirect_to news_index_path, notice: 'Ok.' }
@@ -66,8 +66,8 @@ class NewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = News.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news
+    @news = News.find(params[:id])
+  end
 end

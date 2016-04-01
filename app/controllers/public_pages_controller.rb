@@ -1,6 +1,6 @@
 class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
-	before_action :admin_user?, except: [:show]
+  before_action :admin_user?, except: [:show]
 
   # GET /public_pages
   # GET /public_pages.json
@@ -11,8 +11,8 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1
   # GET /public_pages/1.json
   def show
-		@public_page = PublicPage.where(title: params[:id]).first
-		redirect_to root_path unless @public_page != nil
+    @public_page = PublicPage.where(title: params[:id]).first
+    redirect_to root_path unless @public_page != nil
   end
 
   # GET /public_pages/new
@@ -65,13 +65,13 @@ class PublicPagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_public_page
-      @public_page = PublicPage.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_public_page
+    @public_page = PublicPage.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def public_page_params
-      params.require(:public_page).permit(:content, :title, :public)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def public_page_params
+    params.require(:public_page).permit(:content, :title, :public)
+  end
 end

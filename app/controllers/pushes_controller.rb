@@ -1,8 +1,9 @@
 class PushesController < ApplicationController
-	before_action :admin_user?
-	def index
-		@pushes = Push.order(created_at: :desc).paginate(page: params[:page], :per_page => 10)
-	end
+  before_action :admin_user?
+
+  def index
+    @pushes = Push.order(created_at: :desc).paginate(page: params[:page], :per_page => 10)
+  end
 
   # GET /pushes/new
   def new
@@ -12,8 +13,8 @@ class PushesController < ApplicationController
   def create
     @push = Push.new(push_params)
 
-		response = PUSH.send([@push.user.devices.first.device_key], eval(@push.data))
-		@push.user_id = current_user.id 
+    response = PUSH.send([@push.user.devices.first.device_key], eval(@push.data))
+    @push.user_id = current_user.id
 
     respond_to do |format|
       if @push.save
@@ -27,7 +28,7 @@ class PushesController < ApplicationController
   end
 
   private
-    def push_params
-      params.require(:push).permit(:user_id, :data)
-    end
+  def push_params
+    params.require(:push).permit(:user_id, :data)
+  end
 end
