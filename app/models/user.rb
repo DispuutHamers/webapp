@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   has_many :groups, foreign_key: "user_id", dependent: :destroy
-  has_many :usergroups, through: :groups
+  has_many :usergroups, through: :groups           
   has_many :quotes
   has_many :devices
   has_many :api_keys
@@ -13,70 +13,70 @@ class User < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   has_many :nicknames, dependent: :destroy
-  validates :name, presence: true, length: {maximum: 50}, uniqueness: true
+  validates :name,  presence: true, length: { maximum: 50 }, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
-
+  
   def name
     name = read_attribute(:name)
     nicknames = self.nicknames
-    if (self.nicknames.count > 0)
+    if(self.nicknames.count > 0)
       name = "(" + name + ")"
       nicknames.order('created_at DESC').each do |n|
-        name = n.nickname + " " + name
+        name =  n.nickname + " " + name
       end
     end
     name
   end
 
-  def feed
+  def feed  
     Quote.all.order("created_at DESC")
   end
-
+  
   def vote!(poll, result)
     stemmen = votes.where(poll_id: poll.id, user_id: self.id)
     if stemmen.any?
-      stemmen.each { |stem| stem.destroy! }
+      stemmen.each { |stem| stem.destroy! } 
     end
-    self.votes.create!(poll_id: poll.id, result: result)
+    self.votes.create!(poll_id: poll.id, result: result) 
   end
-
+  
   def sign!(event, status)
-    if event.deadline > Time.now
-      stemmen = signups.where(event_id: event.id, user_id: self.id)
-      if stemmen.any?
-        stemmen.each { |stem| stem.destroy! }
-      end
-      self.signups.create!(event_id: event.id, status: status)
-    end
+		if event.deadline > Time.now
+			stemmen = signups.where(event_id: event.id, user_id: self.id)
+			if stemmen.any?
+				stemmen.each { |stem| stem.destroy! } 
+			end
+			self.signups.create!(event_id: event.id, status: status) 
+		end
   end
-
+  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
 
-  def generate_api_key(name)
-    ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
-  end
-
+	def generate_api_key(name)
+		ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
+	end
+  
   def in_group?(group)
-    groups.find_by(group_id: group.id)
+     groups.find_by(group_id: group.id)
   end
-
+  
   def join_group!(group)
     groups.create!(group_id: group.id)
   end
-
+  
   def remove_group!(group)
     groups.find_by(group_id: group.id).destroy!
   end
-
+    
   def User.hash(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
-
+  
   def lid?
     in_group?(Usergroup.find_by(name: 'lid'))
   end
@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
   def alid?
     in_group?(Usergroup.find_by(name: 'A-Lid'))
   end
-
+  
   def admin?
     in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev?
   end
@@ -108,7 +108,7 @@ class User < ActiveRecord::Base
 
   private
 
-  def create_remember_token
-    self.remember_token = User.hash(User.new_remember_token)
-  end
+    def create_remember_token
+      self.remember_token = User.hash(User.new_remember_token)
+    end
 end
