@@ -1,17 +1,17 @@
 class StaticPagesController < ApplicationController
   def home
     if signed_in?
-      @beer = Beer.order("RAND()").first
-      @rQuote = Quote.order("RAND()").first
+      @beer = Beer.order('RAND()').first
+      @rQuote = Quote.order('RAND()').first
       @quote = current_user.quotes.build
       @feed_items = current_user.feed.paginate(page: params[:page], :per_page => 8)
-      @events = Event.order("date").where(['date >= ?', Date.today]).limit(10)
+      @events = Event.order('date').where(['date >= ?', Date.today]).limit(10)
       @news = News.last(5).reverse
     end
   end
 
   def console
-    redirect_to root_path unless current_user and current_user.admin?
+    redirect_to root_path unless current_user&.admin?
   end
 
   def statistics
@@ -25,6 +25,6 @@ class StaticPagesController < ApplicationController
   private
   def getCumulativeData table
     sum = 0
-    table.order("created_at asc").group("DATE(created_at)").count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
+    table.order('created_at asc').group('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
   end
 end

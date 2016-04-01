@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   before_create :create_remember_token
-  has_many :groups, foreign_key: "user_id", dependent: :destroy
+  has_many :groups, foreign_key: 'user_id', dependent: :destroy
   has_many :usergroups, through: :groups
   has_many :quotes
   has_many :devices
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   end
 
   def feed
-    Quote.all.order("created_at DESC")
+    Quote.all.order('created_at DESC')
   end
 
   def vote!(poll, result)

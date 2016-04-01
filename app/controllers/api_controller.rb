@@ -94,7 +94,7 @@ class ApiController < ApplicationController
         render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
       end
     end
-    if @type == "beer"
+    if @type == 'beer'
       @beer = Beer.new(beer_params)
       if @beer.save
         update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\"  } } }")
@@ -103,11 +103,11 @@ class ApiController < ApplicationController
         render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
       end
     end
-    if @type == "signup"
+    if @type == 'signup'
       @keyStore.user.sign!(Event.find(params[:signup][:event_id]), params[:signup][:status])
       render :status => :created, :text => '[{"status":"201","message":"Created"}]'
     end
-    if @type == "arm"
+    if @type == 'arm'
       @arm = Arm.new(arm_params)
       @arm.user_id = @keyStore.user.id
       if @arm.save

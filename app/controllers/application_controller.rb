@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
   include ParamsHelper
 
   def set_cache_buster
-    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
   end
 
   def update_app(data)
@@ -22,11 +22,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
   end
 
   def admin_user?
     logged_in?
-    redirect_to root_url, notice: "Niet genoeg access bitch" unless (current_user.admin? || current_user.schrijf_feut?)
+    redirect_to root_url, notice: 'Niet genoeg access bitch' unless (current_user.admin? || current_user.schrijf_feut?)
   end
 end
