@@ -29,9 +29,9 @@ class User < ActiveRecord::Base
   end
 
   def nickname
-    nickname = ""
+    nickname = ''
     nicknames.order('created_at DESC').each do |n|
-      nickname = n.nickname + " " + nickname
+      nickname = n.nickname + ' ' + nickname
     end
     nickname
   end

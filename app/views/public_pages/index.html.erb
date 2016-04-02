@@ -19,12 +19,12 @@
   <% @public_pages.each do |m| %>
       <tr>
         <td><%= m.public %></td>
-        <td><%= link_to m.title, "/" + m.title %></td>
+        <td><%= link_to m.title, '/' + m.title %></td>
         <td>
           <div class="btn-group">
-            <%= link_to "Wijzig", edit_public_page_path(m), class: "btn btn-info" %>
-            <%= link_to "Verwijder", m, class: "btn btn-danger", method: :delete,
-                        data: { confirm: "Weet je het zeker?" } %>
+            <%= link_to 'Wijzig', edit_public_page_path(m), class: 'btn btn-info' %>
+            <%= link_to 'Verwijder', m, class: 'btn btn-danger', method: :delete,
+                        data: { confirm: 'Weet je het zeker?'} %>
           </div>
         </td>
       </tr>
@@ -32,4 +32,4 @@
   </tbody>
 </table>
 <%= will_paginate %>
-<%= link_to "Add Pagina", new_public_page_path %>
+<%= link_to 'Add Pagina', new_public_page_path %>

@@ -3,7 +3,7 @@
     <section>
       <h1><%= @event.title %></h1>
     </section>
-    <section><%= @event.date.strftime("%d/%m/%Y %H:%M") %> tot <%= @event.end_time.strftime("%d/%m/%Y %H:%M") %> <% if @event.location != nil and @event.location.length > 1 %> - <%= @event.location %><% end %></section>
+    <section><%= @event.date.strftime('%d/%m/%Y %H:%M') %> tot <%= @event.end_time.strftime('%d/%m/%Y %H:%M') %> <% if @event.location != nil and @event.location.length > 1 %> - <%= @event.location %><% end %></section>
     <section><%= simple_format(@event.beschrijving) %></section>
   </aside>
   <div class="col-md-4">
@@ -23,7 +23,7 @@
               <div><%= f.hidden_field :event_id %></div>
               <div><%= f.hidden_field :user_id %></div>
               <div><%= f.hidden_field :status %></div>
-              <%= f.submit "Ik zal aanwezig zijn.", class: "btn btn-success" %>
+              <%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %>
           <% end %>
       <% end %>
     </section>
@@ -38,12 +38,12 @@
               <div><%= f.hidden_field :event_id %></div>
               <div><%= f.hidden_field :user_id %></div>
               <div><%= f.hidden_field :status %></div>
-              <%= f.submit "Ik zal niet aanwezig zijn.", class: "btn btn-danger" %>
+              <%= f.submit 'Ik zal niet aanwezig zijn.', class: 'btn btn-danger' %>
           <% end %>
       <% end %>
       <% if @event.location %>
-          <br \><br \>
-          <strong>Kaart: </strong><br \>
+          <br><br>
+          <strong>Kaart: </strong><br>
           <iframe
           width="300"
           height="266"
@@ -57,7 +57,7 @@
 </div>
 <div class="btn-group">
   <% if current_user.admin? || current_user.dev? %>
-      <%= link_to 'Edit', edit_event_path(@event), :class => "btn btn-info" %>
+      <%= link_to 'Edit', edit_event_path(@event), :class => 'btn btn-info' %>
   <% end %>
-  <%= link_to 'Terug', events_path, :class => "btn btn-default" %>
+  <%= link_to 'Terug', events_path, :class => 'btn btn-default' %>
 </div>

@@ -1,7 +1,7 @@
 <%= form_for(@meeting) do |f| %>
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
+      <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
 
       <ul>
       <% @meeting.errors.full_messages.each do |msg| %>
@@ -13,17 +13,17 @@
 
   <div class="form-group">
     <%= f.label :agenda %><br>
-    <%= f.text_area :agenda, class: "form-control" %>
+    <%= f.text_area :agenda, class: 'form-control' %>
   </div>
 	<div class="form-group">
 		<%= f.label :onderwerp %><br>
-		<%= f.text_field :onderwerp, class: "form-control" %>
+		<%= f.text_field :onderwerp, class: 'form-control' %>
 	</div>
 	<div class="form-group">
 	     <%= f.label :datum %><br>
-	     <%= f.date_select :date, {:order => [:day, :month, :year], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']}, class: "form-control date-select" %>
+	     <%= f.date_select :date, {:order => [:day, :month, :year], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']}, class: 'form-control date-select' %>
   </div>
   <div class="actions">
-    <%= f.submit :Verstuur, class: "btn btn-primary" %>
+    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
   </div>
 <% end %>

@@ -29,9 +29,9 @@
         <% if current_user.admin? && !current_user?(user) %>
             <td>
               <div class="btn-group">
-              <%= link_to "Wijzig", edit_user_path(user), class: "btn btn-info" %>
-              <%= link_to "Verwijder", user, class: "btn btn-danger", method: :delete,
-                            data: { confirm: "Weet je het zeker?" } %>
+              <%= link_to 'Wijzig', edit_user_path(user), class: 'btn btn-info' %>
+              <%= link_to 'Verwijder', user, class: 'btn btn-danger', method: :delete,
+                          data: { confirm: 'Weet je het zeker?'} %>
               </div>
             </td>
         <% end %>

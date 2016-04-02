@@ -1,7 +1,7 @@
 <%= form_for(@signup) do |f| %>
   <% if @signup.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@signup.errors.count, "error") %> prohibited this signup from being saved:</h2>
+      <h2><%= pluralize(@signup.errors.count, 'error') %> prohibited this signup from being saved:</h2>
 
       <ul>
       <% @signup.errors.full_messages.each do |msg| %>

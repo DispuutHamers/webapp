@@ -15,6 +15,6 @@
     <p>Genotuleerd door: <i><%= link_to User.find(@meeting.user_id).name, User.find(@meeting.user_id) %></i></p>
 <% end %>
 <% if current_user.admin? || current_user.schrijf_feut? %>
-    <%= link_to "edit", "/notuleer/#{@meeting.id}" %> |
+    <%= link_to 'edit', "/notuleer/#{@meeting.id}" %> |
 <% end %>
 <%= link_to 'Back', meetings_path %>
