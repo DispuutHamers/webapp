@@ -6,7 +6,7 @@
           <p class="lead"><%= link_to User.find(r.user_id).name, User.find(r.user_id) %> zei over dit bier: </p>
           <p><i><%= simple_format(r.description) %></i></p>
           <p>Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
-            <i><%= r.proefdatum.strftime("%d/%m/%Y") %></i>
+            <i><%= r.proefdatum.strftime('%d-%m-%Y') %></i>
             <% if current_user == User.find(r.user_id) || current_user.admin? %>
               <div class="btn-group pull-right">
                 <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
