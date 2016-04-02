@@ -18,11 +18,9 @@
         <td><%= link_to event.title, event %></td>
         <td><%= event.date.strftime('%d/%m/%Y') %>
         <td>
-          <% event.signups.where(status: true).each_with_index do |s, index| %><%= ',' if index != 0 %>
-              <%= s.user.name %>
-          <% end %>
-          <% if event.signups.where(status: true, user_id: current_user.id).empty? %>, ..jij?
-          <% end %>
+          <% event.signups.where(status: true).each_with_index do |s, index| %>
+              <%= s.user.name + ',' %>
+          <% end %>..jij?
         </td>
         <td>
           <div class="btn-group" style="display: inline-block">
