@@ -11,24 +11,30 @@
   <%= will_paginate %>
   <tbody>
   <% @events.each do |event| %>
-      <% c = "info" if event.future? %>
-      <% c = "active" if event.past? %>
-      <% c = "success" if event.today? %>
-      <tr class = "<%= c %>">
+      <% c = 'info' if event.future? %>
+      <% c = 'active' if event.past? %>
+      <% c = 'success' if event.today? %>
+      <tr class="<%= c %>">
         <td><%= link_to event.title, event %></td>
-        <td><%= event.date.strftime("%d/%m/%Y") %>
+        <td><%= event.date.strftime('%d/%m/%Y') %>
         <td>
-          <% event.signups.where(status: true).each_with_index do |s, index| %><%= "," if index != 0 %>
-              <%= s.user.name %><% end %><% if event.signups.where(status: true, user_id: current_user.id).empty? %>, ..jij?
+          <% event.signups.where(status: true).each_with_index do |s, index| %><%= ',' if index != 0 %>
+              <%= s.user.name %>
+          <% end %>
+          <% if event.signups.where(status: true, user_id: current_user.id).empty? %>, ..jij?
           <% end %>
         </td>
         <td>
-          <div class="btn-group">
+          <div class="btn-group" style="display: inline-block">
             <% if current_user == event.user or current_user.admin? or current_user.schrijf_feut? %>
-                <%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %>
+                <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
+                    <i class="fa fa-pencil"></i>
+                <% end %>
             <% end %>
             <% if current_user.admin? %>
-                <%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => "btn btn-danger" %>
+                <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
+                    <i class="fa fa-trash"></i>
+                <% end %>
             <% end %>
           </div>
       </tr>
@@ -37,5 +43,5 @@
 </table>
 <%= will_paginate %>
 <% if lid? %>
-    <%= link_to 'Nieuwe activiteit', new_event_path, class: "btn btn-block btn-primary" %>
+    <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
 <% end %>
