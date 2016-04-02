@@ -4,8 +4,8 @@
    Posted <%= time_ago_in_words(quote.created_at) %> ago.
    </span>
   <% if current_user.admin? %>
-      <%= link_to "delete", quote, method: :delete,
-                  data: { confirm: "You sure?" },
+      <%= link_to 'delete', quote, method: :delete,
+                  data: {confirm: 'You sure?'},
                   title: quote.text %>
   <% end %>
 </li>
