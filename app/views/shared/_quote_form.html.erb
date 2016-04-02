@@ -1,12 +1,11 @@
 <%= form_for(@quote) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="form-group">
-      <%= f.text_area :text, placeholder: "Wat zei die lul?", class: "form-control" %>
+      <%= f.text_area :text, placeholder: 'Wat zei die lul?', class: 'form-control' %>
     </div>
-    <%= f.label :user_id %>
-    <% users_array = User.all.map { |user| [user.name, user.id] } %>
-    <div class="form-group">
-      <%= f.select :user_id, options_for_select(users_array), {}, class: "form-control" %>
-    </div>
-    <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+      <div class="form-group btn-group bootstrap-select dropdown">
+        <% users_array = User.all.map { |user| [user.name, user.id] } %>
+        <%= f.select :user_id, options_for_select(users_array), {form_tag_html: data-width='auto'}, class: 'form-control selectpicker' %>
+      </div>
+    <%= f.submit 'Post', class: 'btn btn-large btn-primary' %>
 <% end %>

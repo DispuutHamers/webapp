@@ -3,62 +3,71 @@
   <aside class="col-md-8">
     <% @beer.reviews.each do |r| %>
         <section>
-          <p><i><%= link_to User.find(r.user_id).name, User.find(r.user_id) %></i> zei over dit bier: </p>
-          <p><%= simple_format(r.description) %></p>
-          <p>Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op <i><%= r.proefdatum.strftime("%d/%m/%Y") %></i>
+          <p class="lead"><%= link_to User.find(r.user_id).name, User.find(r.user_id) %> zei over dit bier: </p>
+          <p><i><%= simple_format(r.description) %></i></p>
+          <p>Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
+            <i><%= r.proefdatum.strftime("%d/%m/%Y") %></i>
             <% if current_user == User.find(r.user_id) || current_user.admin? %>
-                | <%= link_to "edit", edit_review_path(r) %>
-                <% if current_user.admin? %>
-                    | <%= link_to "destroy", r, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+              <div class="btn-group pull-right">
+                <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
+                    <i class="fa fa-pencil"></i>
                 <% end %>
-            <% end %>
+                <% if current_user.admin? %>
+                    <%= link_to r,
+                                method: :delete,
+                                data: {confirm: 'Weet je het zeker?'},
+                                class: 'btn btn-default btn-sm' do %>
+                        <i class="fa fa-trash"></i>
+                    <% end %>
+                <% end %>
+              </div>
+          <% end %>
           </p>
         </section>
     <% end %>
   </aside>
   <div class="col-md-4">
-    <section>
-      <%= image_tag(@beer.picture, :alt => @beer.name) %>
-      <table>
-        <tr>
-          <th width="30%"></th>
-          <th width="70%"></th>
-        </tr>
-        <tr>
-          <td>name:</td>
-          <td align="right"><%= @beer.name %></td>
-        </tr>
-        <tr>
-          <td>soort:</td>
-          <td align="right"><%= @beer.soort %></td>
-        </tr>
-        <tr>
-          <td>ALC:</td>
-          <td align="right"><%= @beer.percentage %></td>
-        </tr>
-        <tr>
-          <td>Brouwer:</td>
-          <td align="right"><%= @beer.brewer %></td>
-        </tr>
-        <tr>
-          <td>Land:</td>
-          <td align="right"><%= @beer.country %></td>
-        </tr>
+    <div class="row">
+      <div class="col-sm-12">
+        <%= image_tag(@beer.picture, :alt => @beer.name, :class => 'img img-responsive') %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        &nbsp;
+        <table class="table table-hover">
+          <tr>
+            <td>Naam:</td>
+            <td align="right"><%= @beer.name %></td>
+          </tr>
+          <tr>
+            <td>Soort:</td>
+            <td align="right"><%= @beer.soort %></td>
+          </tr>
+          <tr>
+            <td>ALC:</td>
+            <td align="right"><%= @beer.percentage %></td>
+          </tr>
+          <tr>
+            <td>Brouwer:</td>
+            <td align="right"><%= @beer.brewer %></td>
+          </tr>
+          <tr>
+            <td>Land:</td>
+            <td align="right"><%= @beer.country %></td>
+          </tr>
+        </table>
         <% if @beer.URL %>
-            <tr>
-              <td></td>
-              <td align="right"><%= link_to "Meer info", @beer.URL %></td>
-            </tr>
+            <%= link_to 'Meer info', @beer.URL, class: 'btn btn-primary btn-block' %>
         <% end %>
-      </table>
-    </section>
+      </div>
+    </div>
   </div>
 </div>
 <div class="btn-group">
-  <%= link_to 'Review', reviews_beer_path(@beer), :class => "btn btn-primary" unless current_user.reviews.find_by(beer_id: @beer.id) %>
+  <%= link_to 'Review', reviews_beer_path(@beer), :class => 'btn btn-primary' unless current_user.reviews.find_by(beer_id: @beer.id) %>
   <% if current_user.admin? %>
-      <%= link_to 'Edit', edit_beer_path(@beer), :class => "btn btn-info" %>
+      <%= link_to 'Edit', edit_beer_path(@beer), :class => 'btn btn-info' %>
   <% end %>
-  <%= link_to 'Back', beers_path, :class => "btn btn-default" %>
+  <%= link_to 'Back', beers_path, :class => 'btn btn-default' %>
 </div>

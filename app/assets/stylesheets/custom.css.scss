@@ -106,6 +106,10 @@ p {
   line-height: 1.7em;
 }
 
+a:hover {
+  color: #000;
+  background-color: #fff;
+}
 
 /* header */
 
@@ -149,7 +153,6 @@ footer {
     }
   }
 }
-
 
 /* sidebar */
 
@@ -220,3 +223,23 @@ input {
   width: 100%;
 }
 
+/* tables */
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+  background-color: #e6EEEE;
+}
+
+table.tablesorter thead tr .header {
+  cursor: pointer;
+}
+
+table.tablesorter tbody tr.odd td {
+  background-color: #F0F0F6;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+  background-color: #8dbdd8;
+}
+
+table.events thead tr th, table.tablesorter tfoot tr th {
+  background-color: #e6EEEE;
+}
