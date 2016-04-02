@@ -29,7 +29,11 @@
   <div class="col-md-4">
     <div class="row">
       <div class="col-sm-12">
-        <%= image_tag(@beer.picture, :alt => @beer.name, :class => 'img img-responsive') %>
+        <% if @beer.picture? %>
+            <%= image_tag(@beer.picture, :class => 'img img-responsive') %>
+        <% else %>
+            <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive">
+        <% end %>
       </div>
     </div>
     <div class="row">
