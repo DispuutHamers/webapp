@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-  before_action :logged_in?, except: [:new, :create]
+  before_action :logged_in?, except: [:new, :create, :index_public]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy, :usergroups]
 
   def index
     @users = User.paginate(page: params[:page])
+  end
+
+  def index_public
+    @groupedUsers = User.order(batch: :desc).reject { |u| (!u.lid? || u.alid? )}.group_by {|u| u[:batch]} 
   end
 
   def show
@@ -65,7 +69,7 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :approved,
-                                 :password_confirmation)
+                                 :password_confirmation, :batch)
   end
 
   def correct_user

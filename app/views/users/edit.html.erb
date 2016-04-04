@@ -35,15 +35,17 @@
     <%= form_for(@user) do |f| %>
         <div class="form-group">
           <%= render 'shared/error_messages', object: f.object %>
-          <%= f.label :name, 'Naam' %>
-          <%= f.text_field :name, class: 'form-control' %>
-          <%= f.label :email, 'Email' %>
-          <%= f.text_field :email, class: 'form-control' %>
-          <%= f.label :password, 'Wachtwoord' %>
-          <%= f.password_field :password, class: 'form-control' %>
-          <%= f.label :password_confirmation, 'Herhaal wachtwoord' %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
-          <%= f.submit 'Opslaan', class: 'btn btn-large btn-primary' %>
+          <%= f.label :name, "Naam" %>
+          <%= f.text_field :name, class: "form-control" %>
+          <%= f.label :email, "Email" %>
+          <%= f.text_field :email, class: "form-control" %>
+          <%= f.label :batch, "Lichting" %>
+          <%= f.number_field :batch, class: "form-control" %>
+          <%= f.label :password, "Wachtwoord" %>
+          <%= f.password_field :password, class: "form-control" %>
+          <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
+          <%= f.password_field :password_confirmation, class: "form-control" %>
+          <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
         </div>
     <% end %>
   </div>
