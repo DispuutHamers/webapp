@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def index_public
-    @groupedUsers = User.order(batch: :desc).reject { |u| (!u.lid? || u.alid? )}.group_by {|u| u[:batch]} 
+    @groupedUsers = User.order(batch: :desc).reject { |u| !u.lid? }.group_by {|u| u[:batch]} 
   end
 
   def show

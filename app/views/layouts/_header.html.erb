@@ -13,6 +13,7 @@
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Leden', public_leden_path if !signed_in? %> </li>
           <% PublicPage.all.each do |pp| %>
               <% if pp.public %>
                   <li><%= link_to pp.title, "/#{pp.title}" %></li>
