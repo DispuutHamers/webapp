@@ -1,5 +1,5 @@
 <ul>
   <% @events.each do |f| %>
-      <li><%= f.date.strftime("%d/%m/%Y") %> - <%= link_to f.title, f %></li>
+      <li><%= f.date.strftime('%d/%m/%Y') %> - <%= link_to f.title, f %></li>
   <% end %>
 </ul>

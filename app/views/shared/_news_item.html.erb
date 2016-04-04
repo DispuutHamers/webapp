@@ -13,9 +13,9 @@
       <% else %>
           <li>
       <% end %>
-      <% if n.cat == "d" %>
+      <% if n.cat == 'd' %>
           <div class="timeline-badge danger"></div>
-      <% elsif n.cat == "e" %>
+      <% elsif n.cat == 'e' %>
           <div class="timeline-badge info"></div>
       <% else %>
           <div class="timeline-badge success"></div>
@@ -26,9 +26,9 @@
           <p>
             <small class="text-muted">
               <i class="glyphicon glyphicon-time"></i>
-              <%= time_ago_in_words(n.created_at) %> ago. (<%= n.created_at.strftime("%-d/%-m/%y %H:%M") %>)
-              <% if current_user.admin? %> | <%= link_to "edit", edit_news_path(n) %> | <%= link_to "delete", n, method: :delete,
-                                                                                                    data: { confirm: "Weet je het zeker?" },
+              <%= time_ago_in_words(n.created_at) %> ago. (<%= n.created_at.strftime('%-d/%-m/%y %H:%M') %>)
+              <% if current_user.admin? %> | <%= link_to 'edit', edit_news_path(n) %> | <%= link_to 'delete', n, method: :delete,
+                                                                                                    data: { confirm: 'Weet je het zeker?'},
                                                                                                     title: n.title %>
               <% end %>
             </small>

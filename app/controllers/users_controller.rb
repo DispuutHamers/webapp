@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Wacht tot iemand je account enabled."
+      flash[:success] = 'Wacht tot iemand je account enabled.'
       redirect_to root_path
     else
       render 'new'
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     end
     if @user.update_attributes(user_params)
       sign_in current_user
-      flash[:success] = "Profile updated"
+      flash[:success] = 'Profile updated'
       redirect_to @user
     else
       render 'edit'
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User destroyed"
+    flash[:success] = 'User destroyed'
     redirect_to users_path
   end
 
@@ -74,6 +74,6 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin?
+    redirect_to root_url, notice: 'Niet genoeg access' unless current_user?(@user) or current_user.admin?
   end
 end

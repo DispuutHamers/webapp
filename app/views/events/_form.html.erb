@@ -1,7 +1,7 @@
 <%= form_for(@event) do |f| %>
     <% if @event.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+          <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
           <ul>
             <% @event.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
@@ -12,16 +12,16 @@
     <div><%= f.hidden_field :user_id %></div>
     <div class="form-group">
       <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+      <%= f.text_field :title, class: 'form-control' %>
       <%= f.label :locatie %>
-      <%= f.text_field :location, class: "form-control" %>
+      <%= f.text_field :location, class: 'form-control' %>
       <%= f.label :date %><br>
-      <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: "form-control datetime-select" %><br>
+      <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
       <%= f.label :end_time %><br>
-      <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: "form-control datetime-select"  %><br>
-      <%= f.label :deadline, "Inschrijf deadline" %><br>
-      <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: "form-control datetime-select"  %><br>
-      <%= f.text_area :beschrijving, class: "form-control", placeholder: "Wat gaan we doen?" %>
+      <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
+      <%= f.label :deadline, 'Inschrijf deadline' %><br>
+      <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
+      <%= f.text_area :beschrijving, class: 'form-control', placeholder: 'Wat gaan we doen?' %>
     </div>
-    <%= f.submit :Verstuur, class: "btn btn-primary" %>
+    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
 <% end %>

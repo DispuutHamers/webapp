@@ -7,24 +7,26 @@
     </section>
     <% if current_user.admin? %>
         <section>
-          <%= link_to "Groepen", usergroups_user_path(@user) %>
+          <%= link_to 'Groepen', usergroups_user_path(@user) %>
         </section>
     <% end %>
     <section>
       Api keys:<br />
       <% @user.api_keys.each do |ak| %>
-          <%= ak.name %>: <%= link_to ak.key, ak %> <%= link_to "x", ak, method: :delete, data: { confirm: "Zeker weten?" } %><br />
+          <%= ak.name %>: <%= link_to ak.key, ak %> <%= link_to  ak, method: :delete, data: { confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
+              <i class="fa fa-trash"></i>
+              <% end %><br>
           Last used:
           <% if log = ApiLog.where(key: ak.id).last %>
-              <%= log.created_at.strftime("%d/%m/%Y %H:%m") %> by: <%= log.ip_addr %>
+              <%= log.created_at.strftime('%d-%m-%Y %H:%m') %> by: <%= log.ip_addr %>
           <% else %>
               Not yet used
-          <% end %><br \>
+          <% end %><br>
       <% end %>
       <%= form_for(ApiKey.new) do |f| %>
           <div class="form-group">
-            <%= f.text_field :name, placeholder: "Naam", class: "form-control" %>
-            <%= f.submit "Toevoegen", class: "btn btn-default" %>
+            <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
+            <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
           </div>
       <% end %>
     </section>

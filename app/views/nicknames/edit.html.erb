@@ -5,14 +5,14 @@
 
   <%= f.label :user_id %>
   <% users_array = User.all.map { |user| [user.name, user.id] } %>
-  <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: "form-control" %>
+  <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: 'form-control' %>
 
   <%= f.label :nickname %>
-  <%= f.text_field :nickname, class: "form-control" %>
+  <%= f.text_field :nickname, class: 'form-control' %>
 
   <%= f.label :description %>
-  <%= f.text_field :description, class: "form-control" %>    
+  <%= f.text_field :description, class: 'form-control' %>
 
-  <%= f.submit "Nickname wijzigen", class: "btn btn-large btn-primary" %>
+  <%= f.submit 'Nickname wijzigen', class: 'btn btn-large btn-primary' %>
 <% end %>
 
