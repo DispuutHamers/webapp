@@ -39,13 +39,13 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @beer = @review.beer
     @review.destroy
-    flash[:success] = "Review destroyed"
+    flash[:success] = 'Review destroyed'
     redirect_to @beer
   end
 
   private
   def correct_user
     @user = Review.find(params[:id]).user
-    redirect_to root_url, notice: "Niet genoeg access" unless current_user?(@user) or current_user.admin? or current_user.schrijf_feut?
+    redirect_to root_url, notice: 'Niet genoeg access' unless current_user?(@user) or current_user.admin? or current_user.schrijf_feut?
   end
 end

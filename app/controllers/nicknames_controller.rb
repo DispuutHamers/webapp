@@ -27,7 +27,7 @@ class NicknamesController < ApplicationController
   def update
     @nickname = Nickname.find(params[:id])
     if @nickname.update(nickname_params)
-      flash[:success] = "Nickname aangepast"
+      flash[:success] = 'Nickname aangepast'
       redirect_to nicknames_path
     end
   end
@@ -35,7 +35,7 @@ class NicknamesController < ApplicationController
 
   def destroy
     Nickname.find(params[:id]).destroy
-    flash[:success] = "Bijnaam is weg"
+    flash[:success] = 'Bijnaam is weg'
     redirect_to nicknames_path
   end
 

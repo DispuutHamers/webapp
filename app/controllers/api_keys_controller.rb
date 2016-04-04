@@ -16,7 +16,7 @@ class ApiKeysController < ApplicationController
   def destroy
     @key = ApiKey.find(params[:id])
     @key.destroy
-    flash[:succes] = "Je api key is kaput"
+    flash[:succes] = 'Je api key is kaput'
     redirect_to request.referer
   end
 
@@ -26,6 +26,6 @@ class ApiKeysController < ApplicationController
   end
 
   def correct_user?
-    redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user == ApiKey.find(params[:id]).user || current_user.admin?
+    redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user == ApiKey.find(params[:id]).user || current_user.admin?
   end
 end

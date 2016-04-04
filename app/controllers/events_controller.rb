@@ -13,10 +13,10 @@ class EventsController < ApplicationController
       w.html do
         @events = Event.all.order(date: :desc).paginate(page: params[:page])
         #redirect_to root_path, notice: "Mag niet!." unless lid?
-        redirect_to signin_url, notice: "Please sign in." unless signed_in?
+        redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
       end
       w.ics do
-        feed = Event.all.order("date").where(['date >= ?', Date.today]).limit(10)
+        feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
         calendar = Icalendar::Calendar.new
         feed.each do |f|
           calendar.add_event(f.to_ics)

@@ -20,9 +20,9 @@ class SignupsController < ApplicationController
     @event = Event.find(params[:signup][:event_id])
     if @event.deadline > Time.now
       current_user.sign!(@event, params[:signup][:status])
-      flash[:success] = "Je staat erbij!"
+      flash[:success] = 'Je staat erbij!'
     else
-      flash[:error] = "De deadline is al verstreken"
+      flash[:error] = 'De deadline is al verstreken'
     end
     redirect_to @event
   end

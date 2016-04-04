@@ -10,7 +10,7 @@ class UsergroupsController < ApplicationController
   def create
     @usergroup = Usergroup.new(usergroup_params)
     if @usergroup.save
-      flash[:succes] = "Quote staat erop"
+      flash[:succes] = 'Quote staat erop'
       redirect_to root_url
     else
       @usergroups = Usergroup.all
@@ -28,7 +28,7 @@ class UsergroupsController < ApplicationController
 
   def admin_user
     @quote = Quote.find_by_id(params[:id])
-    redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
+    redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user.admin?
   end
 
 end

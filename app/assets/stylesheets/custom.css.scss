@@ -85,28 +85,6 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $grayLight;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-
 /* header */
 
 #logo {
@@ -150,7 +128,6 @@ footer {
   }
 }
 
-
 /* sidebar */
 
 aside {
@@ -172,6 +149,9 @@ aside {
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0;
+    }
+    .form-group {
+      width: 100%;
     }
   }
 }
@@ -220,3 +200,23 @@ input {
   width: 100%;
 }
 
+/* tables */
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+  background-color: #e6EEEE;
+}
+
+table.tablesorter thead tr .header {
+  cursor: pointer;
+}
+
+table.tablesorter tbody tr.odd td {
+  background-color: #F0F0F6;
+}
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+  background-color: #8dbdd8;
+}
+
+table.events thead tr th, table.tablesorter tfoot tr th {
+  background-color: #e6EEEE;
+}
