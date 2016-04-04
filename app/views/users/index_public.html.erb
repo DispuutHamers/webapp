@@ -1,0 +1,28 @@
+<h1> Leden </h1>
+<% @groupedUsers.each do |group| %>
+  <div class='row'>
+    <% if group[0] != nil %>
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= group[0] == 0 ? "Oprichters:" : "Lichting " + group[0].to_s + ":" %> </div>
+          </h3>
+          <div class="panel-body">
+          <% group[1].each do |user| %>
+            <div>
+              <div class="col-md-4 col-sm-6">
+                <div class="panel">
+                  <div class="panel-body">
+                    <%= gravatar_for user, size: 150 %>
+                    <%= user.name %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %> 
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
