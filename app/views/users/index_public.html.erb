@@ -21,7 +21,7 @@
                 <div class="panel">
                   <div class="panel-body">
                     <%= gravatar_for user, size: 150 %>
-                    <%= user.name %>
+                    <%= user.name %> <%= "(Aspirant)" if user.adlid? %>
                   </div>
                 </div>
               </div>
