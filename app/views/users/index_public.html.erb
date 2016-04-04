@@ -1,16 +1,18 @@
+<%=link_to "Bekijk de interne leden pagina", users_path, class: 'btn btn-primary' if signed_in?%>
 <div class="row">
   <div class="col-md-12 text-center">
     <h1>Leden</h1>
   </div>
 </div>
+<hr>
 
 <% @groupedUsers.each do |group| %>
   <div class='row'>
-    <% if group[0] != nil %>
+    <% if group[0] %>
       <div class="panel panel-success">
         <div class="panel-heading">
           <h3 class="panel-title">
-            <%= group[0] == 0 ? "Oprichters:" : "Lichting " + group[0].to_s + ":" %> </div>
+            <%= group[0] == 0 ? "Oprichters" : "Lichting " + group[0].to_s %> </div>
           </h3>
           <div class="panel-body">
           <% group[1].each do |user| %>
