@@ -8,12 +8,17 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <a href="#" class="pull-left" style="padding-top: 5px; padding-left: 5px; ">
+          <img src=<%= image_path("logo_transparant_background_small.png") %>>
+        </a>
+
         <%= link_to 'HAMERS', root_path, class: 'navbar-brand', id: 'logo' %>
       </div>
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Leden', public_leden_path if !signed_in? %> </li>
+          <% if !signed_in? %>
+            <li><%= link_to 'Leden', public_leden_path %> </li>
+          <% end %>
           <% PublicPage.all.each do |pp| %>
               <% if pp.public %>
                   <li><%= link_to pp.title, "/#{pp.title}" %></li>
