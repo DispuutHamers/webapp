@@ -187,11 +187,12 @@ input {
   }
 }
 
-.field_with_errors {
+#user-selector {
+  width: 100%;
 }
 
 /* other */
-.gravatar {
+section .gravatar {
   float: left;
   margin-right: 10px;
 }
@@ -219,4 +220,10 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 
 table.events thead tr th, table.tablesorter tfoot tr th {
   background-color: #e6EEEE;
+}
+
+.thumbnail-member {
+  text-align: center;
+  border: none;
+  transition: none;
 }

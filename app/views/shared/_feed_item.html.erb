@@ -7,7 +7,7 @@
     <%= feed_item.text %>
   </span>
   <span class="timestamp">
-   Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+    <%= time_ago_in_words(I18n.l feed_item.created_at) %> geleden.
   </span>
   <% if current_user.admin? %>
       <div class="btn-group">
