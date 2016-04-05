@@ -258,6 +258,3 @@ DEPENDENCIES
   web-console
   whenever
   will_paginate
-
-BUNDLED WITH
-   1.10.5
