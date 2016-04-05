@@ -1,9 +1,9 @@
 <%= link_to gravatar_for(@rQuote.user), @rQuote.user %>
 <span class="user">
    <%= link_to @rQuote.user.name, @rQuote.user %>
-   </span>
+</span>
 <span class="content"><%= @rQuote.text %></span>
 <span class="timestamp">
-   Posted <%= time_ago_in_words(@rQuote.created_at) %> ago.
-   </span>
+   <%= time_ago_in_words(I18n.l @rQuote.created_at) %> geleden.
+</span>
 

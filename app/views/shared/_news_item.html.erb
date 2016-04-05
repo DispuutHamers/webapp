@@ -6,7 +6,7 @@
         </div>
       </li>
   <% end %>
-  <br /><br />
+  <br/><br/>
   <% @news.each do |n| %>
       <% if n.id.odd? %>
           <li class="timeline-inverted">
@@ -22,15 +22,22 @@
       <% end %>
       <div class="timeline-panel">
         <div class="timeline-heading">
-          <h4 class="timeline-title"><%= n.title %></h4>
+          <h4 class="timeline-title">
+            <%= n.title %>
+            <% if current_user.admin? %>
+                <div class="btn-group">
+                  <%= link_to edit_news_path(n), class: 'btn btn-default btn-sm' do %>
+                      <i class="fa fa-pencil"></i>
+                  <% end %>
+                  <%= link_to n, method: :delete, data: {confirm: 'Weet je het zeker?'}, title: n.title, class: 'btn btn-default btn-sm' do %>
+                      <i class="fa fa-trash"></i>
+                  <% end %>
+                </div>
+            <% end %></h4>
           <p>
             <small class="text-muted">
-              <i class="glyphicon glyphicon-time"></i>
-              <%= time_ago_in_words(n.created_at) %> ago. (<%= n.created_at.strftime('%-d/%-m/%y %H:%M') %>)
-              <% if current_user.admin? %> | <%= link_to 'edit', edit_news_path(n) %> | <%= link_to 'delete', n, method: :delete,
-                                                                                                    data: { confirm: 'Weet je het zeker?'},
-                                                                                                    title: n.title %>
-              <% end %>
+              <i class="fa fa-clock-o"></i>
+              <%= time_ago_in_words(I18n.l n.created_at) %> geleden. (<%= n.created_at.strftime('%-d-%-m-%y %H:%M') %>)
             </small>
           </p>
         </div>

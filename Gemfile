@@ -51,6 +51,9 @@ gem 'jbuilder', '~> 1.2'
 #Uses for charts
 gem 'chartkick'
 
+# Language support
+gem 'rails-i18n'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

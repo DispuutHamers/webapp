@@ -1,7 +1,7 @@
 <li>
   <span class="content"><%= quote.text %></span>
    <span class="timestamp">
-   Posted <%= time_ago_in_words(quote.created_at) %> ago.
+   <%= time_ago_in_words(I18n.l @rQuote.created_at) %> geleden.
    </span>
   <% if current_user.admin? %>
       <%= link_to quote, method: :delete,
