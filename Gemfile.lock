@@ -45,6 +45,7 @@ GEM
       sass (>= 3.2)
     bootstrap-will_paginate (0.0.10)
       will_paginate
+    bootstrap_form (2.3.0)
     builder (3.2.2)
     capistrano (3.4.0)
       i18n
@@ -234,6 +235,7 @@ DEPENDENCIES
   bcrypt-ruby
   bootstrap-glyphicons
   bootstrap-will_paginate
+  bootstrap_form
   capistrano
   capistrano-rails (~> 1.1)
   chartkick
@@ -264,4 +266,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.11.2
+   1.12.0.rc

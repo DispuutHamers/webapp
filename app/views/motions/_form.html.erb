@@ -4,7 +4,7 @@
         ['Motie van duurt lang', 'duurt lang']
 ]
 %>
-<%= form_for(@motion) do |f| %>
+<%= bootstrap_form_for(@motion) do |f| %>
     <% if @motion.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@motion.errors.count, 'error') %> prohibited this motion from being saved:</h2>

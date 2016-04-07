@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+    <%= @meeting.onderwerp %>
+<% end %>
 <div class="row">
   <aside class="span8">
     <section>

@@ -1,4 +1,6 @@
-<h1>Wijzig je profiel</h1>
+<% content_for :title do %>
+    Wijzig je profiel
+<% end %>
 <div class="row">
   <aside class="col-md-4">
     <section>
@@ -11,11 +13,12 @@
         </section>
     <% end %>
     <section>
-      Api keys:<br />
+      Api keys:<br/>
       <% @user.api_keys.each do |ak| %>
-          <%= ak.name %>: <%= link_to ak.key, ak %> <%= link_to  ak, method: :delete, data: { confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
+          <%= ak.name %>
+          : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
               <i class="fa fa-trash"></i>
-              <% end %><br>
+          <% end %><br>
           Last used:
           <% if log = ApiLog.where(key: ak.id).last %>
               <%= log.created_at.strftime('%d-%m-%Y %H:%m') %> by: <%= log.ip_addr %>

@@ -1,18 +1,22 @@
-<%= form_for(@nickname) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-
-  <h1> Bijnaam toevoegen </h1>
-
-  <%= f.label :user_id %>
-  <% users_array = User.all.map { |user| [user.name, user.id] } %>
-  <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: 'form-control' %>
-
-  <%= f.label :nickname %>
-  <%= f.text_field :nickname, class: 'form-control' %>
-
-  <%= f.label :description %>
-  <%= f.text_field :description, class: 'form-control' %>
-
-  <%= f.submit 'Nickname wijzigen', class: 'btn btn-large btn-primary' %>
+<% content_for :title do %>
+    Bijnaam aanpassen
 <% end %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= form_for(@nickname) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
 
+        <%= f.label :user_id %>
+        <% users_array = User.all.map { |user| [user.name, user.id] } %>
+        <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: 'form-control' %>
+
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, class: 'form-control' %>
+
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+
+        <%= f.submit 'Bijnaam bewerken', class: 'btn btn-large btn-primary' %>
+    <% end %>
+  </div>
+</div>

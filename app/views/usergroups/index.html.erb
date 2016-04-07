@@ -1,4 +1,6 @@
-<h1>Groepen</h1>
+<% content_for :title do %>
+    Groepen
+<% end %>
 <% @usergroups.each do |group| %>
     <li>
       <%= group.name %>

@@ -1,10 +1,7 @@
-<%= link_to "Bekijk de interne leden pagina", users_path, class: 'btn btn-primary' if signed_in? %>
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h1>Leden</h1>
-  </div>
-</div>
-<hr>
+<% content_for :title do %>
+    Leden
+<% end %>
+<%= link_to 'Bekijk de interne leden pagina', users_path, class: 'btn btn-primary' if signed_in? %>
 <div class="col-md-12">
   <% @groupedUsers.each do |group| %>
       <div class='row'>

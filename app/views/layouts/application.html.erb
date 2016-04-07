@@ -14,11 +14,24 @@
 <%= render 'layouts/header' %>
 <div class="container">
   <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %> text-center" role="alert" ><%= value %></div>
+      <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
   <% end %>
-  <%= yield %>
-  <%= render 'layouts/footer' %>
-  <%= debug(params) if Rails.env.development? %>
+  <% if content_for?(:title) %>
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1><%= yield(:title) %></h1>
+        </div>
+      </div>
+      <hr>
+  <% end %>
+  <div class="row">
+    <div class="col-md-12">
+      <%= yield %>
+
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </div>
 </div>
 </body>
 </html>

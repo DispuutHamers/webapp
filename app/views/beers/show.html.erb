@@ -1,9 +1,6 @@
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h1><%= @beer.name %></h1>
-  </div>
-</div>
-<hr>
+<% content_for :title do %>
+    <%= @beer.name %>
+<% end %>
 <div class="row">
   <div class="col-md-8">
     <% @beer.reviews.each do |r| %>
@@ -38,9 +35,9 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <% if @beer.picture? %>
-            <%= image_tag(@beer.picture, :class => 'img img-responsive') %>
+            <%= image_tag(@beer.picture, :class => 'img img-responsive center-block') %>
         <% else %>
-            <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive">
+            <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
         <% end %>
         <table class="table table-hover">
           <tr>

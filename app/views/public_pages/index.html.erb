@@ -1,3 +1,6 @@
+<% content_for :title do %>
+    Openbare pagina's
+<% end %>
 <script type="text/javascript">
     $(document).ready(function()
             {
@@ -32,4 +35,4 @@
   </tbody>
 </table>
 <%= will_paginate %>
-<%= link_to 'Add Pagina', new_public_page_path %>
+<%= link_to 'Add Pagina', new_public_page_path, class: 'btn btn-primary btn-block' %>
