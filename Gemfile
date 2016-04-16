@@ -5,8 +5,7 @@ gem 'rb-readline'
 gem 'icalendar'
 gem 'tzinfo'
 gem 'redcarpet' 
-gem 'rqrcode_png'  
-gem 'bootstrap-glyphicons'
+gem 'rqrcode_png'
 gem 'whenever', :require => false
 gem 'nprogress-rails'
 gem 'gcm' 
@@ -22,7 +21,6 @@ gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails'
 gem 'therubyracer'
-gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
