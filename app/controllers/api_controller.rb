@@ -29,7 +29,7 @@ class ApiController < ApplicationController
     @type = 'quote' if params[:request] == 'quote'
     @type = 'event' if params[:request] == 'event'
     @type = 'review' if params[:request] == 'review'
-    @type = 'motie' if params[:request] == 'motie'
+    @type = 'motie' if params[:request] == 'motion'
     @type = 'beer' if params[:request] == 'beer'
     @type = 'signup' if params[:request] == 'signup'
     @type = 'news' if params[:request] == 'news'
