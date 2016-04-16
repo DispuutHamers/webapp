@@ -1,8 +1,14 @@
-<h1>Nieuws aanpassen</h1>
+<% content_for :title do %>
+    Nieuws aanpassen
+<% end %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
 
-<%= render 'form' %>
+    <%= render 'form' %>
 
-<div class="btn-group">
-  <%= link_to 'Show', @news, class: 'btn btn-default' %>
-  <%= link_to 'Terug', news_index_path, class: 'btn btn-default' %>
+    <div class="btn-group">
+      <%= link_to 'Weergeven', @news, class: 'btn btn-default' %>
+      <%= link_to 'Terug', news_index_path, class: 'btn btn-default' %>
+    </div>
+  </div>
 </div>

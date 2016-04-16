@@ -1,9 +1,6 @@
-<div class="row">
-  <div class="col-md-12 text-center">
-    <h1><%= @event.title %></h1>
-  </div>
-</div>
-<hr>
+<% content_for :title do %>
+    <%= @event.title %>
+<% end %>
 <div class="row">
   <div class="col-md-8">
     <p>
