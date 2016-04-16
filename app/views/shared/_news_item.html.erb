@@ -37,7 +37,7 @@
           <p>
             <small class="text-muted">
               <i class="fa fa-clock-o"></i>
-              <%= time_ago_in_words(I18n.l n.created_at) %> geleden. (<%= n.created_at.strftime('%-d-%-m-%y %H:%M') %>)
+              <%= time_ago_in_words(n.created_at) %> geleden. (<%= n.created_at.strftime('%-d-%-m-%y %H:%M') %>)
             </small>
           </p>
         </div>
