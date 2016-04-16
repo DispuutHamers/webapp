@@ -25,6 +25,6 @@ class StaticPagesController < ApplicationController
   private
   def getCumulativeData(table)
     sum = 0
-    table.order('created_at asc').group('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
+    table.unscoped.order('created_at asc').group('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
   end
 end
