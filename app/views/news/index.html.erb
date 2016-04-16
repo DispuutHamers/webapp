@@ -1,50 +1,51 @@
-<div class="container">
-  <ul class="timeline">
-    <%= link_to new_news_path do %>
-        <li>
-          <div class="timeline-badge"><i class="fa fa-plus"></i></div>
-        </li>
-    <% end %>
-    <br/><br/>
-    <% @news.each do |n| %>
-        <% if n.cat != 'e' %>
-            <li class="timeline-inverted">
-        <% else %>
-            <li>
-        <% end %>
-        <% if n.cat == 'd' %>
-            <div class="timeline-badge danger"></div>
-        <% elsif n.cat == 'e' %>
-            <div class="timeline-badge info"></div>
-        <% else %>
-            <div class="timeline-badge success"></div>
-        <% end %>
-        <div class="timeline-panel">
-          <div class="timeline-heading">
-            <h4 class="timeline-title">
-              <%= n.title %>
-              <% if current_user.admin? %>
-                  <div class="btn-group">
-                    <%= link_to edit_news_path(n), class: 'btn btn-default btn-sm' do %>
-                        <i class="fa fa-pencil"></i>
-                    <% end %>
-                    <%= link_to n, method: :delete, data: {confirm: 'Weet je het zeker?'}, title: n.title, class: 'btn btn-default btn-sm' do %>
-                        <i class="fa fa-trash"></i>
-                    <% end %>
-                  </div>
-              <% end %></h4>
-            <p>
-              <small class="text-muted">
-                <i class="fa fa-clock-o"></i>
+<% content_for :title do %>
+    Nieuws
+<% end %>
+<ul class="timeline">
+  <%= link_to new_news_path do %>
+      <li>
+        <div class="timeline-badge"><i class="fa fa-plus"></i></div>
+      </li>
+  <% end %>
+  <br/><br/>
+  <% @news.each do |n| %>
+      <% if n.cat != 'e' %>
+          <li class="timeline-inverted">
+      <% else %>
+          <li>
+      <% end %>
+      <% if n.cat == 'd' %>
+          <div class="timeline-badge danger"></div>
+      <% elsif n.cat == 'e' %>
+          <div class="timeline-badge info"></div>
+      <% else %>
+          <div class="timeline-badge success"></div>
+      <% end %>
+      <div class="timeline-panel">
+        <div class="timeline-heading">
+          <h4 class="timeline-title">
+            <%= n.title %>
+            <% if current_user.admin? %>
+                <div class="btn-group">
+                  <%= link_to edit_news_path(n), class: 'btn btn-default btn-sm' do %>
+                      <i class="fa fa-pencil"></i>
+                  <% end %>
+                  <%= link_to n, method: :delete, data: {confirm: 'Weet je het zeker?'}, title: n.title, class: 'btn btn-default btn-sm' do %>
+                      <i class="fa fa-trash"></i>
+                  <% end %>
+                </div>
+            <% end %></h4>
+          <p>
+            <small class="text-muted">
+              <i class="fa fa-clock-o"></i>
                 <%= time_ago_in_words(n.created_at) %> geleden. (<%= n.created_at.strftime('%-d-%-m-%y %H:%M') %>)
-              </small>
-            </p>
-          </div>
-          <div class="timeline-body">
-            <p><%= n.body %></p>
-          </div>
+            </small>
+          </p>
         </div>
-        </li>
-    <% end %>
-  </ul>
-</div>
+        <div class="timeline-body">
+          <p><%= n.body %></p>
+        </div>
+      </div>
+      </li>
+  <% end %>
+</ul>

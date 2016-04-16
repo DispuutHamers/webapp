@@ -1,3 +1,6 @@
+<% content_for :title do %>
+    Review aanpassen
+<% end %>
 <%= form_for(@review) do |f| %>
     <div class="form-group">
       <%= f.text_area :description, class: 'form-control', placeholder: 'Wat vonden we ervan?' %>
