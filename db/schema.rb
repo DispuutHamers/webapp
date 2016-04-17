@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404142409) do
+ActiveRecord::Schema.define(version: 20160417160533) do
 
   create_table "afmeldingens", force: :cascade do |t|
     t.string   "reden",      limit: 255
@@ -153,6 +153,13 @@ ActiveRecord::Schema.define(version: 20160404142409) do
     t.binary   "data",        limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "polls", force: :cascade do |t|
