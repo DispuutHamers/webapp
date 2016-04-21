@@ -34,7 +34,8 @@ class MeetingsController < ApplicationController
 
     respond_to do |format|
       if @meeting.save
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
+        flash[:success] = 'Vergadering succesvol aangemaakt.'
+        format.html { redirect_to @meeting }
         format.json { render action: 'show', status: :created, location: @meeting }
       else
         format.html { render action: 'new' }
@@ -48,7 +49,8 @@ class MeetingsController < ApplicationController
   def update
     respond_to do |format|
       if @meeting.update(meeting_params)
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
+        flash[:success] = 'Vergadering succesvol gewijzigd.'
+        format.html { redirect_to @meeting }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

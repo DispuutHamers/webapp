@@ -31,7 +31,8 @@ class NewsController < ApplicationController
     @news.date = Time.now
     respond_to do |format|
       if @news.save
-        format.html { redirect_to news_index_path, notice: 'Ok.' }
+        flash[:success] = 'Nieuwsitem succesvol aangemaakt.'
+        format.html { redirect_to news_index_path }
         format.json { render action: 'show', status: :created, location: @news }
         update_app("{ data: { news: { id: \"#{@news.id}\", title: \"#{@news.title}\", body: \"#{@news.body}\", created_at: #{@news.created_at.to_json}} } }")
       else
@@ -46,7 +47,8 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to news_index_path, notice: 'updated.' }
+        flash[:success] = 'Nieuwsitem succesvol bijgewerkt.'
+        format.html { redirect_to news_index_path }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

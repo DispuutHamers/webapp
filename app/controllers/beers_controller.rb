@@ -35,7 +35,8 @@ class BeersController < ApplicationController
     respond_to do |format|
       if @beer.save
         update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\", cijfer: \"null\", created_at: #{@beer.created_at.to_json}  } } }")
-        format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
+        flash[:success] = 'Biertje succesvol aangemaakt.'
+        format.html { redirect_to @beer }
         format.json { render action: 'show', status: :created, location: @beer }
       else
         format.html { render action: 'new' }
@@ -49,7 +50,8 @@ class BeersController < ApplicationController
   def update
     respond_to do |format|
       if @beer.update(beer_params)
-        format.html { redirect_to @beer, notice: 'Beer was successfully updated.' }
+        flash[:success] = 'Biertje succesvol bijgewerkt.'
+        format.html { redirect_to @beer }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

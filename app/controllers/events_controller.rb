@@ -49,7 +49,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: #{@event.date.to_json}, location: \"#{@event.location}\", deadline: #{@event.deadline.to_json}, signups: [], end_time: #{@event.end_time.to_json}, title: \"#{@event.title}\"} } }")
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        flash[:success] = 'Activiteit succesvol aangemaakt.'
+        format.html { redirect_to @event }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -63,7 +64,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        flash[:success] = 'Activiteit succesvol gewijzigd.'
+        format.html { redirect_to @event }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
