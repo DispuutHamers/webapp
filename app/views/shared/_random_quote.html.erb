@@ -4,6 +4,6 @@
 </span>
 <span class="content"><%= @rQuote.text %></span>
 <span class="timestamp">
-   <%= time_ago_in_words(I18n.l @rQuote.created_at) %> geleden.
+   <%= time_ago_in_words(@rQuote.created_at) %> geleden.
 </span>
 

@@ -1,6 +1,6 @@
 <li>
   <span class="content"><%= micropost.content %></span>
   <span class="timestamp">
-    <%= time_ago_in_words(I18n.l micropost.created_at) %> geleden.
+    <%= time_ago_in_words(micropost.created_at) %> geleden.
   </span>
 </li>

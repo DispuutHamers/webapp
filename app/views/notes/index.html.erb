@@ -1,0 +1,32 @@
+<% content_for :title do %>
+    Notities
+<% end %>
+<script type="text/javascript">
+    $(document).ready(function()
+            {
+                $("#notes").tablesorter();
+            }
+    );
+</script>
+<%= link_to "nieuwe", new_note_path %>
+<table id="notes" class="tablesorter table table-hover">
+  <thead>
+  <tr>
+    <th>Naam</th>
+		<th></th>
+  </tr>
+  </thead>
+  <%= will_paginate %>
+  <tbody>
+  <% @notes.each do |n| %>
+      <tr>
+        <td><%= link_to n.title, n %></td>
+        <td><%= link_to 'Show', n %> |
+          <%= link_to 'Edit', edit_note_path(n) %> |
+          <%= link_to 'Destroy', n, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate %>
