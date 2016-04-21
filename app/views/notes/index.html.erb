@@ -1,19 +1,19 @@
 <% content_for :title do %>
     Notities
 <% end %>
+
 <script type="text/javascript">
-    $(document).ready(function()
-            {
-                $("#notes").tablesorter();
-            }
-    );
+  $(document).ready(function () {
+        $("#notes").tablesorter();
+      }
+  );
 </script>
-<%= link_to "nieuwe", new_note_path %>
+
 <table id="notes" class="tablesorter table table-hover">
   <thead>
   <tr>
     <th>Naam</th>
-		<th></th>
+    <th>Admin stuff</th>
   </tr>
   </thead>
   <%= will_paginate %>
@@ -21,12 +21,19 @@
   <% @notes.each do |n| %>
       <tr>
         <td><%= link_to n.title, n %></td>
-        <td><%= link_to 'Show', n %> |
-          <%= link_to 'Edit', edit_note_path(n) %> |
-          <%= link_to 'Destroy', n, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <td>
+          <div class="btn-group">
+            <%= link_to edit_note_path(n), class: 'btn btn-info' do %>
+                <i class="fa fa-pencil"></i>
+            <% end %>
+            <%= link_to n, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' do %>
+                <i class="fa fa-trash"></i>
+            <% end %>
+          </div>
         </td>
       </tr>
   <% end %>
   </tbody>
 </table>
 <%= will_paginate %>
+<%= link_to 'Nieuwe notitie', new_note_path, class: 'btn btn-block btn-primary' %>
