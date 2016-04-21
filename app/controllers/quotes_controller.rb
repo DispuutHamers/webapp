@@ -9,7 +9,7 @@ class QuotesController < ApplicationController
     @quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
     @quote.reporter = current_user.id
     if @quote.save
-      flash[:succes] = 'Quote staat erop'
+      flash[:success] = 'Quote staat erop'
       update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", created_at: #{@quote.created_at.to_json}} } }")
       redirect_to root_url
     else
@@ -34,7 +34,7 @@ class QuotesController < ApplicationController
   def destroy
     @quote = Quote.find(params[:id])
     @quote.destroy
-    flash[:succes] = 'Zie je nooit meer terrug'
+    flash[:success] = 'Zie je nooit meer terrug'
     redirect_to request.referer
   end
 end

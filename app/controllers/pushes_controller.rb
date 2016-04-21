@@ -18,7 +18,8 @@ class PushesController < ApplicationController
 
     respond_to do |format|
       if @push.save
-        format.html { redirect_to new_push_path, notice: 'Push was successfully created.' }
+        flash[:success] = 'Push succesvol aangemaakt.'
+        format.html { redirect_to new_push_path }
         format.json { render action: 'show', status: :created, location: @push }
       else
         format.html { render action: 'new' }

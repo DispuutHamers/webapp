@@ -32,7 +32,8 @@ class SignupsController < ApplicationController
   def update
     respond_to do |format|
       if @signup.update(signup_params)
-        format.html { redirect_to @signup, notice: 'Signup was successfully updated.' }
+        flash[:success] = 'Signup succesvol bijgewerkt.'
+        format.html { redirect_to @signup }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

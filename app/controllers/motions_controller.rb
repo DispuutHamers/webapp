@@ -30,7 +30,8 @@ class MotionsController < ApplicationController
     @motion.user_id = current_user.id
     respond_to do |format|
       if @motion.save
-        format.html { redirect_to root_path, notice: 'Je motie wordt behandeld.' }
+        flash[:success] = 'Je motie wordt behandeld.'
+        format.html { redirect_to root_path }
       else
         format.html { render action: 'new' }
       end
@@ -42,7 +43,8 @@ class MotionsController < ApplicationController
   def update
     respond_to do |format|
       if @motion.update(motion_params)
-        format.html { redirect_to @motion, notice: 'Motion was successfully updated.' }
+        flash[:success] = 'Motie succesvol bijgewerkt.'
+        format.html { redirect_to @motion }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

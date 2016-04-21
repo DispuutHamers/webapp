@@ -31,7 +31,8 @@ class PublicPagesController < ApplicationController
 
     respond_to do |format|
       if @public_page.save
-        format.html { redirect_to @public_page, notice: 'Public page was successfully created.' }
+        flash[:success] = 'Publieke pagina succesvol aangemaakt.'
+        format.html { redirect_to @public_page }
         format.json { render action: 'show', status: :created, location: @public_page }
       else
         format.html { render action: 'new' }
@@ -45,7 +46,8 @@ class PublicPagesController < ApplicationController
   def update
     respond_to do |format|
       if @public_page.update(public_page_params)
-        format.html { redirect_to @public_page, notice: 'Public page was successfully updated.' }
+        flash[:success] = 'Publieke pagina succesvol bijgewerkt.'
+        format.html { redirect_to @public_page }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

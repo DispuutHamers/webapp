@@ -11,7 +11,8 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       if @review.save
         update_app("{ data: { review: { beer_id: \"#{@review.beer_id}\", user_id: \"#{@review.user_id}\", description: \"#{@review.description}\", rating: \"#{@review.rating}\", proefdatum: #{@review.proefdatum.to_json}, created_at: #{@review.created_at.to_json}} } }")
-        format.html { redirect_to @beer, notice: 'Review was successfully created.' }
+        flash[:success] = 'Review succesvol aangemaakt.'
+        format.html { redirect_to @beer }
       else
         format.html { render action: 'new' }
       end
@@ -26,7 +27,8 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review.beer, notice: 'Review was successfully updated.' }
+        flash[:success] = 'Vergadering succesvol bijgewerkt.'
+        format.html { redirect_to @review.beer }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -39,7 +41,7 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @beer = @review.beer
     @review.destroy
-    flash[:success] = 'Review destroyed'
+    flash[:success] = 'Review succesvol verwijderd.'
     redirect_to @beer
   end
 
