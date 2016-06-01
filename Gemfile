@@ -11,6 +11,7 @@ gem 'nprogress-rails'
 gem 'gcm' 
 gem 'documentation'
 gem 'web-console'
+gem 'cloudinary'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
@@ -69,3 +70,4 @@ gem 'capistrano', group: :development
 gem 'capistrano-rails', '~> 1.1'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'apipie-rails'

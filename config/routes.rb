@@ -1,10 +1,17 @@
 Hamers::Application.routes.draw do
+  apipie
   resources :notes
   mount Documentation::Engine => "/docs"
   resources :pushes, only: [:index, :create, :new] 
 
   resources :news
+	get '/images' => 'albums#index', as: 'photo'
 
+	scope 'api' do 
+		scope 'v2' do
+			get 'users/:id' => 'api2/users#show'
+		end
+	end
   match 'api/v1/:key/:request', to: 'api#GET', via: 'get'
   match 'api/v1/:key/:request/:id', to: 'api#GET', via: 'get'
   match 'api/v1/:key/:request', to: 'api#POST', via: 'post'
