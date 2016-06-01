@@ -1,6 +1,7 @@
 class Api2::UsersController < Api2::ApiController
 	#api :GET, '/users', "Show all users"
 	api!
+	api :GET, '/users', "Show user index"
 	def index 
 		@User = User.all
 	end
