@@ -2,6 +2,8 @@ if @type == 'user'
 	json.array!(@result) do |user|
 		json.extract! user, :id, :name, :email
                 json.nickname = user.nickname
+		json.lid "true" if user.lid? || user.alid?
+   		json.lid "false" unless user.lid? || user.alid?		
 
 		json.quotes user.quotes.count
 		json.reviews user.reviews.count

@@ -11,13 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417160533) do
+ActiveRecord::Schema.define(version: 20160417170150) do
 
   create_table "afmeldingens", force: :cascade do |t|
     t.string   "reden",      limit: 255
     t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "albums", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "api_keys", force: :cascade do |t|
@@ -101,6 +108,16 @@ ActiveRecord::Schema.define(version: 20160417160533) do
   add_index "groups", ["group_id"], name: "index_groups_on_group_id", using: :btree
   add_index "groups", ["user_id", "group_id"], name: "index_groups_on_user_id_and_group_id", unique: true, using: :btree
   add_index "groups", ["user_id"], name: "index_groups_on_user_id", using: :btree
+
+  create_table "images", force: :cascade do |t|
+    t.string   "title",       limit: 255
+    t.string   "image_id",    limit: 255
+    t.string   "description", limit: 255
+    t.integer  "album_id",    limit: 4
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "meetings", force: :cascade do |t|
     t.text     "agenda",     limit: 65535
