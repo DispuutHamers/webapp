@@ -9,7 +9,7 @@ class Api2::EventsController < Api2::ApiController
 			json << ","
 		end
 		json[json.length-1] = "]"
-		render json: json
+		render json: json.gsub('\"','"')
 	end
 
 	api :GET, '/events/:id', "Show event"

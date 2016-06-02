@@ -25,4 +25,16 @@ class Event < ActiveRecord::Base
   def past?
     !self.date.future?
   end
+
+	def as_json(options)
+		h = super({:only => [:id, :title, :beschrijving, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
+		json = "["
+	  signups.each do |s|
+			json << s.to_json
+			json << ","
+		end
+		json[json.length-1] = "]"
+		h[:signups] = json 
+		h
+	end
 end
