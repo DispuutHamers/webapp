@@ -1,17 +1,11 @@
 Hamers::Application.routes.draw do
   apipie
   resources :notes
-  mount Documentation::Engine => "/docs"
   resources :pushes, only: [:index, :create, :new] 
 
   resources :news
 	get '/images' => 'albums#index', as: 'photo'
 
-	scope 'api' do 
-		scope 'v2' do
-			get 'users/:id' => 'api2/users#show'
-		end
-	end
   match 'api/v1/:key/:request', to: 'api#GET', via: 'get'
   match 'api/v1/:key/:request/:id', to: 'api#GET', via: 'get'
   match 'api/v1/:key/:request', to: 'api#POST', via: 'post'
@@ -64,4 +58,17 @@ Hamers::Application.routes.draw do
   match '/stats', to: 'static_pages#statistics', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete' 
 	match '/:id', to: 'public_pages#show', via: 'get'
+	scope 'api' do 
+		scope 'v2' do
+			resources :users, module: 'api2', only: [:index, :get]
+			resources :beers, module: 'api2', only: [:index, :get]
+			resources :quotes, module: 'api2', only: [:index, :get]
+			resources :meetings, module: 'api2', only: [:index, :get]
+			resources :news, module: 'api2', only: [:index, :get]
+			resources :reviews, module: 'api2', only: [:index, :get]
+			resources :events, module: 'api2', only: [:index, :get]
+			resources :motions, module: 'api2', only: [:index, :get]
+			get 'whoami' => "api2/users#whoami"
+		end
+	end
 end

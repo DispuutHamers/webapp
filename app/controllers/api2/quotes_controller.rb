@@ -3,13 +3,19 @@ class Api2::QuotesController < Api2::ApiController
 	api!
 	api :GET, '/quotes', "Show quote index"
 	def index 
-		@Quote = Quote.all
+		json = "["		
+		Quote.all.each do |q|
+			json << q.to_json
+			json << ","
+		end
+		json[json.length-1] = "]"
+		render json: json
 	end
 
 	api :GET, '/quotes/:id', "Show quote"
 	param :id, :number
 	def show
-		render text: Quote.find(params[:id]).to_json
+		render json: Quote.find(params[:id]).to_json
 	end
 
 	api :UPDATE, '/quotes/:id', 'Update quote'

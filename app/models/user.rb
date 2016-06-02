@@ -111,6 +111,18 @@ class User < ActiveRecord::Base
     in_group?(Usergroup.find_by(name: 'Secretaris-generaal'))
   end
 
+	def as_json(options)
+	  h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
+		if lid? 
+			h[:lid] = "lid"
+		elsif alid?
+			h[:lid] = "alid"
+		else
+			h[:lid] = "false"
+		end
+		h
+	end
+
   private
 
   def create_remember_token

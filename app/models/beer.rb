@@ -17,4 +17,10 @@ class Beer < ActiveRecord::Base
     end
     return '%.2f' % (cijfer / avg) unless self.reviews.count == 0
   end
+
+	def	as_json(options)
+	  h = super({:only => [:id, :name, :soort, :picture, :created_at, :percentage, :brewer, :country, :URL]}.merge(options))
+		h[:cijfer] = cijfer?
+		h
+	end
 end

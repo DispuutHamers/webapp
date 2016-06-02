@@ -3,13 +3,19 @@ class Api2::NewsController < Api2::ApiController
 	api!
 	api :GET, '/news', "Show news index"
 	def index 
-		@News = News.all
+		json = ""
+		News.all.each do |b|
+			json << b.to_json
+			json << ","
+		end
+		json[json.length-1] = "]"
+		render json: json
 	end
 
 	api :GET, '/news/:id', "Show news"
 	param :id, :number
 	def show
-		render text: News.find(params[:id]).to_json
+		render json: News.find(params[:id]).to_json
 	end
 
 	api :UPDATE, '/news/:id', 'Update news'
