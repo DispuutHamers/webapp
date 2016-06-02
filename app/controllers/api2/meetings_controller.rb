@@ -3,7 +3,7 @@ class Api2::MeetingsController < Api2::ApiController
 	api!
 	api :GET, '/meetings', "Show meeting index"
 	def index 
-		json = ""
+		json = "["
 		Meeting.all.each do |b|
 			json << b.to_json
 			json << ","

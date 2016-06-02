@@ -3,7 +3,7 @@ class Api2::NewsController < Api2::ApiController
 	api!
 	api :GET, '/news', "Show news index"
 	def index 
-		json = ""
+		json = "["
 		News.all.each do |b|
 			json << b.to_json
 			json << ","

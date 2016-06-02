@@ -3,7 +3,7 @@ class Api2::MotionsController < Api2::ApiController
 	api!
 	api :GET, '/motions', "Show motion index"
 	def index 
-		json = ""
+		json = "["
 		Motion.all.each do |b|
 			json << b.to_json
 			json << ","

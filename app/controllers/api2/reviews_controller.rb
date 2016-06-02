@@ -3,7 +3,7 @@ class Api2::ReviewsController < Api2::ApiController
 	api!
 	api :GET, '/reviews', "Show review index"
 	def index 
-		json = ""
+		json = "["
 		Review.all.each do |b|
 			json << b.to_json
 			json << ","
