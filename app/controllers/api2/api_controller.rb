@@ -1,5 +1,6 @@
 class Api2::ApiController < ApplicationController
 	before_action :restrict_access
+	include ParamsHelper
 	#resource_description do
 	#	  api_versions "2"
 	#end
