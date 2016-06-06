@@ -9,6 +9,7 @@ class Api2::ApiController < ApplicationController
 		api_versions "2.0"
 		formats ['json']
 
+		name "Hamers API" 
 		app_info "De hamers api docs"
 	end
 

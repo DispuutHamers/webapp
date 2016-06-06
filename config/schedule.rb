@@ -20,5 +20,5 @@
 # Learn more: http://github.com/javan/whenever
 
 every :sunday, :at => '12pm' do # Use any day of the week or :weekend, :weekday
-	runner "Event.new(beschrijving: \"Zondagborrel\", title: \"Zondagborrel\", date: Time.now + 1.weeks + 9.hours, deadline: Time.now + 1.weeks + 8.hours, end_time: Time.now + 1.weeks + 14.hours, location: \"Beiaard\").save"
+	runner "Event.new(beschrijving: \"Zondagborrel\", title: \"Zondagborrel\", date: Time.now + 1.weeks + 9.hours, deadline: Time.now + 1.weeks + 8.hours, end_time: Time.now + 1.weeks + 14.hours, location: \"Beiaard Enschede\").save"
 end

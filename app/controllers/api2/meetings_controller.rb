@@ -1,6 +1,4 @@
 class Api2::MeetingsController < Api2::ApiController
-	#api :GET, '/meetings', "Show all meetings"
-	api!
 	api :GET, '/meetings', "Show meeting index"
 	def index 
 		json = "["
@@ -13,17 +11,35 @@ class Api2::MeetingsController < Api2::ApiController
 	end
 
 	api :GET, '/meetings/:id', "Show meeting"
-	param :id, :number
 	def show
 		render json: Meeting.find(params[:id]).to_json
 	end
 
 	api :UPDATE, '/meetings/:id', 'Update meeting'
-	param :id, :number
+	param :agenda, String
+	param :notes, String
+	param :onderwerp, String
+	param :date, DateTime
 	def update
+	  @meeting = Meeting.find(params[:id])
+	  if @meeting.update(meeting_params)
+	    render json: @meeting
+	  else
+	    render json: @meeting.errors, status: :unprocessable_entity
+	  end
 	end
 
 	api :POST, '/meetings', 'Create meeting'
+	param :agenda, String
+	param :notes, String
+	param :onderwerp, String
+	param :date, DateTime
 	def create
+	  @meeting = Meeting.new(meeting_params)
+	  if @meeting.save
+	    render json: @meeting, status: :created, location: @meeting
+	  else
+	    render json: @meeting.errors, status: :unprocessable_entity
+	  end
 	end
 end

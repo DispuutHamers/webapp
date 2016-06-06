@@ -17,14 +17,6 @@ class Api2::UsersController < Api2::ApiController
 		render json: User.find(params[:id]).to_json
 	end
 
-	api :UPDATE, '/users/:id', 'Update user'
-	def update
-	end
-
-	api :POST, '/users', 'Create user'
-	def create
-	end
-
 	api :GET, '/whoami', "Show current user" 
   def whoami
 		render json: @key.user.to_json
