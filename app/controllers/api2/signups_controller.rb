@@ -5,6 +5,8 @@ class Api2::SignupsController < Api2::ApiController
 	end
     
 	api :UPDATE, '/signups/:id', 'Update event'
+	param :event_id, Integer, :required => true
+	param :status, ["true","false"], :required => true
 	def update
 	  @signup = Signup.find(params[:id])
 	  if @signup.update(signup_params)
@@ -15,6 +17,8 @@ class Api2::SignupsController < Api2::ApiController
 	end
 
 	api :POST, '/signups', 'Create event'
+	param :event_id, Integer, :required => true
+	param :status, ["true","false"], :required => true
 	def create
 	  @signup = Signup.new(signup_params)
 	  @signup.user_id = @key.user.id

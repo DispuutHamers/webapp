@@ -71,6 +71,7 @@ Hamers::Application.routes.draw do
 			resources :events, module: 'api2', only: [:index, :show, :update, :create]
 			resources :motions, module: 'api2', only: [:index, :show, :update, :create]
 			get 'whoami' => "api2/users#whoami"
+			post 'register' => "api2/api#register"
 		end
 	end
 end
