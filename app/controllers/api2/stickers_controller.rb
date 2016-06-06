@@ -1,5 +1,9 @@
 class Api2::StickersController < Api2::ApiController
-
+	resource_description do
+		api_versions "2.0"
+		formats ['json']
+		app_info "De hamers api docs"
+	end
 	api :GET, '/stickers', 'Index stickers' 
 	def index 
 		json = "["

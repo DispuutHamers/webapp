@@ -15,6 +15,7 @@ class Api2::ApiController < ApplicationController
 	end
 
 	api 'POST', '/register', 'Register a device for push notifications' 
+	param :device_key, String, required: true
 	def register
 	  @device = @key.user.devices.first || Device.new(device_params)
 	  @device.user_id = @key.user.id
