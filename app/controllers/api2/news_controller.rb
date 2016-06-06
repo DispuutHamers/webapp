@@ -1,6 +1,4 @@
 class Api2::NewsController < Api2::ApiController
-	#api :GET, '/news', "Show all news"
-	api!
 	api :GET, '/news', "Show news index"
 	def index 
 		json = "["

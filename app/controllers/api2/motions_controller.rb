@@ -1,6 +1,4 @@
 class Api2::MotionsController < Api2::ApiController
-	#api :GET, '/motions', "Show all motions"
-	api!
 	api :GET, '/motions', "Show motion index"
 	def index 
 		json = "["
