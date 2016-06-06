@@ -113,6 +113,18 @@ class User < ActiveRecord::Base
 
 	def as_json(options)
 	  h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
+		h[:reviews] = reviews.count
+		h[:quotes] = quotes.count
+		n = "[" 
+		unless nicknames.empty?
+			nicknames.each do |nick|
+				n << "{\"" + nick.nickname + "\"}," 
+			end
+			n[n.length - 1] = "]" 
+		else 
+			n << "]"
+		end
+		h[:nicknames] = n
 		if lid? 
 			h[:lid] = "lid"
 		elsif alid?

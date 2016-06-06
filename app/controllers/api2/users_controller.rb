@@ -7,16 +7,16 @@ class Api2::UsersController < Api2::ApiController
 			json << ","
 		end
 		json[json.length-1] = "]"
-		render json: json
+		render json: json.gsub('\"','"')
 	end
 
 	api :GET, '/users/:id', "Show user"
 	def show
-		render json: User.find(params[:id]).to_json
+		render json: User.find(params[:id]).to_json.gsub('\"','"')
 	end
 
 	api :GET, '/whoami', "Show current user" 
   def whoami
-		render json: @key.user.to_json
+		render json: @key.user.to_json.gsub('\"','"')
 	end
 end

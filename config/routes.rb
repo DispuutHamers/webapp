@@ -60,15 +60,18 @@ Hamers::Application.routes.draw do
 	match '/:id', to: 'public_pages#show', via: 'get'
 	scope 'api' do 
 		scope 'v2' do
-			resources :users, module: 'api2', only: [:index, :show, :update, :create]
+			resources :users, module: 'api2', only: [:index, :show]
 			resources :beers, module: 'api2', only: [:index, :show, :update, :create]
 			resources :quotes, module: 'api2', only: [:index, :show, :update, :create]
 			resources :meetings, module: 'api2', only: [:index, :show, :update, :create]
 			resources :news, module: 'api2', only: [:index, :show, :update, :create]
+			resources :signups, module: 'api2', only: [:show, :update, :create]
+			resources :stickers, module: 'api2', only: [:index, :show, :create]
 			resources :reviews, module: 'api2', only: [:index, :show, :update, :create]
 			resources :events, module: 'api2', only: [:index, :show, :update, :create]
 			resources :motions, module: 'api2', only: [:index, :show, :update, :create]
 			get 'whoami' => "api2/users#whoami"
+			post 'register' => "api2/api#register"
 		end
 	end
 end
