@@ -1,4 +1,9 @@
 class Api2::SignupsController < Api2::ApiController
+  	resource_description do
+		api_versions "2.0"
+		formats ['json']
+		app_info "De hamers api docs"
+	end
 	api :GET, '/signups/:id', 'Show signup'
 	def show
 	  render json: Signup.find(params[:id]).to_json

@@ -1,4 +1,9 @@
 class Api2::MotionsController < Api2::ApiController
+  	resource_description do
+		api_versions "2.0"
+		formats ['json']
+		app_info "De hamers api docs"
+	end
 	api :GET, '/motions', "Show motion index"
 	def index 
 		json = "["
