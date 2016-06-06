@@ -1,6 +1,4 @@
 class Api2::NewsController < Api2::ApiController
-	#api :GET, '/news', "Show all news"
-	api!
 	api :GET, '/news', "Show news index"
 	def index 
 		json = "["
@@ -13,17 +11,37 @@ class Api2::NewsController < Api2::ApiController
 	end
 
 	api :GET, '/news/:id', "Show news"
-	param :id, :number
 	def show
 		render json: News.find(params[:id]).to_json
 	end
 
 	api :UPDATE, '/news/:id', 'Update news'
-	param :id, :number
+	param :cat, ['e', 'd', 'l'], :required => true	
+	param :body, String, :required => true
+	param :title, String, :required => true
+	param :image, String
 	def update
+	  @news = News.find(params[:id])
+	  if @news.update(news_params)
+	    render json: @news
+	  else
+	    render json: @news.errors, status: :unprocessable_entity
+	  end                             
 	end
 
 	api :POST, '/news', 'Create news'
+	param :cat, ['e', 'd', 'l'], :required => true	
+	param :body, String, :required => true
+	param :title, String, :required => true
+	param :image, String
 	def create
+	  @news = News.new(news_params)
+	  @news.user_id = @key.user.id
+	  @news.date = Time.now
+	  if @news.save
+	    render json: @news, status: :created, location: @news
+	  else
+	    render json: @news.errors, status: :unprocessable_entity
+	  end
 	end
 end

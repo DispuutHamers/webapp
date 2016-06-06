@@ -1,6 +1,4 @@
 class Api2::QuotesController < Api2::ApiController
-	#api :GET, '/quotes', "Show all quotes"
-	api!
 	api :GET, '/quotes', "Show quote index"
 	def index 
 		json = "["		
@@ -13,17 +11,33 @@ class Api2::QuotesController < Api2::ApiController
 	end
 
 	api :GET, '/quotes/:id', "Show quote"
-	param :id, :number
 	def show
 		render json: Quote.find(params[:id]).to_json
 	end
 
 	api :UPDATE, '/quotes/:id', 'Update quote'
-	param :id, :number
+	param :user_id, Integer, :required => true
+	param :text, String, :required => true
 	def update
+	  @quote = Quote.find(params[:id])
+	  if @quote.update(micropost_params)
+	    render json: @quote
+	  else
+	    render json: @quote.errors, status: :unprocessable_entity
+	  end
 	end
 
 	api :POST, '/quotes', 'Create quote'
+	param :user_id, Integer, :required => true
+	param :text, String, :required => true
 	def create
+	  @quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
+	  @quote.reporter = @key.user.id
+	  if @quote.save
+	    update_app("{ data: { quote: { id: \"#{@quote.id}\", user_id: \"#{@quote.user_id}\", text: \"#{@quote.text}\", created_at: #{@quote.created_at.to_json}} } }")
+	    render json: @quote, status: :created, location: @quote
+	  else
+	    render json: @quote.errors, status: :unprocessable_entity
+	  end
 	end
 end

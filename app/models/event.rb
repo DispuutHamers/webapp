@@ -33,7 +33,8 @@ class Event < ActiveRecord::Base
 			json << s.to_json
 			json << ","
 		end
-		json[json.length-1] = "]"
+		json[json.length-1] = "]" unless signups.empty?
+		json << "]" if signups.empty?
 		h[:signups] = json 
 		h
 	end

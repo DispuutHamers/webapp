@@ -35,4 +35,8 @@ module ParamsHelper
   def nickname_params
     params.require(:nickname).permit(:user_id, :nickname, :description)
   end
+  
+  def meeting_params
+    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :user_id)
+  end
 end
