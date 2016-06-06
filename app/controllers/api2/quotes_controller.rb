@@ -17,7 +17,7 @@ class Api2::QuotesController < Api2::ApiController
 
 	api :UPDATE, '/quotes/:id', 'Update quote'
 	param :user_id, Integer, :required => true
-	param :text, String, , :required => true
+	param :text, String, :required => true
 	def update
 	  @quote = Quote.find(params[:id])
 	  if @quote.update(micropost_params)
@@ -29,7 +29,7 @@ class Api2::QuotesController < Api2::ApiController
 
 	api :POST, '/quotes', 'Create quote'
 	param :user_id, Integer, :required => true
-	param :text, String, , :required => true
+	param :text, String, :required => true
 	def create
 	  @quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
 	  @quote.reporter = @key.user.id
