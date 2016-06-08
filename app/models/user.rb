@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
 		n = "[" 
 		unless nicknames.empty?
 			nicknames.each do |nick|
-				n << "{\"" + nick.nickname + "\"}," 
+				n << "{\"nickname\":\"" + nick.nickname + "\"}," 
 			end
 			n[n.length - 1] = "]" 
 		else 

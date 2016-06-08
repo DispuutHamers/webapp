@@ -13,13 +13,13 @@ class Api2::EventsController < Api2::ApiController
 			json << ","
 		end
 		json[json.length-1] = "]"
-		render json: json.gsub('\"','"')
+		render json: json.gsub('\"','"').gsub('"[','[').gsub(']"',']')
 	end
 
 	api :GET, '/events/:id', "Show event"
 	param :id, :number
 	def show
-		render json: Event.find(params[:id]).to_json.gsub('\"','"')
+		render json: Event.find(params[:id]).to_json.gsub('\"','"').gsub('"[','[').gsub(']"',']')
 	end
 
 	api :UPDATE, '/events/:id', 'Update event'
@@ -32,7 +32,7 @@ class Api2::EventsController < Api2::ApiController
 	def update
 	  @event = Event.find(params[:id])
 	  if @event.update(event_params)
-	    render json: @event.gsub('\"','"')
+	    render json: @event.gsub('\"','"').gsub('"[','[').gsub(']"',']')
 	  else
 	    render json: @event.errors, status: :unprocessable_entity
 	  end
@@ -50,7 +50,7 @@ class Api2::EventsController < Api2::ApiController
 	  @event.user_id = @key.user.id
 	  if @event.save
 	    update_app("{ data: { event: { id: \"#{@event.id}\", user_id: \"#{@event.user_id}\", beschrijving: \"#{@event.beschrijving}\", date: #{@event.date.to_json}, location: \"#{@event.location}\", deadline: #{@event.deadline.to_json}, signups: [], end_time: #{@event.end_time.to_json}, title: \"#{@event.title}\"} } }")
-	    render json: @event.gsub('\"','"'), status: :created, location: @event
+	    render json: @event.gsub('\"','"').gsub('"[','[').gsub(']"',']'), status: :created, location: @event
 	  else
 	    render json: @event.errors, status: :unprocessable_entity
 	  end
