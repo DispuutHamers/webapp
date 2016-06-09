@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
     in_group?(Usergroup.find_by(name: 'A-Lid'))
   end
 
+  def olid?
+    in_group?(Usergroup.find_by(name: 'O-Lid'))
+  end
+
   def admin?
     in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev?
   end
@@ -115,22 +119,15 @@ class User < ActiveRecord::Base
 	  h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
 		h[:reviews] = reviews.count
 		h[:quotes] = quotes.count
-		n = "[" 
-		unless nicknames.empty?
-			nicknames.each do |nick|
-				n << "{\"nickname\":\"" + nick.nickname + "\"}," 
-			end
-			n[n.length - 1] = "]" 
-		else 
-			n << "]"
-		end
-		h[:nicknames] = n
-		if lid? 
-			h[:lid] = "lid"
-		elsif alid?
+		h[:nicknames] = nicknames(options)
+		if alid? 
 			h[:lid] = "alid"
+		elsif olid?
+			h[:lid] = "olid"
+		elsif lid? 
+			h[:lid] = "Lid"
 		else
-			h[:lid] = "false"
+			h[:lid] = "none" 
 		end
 		h
 	end
