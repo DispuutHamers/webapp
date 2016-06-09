@@ -33,7 +33,7 @@ class Api2::MotionsController < Api2::ApiController
 	param :subject, String, :required => true
 	param :content, String, :required => true
 	def create
-	  @motion = Motion.new(meeting_params)
+	  @motion = Motion.new(motion_params)
 	  @motion.user_id = @key.user.id
 	  if @motion.save
 	    render json: @motion, status: :created, location: @motion
