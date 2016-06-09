@@ -1,5 +1,6 @@
 class Api2::MotionsController < Api2::ApiController
-  	resource_description do
+	before_action :restrict_to_admins, only: [:index, :show, :update]
+ 	resource_description do
 		api_versions "2.0"
 		formats ['json']
 		app_info "De hamers api docs"

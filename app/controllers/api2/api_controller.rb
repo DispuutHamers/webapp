@@ -27,6 +27,14 @@ class Api2::ApiController < ApplicationController
 	    render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 	  end
 	end
+
+	def restrict_to_admins
+		authenticate_or_request_with_http_token do |token, options|
+			@key = ApiKey.where(key: token).first
+			@key && @key.user && @key.user.admin?
+		end
+	end
+
 	
 	private
 
