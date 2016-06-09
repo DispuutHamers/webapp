@@ -46,7 +46,7 @@ class Api2::BeersController < Api2::ApiController
 	param :brewer, String
 	param :URL, String
 	def create
-	  @beer = Test.new(beer_params)
+	  @beer = Beer.new(beer_params)
 	  if @beer.save
 	    update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\", cijfer: \"null\", created_at: #{@beer.created_at.to_json}  } } }")
 	    render json: @beer, status: :created, location: @beer
