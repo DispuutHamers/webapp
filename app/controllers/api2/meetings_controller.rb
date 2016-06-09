@@ -19,7 +19,7 @@ class Api2::MeetingsController < Api2::ApiController
 	param :agenda, String
 	param :notes, String
 	param :onderwerp, String
-	param :date, DateTime
+	param :date, String
 	def update
 	  @meeting = Meeting.find(params[:id])
 	  if @meeting.update(meeting_params)
@@ -33,7 +33,7 @@ class Api2::MeetingsController < Api2::ApiController
 	param :agenda, String
 	param :notes, String
 	param :onderwerp, String
-	param :date, DateTime
+	param :date, String
 	def create
 	  @meeting = Meeting.new(meeting_params)
 	  if @meeting.save
