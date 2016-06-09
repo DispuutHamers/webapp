@@ -26,6 +26,7 @@ Hamers::Application.routes.draw do
   end
 
   resources :events
+	get '/ical/:key' => "events#index"
 
   resources :votes
 
