@@ -16,13 +16,19 @@ class EventsController < ApplicationController
         redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
       end
       w.ics do
-        feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
-        calendar = Icalendar::Calendar.new
-        feed.each do |f|
-          calendar.add_event(f.to_ics)
-        end
-        calendar.publish
-        render :text => calendar.to_ical
+				@key = ApiKey.where(key: params[:key]).first
+				if @key && @key.user && @key.user.lid?
+					ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
+					feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
+	        calendar = Icalendar::Calendar.new
+		      feed.each do |f|
+			      calendar.add_event(f.to_ics)
+				  end
+					calendar.publish
+					render :text => calendar.to_ical
+				else
+					render text: "HTTP Token: Access denied.", status: :access_denied
+				end
       end
     end
   end

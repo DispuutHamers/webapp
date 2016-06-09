@@ -129,6 +129,11 @@ class User < ActiveRecord::Base
 		else
 			h[:lid] = "none" 
 		end
+		if admin?
+			h[:admin] = 1
+		else
+			h[:admin] = 0
+		end
 		h
 	end
 

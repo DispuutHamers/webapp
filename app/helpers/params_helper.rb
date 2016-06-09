@@ -1,4 +1,7 @@
 module ParamsHelper
+	def signup_params
+		params.require(:signup).permit(:event_id, :status)
+	end
 
   def review_params
     params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
