@@ -6,18 +6,12 @@ class Api2::NewsController < Api2::ApiController
 	end
 	api :GET, '/news', "Show news index"
 	def index 
-		json = "["
-		News.all.each do |b|
-			json << b.to_json
-			json << ","
-		end
-		json[json.length-1] = "]"
-		render json: json
+		render json: News.all
 	end
 
 	api :GET, '/news/:id', "Show news"
 	def show
-		render json: News.find(params[:id]).to_json
+		render json: News.find(params[:id])
 	end
 
 	api :UPDATE, '/news/:id', 'Update news'

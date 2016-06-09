@@ -6,18 +6,12 @@ class Api2::MeetingsController < Api2::ApiController
 	end
 	api :GET, '/meetings', "Show meeting index"
 	def index 
-		json = "["
-		Meeting.all.each do |b|
-			json << b.to_json
-			json << ","
-		end
-		json[json.length-1] = "]"
-		render json: json
+		render json: Meeting.all
 	end
 
 	api :GET, '/meetings/:id', "Show meeting"
 	def show
-		render json: Meeting.find(params[:id]).to_json
+		render json: Meeting.find(params[:id])
 	end
 
 	api :UPDATE, '/meetings/:id', 'Update meeting'

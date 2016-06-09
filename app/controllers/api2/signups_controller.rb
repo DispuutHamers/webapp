@@ -6,7 +6,7 @@ class Api2::SignupsController < Api2::ApiController
 	end
 	api :GET, '/signups/:id', 'Show signup'
 	def show
-	  render json: Signup.find(params[:id]).to_json
+	  render json: Signup.find(params[:id])
 	end
     
 	api :UPDATE, '/signups/:id', 'Update event'

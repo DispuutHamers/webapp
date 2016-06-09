@@ -6,18 +6,12 @@ class Api2::MotionsController < Api2::ApiController
 	end
 	api :GET, '/motions', "Show motion index"
 	def index 
-		json = "["
-		Motion.all.each do |b|
-			json << b.to_json
-			json << ","
-		end
-		json[json.length-1] = "]"
-		render json: json
+		render json: Motion.all
 	end
 
 	api :GET, '/motions/:id', "Show motion"
 	def show
-		render json: Motion.find(params[:id]).to_json
+		render json: Motion.find(params[:id])
 	end
 
 	api :UPDATE, '/motions/:id', 'Update motion'

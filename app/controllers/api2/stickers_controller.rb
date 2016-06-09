@@ -6,18 +6,12 @@ class Api2::StickersController < Api2::ApiController
 	end
 	api :GET, '/stickers', 'Index stickers' 
 	def index 
-		json = "["
-		Sticker.all.each do |b|
-			json << b.to_json
-			json << ","
-		end
-		json[json.length-1] = "]"
-		render json: json
+		render json: Sticker.all
 	end
 	
 	api :GET, '/stickers/:id', 'Show sticker' 
 	def show
-	  render json: Sticker.find(params[:id]).to_json
+	  render json: Sticker.find(params[:id])
 	end
   
 	api :POST, '/stickers', 'Create sticker'
