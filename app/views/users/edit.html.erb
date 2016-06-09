@@ -20,7 +20,7 @@
               <i class="fa fa-trash"></i>
           <% end %><br>
           Last used:
-          <% if log = ApiLog.where(key: ak.id).last %>
+          <% if log = ApiLog.where(key: ak.key).last %>
               <%= log.created_at.strftime('%d-%m-%Y %H:%m') %> by: <%= log.ip_addr %>
           <% else %>
               Not yet used
