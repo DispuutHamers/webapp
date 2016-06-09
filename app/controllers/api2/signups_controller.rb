@@ -14,7 +14,9 @@ class Api2::SignupsController < Api2::ApiController
 	param :status, ["true","false"], :required => true
 	def update
 	  @signup = Signup.find(params[:id])
-	  if @signup.update(signup_params)
+	  if (@signup.user_id != @key.user.id and !@key.user.admin?)
+	    render text: "HTTP Token: Access denied.", status: :access_denied
+	  elsif @signup.update(signup_params)
 	    render json: @signup
 	  else
 	    render json: @signup.errors, status: :unprocessable_entity

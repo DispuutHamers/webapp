@@ -25,7 +25,9 @@ class Api2::EventsController < Api2::ApiController
 	param :location, String
 	def update
 	  @event = Event.find(params[:id])
-	  if @event.update(event_params)
+	 if (@event.user_id != @key.user.id and !@key.user.admin?)
+	    render text: "HTTP Token: Access denied.", status: :access_denied
+	  elsif @event.update(event_params)
 	    render json: @event
 	  else
 	    render json: @event.errors, status: :unprocessable_entity

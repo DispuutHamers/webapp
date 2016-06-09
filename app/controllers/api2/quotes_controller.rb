@@ -1,4 +1,5 @@
 class Api2::QuotesController < Api2::ApiController
+	before_action :restrict_to_admins, only: [:update]
   	resource_description do
 		api_versions "2.0"
 		formats ['json']

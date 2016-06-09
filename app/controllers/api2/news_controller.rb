@@ -21,7 +21,9 @@ class Api2::NewsController < Api2::ApiController
 	param :image, String
 	def update
 	  @news = News.find(params[:id])
-	  if @news.update(news_params)
+	  if (@news.user_id != @key.user.id and !@key.user.admin?)
+	    render text: "HTTP Token: Access denied.", status: :access_denied
+	  elsif @news.update(news_params)
 	    render json: @news
 	  else
 	    render json: @news.errors, status: :unprocessable_entity
