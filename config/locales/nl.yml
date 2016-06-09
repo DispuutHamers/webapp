@@ -1,5 +1,7 @@
 ---
 nl:
+  apipie:
+    api_documentation: "Hamers API"
   activerecord:
     errors:
       messages:
