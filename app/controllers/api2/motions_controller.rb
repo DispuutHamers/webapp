@@ -1,23 +1,18 @@
 class Api2::MotionsController < Api2::ApiController
-  	resource_description do
+	before_action :restrict_to_admins, only: [:index, :show, :update]
+ 	resource_description do
 		api_versions "2.0"
 		formats ['json']
 		app_info "De hamers api docs"
 	end
 	api :GET, '/motions', "Show motion index"
 	def index 
-		json = "["
-		Motion.all.each do |b|
-			json << b.to_json
-			json << ","
-		end
-		json[json.length-1] = "]"
-		render json: json
+		render json: Motion.all
 	end
 
 	api :GET, '/motions/:id', "Show motion"
 	def show
-		render json: Motion.find(params[:id]).to_json
+		render json: Motion.find(params[:id])
 	end
 
 	api :UPDATE, '/motions/:id', 'Update motion'

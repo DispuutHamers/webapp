@@ -1,23 +1,17 @@
 class Api2::ReviewsController < Api2::ApiController
-  	resource_description do
+	resource_description do
 		api_versions "2.0"
 		formats ['json']
 		app_info "De hamers api docs"
 	end
 	api :GET, '/reviews', "Show review index"
 	def index 
-		json = "["
-		Review.all.each do |b|
-			json << b.to_json
-			json << ","
-		end
-		json[json.length-1] = "]"
-		render json: json
+		render json: Review.all
 	end
 
 	api :GET, '/reviews/:id', "Show review"
 	def show
-		render json: Review.find(params[:id]).to_json
+		render json: Review.find(params[:id])
 	end
 
 	api :UPDATE, '/reviews/:id', 'Update review'
@@ -27,7 +21,9 @@ class Api2::ReviewsController < Api2::ApiController
 	param :proefdatum, DateTime
 	def update
 	  @review = Review.find(params[:id])
-	  if @review.update(review_params)
+	  if (@review.user_id != @key.user.id and !@key.user.admin?)
+	    render text: "HTTP Token: Access denied.", status: :access_denied
+	  elsif @review.update(review_params)
 	    render json: @review
 	  else
     	    render json: @review.errors, status: :unprocessable_entity

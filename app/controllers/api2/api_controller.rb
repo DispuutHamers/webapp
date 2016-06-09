@@ -1,6 +1,7 @@
 class Api2::ApiController < ApplicationController
 	before_action :restrict_access
 	before_action :log_url
+	skip_before_filter :verify_authenticity_token
 	include ParamsHelper
 	#resource_description do
 	#	  api_versions "2"
@@ -26,6 +27,14 @@ class Api2::ApiController < ApplicationController
 	    render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
 	  end
 	end
+
+	def restrict_to_admins
+		authenticate_or_request_with_http_token do |token, options|
+			@key = ApiKey.where(key: token).first
+			@key && @key.user && @key.user.admin?
+		end
+	end
+
 	
 	private
 

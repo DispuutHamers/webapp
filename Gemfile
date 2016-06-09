@@ -12,6 +12,7 @@ gem 'gcm'
 gem 'documentation'
 gem 'web-console'
 gem 'cloudinary'
+gem 'actionpack-action_caching'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
