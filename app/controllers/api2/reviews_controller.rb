@@ -18,7 +18,7 @@ class Api2::ReviewsController < Api2::ApiController
 	param :beer_id, Integer, :required => true
 	param :description, String, :required => true
 	param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
-	param :proefdatum, DateTime
+	param :proefdatum, String
 	def update
 	  @review = Review.find(params[:id])
 	  if (@review.user_id != @key.user.id and !@key.user.admin?)
@@ -34,7 +34,7 @@ class Api2::ReviewsController < Api2::ApiController
 	param :beer_id, Integer, :required => true
 	param :description, String, :required => true
 	param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
-	param :proefdatum, DateTime
+	param :proefdatum, String 
 	def create
 	  @review = Review.new(review_params)
 	  @beer = Beer.find(params[:review][:beer_id]) 

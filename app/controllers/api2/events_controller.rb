@@ -17,11 +17,11 @@ class Api2::EventsController < Api2::ApiController
 	end
 
 	api :UPDATE, '/events/:id', 'Update event'
-	param :end_time, DateTime, :required => true
-	param :deadline, DateTime, :required => true
+	param :end_time, String, :required => true
+	param :deadline, String, :required => true
 	param :beschrijving, String, :required => true
 	param :title, String, :required => true
-	param :date, DateTime, :required => true
+	param :date, String, :required => true
 	param :location, String
 	def update
 	  @event = Event.find(params[:id])
@@ -35,11 +35,11 @@ class Api2::EventsController < Api2::ApiController
 	end
 
 	api :POST, '/events', 'Create event'
-	param :end_time, DateTime, :required => true
-	param :deadline, DateTime, :required => true
+	param :end_time, String, :required => true
+	param :deadline, String, :required => true
 	param :beschrijving, String, :required => true
 	param :title, String, :required => true
-	param :date, DateTime, :required => true
+	param :date, String, :required => true
 	param :location, String
 	def create
 	  @event = Event.new(event_params)
