@@ -17,7 +17,7 @@ class Api2::ReviewsController < Api2::ApiController
 	api :UPDATE, '/reviews/:id', 'Update review'
 	param :beer_id, Integer, :required => true
 	param :description, String, :required => true
-	param :rating, [1..10], :required => true
+	param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
 	param :proefdatum, DateTime
 	def update
 	  @review = Review.find(params[:id])
@@ -33,7 +33,7 @@ class Api2::ReviewsController < Api2::ApiController
 	api :POST, '/reviews', 'Create review'
 	param :beer_id, Integer, :required => true
 	param :description, String, :required => true
-	param :rating, [1..10], :required => true
+	param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
 	param :proefdatum, DateTime
 	def create
 	  @review = Review.new(review_params)
