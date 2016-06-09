@@ -12,7 +12,7 @@ class Api2::ApiController < ApplicationController
 		formats ['json']
 
 		name "Hamers API" 
-		app_info "De hamers api docs"
+		app_info "Documentatie van de Hamers zonder Sikkel API\n\nVoor alles requests is het vereist een API key te gebruiken. Dit word gedaan door een \"Authorization\" header mee te sturen met daarin: \"Token token=<key>\""
 	end
 
 	api 'POST', '/register', 'Register a device for push notifications' 
