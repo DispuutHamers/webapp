@@ -1,6 +1,7 @@
 class Api2::ApiController < ApplicationController
 	before_action :restrict_access
 	before_action :log_url
+	skip_before_filter :verify_authenticity_token
 	include ParamsHelper
 	#resource_description do
 	#	  api_versions "2"
