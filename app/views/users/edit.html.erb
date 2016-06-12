@@ -18,7 +18,7 @@
           <%= ak.name %>
           : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
               <i class="fa fa-trash"></i>
-          <% end %><br>
+						<% end %><br>
           Last used:
           <% if log = ApiLog.where(key: ak.key).last %>
               <%= log.created_at.strftime('%d-%m-%Y %H:%m') %> by: <%= log.ip_addr %>
