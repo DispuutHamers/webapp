@@ -4,6 +4,7 @@ class StickersController < ApplicationController
   before_action :admin_user?, only: [:destroy]
 
   def index
+		@stickers = Sticker.all
   end
 
 	def new
@@ -14,6 +15,15 @@ class StickersController < ApplicationController
 	end
 
   def create
+    @sticker = Sticker.new(sticker_params)
+		@sticker.user_id = current_user.id
+    if @sticker.save
+      flash[:success] = 'Sticker geplakt'
+      redirect_to root_url
+    else
+			flash[:error] = "Je sticker liet weer los :("
+			redirect_to root_url
+    end
   end
 
   def update
