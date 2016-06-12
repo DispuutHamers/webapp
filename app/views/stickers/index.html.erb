@@ -1,25 +1,26 @@
-<div id="map"></div>
+<div style="height: 500px;">
+	<div id="map" style="height: 100%;"></div>
+</div>
+
 <script>
-
 function initMap() {
-	<% @stickers.each do |s| %>
-			var sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
-			var marker<%= s.id%> = new google.maps.Marker({
-				position: sticker<%= s.id%>,
-				map: map,
-				<% if s.notes.empty? %>
-					title: 'Hello World!'
-				<% else %>
-					title: '<%= s.notes %>'
-				<% end %>
-});
-	<% end %>
 	var map = new google.maps.Map(document.getElementById('map'), {
-zoom: 4,
-center: { lat: 52.14, lng: 6.53 }
-});
+		zoom: 4,
+		center: { lat: 52.14, lng: 6.53 }
+	});
 
-
+	<% @stickers.each do |s| %>
+		var sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
+		var marker<%= s.id %> = new google.maps.Marker({
+			position: sticker<%= s.id %>,
+			map: map,
+			<% if s.notes.empty? %>
+				title: 'Hello World!'
+			<% else %>
+				title: '<%= s.notes %>'
+			<% end %>
+		});
+	<% end %>
 }
 </script>
 <script async defer
