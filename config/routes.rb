@@ -3,6 +3,7 @@ Hamers::Application.routes.draw do
   resources :notes
   resources :pushes, only: [:index, :create, :new] 
 	resources :stickers
+	get '/mystickers' => 'stickers#personal', as: 'personal_sticker'
 
   resources :news
 	get '/images' => 'albums#index', as: 'photo'
