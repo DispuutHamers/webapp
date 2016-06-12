@@ -21,7 +21,7 @@ class StickersController < ApplicationController
       flash[:success] = 'Sticker geplakt'
       redirect_to root_url
     else
-			flash[:error] = "Je sticker liet weer los :("
+			flash[:danger] = "Je sticker liet weer los :("
 			redirect_to root_url
     end
   end
