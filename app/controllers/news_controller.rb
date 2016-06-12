@@ -32,9 +32,9 @@ class NewsController < ApplicationController
     respond_to do |format|
       if @news.save
         flash[:success] = 'Nieuwsitem succesvol aangemaakt.'
+        update_app("{ data: { news: { id: \"#{@news.id}\", title: \"#{@news.title}\", body: \"#{@news.body}\", created_at: #{@news.created_at.to_json}} } }")
         format.html { redirect_to news_index_path }
         format.json { render action: 'show', status: :created, location: @news }
-        update_app("{ data: { news: { id: \"#{@news.id}\", title: \"#{@news.title}\", body: \"#{@news.body}\", created_at: #{@news.created_at.to_json}} } }")
       else
         format.html { render action: 'new' }
         format.json { render json: @news.errors, status: :unprocessable_entity }

@@ -40,6 +40,7 @@ class Api2::NewsController < Api2::ApiController
 	  @news.user_id = @key.user.id
 	  @news.date = Time.now
 	  if @news.save
+			update_app("{ data: { news: { id: \"#{@news.id}\", title: \"#{@news.title}\", body: \"#{@news.body}\", created_at: #{@news    .created_at.to_json}} } }")
 	    render json: @news, status: :created, location: @news
 	  else
 	    render json: @news.errors, status: :unprocessable_entity
