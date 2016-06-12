@@ -7,9 +7,16 @@ class Api2::BeersController < Api2::ApiController
 	end
   
 	api :GET, '/beers', "Show beer index"
+	description 'Om alleen bier te zien dat je nog niet gereviewt hebt of om alleen bier te zien dat je wel gereviewt hebt is er een url parameter "?reviewed=false" resp "?reviewed=true".'
 	example '[{"id":1,"name":"Jopen Laphroaig Barrel Aged","soort":"Russian Imperial Stout","created_at":"2014-04-22T00:19:57.000+02:00","picture":"http://res.cloudinary.com/ratebeer/image/upload/w_250,c_limit,q_85,d_beer_def.gif/beer_235785.jpg","percentage":"10.0%","brewer":"Jopen","country":"NL","URL":null,"cijfer":"8.73"},{"id":2,"name":"Snake Dog IPA","soort":"Indian Pale Ale","created_at":"2014-04-22T00:48:49.000+02:00","picture":"http://flyingdogbrewery.com/wp-content/uploads/2011/02/snake2013.png","percentage":"7.1%","brewer":"Flying Dog","country":"VS","URL":null,"cijfer":"7.45"}]'
 	def index 
-	  render json: Beer.all
+		if params[:reviewed] == "false"
+			render json: @key.user.unreviewed_beers
+		elsif params[:reviewed] == "true"
+			render json: @key.user.beers
+		else
+			render json: Beer.all
+		end
 	end
 
 	api :GET, '/beers/:id', "Show beer"

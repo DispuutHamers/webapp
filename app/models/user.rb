@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :motions
   has_many :events
-  has_many :api_logs
+  has_many :beers, through: :reviews
+	has_many :api_logs
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   has_many :nicknames, dependent: :destroy
@@ -35,6 +36,14 @@ class User < ActiveRecord::Base
     end
     nickname
   end
+	
+	def unreviewed_beers
+		urev_beers = Beer.all
+		beers.each do |b|
+			urev_beers = urev_beers - [b] 
+		end
+		urev_beers
+	end
 
   def feed
     Quote.all.order('created_at DESC')
