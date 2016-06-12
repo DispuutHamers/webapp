@@ -2,6 +2,7 @@ Hamers::Application.routes.draw do
   apipie
   resources :notes
   resources :pushes, only: [:index, :create, :new] 
+	resources :stickers
 
   resources :news
 	get '/images' => 'albums#index', as: 'photo'
