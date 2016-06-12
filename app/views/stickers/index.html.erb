@@ -15,7 +15,7 @@ function initMap() {
 			position: sticker<%= s.id %>,
 			map: map,
 			<% if s.notes.empty? %>
-				title: 'Hello World!'
+				title: 'Sticker #<%= s.id %>'
 			<% else %>
 				title: '<%= s.notes %>'
 			<% end %>
