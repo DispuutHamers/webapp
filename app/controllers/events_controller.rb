@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   include SessionsHelper
+	require 'icalendar/tzinfo'
   before_action :logged_in?, only: [:edit, :update, :destroy]
   before_action :admin_user?, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -21,6 +22,10 @@ class EventsController < ApplicationController
 					ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
 					feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
 	        calendar = Icalendar::Calendar.new
+					tzid = "Europe/Amsterdam"
+					tz = TZInfo::Timezone.get tzid
+					timezone = tz.ical_timezone feed.first.date
+					calendar.add_timezone timezone
 		      feed.each do |f|
 			      calendar.add_event(f.to_ics)
 				  end

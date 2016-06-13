@@ -1,0 +1,29 @@
+<%= form_for @sticker do |f| %>
+	<%= f.label :lat %>
+	<%= f.text_field :lat, id: "lat" %>
+	<%= f.label :lon %>
+	<%= f.text_field :lon, id: "lon" %>
+	<%= f.label :notes %>
+	<%= f.text_area :notes %>
+	<%= f.submit %>
+<% end %>
+
+<button onclick="getLocation()">Get location</button>
+
+<script>
+var lat = document.getElementById("lat");
+var lon = document.getElementById("lon");
+
+function getLocation() {
+	    if (navigator.geolocation) {
+				        navigator.geolocation.getCurrentPosition(showPosition);
+								    } else { 
+											        x.innerHTML = "Geolocation is not supported by this browser.";
+															    }
+}
+
+function showPosition(position) {
+	    lat.value = position.coords.latitude;
+	    lon.value = position.coords.longitude;
+}
+</script>
