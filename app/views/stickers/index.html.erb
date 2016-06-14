@@ -1,7 +1,10 @@
-<div style="height: 500px;">
+<div style="height: 800px;">
 	<div id="map" style="height: 100%;"></div>
 </div>
-
+<hr>
+<div class="button-group">
+  <%= link_to 'Sticker plakken', new_sticker_path, class: 'btn btn-primary btn-block' %>
+</div>
 <script>
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
@@ -15,7 +18,7 @@ function initMap() {
 			position: sticker<%= s.id %>,
 			map: map,
 			<% if s.notes.empty? %>
-				title: 'Sticker #<%= s.id %>'
+				title: 'Sticker #<%= s.id %>',
 			<% else %>
 				title: '<%= s.notes %>'
 			<% end %>
