@@ -16,8 +16,9 @@
       </div>
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
-          <% if !signed_in? %>
+          <% unless signed_in? %>
             <li><%= link_to 'Leden', public_leden_path %> </li>
+            <li><%= link_to 'Bieren', beers_path %></li>
           <% end %>
           <% PublicPage.all.each do |pp| %>
               <% if pp.public %>
