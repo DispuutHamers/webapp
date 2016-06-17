@@ -8,9 +8,9 @@ class Api2::EventsController < Api2::ApiController
 	description 'Deze methode heeft een extra sorting op datum die kan worden aangeroepen door "?sorted=date" achter de URL te plakken.'
 	example '[{"id":1,"beschrijving":"~2100 verjdaag vieren bij Rick","created_at":"2014-04-17T20:35:50.000+02:00","title":"Rick\'s Verjaardag","date":"2014-04-17T02:00:00.000+02:00","user_id":null,"deadline":null,"end_time":null,"location":null,"signups":"[{"id":1,"event_id":1,"user_id":1,"status":true,"created_at":"2014-04-18T17:00:52.000+02:00"}]"},{"id":2,"beschrijving":"Zondag borrel in de beiaard","created_at":"2014-04-18T01:45:12.000+02:00","title":"Zondag borrel","date":"2014-04-20T02:00:00.000+02:00","user_id":null,"deadline":null,"end_time":null,"location":null,"signups":"[{"id":3,"event_id":2,"user_id":1,"status":true,"created_at":"2014-04-18T17:01:18.000+02:00"},{"id":9,"event_id":2,"user_id":7,"status":true,"created_at":"2014-04-18T17:03:24.000+02:00"},{"id":19,"event_id":2,"user_id":2,"status":true,"created_at":"2014-04-18T22:04:59.000+02:00"},{"id":21,"event_id":2,"user_id":3,"status":true,"created_at":"2014-04-19T03:16:37.000+02:00"},{"id":22,"event_id":2,"user_id":8,"status":false,"created_at":"2014-04-19T19:15:13.000+02:00"}]"}]'
 	def index 
-		if params[:sorted] == 'date'
+		if params[:sorted] == 'date-asc'
 			render json: Event.all.order('date')
-		elsif params[:sorted] == '-date'
+		elsif params[:sorted] == 'date-desc'
 			render json: Event.all.order('date').reverse_order
 		else
 			render json: Event.all
