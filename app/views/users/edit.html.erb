@@ -48,6 +48,8 @@
           <%= f.password_field :password, class: "form-control" %>
           <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
           <%= f.password_field :password_confirmation, class: "form-control" %>
+          <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
+          <%= f.check_box :anonymous, class: "form-control" %>
           <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
         </div>
     <% end %>
