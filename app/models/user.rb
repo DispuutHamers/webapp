@@ -88,8 +88,12 @@ class User < ActiveRecord::Base
     groups.find_by(group_id: group.id).destroy!
   end
 
-  def User.hash(token)
-    Digest::SHA1.hexdigest(token.to_s)
+  def User.hash(token = nil)
+		if token
+			Digest::SHA1.hexdigest(token.to_s)
+		else
+			super()
+		end
   end
 
   def lid?
