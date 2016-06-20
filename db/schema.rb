@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160617191813) do
+ActiveRecord::Schema.define(version: 20160620152227) do
 
   create_table "afmeldingens", force: :cascade do |t|
     t.string   "reden",      limit: 255
@@ -206,8 +206,10 @@ ActiveRecord::Schema.define(version: 20160617191813) do
     t.integer  "reporter",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "deleted_at"
   end
 
+  add_index "quotes", ["deleted_at"], name: "index_quotes_on_deleted_at", using: :btree
   add_index "quotes", ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at", using: :btree
 
   create_table "reviews", force: :cascade do |t|

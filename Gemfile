@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # Needed for rails console
 gem 'rb-readline'
 gem 'icalendar'
+gem 'paranoia' 
 gem 'tzinfo'
 gem 'redcarpet' 
 gem 'rqrcode_png'
