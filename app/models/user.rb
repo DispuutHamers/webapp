@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+	acts_as_paranoid
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   has_many :groups, foreign_key: 'user_id', dependent: :destroy

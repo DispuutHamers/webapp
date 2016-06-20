@@ -1,4 +1,5 @@
 class Sticker < ActiveRecord::Base
+	acts_as_paranoid
   validates :lat, presence: true
   validates :lon, presence: true
   def as_json(options)

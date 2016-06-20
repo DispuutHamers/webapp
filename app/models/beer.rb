@@ -1,4 +1,5 @@
 class Beer < ActiveRecord::Base
+	acts_as_paranoid
   has_many :reviews
    VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}

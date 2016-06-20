@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+	acts_as_paranoid
   has_many :signups, dependent: :destroy
   belongs_to :user
 
