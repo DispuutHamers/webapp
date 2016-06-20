@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
       <%= f.label :data %><br>
-      <%= f.text_area :data, class: 'form-control', value: "{ data: { title: \"title\", message: \"message\"} }" %>
+			<%= f.text_area :data, class: 'form-control', value: "{ \"data\": { \"quote\": { \"id\": \"9001\", \"user_id\": \"1\", \"text\": \"Dit is een dummy quote\", \"created_at\": #{DateTime.now.to_json}} } }" %>
     </div>
     <div class="actions">
       <%= f.submit :Verstuur, class: 'btn btn-default' %>
