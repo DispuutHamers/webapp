@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160606105932) do
+ActiveRecord::Schema.define(version: 20160617191813) do
 
   create_table "afmeldingens", force: :cascade do |t|
     t.string   "reden",      limit: 255
@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(version: 20160606105932) do
     t.string   "remember_token",  limit: 255
     t.boolean  "admin",                       default: false
     t.integer  "batch",           limit: 4
+    t.boolean  "anonymous"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
