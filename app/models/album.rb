@@ -1,2 +1,3 @@
 class Album < ActiveRecord::Base
+	acts_as_paranoid
 end

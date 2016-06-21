@@ -140,6 +140,8 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     nprogress-rails (0.1.6.7)
+    paranoia (2.1.5)
+      activerecord (~> 4.0)
     posix-spawn (0.3.11)
     pygments.rb (0.6.3)
       posix-spawn (~> 0.3.6)
@@ -257,6 +259,7 @@ DEPENDENCIES
   jquery-rails
   mysql2
   nprogress-rails
+  paranoia
   rails (= 4.2.6)
   rails-i18n
   rb-readline

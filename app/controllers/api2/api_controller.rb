@@ -18,9 +18,9 @@ class Api2::ApiController < ApplicationController
 	api 'POST', '/register', 'Register a device for push notifications' 
 	param :device, String, required: true
 	def register
-	  @device = @key.user.devices.first || Device.new(device_params)
+	  @device = @key.user.devices.first || Device.new
 	  @device.user_id = @key.user.id
-	  @device.update_attributes(device_params)
+	  @device.device_key = params[:device]
 	  if @device.save
 	    render :status => :created, :text => '[{"status":"201","message":"Created"}]'
 	  else
