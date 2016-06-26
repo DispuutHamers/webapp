@@ -1,7 +1,7 @@
 class BeersController < ApplicationController
   include SessionsHelper
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
-  before_action :logged_in?, only: [:index, :edit, :update, :show]
+  before_action :logged_in?, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy, :update, :edit]
 
   # GET /beers
