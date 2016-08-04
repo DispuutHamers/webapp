@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :quotes
   has_many :devices
   has_many :api_keys
-  has_many :reviews
+  has_many :reviews, :dependent => :destroy
   has_many :motions
   has_many :events
   has_many :beers, through: :reviews
@@ -116,13 +116,15 @@ class User < ActiveRecord::Base
     in_group?(Usergroup.find_by(name: 'Developer'))
   end
 
-  def weight
+
+  def update_weight
     cijfer = 0.0
     reviews = Review.where(user_id: self.id)
     reviews.each do |r|
       cijfer = cijfer + r.rating
     end
-    (cijfer / reviews.count)
+    self.weight = (cijfer / reviews.count)
+    self.save
   end
 
   def schrijf_feut?
