@@ -11,9 +11,13 @@ function initMap() {
 
 	<% @stickers.each do |s| %>
 		var sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
+	  var image = {
+			url: '<%= image_path "pin.png" %>',
+			size: new google.maps.Size(15, 15)
+		};
 		var marker<%= s.id %> = new google.maps.Marker({
 			position: sticker<%= s.id %>,
-			icon: <%= image_path "pin.png" %>,
+			icon: image,
 			map: map,
 			<% if s.notes.empty? %>
 				title: 'Sticker #<%= s.id %>'
