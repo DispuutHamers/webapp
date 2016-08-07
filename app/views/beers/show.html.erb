@@ -5,7 +5,15 @@
   <div class="col-md-8">
     <% @beer.reviews.each do |r| %>
         <div class="review">
-          <h4><%= link_to User.find(r.user_id).name, User.find(r.user_id) %> zei over dit bier: </h4>
+          <h4>
+            <% if current_user || !r.user.anonymous? %>
+              <%= link_to r.user.name, r.user %> 
+            <% else %>
+              Anonieme Hamer
+            <% end %>
+
+            zei over dit bier: 
+	        </h4>
 
           <p><i><%= simple_format(r.description) %></i></p>
 
@@ -14,7 +22,7 @@
             <i><%= r.proefdatum.strftime('%d-%m-%Y') %></i>
           </p>
 
-          <% if current_user == User.find(r.user_id) || current_user.admin? %>
+          <% if current_user && (current_user == User.find(r.user_id) || current_user.admin?) %>
               <div class="btn-group pull-right">
                 <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
                     <i class="fa fa-pencil"></i>
@@ -34,7 +42,7 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <% if @beer.picture? %>
+        <% if current_user && @beer.picture? %>
             <%= image_tag(@beer.picture, :class => 'img img-responsive center-block') %>
         <% else %>
             <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
@@ -69,9 +77,11 @@
   </div>
 </div>
 <div class="btn-group">
-  <%= link_to 'Review', reviews_beer_path(@beer), :class => 'btn btn-primary' unless current_user.reviews.find_by(beer_id: @beer.id) %>
-  <% if current_user.admin? %>
-      <%= link_to 'Edit', edit_beer_path(@beer), :class => 'btn btn-info' %>
+  <% if current_user %>
+    <%= link_to 'Review', reviews_beer_path(@beer), :class => 'btn btn-primary' unless current_user.reviews.find_by(beer_id: @beer.id) %>
+    <% if current_user.admin? %>
+        <%= link_to 'Edit', edit_beer_path(@beer), :class => 'btn btn-info' %>
+    <% end %>
   <% end %>
   <%= link_to 'Back', beers_path, :class => 'btn btn-default' %>
 </div>
