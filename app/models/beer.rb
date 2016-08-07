@@ -11,8 +11,7 @@ class Beer < ActiveRecord::Base
     return self.grade
   end
 
-  def update_cijfer?
-
+  def update_cijfer
     cijfer = 0.0
     avg = 0.0
     self.reviews.each do |r|
@@ -20,11 +19,8 @@ class Beer < ActiveRecord::Base
       cijfer = cijfer + (r.rating * weight)
       avg = avg + weight
     end
-    self.grade = cijfer / avg
+    self.grade = cijfer / avg unless avg == 0.0
     self.save
-
-
-    return self.reviews.count > 0
   end
 
 	def	as_json(options)

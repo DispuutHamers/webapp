@@ -123,7 +123,7 @@ class User < ActiveRecord::Base
     reviews.each do |r|
       cijfer = cijfer + r.rating
     end
-    self.weight = (cijfer / reviews.count)
+    self.weight = (cijfer / reviews.count) unless reviews.empty?
     self.save
   end
 
