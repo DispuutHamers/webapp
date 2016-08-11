@@ -7,8 +7,11 @@ class Beer < ActiveRecord::Base
   def add_review!(user, rating, description, proefdatum)
     self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)
   end
-
   def cijfer?
+    return self.grade
+  end
+
+  def update_cijfer
     cijfer = 0.0
     avg = 0.0
     self.reviews.each do |r|
@@ -16,7 +19,8 @@ class Beer < ActiveRecord::Base
       cijfer = cijfer + (r.rating * weight)
       avg = avg + weight
     end
-    return '%.2f' % (cijfer / avg) unless self.reviews.count == 0
+    self.grade = cijfer / avg unless avg == 0.0
+    self.save
   end
 
 	def	as_json(options)

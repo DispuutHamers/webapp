@@ -10,7 +10,7 @@ class UsergroupsController < ApplicationController
   def create
     @usergroup = Usergroup.new(usergroup_params)
     if @usergroup.save
-      flash[:success] = 'Quote staat erop'
+      flash[:success] = 'Usergroup aangemaakt'
       redirect_to root_url
     else
       @usergroups = Usergroup.all

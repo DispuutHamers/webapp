@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160620153704) do
+ActiveRecord::Schema.define(version: 20160804165516) do
 
   create_table "afmeldingens", force: :cascade do |t|
     t.string   "reden",      limit: 255
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20160620153704) do
     t.string   "country",    limit: 255
     t.string   "URL",        limit: 255
     t.datetime "deleted_at"
+    t.float    "grade",      limit: 53
   end
 
   add_index "beers", ["deleted_at"], name: "index_beers_on_deleted_at", using: :btree
@@ -325,6 +326,7 @@ ActiveRecord::Schema.define(version: 20160620153704) do
     t.integer  "batch",           limit: 4
     t.boolean  "anonymous"
     t.datetime "deleted_at"
+    t.float    "weight",          limit: 53,  default: 0.0
   end
 
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
