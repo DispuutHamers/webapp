@@ -35,8 +35,6 @@ class Api2::BeersController < Api2::ApiController
 	param :URL, String
 	def update
 	  @beer = Beer.find(params[:id])
-	  if (@beer.user_id != @key.user.id and !@key.user.admin?)
-	    render text: "HTTP Token: Access denied.", status: :access_denied
 	  elsif @beer.update(beer_params)
 	    render json: @beer
 	  else
