@@ -35,7 +35,7 @@ class Api2::BeersController < Api2::ApiController
 	param :URL, String
 	def update
 	  @beer = Beer.find(params[:id])
-	  elsif @beer.update(beer_params)
+	  if @beer.update(beer_params)
 	    render json: @beer
 	  else
 	    render json: @beer.errors, status: :unprocessable_entity
