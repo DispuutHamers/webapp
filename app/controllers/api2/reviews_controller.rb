@@ -21,7 +21,7 @@ class Api2::ReviewsController < Api2::ApiController
 	param :proefdatum, String
 	def update
 	  @review = Review.find(params[:id])
-	  if (@review.user_id != @key.user.id and !@key.user.admin?)
+	  if @review.user_id != @key.user.id
 	    render text: "HTTP Token: Access denied.", status: :access_denied
 	  elsif @review.update(review_params)
 	    render json: @review
