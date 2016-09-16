@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def join_group!(group)
-		if groups.with_deleted.where(group_id: group.id).first.deleted_at
+		unless groups.only_deleted.where(group_id: group.id).empty?
 		  groups.with_deleted.where(group_id: group.id).first.restore
 		else
       groups.create!(group_id: group.id)
