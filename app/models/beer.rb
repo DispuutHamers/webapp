@@ -8,7 +8,7 @@ class Beer < ActiveRecord::Base
     self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)
   end
   def cijfer?
-    return self.grade
+    return self.grade.round(2)
   end
 
   def update_cijfer
