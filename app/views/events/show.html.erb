@@ -5,7 +5,7 @@
   <div class="col-md-8">
     <p>
       <i class="fa fa-clock-o"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-      tot <%= @event.end_time.strftime('%d-%m-%Y %H:%M') %>
+		<% if @event.end_time? %>tot <%= @event.end_time.strftime('%d-%m-%Y %H:%M') %><% end %>
     </p>
     <% if @event.location != nil and @event.location.length > 1 %>
         <p><i class="fa fa-map-marker"></i> <%= @event.location %></p>

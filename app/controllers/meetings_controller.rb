@@ -48,6 +48,7 @@ class MeetingsController < ApplicationController
   # PATCH/PUT /meetings/1.json
   def update
     respond_to do |format|
+		  @meeting.user_id = current_user.id if meeting_params[:notes]
       if @meeting.update(meeting_params)
         flash[:success] = 'Vergadering succesvol gewijzigd.'
         format.html { redirect_to @meeting }

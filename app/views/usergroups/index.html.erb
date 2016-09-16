@@ -10,7 +10,7 @@
     <%= form_for(@group) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
-          <%= f.text_field :name, placeholder: 'Groep', class: 'form-control' %>
+          <%= f.text_field :name, placeholder: 'Groep', class: '' %>
           <%= f.submit 'Create', class: 'btn btn-large btn-primary' %>
         </div>
     <% end %>

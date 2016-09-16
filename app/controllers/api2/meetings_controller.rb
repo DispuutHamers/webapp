@@ -22,6 +22,7 @@ class Api2::MeetingsController < Api2::ApiController
 	param :date, String
 	def update
 	  @meeting = Meeting.find(params[:id])
+		@meeting.user_id = @key.user.id if meeting_params[:notes]
 	  if @meeting.update(meeting_params)
 	    render json: @meeting
 	  else
@@ -36,6 +37,7 @@ class Api2::MeetingsController < Api2::ApiController
 	param :date, String
 	def create
 	  @meeting = Meeting.new(meeting_params)
+		@meeting.user_id = @key.user.id if meeting_params[:notes]
 	  if @meeting.save
 	    render json: @meeting, status: :created, location: @meeting
 	  else

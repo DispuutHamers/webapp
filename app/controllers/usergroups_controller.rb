@@ -19,6 +19,13 @@ class UsergroupsController < ApplicationController
   end
 
   def destroy
+		@usergroup = Usergroup.find(params[:id])
+		if @usergroup.empty?
+			@usergroup.destroy!
+		else
+			flash[:error] = "Usergroup is niet leeg"
+		end
+		redirect_to root_path
   end
 
   private
