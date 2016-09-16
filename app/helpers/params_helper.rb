@@ -40,7 +40,7 @@ module ParamsHelper
   end
   
   def meeting_params
-    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :user_id)
+    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date)
   end
 
 	def sticker_params
