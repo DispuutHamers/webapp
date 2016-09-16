@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
 		elsif olid?
 			h[:lid] = "olid"
 		elsif lid? 
-			h[:lid] = "Lid"
+			h[:lid] = "lid"
 		else
 			h[:lid] = "none" 
 		end
