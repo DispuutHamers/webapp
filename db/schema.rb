@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804165516) do
+ActiveRecord::Schema.define(version: 20160917155621) do
 
   create_table "afmeldingens", force: :cascade do |t|
     t.string   "reden",      limit: 255
@@ -103,6 +103,14 @@ ActiveRecord::Schema.define(version: 20160804165516) do
 
   create_table "documentation_screenshots", force: :cascade do |t|
     t.string "alt_text", limit: 255
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.string   "from",       limit: 255
+    t.string   "to",         limit: 255
+    t.text     "body",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "events", force: :cascade do |t|
