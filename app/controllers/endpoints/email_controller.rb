@@ -1,7 +1,9 @@
 class Endpoints::EmailController < ApplicationController
-	setup :secret => '6d7e5337a0cd69f52c3fcf9f5af438b1'
-	
-	def receive
-		%(Got message from #{mail.to.first} with subject "#{mail.subject}")
+	def create
+		if EmailReceiver.receive(request)
+			render :json => { :status => 'ok' }
+		else
+			render :json => { :status => 'rejected' }, :status => 403
+		end
 	end
 end

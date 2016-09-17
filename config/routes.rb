@@ -62,7 +62,7 @@ Hamers::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete' 
 	match '/:id', to: 'public_pages#show', via: 'get'
 	scope 'endpoints' do
-		get 'email' => 'endpoints/email#receive'
+		get 'email' => 'endpoints/email#create'
 	end
 	scope 'api' do 
 		scope 'v2' do
