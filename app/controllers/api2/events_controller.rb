@@ -11,7 +11,9 @@ class Api2::EventsController < Api2::ApiController
 		if params[:sorted] == 'date-asc'
 			render json: Event.all.order('date')
 		elsif params[:sorted] == 'date-desc'
-			render json: Event.all.order('date').reverse_order
+              	  render json: Event.all.order('date').reverse_order
+                elsif params[:future] == true 
+                  render json: Event.where("data >= #{Data.today}")
 		else
 			render json: Event.all
 		end

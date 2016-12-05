@@ -1,5 +1,4 @@
 class Api2::BeersController < Api2::ApiController
-	caches_action :index
 	resource_description do
 		api_versions "2.0"
 		formats ['json']
