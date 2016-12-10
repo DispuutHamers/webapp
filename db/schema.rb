@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160917155621) do
 
-  create_table "afmeldingens", force: :cascade do |t|
-    t.string   "reden",      limit: 255
-    t.integer  "user_id",    limit: 4
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "albums", force: :cascade do |t|
     t.string   "title",       limit: 255
     t.string   "description", limit: 255
@@ -228,12 +221,6 @@ ActiveRecord::Schema.define(version: 20160917155621) do
 
   add_index "notes", ["deleted_at"], name: "index_notes_on_deleted_at", using: :btree
 
-  create_table "polls", force: :cascade do |t|
-    t.string   "beschrijving", limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "public_pages", force: :cascade do |t|
     t.text     "content",    limit: 65535
     t.string   "title",      limit: 255
@@ -291,14 +278,6 @@ ActiveRecord::Schema.define(version: 20160917155621) do
   end
 
   add_index "signups", ["deleted_at"], name: "index_signups_on_deleted_at", using: :btree
-
-  create_table "statics", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "content",    limit: 255
-    t.string   "p_content",  limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "stickers", force: :cascade do |t|
     t.string   "lat",        limit: 255
