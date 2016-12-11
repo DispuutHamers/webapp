@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def index_public
-    @groupedUsers = User.order(batch: :desc).reject { |u| !u.lid? }.group_by {|u| u[:batch]} 
+    @groupedUsers = User.order(batch: :desc).reject { |u| !u.lid? }.group_by {|u| u[:batch]}
   end
 
   def show
@@ -44,6 +44,7 @@ class UsersController < ApplicationController
       user_params.delete(:password)
       user_params.delete(:password_confirmation)
     end
+
     if @user.update_attributes(user_params)
       sign_in current_user
       flash[:success] = 'Profile updated'

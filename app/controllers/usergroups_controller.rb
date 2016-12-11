@@ -19,13 +19,14 @@ class UsergroupsController < ApplicationController
   end
 
   def destroy
-		@usergroup = Usergroup.find(params[:id])
-		if @usergroup.empty?
-			@usergroup.destroy!
-		else
-			flash[:error] = "Usergroup is niet leeg"
-		end
-		redirect_to root_path
+    @usergroup = Usergroup.find(params[:id])
+    if @usergroup.empty?
+      @usergroup.destroy!
+    else
+      flash[:error] = "Usergroup is niet leeg"
+    end
+
+    redirect_to root_path
   end
 
   private
@@ -37,5 +38,4 @@ class UsergroupsController < ApplicationController
     @quote = Quote.find_by_id(params[:id])
     redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user.admin?
   end
-
 end

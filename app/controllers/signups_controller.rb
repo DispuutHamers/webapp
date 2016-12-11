@@ -24,6 +24,7 @@ class SignupsController < ApplicationController
     else
       flash[:error] = 'De deadline is al verstreken'
     end
+
     redirect_to @event
   end
 

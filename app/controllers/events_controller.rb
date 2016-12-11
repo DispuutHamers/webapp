@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   include SessionsHelper
-	require 'icalendar/tzinfo'
+  require 'icalendar/tzinfo'
   before_action :logged_in?, only: [:edit, :update, :destroy]
   before_action :admin_user?, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
@@ -16,24 +16,26 @@ class EventsController < ApplicationController
         #redirect_to root_path, notice: "Mag niet!." unless lid?
         redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
       end
+
       w.ics do
-				@key = ApiKey.where(key: params[:key]).first
-				if @key && @key.user && @key.user.lid?
-					ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
-					feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
-	        calendar = Icalendar::Calendar.new
-					tzid = "Europe/Amsterdam"
-					tz = TZInfo::Timezone.get tzid
-					timezone = tz.ical_timezone feed.first.date
-					calendar.add_timezone timezone
-		      feed.each do |f|
-			      calendar.add_event(f.to_ics)
-				  end
-					calendar.publish
-					render :text => calendar.to_ical
-				else
-					render text: "HTTP Token: Access denied.", status: :access_denied
-				end
+        @key = ApiKey.where(key: params[:key]).first
+        if @key && @key.user && @key.user.lid?
+          ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
+          feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
+          calendar = Icalendar::Calendar.new
+          tzid = "Europe/Amsterdam"
+          tz = TZInfo::Timezone.get tzid
+          timezone = tz.ical_timezone feed.first.date
+          calendar.add_timezone timezone
+          feed.each do |f|
+            calendar.add_event(f.to_ics)
+          end
+
+          calendar.publish
+          render :text => calendar.to_ical
+        else
+          render text: "HTTP Token: Access denied.", status: :access_denied
+        end
       end
     end
   end

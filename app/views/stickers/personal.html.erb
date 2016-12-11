@@ -19,9 +19,8 @@ $(document).ready(function () {
         <td><%= m.created_at.strftime('%d/%m/%Y %H:%M') %></td>
         <td><%= "#{m.lat}, #{m.lon}" %><br>
           <% jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{m.lat},#{m.lon}&key=AIzaSyAz0ENeS5X1Vh9A_-KxxENHBf-qQYB2z-U")) %>
-          <% mdata = JSON.parse(jdata.body) %>   
-          <%= mdata["results"][0]["formatted_address"]
-  
+          <% mdata = JSON.parse(jdata.body) %>
+          <%= mdata["results"][0]["formatted_address"] %>
         </td>
 
         <td>
