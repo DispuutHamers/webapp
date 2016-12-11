@@ -27,7 +27,9 @@ $(document).ready(function()
       <% end %>
       <% if t.event == "create" %>
         <td>created <%= t.item_type %></td>
-    <% else %> 
+      <% elsif t.event == "destroy"%>
+        <td>destroyed <%= t.item_type + " #" + t.reify(option = {}).id.to_s %></td>
+      <% else %>
       <td><%= t.event %>d <%= link_to t.item_type + " #" + t.reify(options = {}).id.to_s, t.reify(options = {}) %></td>
       <% end %>
       <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
