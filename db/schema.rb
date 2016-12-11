@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917155621) do
+ActiveRecord::Schema.define(version: 20161211131812) do
+
+  create_table "afmeldingens", force: :cascade do |t|
+    t.string   "reden",      limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "albums", force: :cascade do |t|
     t.string   "title",       limit: 255
@@ -221,6 +228,12 @@ ActiveRecord::Schema.define(version: 20160917155621) do
 
   add_index "notes", ["deleted_at"], name: "index_notes_on_deleted_at", using: :btree
 
+  create_table "polls", force: :cascade do |t|
+    t.string   "beschrijving", limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "public_pages", force: :cascade do |t|
     t.text     "content",    limit: 65535
     t.string   "title",      limit: 255
@@ -279,6 +292,14 @@ ActiveRecord::Schema.define(version: 20160917155621) do
 
   add_index "signups", ["deleted_at"], name: "index_signups_on_deleted_at", using: :btree
 
+  create_table "statics", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "content",    limit: 255
+    t.string   "p_content",  limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "stickers", force: :cascade do |t|
     t.string   "lat",        limit: 255
     t.string   "lon",        limit: 255
@@ -319,6 +340,17 @@ ActiveRecord::Schema.define(version: 20160917155621) do
   add_index "users", ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "versions", force: :cascade do |t|
+    t.string   "item_type",  limit: 191,        null: false
+    t.integer  "item_id",    limit: 4,          null: false
+    t.string   "event",      limit: 255,        null: false
+    t.string   "whodunnit",  limit: 255
+    t.text     "object",     limit: 4294967295
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
   create_table "votes", force: :cascade do |t|
     t.integer  "user_id",    limit: 4

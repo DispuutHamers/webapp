@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-	acts_as_paranoid
+  acts_as_paranoid
+  has_paper_trail
   has_many :signups, dependent: :destroy
   belongs_to :user
 
@@ -27,9 +28,9 @@ class Event < ActiveRecord::Base
     !self.date.future?
   end
 
-	def as_json(options)
-		h = super({:only => [:id, :title, :beschrijving, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
-		h[:signups] = signups.as_json(options) 
-		h
-	end
+  def as_json(options)
+    h = super({:only => [:id, :title, :beschrijving, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
+    h[:signups] = signups.as_json(options)
+    h
+  end
 end

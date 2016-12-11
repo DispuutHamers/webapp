@@ -1,0 +1,34 @@
+<% content_for :title do %>
+  Trail
+<% end %>
+<script type="text/javascript">
+$(document).ready(function()
+    {
+      $("#motion").tablesorter();
+    }
+    );
+</script>
+<table id="motion" class="tablesorter table table-hover">
+  <thead>
+    <tr>
+      <th>Wie</th>
+      <th>Wat</th>
+      <th>Waneer</th>
+    </tr>
+  </thead>
+  <%= will_paginate @trail %>
+  <tbody>
+    <% @trail.each do |t| %>
+      <tr>
+        <td><% if t.whodunnit %>
+          <%= User.find(t.whodunnit).name %>
+        <% else %>
+          System </td>
+      <% end %>
+      <td><%= t.event %>d <%= link_to t.item_type + " #" + t.reify(options = {}).id.to_s, t.reify(options = {}) %></td>
+      <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @trail %>
