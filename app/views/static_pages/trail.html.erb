@@ -25,7 +25,11 @@ $(document).ready(function()
         <% else %>
           System </td>
       <% end %>
+      <% if t.event == "create" %>
+        <td>created <%= t.item_type %></td>
+    <% else %> 
       <td><%= t.event %>d <%= link_to t.item_type + " #" + t.reify(options = {}).id.to_s, t.reify(options = {}) %></td>
+      <% end %>
       <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
       </tr>
     <% end %>

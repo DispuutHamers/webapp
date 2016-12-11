@@ -16,7 +16,7 @@ class StaticPagesController < ApplicationController
 
   def trail
     redirect_to root_path unless current_user && current_user.admin?
-    @trail = PaperTrail::Version.all.paginate(page: params[:page], :per_page => 20)
+    @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
   end
 
   def statistics
