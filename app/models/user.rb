@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-	acts_as_paranoid
+  has_paper_trail :ignore => [:updated_at, :remember_token]
+  acts_as_paranoid
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   has_many :groups, foreign_key: 'user_id', dependent: :destroy
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
   has_many :motions
   has_many :events
   has_many :beers, through: :reviews
-	has_many :api_logs
+  has_many :api_logs
   has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   has_many :nicknames, dependent: :destroy
@@ -27,6 +28,7 @@ class User < ActiveRecord::Base
     if self.nicknames.count > 0
       name = self.nickname + '(' + name + ')'
     end
+
     name
   end
 
@@ -35,16 +37,18 @@ class User < ActiveRecord::Base
     nicknames.order('created_at DESC').each do |n|
       nickname = n.nickname + ' ' + nickname
     end
+
     nickname
   end
-	
-	def unreviewed_beers
-		urev_beers = Beer.all
-		beers.each do |b|
-			urev_beers = urev_beers - [b] 
-		end
-		urev_beers
-	end
+
+  def unreviewed_beers
+    urev_beers = Beer.all
+    beers.each do |b|
+      urev_beers = urev_beers - [b]
+    end
+
+    urev_beers
+  end
 
   def feed
     Quote.all.order('created_at DESC')
@@ -55,6 +59,7 @@ class User < ActiveRecord::Base
     if stemmen.any?
       stemmen.each { |stem| stem.destroy! }
     end
+
     self.votes.create!(poll_id: poll.id, result: result)
   end
 
@@ -64,6 +69,7 @@ class User < ActiveRecord::Base
       if stemmen.any?
         stemmen.each { |stem| stem.destroy! }
       end
+
       self.signups.create!(event_id: event.id, status: status)
     end
   end
@@ -81,11 +87,11 @@ class User < ActiveRecord::Base
   end
 
   def join_group!(group)
-		unless groups.only_deleted.where(group_id: group.id).empty?
-		  groups.with_deleted.where(group_id: group.id).first.restore
-		else
+    unless groups.only_deleted.where(group_id: group.id).empty?
+      groups.with_deleted.where(group_id: group.id).first.restore
+    else
       groups.create!(group_id: group.id)
-		end
+    end
   end
 
   def remove_group!(group)
@@ -93,11 +99,11 @@ class User < ActiveRecord::Base
   end
 
   def User.hash(token = nil)
-		if token
-			Digest::SHA1.hexdigest(token.to_s)
-		else
-			super()
-		end
+    if token
+      Digest::SHA1.hexdigest(token.to_s)
+    else
+      super()
+    end
   end
 
   def lid?
@@ -113,13 +119,12 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    in_group?(Usergroup.find_by(name: 'Triumviraat')) 
+    in_group?(Usergroup.find_by(name: 'Triumviraat'))
   end
 
   def dev?
     in_group?(Usergroup.find_by(name: 'Developer'))
   end
-
 
   def update_weight
     cijfer = 0.0
@@ -127,6 +132,7 @@ class User < ActiveRecord::Base
     reviews.each do |r|
       cijfer = cijfer + r.rating
     end
+
     self.weight = (cijfer / reviews.count) unless reviews.empty?
     self.save
   end
@@ -135,27 +141,29 @@ class User < ActiveRecord::Base
     in_group?(Usergroup.find_by(name: 'Secretaris-generaal'))
   end
 
-	def as_json(options)
-	  h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
-		h[:reviews] = reviews.count
-		h[:quotes] = quotes.count
-		h[:nicknames] = nicknames(options)
-		if alid? 
-			h[:lid] = "alid"
-		elsif olid?
-			h[:lid] = "olid"
-		elsif lid? 
-			h[:lid] = "lid"
-		else
-			h[:lid] = "none" 
-		end
-		if admin?
-			h[:admin] = 1
-		else
-			h[:admin] = 0
-		end
-		h
-	end
+  def as_json(options)
+    h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
+    h[:reviews] = reviews.count
+    h[:quotes] = quotes.count
+    h[:nicknames] = nicknames(options)
+    if alid?
+      h[:lid] = "alid"
+    elsif olid?
+      h[:lid] = "olid"
+    elsif lid?
+      h[:lid] = "lid"
+    else
+      h[:lid] = "none"
+    end
+
+    if admin?
+      h[:admin] = 1
+    else
+      h[:admin] = 0
+    end
+
+    h
+  end
 
   private
 

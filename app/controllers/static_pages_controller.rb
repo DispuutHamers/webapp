@@ -14,6 +14,11 @@ class StaticPagesController < ApplicationController
     redirect_to root_path unless current_user && current_user.admin?
   end
 
+  def trail
+    redirect_to root_path unless current_user && current_user.admin?
+    @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+  end
+
   def statistics
     redirect_to root_path unless signed_in?
     @cumulativeReviewData = getCumulativeData Review

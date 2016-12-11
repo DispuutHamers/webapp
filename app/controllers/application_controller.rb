@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :set_cache_buster
+  before_action :set_paper_trail_whodunnit
+
   include SessionsHelper
   include ParamsHelper
 
@@ -17,6 +19,7 @@ class ApplicationController < ActionController::Base
     Device.all.each do |d|
       keys << d.device_key
     end
+
     Push.new(data: PUSH.send(keys, eval(data))).save
     Push.new(data: eval(data)).save
   end

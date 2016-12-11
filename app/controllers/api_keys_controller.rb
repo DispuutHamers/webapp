@@ -9,7 +9,7 @@ class ApiKeysController < ApplicationController
 
   def show
     k = ApiKey.find(params[:id])
-		@rawkey = k.key
+    @rawkey = k.key
     @key = RQRCode::QRCode.new(k.key).to_img.resize(200, 200).to_data_url
     @logs = ApiLog.where(key: k.key).order(created_at: :desc).paginate(page: params[:page], :per_page => 10)
   end

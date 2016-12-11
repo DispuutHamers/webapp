@@ -16,7 +16,6 @@ class NicknamesController < ApplicationController
     if @nickname.save
       redirect_to nicknames_path
     end
-
   end
 
   def edit
@@ -32,11 +31,9 @@ class NicknamesController < ApplicationController
     end
   end
 
-
   def destroy
     Nickname.find(params[:id]).destroy
     flash[:success] = 'Bijnaam is weg'
     redirect_to nicknames_path
   end
-
 end
