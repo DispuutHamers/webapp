@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_paper_trail
+  has_paper_trail :ignore => [:updated_at, :remember_token]
   acts_as_paranoid
   before_save { self.email = email.downcase }
   before_create :create_remember_token
