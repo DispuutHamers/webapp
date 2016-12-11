@@ -45,6 +45,7 @@ class Api2::ApiController < ApplicationController
   end
 
   def log_url
+    PaperTrail.whodunnit = @key.user.id
     ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: (request.method + ": " + request.original_fullpath + " " + params.to_s)).save
   end
 end
