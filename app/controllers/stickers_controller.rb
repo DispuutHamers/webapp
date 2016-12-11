@@ -4,29 +4,29 @@ class StickersController < ApplicationController
   before_action :admin_user?, only: [:destroy]
 
   def index
-		@stickers = Sticker.all
+    @stickers = Sticker.all
   end
 
   def personal
-		@stickers = Sticker.where(user_id: current_user.id).paginate(page: params[:page])
+    @stickers = Sticker.where(user_id: current_user.id).paginate(page: params[:page])
   end
 
-	def new
-		@sticker = Sticker.new
-	end
+  def new
+    @sticker = Sticker.new
+  end
 
-	def edit
-	end
+  def edit
+  end
 
   def create
     @sticker = Sticker.new(sticker_params)
-		@sticker.user_id = current_user.id
+    @sticker.user_id = current_user.id
     if @sticker.save
       flash[:success] = 'Sticker geplakt'
       redirect_to root_url
     else
-			flash[:danger] = "Je sticker liet weer los :("
-			redirect_to root_url
+      flash[:danger] = "Je sticker liet weer los :("
+      redirect_to root_url
     end
   end
 
@@ -36,6 +36,6 @@ class StickersController < ApplicationController
   def show
   end
 
-	def destroy
-	end
+  def destroy
+  end
 end

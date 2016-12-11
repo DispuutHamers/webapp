@@ -22,9 +22,9 @@ class Api2::ApiController < ApplicationController
 	  @device.user_id = @key.user.id
 	  @device.device_key = params[:device]
 	  if @device.save
-	    render :status => :created, :text => '[{"status":"201","message":"Created"}]'
+	    render :status => :created, :text => '{"status":"201","message":"Created"}'
 	  else
-	    render :status => :bad_request, :text => '[{"status":"400","error":"Bad request"}]'
+	    render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
 	  end
 	end
 
