@@ -14,7 +14,7 @@ class Api2::SignupsController < Api2::ApiController
 	param :status, ["true","false"], :required => true
 	def update
 	  @signup = Signup.find(params[:id])
-	  if (@signup.user_id != @key.user.id and !@key.user.admin?)
+	  if (@signupyy.user_id != @key.user.id and !@key.user.admin?)
 	    render text: "HTTP Token: Access denied.", status: :access_denied
 	  elsif @signup.update(signup_params)
 	    render json: @signup
@@ -27,6 +27,12 @@ class Api2::SignupsController < Api2::ApiController
 	param :event_id, Integer, :required => true
 	param :status, ["true","false"], :required => true
 	def create
+          if Signup.where(user_id: @key.user.id, event_id: signup_params[:event_id]).any?
+            @signup = Signup.where(user_id: @key.user.id, event_id: signup_params[:event_id]).first
+            @signup.update_attributes(signup_params)
+            render json: @signup
+            return
+          end
 	  @signup = Signup.new(signup_params)
 	  @signup.user_id = @key.user.id
 	  if @signup.save
