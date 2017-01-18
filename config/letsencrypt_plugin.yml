@@ -1,7 +1,7 @@
 default: &default
   endpoint: 'https://acme-v01.api.letsencrypt.org/'
   email: 'jacko@zondersikkel.nl'
-  domain: "<%= ['zondersikkel.nl', 'www.zondersikkel.nl'].join(' ') %>"
+  domain: 'zondersikkel.nl www.zondersikkel.nl'
 
   private_key: 'config/key.pem'
 
