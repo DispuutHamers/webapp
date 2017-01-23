@@ -1,4 +1,5 @@
 Hamers::Application.routes.draw do
+  mount LetsencryptPlugin::Engine, at: '/'
   apipie
   resources :notes
   resources :pushes, only: [:index, :create, :new]

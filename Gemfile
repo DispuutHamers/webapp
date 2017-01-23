@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Needed for rails console
+gem 'letsencrypt_plugin'
 gem 'rb-readline'
 gem 'icalendar'
 gem 'paranoia' 
