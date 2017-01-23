@@ -9,8 +9,9 @@
     <th>Soort</th>
     <th>Cijfer</th>
     <th>Brouwer</th>
+    <th>Land</th>
     <th>Aantal reviews</th>
-    <% if current_user && current_user.admin? %>
+    <% if current_user&.admin? %>
         <th></th>
     <% end %>
   </tr>
@@ -32,8 +33,9 @@
       <td><%= beer.soort %></td>
       <td><%= beer.cijfer? %></td>
       <td><%= beer.brewer %></td>
+      <td><%= beer.country %></td>
       <td><%= beer.reviews.count %></td>
-      <% if current_user && current_user.admin? %>
+      <% if current_user&.admin? %>
           <td>
             <%= link_to 'Verwijder', beer, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
           </td>
