@@ -210,3 +210,7 @@ nl:
       long: "%d %B %Y %H:%M"
       short: "%d %b %H:%M"
     pm: "'s middags"
+
+  will_paginate:
+    previous_label: "&#8592;"
+    next_label: "&#8594;"

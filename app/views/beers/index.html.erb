@@ -9,8 +9,9 @@
     <th>Soort</th>
     <th>Cijfer</th>
     <th>Brouwer</th>
+    <th>Land</th>
     <th>Aantal reviews</th>
-    <% if current_user && current_user.admin? %>
+    <% if current_user&.admin? %>
         <th></th>
     <% end %>
   </tr>
@@ -18,22 +19,23 @@
   <tbody>
   <% @beers.each do |beer| %>
       <% if current_user %>
-  	    <% if beer.reviews.where('user_id = ?', current_user.id).empty? %>
-        	  <tr class="default">
-      	<% elsif beer.reviews.where('user_id = ?', current_user.id).take.rating > 6 %>
-        	  <tr class="success">
-      	<% elsif beer.reviews.where('user_id = ?', current_user.id).take.rating > 4 %>
-        	  <tr class="info">
-      	<% else %>
-      	    <tr class="danger">
-      	<% end %>
+          <% if beer.reviews.where('user_id = ?', current_user.id).empty? %>
+              <tr class="default">
+          <% elsif beer.reviews.where('user_id = ?', current_user.id).take.rating > 6 %>
+              <tr class="success">
+          <% elsif beer.reviews.where('user_id = ?', current_user.id).take.rating > 4 %>
+              <tr class="info">
+          <% else %>
+              <tr class="danger">
+          <% end %>
       <% end %>
       <td><%= link_to beer.name, beer %></td>
       <td><%= beer.soort %></td>
       <td><%= beer.cijfer? %></td>
       <td><%= beer.brewer %></td>
+      <td><%= beer.country %></td>
       <td><%= beer.reviews.count %></td>
-      <% if current_user && current_user.admin? %>
+      <% if current_user&.admin? %>
           <td>
             <%= link_to 'Verwijder', beer, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
           </td>
@@ -44,5 +46,5 @@
 </table>
 
 <% if current_user %>
-  <%= link_to 'Nieuw bier', new_beer_path, :class => 'btn btn-block btn-primary' %>
+    <%= link_to 'Nieuw bier', new_beer_path, :class => 'btn btn-block btn-primary btn-sm' %>
 <% end %>
