@@ -1,3 +1,4 @@
+#Hosts our public pages
 class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
   before_action :admin_user?, except: [:show]
@@ -27,33 +28,14 @@ class PublicPagesController < ApplicationController
   # POST /public_pages
   # POST /public_pages.json
   def create
-    @public_page = PublicPage.new(public_page_params)
-
-    respond_to do |format|
-      if @public_page.save
-        flash[:success] = 'Publieke pagina succesvol aangemaakt.'
-        format.html { redirect_to @public_page }
-        format.json { render action: 'show', status: :created, location: @public_page }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @public_page.errors, status: :unprocessable_entity }
-      end
-    end
+    public_page = PublicPage.new(public_page_params)
+    save_object(public_page, type="public page")
   end
 
   # PATCH/PUT /public_pages/1
   # PATCH/PUT /public_pages/1.json
   def update
-    respond_to do |format|
-      if @public_page.update(public_page_params)
-        flash[:success] = 'Publieke pagina succesvol bijgewerkt.'
-        format.html { redirect_to @public_page }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @public_page.errors, status: :unprocessable_entity }
-      end
-    end
+    update_by_owner_and_admin(@public_page, public_page_params)
   end
 
   # DELETE /public_pages/1

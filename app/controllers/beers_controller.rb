@@ -1,3 +1,4 @@
+#entry point for beer resource
 class BeersController < ApplicationController
   include SessionsHelper
   include UtilHelper

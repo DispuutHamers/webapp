@@ -1,7 +1,5 @@
 #entry point for events
 class EventsController < ApplicationController
-  include SessionsHelper
-  include UtilHelper
   require 'icalendar/tzinfo'
   before_action :logged_in?, only: [:edit, :update, :destroy]
   before_action :admin_user?, only: :destroy
@@ -10,7 +8,6 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.order(date: :desc)
     respond_to do |w|
       w.html do
         @events = Event.all.order(date: :desc).paginate(page: params[:page])
@@ -19,9 +16,9 @@ class EventsController < ApplicationController
       end
 
       w.ics do
-        @key = ApiKey.where(key: params[:key]).first
-        if @key && @key.user && @key.user.lid?
-          ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
+        key = ApiKey.where(key: params[:key]).first
+        if key&.user&.lid?
+          ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
           feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
           calendar = Icalendar::Calendar.new
           tzid = "Europe/Amsterdam"

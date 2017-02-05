@@ -1,3 +1,4 @@
+#entry point for meetings controller
 class MeetingsController < ApplicationController
   before_action :logged_in?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]

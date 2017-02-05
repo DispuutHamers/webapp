@@ -1,3 +1,4 @@
+#Sticker controller
 class StickersController < ApplicationController
   before_action :logged_in?, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
@@ -19,15 +20,9 @@ class StickersController < ApplicationController
   end
 
   def create
-    @sticker = Sticker.new(sticker_params)
-    @sticker.user_id = current_user.id
-    if @sticker.save
-      flash[:success] = 'Sticker geplakt'
-      redirect_to root_url
-    else
-      flash[:danger] = "Je sticker liet weer los :("
-      redirect_to root_url
-    end
+    sticker = Sticker.new(sticker_params)
+    sticker.user_id = current_user.id
+    save_object(sticker, type="sticker")
   end
 
   def update
@@ -37,5 +32,7 @@ class StickersController < ApplicationController
   end
 
   def destroy
+    sticker = Sticker.find(params[:id])
+    delete_object(sticker)
   end
 end

@@ -15,10 +15,8 @@ class ApiKeysController < ApplicationController
   end
 
   def destroy
-    @key = ApiKey.find(params[:id])
-    @key.destroy
-    flash[:danger] = 'Je api key is kaput'
-    redirect_to request.referer
+    key = ApiKey.find(params[:id])
+    delete_object(key)
   end
 
   private

@@ -25,41 +25,37 @@ class User < ActiveRecord::Base
   def name_with_nickname
     name = read_attribute(:name)
     nicknames = self.nicknames
-    if self.nicknames.count > 0
+    if nicknames.count > 0
       name = self.nickname + '(' + name + ')'
     end
-
     name
   end
 
   def nickname
     nickname = ''
-    nicknames.order('created_at DESC').each do |n|
-      nickname = n.nickname + ' ' + nickname
+    nicknames.order('created_at DESC').each do |nick|
+      nickname = nick.nickname + ' ' + nickname
     end
     nickname
   end
 
   def unreviewed_beers
     urev_beers = Beer.all
-    beers.each do |b|
-      urev_beers = urev_beers - [b]
+    beers.each do |beer|
+      urev_beers = urev_beers - [beer]
     end
     urev_beers
   end
 
-  def feed
-    Quote.all.order('created_at DESC')
-  end
-
   def sign!(event, status)
     if event.deadline > Time.now
-      stemmen = signups.where(event_id: event.id, user_id: self.id)
+      id = event.id
+      stemmen = signups.where(event_id: id, user_id: self.id)
       if stemmen.any?
         stemmen.each { |stem| stem.destroy! }
       end
 
-      self.signups.create!(event_id: event.id, status: status)
+      self.signups.create!(event_id: id, status: status)
     end
   end
 
@@ -76,10 +72,11 @@ class User < ActiveRecord::Base
   end
 
   def join_group!(group)
-    unless groups.only_deleted.where(group_id: group.id).empty?
-      groups.with_deleted.where(group_id: group.id).first.restore
+    id = group.id
+    unless groups.only_deleted.where(group_id: id).empty?
+      groups.with_deleted.where(group_id: id).first.restore
     else
-      groups.create!(group_id: group.id)
+      groups.create!(group_id: id)
     end
   end
 
@@ -118,8 +115,8 @@ class User < ActiveRecord::Base
   def update_weight
     cijfer = 0.0
     reviews = Review.where(user_id: self.id)
-    reviews.each do |r|
-      cijfer = cijfer + r.rating
+    reviews.each do |review|
+      cijfer = cijfer + review.rating
     end
 
     self.weight = (cijfer / reviews.count) unless reviews.empty?
