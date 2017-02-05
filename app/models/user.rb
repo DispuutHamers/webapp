@@ -1,3 +1,4 @@
+#The user model
 class User < ActiveRecord::Base
   has_paper_trail :ignore => [:updated_at, :remember_token]
   acts_as_paranoid
@@ -13,7 +14,6 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :beers, through: :reviews
   has_many :api_logs
-  has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   has_many :nicknames, dependent: :destroy
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
@@ -37,7 +37,6 @@ class User < ActiveRecord::Base
     nicknames.order('created_at DESC').each do |n|
       nickname = n.nickname + ' ' + nickname
     end
-
     nickname
   end
 
@@ -46,21 +45,11 @@ class User < ActiveRecord::Base
     beers.each do |b|
       urev_beers = urev_beers - [b]
     end
-
     urev_beers
   end
 
   def feed
     Quote.all.order('created_at DESC')
-  end
-
-  def vote!(poll, result)
-    stemmen = votes.where(poll_id: poll.id, user_id: self.id)
-    if stemmen.any?
-      stemmen.each { |stem| stem.destroy! }
-    end
-
-    self.votes.create!(poll_id: poll.id, result: result)
   end
 
   def sign!(event, status)

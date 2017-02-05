@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="overview.html"><img src="assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <!-- Page Content -->
+<div id="page-content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <!--Page Title -->
+      <div class="Page_Title">
+        <h3>Smells</h3>
+      </div>
+      <!--End Page Title -->
+      <div class="Content_Wrapper">
+        <table id="js-index-table" class="table smells-index-table index-table sortable-table">
+          <thead>
+            <tr>
+              <th width="30%" class="table-header">Smell<span class="sort-type"></span></th>
+              <th width="65%" class="table-header">Locations<span class="sort-type"></span></th>
+              <th width="5%" class="table-header">Status<span class="sort-type"></span></th>
+            </tr>
+          </thead>
+          
+            <tr>
+              <td>DuplicateCode</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L34">Beer</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="event.html#L32">Event</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>DuplicateMethodCall</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L13">Beer</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L14">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>DuplicateMethodCall</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L24">Beer</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L25">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L1">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>LongParameterList</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L8">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>PrimaDonnaMethod</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L1">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>TooManyStatements</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L20">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L34">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="beer.html#L23">Beer</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="email.html#L1">Email</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="event.html#L1">Event</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>TooManyStatements</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="event.html#L7">Event</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="event.html#L32">Event</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="news.html#L1">News</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="news.html#L6">News</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="quote.html#L1">Quote</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="quote.html#L11">Quote</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="review.html#L1">Review</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="review.html#L9">Review</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="signup.html#L1">Signup</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="signup.html#L9">Signup</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="sticker.html#L1">Sticker</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="sticker.html#L7">Sticker</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>DuplicateMethodCall</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L90">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L91">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L93">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>DuplicateMethodCall</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L27">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L28">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>DuplicateMethodCall</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L68">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L73">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>DuplicateMethodCall</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L58">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L63">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>FeatureEnvy</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L146">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L147">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L148">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L150">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L152">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L154">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L156">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L160">User</a>
+                    </li>
+                  
+                    <li role="presentation">
+                      <a href="user.html#L162">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L1">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>PrimaDonnaMethod</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L1">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>PrimaDonnaMethod</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L1">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>PrimaDonnaMethod</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L1">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>PrimaDonnaMethod</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L1">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>TooManyMethods</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L1">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>TooManyStatements</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L144">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>TooManyStatements</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L129">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L145">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L37">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L46">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UncommunicativeVariableName</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L132">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>UtilityFunction</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="user.html#L53">User</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+            <tr>
+              <td>IrresponsibleModule</td>
+              <td>
+                <ul class="nav nav-pills">
+                  
+                    <li role="presentation">
+                      <a href="usergroup.html#L1">Usergroup</a>
+                    </li>
+                  
+                </ul>
+              </td>
+              <td>
+                
+                  <ul class="nav nav-pills">
+                    <li role="presentation">
+                      <td class="centered-cell"><span class="status- circled-text circle"></span></td>
+                    </li>
+                  </ul>
+                
+              </td>
+            </tr>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src='assets/javascripts/jquery.min.js'></script>
+    <script src='assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='assets/javascripts/jquery.timeago.js'></script>
+    <script src='assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='assets/javascripts/prettify.js'></script>
+    <script src='assets/javascripts/bootstrap.min.js'></script>
+    <script src='assets/javascripts/application.js'></script>
+    <script src='assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>
