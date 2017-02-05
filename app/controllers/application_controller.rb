@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
 
   include SessionsHelper
+  include UtilHelper
   include ParamsHelper
 
   def set_cache_buster

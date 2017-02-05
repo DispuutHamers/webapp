@@ -32,7 +32,7 @@ class BeersController < ApplicationController
   # POST /beers.json
   def create
     beer = Beer.new(beer_params)
-    save_object(beer, type = "beer")
+    save_object(beer, type = "beer", push=true)
   end
 
   # PATCH/PUT /beers/1

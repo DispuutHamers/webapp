@@ -1,3 +1,4 @@
+#entry point for motions resource
 class MotionsController < ApplicationController
   before_action :set_motion, only: [:show, :edit, :update, :destroy]
   before_action :logged_in?
@@ -26,41 +27,21 @@ class MotionsController < ApplicationController
   # POST /motions
   # POST /motions.json
   def create
-    @motion = Motion.new(motion_params)
-    @motion.user_id = current_user.id
-    respond_to do |format|
-      if @motion.save
-        flash[:success] = 'Je motie wordt behandeld.'
-        format.html { redirect_to root_path }
-      else
-        format.html { render action: 'new' }
-      end
-    end
+    motion = Motion.new(motion_params)
+    motion.user_id = current_user.id
+    save_object(motion, type="motion")
   end
 
   # PATCH/PUT /motions/1
   # PATCH/PUT /motions/1.json
   def update
-    respond_to do |format|
-      if @motion.update(motion_params)
-        flash[:success] = 'Motie succesvol bijgewerkt.'
-        format.html { redirect_to @motion }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @motion.errors, status: :unprocessable_entity }
-      end
-    end
+    update_by_owner_or_admin(@motion, motion_params)
   end
 
   # DELETE /motions/1
   # DELETE /motions/1.json
   def destroy
-    @motion.destroy
-    respond_to do |format|
-      format.html { redirect_to motions_url }
-      format.json { head :no_content }
-    end
+    delete_object(@motion)
   end
 
   private
