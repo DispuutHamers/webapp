@@ -1,7 +1,7 @@
 #The user model
 class User < ActiveRecord::Base
   has_paper_trail :ignore => [:updated_at, :remember_token]
-  acts_as_paranoid
+  acts_as_paranoid :ignote => [:weight]
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   has_many :groups, foreign_key: 'user_id', dependent: :destroy

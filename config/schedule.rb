@@ -24,7 +24,6 @@ every :sunday, :at => '12pm' do # Use any day of the week or :weekend, :weekday
 end
 
 every :day, :at => '6am' do
-	runner 'Beer.paper_trail.disable'
+        runner 'User.all.each{ |u| u.update_weight }'
 	runner 'Beer.all.each{ |b| b.update_cijfer }'
-	runner 'Beer.paper_trail.enable'
 end
