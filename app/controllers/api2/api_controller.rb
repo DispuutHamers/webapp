@@ -1,4 +1,7 @@
+#The ApiController is the main entry point for every controller in the api
+# Default methods and authentication are handled here
 class Api2::ApiController < ApplicationController
+  attr_reader :key
   before_action :restrict_access
   before_action :log_url
   skip_before_filter :verify_authenticity_token
@@ -6,6 +9,10 @@ class Api2::ApiController < ApplicationController
   #resource_description do
   #	  api_versions "2"
   #end
+
+  def initialize
+    @key = ApiKey.new
+  end
 
   resource_description do
     api_versions "2.0"
@@ -18,34 +25,65 @@ class Api2::ApiController < ApplicationController
   api 'POST', '/register', 'Register a device for push notifications'
   param :device, String, required: true
   def register
-    @device = @key.user.devices.first || Device.new
-    @device.user_id = @key.user.id
-    @device.device_key = params[:device]
-    if @device.save
+    device = @key.user.devices.first || Device.new
+    device.assign_attributes(user_id: user.id, device_key: params[:device])
+    if device.save
       render :status => :created, :text => '{"status":"201","message":"Created"}'
     else
       render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
     end
   end
 
-  def restrict_to_admins
+  private
+  def restrict(admin = nil)
     authenticate_or_request_with_http_token do |token, options|
       @key = ApiKey.where(key: token).first
-      @key && @key.user && @key.user.admin?
+      user = @key&.user
+      admin ? user&.admin? : user&.lid?
+      #user&.admin? if role
     end
   end
 
-  private
+  def restrict_to_admins
+    restrict(true)
+  end
 
   def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      @key = ApiKey.where(key: token).first
-      @key && @key.user && @key.user.lid?
+    restrict
+  end
+
+  def save_object(obj, push = false)
+    if obj.save
+      update_app("{ data: { event: #{obj.to_json} } }") if push
+      render json: obj, status: :created, location: obj
+    else
+      render json: obj.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update_object(obj, obj_params)
+    if obj.update(obj_params)
+      render json: obj, status: :updated, location: obj
+    else 
+      render json: obj.errors, status: :unprocessable_entry
+    end
+  end
+
+  def update_by_owner_or_admin(obj, obj_params)
+    user = key.user
+    if (obj.user_id != user.id and !user.admin?)
+      render text: "HTTP Token: Access denied.", status: :access_denied
+    elsif obj.update(obj_params)
+      render json: obj
+    else
+      render json: obj.errors, status: :unprocessable_entity
     end
   end
 
   def log_url
-    PaperTrail.whodunnit = @key.user.id
-    ApiLog.new(key: @key.key, user_id: @key.user.id, ip_addr: request.remote_ip, resource_call: (request.method + ": " + request.original_fullpath + " " + params.to_s)).save
+    id = @key.user.id
+    resource_descriptor = (request.method + ": " + request.original_fullpath + " " + params.to_s)
+    PaperTrail.whodunnit = id
+    ApiLog.new(key: @key.key, user_id: id, ip_addr: request.remote_ip, resource_call: resource_descriptor).save
   end
 end
