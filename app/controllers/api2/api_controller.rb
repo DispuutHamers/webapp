@@ -52,9 +52,9 @@ class Api2::ApiController < ApplicationController
     restrict
   end
 
-  def save_object(obj, push = false)
+  def save_object(obj, type = nil, push = false)
     if obj.save
-      update_app("{ data: { event: #{obj.to_json} } }") if push
+      update_app("{ data: { #{type}: #{obj.to_json} } }") if push
       render json: obj, status: :created, location: obj
     else
       render json: obj.errors, status: :unprocessable_entity

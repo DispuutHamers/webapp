@@ -38,6 +38,6 @@ class Api2::ReviewsController < Api2::ApiController
     render json: beer, status: :unprocessable_entity and return if reviews.any?
     review.user_id = key.user.id
     review.proefdatum = Date.today unless review.proefdatum
-    save_object(review, push = true)
+    save_object(review, type = "review", push = true)
   end
 end

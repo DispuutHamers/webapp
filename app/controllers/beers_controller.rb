@@ -1,5 +1,6 @@
 class BeersController < ApplicationController
   include SessionsHelper
+  include UtilHelper
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :logged_in?, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy, :update, :edit]
@@ -30,44 +31,20 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
-    @beer = Beer.new(beer_params)
-
-    respond_to do |format|
-      if @beer.save
-        update_app("{ data: { beer: { id: \"#{@beer.id}\", name: \"#{@beer.name}\", soort: \"#{@beer.soort}\", picture: \"#{@beer.picture}\", percentage: \"#{@beer.percentage}\", brewer: \"#{@beer.brewer}\", country: \"#{@beer.country}\", URL: \"#{@beer.URL}\", cijfer: \"null\", created_at: #{@beer.created_at.to_json}  } } }")
-        flash[:success] = 'Biertje succesvol aangemaakt.'
-        format.html { redirect_to @beer }
-        format.json { render action: 'show', status: :created, location: @beer }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @beer.errors, status: :unprocessable_entity }
-      end
-    end
+    beer = Beer.new(beer_params)
+    save_object(beer, type = "beer")
   end
 
   # PATCH/PUT /beers/1
   # PATCH/PUT /beers/1.json
   def update
-    respond_to do |format|
-      if @beer.update(beer_params)
-        flash[:success] = 'Biertje succesvol bijgewerkt.'
-        format.html { redirect_to @beer }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @beer.errors, status: :unprocessable_entity }
-      end
-    end
+    update_object(@beer, beer_params)
   end
 
   # DELETE /beers/1
   # DELETE /beers/1.json
   def destroy
-    @beer.destroy
-    respond_to do |format|
-      format.html { redirect_to beers_url }
-      format.json { head :no_content }
-    end
+    delete_object(@beer)
   end
 
   private

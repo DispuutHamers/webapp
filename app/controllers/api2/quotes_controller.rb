@@ -31,6 +31,6 @@ class Api2::QuotesController < Api2::ApiController
   def create
     quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
     quote.reporter = key.user.id
-    save_object(quote, push = true)
+    save_object(quote, type = "quote", push = true)
   end
 end
