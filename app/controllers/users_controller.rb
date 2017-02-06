@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   end
 
   def usergroups
-    @user = User.find(params[:id])
     @usergroups = Usergroup.all
   end
 
