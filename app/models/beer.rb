@@ -1,3 +1,4 @@
+#Beer model
 class Beer < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail :ignore => [:grade]
@@ -10,16 +11,16 @@ class Beer < ActiveRecord::Base
   end
 
   def cijfer?
-    if self.grade
-      return self.grade.round(2)
+    grade = self.grade
+    if grade
+      return grade.round(2)
     else
       return "No grade"
     end
   end
 
   def update_cijfer
-    cijfer = 0.0
-    avg = 0.0
+    avg,cijfer = 0.0,0.0
     self.reviews.each do |r|
       weight = 1 + (r.user.weight - r.rating).abs
       cijfer = cijfer + (r.rating * weight)
@@ -30,7 +31,7 @@ class Beer < ActiveRecord::Base
     self.save
   end
 
-  def	as_json(options)
+  def as_json(options)
     h = super({:only => [:id, :name, :soort, :picture, :created_at, :percentage, :brewer, :country, :URL]}.merge(options))
     h[:cijfer] = cijfer?
     h

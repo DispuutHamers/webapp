@@ -8,27 +8,15 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    respond_to do |w|
-      w.html do
+    respond_to do |current_request|
+      current_request.html do
         @events = Event.all.order(date: :desc).paginate(page: params[:page])
-        #redirect_to root_path, notice: "Mag niet!." unless lid?
         redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
       end
-
-      w.ics do
+      current_request.ics do
         key = ApiKey.where(key: params[:key]).first
         if key&.user&.lid?
-          ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
-          feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
-          calendar = Icalendar::Calendar.new
-          tzid = "Europe/Amsterdam"
-          tz = TZInfo::Timezone.get tzid
-          timezone = tz.ical_timezone feed.first.date
-          calendar.add_timezone timezone
-          feed.each do |f|
-            calendar.add_event(f.to_ics)
-          end
-
+          calendar = generate_calendar
           calendar.publish
           render :text => calendar.to_ical
         else
@@ -76,5 +64,19 @@ class EventsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
+  end
+
+  def generate_calendar
+    ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
+    feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
+    calendar = Icalendar::Calendar.new
+    tzid = "Europe/Amsterdam"
+    tz = TZInfo::Timezone.get tzid
+    timezone = tz.ical_timezone feed.first.date
+    calendar.add_timezone timezone
+    feed.each do |f|
+      calendar.add_event(f.to_ics)
+    end
+    calendar
   end
 end

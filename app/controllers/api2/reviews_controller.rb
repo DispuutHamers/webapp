@@ -6,6 +6,13 @@ class Api2::ReviewsController < Api2::ApiController
     app_info "De hamers api docs"
   end
 
+  def_param_group :review do
+    param :beer_id, Integer, :required => true
+    param :description, String, :required => true
+    param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
+    param :proefdatum, String
+  end 
+
   api :GET, '/reviews', "Show review index"
   def index
     render json: Review.all
@@ -17,26 +24,21 @@ class Api2::ReviewsController < Api2::ApiController
   end
 
   api :UPDATE, '/reviews/:id', 'Update review'
-  param :beer_id, Integer, :required => true
-  param :description, String, :required => true
-  param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
-  param :proefdatum, String
+  param_group :review
   def update
     review = Review.find(params[:id])
     update_by_owner_or_admin(review, review_params)
   end
 
   api :POST, '/reviews', 'Create review'
-  param :beer_id, Integer, :required => true
-  param :description, String, :required => true
-  param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
-  param :proefdatum, String
+  param_group :review
   def create
     review = Review.new(review_params)
     beer = Beer.find(params[:review][:beer_id])
-    reviews = key.user.reviews.where(beer_id: beer.id)
+    user = key.user
+    reviews = user.reviews.where(beer_id: beer.id)
     render json: beer, status: :unprocessable_entity and return if reviews.any?
-    review.user_id = key.user.id
+    review.user_id = user.id
     review.proefdatum = Date.today unless review.proefdatum
     save_object(review, type = "review", push = true)
   end

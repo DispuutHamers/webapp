@@ -40,7 +40,6 @@ class Api2::ApiController < ApplicationController
       @key = ApiKey.where(key: token).first
       user = @key&.user
       admin ? user&.admin? : user&.lid?
-      #user&.admin? if role
     end
   end
 
@@ -52,7 +51,7 @@ class Api2::ApiController < ApplicationController
     restrict
   end
 
-  def save_object(obj, type = nil, push = false)
+  def save_object(obj, type = nil, push = nil)
     if obj.save
       update_app("{ data: { #{type}: #{obj.to_json} } }") if push
       render json: obj, status: :created, location: obj
