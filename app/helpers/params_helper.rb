@@ -50,4 +50,8 @@ module ParamsHelper
   def note_params
     params.require(:note).permit(:title, :content)
   end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
+  end
 end

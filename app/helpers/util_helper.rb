@@ -12,6 +12,7 @@ module UtilHelper
 
   def update_object(obj, obj_params)
     if obj.update(obj_params)
+      yield
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else

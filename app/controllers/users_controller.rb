@@ -36,14 +36,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    user_params = delete_empty_password(users_params)
-    if @user.update_attributes(user_params)
-      sign_in current_user
-      flash[:success] = 'Profile updated'
-      redirect_to @user
-    else
-      render 'edit'
-    end
+    delete_empty_passwords
+    user = User.find(params[:id])
+    update_object(user, user_params) { sign_in current_user }
   end
 
   def destroy
@@ -52,12 +47,11 @@ class UsersController < ApplicationController
   end
 
   private
-  def delete_empty_passwords(password_params)
-    if passowrd_params[:password].blank?
-      password_params.delete(:password)
-      password_params.delete(:password_confirmation)
+  def delete_empty_passwords
+    if user_params[:password].blank?
+      user_params.delete(:password)
+      user_params.delete(:password_confirmation)
     end
-    password_params
   end
 
   def skip_password_attribute
