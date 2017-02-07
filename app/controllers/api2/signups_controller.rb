@@ -34,4 +34,5 @@ class Api2::SignupsController < Api2::ApiController
       save_object(signup)
     end
   end
+
 end

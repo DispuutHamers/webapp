@@ -47,15 +47,14 @@ class User < ActiveRecord::Base
     urev_beers
   end
 
-  def sign!(event, status)
+  def sign!(event, status, reason)
     if event.deadline > Time.now
       id = event.id
       stemmen = signups.where(event_id: id, user_id: self.id)
       if stemmen.any?
         stemmen.each { |stem| stem.destroy! }
       end
-
-      self.signups.create!(event_id: id, status: status)
+      self.signups.create!(event_id: id, status: status, reason: reason)
     end
   end
 

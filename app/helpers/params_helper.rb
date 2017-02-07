@@ -1,6 +1,6 @@
 module ParamsHelper
   def signup_params
-    params.require(:signup).permit(:event_id, :status)
+    params.require(:signup).permit(:event_id, :status, :reason)
   end
 
   def review_params
