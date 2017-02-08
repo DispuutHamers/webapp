@@ -1,4 +1,4 @@
-#Sticker controller
+# Sticker controller
 class StickersController < ApplicationController
   before_action :logged_in?, except: [:new, :create]
   before_action :correct_user, only: [:edit, :update]

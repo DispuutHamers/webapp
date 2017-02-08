@@ -1,4 +1,4 @@
-#manages push logging flow
+# manages push logging flow
 class PushesController < ApplicationController
   before_action :admin_user?
 

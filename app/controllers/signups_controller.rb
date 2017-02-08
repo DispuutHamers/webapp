@@ -1,4 +1,4 @@
-#Signups controller
+# Signups controller
 class SignupsController < ApplicationController
   before_action :set_signup, only: [:show, :edit, :update, :destroy]
   before_action :admin_user?, only: [:index, :edit, :update]

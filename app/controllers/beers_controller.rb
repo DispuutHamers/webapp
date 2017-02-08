@@ -1,7 +1,5 @@
 #entry point for beer resource
 class BeersController < ApplicationController
-  include SessionsHelper
-  include UtilHelper
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :logged_in?, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy, :update, :edit]

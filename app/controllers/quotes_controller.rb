@@ -1,4 +1,4 @@
-#Entry point for the quote resource
+# Entry point for the quote resource
 class QuotesController < ApplicationController
   before_action :logged_in?
   before_action :admin_user?, only: [:destroy, :edit, :update]

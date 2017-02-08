@@ -1,4 +1,4 @@
-#entry point for review resource
+# entry point for review resource
 class ReviewsController < ApplicationController
   before_action :logged_in?, only: [:index, :edit, :update, :destroy]
   before_action :admin_user?, only: [:destroy]

@@ -1,14 +1,13 @@
-#Static pages controller
+# Static pages controller
 class StaticPagesController < ApplicationController
   def home
-    if signed_in?
-      @beer = Beer.order('RAND()').first
-      @rQuote = Quote.unscoped.order('RAND()').first
-      @quote = current_user.quotes.build
-      @feed_items = Quote.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)
-      @events = Event.order('date').where(['date >= ?', Date.today]).limit(10)
-      @news = News.last(5).reverse
-    end
+    return unless signed_in?
+    @beer = Beer.order('RAND()').first
+    @rQuote = Quote.unscoped.order('RAND()').first
+    @quote = current_user.quotes.build
+    @feed_items = Quote.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)
+    @events = Event.order('date').where(['date >= ?', Date.today]).limit(10)
+    @news = News.last(5).reverse
   end
 
   def console

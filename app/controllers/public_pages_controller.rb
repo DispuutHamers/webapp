@@ -1,4 +1,4 @@
-#Hosts our public pages
+# Hosts our public pages
 class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
   before_action :admin_user?, except: [:show]

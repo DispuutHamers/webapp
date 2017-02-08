@@ -115,11 +115,11 @@ class User < ActiveRecord::Base
     cijfer = 0.0
     reviews = Review.where(user_id: self.id)
     reviews.each do |review|
-      cijfer = cijfer + review.rating
+      cijfer += review.rating
     end
 
     self.weight = (cijfer / reviews.count) unless reviews.empty?
-    self.save
+    save
   end
 
   def schrijf_feut?
@@ -127,7 +127,8 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options)
-    h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
+    h = super({ :only =>
+               [:id, :name, :email, :created_at, :batch] }.merge(options))
     h[:reviews] = reviews.count
     h[:quotes] = quotes.count
     h[:nicknames] = nicknames(options)
