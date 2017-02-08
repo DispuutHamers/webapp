@@ -132,20 +132,16 @@ class User < ActiveRecord::Base
     h[:quotes] = quotes.count
     h[:nicknames] = nicknames(options)
     if alid?
-      h[:lid] = "alid"
+      h[:lid] = 'alid'
     elsif olid?
-      h[:lid] = "olid"
+      h[:lid] = 'olid'
     elsif lid?
-      h[:lid] = "lid"
+      h[:lid] = 'lid'
     else
-      h[:lid] = "none"
+      h[:lid] = 'none'
     end
 
-    if admin?
-      h[:admin] = 1
-    else
-      h[:admin] = 0
-    end
+    admin? ? h[:admin] = 1 : h[:admin] = 0
 
     h
   end
