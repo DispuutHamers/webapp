@@ -8,7 +8,7 @@ class Signup < ActiveRecord::Base
   validate :verify_signup
 
   def as_json(options)
-    h = super({:only => [:id, :user_id, :event_id, :status, :created_at]}.merge(options))
+    super({:only => [:id, :user_id, :event_id, :status, :created_at]}.merge(options))
   end
  
   private
