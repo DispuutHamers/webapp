@@ -1,3 +1,4 @@
+#entry point for meetings controller
 class MeetingsController < ApplicationController
   before_action :logged_in?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
@@ -30,53 +31,27 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    @meeting = Meeting.new(meeting_params)
-
-    respond_to do |format|
-      if @meeting.save
-        flash[:success] = 'Vergadering succesvol aangemaakt.'
-        format.html { redirect_to @meeting }
-        format.json { render action: 'show', status: :created, location: @meeting }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
-      end
-    end
+    meeting = Meeting.new(meeting_params)
+    save_object(meeting, type="meeting")
   end
 
   # PATCH/PUT /meetings/1
   # PATCH/PUT /meetings/1.json
   def update
-    respond_to do |format|
-      @meeting.user_id = current_user.id if meeting_params[:notes]
-      if @meeting.update(meeting_params)
-        flash[:success] = 'Vergadering succesvol gewijzigd.'
-        format.html { redirect_to @meeting }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
-      end
-    end
+    @meeting.user_id = current_user.id if meeting_params[:notes]
+    update_object(@meeting, meeting_params)
   end
 
   # DELETE /meetings/1
   # DELETE /meetings/1.json
   def destroy
-    @meeting.destroy
-    respond_to do |format|
-      format.html { redirect_to meetings_url }
-      format.json { head :no_content }
-    end
+    delete_object(@meeting)
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
   def set_meeting
     @meeting = Meeting.find(params[:id])
   end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
 
   def check_access
     unless current_user.lid?

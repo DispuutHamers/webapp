@@ -1,3 +1,4 @@
+# Usergroup controller
 class UsergroupsController < ApplicationController
   before_action :logged_in?
   before_action :admin_user?
@@ -8,24 +9,17 @@ class UsergroupsController < ApplicationController
   end
 
   def create
-    @usergroup = Usergroup.new(usergroup_params)
-    if @usergroup.save
-      flash[:success] = 'Usergroup aangemaakt'
-      redirect_to root_url
-    else
-      @usergroups = Usergroup.all
-      render 'groups'
-    end
+    usergroup = Usergroup.new(usergroup_params)
+    save_object(usergroup, type="usergroup")
   end
 
   def destroy
-    @usergroup = Usergroup.find(params[:id])
-    if @usergroup.empty?
-      @usergroup.destroy!
+    usergroup = Usergroup.find(params[:id])
+    if usergroup.empty?
+      usergroup.destroy!
     else
       flash[:error] = "Usergroup is niet leeg"
     end
-
     redirect_to root_path
   end
 

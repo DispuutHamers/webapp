@@ -3,7 +3,7 @@
 <% end %>
 <%= link_to 'Bekijk de interne leden pagina', users_path, class: 'btn btn-primary' if signed_in? %>
 <div class="col-md-12">
-  <% @groupedUsers.each do |group| %>
+  <% @users.each do |group| %>
       <div class='row'>
         <% if group[0] %>
             <div class="panel panel-info">

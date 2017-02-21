@@ -1,3 +1,4 @@
+#entry point for nicknames resource
 class NicknamesController < ApplicationController
   before_action :logged_in?, only: [:index, :new, :create, :update, :destroy, :edit]
   before_action :admin_user?, only: [:update, :destroy, :edit]
@@ -12,10 +13,8 @@ class NicknamesController < ApplicationController
   end
 
   def create
-    @nickname = Nickname.new(nickname_params)
-    if @nickname.save
-      redirect_to nicknames_path
-    end
+    nickname = Nickname.new(nickname_params)
+    save_object(nickname, type="nickname")
   end
 
   def edit
@@ -24,16 +23,12 @@ class NicknamesController < ApplicationController
   end
 
   def update
-    @nickname = Nickname.find(params[:id])
-    if @nickname.update(nickname_params)
-      flash[:success] = 'Nickname aangepast'
-      redirect_to nicknames_path
-    end
+    nickname = Nickname.find(params[:id])
+    update_object(nickname, nickname_params)
   end
 
   def destroy
-    Nickname.find(params[:id]).destroy
-    flash[:success] = 'Bijnaam is weg'
-    redirect_to nicknames_path
+    nickname = Nickname.find(params[:id])
+    delete_object(nickname)
   end
 end

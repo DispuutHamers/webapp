@@ -1,7 +1,7 @@
 module ParamsHelper
-	def signup_params
-		params.require(:signup).permit(:event_id, :status)
-	end
+  def signup_params
+    params.require(:signup).permit(:event_id, :status, :reason)
+  end
 
   def review_params
     params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
@@ -38,12 +38,20 @@ module ParamsHelper
   def nickname_params
     params.require(:nickname).permit(:user_id, :nickname, :description)
   end
-  
+
   def meeting_params
     params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date)
   end
 
-	def sticker_params
-		params.require(:sticker).permit(:lat, :lon, :notes)
-	end
+  def sticker_params
+    params.require(:sticker).permit(:lat, :lon, :notes)
+  end
+  
+  def note_params
+    params.require(:note).permit(:title, :content)
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
+  end
 end

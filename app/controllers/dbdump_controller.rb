@@ -1,5 +1,5 @@
+#generates a database dump
 class DbdumpController < ApplicationController
-  include SessionsHelper
   before_action :admin_user?
 
   def show

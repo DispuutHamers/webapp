@@ -1,3 +1,4 @@
+# entry point for notes
 class NotesController < ApplicationController
   before_action :admin_user?
   before_action :set_note, only: [:show, :edit, :update, :destroy]
@@ -25,53 +26,25 @@ class NotesController < ApplicationController
   # POST /notes
   # POST /notes.json
   def create
-    @note = Note.new(note_params)
-
-    respond_to do |format|
-      if @note.save
-        flash[:success] = 'Notitie succesvol aangemaakt.'
-        format.html { redirect_to @note }
-        format.json { render action: 'show', status: :created, location: @note }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
-      end
-    end
+    note = Note.new(note_params)
+    save_object(note)
   end
 
   # PATCH/PUT /notes/1
   # PATCH/PUT /notes/1.json
   def update
-    respond_to do |format|
-      if @note.update(note_params)
-        flash[:success] = 'Notitie succesvol gewijzigd.'
-        format.html { redirect_to @note }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
-      end
-    end
+    update_object(@note, note_params)
   end
 
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
-    @note.destroy
-    respond_to do |format|
-      format.html { redirect_to notes_url }
-      format.json { head :no_content }
-    end
+    delete_object(@note)
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_note
     @note = Note.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def note_params
-    params.require(:note).permit(:title, :content)
   end
 end

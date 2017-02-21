@@ -1,6 +1,7 @@
+#The user model
 class User < ActiveRecord::Base
   has_paper_trail :ignore => [:updated_at, :remember_token]
-  acts_as_paranoid
+  acts_as_paranoid :ignote => [:weight]
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   has_many :groups, foreign_key: 'user_id', dependent: :destroy
@@ -13,7 +14,6 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :beers, through: :reviews
   has_many :api_logs
-  has_many :votes, dependent: :destroy
   has_many :signups, dependent: :destroy
   has_many :nicknames, dependent: :destroy
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
@@ -25,52 +25,36 @@ class User < ActiveRecord::Base
   def name_with_nickname
     name = read_attribute(:name)
     nicknames = self.nicknames
-    if self.nicknames.count > 0
+    if nicknames.count > 0
       name = self.nickname + '(' + name + ')'
     end
-
     name
   end
 
   def nickname
     nickname = ''
-    nicknames.order('created_at DESC').each do |n|
-      nickname = n.nickname + ' ' + nickname
+    nicknames.order('created_at DESC').each do |nick|
+      nickname = nick.nickname + ' ' + nickname
     end
-
     nickname
   end
 
   def unreviewed_beers
     urev_beers = Beer.all
-    beers.each do |b|
-      urev_beers = urev_beers - [b]
+    beers.each do |beer|
+      urev_beers = urev_beers - [beer]
     end
-
     urev_beers
   end
 
-  def feed
-    Quote.all.order('created_at DESC')
-  end
-
-  def vote!(poll, result)
-    stemmen = votes.where(poll_id: poll.id, user_id: self.id)
-    if stemmen.any?
-      stemmen.each { |stem| stem.destroy! }
-    end
-
-    self.votes.create!(poll_id: poll.id, result: result)
-  end
-
-  def sign!(event, status)
+  def sign!(event, status, reason)
     if event.deadline > Time.now
-      stemmen = signups.where(event_id: event.id, user_id: self.id)
+      id = event.id
+      stemmen = signups.where(event_id: id, user_id: self.id)
       if stemmen.any?
         stemmen.each { |stem| stem.destroy! }
       end
-
-      self.signups.create!(event_id: event.id, status: status)
+      self.signups.create!(event_id: id, status: status, reason: reason)
     end
   end
 
@@ -87,10 +71,11 @@ class User < ActiveRecord::Base
   end
 
   def join_group!(group)
-    unless groups.only_deleted.where(group_id: group.id).empty?
-      groups.with_deleted.where(group_id: group.id).first.restore
+    id = group.id
+    unless groups.only_deleted.where(group_id: id).empty?
+      groups.with_deleted.where(group_id: id).first.restore
     else
-      groups.create!(group_id: group.id)
+      groups.create!(group_id: id)
     end
   end
 
@@ -129,12 +114,12 @@ class User < ActiveRecord::Base
   def update_weight
     cijfer = 0.0
     reviews = Review.where(user_id: self.id)
-    reviews.each do |r|
-      cijfer = cijfer + r.rating
+    reviews.each do |review|
+      cijfer += review.rating
     end
 
     self.weight = (cijfer / reviews.count) unless reviews.empty?
-    self.save
+    save
   end
 
   def schrijf_feut?
@@ -142,25 +127,22 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options)
-    h = super({:only => [:id, :name, :email, :created_at, :batch]}.merge(options))
+    h = super({ :only =>
+               [:id, :name, :email, :created_at, :batch] }.merge(options))
     h[:reviews] = reviews.count
     h[:quotes] = quotes.count
     h[:nicknames] = nicknames(options)
     if alid?
-      h[:lid] = "alid"
+      h[:lid] = 'alid'
     elsif olid?
-      h[:lid] = "olid"
+      h[:lid] = 'olid'
     elsif lid?
-      h[:lid] = "lid"
+      h[:lid] = 'lid'
     else
-      h[:lid] = "none"
+      h[:lid] = 'none'
     end
 
-    if admin?
-      h[:admin] = 1
-    else
-      h[:admin] = 0
-    end
+    admin? ? h[:admin] = 1 : h[:admin] = 0
 
     h
   end

@@ -11,12 +11,6 @@ Hamers::Application.routes.draw do
   get '/trail' => 'static_pages#trail' , as: 'trail' 
   get '/trail' => 'static_pages#trail' , as: 'device' 
 
-  match 'api/v1/:key/:request', to: 'api#GET', via: 'get'
-  match 'api/v1/:key/:request/:id', to: 'api#GET', via: 'get'
-  match 'api/v1/:key/:request', to: 'api#POST', via: 'post'
-  match 'api/v1/:key/:request', to: 'api#PUT', via: 'put'
-  match 'api/v1/:key/:request', to: 'api#DESTROY', via: 'destroy'
-  match '/api/v1/noaccess', to: 'api#noaccess', via: 'get'
   match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions
   resources :api_keys, only: [:create, :show, :destroy]
@@ -33,9 +27,6 @@ Hamers::Application.routes.draw do
   resources :events
   get '/ical/:key' => "events#index"
 
-  resources :votes
-
-  resources :polls
   resources :signups
   resources :nicknames
 
@@ -59,7 +50,6 @@ Hamers::Application.routes.draw do
   match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
   match '/register',  to: 'users#new',            via: 'get'
-  match '/help', to: 'static_pages#help', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/stats', to: 'static_pages#statistics', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'

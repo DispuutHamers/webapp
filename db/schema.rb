@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161211173228) do
+ActiveRecord::Schema.define(version: 20170207100916) do
 
   create_table "afmeldingens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "reden"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20161211173228) do
     t.datetime "end_time"
     t.string   "location"
     t.datetime "deleted_at"
+    t.boolean  "attendance"
     t.index ["deleted_at"], name: "index_events_on_deleted_at", using: :btree
   end
 

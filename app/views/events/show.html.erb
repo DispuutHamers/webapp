@@ -40,7 +40,9 @@
         <h4>Afwezig:</h4>
         <p>
         <% @event.signups.where(status: false).each do |s| %>
-          <%= s.user.name %>,
+          <%= s.user.name %> 
+          <% if s.reason %>
+            (<%= s.reason %>)<% end %>,
         <% end %>
         ..jij?
         <% if @event.deadline != nil and @event.deadline > Time.now %>
@@ -48,7 +50,8 @@
             <div><%= f.hidden_field :event_id %></div>
             <div><%= f.hidden_field :user_id %></div>
             <div><%= f.hidden_field :status %></div>
-            <%= f.submit 'Ik zal niet aanwezig zijn.', class: 'btn btn-danger' %>
+            <div><%= f.submit 'Ik zal niet aanwezig zijn.', class: 'btn btn-danger' %></div>
+            <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Waarom niet?" %></div>
           <% end %>
         <% end %>
         </p>
