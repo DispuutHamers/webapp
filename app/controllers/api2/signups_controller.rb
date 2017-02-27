@@ -23,16 +23,22 @@ class Api2::SignupsController < Api2::ApiController
   param :event_id, Integer, :required => true
   param :status, ["true","false"], :required => true
   def create
-    user = key.user.id
-    existing_signups = Signup.where(user_id: user, event_id: signup_params[:event_id])
-    if existing_signups.any?
-      signup = existing_signups.first
-      update_object(signup, signup_params)
+    user = key.user
+    event = Event.find(params[:signup][:event_id])
+    if (event.deadline > Time.now and !!verify_signup(event))
+      user.sign!(event, params[:signup][:status], params[:signup][:reason])
+      render :status => :created, :text => '{"status":"201","message":"Created"}'
     else
-      signup = Signup.new(signup_params)
-      signup.user_id = user
-      save_object(signup)
+      render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
     end
   end
 
+  private
+  def verify_signup(event)
+    if (event.attendance and "0" == params[:signup][:status])
+      return params[:signup][:reason].length > 5
+    else
+      return true
+    end
+  end
 end

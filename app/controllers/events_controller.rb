@@ -68,7 +68,7 @@ class EventsController < ApplicationController
 
   def generate_calendar
     ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
-    feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
+    feed = Event.all.order('date').where(['date >= ?', Date.today])
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"
     tz = TZInfo::Timezone.get tzid

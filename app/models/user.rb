@@ -50,9 +50,9 @@ class User < ActiveRecord::Base
   def sign!(event, status, reason)
     if event.deadline > Time.now
       id = event.id
-      stemmen = signups.where(event_id: id, user_id: self.id)
+      stemmen = signups.where(event_id: id)
       if stemmen.any?
-        stemmen.each { |stem| stem.destroy! }
+        stemmen.each { |stem| stem.really_destroy! }
       end
       self.signups.create!(event_id: id, status: status, reason: reason)
     end
