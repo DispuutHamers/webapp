@@ -1,5 +1,5 @@
 module ParamsHelper
-  def quote_parms
+  def quote_params
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
