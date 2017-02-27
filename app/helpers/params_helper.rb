@@ -1,4 +1,7 @@
 module ParamsHelper
+  def quote_parms
+    params.require(:quote).permit(:user_id, :text, :reporter)
+
   def signup_params
     params.require(:signup).permit(:event_id, :status, :reason)
   end
