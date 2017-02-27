@@ -10,6 +10,7 @@ Hamers::Application.routes.draw do
   get '/images' => 'albums#index', as: 'photo'
   get '/trail' => 'static_pages#trail' , as: 'trail' 
   get '/trail' => 'static_pages#trail' , as: 'device' 
+  get '/quotes/:id' => 'static_pages#quote', as: 'quote'
 
   match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions
