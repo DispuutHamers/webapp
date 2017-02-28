@@ -7,7 +7,7 @@ class Signup < ActiveRecord::Base
   validate :event_deadline_has_passed
 
   def as_json(options)
-    super({:only => [:id, :user_id, :event_id, :status, :created_at]}.merge(options))
+    super({:only => [:id, :user_id, :reason, :event_id, :status, :created_at]}.merge(options))
   end
  
   private
