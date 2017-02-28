@@ -1,5 +1,6 @@
+# Takes over work from controllers and puts logic in a single place
 module UtilHelper
-  def save_object(obj, type = nil, push = false)
+  def save_object(obj, type = nil, push = nil)
     if obj.save
       update_app("{ data: { #{type}: #{obj.to_json} } }") if push
       flash[:success] = "#{type.capitalize} succesvol aangemaakt."
@@ -36,5 +37,26 @@ module UtilHelper
     obj.destroy
     flash[:success] = "Succesvol verwijderd"
     redirect_to root_path
+  end
+
+  def do_signup(user)
+    extracted_params = params[:signup]
+    event = Event.find(extracted_params[:event_id])
+    if (event.deadline > Time.now and !!verify_signup(event))
+      user.sign!(event, extracted_params[:status], extracted_params[:reason])
+      return event
+    else
+      return nil
+    end
+  end
+
+  private 
+  def verify_signup(event)
+    extracted_params = params[:signup]
+    if (event.attendance and "0" == extracted_params[:status])
+      return extracted_params[:reason].length > 5
+    else
+      return true
+    end
   end
 end

@@ -1,7 +1,7 @@
 #entry point for events
 class EventsController < ApplicationController
   require 'icalendar/tzinfo'
-  before_action :logged_in?, only: [:edit, :update, :destroy]
+  before_action :logged_in?, only: [:show, :edit, :update, :destroy]
   before_action :admin_user?, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -10,8 +10,8 @@ class EventsController < ApplicationController
   def index
     respond_to do |current_request|
       current_request.html do
-        @events = Event.all.order(date: :desc).paginate(page: params[:page])
         redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
+        @events = Event.all.order(date: :desc).paginate(page: params[:page])
       end
       current_request.ics do
         key = ApiKey.where(key: params[:key]).first
@@ -74,8 +74,8 @@ class EventsController < ApplicationController
     tz = TZInfo::Timezone.get tzid
     timezone = tz.ical_timezone feed.first.date
     calendar.add_timezone timezone
-    feed.each do |f|
-      calendar.add_event(f.to_ics)
+    feed.each do |feed_item|
+      calendar.add_event(feed_item.to_ics)
     end
     calendar
   end

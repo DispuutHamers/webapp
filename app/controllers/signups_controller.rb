@@ -17,14 +17,14 @@ class SignupsController < ApplicationController
   # POST /signups
   # POST /signups.json
   def create
-    event = Event.find(params[:signup][:event_id])
-    if (event.deadline > Time.now and !!verify_signup(event))
-      current_user.sign!(event, params[:signup][:status], params[:signup][:reason])
+    result = do_signup(current_user)
+    if result 
       flash[:success] = 'Je staat erbij!'
+      redirect_to result
     else
       flash[:error] = 'De deadline is al verstreken of er is geen reden opgegeven'
+      redirect_to root_path
     end
-    redirect_to event
   end
 
   # PATCH/PUT /signups/1
@@ -43,13 +43,5 @@ class SignupsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_signup
     @signup = Signup.find(params[:id])
-  end
-
-  def verify_signup(event)
-    if (event.attendance and "0" == params[:signup][:status])
-      return params[:signup][:reason].length > 5
-    else
-      return true
-    end
   end
 end
