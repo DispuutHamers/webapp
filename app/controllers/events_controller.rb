@@ -14,9 +14,9 @@ class EventsController < ApplicationController
         @events = Event.all.order(date: :desc).paginate(page: params[:page])
       end
       current_request.ics do
-        key = ApiKey.where(key: params[:key]).first
-        if key&.user&.lid?
-          calendar = generate_calendar
+        apikey = ApiKey.where(key: params[:key]).first
+        if apikey&.user&.lid?
+          calendar = generate_calendar(apikey)
           calendar.publish
           render :text => calendar.to_ical
         else
@@ -66,7 +66,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def generate_calendar
+  def generate_calendar(key)
     ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
     feed = Event.all.order('date').where(['date >= ?', Date.today])
     calendar = Icalendar::Calendar.new
