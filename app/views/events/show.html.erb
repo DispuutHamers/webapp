@@ -41,7 +41,7 @@
         <p>
         <% @event.signups.where(status: false).each do |s| %>
           <%= s.user.name %> 
-          <% if s.reason %>
+          <% if s.reason.length > 1 %>
             (<%= s.reason %>)<% end %>,
         <% end %>
         ..jij?
