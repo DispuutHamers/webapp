@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="../assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="../overview.html"><img src="../assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="../overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Updated <time class='js-timeago' datetime='2017-02-28 11:49:04 +0100'>2017-02-28 11:49:04 +0100</time>
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>models /</small> user.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating b big">
+              B
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">155</span><small> lines of codes</small></div>
+              <div><span class="metric">19</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">6.2</span><small> complexity/method</small></div>
+              <div><span class="metric">66</span><small> loc/method</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">117</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                8
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code">#The user model
+class User &lt; ActiveRecord::Base<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'join_group!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'remove_group!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'sign!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>User has at least 17 methods</span>          </div>  </li></div>
+  has_paper_trail :ignore =&gt; [:weight, :updated_at, :remember_token]
+  acts_as_paranoid :ignote =&gt; [:weight]
+  before_save { self.email = email.downcase }
+  before_create :create_remember_token
+  has_many :groups, foreign_key: &#39;user_id&#39;, dependent: :destroy
+  has_many :usergroups, through: :groups
+  has_many :quotes
+  has_many :devices
+  has_many :api_keys
+  has_many :reviews, :dependent =&gt; :destroy
+  has_many :motions
+  has_many :events
+  has_many :beers, through: :reviews
+  has_many :api_logs
+  has_many :signups, dependent: :destroy
+  has_many :nicknames, dependent: :destroy
+  validates :name, presence: true, length: {maximum: 50}, uniqueness: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+  has_secure_password
+  validates :password, :presence =&gt; true, :confirmation =&gt; true, length: {minimum: 6}, :if =&gt; :password
+
+  def name_with_nickname
+    name = read_attribute(:name)
+    nicknames = self.nicknames
+    if nicknames.count &gt; 0
+      name = self.nickname + &#39;(&#39; + name + &#39;)&#39;
+    end
+    name
+  end
+
+  def nickname
+    nickname = &#39;&#39;
+    nicknames.order(&#39;created_at DESC&#39;).each do |nick|
+      nickname = nick.nickname + &#39; &#39; + nickname
+    end
+    nickname
+  end
+
+  def unreviewed_beers
+    urev_beers = Beer.all
+    beers.each do |beer|
+      urev_beers = urev_beers - [beer]
+    end
+    urev_beers
+  end
+
+  def sign!(event, status, reason)
+    if event.deadline &gt; Time.now
+      id = event.id
+      stemmen = signups.where(event_id: id)
+      if stemmen.any?
+        stemmen.each { |stem| stem.really_destroy! }
+      end
+      self.signups.create!(event_id: id, status: status, reason: reason)
+    end
+  end
+
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def generate_api_key(name)
+    ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
+  end
+
+  def in_group?(group)
+    groups.find_by(group_id: group.id)
+  end
+
+  def join_group!(group)
+    id = group.id
+    unless groups.only_deleted.where(group_id: id).empty?
+      groups.with_deleted.where(group_id: id).first.restore
+    else
+      groups.create!(group_id: id)
+    end
+  end
+
+  def remove_group!(group)
+    groups.find_by(group_id: group.id).destroy!
+  end
+
+  def User.hash(token = nil)
+    if token
+      Digest::SHA1.hexdigest(token.to_s)
+    else
+      super()
+    end
+  end
+
+  def lid?
+    in_group?(Usergroup.find_by(name: &#39;lid&#39;))
+  end
+
+  def alid?
+    in_group?(Usergroup.find_by(name: &#39;A-Lid&#39;))
+  end
+
+  def olid?
+    in_group?(Usergroup.find_by(name: &#39;O-Lid&#39;))
+  end
+
+  def admin?
+    in_group?(Usergroup.find_by(name: &#39;Triumviraat&#39;)) || dev?
+  end
+
+  def dev?
+    in_group?(Usergroup.find_by(name: &#39;Developer&#39;))
+  end
+
+  def update_weight<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>User#update_weight has approx 6 statements</span>          </div>  </li></div>
+    cijfer = 0.0
+    reviews = Review.where(user_id: self.id)
+    reviews.each do |review|
+      cijfer += review.rating
+    end
+
+    self.weight = (cijfer / reviews.count) unless reviews.empty?
+    save
+  end
+
+  def schrijf_feut?
+    in_group?(Usergroup.find_by(name: &#39;Secretaris-generaal&#39;))
+  end
+
+  def as_json(options)<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>User#as_json has approx 11 statements</span>          </div>  </li></div>
+    h = super({ :only =&gt;<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank"><b>UncommunicativeVariableName</b></a>        </span>      </div>      <span>User#as_json has the variable name 'h'</span>          </div>  </li></div>
+               [:id, :name, :email, :created_at, :batch] }.merge(options))
+    h[:reviews] = reviews.count<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    h[:quotes] = quotes.count<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    h[:nicknames] = nicknames(options)<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    if alid?
+      h[:lid] = &#39;alid&#39;<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    elsif olid?
+      h[:lid] = &#39;olid&#39;<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    elsif lid?
+      h[:lid] = &#39;lid&#39;<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    else
+      h[:lid] = &#39;none&#39;<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+    end
+
+    admin? ? h[:admin] = 1 : h[:admin] = 0<div class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Feature-Envy.md" target="_blank"><b>FeatureEnvy</b></a>        </span>      </div>      <span>User#as_json refers to 'h' more than self (maybe move it to another class?)</span>              <span>Locations:</span>                  <a href="user.html#L132" class="js-smell-location">0</a>                  <a href="user.html#L133" class="js-smell-location">1</a>                  <a href="user.html#L134" class="js-smell-location">2</a>                  <a href="user.html#L136" class="js-smell-location">3</a>                  <a href="user.html#L138" class="js-smell-location">4</a>                  <a href="user.html#L140" class="js-smell-location">5</a>                  <a href="user.html#L142" class="js-smell-location">6</a>                  <a href="user.html#L145" class="js-smell-location">7</a>                  </div>  </li></div>
+
+    h
+  end
+
+  private
+
+  def create_remember_token
+    self.remember_token = User.hash(User.new_remember_token)
+  end
+end
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src='../assets/javascripts/jquery.min.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='../assets/javascripts/jquery.timeago.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/prettify.js'></script>
+    <script src='../assets/javascripts/bootstrap.min.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+    <script src='../assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>

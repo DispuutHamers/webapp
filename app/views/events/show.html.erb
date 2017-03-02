@@ -41,7 +41,7 @@
         <p>
         <% @event.signups.where(status: false).each do |s| %>
           <%= s.user.name %> 
-          <% if s.reason && s.reason > 1 %>(<%= s.reason %>)<% end %>,
+          <% if s.reason && s.reason.length > 1 %>(<%= s.reason %>)<% end %>,
         <% end %>
         ..jij?
         <% if @event.deadline != nil and @event.deadline > Time.now %>
