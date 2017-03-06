@@ -1,7 +1,7 @@
 #entry point for events
 class EventsController < ApplicationController
   require 'icalendar/tzinfo'
-  before_action :logged_in?, only: [:edit, :update, :destroy]
+  before_action :logged_in?, only: [:show, :edit, :update, :destroy]
   before_action :admin_user?, only: :destroy
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
@@ -10,13 +10,13 @@ class EventsController < ApplicationController
   def index
     respond_to do |current_request|
       current_request.html do
-        @events = Event.all.order(date: :desc).paginate(page: params[:page])
         redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
+        @events = Event.all.order(date: :desc).paginate(page: params[:page])
       end
       current_request.ics do
-        key = ApiKey.where(key: params[:key]).first
-        if key&.user&.lid?
-          calendar = generate_calendar
+        apikey = ApiKey.where(key: params[:key]).first
+        if apikey&.user&.lid?
+          calendar = generate_calendar(apikey)
           calendar.publish
           render :text => calendar.to_ical
         else
@@ -66,16 +66,16 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def generate_calendar
+  def generate_calendar(key)
     ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
-    feed = Event.all.order('date').where(['date >= ?', Date.today]).limit(10)
+    feed = Event.all.order('date').where(['date >= ?', Date.today])
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"
     tz = TZInfo::Timezone.get tzid
     timezone = tz.ical_timezone feed.first.date
     calendar.add_timezone timezone
-    feed.each do |f|
-      calendar.add_event(f.to_ics)
+    feed.each do |feed_item|
+      calendar.add_event(feed_item.to_ics)
     end
     calendar
   end

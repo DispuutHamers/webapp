@@ -26,6 +26,7 @@ class Api2::ApiController < ApplicationController
   param :device, String, required: true
   def register
     device = @key.user.devices.first || Device.new
+    user = @key.user
     device.assign_attributes(user_id: user.id, device_key: params[:device])
     if device.save
       render :status => :created, :text => '{"status":"201","message":"Created"}'

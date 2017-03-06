@@ -6,6 +6,6 @@ class Review < ActiveRecord::Base
   acts_as_paranoid
 
   def as_json(options)
-    h = super({:only => [:id, :beer_id, :user_id, :description, :rating, :proefdatum, :created_at]}.merge(options))
+    super({:only => [:id, :beer_id, :user_id, :description, :rating, :proefdatum, :created_at]}.merge(options))
   end
 end

@@ -29,7 +29,7 @@ class Event < ActiveRecord::Base
   end
 
   def as_json(options)
-    h = super({:only => [:id, :title, :beschrijving, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
+    h = super({:only => [:id, :attendance, :title, :beschrijving, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
     h[:signups] = signups.as_json(options)
     h
   end

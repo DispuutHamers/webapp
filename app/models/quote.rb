@@ -8,6 +8,6 @@ class Quote < ActiveRecord::Base
   acts_as_paranoid
 
   def as_json(options)
-    h = super({:only => [:id, :text, :user_id, :created_at]}.merge(options))
+    super({:only => [:id, :text, :user_id, :created_at]}.merge(options))
   end
 end

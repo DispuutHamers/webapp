@@ -19,6 +19,10 @@ class StaticPagesController < ApplicationController
     @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
   end
 
+  def quote
+    redirect_to root_path
+  end
+
   def statistics
     redirect_to root_path unless signed_in?
     @cumulativeReviewData = getCumulativeData Review
