@@ -12,8 +12,8 @@ class Api2::EventsController < Api2::ApiController
   def index
     sorting = params[:sorted]
     events = get_event_list(params[:future])
-    events.order('date') if sorting
-    events.reverse_order if sorting == 'date-desc'
+    events = events.order('date') if sorting
+    events = events.reverse_order if sorting == 'date-desc'
     render json: events
   end
 
