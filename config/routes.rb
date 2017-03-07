@@ -73,6 +73,7 @@ Hamers::Application.routes.draw do
       resources :motions, module: 'api2', only: [:index, :show, :update, :create]
       get 'full_backup' => 'api2/backups#index'
       get 'whoami' => "api2/users#whoami"
+      get 'changes' => 'api2/changes#index'
       post 'register' => "api2/api#register"
     end
   end
