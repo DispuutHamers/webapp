@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Hallo <%= @user.name %>,</p>
+    <p>Helaas ben je er tot op heden niet in geslaagd je aan of af te melden voor het event: "<%= @event.title %>". Om voor iedereen het te verwachte aantal aanwezige leden zo overzichtelijk mogelijk te maken wordt je hierbij verzocht dat zo snel mogelijk nog te doen.</p>
+    <p>Veel succes, moeilijk is het niet</p>
+    <p>P.S.</p>
+    <p>https://www.zondersikkel.nl/events/<%= @event.id %></p>
+  </body>
+</html>
