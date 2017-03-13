@@ -56,6 +56,14 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "hamers_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  ActionMailer::Base.smtp_settings = {
+    :port           => 587,
+    :address        => 'mail.zondersikkel.nl',
+    :domain         => 'zondersikkel.nl',
+    :user_name      => 'webapp@zondersikkel.nl',
+    :password       => 'kaij5Ahshug2oCu0reeMi7Ak',
+    :authentication => :plain,
+  }}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
