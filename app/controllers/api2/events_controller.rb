@@ -23,8 +23,8 @@ class Api2::EventsController < Api2::ApiController
     render json: Event.find(params[:id])
   end
   
-  api :GET, '/events/remind/:id', 'Send reminder emails'
-  param :id, :number
+  api :POST, '/events/remind', 'Send reminder emails'
+  param :id, :number, :required => true
   def remind
     event = Event.find(params[:id])
     unless DateTime.now > event.deadline
