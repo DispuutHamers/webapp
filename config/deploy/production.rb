@@ -8,6 +8,7 @@ role :app, %w{deploy@149.210.163.54}
 role :web, %w{deploy@149.210.163.54}
 role :db,  %w{deploy@149.210.163.54}
 set :rails_env, "production"
+set :deploy_to, '/home/deploys/zondersikkel.nl'
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server
