@@ -22,6 +22,19 @@ class Api2::EventsController < Api2::ApiController
   def show
     render json: Event.find(params[:id])
   end
+  
+  api :GET, '/events/remind/:id', 'Send reminder emails'
+  param :id, :number
+  def remind
+    event = Event.find(params[:id])
+    unless DateTime.now > event.deadline
+      unsigned_users = Usergroup.find_by(name: 'lid').users - event.users
+      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
+      render :status => :created, :text => '{"status":"201","message":"Created"}'
+    else
+      render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
+    end
+  end
 
   api :UPDATE, '/events/:id', 'Update event'
   param :end_time, String, :required => true
