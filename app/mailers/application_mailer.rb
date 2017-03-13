@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'system@zondersikkel.nl'
+  default from: 'webapp@zondersikkel.nl'
   layout 'mailer'
 end
 
