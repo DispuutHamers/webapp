@@ -51,7 +51,7 @@ class EventsController < ApplicationController
   def remind
     unless DateTime.now > @event.deadline
       unsigned_users = Usergroup.find_by(name: 'lid').users - @event.users
-      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event) }
+      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event).deliver }
       flash[:success] = "Mail verzonden"
     else
       flash[:success] = "Mag niet"

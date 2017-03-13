@@ -55,7 +55,7 @@ module UtilHelper
     users = Usergroup.find_by(name: 'lid').users
     signed_users = event.users
     unsigned_users = users - signed_users
-    unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event) }
+    unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
   end
 
   private 
