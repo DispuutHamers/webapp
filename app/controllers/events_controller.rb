@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   require 'icalendar/tzinfo'
   before_action :logged_in?, only: [:show, :edit, :update, :destroy]
   before_action :admin_user?, only: :destroy
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
@@ -46,6 +46,17 @@ class EventsController < ApplicationController
     event = Event.new(event_params)
     event.user_id = current_user.id
     save_object(event, type="event", push=true)
+  end
+
+  def remind
+    unless DateTime.now > @event.deadline
+      unsigned_users = Usergroup.find_by(name: 'lid').users - @event.users
+      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event) }
+      flash[:success] = "Mail verzonden"
+    else
+      flash[:success] = "Mag niet"
+    end
+    redirect_to @event
   end
 
   # PATCH/PUT /events/1

@@ -11,6 +11,7 @@ Hamers::Application.routes.draw do
   get '/trail' => 'static_pages#trail' , as: 'trail' 
   get '/trail' => 'static_pages#trail' , as: 'device' 
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
+  get '/remind/:id' => 'events#remind', as: 'reminder'
 
   match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions

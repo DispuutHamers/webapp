@@ -73,7 +73,8 @@
   </div>
 </div>
 <div class="btn-group">
-  <% if current_user.admin? || current_user.dev? %>
+  <% if current_user.admin? || @event.user == current_user %>
+    <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
     <%= link_to 'Edit', edit_event_path(@event), :class => 'btn btn-info' %>
   <% end %>
   <%= link_to 'Terug', events_path, :class => 'btn btn-default' %>
