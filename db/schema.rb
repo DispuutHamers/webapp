@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207100916) do
+ActiveRecord::Schema.define(version: 20170316135238) do
 
   create_table "afmeldingens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "reden"
@@ -324,9 +324,10 @@ ActiveRecord::Schema.define(version: 20170207100916) do
     t.integer  "item_id",                           null: false
     t.string   "event",                             null: false
     t.string   "whodunnit"
-    t.text     "object",         limit: 4294967295
+    t.text     "old_object",     limit: 4294967295
     t.datetime "created_at"
     t.text     "object_changes", limit: 4294967295
+    t.json     "object"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
