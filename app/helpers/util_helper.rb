@@ -23,7 +23,7 @@ module UtilHelper
   end
 
   def update_by_owner_or_admin(obj, obj_params)
-    allowed_user = (obj.user == current_user or current_user.admin?)
+    allowed_user = (obj.user_id == current_user.id or current_user.admin?)
     if allowed_user and obj.update(obj_params)
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj

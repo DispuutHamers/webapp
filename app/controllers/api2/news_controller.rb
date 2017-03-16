@@ -17,9 +17,9 @@ class Api2::NewsController < Api2::ApiController
   end
 
   api :UPDATE, '/news/:id', 'Update news'
-  param :cat, ['e', 'd', 'l'], :required => true
-  param :body, String, :required => true
-  param :title, String, :required => true
+  param :cat, ['e', 'd', 'l']
+  param :body, String
+  param :title, String
   param :image, String
   def update
     news = News.find(params[:id])

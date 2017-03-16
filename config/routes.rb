@@ -75,7 +75,7 @@ Hamers::Application.routes.draw do
       get 'full_backup' => 'api2/backups#index'
       get 'whoami' => "api2/users#whoami"
       get 'changes' => 'api2/changes#index'
-      post 'events/remind' => 'api2/events#remind'
+      post 'events/:id/remind' => 'api2/events#remind'
       post 'register' => "api2/api#register"
     end
   end
