@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20170316135238) do
     t.datetime "end_time"
     t.string   "location"
     t.datetime "deleted_at"
-    t.boolean  "attendance"
+    t.boolean  "attendance",                 default: false
     t.index ["deleted_at"], name: "index_events_on_deleted_at", using: :btree
   end
 
@@ -320,14 +320,15 @@ ActiveRecord::Schema.define(version: 20170316135238) do
   end
 
   create_table "versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
-    t.string   "item_type",      limit: 191,        null: false
-    t.integer  "item_id",                           null: false
-    t.string   "event",                             null: false
+    t.string   "item_type",          limit: 191,        null: false
+    t.integer  "item_id",                               null: false
+    t.string   "event",                                 null: false
     t.string   "whodunnit"
-    t.text     "old_object",     limit: 4294967295
+    t.text     "old_object",         limit: 4294967295
     t.datetime "created_at"
-    t.text     "object_changes", limit: 4294967295
+    t.text     "old_object_changes", limit: 4294967295
     t.json     "object"
+    t.json     "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
   end
 
