@@ -72,6 +72,7 @@ Hamers::Application.routes.draw do
       resources :reviews, module: 'api2', only: [:index, :show, :update, :create]
       resources :events, module: 'api2', only: [:index, :show, :update, :create]
       resources :motions, module: 'api2', only: [:index, :show, :update, :create]
+      resources :nicknames, module: 'api2', only: [:index, :update, :create]
       get 'full_backup' => 'api2/backups#index'
       get 'whoami' => "api2/users#whoami"
       get 'changes' => 'api2/changes#index'
