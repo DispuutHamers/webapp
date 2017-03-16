@@ -13,7 +13,7 @@ module UtilHelper
 
   def update_object(obj, obj_params)
     if obj.update(obj_params)
-      yield
+      yield if block_given?
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else

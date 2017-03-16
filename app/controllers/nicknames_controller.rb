@@ -8,6 +8,10 @@ class NicknamesController < ApplicationController
     @nicknames = Nickname.all
   end
 
+  def show
+    redirect_to nicknames_path
+  end
+
   def new
     @nickname = Nickname.new
   end
