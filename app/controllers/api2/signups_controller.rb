@@ -6,6 +6,11 @@ class Api2::SignupsController < Api2::ApiController
     app_info "De hamers api docs"
   end
 
+  api :GET, '/signups', "Show signups index"
+  def index
+    render json: Signup.all
+  end
+
   api :GET, '/signups/:id', 'Show signup'
   def show
     render json: Signup.find(params[:id])

@@ -67,7 +67,7 @@ Hamers::Application.routes.draw do
       resources :quotes, module: 'api2', only: [:index, :show, :update, :create]
       resources :meetings, module: 'api2', only: [:index, :show, :update, :create]
       resources :news, module: 'api2', only: [:index, :show, :update, :create]
-      resources :signups, module: 'api2', only: [:show, :update, :create]
+      resources :signups, module: 'api2', only: [:index, :show, :update, :create]
       resources :stickers, module: 'api2', only: [:index, :show, :create]
       resources :reviews, module: 'api2', only: [:index, :show, :update, :create]
       resources :events, module: 'api2', only: [:index, :show, :update, :create]
