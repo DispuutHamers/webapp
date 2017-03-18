@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     n.registration_ids = keys
     n.priority = 'high'        # Optional, can be either 'normal' or 'high'
     n.content_available = true # Optional
-    n.data = { object: obj.to_jsoni,
+    n.data = { object: obj.to_json,
                type: obj.class.name
     }
     n.save!
