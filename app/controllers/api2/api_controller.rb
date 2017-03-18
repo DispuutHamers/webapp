@@ -54,7 +54,7 @@ class Api2::ApiController < ApplicationController
 
   def save_object(obj, type = nil, push = nil)
     if obj.save
-      update_app("{ data: { #{type}: #{obj.to_json} } }") if push
+      update_app(obj) if push
       render json: obj, status: :created, location: obj
     else
       render json: obj.errors, status: :unprocessable_entity

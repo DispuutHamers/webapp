@@ -2,8 +2,8 @@
 module UtilHelper
   def save_object(obj, type = nil, push = nil)
     if obj.save
-      update_app("{ data: { #{type}: #{obj.to_json} } }") if push
-      flash[:success] = "#{type.capitalize} succesvol aangemaakt."
+      update_app(obj) if push
+      flash[:success] = "#{obj.class.name} succesvol aangemaakt."
       redirect_to obj
     else
       flash[:error] = "Er ging iets stuk"

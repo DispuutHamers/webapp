@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
   end
 
-  def update_app(data)
+  def update_app(obj)
     keys = []
     Device.all.each do |d|
       keys << d.device_key
@@ -26,9 +26,7 @@ class ApplicationController < ActionController::Base
     n.data = { message: "hi mom!" }
     n.priority = 'high'        # Optional, can be either 'normal' or 'high'
     n.content_available = true # Optional
-    n.notification = { body: 'great match!',
-                       title: 'Portugal vs. Denmark',
-                       icon: 'myicon'
+    n.data = { "\"#{obj.class.name}\": #{obj.to_json}"
     }
     n.save!
   end
