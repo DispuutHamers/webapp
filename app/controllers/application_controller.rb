@@ -23,10 +23,10 @@ class ApplicationController < ActionController::Base
     n = Rpush::Gcm::Notification.new
     n.app = Rpush::Gcm::App.find_by_name("android_app")
     n.registration_ids = keys
-    n.data = { message: "hi mom!" }
     n.priority = 'high'        # Optional, can be either 'normal' or 'high'
     n.content_available = true # Optional
-    n.data = { "\"#{obj.class.name}\": #{obj.to_json}"
+    n.data = { object: obj.to_jsoni,
+               type: obj.class.name
     }
     n.save!
   end
