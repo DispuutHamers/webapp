@@ -3,6 +3,10 @@ module ParamsHelper
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
+  def push_params
+    params.require(:push).permit(:data, :user_id)
+  end
+
   def signup_params
     params.require(:signup).permit(:event_id, :status, :reason)
   end

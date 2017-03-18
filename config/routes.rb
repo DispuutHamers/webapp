@@ -2,7 +2,7 @@ Hamers::Application.routes.draw do
   mount LetsencryptPlugin::Engine, at: '/'
   apipie
   resources :notes
-  resources :pushes, only: [:index, :create, :new]
+  resources :pushes, only: [:index, :show, :create, :new]
   resources :stickers
   get '/mystickers' => 'stickers#personal', as: 'personal_sticker'
 
