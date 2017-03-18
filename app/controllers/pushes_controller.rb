@@ -18,7 +18,6 @@ class PushesController < ApplicationController
   def create
     push = Push.new(push_params)
     if device_key = push.user.devices&.first&.device_key
-      response = PUSH.send([device_key], eval(push.data))
       push.user_id = current_user.id
       save_object(push, type="push")
     end

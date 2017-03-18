@@ -19,6 +19,18 @@ class ApplicationController < ActionController::Base
     Device.all.each do |d|
       keys << d.device_key
     end
+
+    n = Rpush::Gcm::Notification.new
+    n.app = Rpush::Gcm::App.find_by_name("android_app")
+    n.registration_ids = keys
+    n.data = { message: "hi mom!" }
+    n.priority = 'high'        # Optional, can be either 'normal' or 'high'
+    n.content_available = true # Optional
+    n.notification = { body: 'great match!',
+                       title: 'Portugal vs. Denmark',
+                       icon: 'myicon'
+    }
+    n.save!
   end
 
   def logged_in?
