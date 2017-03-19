@@ -38,10 +38,7 @@ namespace :deploy do
   desc "Restart passenger process"
   task :restart  do
     on roles(:all) do |host|
-      unless test("[ -p #{current_path}/tmp ]")
-        execute "mkdir #{current_path}/tmp"
-      end
-
+      execute "mkdir -p #{current_path}/tmp"
       execute "touch #{current_path}/tmp/restart.txt"
     end
   end
