@@ -68,6 +68,9 @@ GEM
     capistrano-rails (1.2.3)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rpush (0.1.7)
+      capistrano (~> 3.0, < 4.0)
+      rpush (~> 2.7, < 3.0)
     chartkick (2.2.3)
     chronic (0.10.2)
     chunky_png (1.3.8)
@@ -205,6 +208,8 @@ GEM
     rqrcode_png (0.1.5)
       chunky_png
       rqrcode
+    rvm-capistrano (1.5.0)
+      capistrano (>= 2.15.4)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -271,6 +276,7 @@ DEPENDENCIES
   bootstrap_form
   capistrano
   capistrano-rails (~> 1.1)
+  capistrano-rpush
   chartkick
   cloudinary
   coffee-rails
@@ -292,6 +298,7 @@ DEPENDENCIES
   redcarpet
   rpush
   rqrcode_png
+  rvm-capistrano
   sass-rails
   sdoc
   therubyracer

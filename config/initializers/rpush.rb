@@ -15,11 +15,13 @@ Rpush.configure do |config|
   # notification payloads over the connection with a single write, such as APNs.
   config.batch_size = 100
 
-  # Path to write PID file. Relative to current directory unless absolute.
-  config.pid_file = 'tmp/rpush.pid'
-
-  # Path to log file. Relative to current directory unless absolute.
-  config.log_file = 'log/rpush.log'
+  if Rails.env.production?
+    config.pid_file = '../../shared/tmp/rpush.pid'
+    config.log_file = '../../shared/log/rpush.log'
+  else
+    config.pid_file = 'tmp/rpush.pid'
+    config.log_file = 'log/rpush.log'
+  end
 
   config.log_level = (defined?(Rails) && Rails.logger) ? Rails.logger.level : ::Logger::Severity::INFO
 

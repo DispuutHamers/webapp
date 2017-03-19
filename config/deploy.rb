@@ -1,12 +1,14 @@
 # config valid only for Capistrano 3.1
 set :application, 'Hamers'
 set :repo_url, 'git@bitbucket.org:jackozi/hamers.git'
+set :rvm_ruby_version, '2.3.0'
+set :default_env, { rvm_bin_path: '/home/jackozi/.rvm/bin' }
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
- set :rails_env, "production"
+set :rails_env, "production"
 # Default value for :scm is :git
 # set :scm, :git
 
@@ -32,23 +34,35 @@ set :linked_files, %w{config/database.yml config/key.pem}
 # set :keep_releases, 5
 
 namespace :deploy do
- desc "Restart passenger process"
- task :restart  do
-  "touch #{current_path}/tmp/restart.txt"
- end
+  #server "zdma.org", roles: [:web]
+  desc "Restart passenger process"
+  task :restart  do
+    on roles(:all) do |host|
+      unless test("[ -p #{current_path}/tmp ]")
+        execute "mkdir #{current_path}/tmp"
+      end
 
- desc "run bundle install" 
- task :bundleI do 
-  "bundle install"
- end 
+      execute "touch #{current_path}/tmp/restart.txt"
+    end
+  end
 
- desc "run compile less"
- task :cless do
-  "rails generate bootstrap:install less"
- end 
+  desc "Stop the push service"
+  desc "Write cronfile"
+  task :whenever do 
+    on roles(:all) do |host|
+      execute "whenevr -w"
+    end
+  end
+
+  desc "run bundle install"
+  task :bundleI do
+    "bundle install"
+  end
+
+  desc "run compile less"
+  task :cless do
+    "rails generate bootstrap:install less"
+  end
 end
- 
 
-after "deploy", "deploy:bundleI"
-after "deploy", "deploy:cless"
 after "deploy", "deploy:restart"

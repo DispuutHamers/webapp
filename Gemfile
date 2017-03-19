@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'letsencrypt_plugin'
+gem 'capistrano-rpush'
 gem 'rb-readline'
 gem 'icalendar'
 gem 'paranoia' 
@@ -39,3 +40,4 @@ end
 gem 'capistrano', group: :development
 gem 'capistrano-rails', '~> 1.1'
 gem 'apipie-rails'
+gem 'rvm-capistrano'

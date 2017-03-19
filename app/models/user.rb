@@ -52,9 +52,10 @@ class User < ActiveRecord::Base
       id = event.id
       stemmen = signups.where(event_id: id)
       if stemmen.any?
-        stemmen.each { |stem| stem.really_destroy! }
+        stemmen.last.update_attributes(status: status, reason: reason)
+      else
+        self.signups.create!(event_id: id, status: status, reason: reason)
       end
-      self.signups.create!(event_id: id, status: status, reason: reason)
     end
   end
 

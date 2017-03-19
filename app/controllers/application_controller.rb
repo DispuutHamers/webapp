@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
   end
 
-  def update_app(obj)
+  def update_app(obj, action)
     keys = []
     Device.all.each do |d|
       keys << d.device_key
@@ -26,7 +26,8 @@ class ApplicationController < ActionController::Base
     n.priority = 'high'        # Optional, can be either 'normal' or 'high'
     n.content_available = true # Optional
     n.data = { object: obj.to_json,
-               type: obj.class.name
+               type: obj.class.name,
+               action: action
     }
     n.save!
   end

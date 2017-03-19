@@ -2,7 +2,7 @@
 module UtilHelper
   def save_object(obj, type = nil, push = nil)
     if obj.save
-      update_app(obj) if push
+      update_app(obj, "create") if push
       flash[:success] = "#{obj.class.name} succesvol aangemaakt."
       redirect_to obj
     else
