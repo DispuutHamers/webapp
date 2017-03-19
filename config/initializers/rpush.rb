@@ -7,21 +7,16 @@ Rpush.configure do |config|
   # config.redis_options = {}
 
   # Frequency in seconds to check for new notifications.
-  config.push_poll = 2
+  config.push_poll = 60
 
   # The maximum number of notifications to load from the store every `push_poll` seconds.
   # If some notifications are still enqueued internally, Rpush will load the batch_size less
   # the number enqueued. An exception to this is if the service is able to receive multiple
   # notification payloads over the connection with a single write, such as APNs.
-  config.batch_size = 100
+  config.batch_size = 30
 
-  if Rails.env.production?
-    config.pid_file = '../../shared/tmp/rpush.pid'
-    config.log_file = '../../shared/log/rpush.log'
-  else
-    config.pid_file = 'tmp/rpush.pid'
-    config.log_file = 'log/rpush.log'
-  end
+  config.pid_file = 'tmp/rpush.pid'
+  config.log_file = 'log/rpush.log'
 
   config.log_level = (defined?(Rails) && Rails.logger) ? Rails.logger.level : ::Logger::Severity::INFO
 
