@@ -36,6 +36,6 @@ class Api2::MeetingsController < Api2::ApiController
   def create
     meeting = Meeting.new(meeting_params)
     meeting.user_id = key.user.id if meeting_params[:notes]
-    save_object(meeting)
+    save_object(meeting, push=true)
   end
 end

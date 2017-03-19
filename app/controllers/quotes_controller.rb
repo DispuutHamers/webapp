@@ -9,7 +9,7 @@ class QuotesController < ApplicationController
   def create
     quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
     quote.reporter = current_user.id
-    save_object(quote, type="quote", push=true)
+    save_object(quote, push=true)
   end
 
   def edit

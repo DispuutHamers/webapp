@@ -45,7 +45,7 @@ class EventsController < ApplicationController
   def create
     event = Event.new(event_params)
     event.user_id = current_user.id
-    save_object(event, type="event", push=true)
+    save_object(event, push=true)
   end
 
   def remind

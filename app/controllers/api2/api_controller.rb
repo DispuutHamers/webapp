@@ -52,7 +52,7 @@ class Api2::ApiController < ApplicationController
     restrict
   end
 
-  def save_object(obj, type = nil, push = nil)
+  def save_object(obj, push = nil)
     if obj.save
       update_app(obj, "create") if push
       render json: obj, status: :created, location: obj

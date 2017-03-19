@@ -22,7 +22,7 @@ class StickersController < ApplicationController
   def create
     sticker = Sticker.new(sticker_params)
     sticker.user_id = current_user.id
-    save_object(sticker, type="sticker")
+    save_object(sticker, push=true)
   end
 
   def update

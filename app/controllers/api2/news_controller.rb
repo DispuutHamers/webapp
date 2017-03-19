@@ -35,6 +35,6 @@ class Api2::NewsController < Api2::ApiController
     news = News.new(news_params)
     news.user_id = key.user.id
     news.date = Time.now
-    save_object(news, type="news", push = true)
+    save_object(news, push=true)
   end
 end

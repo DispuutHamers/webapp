@@ -29,7 +29,7 @@ class MotionsController < ApplicationController
   def create
     motion = Motion.new(motion_params)
     motion.user_id = current_user.id
-    save_object(motion, type="motion")
+    save_object(motion)
   end
 
   # PATCH/PUT /motions/1
