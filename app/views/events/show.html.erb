@@ -20,7 +20,7 @@
         <% end %>
         <hr>
 
-        <h4>Aanwezig:</h4>
+        <h4>Aanwezig(<%= @event.signups.where(status: true).count %>):</h4>
         <p>
         <% @event.signups.where(status: true).each do |s| %>
           <%= s.user.name %>,
@@ -37,7 +37,7 @@
         </p>
         <hr>
 
-        <h4>Afwezig:</h4>
+        <h4>Afwezig(<%= @event.signups.where(status: false).count %>):</h4>
         <p>
         <% @event.signups.where(status: false).each do |s| %>
           <%= s.user.name %> 
