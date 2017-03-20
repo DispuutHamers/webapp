@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
     user = User.find(params[:group][:user_id])
     group = Usergroup.find(params[:group][:group_id])
     user.join_group!(group)
-    redirect_to usergroups_user_path(@user)
+    redirect_to usergroups_user_path(user)
   end
 
   def destroy
