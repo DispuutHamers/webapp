@@ -12,6 +12,7 @@ module Hamers
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.web_console.development_only = false
+    config.time_zone = "Amsterdam"
     config.i18n.default_locale = :'nl'
   end
 end
