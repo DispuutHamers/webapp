@@ -143,7 +143,7 @@ class User < ActiveRecord::Base
       h[:lid] = 'none'
     end
 
-    admin? ? h[:admin] = 1 : h[:admin] = 0
+    admin? ? h[:admin] = true : h[:admin] = false
 
     h
   end
