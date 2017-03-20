@@ -42,7 +42,7 @@ Hamers::Application.routes.draw do
 
   get 'leden', to: "users#index_public", as: "public_leden"
 
-  resources :reviews, only: [:create, :destroy, :update, :edit]
+  resources :reviews, only: [:show, :create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy]
   resources :usergroups, only: [:create, :destroy]
   resources :quotes, only: [:create, :destroy, :update, :edit]

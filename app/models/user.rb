@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
   def name_with_nickname
     name = read_attribute(:name)
-    nicknames = self.nicknames
+    nicknames = self.nicknames.limit(3)
     if nicknames.count > 0
       name = self.nickname + '(' + name + ')'
     end
@@ -105,7 +105,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev?
+    in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev? || schrijf_feut?
   end
 
   def dev?

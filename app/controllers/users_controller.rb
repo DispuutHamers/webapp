@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def usergroups
     @usergroups = Usergroup.all
+    @user = User.find(params[:id])
   end
 
   def create
