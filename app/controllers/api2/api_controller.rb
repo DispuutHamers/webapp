@@ -4,7 +4,7 @@ class Api2::ApiController < ApplicationController
   attr_reader :key
   before_action :restrict_access
   before_action :log_url
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   include ParamsHelper
   #resource_description do
   #	  api_versions "2"
@@ -63,7 +63,7 @@ class Api2::ApiController < ApplicationController
 
   def update_object(obj, obj_params)
     if obj.update(obj_params)
-      render json: obj, status: :updated, location: obj
+      render json: obj, status: :created, location: obj
     else 
       render json: obj.errors, status: :unprocessable_entry
     end
@@ -74,7 +74,7 @@ class Api2::ApiController < ApplicationController
     if (obj.user_id != user.id and !user.admin?)
       render text: "HTTP Token: Access denied.", status: :access_denied
     elsif obj.update(obj_params)
-      render json: obj
+      render json: obj, status: :created, location: obj
     else
       render json: obj.errors, status: :unprocessable_entity
     end

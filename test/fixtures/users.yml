@@ -2,10 +2,10 @@
 
 one:
   name: MyString
-  email: MyString
+  email: MyString@1.1
   approved: false
 
 two:
   name: MyString
-  email: MyString
+  email: MyString@2.2
   approved: false

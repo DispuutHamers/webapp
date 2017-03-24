@@ -1,7 +1,7 @@
 #entry point for the application parent class for all controllers
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_filter :set_cache_buster
+  before_action :set_cache_buster
   before_action :set_paper_trail_whodunnit
 
   include SessionsHelper

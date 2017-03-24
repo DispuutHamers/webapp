@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'rails-controller-testing'
 gem 'letsencrypt_plugin'
 gem 'capistrano-rpush'
 gem 'rb-readline'
