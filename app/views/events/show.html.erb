@@ -23,9 +23,8 @@
         <h4>Aanwezig(<%= @event.signups.where(status: true).count %>):</h4>
         <p>
         <% @event.signups.where(status: true).each do |s| %>
-          <%= s.user.name %>,
+          <%= s.user.name %><br>
         <% end %>
-        ..jij?
         <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
             <div><%= f.hidden_field :event_id %></div>
@@ -41,9 +40,8 @@
         <p>
         <% @event.signups.where(status: false).each do |s| %>
           <%= s.user.name %> 
-          <% if s.reason && s.reason.length > 1 %>(<%= s.reason %>)<% end %>,
+          <% if s.reason && s.reason.length > 1 %>(<%= s.reason %>)<% end %><br>
         <% end %>
-        ..jij?
         <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
             <div><%= f.hidden_field :event_id %></div>
