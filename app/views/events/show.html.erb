@@ -22,13 +22,15 @@
 
         <h4>Aanwezig(<%= @event.signups.where(status: true).count %>):</h4>
         <p>
+        <ul style="list-style-type: none;">
         <% @event.signups.where(status: true).each do |s| %>
-          <%= s.user.name %><br>
+          <li><%= s.user.name %><br>
           <% if s.reason && s.reason.length > 2 %>
-            <ul style="padding: 10px;margin-top: -20px;margin-bottom: -10px;">
-              <%= s.reason %><br>
+            <ul style="list-style-type: none;">
+              <li><%= s.reason %></li>
             </ul>
           <% end %>
+          </li>
       <% end %>
       <% if @event.deadline != nil and @event.deadline > Time.now %>
         <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
