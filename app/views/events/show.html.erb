@@ -24,7 +24,7 @@
         <p>
         <ul style="list-style-type: none;">
         <% @event.signups.where(status: true).each do |s| %>
-          <li><%= s.user.name %><br>
+          <li><%= s.user.name %>
           <% if s.reason && s.reason.length > 2 %>
             <ul style="list-style-type: none;">
               <li><%= s.reason %></li>
@@ -32,6 +32,7 @@
           <% end %>
           </li>
       <% end %>
+        </ul>
       <% if @event.deadline != nil and @event.deadline > Time.now %>
         <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
           <div><%= f.hidden_field :event_id %></div>
@@ -46,10 +47,18 @@
 
         <h4>Afwezig(<%= @event.signups.where(status: false).count %>):</h4>
         <p>
+          <ul style="list-style-type: none;">
         <% @event.signups.where(status: false).each do |s| %>
+          <li>
           <%= s.user.name %>
-          <% if s.reason && s.reason.length > 1 %>(<%= s.reason %>)<% end %><br>
+          <% if s.reason && s.reason.length > 1 %>
+            <ul style="list-style-type: none;">
+              <li><%= s.reason %></li>
+            </ul>
+          <% end %>
+          </li>
         <% end %>
+          </ul>
         <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
             <div><%= f.hidden_field :event_id %></div>
