@@ -43,7 +43,7 @@
       </tbody>
     </table>
     <%= will_paginate %>
-    <% if lid? %>
+    <% if lid? || alid? %>
         <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
     <% end %>
   </div>
