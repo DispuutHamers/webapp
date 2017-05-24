@@ -93,7 +93,7 @@ class User < ActiveRecord::Base
   end
 
   def lid?
-    in_group?(Usergroup.find_by(name: 'lid'))
+    in_group?(Usergroup.find_by(name: 'lid')) || alid?
   end
 
   def alid?
