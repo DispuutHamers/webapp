@@ -52,7 +52,7 @@ module ParamsHelper
   end
 
   def sticker_params
-    params.require(:sticker).permit(:lat, :lon, :notes)
+    params.require(:sticker).permit(:lat, :lon, :notes, :image)
   end
   
   def note_params

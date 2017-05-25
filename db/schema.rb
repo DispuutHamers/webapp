@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318201510) do
+ActiveRecord::Schema.define(version: 20170525210915) do
 
   create_table "afmeldingens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "reden"
@@ -343,12 +343,16 @@ ActiveRecord::Schema.define(version: 20170318201510) do
   create_table "stickers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "lat"
     t.string   "lon"
-    t.text     "notes",      limit: 65535
-    t.text     "picture",    limit: 65535
+    t.text     "notes",              limit: 65535
+    t.text     "picture",            limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.datetime "deleted_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["deleted_at"], name: "index_stickers_on_deleted_at", using: :btree
   end
 

@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
+    redirect_to signin_url, notice: 'Please sign in.' unless signed_in? && (current_user.lid? || current_user.alid?)
   end
 
   def admin_user?
