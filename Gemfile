@@ -35,6 +35,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'chartkick'
 gem 'rails-i18n'
+gem 'groupdate'
 group :doc do
   gem 'sdoc', require: false
 end
