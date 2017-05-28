@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+    <%= @news.title %>
+<% end %>
 <p>
   <strong>Cat:</strong>
   <%= @news.cat %>
@@ -19,5 +21,7 @@
   <strong>Date:</strong>
   <%= @news.date %>
 </p>
-<%= link_to 'Edit', edit_news_path(@news) %> |
-<%= link_to 'Terug', news_index_path, class: "btn btn-default" %>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_news_path(@news), class: 'btn btn-default' %>
+  <%= link_to 'Terug', news_index_path, class: 'btn btn-default' %>
+</div>

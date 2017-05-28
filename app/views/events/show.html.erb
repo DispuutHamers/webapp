@@ -1,63 +1,98 @@
+<% content_for :title do %>
+  <%= @event.title %>
+<% end %>
 <div class="row">
-  <aside class="col-md-8">
-    <section>
-      <h1><%= @event.title %></h1>
-    </section>
-    <section><%= @event.date.strftime("%d/%m/%Y %H:%M") %> tot <%= @event.end_time.strftime("%d/%m/%Y %H:%M") %> <% if @event.location != nil and @event.location.length > 1 %> - <%= @event.location %><% end %></section>
-    <section><%= simple_format(@event.beschrijving) %></section>
-  </aside>
-  <div class="col-md-4">
-    <% if @event.user_id != nil %>
-        <section>
-          Event door: <%= @event.user.name %>
-        </section>
+  <div class="col-md-8">
+    <p>
+    <i class="fa fa-clock-o"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+  <% if @event.end_time? %>tot <%= @event.end_time.strftime('%d-%m-%Y %H:%M') %><% end %>
+    </p>
+    <% if @event.location != nil and @event.location.length > 1 %>
+      <p><i class="fa fa-map-marker"></i> <%= @event.location %></p>
     <% end %>
-    <section>
-      <strong>Wie komen er:</strong>
-      <% @event.signups.where(status: true).each do |s| %>
-          <%= s.user.name %>,
-      <% end %>
-      ..jij?
-      <% if @event.deadline != nil and @event.deadline > Time.now %>
-          <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
-              <div><%= f.hidden_field :event_id %></div>
-              <div><%= f.hidden_field :user_id %></div>
-              <div><%= f.hidden_field :status %></div>
-              <%= f.submit "Ik zal aanwezig zijn.", class: "btn btn-success" %>
+    <p><%= simple_format(@event.beschrijving) %></p>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if @event.user_id != nil %>
+          <p><strong>Event door:</strong> <%= @event.user.name %></p>
+        <% end %>
+        <hr>
+
+        <h4>Aanwezig(<%= @event.signups.where(status: true).count %>):</h4>
+        <p>
+        <ul style="list-style-type: none;">
+        <% @event.signups.where(status: true).each do |s| %>
+          <li><%= s.user.name %>
+          <% if s.reason && s.reason.length > 2 %>
+            <ul style="list-style-type: none;">
+              <li><%= s.reason %></li>
+            </ul>
           <% end %>
+          </li>
       <% end %>
-    </section>
-    <section>
-      <strong>Wie komen er niet: </strong>
-      <% @event.signups.where(status: false).each do |s| %>
-          <%= s.user.name %>,
-      <% end %>
-      ..jij?
+        </ul>
       <% if @event.deadline != nil and @event.deadline > Time.now %>
+        <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
+          <div><%= f.hidden_field :event_id %></div>
+          <div><%= f.hidden_field :user_id %></div>
+          <div><%= f.hidden_field :status %></div>
+          <%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %>
+          <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Opmerkingen?" %></div>
+        <% end %>
+      <% end %>
+        </p>
+        <hr>
+
+        <h4>Afwezig(<%= @event.signups.where(status: false).count %>):</h4>
+        <p>
+          <ul style="list-style-type: none;">
+        <% @event.signups.where(status: false).each do |s| %>
+          <li>
+          <%= s.user.name %>
+          <% if s.reason && s.reason.length > 1 %>
+            <ul style="list-style-type: none;">
+              <li><%= s.reason %></li>
+            </ul>
+          <% end %>
+          </li>
+        <% end %>
+          </ul>
+        <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
-              <div><%= f.hidden_field :event_id %></div>
-              <div><%= f.hidden_field :user_id %></div>
-              <div><%= f.hidden_field :status %></div>
-              <%= f.submit "Ik zal niet aanwezig zijn.", class: "btn btn-danger" %>
+            <div><%= f.hidden_field :event_id %></div>
+            <div><%= f.hidden_field :user_id %></div>
+            <div><%= f.hidden_field :status %></div>
+            <div><%= f.submit 'Ik zal niet aanwezig zijn.', class: 'btn btn-danger' %></div>
+            <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Waarom niet?" %></div>
           <% end %>
-      <% end %>
-      <% if @event.location %>
-          <br \><br \>
-          <strong>Kaart: </strong><br \>
-          <iframe
-          width="300"
-          height="266"
-          frameborder="0" style="border:0"
-          src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8
-            &q=<%= @event.location %>" allowfullscreen>
-          </iframe>
-      <% end %>
-    </section>
+        <% end %>
+        </p>
+        <hr>
+        <p>
+        <% if @event.location %>
+          <div class="embed-responsive embed-responsive-4by3">
+            <iframe
+               class="embed-responsive-item"
+               width="300"
+               height="266"
+               frameborder="0" style="border:0"
+                               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>" allowfullscreen>
+            </iframe>
+          </div>
+        <% end %>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 <div class="btn-group">
-  <% if current_user.admin? || current_user.dev? %>
-      <%= link_to 'Edit', edit_event_path(@event), :class => "btn btn-info" %>
+  <% if current_user.admin? || @event.user == current_user %>
+    <% if @event.deadline > DateTime.now %>
+      <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
+    <% end %>
+    <%= link_to 'Edit', edit_event_path(@event), :class => 'btn btn-info' %>
   <% end %>
-  <%= link_to 'Terug', events_path, :class => "btn btn-default" %>
+  <%= link_to 'Terug', events_path, :class => 'btn btn-default' %>
 </div>

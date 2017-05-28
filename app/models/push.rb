@@ -1,3 +1,4 @@
 class Push < ActiveRecord::Base
-	belongs_to :user
+  acts_as_paranoid
+  belongs_to :user
 end

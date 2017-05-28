@@ -1,41 +1,45 @@
+<% content_for :title do %>
+	Vergaderingen
+		<% end %>
 <script type="text/javascript">
-    $(document).ready(function()
-            {
-                $("#meeting").tablesorter();
-            }
-    );
+$(document).ready(function () {
+		$("#meeting").tablesorter();
+		}
+		);
 </script>
-<h1>Vergaderingen</h1>
 <table id="meeting" class="tablesorter table table-hover">
-  <thead>
-  <tr>
-    <th>datum</th>
-    <th>onderwerp</th>
-    <% if current_user.admin? %>
-        <th>Admin stuff</th>
-    <% end %>
-  </tr>
-  </thead>
-  <%= will_paginate %>
-  <tbody>
-  <% @meetings.each do |m| %>
-      <tr>
-        <td><%= m.date.strftime("%d/%m/%Y") %></td>
-        <td><%= link_to m.onderwerp, m %></td>
-        <% if current_user.admin? %>
-            <td>
-              <div class="btn-group">
-                <%= link_to "Wijzig", edit_meeting_path(m), class: "btn btn-info" %>
-                <%= link_to "Verwijder", m, class: "btn btn-danger", method: :delete,
-                            data: { confirm: "Weet je het zeker?" } %>
-              </div>
-            </td>
-        <% end %>
-      </tr>
-  <% end %>
-  </tbody>
+	<thead>
+		<tr>
+			<th>datum</th>
+			<th>onderwerp</th>
+			<% if current_user.admin? %>
+				<th>Admin stuff</th>
+		<% end %>
+		</tr>
+	</thead>
+	<%= will_paginate %>
+	<tbody>
+	<% @meetings.each do |m| %>
+		<tr>
+		<td><%= m.date.strftime('%d/%m/%Y') %></td>
+		<td><%= link_to m.onderwerp, m %></td>
+		<% if current_user.admin? %>
+			<td>
+			<div class="btn-group">
+				<%= link_to edit_meeting_path(m), class: 'btn btn-info' do %>
+					<i class="fa fa-pencil"></i>
+			<% end %>
+				<%= link_to m, class: 'btn btn-danger', method: :delete, data: {confirm: 'Weet je het zeker?'} do %>
+					<i class="fa fa-trash"></i>
+			<% end %>
+			</div>
+		</td>
+	<% end %>
+	</tr>
+<% end %>
+	</tbody>
 </table>
 <%= will_paginate %>
 <% if current_user.admin? %>
-    <%= link_to "Add vergadering", new_meeting_path, class: "btn btn-block btn-primary" %>
-<% end %>
+	<%= link_to 'Add vergadering', new_meeting_path, class: 'btn btn-block btn-primary' %>
+					<% end %>

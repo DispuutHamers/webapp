@@ -1,5 +1,7 @@
-<h1>New public_page</h1>
+<% content_for :title do %>
+    Nieuwe openbare pagina
+<% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', public_pages_path %>
+<%= link_to 'Terug', public_pages_path, class: 'btn btn-default btn-block' %>

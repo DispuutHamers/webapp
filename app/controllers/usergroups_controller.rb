@@ -1,34 +1,35 @@
+# Usergroup controller
 class UsergroupsController < ApplicationController
-before_action :logged_in?
-before_action :admin_user?
+  before_action :logged_in?
+  before_action :admin_user?
 
-def index
-@usergroups = Usergroup.all
-@group = Usergroup.new
-end
+  def index
+    @usergroups = Usergroup.all
+    @group = Usergroup.new
+  end
 
-def create
-    @usergroup = Usergroup.new(usergroup_params)
-    if @usergroup.save
-      flash[:succes] = "Quote staat erop" 
-      redirect_to root_url
+  def create
+    usergroup = Usergroup.new(usergroup_params)
+    save_object(usergroup, type="usergroup")
+  end
+
+  def destroy
+    usergroup = Usergroup.find(params[:id])
+    if usergroup.empty?
+      usergroup.destroy!
     else
-      @usergroups = Usergroup.all
-      render 'groups'
+      flash[:error] = "Usergroup is niet leeg"
     end
-end
+    redirect_to root_path
+  end
 
-def destroy
-end
+  private
+  def usergroup_params
+    params.require(:usergroup).permit(:name, :text)
+  end
 
-private
-    def usergroup_params
-        params.require(:usergroup).permit(:name, :text)
-    end
-    
-    def admin_user
-      @quote = Quote.find_by_id(params[:id])
-      redirect_to root_url, notice: "Niet genoeg access bitch" unless current_user.admin?
-    end
-
+  def admin_user
+    @quote = Quote.find_by_id(params[:id])
+    redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user.admin?
+  end
 end

@@ -1,3 +1,4 @@
+#Entry point for the news resource
 class NewsController < ApplicationController
   before_action :logged_in?
   before_action :admin_user?, only: [:edit, :update, :destroy,]
@@ -12,6 +13,7 @@ class NewsController < ApplicationController
   # GET /news/1
   # GET /news/1.json
   def show
+    redirect_to root_path
   end
 
   # GET /news/new
@@ -26,48 +28,27 @@ class NewsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
-    @news = News.new(news_params)
-		@news.user_id = current_user.id
-		@news.date = Time.now
-    respond_to do |format|
-      if @news.save
-        format.html { redirect_to news_index_path, notice: 'Ok.' }
-        format.json { render action: 'show', status: :created, location: @news }
-        update_app("{ data: { news: { id: \"#{@news.id}\", title: \"#{@news.title}\", body: \"#{@news.body}\", created_at: #{@news.created_at.to_json}} } }")
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
-    end
+    news = News.new(news_params)
+    news.user_id = current_user.id
+    news.date = Time.now
+    save_object(news, push=true) #rare bug die alles stuk maakt bij aanmaken push
   end
 
   # PATCH/PUT /news/1
   # PATCH/PUT /news/1.json
   def update
-    respond_to do |format|
-      if @news.update(news_params)
-        format.html { redirect_to news_index_path, notice: 'updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
-    end
+    update_by_owner_or_admin(@news, news_params)
   end
 
   # DELETE /news/1
   # DELETE /news/1.json
   def destroy
-    @news.destroy
-    respond_to do |format|
-      format.html { redirect_to news_index_url }
-      format.json { head :no_content }
-    end
+    delete_object(@news)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = News.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news
+    @news = News.find(params[:id])
+  end
 end

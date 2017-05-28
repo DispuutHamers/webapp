@@ -1,6 +1,7 @@
+# Hosts our public pages
 class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
-	before_action :admin_user?, except: [:show]
+  before_action :admin_user?, except: [:show]
 
   # GET /public_pages
   # GET /public_pages.json
@@ -11,8 +12,8 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1
   # GET /public_pages/1.json
   def show
-		@public_page = PublicPage.where(title: params[:id]).first
-		redirect_to root_path unless @public_page != nil
+    @public_page = PublicPage.where(title: params[:id]).first
+    redirect_to root_path unless @public_page != nil
   end
 
   # GET /public_pages/new
@@ -27,31 +28,14 @@ class PublicPagesController < ApplicationController
   # POST /public_pages
   # POST /public_pages.json
   def create
-    @public_page = PublicPage.new(public_page_params)
-
-    respond_to do |format|
-      if @public_page.save
-        format.html { redirect_to @public_page, notice: 'Public page was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @public_page }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @public_page.errors, status: :unprocessable_entity }
-      end
-    end
+    public_page = PublicPage.new(public_page_params)
+    save_object(public_page, type="public page")
   end
 
   # PATCH/PUT /public_pages/1
   # PATCH/PUT /public_pages/1.json
   def update
-    respond_to do |format|
-      if @public_page.update(public_page_params)
-        format.html { redirect_to @public_page, notice: 'Public page was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @public_page.errors, status: :unprocessable_entity }
-      end
-    end
+    update_by_owner_and_admin(@public_page, public_page_params)
   end
 
   # DELETE /public_pages/1
@@ -65,13 +49,13 @@ class PublicPagesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_public_page
-      @public_page = PublicPage.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_public_page
+    @public_page = PublicPage.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def public_page_params
-      params.require(:public_page).permit(:content, :title, :public)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def public_page_params
+    params.require(:public_page).permit(:content, :title, :public)
+  end
 end

@@ -1,5 +1,7 @@
-<h1>Bier toevoegen</h1>
+<% content_for :title do %>
+    Bier toevoegen
+<% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Terug', beers_path, :class => "btn btn-default" %>
+<%= link_to 'Terug', beers_path, :class => 'btn btn-default' %>

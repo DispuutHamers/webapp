@@ -1,0 +1,37 @@
+<%= form_for @sticker do |f| %>
+  <div class="form-group" xmlns="http://www.w3.org/1999/html">
+    <%= f.label :lat %>
+    <%= f.text_field :lat, id: 'lat', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :lon %>
+    <%= f.text_field :lon, id: 'lon', class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<button onclick="getLocation()">Get location</button>
+
+<script>
+var lat = document.getElementById("lat");
+var lon = document.getElementById("lon");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  lat.value = position.coords.latitude;
+  lon.value = position.coords.longitude;
+}
+</script>

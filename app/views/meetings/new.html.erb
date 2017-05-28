@@ -1,5 +1,7 @@
-<h1>Nieuwe vergadering</h1>
+<% content_for :title do %>
+    Nieuwe vergadering
+<% end %>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', meetings_path, class: "btn btn-default" %>
+<%= link_to 'Back', meetings_path, class: 'btn btn-default' %>

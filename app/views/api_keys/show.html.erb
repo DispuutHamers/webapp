@@ -1,5 +1,18 @@
+<script>
+function copyToClipboard(element) {
+	var $temp = $("<input>");
+	$("body").append($temp);
+  $temp.val(element).select();
+  document.execCommand("copy");
+	$temp.remove();
+	}
+</script>
+
+<a href="#" onclick='copyToClipboard("<%= @rawkey %>");'>
+
 <center><img alt="Embedded Image" src="<%= @key %>" /></center>
-<br \><br \>
+
+</a><br><br>
 <table>
   <thead>
   <tr>
@@ -10,7 +23,7 @@
   <tbody>
   <% @logs.each do |l| %>
       <tr>
-        <td><%= l.ip_addr%> / <%= l.created_at.strftime("%d/%m/%Y %H:%m") %></td>
+        <td><%= l.ip_addr%> / <%= l.created_at.strftime('%d/%m/%Y %H:%m') %></td>
         <td><%= l.resource_call %></td>
       </tr>
   <% end %>

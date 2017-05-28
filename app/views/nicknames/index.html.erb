@@ -1,32 +1,44 @@
-<h1> Nicknames </h1>
-<%= link_to "Bijnaam toevoegen", new_nickname_path, class: "btn btn-info" %>
-<table class="table table-hover">
-  <thead>
-  <tr>
-    <th>User</th>
-    <th>Bijnaam</th>
-    <th>Beschrijving</th>
-    <th>Aanmaakdatum</th>
-    <% if current_user.admin? %>
-	<th> Admin </th>
-    <%end%>
-  </tr>
-  </thead>
-  <tbody>
-  <% @nicknames.each do |nickname| %>
+<% content_for :title do %>
+    Bijnamen
+<% end %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table table-hover">
+      <thead>
       <tr>
-        <td><%= nickname.user.name %></td>
-        <td><%= nickname.nickname %>
-        <td><%= nickname.description %> </td>
-        <td><%= nickname.created_at %> </td>
+        <th>User</th>
+        <th>Bijnaam</th>
+        <th>Beschrijving</th>
+        <th>Aanmaakdatum</th>
         <% if current_user.admin? %>
-          <td> 
-            <%= link_to "Wijzig", edit_nickname_path(nickname), class: "btn btn-info" %>
-            <%= link_to "Verwijder", nickname, class: "btn btn-danger", method: :delete,
-                              data: { confirm: "Weet je het zeker?" } %>
-          </td>
-        <% end %> 
+            <th> Admin</th>
+        <% end %>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <% @nicknames.each do |nickname| %>
+          <tr>
+            <td><%= nickname.user.name %></td>
+            <td><%= nickname.nickname %>
+            <td><%= nickname.description %> </td>
+            <td><%= nickname.created_at.strftime('%d-%m-%Y') %> </td>
+            <% if current_user.admin? %>
+                <td>
+                  <div class="btn-group">
+                    <%= link_to edit_nickname_path(nickname), class: 'btn btn-info' do %>
+                        <i class="fa fa-pencil"></i>
+                    <% end %>
+                    <%= link_to nickname, class: 'btn btn-danger', method: :delete,
+                                data: {confirm: 'Weet je het zeker?'} do %>
+                        <i class="fa fa-trash"></i>
+                    <% end %>
+                  </div>
+                </td>
+            <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'Bijnaam toevoegen', new_nickname_path, class: 'btn btn-primary btn-block' %>
+  </div>
+</div>

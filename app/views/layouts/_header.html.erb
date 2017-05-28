@@ -8,50 +8,67 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to "HAMERS", root_path, class: "navbar-brand", id: "logo" %>
+        <a href="#" class="pull-left navbar-brand" style="margin-top: -8px">
+          <img src=<%= image_path("logo_transparant_background_small.png") %>>
+        </a>
+
+        <%= link_to 'HAMERS', root_path, class: 'navbar-brand', id: 'logo' %>
       </div>
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Home", root_path %></li>
+          <% unless signed_in? %>
+            <li><%= link_to 'Leden', public_leden_path %> </li>
+            <li><%= link_to 'Bieren', beers_path %></li>
+          <% end %>
           <% PublicPage.all.each do |pp| %>
               <% if pp.public %>
                   <li><%= link_to pp.title, "/#{pp.title}" %></li>
               <% end %>
           <% end %>
           <% if signed_in? %>
+							<li> 
+								<%= link_to "Sticker plakken", new_sticker_path %>
+							</li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor Leden  <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor
+                  Leden <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Leden", users_path %></li>
-                  <li><%= link_to "Activiteiten", events_path %></li>
-                  <li><%= link_to "Vergaderingen", meetings_path %></li>
-                  <li><%= link_to "Motie", new_motion_path %></li>
-                  <li><%= link_to "Nieuws", news_index_path %></li>
-                  <li><%= link_to "Bier", beers_path %></li>
-                  <li><%= link_to "Statistieken", stats_path %></li>
-		  <li><%= link_to "Bijnamen", nicknames_path %></li>
+                  <li><%= link_to 'Leden', users_path %></li>
+									<li><%= link_to 'Stickers', stickers_path %></li>
+                  <li><%= link_to 'Activiteiten', events_path %></li>
+                  <li><%= link_to 'Vergaderingen', meetings_path %></li>
+                  <li><%= link_to 'Motie', new_motion_path %></li>
+                  <li><%= link_to 'Nieuws', news_index_path %></li>
+                  <li><%= link_to 'Bier', beers_path %></li>
+                  <li><%= link_to 'Statistieken', stats_path %></li>
+                  <li><%= link_to 'Bijnamen', nicknames_path %></li>
                 </ul>
               </li>
               <% if current_user.admin? %>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat
+                      <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to "Push", new_push_path %></li>
-                      <li><%= link_to "Groepen", groups_path %></li>
-                      <li><%= link_to "Moties", motions_path %></li>
-                      <li><%= link_to "Openbare Paginas", public_pages_path %></li>
-                      <li><%= link_to "Download DB", dbdump_path %></li>
+                      <li><%= link_to 'Push', new_push_path %></li>
+                      <li><%= link_to 'Groepen', groups_path %></li>
+                      <li><%= link_to 'Papertrail', trail_path %></li>
+                      <li><%= link_to 'Notes', notes_path %></li>
+                      <li><%= link_to 'Moties', motions_path %></li>
+                      <li><%= link_to 'Openbare Paginas', public_pages_path %></li>
+                      <li><%= link_to 'Download DB', dbdump_path %></li>
                     </ul>
                   </li>
               <% end %>
               <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account
+                  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Mijn Profiel", current_user %></li>
-                  <li><%= link_to "Instellingen", edit_user_path(current_user) %></li>
+                  <li><%= link_to 'Mijn Profiel', current_user %></li>
+                  <li><%= link_to 'Mijn Stickers', personal_sticker_path %></li>
+                  <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
                   <li class="divider"></li>
                   <li>
-                    <%= link_to "Uitloggen", signout_path, method: "delete" %>
+                    <%= link_to 'Uitloggen', signout_path, method: 'delete' %>
                   </li>
           <% end %>
           </ul>
@@ -60,5 +77,4 @@
       </div>
     </div>
   </nav>
-  </div>
 </header>

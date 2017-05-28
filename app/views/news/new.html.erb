@@ -1,5 +1,10 @@
-<h1>Posten!!</h1>
+<% content_for :title do %>
+    Nieuws posten
+<% end %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Terug', news_index_path, class: "btn btn-default" %>
+    <%= link_to 'Terug', news_index_path, class: 'btn btn-default' %>
+  </div>
+</div>

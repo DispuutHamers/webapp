@@ -1,0 +1,2 @@
+module StickersHelper
+end

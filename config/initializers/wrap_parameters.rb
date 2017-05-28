@@ -12,5 +12,3 @@ end
 # ActiveSupport.on_load(:active_record) do
 #  self.include_root_in_json = true
 # end
-
-PUSH = GCM.new("AIzaSyBXpHLY-6FAgAh7yF9ay8V7Oh81pRnM3-M")

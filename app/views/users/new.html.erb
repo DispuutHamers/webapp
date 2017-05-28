@@ -1,4 +1,6 @@
-<h1>Registreren</h1>
+<% content_for :title do %>
+    Registeren
+<% end %>
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
@@ -9,9 +11,9 @@
         <%= f.text_field :email %>
         <%= f.label :password %>
         <%= f.password_field :password %>
-        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.label :password_confirmation, 'Confirmation' %>
         <%= f.password_field :password_confirmation %>
-        <%= f.submit "Maak account", class: "btn btn-large btn-primary" %>
+        <%= f.submit 'Maak account', class: 'btn btn-large btn-primary' %>
     <% end %>
   </div>
 </div>

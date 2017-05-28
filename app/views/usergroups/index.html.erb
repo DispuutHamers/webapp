@@ -1,4 +1,6 @@
-<h1>Groepen</h1>
+<% content_for :title do %>
+    Groepen
+<% end %>
 <% @usergroups.each do |group| %>
     <li>
       <%= group.name %>
@@ -8,8 +10,8 @@
     <%= form_for(@group) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
-          <%= f.text_field :name, placeholder: "Groep", class: "form-control" %>
-          <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+          <%= f.text_field :name, placeholder: 'Groep', class: '' %>
+          <%= f.submit 'Create', class: 'btn btn-large btn-primary' %>
         </div>
     <% end %>
 <% end %>

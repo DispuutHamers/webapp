@@ -1,3 +1,5 @@
 class Device < ActiveRecord::Base
-	belongs_to :user
+  has_paper_trail
+  acts_as_paranoid
+  belongs_to :user
 end

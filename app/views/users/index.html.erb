@@ -1,42 +1,42 @@
-<script type="text/javascript">
-    $(document).ready(function()
-            {
-                $("#user").tablesorter();
-            }
-    );
-</script>
-<h1>Leden</h1>
-<table id="user" class="tablesorter table table-hover">
-  <thead>
-  <tr>
-    <th>Naam</th>
-    <th>Aantal quotes</th>
-    <th>Aantal reviews</th>
-    <% if current_user.admin? %>
-        <th>Admin stuff</th>
-    <% end %>
-  </tr>
-  </thead>
-  <%= will_paginate %>
-  <tbody>
-  <% @users.each do |user| %>
+<% content_for :title do %>
+    Leden
+<% end %>
+<%= link_to 'Bekijk de publieke leden pagina', public_leden_path, class: 'btn btn-primary' %>
+<div class="row">
+  <div class="col-md-12">
+    <table id="user" class="tablesorter table table-hover">
+      <thead>
       <tr>
-        <td><%= gravatar_for user, size: 52 %>
-          <%= link_to user.name, user %>
-        </td>
-        <td><%= user.quotes.count %></td>
-        <td><%= user.reviews.count %></td>
-        <% if current_user.admin? && !current_user?(user) %>
-            <td>
-              <div class="btn-group">
-              <%= link_to "Wijzig", edit_user_path(user), class: "btn btn-info" %>
-              <%= link_to "Verwijder", user, class: "btn btn-danger", method: :delete,
-                            data: { confirm: "Weet je het zeker?" } %>
-              </div>
-            </td>
+        <th>Naam</th>
+        <th>Aantal quotes</th>
+        <th>Aantal reviews</th>
+        <% if current_user.admin? %>
+            <th>Admin stuff</th>
         <% end %>
       </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= will_paginate %>
+      </thead>
+      <%= will_paginate %>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr>
+            <td><%= gravatar_for user, size: 52 %>
+              <%= link_to user.name_with_nickname, user %>
+            </td>
+            <td><%= user.quotes.count %></td>
+            <td><%= user.reviews.count %></td>
+            <% if current_user.admin? && !current_user?(user) %>
+                <td>
+                  <div class="btn-group">
+                    <%= link_to 'Wijzig', edit_user_path(user), class: 'btn btn-info' %>
+                    <%= link_to 'Verwijder', user, class: 'btn btn-danger', method: :delete,
+                                data: {confirm: 'Weet je het zeker?'} %>
+                  </div>
+                </td>
+            <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate %>
+  </div>
+</div>

@@ -1,41 +1,50 @@
-<h1>Activiteiten</h1>
-<table class="events table table-hover">
-  <thead>
-  <tr>
-    <th>Activiteit</th>
-    <th>Datum</th>
-    <th>Aanwezig</th>
-    <th></th>
-  </tr>
-  </thead>
-  <%= will_paginate %>
-  <tbody>
-  <% @events.each do |event| %>
-      <% c = "info" if event.future? %>
-      <% c = "active" if event.past? %>
-      <% c = "success" if event.today? %>
-      <tr class = "<%= c %>">
-        <td><%= link_to event.title, event %></td>
-        <td><%= event.date.strftime("%d/%m/%Y") %>
-        <td>
-          <% event.signups.where(status: true).each_with_index do |s, index| %><%= "," if index != 0 %>
-              <%= s.user.name %><% end %><% if event.signups.where(status: true, user_id: current_user.id).empty? %>, ..jij?
-          <% end %>
-        </td>
-        <td>
-          <div class="btn-group">
-            <% if current_user == event.user or current_user.admin? or current_user.schrijf_feut? %>
-                <%= link_to 'Wijzig', edit_event_path(event), :class => "btn btn-info" %>
-            <% end %>
-            <% if current_user.admin? %>
-                <%= link_to 'Verwijder', event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => "btn btn-danger" %>
-            <% end %>
-          </div>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= will_paginate %>
-<% if lid? %>
-    <%= link_to 'Nieuwe activiteit', new_event_path, class: "btn btn-block btn-primary" %>
+<% content_for :title do %>
+    Activiteiten
 <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="events table table-hover">
+      <thead>
+      <tr>
+        <th><h4>Activiteit</h4></th>
+        <th><h4>Datum</h4></th>
+        <th><h4>Aanwezig</h4></th>
+        <th><h4>Admin</h4></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @events.each do |event| %>
+          <% c = 'info' if event.future? %>
+          <% c = 'active' if event.past? %>
+          <% c = 'success' if event.today? %>
+          <tr class="<%= c %>">
+            <td><%= link_to event.title, event %></td>
+            <td><%= event.date.strftime('%d/%m/%Y') %>
+            <td>
+              <% event.signups.where(status: true).each_with_index do |s, index| %>
+                  <%= s.user.name + ',' %>
+              <% end %>..jij?
+            </td>
+            <td>
+              <div class="btn-group" style="display: inline-block">
+                <% if current_user == event.user or current_user.admin? or current_user.schrijf_feut? %>
+                    <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
+                        <i class="fa fa-pencil"></i>
+                    <% end %>
+                <% end %>
+                <% if current_user.admin? %>
+                    <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
+                        <i class="fa fa-trash"></i>
+                    <% end %>
+                <% end %>
+              </div>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= will_paginate %>
+    <% if lid? || alid? %>
+        <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
+    <% end %>
+  </div>
+</div>

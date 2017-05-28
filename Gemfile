@@ -1,69 +1,44 @@
 source 'https://rubygems.org'
-
-# Needed for rails console
+gem 'rails-controller-testing'
+gem 'letsencrypt_plugin'
+gem 'capistrano-rpush'
 gem 'rb-readline'
 gem 'icalendar'
+gem 'paranoia' 
 gem 'tzinfo'
 gem 'redcarpet' 
-gem 'rqrcode_png'  
-gem 'bootstrap-glyphicons'
+gem 'rqrcode_png'
 gem 'whenever', :require => false
 gem 'nprogress-rails'
-gem 'gcm' 
+gem 'rpush' 
 gem 'documentation'
 gem 'web-console'
-
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
-
-# Use mysql as the database for Active Record
+gem 'cloudinary'
+gem 'incoming' 
+gem 'rails', '5.0.2'
 gem 'mysql2'
-
-# Use SCSS for stylesheets
 gem 'sass-rails'
-gem "therubyracer"
-gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
+gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
+gem 'bootstrap_form'
 gem 'font-awesome-rails'
-# gem "bootstrap-sass"
+gem 'paper_trail'
 gem 'bcrypt'
-gem "bcrypt-ruby"
-gem "will_paginate"
-gem "bootstrap-will_paginate"
-# Use Uglifier as compressor for JavaScript assets
+gem 'bcrypt-ruby'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 gem 'uglifier', '>= 1.3.0'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
+gem 'net-http-persistent', '< 3'
+gem 'coffee-rails'
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
-
-#Uses for charts
 gem 'chartkick'
-
+gem 'rails-i18n'
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
 gem 'capistrano', group: :development
 gem 'capistrano-rails', '~> 1.1'
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'apipie-rails'
+gem 'rvm-capistrano'

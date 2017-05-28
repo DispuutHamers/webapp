@@ -1,4 +1,6 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+    <%= @motion.subject %>
+<% end %>
 <p>
   <strong>Motion type:</strong>
   <%= @motion.motion_type %>
@@ -11,5 +13,7 @@
   <strong>Content:</strong>
   <%= @motion.content %>
 </p>
-<%= link_to 'Edit', edit_motion_path(@motion) %> |
-<%= link_to 'Back', motions_path %>
+<div class="btn-group">
+  <%= link_to 'Edit', edit_motion_path(@motion), class: 'btn btn-default' %>
+  <%= link_to 'Back', motions_path, class: 'btn btn-default' %>
+</div>

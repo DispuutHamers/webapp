@@ -1,7 +1,7 @@
 <%= form_for(@push) do |f| %>
     <% if @push.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@push.errors.count, "error") %> prohibited this push from being saved:</h2>
+          <h2><%= pluralize(@push.errors.count, 'error') %> prohibited this push from being saved:</h2>
           <ul>
             <% @push.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
@@ -12,13 +12,13 @@
     <div class="form-group">
       <%= f.label :Hamer %><br>
       <% users_array = User.all.map { |user| [user.name, user.id] } %>
-      <%= f.select :user_id, options_for_select(users_array), {}, class: "form-control" %>
+      <%= f.select :user_id, options_for_select(users_array), {}, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= f.label :data %><br>
-      <%= f.text_area :data, class: "form-control", value: "{ data: { title: \"title\", message: \"message\"} }" %>
+			<%= f.text_area :data, class: 'form-control', value: "{ \"data\": { \"quote\": { \"id\": \"9001\", \"user_id\": \"1\", \"text\": \"Dit is een dummy quote\", \"created_at\": #{DateTime.now.to_json}} } }" %>
     </div>
     <div class="actions">
-      <%= f.submit :Verstuur, class: "btn btn-default" %>
+      <%= f.submit :Verstuur, class: 'btn btn-default' %>
     </div>
 <% end %>

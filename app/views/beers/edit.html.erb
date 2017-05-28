@@ -1,8 +1,10 @@
-<h1>Bier aanpassen</h1>
+<% content_for :title do %>
+    Bier aanpassen
+<% end %>
 
 <%= render 'form' %>
 
 <div class="btn-group">
-    <%= link_to 'Show', @beer, class: "btn btn-default" %>
-    <%= link_to 'Terug', beers_path, class: "btn btn-default" %>
+  <%= link_to 'Show', @beer, class: 'btn btn-default' %>
+  <%= link_to 'Terug', beers_path, class: 'btn btn-default' %>
 </div>
