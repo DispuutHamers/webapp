@@ -1,7 +1,5 @@
 require 'test_helper'
 
 class ApiLogTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # how to test this?
 end

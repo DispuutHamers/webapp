@@ -3,7 +3,7 @@ require 'test_helper'
 class BeerTest < ActiveSupport::TestCase
   
   test "Beer percentage" do
-    b = Beer.create
+    b = Beer.new
     assert (not b.save)
 
     
@@ -24,18 +24,17 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test "Review grade correctly" do
-    b = Beer.create
+    b = Beer.new
     b.percentage = "5.0%"
     b.save
 
-    u = User.create
+    u = User.new
     u.name = "Hamer Tester"
     u.email = "testhamer@zondersikkel.nl"
     u.password = "hamers"
     u.save
-
     
-    u2 = User.create
+    u2 = User.new
     u2.name = "Hamer Tester 2"
     u2.email = "test2hamer@zondersikkel.nl"
     u2.password = "hamers"
@@ -43,57 +42,58 @@ class BeerTest < ActiveSupport::TestCase
 
     # b.add_review(user, rating, description, proefdatum)
     b.add_review!(u, 8.0, "Heel lekker biertje", "Vandaag")
+    u.update_weight
     b.update_cijfer
     assert b.cijfer? == 8.0
 
     b.add_review!(u2, 7.0, "Vrij lekker biertje", "Gisteren")
+    u2.update_weight
     b.update_cijfer
-    assert b.cijfer? == 7.53
+    assert b.cijfer? == 7.5
   end
 
   test "Review grade with weight" do
-    b = Beer.create
+    b = Beer.new
     b.percentage = "5.0%"
     b.save
 
-    b2 = Beer.create
+    b2 = Beer.new
     b2.percentage = "8.0%"
     b2.save
 
-    b3 = Beer.create
+    b3 = Beer.new
     b3.percentage = "6.4%"
     b3.save
 
-    b4 = Beer.create
+    b4 = Beer.new
     b4.percentage = "11.0%"
     b4.save
 
-    b5 = Beer.create
+    b5 = Beer.new
     b5.percentage = "3.8%"
     b5.save
 
-    b6 = Beer.create
+    b6 = Beer.new
     b6.percentage = "0.0%"
     b6.save
 
-
-    u = User.create
+    u = User.new
     u.name = "Hamer Tester"
     u.email = "testhamer@zondersikkel.nl"
     u.password = "hamers"
     u.save
 
-    u2 = User.create
+    u2 = User.new
     u2.name = "Hamer Tester 2"
     u2.email = "testhamer2@zondersikkel.nl"
     u2.password = "hamers"
     u2.save
 
     # set weight of user u
-    b.add_review!(u, 4.0, "", "")
-    b2.add_review!(u, 4.0, "", "")
-    b3.add_review!(u, 4.0, "", "")
-    b4.add_review!(u, 4.0, "", "")
+    b.add_review!(u, 9.0, "", "")
+    b2.add_review!(u, 9.0, "", "")
+    b3.add_review!(u, 9.0, "", "")
+    b4.add_review!(u, 9.0, "", "")
 
     # set weight of user u2
     b.add_review!(u2, 2.0, "", "")
@@ -101,43 +101,30 @@ class BeerTest < ActiveSupport::TestCase
     b3.add_review!(u2, 2.0, "", "")
     b4.add_review!(u2, 2.0, "", "")
 
+    u.update_weight
+    u2.update_weight
 
-    b5.add_review!(u, 9.0, "", "")
-    b5.add_review!(u2, 2.0, "", "")
+    b5.add_review!(u, 8.0, "", "")
+    b5.add_review!(u2, 9.0, "", "")
     b5.update_cijfer
-    assert b5.cijfer? == 7.0
-    # refer to the sheet in directory to see how it is calculated
-    # formula:
-    #  rating: ((person1rating * person1weight + person2rating * personweight + ...)
-    #          / (person1weight + person2weight + ...)
-    #    where the weight of a person is their average rating
-
+    # what todo with the rating:
+    #  keep it weighted or just average
+    
     b.update_cijfer
-    assert b.cijfer? == 3.43
 
-    b2.update_cijfer
-    b6.add_review!(u, 4.0, "", "")
-    b6.add_review!(u2, 5.0, "", "")
-
+    b6.add_review!(u, 8.0, "", "")
+    b6.add_review!(u2, 2.0, "", "")
     b6.update_cijfer
-    assert b6.cijfer? == 4.34
-
-    b2.update_cijfer
-    b5.update_cijfer
-    b6.update_cijfer
-    assert b2.cijfer? == 3.32
-    assert b5.cijfer? == 6.61
-    assert b6.cijfer? == 4.34
   end
 
   test "Review belongs to person" do
-    u = User.create
+    u = User.new
     u.name = "Hamer Tester"
     u.email = "testhamer@zondersikkel.nl"
     u.password = "hamers"
     u.save!
 
-    b = Beer.create
+    b = Beer.new
     b.percentage = "5.0%"
     b.save!
 
@@ -148,13 +135,13 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test "Rating should be correct" do
-    u = User.create
+    u = User.new
     u.name = "Hamer Tester"
     u.email = "testhamer@zondersikkel.nl"
     u.password = "hamers"
     u.save!
 
-    b = Beer.create
+    b = Beer.new
     b.percentage = "5.0%"
     b.save!
 

@@ -34,14 +34,9 @@ class Beer < ActiveRecord::Base
   def update_cijfer
     avg,cijfer = 0.0,0.0
     self.reviews.each do |r|
-      # old weight
-      # weight = 1 + (r.user.weight - r.rating).abs
-      # cijfer = cijfer + (r.rating * weight)
-      # avg = avg + weight
-
-      r.user.update_weight
-      cijfer = cijfer + (r.rating * r.user.weight)
-      avg = avg + r.user.weight
+      weight = 1 + (r.user.weight - r.rating).abs
+      cijfer = cijfer + (r.rating * weight)
+      avg = avg + weight
     end
 
     self.grade = cijfer / avg unless avg == 0.0
