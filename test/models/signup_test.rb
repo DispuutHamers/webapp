@@ -113,16 +113,10 @@ class SignupTest < ActiveSupport::TestCase
     e.save!
 
     assert_raise do
-      begin
-        s = Signup.new
-        s.event_id = e.id
-        s.user_id = u.id
-        s.save!
-      rescue Exception => e
-        assert e.message == "Validatie mislukt: Event Event deadline has already passed"
-	# raise e so assert_raise doesn't fail
-        raise e
-      end
+      s = Signup.new
+      s.event_id = e.id
+      s.user_id = u.id
+      s.save!
     end
   end
 end
