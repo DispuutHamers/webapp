@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525210915) do
+ActiveRecord::Schema.define(version: 20170530171844) do
 
   create_table "afmeldingens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "reden"
@@ -72,6 +72,26 @@ ActiveRecord::Schema.define(version: 20170525210915) do
     t.datetime "deleted_at"
     t.float    "grade",      limit: 53
     t.index ["deleted_at"], name: "index_beers_on_deleted_at", using: :btree
+  end
+
+  create_table "blogitems", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.text     "body",       limit: 65535
+    t.integer  "user_id"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "public",                   default: false
+  end
+
+  create_table "blogphotos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "blogitem_id"
+    t.string   "description"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
