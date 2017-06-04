@@ -17,9 +17,9 @@ Hamers::Application.routes.draw do
   resources :motions
   resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages
-  resources :blogitems, path: 'blog' do
-    resources :blogphotos, path: 'pics'
-  end
+  resources :blogitems, path: 'blog' 
+  post 'blog/:id' => "blogitems#add_photo"
+  post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
 
   resources :meetings
 

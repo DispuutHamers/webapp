@@ -1,0 +1,45 @@
+<div>
+  <%= form_for(@item) do |f| %>
+    <% if @item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
+
+          <ul>
+            <% @item.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :body %><br>
+      <%= f.text_area :body, class: 'form-control', rows: 20 %>
+    </div>
+    <div class="form-group">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :public %><br>
+      <%= f.check_box :public %>
+    </div>
+    <div class="actions">
+      <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+    </div>
+<% end %>
+</div>
+<div class="photos">
+  <% @item.blogphotos.each do |p| %>
+    <%= image_tag p.image.url(:thumb) %>
+    <%= link_to 'x', "/blog/#{@item.id}/#{p.id}", method: :destroy, confirmation: "sure?" %>
+  <% end %>
+</div>
+<div class="form-group">
+<%= form_for @photo, url: @item, html: { multipart: true } do |form| %>
+  <%= form.file_field :image %>
+  <%= form.text_field :description, placeholder: "Beschrijving" %>
+  <%= form.hidden_field :blogitem_id, value: @item.id %>
+  <%= form.submit :Upload %>
+<% end %>
+</div>

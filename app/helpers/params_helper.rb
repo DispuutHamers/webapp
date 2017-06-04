@@ -3,6 +3,10 @@ module ParamsHelper
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
+  def photo_params
+    params.require(:blogphoto).permit(:image, :blogitem_id, :description)
+  end
+
   def blog_params
     params.require(:blogitem).permit(:title, :body, :public)
   end

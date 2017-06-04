@@ -18,11 +18,27 @@ class BlogitemsController < ApplicationController
     end
   end
 
+  def add_photo
+    photo = Blogphoto.create(photo_params)
+    photo.save
+    redirect_to edit_blogitem_path(photo.blogitem)
+  end
+
+  def destroy_photo
+    photo = Blogphoto.find(params[:blogphoto])
+    blog = Blogitem.find(params[:blogitem])
+    photo.destroy
+    redirect_to edit_blogitem_path(blog)
+  end
+
   def new
     @item = Blogitem.new
+    @item.save
+    @photo = Blogphoto.new
   end
 
   def edit
+    @photo = Blogphoto.new
   end
 
   def create
