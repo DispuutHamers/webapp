@@ -21,3 +21,24 @@
     <%= line_chart @cumulativeEventData %>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-6 text-center">
+    <h2> Aantal gebruikers </h2>
+    <%= line_chart @cumulativeUserData %>
+  </div>
+  <div class="col-md-6 text-center">
+    <h2> Aantal stickers </h2>
+    <%= line_chart @cumulativeStickerData %>
+  </div>		      
+</div>
+<div class="row">
+  <div class="col-md-6 text-center">
+    <h2> Aantal vergaderingen </h2>
+    <%= line_chart @cumulativeMeetingData %>
+  </div>
+  <div class="col-md-6 text-center">
+    <h2> Aantal nieuws artikelen </h2>
+    <%= line_chart @cumulativeNewsData %>
+  </div>
+</div>
+

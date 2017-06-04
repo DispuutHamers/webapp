@@ -29,11 +29,15 @@ class StaticPagesController < ApplicationController
     @cumulativeBeerData = getCumulativeData Beer
     @cumulativeQuoteData = getCumulativeData Quote
     @cumulativeEventData = getCumulativeData Event
+    @cumulativeUserData = getCumulativeData User
+    @cumulativeStickerData = getCumulativeData Sticker
+    @cumulativeMeetingData = getCumulativeData Meeting
+    @cumulativeNewsData = getCumulativeData News
   end
 
   private
   def getCumulativeData(table)
     sum = 0
-    table.unscoped.order('created_at asc').group('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
+    table.unscoped.group_by_day('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
   end
 end
