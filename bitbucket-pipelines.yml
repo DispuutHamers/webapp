@@ -11,3 +11,4 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - bundler --version
           - bundle install
+          - rails test test/models/motion_test.rb
