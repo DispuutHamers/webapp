@@ -36,7 +36,7 @@ class DeviceTest < ActiveSupport::TestCase
                      password: 'Hamers')
 
     d = Device.create(user_id: u.id)
-    d2 = Device.create(user_id: u.id)
+    d2 = Device.create(user_id: u2.id)
 
     assert d.user_id == u.id && d.user_id != u2.id
     assert d2.user_id == u2.id && d2.user_id != u.id
