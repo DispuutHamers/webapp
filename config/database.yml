@@ -1,0 +1,13 @@
+development:
+        adapter: mysql2
+        encoding: utf8
+        database: hamers
+        username: root
+        host: localhost
+
+test:
+        adapter: mysql2
+        encoding: utf8
+        database: hamers_test
+        username: root
+        host: localhost
