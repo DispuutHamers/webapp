@@ -1,22 +1,25 @@
 require 'test_helper'
 
 class UsergroupTest < ActiveSupport::TestCase
-  test "Create Usergroup" do
+  test 'Create Usergroup' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
+    old_count = Usergroup.count
+
     ug = Usergroup.new
-    ug.save!
+    assert ug.save
+    assert Usergroup.count == old_count + 1
   end
 
-  test "Add group" do
+  test 'Add group' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     ug = Usergroup.new
@@ -28,11 +31,11 @@ class UsergroupTest < ActiveSupport::TestCase
     g.save!
   end
 
-  test "Delete usergroup" do
+  test 'Delete usergroup' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     ug = Usergroup.new

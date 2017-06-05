@@ -1,18 +1,18 @@
 require 'test_helper'
 
 class SignupTest < ActiveSupport::TestCase
-  test "Signup should go correctly" do
+  test 'Signup should go correctly' do
     # create user 'u'
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     # create event 'e'
     e = Event.new
-    e.title = "Example event"
-    e.end_time = "21:00"
+    e.title = 'Example event'
+    e.end_time = '21:00'
     e.date = DateTime.now + 50  # 50 days in the future
     e.deadline = DateTime.now + 5  # 5 days in the future
     e.user_id = u.id
@@ -29,9 +29,9 @@ class SignupTest < ActiveSupport::TestCase
 
     # create second user 'u2'
     u2 = User.new
-    u2.name = "Hamer tester 2"
-    u2.email = "hamertester2@zondersikkel.nl"
-    u2.password = "hamers"
+    u2.name = 'Hamer tester 2'
+    u2.email = 'hamertester2@zondersikkel.nl'
+    u2.password = 'hamers'
     u2.save!
 
     # signup user 'u2' to event 'e'
@@ -47,20 +47,20 @@ class SignupTest < ActiveSupport::TestCase
 
   test "User can't signup twice" do
     u = User.new
-    u.name= "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name= 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     u2 = User.new
-    u2.name= "Hamer Tester 2"
-    u2.email = "hamertester2@zondersikkel.nl"
-    u2.password = "hamers"
+    u2.name= 'Hamer Tester 2'
+    u2.email = 'hamertester2@zondersikkel.nl'
+    u2.password = 'hamers'
     u2.save!
 
     e = Event.new
-    e.title = "Example event"
-    e.end_time = "21:00"
+    e.title = 'Example event'
+    e.end_time = '21:00'
     e.date = DateTime.now + 50  # 50 days in the future
     e.deadline = DateTime.now + 5  # 5 days in the future
     e.user_id = u.id
@@ -81,9 +81,9 @@ class SignupTest < ActiveSupport::TestCase
     end
 
     # assert user 'u2' can't signup (user 'u' created the event,
-    #  might be seen differenty)
+    #  might be seen differently)
     
-    # sinup user 'u2' to event 'e'
+    # signup user 'u2' to event 'e'
     s = Signup.new
     s.event_id = e.id
     s.user_id = u2.id
@@ -99,14 +99,14 @@ class SignupTest < ActiveSupport::TestCase
 
   test "User can't signup after deadline" do
     u = User.new
-    u.name= "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name= 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     e = Event.new
-    e.title = "Example event"
-    e.end_time = "21:00"
+    e.title = 'Example event'
+    e.end_time = '21:00'
     e.date = DateTime.now + 5  # 5 days in the future
     e.deadline = DateTime.now - 1  # 1 day in the past
     e.user_id = u.id

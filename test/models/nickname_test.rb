@@ -1,38 +1,55 @@
 require 'test_helper'
 
 class NicknameTest < ActiveSupport::TestCase
-  test "Give user a nickname" do
+  test 'Create nickname' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
-    nickname = "Spijker"
+    old_count = Nickname.count
+
+    nickname = 'Spijker'
     n = Nickname.new
     n.nickname = nickname
     n.user_id = u.id
     n.save!
 
-    nickname2 = "Spijkertje"
+    assert Nickname.count == old_count + 1
+  end
+  test 'Give user a nickname' do
+    u = User.new
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
+    u.save!
+
+    nickname = 'Spijker'
+    n = Nickname.new
+    n.nickname = nickname
+    n.user_id = u.id
+    n.save!
+
+    nickname2 = 'Spijkertje'
     n2 = Nickname.new
     n2.nickname = nickname2
     n2.user_id = u.id
     n2.save!
 
-    assert u.nickname == nickname2 + " " + nickname + " "
+    assert u.nickname == nickname2 + ' ' + nickname + ' '
     assert u.nicknames[0].nickname == nickname
     assert u.nicknames[1].nickname == nickname2
   end
 
-  test "Delete a nickname" do
+  test 'Delete a nickname' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
-    nickname = "Spijker"
+    nickname = 'Spijker'
     n = Nickname.new
     n.nickname = nickname
     n.user_id = u.id
@@ -43,19 +60,20 @@ class NicknameTest < ActiveSupport::TestCase
     assert n.deleted_at != nil
   end
 
-  test "Update a nickname" do
+  test 'Update a nickname' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
-    nickname = "Spijker"
+    nickname = 'Spijker'
     n = Nickname.new
     n.nickname = nickname
     n.user_id = u.id
     n.save!
 
+    # noinspection RubyUnusedLocalVariable
     updated = n.updated_at
     # TODO: how to update a nickname?
     # sleep(1)

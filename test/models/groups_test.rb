@@ -1,15 +1,17 @@
 require 'test_helper'
 
 class GroupsTest < ActiveSupport::TestCase
-  test "Create group" do
+  test 'Create group' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     ug = Usergroup.new
     ug.save!
+
+    old_count = Group.count
 
     g = Group.new
     g.user_id = u.id
@@ -18,13 +20,15 @@ class GroupsTest < ActiveSupport::TestCase
 
     assert g.group_id == ug.id
     assert g.user_id == u.id
+
+    assert Group.count == old_count + 1
   end
 
-  test "Delete group" do
+  test 'Delete group' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     ug = Usergroup.new
@@ -40,11 +44,11 @@ class GroupsTest < ActiveSupport::TestCase
     assert g.deleted_at != nil
   end
 
-  test "Group has to have group_id and user_id" do
+  test 'Group has to have group_id and user_id' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     ug = Usergroup.new
@@ -75,17 +79,17 @@ class GroupsTest < ActiveSupport::TestCase
     end
   end
 
-  test "Add user to group" do
+  test 'Add user to group' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     u2 = User.new
-    u2.name = "Hamer Tester 2"
-    u2.email = "hamertester2@zondersikkel.nl"
-    u2.password = "hamers"
+    u2.name = 'Hamer Tester 2'
+    u2.email = 'hamertester2@zondersikkel.nl'
+    u2.password = 'hamers'
     u2.save!
 
     ug = Usergroup.new
@@ -108,11 +112,11 @@ class GroupsTest < ActiveSupport::TestCase
     assert u2.groups[0].group_id == ug.id
   end
 
-  test "Add user to multiple user groups" do
+  test 'Add user to multiple user groups' do
     u = User.new
-    u.name = "Hamer Tester"
-    u.email = "hamertester@zondersikkel.nl"
-    u.password = "hamers"
+    u.name = 'Hamer Tester'
+    u.email = 'hamertester@zondersikkel.nl'
+    u.password = 'hamers'
     u.save!
 
     ug = Usergroup.new
