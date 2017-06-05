@@ -2,34 +2,24 @@ require 'test_helper'
 
 class MotionTest < ActiveSupport::TestCase
   test 'Create motion' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
     old_count = Motion.count
 
-    m = Motion.new
-    m.user_id = u.id
-    assert m.save
+    assert Motion.create(user_id: u.id).save
 
     assert Motion.count == old_count + 1
   end
   test 'Motion belongs to user' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
-    m = Motion.new
-    m.user_id = u.id
-    assert m.save
+    m = Motion.create(user_id: u.id)
 
-    m2 = Motion.new
-    m2.user_id = u.id
-    assert m2.save
+    m2 = Motion.create(user_id: u.id)
 
     assert m.user_id == u.id
     assert u.motions[0].id == m.id
@@ -37,37 +27,28 @@ class MotionTest < ActiveSupport::TestCase
   end
 
   test 'Delete motion' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
-    m = Motion.new
-    m.user_id = u.id
-    m.save
+    m = Motion.create(user_id: u.id)
 
-    assert m.deleted_at == nil
+    assert m.deleted_at.nil?
     m.delete
-    assert m.deleted_at != nil
+    assert !m.deleted_at.nil?
   end
 
   test 'Update motion' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
-    m = Motion.new
-    m.user_id = u.id
-    m.save
+    m = Motion.create(user_id: u.id)
 
     # TODO: how to update motion?
     updated = m.updated_at
-    assert updated != nil
+    assert !updated.nil?
     # Uncomment line below when found out how to update a motion
     # assert m.updated_at > updated
   end
-
 end

@@ -2,40 +2,27 @@ require 'test_helper'
 
 class NicknameTest < ActiveSupport::TestCase
   test 'Create nickname' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
     old_count = Nickname.count
 
     nickname = 'Spijker'
-    n = Nickname.new
-    n.nickname = nickname
-    n.user_id = u.id
-    n.save!
+    Nickname.create(nickname: nickname, user_id: u.id)
 
     assert Nickname.count == old_count + 1
   end
   test 'Give user a nickname' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
     nickname = 'Spijker'
-    n = Nickname.new
-    n.nickname = nickname
-    n.user_id = u.id
-    n.save!
+    Nickname.create(nickname: nickname, user_id: u.id)
 
     nickname2 = 'Spijkertje'
-    n2 = Nickname.new
-    n2.nickname = nickname2
-    n2.user_id = u.id
-    n2.save!
+    Nickname.create(nickname: nickname2, user_id: u.id)
 
     assert u.nickname == nickname2 + ' ' + nickname + ' '
     assert u.nicknames[0].nickname == nickname
@@ -43,38 +30,27 @@ class NicknameTest < ActiveSupport::TestCase
   end
 
   test 'Delete a nickname' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
     nickname = 'Spijker'
-    n = Nickname.new
-    n.nickname = nickname
-    n.user_id = u.id
-    n.save!
+    n = Nickname.create(nickname: nickname, user_id: u.id)
 
-    assert n.deleted_at == nil
+    assert n.deleted_at.nil?
     n.delete
-    assert n.deleted_at != nil
+    assert !n.deleted_at.nil?
   end
 
   test 'Update a nickname' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
     nickname = 'Spijker'
-    n = Nickname.new
-    n.nickname = nickname
-    n.user_id = u.id
-    n.save!
+    Nickname.create(nickname: nickname, user_id: u.id)
 
-    # noinspection RubyUnusedLocalVariable
-    updated = n.updated_at
+    # updated = n.updated_at
     # TODO: how to update a nickname?
     # sleep(1)
     # assert n.updated_at > updated

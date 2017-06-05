@@ -2,45 +2,33 @@ require 'test_helper'
 
 class BeerTest < ActiveSupport::TestCase
   test 'Add beer correctly' do
-    old_amount = Beer.count
+    old_count = Beer.count
 
     b = Beer.new
     assert !b.save
-
-    b.percentage = 'a'
+    b = Beer.new(percentage: 'a')
     assert !b.save
-
-    b.percentage = ''
+    b = Beer.new(percentage: '')
     assert !b.save
-
-    b.percentage = '5.0%'
+    b = Beer.new(percentage: '5.0%')
+    assert b.save
+    b = Beer.new(percentage: '5')
+    assert b.save
+    b = Beer.new(percentage: '100.000')
     assert b.save
 
-    b.percentage = '5'
-    assert b.save
-
-    b.percentage = '100.000'
-    assert b.save
-
-    assert Beer.count == old_amount + 1
+    assert Beer.count == old_count + 3
   end
 
   test 'Review grade correctly' do
-    b = Beer.new
-    b.percentage = '5.0%'
-    b.save
+    b = Beer.create(percentage: '5.0%')
 
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save
-
-    u2 = User.new
-    u2.name = 'Hamer Tester 2'
-    u2.email = 'test2hamer@zondersikkel.nl'
-    u2.password = 'hamers'
-    u2.save
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
+    u2 = User.create(name: 'Hamer Tester 2',
+                     email: 'testhamer2@zondersikkel.nl',
+                     password: 'Hamers')
 
     # b.add_review(user, rating, description, proefdatum)
     b.add_review!(u, 8.0, 'Heel lekker biertje', 'Vandaag')
@@ -55,41 +43,19 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test 'Review grade with weight' do
-    b = Beer.new
-    b.percentage = '5.0%'
-    b.save
+    b = Beer.create(percentage: '5.0%')
+    b2 = Beer.create(percentage: '8.0%')
+    b3 = Beer.create(percentage: '6.4%')
+    b4 = Beer.create(percentage: '11.0%')
+    b5 = Beer.create(percentage: '3.8%')
+    b6 = Beer.create(percentage: '0.0%')
 
-    b2 = Beer.new
-    b2.percentage = '8.0%'
-    b2.save
-
-    b3 = Beer.new
-    b3.percentage = '6.4%'
-    b3.save
-
-    b4 = Beer.new
-    b4.percentage = '11.0%'
-    b4.save
-
-    b5 = Beer.new
-    b5.percentage = '3.8%'
-    b5.save
-
-    b6 = Beer.new
-    b6.percentage = '0.0%'
-    b6.save
-
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save
-
-    u2 = User.new
-    u2.name = 'Hamer Tester 2'
-    u2.email = 'testhamer2@zondersikkel.nl'
-    u2.password = 'hamers'
-    u2.save
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
+    u2 = User.create(name: 'Hamer Tester 2',
+                     email: 'testhamer2@zondersikkel.nl',
+                     password: 'Hamers')
 
     # set weight of user u
     b.add_review!(u, 9.0, '', '')
@@ -110,7 +76,6 @@ class BeerTest < ActiveSupport::TestCase
     #  keep it weighted or just average
     b6.add_review!(u, 8.0, '', '')
     b6.add_review!(u2, 2.0, '', '')
-    b6.update_cijfer
   end
 
   test 'Review belongs to person' do

@@ -3,42 +3,28 @@ require 'test_helper'
 class SignupTest < ActiveSupport::TestCase
   test 'Signup should go correctly' do
     # create user 'u'
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
     # create event 'e'
-    e = Event.new
-    e.title = 'Example event'
-    e.end_time = '21:00'
-    e.date = DateTime.now + 50  # 50 days in the future
-    e.deadline = DateTime.now + 5  # 5 days in the future
-    e.user_id = u.id
-    e.save!
+    e = Event.create(title: 'Example event', end_time: '21:00',
+                     date: DateTime.now + 50, deadline: DateTime.now + 5,
+                     user_id: u.id)
 
     # signup user 'u' to event 'e'
-    s = Signup.new
-    s.event_id = e.id
-    s.user_id = u.id
-    s.save!
+    Signup.create(event_id: e.id, user_id: u.id)
 
     # assert user 'u' is signed up to event 'e'
     assert e.users[0].id == u.id
 
     # create second user 'u2'
-    u2 = User.new
-    u2.name = 'Hamer tester 2'
-    u2.email = 'hamertester2@zondersikkel.nl'
-    u2.password = 'hamers'
-    u2.save!
+    u2 = User.create(name: 'Hamer Tester 2',
+                     email: 'testhamer2@zondersikkel.nl',
+                     password: 'Hamers')
 
     # signup user 'u2' to event 'e'
-    s = Signup.new
-    s.event_id = e.id
-    s.user_id = u2.id
-    s.save!
+    Signup.create(event_id: e.id, user_id: u2.id)
 
     # assert both users are signed up to event 'e'
     assert e.signups[0].user_id == u.id
@@ -46,77 +32,42 @@ class SignupTest < ActiveSupport::TestCase
   end
 
   test "User can't signup twice" do
-    u = User.new
-    u.name= 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
-    u2 = User.new
-    u2.name= 'Hamer Tester 2'
-    u2.email = 'hamertester2@zondersikkel.nl'
-    u2.password = 'hamers'
-    u2.save!
+    u2 = User.create(name: 'Hamer Tester 2',
+                     email: 'testhamer2@zondersikkel.nl',
+                     password: 'Hamers')
 
-    e = Event.new
-    e.title = 'Example event'
-    e.end_time = '21:00'
-    e.date = DateTime.now + 50  # 50 days in the future
-    e.deadline = DateTime.now + 5  # 5 days in the future
-    e.user_id = u.id
-    e.save!
+    e = Event.create(title: 'Example event', end_time: '21:00',
+                     date: DateTime.now + 50, deadline: DateTime.now + 5,
+                     user_id: u.id)
 
     # signup user 'u' to event 'e'
-    s = Signup.new
-    s.event_id = e.id
-    s.user_id = u.id
-    s.save!
+    Signup.create(event_id: e.id, user_id: u.id)
 
     # assert user 'u' can't signup
-    assert_raise do
-      s = Signup.new
-      s.event_id = e.id
-      s.user_id = u.id
-      s.save!
-    end
+    assert !Signup.create(event_id: e.id, user_id: u.id).save
 
     # assert user 'u2' can't signup (user 'u' created the event,
     #  might be seen differently)
-    
-    # signup user 'u2' to event 'e'
-    s = Signup.new
-    s.event_id = e.id
-    s.user_id = u2.id
-    s.save!
 
-    assert_raise do
-      s = Signup.new
-      s.event_id = e.id
-      s.user_id = u2.id
-      s.save!
-    end
+    # signup user 'u2' to event 'e'
+    Signup.create(event_id: e.id, user_id: u2.id)
+
+    assert !Signup.create(event_id: e.id, user_id: u2.id).save
   end
 
   test "User can't signup after deadline" do
-    u = User.new
-    u.name= 'Hamer Tester'
-    u.email = 'hamertester@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = User.create(name: 'Hamer Tester',
+                    email: 'testhamer@zondersikkel.nl',
+                    password: 'Hamers')
 
-    e = Event.new
-    e.title = 'Example event'
-    e.end_time = '21:00'
-    e.date = DateTime.now + 5  # 5 days in the future
-    e.deadline = DateTime.now - 1  # 1 day in the past
-    e.user_id = u.id
-    e.save!
+    e = Event.create(title: 'Example event', end_time: '21:00',
+                     date: DateTime.now + 50, deadline: DateTime.now - 1,
+                     user_id: u.id)
 
-    assert_raise do
-      s = Signup.new
-      s.event_id = e.id
-      s.user_id = u.id
-      s.save!
-    end
+    assert !Signup.create(event_id: e.id, user_id: u.id).save
   end
 end
