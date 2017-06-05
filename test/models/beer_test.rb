@@ -110,14 +110,14 @@ class BeerTest < ActiveSupport::TestCase
       b.add_review!(u, 5, '', '')
       b.add_review!(u, 1.0, '', '')
       b.add_review!(u, 10.0, '', '')
-      b.add_review!(u, '5.', '', '')
-      b.add_review!(u, '7.6', '', '')
-      b.add_review!(u, '7.62345445', '', '')
+      b.add_review!(u, 5, '', '')
     end
 
     assert_raise { b.add_review!(u, 50, '', '') }
     assert_raise { b.add_review!(u, 0, '', '') }
     assert_raise { b.add_review!(u, 'something', '', '') }
     assert_raise { b.add_review!(u, '', '', '') }
+    assert_raise { b.add_review!(u, 7.6, '', '') }
+    assert_raise { b.add_review!(u, 7.62345445, '', '') }
   end
 end
