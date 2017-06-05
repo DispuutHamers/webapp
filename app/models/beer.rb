@@ -7,19 +7,7 @@ class Beer < ActiveRecord::Base
   validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
 
   def add_review!(user, rating, description, proefdatum)
-    if not check_rating(rating)
-      raise "Incorrect rating, should be between 1.0 and 10.0"
-    end
     self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)
-  end
-
-  def check_rating(rating)
-    if not (rating.is_a?(Float)) or (rating.is_a?(Integer))
-      if rating.to_f < 1.0 or rating.to_f > 10.0
-        return false
-      end
-    end
-    return true
   end
 
   def cijfer?

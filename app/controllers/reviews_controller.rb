@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
   end
   
   def show
-    redirect_to review.find(params[:id]).beer
+    redirect_to Review.find(params[:id]).beer
   end
 
   def edit
