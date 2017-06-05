@@ -11,3 +11,14 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - bundler --version
           - bundle install
+          - rails db:create
+          - rails test test/models/*
+        services:
+            - database
+
+definitions:
+  services:
+    database:
+      image: mysql
+      environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
