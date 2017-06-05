@@ -12,3 +12,10 @@ pipelines:
           - bundler --version
           - bundle install
           - rails test test/models/motion_test.rb
+        services:
+            - database
+
+definitions:
+  services:
+    database:
+      image: mysql
