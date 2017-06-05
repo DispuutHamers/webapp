@@ -4,7 +4,7 @@
     <div class="col-md-9 cta-contents">
       <h1 class="cta-title"><%= item.title %></h1>
       <div class="cta-desc">
-        <p><%= truncate item.body, length: 500 %></p>
+        <p><%= truncate markdown(item.body).html_safe, length: 500 %></p>
       </div>
     </div>
     <div class="col-md-3 cta-button">
