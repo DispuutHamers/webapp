@@ -3,6 +3,14 @@ module ParamsHelper
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
+  def photo_params
+    params.require(:blogphoto).permit(:image, :blogitem_id, :description)
+  end
+
+  def blog_params
+    params.require(:blogitem).permit(:title, :body, :public)
+  end
+
   def push_params
     params.require(:push).permit(:data, :user_id)
   end
@@ -52,7 +60,7 @@ module ParamsHelper
   end
 
   def sticker_params
-    params.require(:sticker).permit(:lat, :lon, :notes)
+    params.require(:sticker).permit(:lat, :lon, :notes, :image)
   end
   
   def note_params

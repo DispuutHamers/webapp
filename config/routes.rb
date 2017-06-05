@@ -8,8 +8,8 @@ Hamers::Application.routes.draw do
 
   resources :news
   get '/images' => 'albums#index', as: 'photo'
-  get '/trail' => 'static_pages#trail' , as: 'trail' 
-  get '/trail' => 'static_pages#trail' , as: 'device' 
+  get '/trail' => 'static_pages#trail' , as: 'trail'
+  get '/trail' => 'static_pages#trail' , as: 'device'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
 
@@ -17,6 +17,9 @@ Hamers::Application.routes.draw do
   resources :motions
   resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages
+  resources :blogitems, path: 'blog' 
+  post 'blog/:id' => "blogitems#add_photo"
+  post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
 
   resources :meetings
 

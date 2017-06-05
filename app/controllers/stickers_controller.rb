@@ -35,4 +35,9 @@ class StickersController < ApplicationController
     sticker = Sticker.find(params[:id])
     delete_object(sticker)
   end
+
+  private 
+  def correct_user
+    Sticker.find(params[:id]).user_id == current_user.id || current_user.admin?
+  end
 end

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails-controller-testing'
+gem 'paperclip'
 gem 'letsencrypt_plugin'
 gem 'capistrano-rpush'
 gem 'rb-readline'
@@ -35,6 +36,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'chartkick'
 gem 'rails-i18n'
+gem 'groupdate'
 group :doc do
   gem 'sdoc', require: false
 end

@@ -1,0 +1,22 @@
+<% content_for :title do %>
+    <%= @item.title %>
+<% end %>
+<div class="row">
+  <div class="col-md-9">
+    <%= markdown(@item.body).html_safe unless @item.body == nil %>
+  </div>
+  <div class="col-md-3">
+    <% @item.blogphotos.each do |p| %>
+      <%= image_tag p.image.url(:medium) %> <br>
+    <% end %>
+  </div>
+</div>
+<% if @item.user_id != nil %>
+    <p>Door: <i><%= link_to User.find(@item.user_id).name, User.find(@item.user_id) %></i></p>
+<% end %>
+<div class="btn-group">
+  <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
+      <%= link_to 'Wijzig', edit_blogitem_path(@item), class: 'btn btn-primary' %>
+  <% end %>
+  <%= link_to 'Terug', blogitems_path, class: 'btn btn-default' %>
+</div>
