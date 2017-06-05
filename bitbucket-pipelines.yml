@@ -12,7 +12,7 @@ pipelines:
           - bundler --version
           - bundle install
           - rails db:create
-          - rails test test/models/motion_test.rb
+          - rails test test/models/*
         services:
             - database
 
