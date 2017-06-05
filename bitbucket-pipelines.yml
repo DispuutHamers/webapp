@@ -20,3 +20,5 @@ definitions:
   services:
     database:
       image: mysql
+      environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
