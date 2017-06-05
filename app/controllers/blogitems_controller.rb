@@ -20,13 +20,14 @@ class BlogitemsController < ApplicationController
 
   def add_photo
     photo = Blogphoto.create(photo_params)
+    blog = Blogitem.unscoped.find(params[:id])
     photo.save
-    redirect_to edit_blogitem_path(photo.blogitem)
+    redirect_to edit_blogitem_path(blog)
   end
 
   def destroy_photo
     photo = Blogphoto.find(params[:blogphoto])
-    blog = Blogitem.find(params[:blogitem])
+    blog = Blogitem.unscoped.find(params[:blogitem])
     photo.destroy
     redirect_to edit_blogitem_path(blog)
   end
