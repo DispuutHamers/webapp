@@ -2,11 +2,7 @@ require 'test_helper'
 
 class ApiKeyTest < ActiveSupport::TestCase
   test 'Create ApiKey' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    u = users(:userone)
 
     old_count = ApiKey.count
 
@@ -16,12 +12,10 @@ class ApiKeyTest < ActiveSupport::TestCase
 
     assert ApiKey.count == old_count + 1
   end
+
   test 'ApiKey belongs to user' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
+    # user two doesn't have an api key yet
+    u = users(:usertwo)
 
     apikey = ApiKey.new
     apikey.user_id = u.id
@@ -38,17 +32,8 @@ class ApiKeyTest < ActiveSupport::TestCase
   end
 
   test 'ApiKey only belongs to 1 user' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
-
-    u2 = User.new
-    u2.name = 'Hamer Tester 2'
-    u2.email = 'testhamer2@zondersikkel.nl'
-    u2.password = 'hamers'
-    u2.save!
+    u = users(:userone)
+    u2 = users(:usertwo)
 
     apikey = ApiKey.new
     apikey.user_id = u.id

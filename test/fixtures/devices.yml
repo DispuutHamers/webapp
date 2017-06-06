@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+deviceone:
   user_id: 1
-  device_key: MyString
+  device_key: Phone1
 
-two:
+devicetwo:
   user_id: 1
-  device_key: MyString
+  device_key: Laptop1
+
+devicethree:
+  user_id: 2
+  device_key: Phone

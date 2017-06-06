@@ -2,9 +2,7 @@ require 'test_helper'
 
 class GroupsTest < ActiveSupport::TestCase
   test 'Create group' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
     ug = Usergroup.create
 
@@ -20,13 +18,7 @@ class GroupsTest < ActiveSupport::TestCase
   end
 
   test 'Delete group' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
-
-    ug = Usergroup.create
-
-    g = Group.create(user_id: u.id, group_id: ug.id)
+    g = groups(:groupone)
 
     assert g.deleted_at.nil?
     g.delete
@@ -34,53 +26,44 @@ class GroupsTest < ActiveSupport::TestCase
   end
 
   test 'Group has to have group_id and user_id' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
-    ug = Usergroup.create
+    ug = usergroups(:usergroupone)
 
     assert !Group.create.save
     assert !Group.create(user_id: u.id).save
     assert !Group.create(group_id: ug.id).save
-
-    assert Group.create(user_id: u.id, group_id: ug.id).save
   end
 
   test 'Add user to group' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userthree)
 
-    u2 = User.create(name: 'Hamer Tester 2',
-                     email: 'testhamer2@zondersikkel.nl',
-                     password: 'Hamers')
+    u2 = users(:userfour)
 
-    ug = Usergroup.create
+    # new usergroup, users aren't yet added to it
+    ug = usergroups(:usergroupthree)
 
     Group.create(user_id: u.id, group_id: ug.id)
     Group.create(user_id: u2.id, group_id: ug.id)
 
-    assert ug.users[0].id == u.id
-    assert ug.users[1].id == u2.id
+    assert_equal ug.users[0].id, u.id
+    assert_equal ug.users[1].id, u2.id
 
-    assert u.groups[0].group_id == ug.id
-    assert u2.groups[0].group_id == ug.id
+    assert_equal u.groups[0].group_id, ug.id
+    assert_equal u2.groups[0].group_id, ug.id
   end
 
   test 'Add user to multiple user groups' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    # userthree since user three isn't yet in the groups created below
+    u = users(:userthree)
 
-    ug = Usergroup.create
-
-    ug2 = Usergroup.create
+    ug = usergroups(:usergroupone)
+    ug2 = usergroups(:usergrouptwo)
 
     Group.create(user_id: u.id, group_id: ug.id)
     Group.create(user_id: u.id, group_id: ug2.id)
 
-    assert u.groups[0].group_id == ug.id
-    assert u.groups[1].group_id == ug2.id
+    assert_equal u.groups[0].group_id, ug.id
+    assert_equal u.groups[1].group_id, ug2.id
   end
 end

@@ -17,46 +17,37 @@ class BeerTest < ActiveSupport::TestCase
     b = Beer.new(percentage: '100.000')
     assert b.save
 
-    assert Beer.count == old_count + 3
+    assert_equal Beer.count, old_count + 3
   end
 
   test 'Review grade correctly' do
-    b = Beer.create(percentage: '5.0%')
+    # users 3 and 4 don't have reviews yet (thus don't skew the ratings)
+    u = users(:userthree)
+    u2 = users(:userfour)
 
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
-    u2 = User.create(name: 'Hamer Tester 2',
-                     email: 'testhamer2@zondersikkel.nl',
-                     password: 'Hamers')
-
+    b = beers(:beerone)
     # b.add_review(user, rating, description, proefdatum)
     b.add_review!(u, 8.0, 'Heel lekker biertje', 'Vandaag')
     u.update_weight
     b.update_cijfer
-    assert b.cijfer? == 8.0
+    assert_equal b.cijfer?, 8.0
 
     b.add_review!(u2, 7.0, 'Vrij lekker biertje', 'Gisteren')
     u2.update_weight
     b.update_cijfer
-    assert b.cijfer? == 7.5
+    assert_equal b.cijfer?, 7.5
   end
 
   test 'Review grade with weight' do
-    b = Beer.create(percentage: '5.0%')
-    b2 = Beer.create(percentage: '8.0%')
-    b3 = Beer.create(percentage: '6.4%')
-    b4 = Beer.create(percentage: '11.0%')
-    b5 = Beer.create(percentage: '3.8%')
-    b6 = Beer.create(percentage: '0.0%')
+    u = users(:userone)
+    u2 = users(:usertwo)
 
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
-    u2 = User.create(name: 'Hamer Tester 2',
-                     email: 'testhamer2@zondersikkel.nl',
-                     password: 'Hamers')
-
+    b = beers(:beerone)
+    b2 = beers(:beertwo)
+    b3 = beers(:beerthree)
+    b4 = beers(:beerfour)
+    b5 = beers(:beerfive)
+    b6 = beers(:beersix)
     # set weight of user u
     b.add_review!(u, 9.0, '', '')
     b2.add_review!(u, 9.0, '', '')
@@ -79,32 +70,16 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test 'Review belongs to person' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
-
-    b = Beer.new
-    b.percentage = '5.0%'
-    b.save!
+    u = users(:userone)
+    b = beers(:beerone)
 
     b.add_review!(u, 5.0, '', '')
-    b.reviews.each do |r|
-      assert r.user == u
-    end
+    assert_equal b.reviews[0].user, u
   end
 
   test 'Rating should be correct' do
-    u = User.new
-    u.name = 'Hamer Tester'
-    u.email = 'testhamer@zondersikkel.nl'
-    u.password = 'hamers'
-    u.save!
-
-    b = Beer.new
-    b.percentage = '5.0%'
-    b.save!
+    u = users(:userone)
+    b = beers(:beerone)
 
     assert_nothing_raised do
       b.add_review!(u, 5, '', '')

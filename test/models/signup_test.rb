@@ -3,9 +3,7 @@ require 'test_helper'
 class SignupTest < ActiveSupport::TestCase
   test 'Signup should go correctly' do
     # create user 'u'
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
     # create event 'e'
     e = Event.create(title: 'Example event', end_time: '21:00',
@@ -19,9 +17,7 @@ class SignupTest < ActiveSupport::TestCase
     assert e.users[0].id == u.id
 
     # create second user 'u2'
-    u2 = User.create(name: 'Hamer Tester 2',
-                     email: 'testhamer2@zondersikkel.nl',
-                     password: 'Hamers')
+    u2 = users(:usertwo)
 
     # signup user 'u2' to event 'e'
     Signup.create(event_id: e.id, user_id: u2.id)
@@ -32,13 +28,9 @@ class SignupTest < ActiveSupport::TestCase
   end
 
   test "User can't signup twice" do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
-    u2 = User.create(name: 'Hamer Tester 2',
-                     email: 'testhamer2@zondersikkel.nl',
-                     password: 'Hamers')
+    u2 = users(:usertwo)
 
     e = Event.create(title: 'Example event', end_time: '21:00',
                      date: DateTime.now + 50, deadline: DateTime.now + 5,
@@ -60,9 +52,7 @@ class SignupTest < ActiveSupport::TestCase
   end
 
   test "User can't signup after deadline" do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
     e = Event.create(title: 'Example event', end_time: '21:00',
                      date: DateTime.now + 50, deadline: DateTime.now - 1,

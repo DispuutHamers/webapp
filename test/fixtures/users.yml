@@ -1,11 +1,30 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  email: MyString@1.1
-  approved: false
+userone:
+  id: 1
+  name: Hamer Tester
+  email: testhamer@zondersikkel.nl
+  approved: true
+  password_digest: Hamers
 
-two:
-  name: MyString
-  email: MyString@2.2
-  approved: false
+usertwo:
+  id: 2
+  name: Hamer Tester 2
+  email: testhamer2@zondersikkel.nl
+  approved: true
+  password_digest: Hamers
+
+userthree:
+  id: 3
+  name: Hamer Tester 3
+  email: testhamer3@zondersikkel.nl
+  approved: true
+  password_digest: Hamers
+
+
+userfour:
+  id: 4
+  name: Hamer Tester 4
+  email: testhamer4@zondersikkel.nl
+  approved: true
+  password_digest: Hamers

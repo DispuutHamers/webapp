@@ -2,35 +2,29 @@ require 'test_helper'
 
 class QuoteTest < ActiveSupport::TestCase
   test 'Add a quote' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userthree)
 
     old_count = Quote.count
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
 
-    assert Quote.count == old_count + 1
+    assert_equal Quote.count, old_count + 1
   end
   test 'Give user a quote' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userthree)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
 
-    assert u.quotes[0].text == quote_text
+    assert_equal u.quotes[0].text, quote_text
   end
 
   test 'Give multiple user multiple quotes' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
-    u2 = User.create(name: 'Hamer Tester 2',
-                     email: 'testhamer2@zondersikkel.nl',
-                     password: 'Hamers')
+    # users three and four don't have quotes
+    u = users(:userthree)
+    u2 = users(:userfour)
+
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
     quote_text2 = 'Het mag ook een hele mooie, goed schoongemaakte penis zijn..'
@@ -38,16 +32,13 @@ class QuoteTest < ActiveSupport::TestCase
     quote_text3 = 'Ik hou wel van enorme lullen. '
     Quote.create(text: quote_text3, user_id: u2.id)
 
-    # newest quote goes on top
-    assert u.quotes[0].text == quote_text2
-    assert u.quotes[1].text == quote_text
-    assert u2.quotes[0].text == quote_text3
+    assert_equal u.quotes[0].text, quote_text
+    assert_equal u.quotes[1].text, quote_text2
+    assert_equal u2.quotes[0].text, quote_text3
   end
 
   test 'Delete quote' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userthree)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     q = Quote.create(text: quote_text, user_id: u.id)
