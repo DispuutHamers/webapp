@@ -12,13 +12,13 @@
     </div>
   </div>
 </div>
-<%= link_to 'Schrijf een blogpost!', new_blogitem_path, class: 'btn btn-block btn-primary' %>
 <% end %>
-<% if !@items.any? %>
-  <% if current_user&.lid? || current_user&.alid? %>
+<% if current_user&.lid? || current_user&.alid? %>
+  <% if !@items.any? %>
     <h4> Helaas, er zijn (nog) geen blogposts. </h4>
-    <%= link_to 'Schrijf een blogpost!', new_blogitem_path, class: 'btn btn-block btn-primary' %>
-  <% else%>
-    <h4> Helaas, er zijn (nog) geen publieke blogposts. </h4>
   <% end %>
+  <%= link_to 'Schrijf een blogpost!', new_blogitem_path, class: 'btn btn-block btn-primary' %>
+<% else if !@items.any? %>
+  <h4> Helaas, er zijn (nog) geen publieke blogposts. </h4>
+<% end %>
 <% end %>
