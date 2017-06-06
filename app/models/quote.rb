@@ -7,6 +7,10 @@ class Quote < ActiveRecord::Base
   #validates :reporter, presence:true
   acts_as_paranoid
 
+  def self.default_scope
+    where('deleted_at IS NULL')
+  end
+
   def as_json(options)
     super({:only => [:id, :text, :user_id, :created_at]}.merge(options))
   end
