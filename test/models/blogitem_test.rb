@@ -2,9 +2,8 @@ require 'test_helper'
 
 class BlogitemTest < ActiveSupport::TestCase
   test 'Create blog' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
+
     old_count = Blogitem.count
 
     assert Blogitem.create(user_id: u.id, title: 'Test blogpost').save
@@ -17,9 +16,7 @@ class BlogitemTest < ActiveSupport::TestCase
   end
 
   test 'Create blog without title' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
     old_count = Blogitem.count
 

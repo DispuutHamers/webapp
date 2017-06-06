@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   def home
     return unless signed_in?
     @beer = Beer.order('RAND()').first
-    @rQuote = Quote.unscoped.order('RAND()').first
+    @rQuote = Quote.order('RAND()').first
     @quote = current_user.quotes.build
     @blog = Blogitem.last(3).reverse
     @feed_items = Quote.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)

@@ -10,9 +10,7 @@ class UsergroupTest < ActiveSupport::TestCase
   end
 
   test 'Add group to usergroup' do
-    u = User.create(name: 'Hamer Tester',
-                    email: 'testhamer@zondersikkel.nl',
-                    password: 'Hamers')
+    u = users(:userone)
 
     ug = Usergroup.create
 
