@@ -43,11 +43,12 @@ namespace :deploy do
     end
   end
 
-  desc "Stop the push service"
   desc "Write cronfile"
   task :whenever do 
     on roles(:all) do |host|
-      execute "whenevr -w"
+      as 'jackozi' do 
+        execute "whenever -w"
+      end
     end
   end
 
@@ -63,3 +64,4 @@ namespace :deploy do
 end
 
 after "deploy", "deploy:restart"
+after "deploy", "deploy:whenever"
