@@ -45,11 +45,9 @@ namespace :deploy do
 
   desc "Write cronfile"
   task :whenever do 
-    on roles(:all) do |host|
-      as 'jackozi' do 
+    on roles(:cron) do |host|
         execute "whenever -w"
       end
-    end
   end
 
   desc "run bundle install"
