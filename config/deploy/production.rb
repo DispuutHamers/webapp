@@ -4,9 +4,7 @@
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
-role :app, %w{deploy@149.210.163.54}
 role :web, %w{deploy@149.210.163.54}
-role :db,  %w{deploy@149.210.163.54}
 role :cron, %w{jackozi@149.210.163.64}
 set :rails_env, "production"
 set :deploy_to, '/home/deploys/zondersikkel.nl'
@@ -39,3 +37,4 @@ set :deploy_to, '/home/deploys/zondersikkel.nl'
 #     # password: 'please use keys'
 #   }
 # setting per server overrides global ssh_options
+  after "deploy", "deploy:whenever"

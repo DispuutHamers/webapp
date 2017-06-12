@@ -37,7 +37,7 @@ namespace :deploy do
   #server "zdma.org", roles: [:web]
   desc "Restart passenger process"
   task :restart  do
-    on roles(:all) do |host|
+    on roles(:web) do |host|
       execute "mkdir -p #{current_path}/tmp"
       execute "touch #{current_path}/tmp/restart.txt"
     end
@@ -62,4 +62,3 @@ namespace :deploy do
 end
 
 after "deploy", "deploy:restart"
-after "deploy", "deploy:whenever"
