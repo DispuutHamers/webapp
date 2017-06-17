@@ -25,7 +25,7 @@ set :pty, true
 set :linked_files, %w{tmp/rpush.pid log/rpush.log config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -37,18 +37,17 @@ namespace :deploy do
   #server "zdma.org", roles: [:web]
   desc "Restart passenger process"
   task :restart  do
-    on roles(:all) do |host|
+    on roles(:web) do |host|
       execute "mkdir -p #{current_path}/tmp"
       execute "touch #{current_path}/tmp/restart.txt"
     end
   end
 
-  desc "Stop the push service"
   desc "Write cronfile"
   task :whenever do 
-    on roles(:all) do |host|
-      execute "whenevr -w"
-    end
+    on roles(:cron) do |host|
+        execute "whenever -w"
+      end
   end
 
   desc "run bundle install"
