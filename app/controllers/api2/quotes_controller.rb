@@ -8,8 +8,13 @@ class Api2::QuotesController < Api2::ApiController
   end
 
   api :GET, '/quotes', "Show quote index"
+  description 'Deze methode heeft een extra sorting op datum die kan worden aangeroepen door "?sorted=date" achter de URL te plakken, of "?sorted=date-desc" om ze te sorteren met de nieuwste boven.'
   def index
-    render json: Quote.all
+    sorting = params[:sorted]
+    quotes = Quote.all
+    quotes = quotes.order('created_at') if sorting
+    quotes = quotes.reverse_order if sorting == 'date-desc'
+    render json: quotes
   end
 
   api :GET, '/quotes/:id', "Show quote"
