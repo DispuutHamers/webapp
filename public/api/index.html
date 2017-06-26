@@ -393,7 +393,7 @@ This returns the `JSON` of the updated quote.
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">UPDATE https://zondersikkel.nl/api/v2/quote</code></p>
+<p><code class="prettyprint">POST https://zondersikkel.nl/api/v2/quote</code></p>
 
 <h3 id="request-body">Request body</h3>
 
@@ -406,18 +406,75 @@ This returns the `JSON` of the updated quote.
 </thead><tbody>
 <tr>
 <td>text</td>
-<td>No</td>
+<td>Yes</td>
 <td>The text of the quote</td>
 </tr>
 <tr>
 <td>user_id</td>
-<td>No</td>
+<td>Yes</td>
 <td>The person that said the text</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">
 This returns the `JSON` of the new quote.
+</aside>
+
+          <h1 id="push-notifications">Push Notifications</h1>
+
+<h2 id="fcm">FCM</h2>
+<pre class="highlight shell tab-shell"><code>device
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"device"</span><span class="p">:</span><span class="s2">"deviceidhere"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>At this endpoint you can register a device to receive push notification via FCM</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://zondersikkel.nl/api/v2/register</code></p>
+
+<h3 id="request-body">Request body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>device</td>
+<td>Yes</td>
+<td>The device ID to register</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+It is currently not possible to unregister, to do this send a fake `device_id`
+</aside>
+
+          <h1 id="database">Database</h1>
+
+<h2 id="clone-the-database">Clone the database</h2>
+<pre class="highlight shell tab-shell"><code>This will <span class="nb">let </span>you download the entire database
+</code></pre>
+<blockquote>
+<p>The body of this response will contain a MySQL dump</p>
+</blockquote>
+
+<p>This endpoint clones the database</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://zondersikkel.nl/api/v2/full_backup</code></p>
+
+<aside class="warning">
+Extra restictions are in place on API keys that are allowed to make this request
+</aside>
+
+<aside class="warning">
+This request may be very slow
 </aside>
 
           <h1 id="errors">Errors</h1>
