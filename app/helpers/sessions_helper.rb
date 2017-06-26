@@ -17,14 +17,6 @@ module SessionsHelper
     self.current_user = nil
   end
 
-  def lid?
-    current_user.in_group?(Usergroup.find_by(name: 'lid'))
-  end
-
-  def alid?
-    current_user.in_group?(Usergroup.find_by(name: 'A-Lid'))
-  end
-
   def signed_in?
     !current_user.nil?
   end
