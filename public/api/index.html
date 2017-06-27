@@ -457,6 +457,22 @@ This returns the `JSON` of the new quote.
 
 <p><code class="prettyprint">GET https://zondersikkel.nl/api/v2/beers</code></p>
 
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reviewed</td>
+<td>nil</td>
+<td>If set to <code class="prettyprint">true</code> will only show beer that has been reviewed by the owner of the API key, if set to <code class="prettyprint">false</code> will only show beers that have not been reviewed by the owner of the API key.</td>
+</tr>
+</tbody></table>
+
 <h3 id="fields">Fields</h3>
 
 <table><thead>
