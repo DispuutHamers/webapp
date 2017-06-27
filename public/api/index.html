@@ -420,6 +420,186 @@ This returns the `JSON` of the updated quote.
 This returns the `JSON` of the new quote.
 </aside>
 
+          <h1 id="beers">Beers</h1>
+
+<h2 id="get-all-beers">Get All Beers</h2>
+<pre class="highlight shell tab-shell"><code>id, name, soort, created_at, picture, percentage, brewer, country, URL, cijfer
+</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jopen Laphroaig Barrel Aged."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Russian Imperial Stout"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-22T00:19:57.000+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hereisapic.nl/img.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"percentage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.0%"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"brewer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jopen"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nederland"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cijfer"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.75</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Snake Dog IPA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Indian Pale Ale"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-22T00:48:49.000+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hereisapic.nl/img.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"percentage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7.1%"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"brewer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flying Dog"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VS"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cijfer"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.13</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves all beers.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://zondersikkel.nl/api/v2/beers</code></p>
+
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique identifier of this entry</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the beer</td>
+</tr>
+<tr>
+<td>soort</td>
+<td>The type of the beer</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>The date this beer was added to our database</td>
+</tr>
+<tr>
+<td>picture</td>
+<td>A URL containing a picture of this beer</td>
+</tr>
+<tr>
+<td>percentage</td>
+<td>The alocohol content of this beer</td>
+</tr>
+<tr>
+<td>brewer</td>
+<td>The brewer of this beer</td>
+</tr>
+<tr>
+<td>country</td>
+<td>The country this beer originates from</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>A URL to more information about this beer</td>
+</tr>
+<tr>
+<td>cijfer</td>
+<td>The avarage grade our members give this beer</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Not all fields need to be populated for every beer. 
+</aside>
+
+<h2 id="get-a-specific-beer">Get a Specific Beer</h2>
+<pre class="highlight shell tab-shell"><code>id, name, soort, created_at, picture, percentage, brewer, country, URL, cijfer
+</code></pre><pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jopen Laphroaig Barrel Aged."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"soort"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Russian Imperial Stout"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-04-22T00:19:57.000+02:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://hereisapic.nl/img.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"percentage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.0%"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"brewer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jopen"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nederland"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"URL"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cijfer"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.75</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific beer.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://zondersikkel.nl/api/v2/beers/&lt;ID&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the beer to receive.</td>
+</tr>
+</tbody></table>
+
+<h3 id="fields">Fields</h3>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The unique identifier of this entry</td>
+</tr>
+<tr>
+<td>name</td>
+<td>The name of the beer</td>
+</tr>
+<tr>
+<td>soort</td>
+<td>The type of the beer</td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>The date this beer was added to our database</td>
+</tr>
+<tr>
+<td>picture</td>
+<td>A URL containing a picture of this beer</td>
+</tr>
+<tr>
+<td>percentage</td>
+<td>The alocohol content of this beer</td>
+</tr>
+<tr>
+<td>brewer</td>
+<td>The brewer of this beer</td>
+</tr>
+<tr>
+<td>country</td>
+<td>The country this beer originates from</td>
+</tr>
+<tr>
+<td>URL</td>
+<td>A URL to more information about this beer</td>
+</tr>
+<tr>
+<td>cijfer</td>
+<td>The avarage grade our members give this beer</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+Not all fields need to be populated for every beer. 
+</aside>
+
           <h1 id="push-notifications">Push Notifications</h1>
 
 <h2 id="fcm">FCM</h2>
