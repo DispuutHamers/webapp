@@ -68,7 +68,9 @@ class User < ActiveRecord::Base
   end
 
   def in_group?(group)
-    groups.find_by(group_id: group.id)
+    if group
+      groups.find_by(group_id: group.id)
+    end
   end
 
   def join_group!(group)
@@ -110,6 +112,10 @@ class User < ActiveRecord::Base
 
   def dev?
     in_group?(Usergroup.find_by(name: 'Developer'))
+  end
+
+  def brouwer? 
+    in_group?(Usergroup.find_by(name: "Brouwer"))
   end
 
   def update_weight
