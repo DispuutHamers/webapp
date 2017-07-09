@@ -25,7 +25,7 @@ set :pty, true
 set :linked_files, %w{tmp/rpush.pid log/rpush.log config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/dikkevrienden}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
