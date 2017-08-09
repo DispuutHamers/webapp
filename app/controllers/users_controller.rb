@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update
     delete_empty_passwords
     user = User.find(params[:id])
-    update_object(user, user_params) { sign_in current_user }
+    update_object(user, user_params)
   end
 
   def destroy

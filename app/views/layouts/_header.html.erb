@@ -71,7 +71,7 @@
                 <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to 'Uitloggen', signout_path, method: 'delete' %>
+                  <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
                 </li>
               <% end %>
               </ul>

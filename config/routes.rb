@@ -17,7 +17,7 @@ Hamers::Application.routes.draw do
   resources :motions
   resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages
-  resources :blogitems, path: 'blog' 
+  resources :blogitems, path: 'blog'
   post 'blog/:id' => "blogitems#add_photo"
   post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
 
@@ -37,6 +37,10 @@ Hamers::Application.routes.draw do
 
   root  'static_pages#home'
 
+  devise_for :users 
+  devise_scope :user do 
+    get 'signin', to: 'devise/sessions#new', as: "signin"
+  end
   resources :users do
     member do
       get :usergroups
@@ -49,15 +53,12 @@ Hamers::Application.routes.draw do
   resources :groups, only: [:create, :destroy]
   resources :usergroups, only: [:create, :destroy]
   resources :quotes, only: [:create, :destroy, :update, :edit]
-  resources :sessions, only: [:new, :create, :destroy]
 
   match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
   match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
   match '/register',  to: 'users#new',            via: 'get'
-  match '/signin', to: 'sessions#new', via: 'get'
   match '/stats', to: 'static_pages#statistics', via: 'get'
-  match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
     get 'email' => 'endpoints/email#create'
