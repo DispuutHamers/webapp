@@ -3,7 +3,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.0]
     change_table :users do |t|
       ## Database authenticatable
       t.change :email, :string,              null: false, default: ""
-      t.change :encrypted_password, :string, null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.change   :reset_password_token, :string
