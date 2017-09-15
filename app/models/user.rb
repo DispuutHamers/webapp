@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
         :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
   acts_as_paranoid :ignore => [:weight]
   before_save { self.email = email.downcase }
+  attr_accessor :current_password
   has_many :groups, foreign_key: 'user_id', dependent: :destroy
   has_many :usergroups, through: :groups
   has_many :quotes

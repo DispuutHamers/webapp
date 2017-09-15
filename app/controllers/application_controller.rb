@@ -9,6 +9,18 @@ class ApplicationController < ActionController::Base
   include ParamsHelper
   include ApplicationHelper
 
+  def devise_mapping
+    @devise_mapping ||= request.env["devise.mapping"]
+  end
+
+  def resource_name
+    devise_mapping.name
+  end
+
+  def resource_class
+    devise_mapping.to
+  end
+
   def set_cache_buster
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
