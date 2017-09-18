@@ -1,4 +1,5 @@
 Hamers::Application.routes.draw do
+  use_doorkeeper
   mount LetsencryptPlugin::Engine, at: '/'
   apipie
   resources :notes

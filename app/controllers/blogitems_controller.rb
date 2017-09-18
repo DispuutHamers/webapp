@@ -6,9 +6,9 @@ class BlogitemsController < ApplicationController
 
   def index
     if current_user&.lid? 
-      @items = Blogitem.all
+      @items = Blogitem.all.reverse
     else
-      @items = Blogitem.where(public: true)
+      @items = Blogitem.where(public: true).reverse
     end
   end
 
