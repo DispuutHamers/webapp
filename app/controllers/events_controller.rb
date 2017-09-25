@@ -18,9 +18,9 @@ class EventsController < ApplicationController
         if apikey&.user&.lid?
           calendar = generate_calendar(apikey)
           calendar.publish
-          render :text => calendar.to_ical
+          render plain: calendar.to_ical
         else
-          render text: "HTTP Token: Access denied.", status: :access_denied
+          render plain: "HTTP Token: Access denied.", status: :access_denied
         end
       end
     end
