@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   end
 
   def sunday_ratio 
+    unless lid? 
+      return "-"
+    end
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     t = 0.0
@@ -51,11 +54,6 @@ class User < ActiveRecord::Base
   end
 
   def name_with_nickname
-    name = read_attribute(:name)
-    nicknames = self.nicknames.limit(3)
-    if nicknames.count > 0
-      name = self.nickname + '(' + name + ')'
-    end
     name
   end
 

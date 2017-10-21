@@ -6,6 +6,11 @@
         <%= @user.name %>
       </h1>
     </section>
+    <% unless @user.nicknames.blank? %>
+      <section>
+        <%= @user.nickname %>
+      </section>
+    <% end %>
     <section>
       <% Usergroup.all.each do |g| %>
         <% if @user.in_group?(g) %>
