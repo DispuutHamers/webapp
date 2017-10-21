@@ -2,7 +2,7 @@
 class SignupsController < ApplicationController
   before_action :set_signup, only: [:show, :edit, :update, :destroy]
   before_action :admin_user?, only: [:index, :edit, :update]
-  before_action :logged_in?
+  before_action :ilid?
 
   # GET /signups
   # GET /signups.json

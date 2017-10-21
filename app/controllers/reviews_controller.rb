@@ -1,8 +1,7 @@
 # entry point for review resource
 class ReviewsController < ApplicationController
-  before_action :logged_in?, only: [:index, :edit, :update, :destroy]
-  before_action :admin_user?, only: [:destroy]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :ilid?
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
     review = Review.new(review_params)

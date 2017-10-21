@@ -1,5 +1,5 @@
 class ApiKeysController < ApplicationController
-  before_action :logged_in?
+  before_action :ilid
   before_action :correct_user?, only: [:show]
 
   def create

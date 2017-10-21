@@ -1,8 +1,6 @@
 #entry point for nicknames resource
 class NicknamesController < ApplicationController
-  before_action :logged_in?, only: [:index, :new, :create, :update, :destroy, :edit]
-  before_action :admin_user?, only: [:update, :destroy, :edit]
-
+  before_action :lid?
 
   def index
     @nicknames = Nickname.all

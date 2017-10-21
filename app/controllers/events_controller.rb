@@ -1,8 +1,7 @@
 #entry point for events
 class EventsController < ApplicationController
   require 'icalendar/tzinfo'
-  before_action :logged_in?, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user?, only: :destroy
+  before_action :ilid?
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
 
   # GET /events

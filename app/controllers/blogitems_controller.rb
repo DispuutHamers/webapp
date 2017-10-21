@@ -1,7 +1,6 @@
 #Entry point for the blog resource
 class BlogitemsController < ApplicationController
-  before_action :logged_in?, only: [:edit, :update, :destroy, :create, :new]
-  before_action :admin_user?, only: [:destroy]
+  before_action :ilid?
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index

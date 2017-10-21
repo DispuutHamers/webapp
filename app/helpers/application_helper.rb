@@ -12,4 +12,13 @@ module ApplicationHelper
   def current_user?(user) 
     current_user.id == user.id
   end
+
+  def lid? 
+    redirect_to root_path unless current_user&.lid? || current_user&.olid? 
+  end
+
+  def ilid?
+    redirect_to root_path unless current_user&.lid? || current_user&.alid? || current_user&.olid? 
+  end
+
 end

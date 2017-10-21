@@ -1,6 +1,6 @@
 # entry point for notes
 class NotesController < ApplicationController
-  before_action :logged_in?
+  before_action :lid?
   before_action :set_note, only: [:show, :edit, :update, :destroy]
 
   # GET /notes
