@@ -2,29 +2,31 @@
   <aside class="col-md-4">
     <section>
       <h1>
-        <%= gravatar_for @user, size: 96  %>
+        <%= gravatar_for @user, size: 96 %>
         <%= @user.name %>
       </h1>
     </section>
     <section>
       <% Usergroup.all.each do |g| %>
-          <% if @user.in_group?(g) %>
-              <%= g.name %><br>
-          <% end %>
+        <% if @user.in_group?(g) %>
+          <%= g.name %><br>
+        <% end %>
       <% end %>
     </section>
     <section>
       Reviews: <%= @user.reviews.count %><br>
-        Sunday Ratio: <%= @user.sunday_ratio %>%
+      <% if @user.lid? %>
+        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%
+      <% end %>
     </section>
   </aside>
   <div class="col-md-8">
     <% if @user.quotes.any? %>
-        <h3>Quotes: (<%= @user.quotes.count %>)</h3>
-        <ol class="microposts">
-          <%= render @quotes %>
-        </ol>
-        <%= will_paginate @quotes %>
+      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
+      <ol class="microposts">
+        <%= render @quotes %>
+      </ol>
+      <%= will_paginate @quotes %>
     <% end %>
   </div>
 </div>
