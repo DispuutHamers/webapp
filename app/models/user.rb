@@ -36,6 +36,20 @@ class User < ActiveRecord::Base
     "Sorry, this account has been deactivated."
   end
 
+  def sunday_ratio 
+    date = groups.where(group_id: 4).first.created_at
+    drinks = Event.where(attendance: true).where("created_at > ?", date)
+    t = 0.0
+    s = 0.0
+    drinks.each do |d|
+      t = t + 1.0
+      if !d.signups.where(user_id: id).blank?
+        s = s + 1.0
+      end
+    end
+    (s / t) * 100
+  end
+
   def name_with_nickname
     name = read_attribute(:name)
     nicknames = self.nicknames.limit(3)

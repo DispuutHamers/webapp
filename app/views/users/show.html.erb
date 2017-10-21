@@ -9,9 +9,13 @@
     <section>
       <% Usergroup.all.each do |g| %>
           <% if @user.in_group?(g) %>
-              <%= g.name %><br/>
+              <%= g.name %><br>
           <% end %>
       <% end %>
+    </section>
+    <section>
+      Reviews: <%= @user.reviews.count %><br>
+        Sunday Ratio: <%= @user.sunday_ratio %>%
     </section>
   </aside>
   <div class="col-md-8">
