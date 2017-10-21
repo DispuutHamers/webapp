@@ -70,6 +70,19 @@
         <% end %>
         </p>
         <hr>
+
+        <h4>Onbekend (<%= @nsusers.count %>):</h4>
+        <p>
+        <ul style="list-style-type: none;">
+        <% @nsusers.each do |s| %>
+        <li>
+        <%= s.name %>
+        </li>
+        <% end %>
+        </ul>
+        </p>
+        <hr>
+
         <p>
         <% if @event.location %>
           <div class="embed-responsive embed-responsive-4by3">
