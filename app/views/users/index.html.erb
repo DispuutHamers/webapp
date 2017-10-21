@@ -10,6 +10,7 @@
         <th>Naam</th>
         <th>Aantal quotes</th>
         <th>Aantal reviews</th>
+        <th>Sunday Ratio</th>
         <% if current_user.admin? %>
             <th>Admin stuff</th>
         <% end %>
@@ -24,6 +25,7 @@
             </td>
             <td><%= user.quotes.count %></td>
             <td><%= user.reviews.count %></td>
+            <td><%= user.sunday_ratio.round(2) %>%</td>
             <% if current_user.admin? && !current_user?(user) %>
                 <td>
                   <div class="btn-group">
