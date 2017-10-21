@@ -25,7 +25,13 @@
             </td>
             <td><%= user.quotes.count %></td>
             <td><%= user.reviews.count %></td>
-            <td><%= user.sunday_ratio.round(2) %>%</td>
+            <td><% if user.lid? %>
+                <%= user.sunday_ratio.round(2) %>%
+              <% else %>
+                -
+              <% end %>
+            
+            </td>
             <% if current_user.admin? && !current_user?(user) %>
                 <td>
                   <div class="btn-group">
