@@ -170,6 +170,7 @@ class User < ActiveRecord::Base
                [:id, :name, :email, :created_at, :batch] }.merge(options))
     h[:reviews] = reviews.count
     h[:quotes] = quotes.count
+    h[:sunday_ratio] = self.sunday_ratio
     h[:nicknames] = nicknames
     if alid?
       h[:lid] = 'alid'
