@@ -3,7 +3,7 @@
 <% end %>
 
 <p>
-  <%= simple_format @note.content %>
+  <%= markdown(@note.content).html_safe %>
 </p>
 
 <div class="btn-group">
