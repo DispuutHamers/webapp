@@ -22,9 +22,17 @@
       <% if t.event == "create" %>
         <td>created <%= link_to t.item_type, t.item %></td>
       <% elsif t.event == "destroy"%>
-        <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %></td>
+        <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %>
+        <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+          <%= f.submit "Revert" %>
+        <% end %>
+      </td>
       <% else %>
-      <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %></td>
+      <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %>
+        <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+          <%= f.submit "Revert" %>
+        <% end %>
+      </td>
       <% end %>
       <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
       <td>

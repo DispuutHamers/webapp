@@ -21,6 +21,7 @@ Hamers::Application.routes.draw do
   resources :blogitems, path: 'blog'
   post 'blog/:id' => "blogitems#add_photo"
   post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
+  post 'revert/:model/:id' => "static_pages#revert"
 
   resources :meetings
 

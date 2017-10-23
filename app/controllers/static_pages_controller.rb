@@ -21,6 +21,14 @@ class StaticPagesController < ApplicationController
     @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
   end
 
+  def revert
+    redirect_to root_path unless current_user&.admin?
+    m = params[:model].constantize.unscoped.find(params[:id])
+    m = m.paper_trail.previous_version
+    m.save
+    redirect_to root_path
+  end
+
   def quote
     redirect_to root_path
   end
