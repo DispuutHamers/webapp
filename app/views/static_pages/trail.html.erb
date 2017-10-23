@@ -27,7 +27,11 @@
       <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %></td>
       <% end %>
       <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
-      <td><%= t.changeset %></td>
+      <td>
+        <% t.changeset.each do |c,v| %>
+          <%= c.to_s + ": " + v[1].to_s  %><br>
+        <% end %>
+      </td>
       </tr>
     <% end %>
   </tbody>
