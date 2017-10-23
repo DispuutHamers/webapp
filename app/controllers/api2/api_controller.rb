@@ -40,7 +40,7 @@ class Api2::ApiController < ApplicationController
     authenticate_or_request_with_http_token do |token, options|
       @key = ApiKey.where(key: token).first
       user = @key&.user
-      admin ? user&.admin? : user&.lid?
+      admin ? user&.admin? : (user&.lid? || user&.olid? || user&.alid)
     end
   end
 
