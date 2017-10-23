@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
       return "-"
     end
     date = groups.where(group_id: 4).first.created_at
-    drinks = Event.where(attendance: true).where("created_at > ?", date)
+    drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
     t = 0.0
     s = 0.0
     drinks.each do |d|
@@ -51,6 +51,21 @@ class User < ActiveRecord::Base
       end
     end
     (s / t) * 100
+  end
+
+  def missed_drinks
+    unless lid? 
+      return "-"
+    end
+    date = groups.where(group_id: 4).first.created_at
+    drinks = Event.where(attendance: true).where("created_at > ?", date)
+    r = []
+    drinks.each do |d|
+      if d.signups.where(user_id: id).blank?
+        r << d
+      end
+    end
+    r
   end
 
   def name_with_nickname

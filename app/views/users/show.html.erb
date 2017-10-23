@@ -24,6 +24,13 @@
         Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%
       <% end %>
     </section>
+    <section>
+      <% if @user.lid? %>
+        <% @user.missed_drinks.each do |md| %>
+          <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
+        <% end %>
+      <% end %>
+    </section>
   </aside>
   <div class="col-md-8">
     <% if @user.quotes.any? %>
