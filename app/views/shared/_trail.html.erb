@@ -1,0 +1,19 @@
+<ul>
+  <% @trail.each do |t| %>
+    <li>
+      <% if t.whodunnit %>
+        <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
+      <% else %>
+        System
+      <% end %>
+
+      <% if t.event == "create" %>
+        - created <%= link_to t.item_type, t.item %>
+      <% elsif t.event == "destroy" %>
+        - destroyed <%= t.item_type %>
+      <% else %>
+        - <%= t.event %>d <%= link_to t.item_type, t.item %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
