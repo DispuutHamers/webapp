@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails-controller-testing'
+gem 'diffy'
 gem 'binding_of_caller'
 gem 'paperclip'
 gem 'better_errors'

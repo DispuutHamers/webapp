@@ -101,6 +101,7 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    diffy (3.2.0)
     documentation (0.0.1)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
@@ -323,6 +324,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails
   devise
+  diffy
   documentation
   doorkeeper
   font-awesome-rails
