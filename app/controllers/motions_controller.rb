@@ -1,7 +1,7 @@
 #entry point for motions resource
 class MotionsController < ApplicationController
   before_action :set_motion, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?
+  before_action :lid?
   before_action :admin_user?, except: [:new, :create]
 
   # GET /motions

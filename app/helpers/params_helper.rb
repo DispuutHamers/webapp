@@ -1,4 +1,5 @@
 module ParamsHelper
+
   def quote_params
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
@@ -68,6 +69,12 @@ module ParamsHelper
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
+    params.require(:user).permit(:name, :email, :batch, :current_password, :password, :password_confirmation, :anonymous)
+  end
+
+  def configure_permitted_parameters
+    #params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:update, keys: [:name, :anonymous, :batch])
   end
 end

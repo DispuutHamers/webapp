@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @quotes = @user.quotes.paginate(page: params[:page])
+    @quotes = @user.quotes.order("created_at DESC").paginate(page: params[:page])
   end
 
   def new
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
   def update
     delete_empty_passwords
     user = User.find(params[:id])
-    update_object(user, user_params) { sign_in current_user }
+    update_object(user, user_params)
   end
 
   def destroy

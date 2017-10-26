@@ -1,8 +1,7 @@
 #entry point for events
 class EventsController < ApplicationController
   require 'icalendar/tzinfo'
-  before_action :logged_in?, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user?, only: :destroy
+  before_action :ilid?
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
 
   # GET /events
@@ -15,12 +14,12 @@ class EventsController < ApplicationController
       end
       current_request.ics do
         apikey = ApiKey.where(key: params[:key]).first
-        if apikey&.user&.lid?
+        if apikey&.user&.lid? || apikey&.user&.alid? || apikey&.user&.olid?
           calendar = generate_calendar(apikey)
           calendar.publish
-          render :text => calendar.to_ical
+          render plain: calendar.to_ical
         else
-          render text: "HTTP Token: Access denied.", status: :access_denied
+          render plain: "HTTP Token: Access denied.", status: :access_denied
         end
       end
     end
@@ -29,6 +28,15 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+    users = User.all
+    @nsusers = []
+    users.each do |u|
+      if u.lid? || u.alid? 
+        if u.signups.where(event_id: @event.id).blank?
+          @nsusers << u
+        end
+      end
+    end
   end
 
   # GET /events/new

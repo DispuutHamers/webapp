@@ -12,7 +12,7 @@ class Api2::BackupsController < Api2::ApiController
       dump = get_dump
       response.headers['Content-Type'] = 'text/plain'
       response.headers['Content-Disposition'] = 'attachment; filename=DATABASE_' + Date.today.to_s + '.bak'
-      render :text => dump
+      render plain: dump
     else
       render json: "Developer Access Level Required!"
     end

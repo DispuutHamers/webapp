@@ -1,14 +1,7 @@
 <% content_for :title do %>
   Trail
 <% end %>
-<script type="text/javascript">
-$(document).ready(function()
-    {
-      $("#motion").tablesorter();
-    }
-    );
-</script>
-<table id="motion" class="tablesorter table table-hover">
+<table id="trail" class="tablesorter table table-hover">
   <thead>
     <tr>
       <th>Wie</th>
@@ -22,19 +15,31 @@ $(document).ready(function()
     <% @trail.each do |t| %>
       <tr>
         <td><% if t.whodunnit %>
-          <%= User.find(t.whodunnit).name %>
+          <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
         <% else %>
           System </td>
       <% end %>
       <% if t.event == "create" %>
-        <td>created <%= t.item_type %></td>
+        <td>created <%= link_to t.item_type, t.item %></td>
       <% elsif t.event == "destroy"%>
-        <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %></td>
+        <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %>
+        <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+          <%= f.submit "Revert" %>
+        <% end %>
+      </td>
       <% else %>
-      <td><%= t.event %>d <%= t.item_type + " #" + t.item_id.to_s %></td>
+      <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %>
+        <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+          <%= f.submit "Revert" %>
+        <% end %>
+      </td>
       <% end %>
       <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
-      <td><%= t.changeset %></td>
+      <td>
+        <% t.changeset.each do |c,v| %>
+          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html)  %><br>
+        <% end %>
+      </td>
       </tr>
     <% end %>
   </tbody>

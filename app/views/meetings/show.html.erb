@@ -13,11 +13,7 @@
     <p>Genotuleerd door: <i><%= link_to User.find(@meeting.user_id).name, User.find(@meeting.user_id) %></i></p>
 <% end %>
 <div class="btn-group">
-  <% if current_user.admin? %>
       <%= link_to 'Wijzig vergadering', edit_meeting_path(@meeting), class: 'btn btn-primary' %>
-  <% end %>
-  <% if current_user.admin? || current_user.schrijf_feut? %>
       <%= link_to 'Wijzig notulen', "/notuleer/#{@meeting.id}", class: 'btn btn-primary' %>
-  <% end %>
   <%= link_to 'Terug', meetings_path, class: 'btn btn-default' %>
 </div>

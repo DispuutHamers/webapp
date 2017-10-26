@@ -1,6 +1,6 @@
 #Responsible for handling calls to '/meetings' 
 class Api2::MeetingsController < Api2::ApiController
-  before_filter :restrict_to_admins, only: [:update, :post]
+  before_action :restrict_to_admins, only: [:update, :post]
   resource_description do
     api_versions "2.0"
     formats ['json']

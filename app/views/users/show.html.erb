@@ -2,25 +2,43 @@
   <aside class="col-md-4">
     <section>
       <h1>
-        <%= gravatar_for @user, size: 96  %>
+        <%= gravatar_for @user, size: 96 %>
         <%= @user.name %>
       </h1>
     </section>
+    <% unless @user.nicknames.blank? %>
+      <section>
+        <%= @user.nickname %>
+      </section>
+    <% end %>
     <section>
       <% Usergroup.all.each do |g| %>
-          <% if @user.in_group?(g) %>
-              <%= g.name %><br/>
-          <% end %>
+        <% if @user.in_group?(g) %>
+          <%= g.name %><br>
+        <% end %>
+      <% end %>
+    </section>
+    <section>
+      Reviews: <%= @user.reviews.count %><br>
+      <% if @user.lid? %>
+        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%
+      <% end %>
+    </section>
+    <section>
+      <% if @user.lid? %>
+        <% @user.missed_drinks.each do |md| %>
+          <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
+        <% end %>
       <% end %>
     </section>
   </aside>
   <div class="col-md-8">
     <% if @user.quotes.any? %>
-        <h3>Quotes: (<%= @user.quotes.count %>)</h3>
-        <ol class="microposts">
-          <%= render @quotes %>
-        </ol>
-        <%= will_paginate @quotes %>
+      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
+      <ol class="microposts">
+        <%= render @quotes %>
+      </ol>
+      <%= will_paginate @quotes %>
     <% end %>
   </div>
 </div>

@@ -1,14 +1,13 @@
 #Entry point for the blog resource
 class BlogitemsController < ApplicationController
-  before_action :logged_in?, only: [:edit, :update, :destroy, :create, :new]
-  before_action :admin_user?, only: [:destroy]
+  before_action :ilid?
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     if current_user&.lid? 
-      @items = Blogitem.all
+      @items = Blogitem.all.reverse
     else
-      @items = Blogitem.where(public: true)
+      @items = Blogitem.where(public: true).reverse
     end
   end
 

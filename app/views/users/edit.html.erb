@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    Wijzig je profiel
+  Wijzig je profiel
 <% end %>
 <div class="row">
   <aside class="col-md-4">
@@ -8,50 +8,56 @@
       <a role="button" class="btn btn-default" href="http://gravatar.com/emails" target="_blank">Wijzig</a>
     </section>
     <% if current_user.admin? %>
-        <section>
-          <%= link_to 'Groepen', usergroups_user_path(@user) %>
-        </section>
+      <section>
+        <%= link_to 'Groepen', usergroups_user_path(@user) %>
+      </section>
     <% end %>
     <section>
       Api keys:<br/>
       <% @user.api_keys.each do |ak| %>
-          <%= ak.name %>
-          : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
-              <i class="fa fa-trash"></i>
-						<% end %><br>
-          Last used:
-          <% if log = ApiLog.where(key: ak.key).last %>
-              <%= log.created_at.strftime('%d-%m-%Y %H:%m') %> by: <%= log.ip_addr %>
-          <% else %>
-              Not yet used
-          <% end %><br>
-      <% end %>
-      <%= form_for(ApiKey.new) do |f| %>
-          <div class="form-group">
-            <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
-            <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
-          </div>
-      <% end %>
+        <%= ak.name %>
+        : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
+        <i class="fa fa-trash"></i>
+      <% end %><br>
+      Last used:
+      <% if log = ApiLog.where(key: ak.key).last %>
+        <%= log.created_at.strftime('%d-%m-%Y %H:%m') %> by: <%= log.ip_addr %>
+      <% else %>
+        Not yet used
+      <% end %><br>
+    <% end %>
+    <%= form_for(ApiKey.new) do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
+        <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
+      </div>
+    <% end %>
     </section>
   </aside>
   <div class="col-md-6">
     <%= form_for(@user) do |f| %>
-        <div class="form-group">
-          <%= render 'shared/error_messages', object: f.object %>
-          <%= f.label :name, "Naam" %>
-          <%= f.text_field :name, class: "form-control" %>
-          <%= f.label :email, "Email" %>
-          <%= f.text_field :email, class: "form-control" %>
-          <%= f.label :batch, "Lichting" %>
-          <%= f.number_field :batch, class: "form-control" %>
-          <%= f.label :password, "Wachtwoord" %>
-          <%= f.password_field :password, class: "form-control" %>
-          <%= f.label :password_confirmation, "Herhaal wachtwoord" %>
-          <%= f.password_field :password_confirmation, class: "form-control" %>
-          <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
-          <%= f.check_box :anonymous, class: "form-control" %>
-          <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
-        </div>
-    <% end %>
+      <div class="form-group">
+        <%= render 'shared/error_messages', object: f.object %>
+        <%= f.label :name, "Naam" %>
+        <%= f.text_field :name, class: "form-control" %>
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email, class: "form-control" %>
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "off" %>
+      </div>
+      <%= f.label :batch, "Lichting" %>
+      <%= f.number_field :batch, class: "form-control" %>
+      <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
+      <%= f.check_box :anonymous, class: "form-control" %>
+      <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
   </div>
+<% end %>
 </div>

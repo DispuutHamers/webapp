@@ -56,6 +56,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "hamers_#{Rails.env}"
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'zondersikkel.nl' }
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :port           => 587,

@@ -1,7 +1,6 @@
 #Entry point for the news resource
 class NewsController < ApplicationController
-  before_action :logged_in?
-  before_action :admin_user?, only: [:edit, :update, :destroy,]
+  before_action :ilid?
   before_action :set_news, only: [:show, :edit, :update, :destroy]
 
   # GET /news

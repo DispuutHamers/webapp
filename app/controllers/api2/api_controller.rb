@@ -29,9 +29,9 @@ class Api2::ApiController < ApplicationController
     user = @key.user
     device.assign_attributes(user_id: user.id, device_key: params[:device])
     if device.save
-      render :status => :created, :text => '{"status":"201","message":"Created"}'
+      render :status => :created, :plain => '{"status":"201","message":"Created"}'
     else
-      render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
+      render :status => :bad_request, :plain => '{"status":"400","error":"Bad request"}'
     end
   end
 
@@ -40,7 +40,7 @@ class Api2::ApiController < ApplicationController
     authenticate_or_request_with_http_token do |token, options|
       @key = ApiKey.where(key: token).first
       user = @key&.user
-      admin ? user&.admin? : user&.lid?
+      admin ? user&.admin? : (user&.lid? || user&.olid? || user&.alid?)
     end
   end
 
