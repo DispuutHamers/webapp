@@ -6,7 +6,6 @@ class QuotesController < ApplicationController
   end
 
   def create
-    # TODO: create error message if micropost_params[:text] is nil/false
     quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
     quote.reporter = current_user.id
     save_object(quote, push=true)

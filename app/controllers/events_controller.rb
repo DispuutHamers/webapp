@@ -41,7 +41,6 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    # TODO: validation that title exists
     @event = Event.new
   end
 

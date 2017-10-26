@@ -32,7 +32,6 @@ class BlogitemsController < ApplicationController
   end
 
   def new
-    # TODO: validation that title exists
     @item = Blogitem.new
     @item.save
     @photo = Blogphoto.new
