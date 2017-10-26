@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
   end
 
   def revert
-    redirect_to root_path unless current_user&.admin?
+    redirect_to root_path unless current_user&.lid? || current_user&.olid?
     m = params[:model].constantize.unscoped.find(params[:id])
     m = m.paper_trail.previous_version
     m.save
