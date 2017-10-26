@@ -51,6 +51,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
+    # TODO: validation that title exists
     event = Event.new(event_params)
     event.user_id = current_user.id
     save_object(event, push=true)

@@ -26,9 +26,12 @@
     </section>
     <section>
       <% if @user.lid? %>
-        <% @user.missed_drinks.each do |md| %>
-          <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
-        <% end %>
+	<% unless @user.missed_drinks.empty? %>
+	  <b>Gemiste Zondagborrels</b><br>
+	  <% @user.missed_drinks.each do |md| %>
+	    <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
+	  <% end %>
+	<% end %>
       <% end %>
     </section>
   </aside>
