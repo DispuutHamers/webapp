@@ -4,7 +4,7 @@ class BlogitemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_user&.lid? 
+    if current_user&.lid? || current_user&.olid? || current_user&.alid?
       @items = Blogitem.all.reverse
     else
       @items = Blogitem.where(public: true).reverse
