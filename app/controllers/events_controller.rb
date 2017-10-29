@@ -1,7 +1,7 @@
 #entry point for events
 class EventsController < ApplicationController
   require 'icalendar/tzinfo'
-  before_action :ilid?
+  before_action :ilid?, except: [:index]
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
 
   # GET /events
@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   def index
     respond_to do |current_request|
       current_request.html do
-        redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
+        ilid?
         @events = Event.all.order(date: :desc).paginate(page: params[:page])
       end
       current_request.ics do
