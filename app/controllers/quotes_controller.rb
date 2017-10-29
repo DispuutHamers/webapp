@@ -18,7 +18,7 @@ class QuotesController < ApplicationController
 
   def update
     quote = Quote.find(params[:id])
-    update_by_owner_or_admin(quote, quote_params)
+    update_object(quote, quote_params)
   end
 
   def destroy
