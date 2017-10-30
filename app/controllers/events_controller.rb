@@ -71,7 +71,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    update_by_owner_or_admin(@event, event_params)
+    update_object(@event, event_params)
   end
 
   # DELETE /events/1
