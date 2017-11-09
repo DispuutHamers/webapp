@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   before_action :set_cache_buster
   before_action :set_paper_trail_whodunnit
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action do
+    if current_user&.dev?
+      Rack::MiniProfiler.authorize_request
+    end
+  end
 
   include UtilHelper
   include ParamsHelper
