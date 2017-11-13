@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'rails-controller-testing'
+gem 'bullet' 
 gem 'diffy'
 gem 'rack-mini-profiler'
 gem 'memory_profiler'

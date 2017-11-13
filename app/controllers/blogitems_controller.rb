@@ -4,7 +4,7 @@ class BlogitemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
-    if current_user&.lid? || current_user&.olid? || current_user&.alid?
+    if current_user&.active?
       @items = Blogitem.all.reverse
     else
       @items = Blogitem.where(public: true).reverse
@@ -12,7 +12,7 @@ class BlogitemsController < ApplicationController
   end
 
   def show
-    if !@item.public && !current_user&.lid?
+    if !@item.public && !current_user&.active?
       redirect_to blogitems_path 
     end
   end
@@ -49,7 +49,7 @@ class BlogitemsController < ApplicationController
   end
 
   def update
-    update_by_owner_or_admin(@item, blog_params)
+    update_object(@item, blog_params)
   end
 
   def destroy
