@@ -65,7 +65,7 @@ class Api2::EventsController < Api2::ApiController
     date = Date.current
     case future
     when "true"
-      Event.include(:signups).where(date: date..(date+15.years)) # Works with ranges for future scopes
+      Event.where(date: date..(date+15.years)) # Works with ranges for future scopes
     else
       Event.all
     end
