@@ -14,7 +14,7 @@ class EventsController < ApplicationController
       end
       current_request.ics do
         apikey = ApiKey.where(key: params[:key]).first
-        if apikey&.user&.lid? || apikey&.user&.alid? || apikey&.user&.olid?
+        if apikey&.user&.active?
           calendar = generate_calendar(apikey)
           calendar.publish
           render plain: calendar.to_ical

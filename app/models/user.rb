@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   attr_accessor :current_password
   has_many :groups, foreign_key: 'user_id', dependent: :destroy
-  has_many :usergroups, through: :groups
+  has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
   has_many :devices
   has_many :api_keys
@@ -27,6 +27,12 @@ class User < ActiveRecord::Base
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+
+#  default_scope { includes(:usergroups) }
+  #
+  def schrijf_feut? 
+    false
+  end
 
   def active_for_authentication?
     super && self.active? 
@@ -108,12 +114,6 @@ class User < ActiveRecord::Base
     ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
   end
 
-  def in_group?(group)
-    if group
-      groups.find_by(group_id: group.id)
-    end
-  end
-
   def join_group!(group)
     id = group.id
     unless groups.only_deleted.where(group_id: id).empty?
@@ -136,15 +136,24 @@ class User < ActiveRecord::Base
   end
 
   def lid?
-    in_group?(Usergroup.find_by(name: 'lid'))
+    self.usergroups.each do |g|
+      return true if g.name == "Lid"
+    end
+    return false
   end
 
   def alid?
-    in_group?(Usergroup.find_by(name: 'A-Lid'))
+    self.usergroups.each do |g|
+      return true if g.name == "A-Lid"
+    end
+    return false
   end
 
   def olid?
-    in_group?(Usergroup.find_by(name: 'O-Lid'))
+    self.usergroups.each do |g|
+      return true if g.name == "O-Lid"
+    end
+    return false
   end
 
   def active? 
@@ -152,15 +161,24 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev? || schrijf_feut?
+    self.usergroups.each do |g|
+      return true if g.name == "Triumviraat" || g.name == "Developer"
+    end
+    return false
   end
 
   def dev?
-    in_group?(Usergroup.find_by(name: 'Developer'))
+    self.usergroups.each do |g|
+      return true if g.name == "Developer"
+    end
+    return false
   end
 
   def brouwer? 
-    in_group?(Usergroup.find_by(name: "Brouwer"))
+    self.usergroups.each do |g|
+      return true if g.name == "Brouwer" || g.name == "Developer"
+    end
+    return false
   end
 
   def update_weight
@@ -172,10 +190,6 @@ class User < ActiveRecord::Base
 
     self.weight = (cijfer / reviews.count) unless reviews.empty?
     save
-  end
-
-  def schrijf_feut?
-    in_group?(Usergroup.find_by(name: 'Secretaris-generaal'))
   end
 
   def as_json(options)
