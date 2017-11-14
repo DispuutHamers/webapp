@@ -9,17 +9,21 @@
   <div class="col-md-6">
     <div class="pagination">
       <div class="pagination">
-    <%= form_for 'search', class: "form-horizontal", url: beer_search_path do |f| %>
-      <div class="input-group" id="adv-search">
-        <%= f.text_field :terms, class: 'form-control', placeholder: 'Vind hier, je bier' %>
-        <div class="input-group-btn">
-          <div class="btn-group" role="group">
-            <%= f.submit "Zoek", class: "btn btn-primary" %>
+        <%= form_for 'search', class: "form-horizontal", url: beer_search_path do |f| %>
+          <div class="input-group" id="adv-search">
+            <% if @sp %>
+              <%= f.text_field :terms, class: 'form-control', value: @sp %>
+            <% else %>
+              <%= f.text_field :terms, class: 'form-control', placeholder: 'Vind hier, je bier' %>
+            <% end %>
+            <div class="input-group-btn">
+              <div class="btn-group" role="group">
+                <%= f.submit "Zoek", class: "btn btn-primary" %>
+              </div>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
-    <% end %>
-    </div>
     </div>
   </div>
 </div>

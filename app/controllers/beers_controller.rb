@@ -11,7 +11,8 @@ class BeersController < ApplicationController
 
   def search
     if params["search"]
-      @beers = BeerFilter.new.filter(Beer.all, params[:search][:terms]).paginate(page: params[:page], per_page: 500)
+      @sp = params[:search][:terms]
+      @beers = BeerFilter.new.filter(Beer.all, @sp).paginate(page: params[:page], per_page: 500)
     else
       @beers = Beer.all.paginate(page: params[:page])
     end
