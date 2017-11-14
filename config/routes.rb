@@ -13,6 +13,7 @@ Hamers::Application.routes.draw do
   get '/trail' => 'static_pages#trail' , as: 'device'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
+  get '/beers/search' => 'beers#search'
   post '/beers/search' => 'beers#search', as: 'beer_search'
 
   match '/webconsole', to: 'static_pages#console', via: 'get'
