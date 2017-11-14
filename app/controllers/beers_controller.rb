@@ -6,7 +6,17 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all
+    @beers = Beer.all.paginate(page: params[:page])
+  end
+
+  def search
+    if params["search"]
+      @beers = BeerFilter.new.filter(Beer.all, params[:search][:terms]).paginate(page: params[:page])
+    else
+      @beers = Beer.all.pagiante(page: params[:page])
+    end
+
+    render 'beers/index'
   end
 
   # GET /beers/1

@@ -2,6 +2,29 @@
   Bieren
 <% end %>
 
+<div class="row">
+  <div class="col-md-6">
+    <%= will_paginate %>
+  </div>
+  <div class="col-md-6">
+    <div class="pagination">
+      <div class="pagination">
+    <%= form_for 'search', class: "form-horizontal", url: beer_search_path do |f| %>
+      <div class="input-group" id="adv-search">
+        <%= f.text_field :terms, class: 'form-control', placeholder: 'Vind hier, je bier' %>
+        <div class="input-group-btn">
+          <div class="btn-group" role="group">
+            <%= f.submit "Zoek", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+
+
 <table id="bier" class="tablesorter table table-hover">
   <thead>
     <tr>
@@ -36,10 +59,10 @@
               <td><%= beer.country %></td>
               <td><%= beer.reviews.count %></td>
               <% if current_user %>
-              <td>
-                <%= link_to 'Verwijder', beer, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
-              </td>
-            <% end %>
+                <td>
+                  <%= link_to 'Verwijder', beer, class: 'btn btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
+                </td>
+              <% end %>
                 </tr>
               <% end %>
   </tbody>

@@ -110,6 +110,8 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     doorkeeper (4.2.6)
       railties (>= 4.2)
+    edge_rider (0.3.2)
+      activerecord
     erubi (1.7.0)
     execjs (2.7.0)
     faraday (0.13.1)
@@ -162,6 +164,10 @@ GEM
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
     mini_portile2 (2.3.0)
+    minidusen (0.8.1)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      edge_rider (>= 0.2.5)
     minitest (5.10.3)
     multi_json (1.12.2)
     multipart-post (2.0.0)
@@ -346,6 +352,7 @@ DEPENDENCIES
   jquery-rails
   letsencrypt_plugin
   memory_profiler
+  minidusen
   mysql2
   net-http-persistent
   nprogress-rails
