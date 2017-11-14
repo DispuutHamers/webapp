@@ -6,6 +6,7 @@ class Quote < ActiveRecord::Base
   validates :text, presence: true
   #validates :reporter, presence:true
   acts_as_paranoid
+  serialize :text
 
   def self.default_scope
     where('deleted_at IS NULL')
