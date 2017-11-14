@@ -12,10 +12,8 @@
       </section>
     <% end %>
     <section>
-      <% Usergroup.all.each do |g| %>
-        <% if @user.in_group?(g) %>
-          <%= g.name %><br>
-        <% end %>
+      <% @user.usergroups do |g| %>
+        <%= g.name %><br>
       <% end %>
     </section>
     <section>
@@ -26,12 +24,12 @@
     </section>
     <section>
       <% if @user.lid? %>
-	<% unless @user.missed_drinks.empty? %>
-	  <b>Gemiste Zondagborrels</b><br>
-	  <% @user.missed_drinks.each do |md| %>
-	    <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
-	  <% end %>
-	<% end %>
+        <% unless @user.missed_drinks.empty? %>
+          <b>Gemiste Zondagborrels</b><br>
+          <% @user.missed_drinks.each do |md| %>
+            <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
+          <% end %>
+        <% end %>
       <% end %>
     </section>
   </aside>
