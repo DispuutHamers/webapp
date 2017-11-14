@@ -12,7 +12,7 @@
       </section>
     <% end %>
     <section>
-      <% @user.usergroups do |g| %>
+      <% @user.usergroups.each do |g| %>
         <%= g.name %><br>
       <% end %>
     </section>
