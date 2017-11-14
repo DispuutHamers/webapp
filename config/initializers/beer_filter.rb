@@ -20,4 +20,9 @@ class BeerFilter
     columns = [:name]
     scope.where_like(columns => phrases)
   end
+
+  filter :soort do |scope, phrases|
+    columns = [:soort]
+    scope.where_like(columns => phrases)
+  end
 end
