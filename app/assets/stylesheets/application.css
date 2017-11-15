@@ -13,6 +13,7 @@
  = require_tree .
  *= require font-awesome
  *= require rails_bootstrap_forms
+ *= require trix
  */
 
 #map {

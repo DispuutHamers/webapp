@@ -21,7 +21,7 @@
       <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
       <%= f.label :deadline, 'Inschrijf deadline' %><br>
       <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
-      <%= f.text_area :beschrijving, class: 'form-control', placeholder: 'Wat gaan we doen?' %>
+      <%= f.trix_editor :beschrijving, class: 'form-control', placeholder: 'Wat gaan we doen?' %>
     </div>
     <%= f.submit :Verstuur, class: 'btn btn-primary' %>
 <% end %>
