@@ -20,6 +20,10 @@
   height: 100%;
 }
 
+.trix-content {
+  overflow: auto;
+}
+
 .input-group-btn .btn-group {
   display: flex !important;
 }
