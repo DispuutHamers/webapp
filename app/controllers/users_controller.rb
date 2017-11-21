@@ -2,7 +2,7 @@
 class UsersController < ApplicationController
   before_action :logged_in?, except: [:new, :create, :index_public]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user?, only: [:destroy, :usergroups]
+  before_action :admin_user?, only: [:index_extern, :destroy, :usergroups]
 
   def index
     @leden = User.leden
@@ -12,6 +12,10 @@ class UsersController < ApplicationController
 
   def index_public
     @users = User.leden.order(batch: :desc).group_by {|user| user[:batch]}
+  end
+
+  def index_extern
+    @users = User.all - User.leden - User.aspiranten - User.oud
   end
 
   def show

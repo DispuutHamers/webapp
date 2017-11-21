@@ -50,6 +50,7 @@ Hamers::Application.routes.draw do
       get :usergroups
     end
   end
+  match '/external_accounts', to: 'users#index_extern', via: 'get', as: 'external_accounts'
 
   get 'leden', to: "users#index_public", as: "public_leden"
 

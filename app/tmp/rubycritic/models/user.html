@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="../assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="../overview.html"><img src="../assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="../overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Updated <time class='js-timeago' datetime='2017-11-21 21:01:00 +0100'>2017-11-21 21:01:00 +0100</time>
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>models /</small> user.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating c big">
+              C
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">217</span><small> lines of codes</small></div>
+              <div><span class="metric">27</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">5.9</span><small> complexity/method</small></div>
+              <div><span class="metric">84</span><small> loc/method</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">158.2</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                11
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code">#The user model
+class User &lt; ActiveRecord::Base<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'anonymize!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'join_group!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'remove_group!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Prima-Donna-Method.md" target="_blank"><b>PrimaDonnaMethod</b></a>        </span>      </div>      <span>User has prima donna method 'sign!'</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Methods.md" target="_blank"><b>TooManyMethods</b></a>        </span>      </div>      <span>User has at least 25 methods</span>          </div>  </li></ol>
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+    :recoverable, :rememberable, :trackable, :validatable,
+    :lockable
+  has_paper_trail :ignore =&gt; [:encrypted_password, :reset_password_token, :reset_password_sent_at,
+                              :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
+                              :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
+                              :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
+  acts_as_paranoid :ignore =&gt; [:weight]
+  before_save { self.email = email.downcase }
+  has_many :groups, foreign_key: &#39;user_id&#39;, dependent: :destroy
+  has_many :usergroups, through: :groups, foreign_key: &#39;group_id&#39;
+  has_many :quotes
+  has_many :devices
+  has_many :api_keys
+  has_many :reviews, :dependent =&gt; :destroy
+  has_many :motions
+  has_many :events
+  has_many :beers, through: :reviews
+  has_many :api_logs
+  has_many :signups, dependent: :destroy
+  has_many :nicknames, dependent: :destroy
+  validates :name, presence: true, length: {maximum: 50}, uniqueness: true
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+
+  #  default_scope { includes(:usergroups) }
+  #
+  scope :leden, -&gt; { joins(:groups).where(groups: { group_id: 4 } ) }
+  scope :aspiranten, -&gt; { joins(:groups).where(groups: { group_id: 5 } ) }
+  scope :oud, -&gt; { joins(:groups).where(groups: { group_id: 12 } ) }
+
+  def schrijf_feut?
+    false
+  end
+
+  def anonymize!
+    self.devices.destroy_all
+    self.name = Faker::Name.name
+    self.email = Faker::Internet.email(name) unless self.dev?
+    self.save
+  end
+
+  def active_for_authentication?
+    super &amp;&amp; self.active?
+  end
+
+  def inactive_message
+    &quot;Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.&quot;
+  end
+
+  def sunday_ratio<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="http://docs.seattlerb.org/flog/" target="_blank"><b>HighComplexity</b></a>        </span>      </div>      <span>User#sunday_ratio has a flog score of 25</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>User#sunday_ratio has approx 8 statements</span>          </div>  </li></ol>
+    date = groups.where(group_id: 4).first.created_at
+    drinks = Event.where(attendance: true).where(&quot;created_at &gt; ?&quot;, date).where(&quot;deadline &lt; ?&quot;, Date.today)
+    total = 0.0
+    sundays = 0.0
+    drinks.each do |drink|
+      total = total + 1.0
+      if !drink.signups.where(user_id: id).blank?
+        sundays = sundays + 1.0
+      end
+    end
+    (sundays / total) * 100
+  end
+
+  def missed_drinks<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>User#missed_drinks has approx 6 statements</span>          </div>  </li></ol>
+    date = groups.where(group_id: 4).first.created_at
+    drinks = Event.where(attendance: true).where(&quot;created_at &gt; ?&quot;, date)
+    unattended = []
+    drinks.each do |drink|
+      if drink.signups.where(user_id: id).blank?
+        unattended &lt;&lt; drink
+      end
+    end
+
+    unattended
+  end
+
+  def name_with_nickname
+    name
+  end
+
+  def nickname
+    nickname = &#39;&#39;
+    nicknames.order(&#39;created_at DESC&#39;).each do |nick|
+      nickname = nick.nickname + &#39; &#39; + nickname
+    end
+
+    nickname
+  end
+
+  def unreviewed_beers
+    urev_beers = Beer.all
+    beers.each do |beer|
+      urev_beers = urev_beers - [beer]
+    end
+
+    urev_beers
+  end
+
+  def sign!(event, status, reason)
+    if event.deadline &gt; Time.now
+      id = event.id
+      stemmen = signups.where(event_id: id)
+      if stemmen.any?
+        stemmen.last.update_attributes(status: status, reason: reason)
+      else
+        self.signups.create!(event_id: id, status: status, reason: reason)
+      end
+    end
+  end
+
+  def User.new_remember_token
+    SecureRandom.urlsafe_base64
+  end
+
+  def generate_api_key(name)
+    ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
+  end
+
+  def join_group!(group)
+    id = group.id
+    unless groups.only_deleted.where(group_id: id).empty?
+      groups.with_deleted.where(group_id: id).first.restore
+    else
+      groups.create!(group_id: id)
+    end
+  end
+
+  def remove_group!(group)
+    groups.find_by(group_id: group.id).destroy!
+  end
+
+  def User.hash(token = nil)
+    if token
+      Digest::SHA1.hexdigest(token.to_s)
+    else
+      super()
+    end
+  end
+
+  def in_group?(name)
+    self.usergroups.each do |group|
+      return true if group.name == name.to_s
+    end
+
+    return false
+  end
+
+  def lid?
+    in_group?(&quot;Lid&quot;)
+  end
+
+  def alid?
+    in_group?(&quot;A-Lid&quot;)
+  end
+
+  def olid?
+    in_group?(&quot;O-Lid&quot;)
+  end
+
+  def active?
+    lid? or olid? or alid?
+  end
+
+  def admin?
+    in_group?(&quot;Triumviraat&quot;) || in_group?(&quot;Developer&quot;)
+  end
+
+  def dev?
+    in_group?(&quot;Developer&quot;)
+  end
+
+  def brouwer?
+    in_group?(&quot;Brouwer&quot;)
+  end
+
+  def update_weight<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>User#update_weight has approx 6 statements</span>          </div>  </li></ol>
+    cijfer = 0.0
+    reviews = Review.where(user_id: self.id)
+    reviews.each do |review|
+      cijfer += review.rating
+    end
+
+    self.weight = (cijfer / reviews.count) unless reviews.empty?
+    save
+  end
+
+  def lidstring
+    return &quot;lid&quot; if lid?
+    return &quot;alid&quot; if alid?
+    return &quot;olid&quot; if olid?
+    return &quot;none&quot;
+  end
+
+  def as_json(options)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>User#as_json has approx 9 statements</span>          </div>  </li></ol>
+    h = super({ :only =&gt;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank"><b>UncommunicativeVariableName</b></a>        </span>      </div>      <span>User#as_json has the variable name 'h'</span>          </div>  </li></ol>
+                [:id, :name, :email, :created_at, :batch] }.merge(options))
+    h[:reviews] = reviews.count
+    h[:quotes] = quotes.count
+    h[:sunday_ratio] = self.sunday_ratio
+    h[:nicknames] = nicknames
+    h[:lid] = self.lidstring
+    admin? ? h[:admin] = true : h[:admin] = false
+
+    h
+  end
+
+  private
+
+  def create_remember_token
+    self.remember_token = User.hash(User.new_remember_token)
+  end
+end
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src='../assets/javascripts/jquery.min.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='../assets/javascripts/jquery.timeago.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/prettify.js'></script>
+    <script src='../assets/javascripts/bootstrap.min.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+    <script src='../assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>

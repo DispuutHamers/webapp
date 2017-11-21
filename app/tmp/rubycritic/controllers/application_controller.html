@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="../assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="../overview.html"><img src="../assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="../overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Updated <time class='js-timeago' datetime='2017-11-21 20:27:56 +0100'>2017-11-21 20:27:56 +0100</time>
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>controllers /</small> application_controller.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating a big">
+              A
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">61</span><small> lines of codes</small></div>
+              <div><span class="metric">7</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">5.2</span><small> complexity/method</small></div>
+              <div><span class="metric">32</span><small> loc/method</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">36.35</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                7
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code">#entry point for the application parent class for all controllers
+class ApplicationController &lt; ActionController::Base
+  protect_from_forgery with: :exception
+  before_action :set_cache_buster
+  before_action :set_paper_trail_whodunnit
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action do
+    if current_user&amp;.dev?
+      Rack::MiniProfiler.authorize_request
+    end
+  end
+
+  include UtilHelper
+  include ParamsHelper
+  include ApplicationHelper
+
+  def devise_mapping
+    @devise_mapping ||= request.env[&quot;devise.mapping&quot;]
+  end
+
+  def resource_name
+    devise_mapping.name
+  end
+
+  def resource_class
+    devise_mapping.to
+  end
+
+  def set_cache_buster
+    response.headers[&#39;Cache-Control&#39;] = &#39;no-cache, no-store, max-age=0, must-revalidate&#39;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ApplicationController#set_cache_buster calls 'response.headers' 3 times</span>              <span>Locations:</span>                  <a href="application_controller.html#L30" class="js-smell-location">0</a>                  <a href="application_controller.html#L31" class="js-smell-location">1</a>                  <a href="application_controller.html#L32" class="js-smell-location">2</a>                  </div>  </li></ol>
+    response.headers[&#39;Pragma&#39;] = &#39;no-cache&#39;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ApplicationController#set_cache_buster calls 'response.headers' 3 times</span>              <span>Locations:</span>                  <a href="application_controller.html#L30" class="js-smell-location">0</a>                  <a href="application_controller.html#L31" class="js-smell-location">1</a>                  <a href="application_controller.html#L32" class="js-smell-location">2</a>                  </div>  </li></ol>
+    response.headers[&#39;Expires&#39;] = &#39;Fri, 01 Jan 1990 00:00:00 GMT&#39;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>ApplicationController#set_cache_buster calls 'response.headers' 3 times</span>              <span>Locations:</span>                  <a href="application_controller.html#L30" class="js-smell-location">0</a>                  <a href="application_controller.html#L31" class="js-smell-location">1</a>                  <a href="application_controller.html#L32" class="js-smell-location">2</a>                  </div>  </li></ol>
+  end
+
+  def update_app(obj, action)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>ApplicationController#update_app has approx 10 statements</span>          </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>ApplicationController#update_app doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+    keys = []
+    Device.all.each do |d|<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank"><b>UncommunicativeVariableName</b></a>        </span>      </div>      <span>ApplicationController#update_app has the variable name 'd'</span>          </div>  </li></ol>
+      keys &lt;&lt; d.device_key
+    end
+
+    n = Rpush::Gcm::Notification.new<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Uncommunicative-Variable-Name.md" target="_blank"><b>UncommunicativeVariableName</b></a>        </span>      </div>      <span>ApplicationController#update_app has the variable name 'n'</span>          </div>  </li></ol>
+    n.app = Rpush::Gcm::App.find_by_name(&quot;android_app&quot;)
+    n.registration_ids = keys
+    n.priority = &#39;high&#39;        # Optional, can be either &#39;normal&#39; or &#39;high&#39;
+    n.content_available = true # Optional
+    n.data = { object: obj.to_json,
+               type: obj.class.name,
+               action: action
+    }
+    n.save!
+  end
+
+  def logged_in?
+    redirect_to signin_url, notice: &#39;Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.&#39; unless current_user&amp;.active? <ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ApplicationController#logged_in? performs a nil-check</span>          </div>  </li></ol>
+  end
+
+  def admin_user?
+    logged_in?
+    redirect_to root_url, notice: &#39;Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.&#39; unless current_user&amp;.admin?<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>ApplicationController#admin_user? performs a nil-check</span>          </div>  </li></ol>
+  end
+end
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src='../assets/javascripts/jquery.min.js'></script>
+    <script src='../assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='../assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='../assets/javascripts/jquery.timeago.js'></script>
+    <script src='../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../assets/javascripts/prettify.js'></script>
+    <script src='../assets/javascripts/bootstrap.min.js'></script>
+    <script src='../assets/javascripts/application.js'></script>
+    <script src='../assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>
