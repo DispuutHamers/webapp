@@ -13,16 +13,16 @@ class StaticPagesController < ApplicationController
   end
 
   def console
-    redirect_to root_path unless current_user && current_user.admin?
+    redirect_to root_path unless current_user&.dev?
   end
 
   def trail
-    redirect_to root_path unless current_user&.lid? || current_user&.olid?
+    redirect_to root_path unless current_user&.active?
     @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
   end
 
   def revert
-    redirect_to root_path unless current_user&.lid? || current_user&.olid?
+    redirect_to root_path unless current_user&.active?
     m = params[:model].constantize.unscoped.find(params[:id])
     m = m.paper_trail.previous_version
     m.save
@@ -34,7 +34,7 @@ class StaticPagesController < ApplicationController
   end
 
   def statistics
-    redirect_to root_path unless signed_in?
+    redirect_to root_path unless current_user&.active?
     @cumulativeReviewData = getCumulativeData Review
     @cumulativeBeerData = getCumulativeData Beer
     @cumulativeQuoteData = getCumulativeData Quote

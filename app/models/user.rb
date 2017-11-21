@@ -3,12 +3,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, 
-         :lockable
+    :recoverable, :rememberable, :trackable, :validatable,
+    :lockable
   has_paper_trail :ignore => [:encrypted_password, :reset_password_token, :reset_password_sent_at,
-        :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
-        :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
-        :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
+                              :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
+                              :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
+                              :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
   acts_as_paranoid :ignore => [:weight]
   before_save { self.email = email.downcase }
   attr_accessor :current_password
@@ -28,24 +28,32 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
-#  default_scope { includes(:usergroups) }
+  #  default_scope { includes(:usergroups) }
   #
-  def schrijf_feut? 
+  def schrijf_feut?
     false
   end
 
+  def anonymize!
+    self.devices.destroy_all
+    self.name = Faker::Name.name
+    self.email = Faker::Internet.email(name) unless self.dev?
+    self.save
+  end
+
   def active_for_authentication?
-    super && self.active? 
+    super && self.active?
   end
 
   def inactive_message
     "Sorry, this account has been deactivated."
   end
 
-  def sunday_ratio 
-    unless lid? 
+  def sunday_ratio
+    unless lid?
       return "-"
     end
+
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
     t = 0.0
@@ -56,13 +64,15 @@ class User < ActiveRecord::Base
         s = s + 1.0
       end
     end
+
     (s / t) * 100
   end
 
   def missed_drinks
-    unless lid? 
+    unless lid?
       return "-"
     end
+
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     r = []
@@ -71,6 +81,7 @@ class User < ActiveRecord::Base
         r << d
       end
     end
+
     r
   end
 
@@ -83,6 +94,7 @@ class User < ActiveRecord::Base
     nicknames.order('created_at DESC').each do |nick|
       nickname = nick.nickname + ' ' + nickname
     end
+
     nickname
   end
 
@@ -91,6 +103,7 @@ class User < ActiveRecord::Base
     beers.each do |beer|
       urev_beers = urev_beers - [beer]
     end
+
     urev_beers
   end
 
@@ -139,6 +152,7 @@ class User < ActiveRecord::Base
     self.usergroups.each do |g|
       return true if g.name == "Lid"
     end
+
     return false
   end
 
@@ -146,6 +160,7 @@ class User < ActiveRecord::Base
     self.usergroups.each do |g|
       return true if g.name == "A-Lid"
     end
+
     return false
   end
 
@@ -153,17 +168,19 @@ class User < ActiveRecord::Base
     self.usergroups.each do |g|
       return true if g.name == "O-Lid"
     end
+
     return false
   end
 
-  def active? 
-    lid? or olid? or alid? 
+  def active?
+    lid? or olid? or alid?
   end
 
   def admin?
     self.usergroups.each do |g|
       return true if g.name == "Triumviraat" || g.name == "Developer"
     end
+
     return false
   end
 
@@ -171,13 +188,15 @@ class User < ActiveRecord::Base
     self.usergroups.each do |g|
       return true if g.name == "Developer"
     end
+
     return false
   end
 
-  def brouwer? 
+  def brouwer?
     self.usergroups.each do |g|
       return true if g.name == "Brouwer" || g.name == "Developer"
     end
+
     return false
   end
 
@@ -194,7 +213,7 @@ class User < ActiveRecord::Base
 
   def as_json(options)
     h = super({ :only =>
-               [:id, :name, :email, :created_at, :batch] }.merge(options))
+                [:id, :name, :email, :created_at, :batch] }.merge(options))
     h[:reviews] = reviews.count
     h[:quotes] = quotes.count
     h[:sunday_ratio] = self.sunday_ratio

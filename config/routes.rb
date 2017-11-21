@@ -60,6 +60,7 @@ Hamers::Application.routes.draw do
 
   match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
   match '/dbdump', to: 'dbdump#show', via: 'get'
+  match '/anonymize', to: 'dbdump#anonymize', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
   match '/register',  to: 'users#new',            via: 'get'
   match '/stats', to: 'static_pages#statistics', via: 'get'
