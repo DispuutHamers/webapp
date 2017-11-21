@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def ilid?
-    redirect_to root_path unless current_user&.lid? || current_user&.alid? || current_user&.olid? 
+    redirect_to root_path unless current_user&.active? 
   end
 
 end

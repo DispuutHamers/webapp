@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
                               :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
   acts_as_paranoid :ignore => [:weight]
   before_save { self.email = email.downcase }
-  attr_accessor :current_password
   has_many :groups, foreign_key: 'user_id', dependent: :destroy
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
@@ -30,6 +29,8 @@ class User < ActiveRecord::Base
 
   #  default_scope { includes(:usergroups) }
   #
+  scope :leden, -> { joins(:groups).where(groups: { group_id: 4 } ) }
+
   def schrijf_feut?
     false
   end
@@ -46,43 +47,37 @@ class User < ActiveRecord::Base
   end
 
   def inactive_message
-    "Sorry, this account has been deactivated."
+    "Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen."
   end
 
   def sunday_ratio
-    unless lid?
-      return "-"
-    end
-
+    return "-" unless lid?
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
-    t = 0.0
-    s = 0.0
-    drinks.each do |d|
-      t = t + 1.0
-      if !d.signups.where(user_id: id).blank?
-        s = s + 1.0
+    total = 0.0
+    sundays = 0.0
+    drinks.each do |drink|
+      total = total + 1.0
+      if !drink.signups.where(user_id: id).blank?
+        sundays = sundays + 1.0
       end
     end
 
-    (s / t) * 100
+    (sundays / total) * 100
   end
 
   def missed_drinks
-    unless lid?
-      return "-"
-    end
-
+    return "-" unless lid?
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
-    r = []
-    drinks.each do |d|
-      if d.signups.where(user_id: id).blank?
-        r << d
+    unattended = []
+    drinks.each do |drink|
+      if drink.signups.where(user_id: id).blank?
+        unattended << drink
       end
     end
 
-    r
+    unattended
   end
 
   def name_with_nickname
@@ -148,28 +143,24 @@ class User < ActiveRecord::Base
     end
   end
 
-  def lid?
-    self.usergroups.each do |g|
-      return true if g.name == "Lid"
+  def in_group?(name)
+    self.usergroups.each do |group|
+      return true if group.name == name.to_s
     end
 
     return false
+  end
+
+  def lid?
+    in_group?("Lid")
   end
 
   def alid?
-    self.usergroups.each do |g|
-      return true if g.name == "A-Lid"
-    end
-
-    return false
+    in_group?("A-Lid")
   end
 
   def olid?
-    self.usergroups.each do |g|
-      return true if g.name == "O-Lid"
-    end
-
-    return false
+    in_group?("O-Lid")
   end
 
   def active?
@@ -177,27 +168,15 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.usergroups.each do |g|
-      return true if g.name == "Triumviraat" || g.name == "Developer"
-    end
-
-    return false
+    in_group?("Triumviraat") || in_group?("Developer")
   end
 
   def dev?
-    self.usergroups.each do |g|
-      return true if g.name == "Developer"
-    end
-
-    return false
+    in_group?("Developer")
   end
 
   def brouwer?
-    self.usergroups.each do |g|
-      return true if g.name == "Brouwer" || g.name == "Developer"
-    end
-
-    return false
+    in_group?("Brouwer")
   end
 
   def update_weight

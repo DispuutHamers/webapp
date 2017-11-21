@@ -51,11 +51,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    redirect_to signin_url, notice: 'Please sign in.' unless signed_in? && (current_user.lid? || current_user.alid?)
+    redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.' unless current_user&.active? 
   end
 
   def admin_user?
     logged_in?
-    redirect_to root_url, notice: 'Niet genoeg access bitch' unless (current_user.admin? || current_user.schrijf_feut?)
+    redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.' unless current_user&.admin?
   end
 end

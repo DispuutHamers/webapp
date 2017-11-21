@@ -25,8 +25,8 @@ class Api2::ApiController < ApplicationController
   api 'POST', '/register', 'Register a device for push notifications'
   param :device, String, required: true
   def register
-    device = @key.user.devices.first || Device.new
     user = @key.user
+    device = user.devices.first || Device.new
     device.assign_attributes(user_id: user.id, device_key: params[:device])
     if device.save
       render :status => :created, :plain => '{"status":"201","message":"Created"}'
@@ -37,15 +37,10 @@ class Api2::ApiController < ApplicationController
 
   private
   def restrict(admin = nil)
-    if Rails.env.development?
-      user = User.first
-      @key = user.api_keys.first
-      return true
-    end
+    return if dev_environment
     authenticate_or_request_with_http_token do |token, options|
       @key = ApiKey.where(key: token).first
-      user = @key&.user
-      admin ? user&.admin? : (user&.lid? || user&.olid? || user&.alid?)
+      admin ? @key&.user&.admin? : @key&.user&.active? 
     end
   end
 
@@ -78,10 +73,8 @@ class Api2::ApiController < ApplicationController
     user = key.user
     if (obj.user_id != user.id and !user.admin?)
       render text: "HTTP Token: Access denied.", status: :access_denied
-    elsif obj.update(obj_params)
-      render json: obj, status: :created, location: obj
     else
-      render json: obj.errors, status: :unprocessable_entity
+      update_object(obj, obj_params)
     end
   end
 
@@ -91,4 +84,14 @@ class Api2::ApiController < ApplicationController
     PaperTrail.whodunnit = id
     ApiLog.new(key: @key.key, user_id: id, ip_addr: request.remote_ip, resource_call: resource_descriptor).save
   end
+
+  private 
+  def dev_environment
+    if Rails.env.development?
+      @key = User.first.api_keys.first
+      return true
+    end
+    return false
+  end
+
 end

@@ -12,6 +12,7 @@ class EventsController < ApplicationController
         ilid?
         @events = Event.all.order(date: :desc).paginate(page: params[:page])
       end
+
       current_request.ics do
         apikey = ApiKey.where(key: params[:key]).first
         if apikey&.user&.active?
@@ -28,13 +29,10 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    users = User.all
     @nsusers = []
-    users.each do |u|
-      if u.lid? || u.alid? 
-        if u.signups.where(event_id: @event.id).blank?
-          @nsusers << u
-        end
+    User.leden.each do |u|
+      if u.signups.where(event_id: @event.id).blank?
+        @nsusers << u
       end
     end
   end
@@ -59,12 +57,13 @@ class EventsController < ApplicationController
 
   def remind
     unless DateTime.now > @event.deadline
-      unsigned_users = Usergroup.find_by(name: 'lid').users - @event.users
+      unsigned_users = User.leden - @event.users
       unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event).deliver }
       flash[:success] = "Mail verzonden"
     else
       flash[:success] = "Mag niet"
     end
+
     redirect_to @event
   end
 
@@ -97,6 +96,7 @@ class EventsController < ApplicationController
     feed.each do |feed_item|
       calendar.add_event(feed_item.to_ics)
     end
+
     calendar
   end
 end
