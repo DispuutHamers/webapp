@@ -6,7 +6,7 @@
     <% @beer.reviews.each do |r| %>
       <div class="review">
         <h4>
-          <% if current_user || !r.user.anonymous? %>
+          <% if current_user&.active? || !r.user.anonymous? %>
             <%= link_to r.user.name, r.user %>
           <% else %>
             Anonieme Hamer
@@ -23,12 +23,14 @@
         </p>
 
         <div class="btn-group pull-right">
+          <% if current_user&.active? ^>
           <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
             <i class="fa fa-pencil"></i>
           <% end %>
           <%= link_to r, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
             <i class="fa fa-trash"></i>
           <% end %>
+        <% end %>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -38,7 +40,7 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <% if current_user && @beer.picture? %>
+        <% if current_user&.active? && @beer.picture? %>
           <%= image_tag(@beer.picture, :class => 'img img-responsive center-block') %>
         <% else %>
           <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
@@ -73,7 +75,7 @@
   </div>
 </div>
 <div class="btn-group">
-  <% if current_user %>
+  <% if current_user&.active? %>
     <%= link_to 'Review', reviews_beer_path(@beer), :class => 'btn btn-primary' unless current_user.reviews.find_by(beer_id: @beer.id) %>
     <% if current_user.admin? %>
       <%= link_to 'Edit', edit_beer_path(@beer), :class => 'btn btn-info' %>
