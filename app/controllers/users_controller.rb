@@ -5,11 +5,13 @@ class UsersController < ApplicationController
   before_action :admin_user?, only: [:destroy, :usergroups]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @leden = User.leden
+    @aspiranten = User.aspiranten
+    @oudelullen = User.oud
   end
 
   def index_public
-    @users = User.order(batch: :desc).reject { |user| !user.lid? }.group_by {|user| user[:batch]}
+    @users = User.leden.order(batch: :desc).group_by {|user| user[:batch]}
   end
 
   def show

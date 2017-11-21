@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   #  default_scope { includes(:usergroups) }
   #
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 } ) }
+  scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 } ) }
+  scope :oud, -> { joins(:groups).where(groups: { group_id: 12 } ) }
 
   def schrijf_feut?
     false
@@ -51,7 +53,6 @@ class User < ActiveRecord::Base
   end
 
   def sunday_ratio
-    return "-" unless lid?
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
     total = 0.0
@@ -62,12 +63,10 @@ class User < ActiveRecord::Base
         sundays = sundays + 1.0
       end
     end
-
     (sundays / total) * 100
   end
 
   def missed_drinks
-    return "-" unless lid?
     date = groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     unattended = []
@@ -190,6 +189,13 @@ class User < ActiveRecord::Base
     save
   end
 
+  def lidstring
+    return "lid" if lid?
+    return "alid" if alid?
+    return "olid" if olid?
+    return "none"
+  end
+
   def as_json(options)
     h = super({ :only =>
                 [:id, :name, :email, :created_at, :batch] }.merge(options))
@@ -197,16 +203,7 @@ class User < ActiveRecord::Base
     h[:quotes] = quotes.count
     h[:sunday_ratio] = self.sunday_ratio
     h[:nicknames] = nicknames
-    if alid?
-      h[:lid] = 'alid'
-    elsif olid?
-      h[:lid] = 'olid'
-    elsif lid?
-      h[:lid] = 'lid'
-    else
-      h[:lid] = 'none'
-    end
-
+    h[:lid] = self.lidstring
     admin? ? h[:admin] = true : h[:admin] = false
 
     h
