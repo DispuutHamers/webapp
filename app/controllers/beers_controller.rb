@@ -1,7 +1,7 @@
 #entry point for beer resource
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
-  before_action :ilid?, except: [:index, :show]
+  before_action :ilid?, except: [:index, :show, :search]
 
   # GET /beers
   # GET /beers.json
