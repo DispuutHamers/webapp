@@ -32,8 +32,8 @@ class QuoteTest < ActiveSupport::TestCase
     quote_text3 = 'Ik hou wel van enorme lullen. '
     Quote.create(text: quote_text3, user_id: u2.id)
 
-    assert_equal u.quotes[0].text, quote_text
-    assert_equal u.quotes[1].text, quote_text2
+    assert_equal u.quotes[1].text, quote_text
+    assert_equal u.quotes[0].text, quote_text2
     assert_equal u2.quotes[0].text, quote_text3
   end
 

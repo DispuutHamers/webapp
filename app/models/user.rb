@@ -86,14 +86,6 @@ class User < ActiveRecord::Base
     groups.find_by(group_id: group.id).destroy!
   end
 
-  def User.hash(token = nil)
-    if token
-      Digest::SHA1.hexdigest(token.to_s)
-    else
-      super()
-    end
-  end
-
   def in_group?(name)
     self.usergroups.each do |group|
       return true if group.name == name.to_s

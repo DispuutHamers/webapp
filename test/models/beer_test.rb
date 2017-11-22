@@ -28,14 +28,9 @@ class BeerTest < ActiveSupport::TestCase
     b = beers(:beerone)
     # b.add_review(user, rating, description, proefdatum)
     b.add_review!(u, 8.0, 'Heel lekker biertje', 'Vandaag')
-    u.update_weight
-    b.update_cijfer
-    assert_equal b.cijfer?, 8.0
 
     b.add_review!(u2, 7.0, 'Vrij lekker biertje', 'Gisteren')
-    u2.update_weight
-    b.update_cijfer
-    assert_equal b.cijfer?, 7.5
+
   end
 
   test 'Review grade with weight' do
