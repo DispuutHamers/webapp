@@ -19,14 +19,15 @@
     <section>
       Reviews: <%= @user.reviews.count %><br>
       <% if @user.lid? %>
-        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%
+        Sunday Ratio: <%= sunday_ratio_for(@user).round(2) %>%
       <% end %>
     </section>
     <section>
       <% if @user.lid? %>
-        <% unless @user.missed_drinks.empty? %>
+        <% missed_drinks = missed_drinks_for(@user) %>
+        <% unless missed_drinks.empty? %>
           <b>Gemiste Zondagborrels</b><br>
-          <% @user.missed_drinks.each do |md| %>
+          <% missed_drinks.each do |md| %>
             <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
           <% end %>
         <% end %>

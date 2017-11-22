@@ -1,5 +1,6 @@
 #Responsible for calls to '/beers'
 class Api2::BeersController < Api2::ApiController
+  include UsersHelper
   resource_description do
     api_versions "2.0"
     formats ['json']
@@ -12,7 +13,7 @@ class Api2::BeersController < Api2::ApiController
   def index
     user = key.user
     reviewed = params[:reviewed]
-    beers = user.unreviewed_beers if reviewed == "false"
+    beers = unreviewed_beer_for(user) if reviewed == "false"
     beers = user.beers if reviewed == "true"
     beers = Beer.all unless reviewed
     render json: beers

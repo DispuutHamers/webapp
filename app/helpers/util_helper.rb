@@ -51,7 +51,7 @@ module UtilHelper
     extracted_params = params[:signup]
     event = Event.find(extracted_params[:event_id])
     if (event.deadline > Time.now and !!verify_signup(event))
-      user.sign!(event, extracted_params[:status], extracted_params[:reason])
+      user.sign(event, extracted_params[:status], extracted_params[:reason])
       return event
     else
       return nil

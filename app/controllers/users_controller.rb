@@ -42,7 +42,6 @@ class UsersController < ApplicationController
   end
 
   def update
-    delete_empty_passwords
     user = User.find(params[:id])
     update_object(user, user_params)
   end
@@ -53,19 +52,6 @@ class UsersController < ApplicationController
   end
 
   private
-  def delete_empty_passwords
-    if user_params[:password].blank?
-      user_params.delete(:password)
-      user_params.delete(:password_confirmation)
-    end
-  end
-
-  def skip_password_attribute
-    if params[:password].blank? && params[:password_confirmation].blank?
-      params.except!(:password, :password_confirmation)
-    end
-  end
-
   def correct_user
     user = User.find(params[:id])
     redirect_to root_url, notice: 'Niet genoeg access' unless current_user?(user) or current_user.admin?

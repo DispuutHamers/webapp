@@ -18,13 +18,13 @@
         <% users.each do |user| %>
           <tr>
             <td><%= gravatar_for user, size: 52 %>
-            <%= link_to user.name_with_nickname, user %>
+            <%= link_to user.name, user %>
             </td>
             <td><%= user.quotes.count %></td>
             <td><%= user.reviews.count %></td>
             <% if ratio %>
               <td>
-                <%= user.sunday_ratio.round(2) %>%
+                <%= sunday_ratio_for(user).round(2) %>%
               </td>
             <% end %>
             <% if current_user.admin? %>

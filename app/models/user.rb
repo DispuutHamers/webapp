@@ -1,5 +1,6 @@
 #The user model
 class User < ActiveRecord::Base
+  include UsersHelper
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -33,15 +34,11 @@ class User < ActiveRecord::Base
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 } ) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 } ) }
 
-  def schrijf_feut?
-    false
-  end
-
-  def anonymize!
-    self.devices.destroy_all
-    self.name = Faker::Name.name
-    self.email = Faker::Internet.email(name) unless self.dev?
-    self.save
+  def anonymize
+    devices.destroy_all
+    name = Faker::Name.name
+    email = Faker::Internet.email(name) unless self.dev?
+    save
   end
 
   def active_for_authentication?
@@ -50,37 +47,6 @@ class User < ActiveRecord::Base
 
   def inactive_message
     "Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen."
-  end
-
-  def sunday_ratio
-    date = groups.where(group_id: 4).first.created_at
-    drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
-    total = 0.0
-    sundays = 0.0
-    drinks.each do |drink|
-      total = total + 1.0
-      if !drink.signups.where(user_id: id).blank?
-        sundays = sundays + 1.0
-      end
-    end
-    (sundays / total) * 100
-  end
-
-  def missed_drinks
-    date = groups.where(group_id: 4).first.created_at
-    drinks = Event.where(attendance: true).where("created_at > ?", date)
-    unattended = []
-    drinks.each do |drink|
-      if drink.signups.where(user_id: id).blank?
-        unattended << drink
-      end
-    end
-
-    unattended
-  end
-
-  def name_with_nickname
-    name
   end
 
   def nickname
@@ -92,16 +58,7 @@ class User < ActiveRecord::Base
     nickname
   end
 
-  def unreviewed_beers
-    urev_beers = Beer.all
-    beers.each do |beer|
-      urev_beers = urev_beers - [beer]
-    end
-
-    urev_beers
-  end
-
-  def sign!(event, status, reason)
+  def sign(event, status, reason)
     if event.deadline > Time.now
       id = event.id
       stemmen = signups.where(event_id: id)
@@ -113,24 +70,20 @@ class User < ActiveRecord::Base
     end
   end
 
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
-  end
-
   def generate_api_key(name)
     ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
   end
 
-  def join_group!(group)
+  def join_group(group)
     id = group.id
-    unless groups.only_deleted.where(group_id: id).empty?
+    if !groups.only_deleted.where(group_id: id).empty?
       groups.with_deleted.where(group_id: id).first.restore
     else
       groups.create!(group_id: id)
     end
   end
 
-  def remove_group!(group)
+  def remove_group(group)
     groups.find_by(group_id: group.id).destroy!
   end
 
@@ -146,8 +99,7 @@ class User < ActiveRecord::Base
     self.usergroups.each do |group|
       return true if group.name == name.to_s
     end
-
-    return false
+    false
   end
 
   def lid?
@@ -167,7 +119,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    in_group?("Triumviraat") || in_group?("Developer")
+    in_group?("Triumviraat") || dev?
   end
 
   def dev?
@@ -175,43 +127,26 @@ class User < ActiveRecord::Base
   end
 
   def brouwer?
-    in_group?("Brouwer")
-  end
-
-  def update_weight
-    cijfer = 0.0
-    reviews = Review.where(user_id: self.id)
-    reviews.each do |review|
-      cijfer += review.rating
-    end
-
-    self.weight = (cijfer / reviews.count) unless reviews.empty?
-    save
+    in_group?("Brouwer") || dev?
   end
 
   def lidstring
     return "lid" if lid?
     return "alid" if alid?
     return "olid" if olid?
-    return "none"
+    "none"
   end
 
   def as_json(options)
-    h = super({ :only =>
+    json = super({ :only =>
                 [:id, :name, :email, :created_at, :batch] }.merge(options))
-    h[:reviews] = reviews.count
-    h[:quotes] = quotes.count
-    h[:sunday_ratio] = self.sunday_ratio
-    h[:nicknames] = nicknames
-    h[:lid] = self.lidstring
-    admin? ? h[:admin] = true : h[:admin] = false
+    json[:reviews] = reviews.count
+    json[:quotes] = quotes.count
+    json[:sunday_ratio] = sunday_ratio_for(self)
+    json[:nicknames] = nicknames
+    json[:lid] = self.lidstring
+    json[:admin] = admin? 
 
-    h
-  end
-
-  private
-
-  def create_remember_token
-    self.remember_token = User.hash(User.new_remember_token)
+    json
   end
 end

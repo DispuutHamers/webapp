@@ -12,7 +12,7 @@ class DbdumpController < ApplicationController
 
   def anonymize
     User.all.each do |u|
-      u.anonymize!
+      u.anonymize
     end
     flash[:success] = "Alle users zijn nu anoniem"
     redirect_to root_path

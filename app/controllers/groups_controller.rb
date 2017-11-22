@@ -4,12 +4,12 @@ class GroupsController < ApplicationController
   before_action :set_params
 
   def create
-    @user.join_group!(@group)
+    @user.join_group(@group)
     redirect_to usergroups_user_path(@user)
   end
 
   def destroy
-    @user.remove_group!(@group)
+    @user.remove_group(@group)
     redirect_to usergroups_user_path(@user)
   end
 
