@@ -24,7 +24,7 @@
             <td><%= user.reviews.count %></td>
             <% if ratio %>
               <td>
-                <%= sunday_ratio_for(user).round(2) %>%
+                <%= user.sunday_ratio.round(2) %>%
               </td>
             <% end %>
             <% if current_user.admin? %>

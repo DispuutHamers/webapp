@@ -8,7 +8,7 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: html_class)
   end
 
-  def sunday_ratio_for(user)
+  def self.sunday_ratio_for(user)
     date = user.groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
     total = 0.0
@@ -19,7 +19,8 @@ module UsersHelper
         sundays = sundays + 1.0
       end
     end
-    (sundays / total) * 100
+    ratio = (sundays / total) * 100
+    user.update_attributes(sunday_ratio: ratio)
   end
 
   def missed_drinks_for(user)

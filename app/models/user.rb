@@ -1,6 +1,5 @@
 #The user model
 class User < ActiveRecord::Base
-  include UsersHelper
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -142,7 +141,7 @@ class User < ActiveRecord::Base
                 [:id, :name, :email, :created_at, :batch] }.merge(options))
     json[:reviews] = reviews.count
     json[:quotes] = quotes.count
-    json[:sunday_ratio] = sunday_ratio_for(self)
+    json[:sunday_ratio] = sunday_ratio
     json[:nicknames] = nicknames
     json[:lid] = self.lidstring
     json[:admin] = admin? 

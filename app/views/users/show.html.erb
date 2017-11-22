@@ -19,7 +19,7 @@
     <section>
       Reviews: <%= @user.reviews.count %><br>
       <% if @user.lid? %>
-        Sunday Ratio: <%= sunday_ratio_for(@user).round(2) %>%
+        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%
       <% end %>
     </section>
     <section>
