@@ -3,7 +3,7 @@
 <% end %>
 <div class="row">
   <div class="col-md-8">
-    <% @beer.reviews.each do |r| %>
+    <% @beer.reviews.with_user.each do |r| %>
       <div class="review">
         <h4>
           <% if current_user&.active? || !r.user.anonymous? %>
@@ -23,7 +23,7 @@
         </p>
 
         <div class="btn-group pull-right">
-          <% if current_user&.active? ^>
+          <% if current_user&.active? %>
           <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
             <i class="fa fa-pencil"></i>
           <% end %>

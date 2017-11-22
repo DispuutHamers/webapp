@@ -3,7 +3,7 @@ class NicknamesController < ApplicationController
   before_action :lid?
 
   def index
-    @nicknames = Nickname.all
+    @nicknames = Nickname.with_user.all
   end
 
   def show

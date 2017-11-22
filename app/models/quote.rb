@@ -8,9 +8,7 @@ class Quote < ActiveRecord::Base
   acts_as_paranoid
   serialize :text
 
-  def self.default_scope
-    where('deleted_at IS NULL')
-  end
+  scope :with_user, -> { includes(:user) }
 
   def as_json(options)
     super({:only => [:id, :text, :user_id, :created_at]}.merge(options))
