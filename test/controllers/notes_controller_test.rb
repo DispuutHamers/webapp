@@ -3,6 +3,7 @@ require 'test_helper'
 class NotesControllerTest < ActionController::TestCase
   setup do
     @note = notes(:one)
+    sign_in users(:userone)
   end
 
   test "should get index" do

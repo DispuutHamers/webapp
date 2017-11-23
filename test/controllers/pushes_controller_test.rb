@@ -3,6 +3,7 @@ require 'test_helper'
 class PushesControllerTest < ActionController::TestCase
   setup do
     @push = pushes(:one)
+    sign_in users(:userone)
   end
 
   test "should get index" do

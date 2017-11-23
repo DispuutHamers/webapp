@@ -1,31 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+beerone:
   name: Leffe Blond
   soort: Blond
   percentage: 6.6
 
-two:
+beertwo:
   name: Hel & Verdoemenis
   soort: Imperial Stout
   percentage: 10.0
 
-three:
+beerthree:
   name: Zundert
   soort: Tripel
   percentage: 8.0
 
-four:
+beerfour:
   name: Dikke Lul Drie Bier
   soort: IPA
   percentage: 5.6
 
-five:
+beerfive:
   name: Achel
   soort: Bruin
   percentage: 8.0
 
-six:
+beersix:
   name: Oesterstout
   soort: Imperial Stout
   percentage: 8.5

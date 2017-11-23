@@ -18,7 +18,6 @@ userthree:
   email: testhamer3@zondersikkel.nl
   approved: true
 
-
 userfour:
   id: 4
   name: Hamer Tester 4

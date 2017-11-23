@@ -6,11 +6,11 @@
 #
 usergroupone: 
   id: 1
-  name: "one"
+  name: "Lid"
 
 usergrouptwo: 
   id: 2
-  name: "two"
+  name: "Developer"
 
 usergroupthree:
   id: 3

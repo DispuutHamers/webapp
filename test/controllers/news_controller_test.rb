@@ -3,6 +3,7 @@ require 'test_helper'
 class NewsControllerTest < ActionController::TestCase
   setup do
     @news = news(:one)
+    sign_in users(:userone)
   end
 
   test "should get index" do
