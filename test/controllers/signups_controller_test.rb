@@ -3,6 +3,7 @@ require 'test_helper'
 class SignupsControllerTest < ActionController::TestCase
   setup do
     @signup = signups(:one)
+    sign_in users(:userone)
   end
 
   test "should get index" do

@@ -3,6 +3,7 @@ require 'test_helper'
 class MotionsControllerTest < ActionController::TestCase
   setup do
     @motion = motions(:one)
+    sign_in users(:userone)
   end
 
   test "should get index" do
