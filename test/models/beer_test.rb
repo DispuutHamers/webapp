@@ -25,7 +25,7 @@ class BeerTest < ActiveSupport::TestCase
     u = users(:userthree)
     u2 = users(:userfour)
 
-    b = beers(:beerone)
+    b = beers(:one)
     # b.add_review(user, rating, description, proefdatum)
     b.add_review!(u, 8.0, 'Heel lekker biertje', 'Vandaag')
 
@@ -37,12 +37,12 @@ class BeerTest < ActiveSupport::TestCase
     u = users(:userone)
     u2 = users(:usertwo)
 
-    b = beers(:beerone)
-    b2 = beers(:beertwo)
-    b3 = beers(:beerthree)
-    b4 = beers(:beerfour)
-    b5 = beers(:beerfive)
-    b6 = beers(:beersix)
+    b = beers(:one)
+    b2 = beers(:two)
+    b3 = beers(:three)
+    b4 = beers(:four)
+    b5 = beers(:five)
+    b6 = beers(:six)
     # set weight of user u
     b.add_review!(u, 9.0, '', '')
     b2.add_review!(u, 9.0, '', '')
@@ -66,7 +66,7 @@ class BeerTest < ActiveSupport::TestCase
 
   test 'Review belongs to person' do
     u = users(:userone)
-    b = beers(:beerone)
+    b = beers(:one)
 
     b.add_review!(u, 5.0, '', '')
     assert_equal b.reviews[0].user, u
@@ -74,7 +74,7 @@ class BeerTest < ActiveSupport::TestCase
 
   test 'Rating should be correct' do
     u = users(:userone)
-    b = beers(:beerone)
+    b = beers(:one)
 
     assert_nothing_raised do
       b.add_review!(u, 5, '', '')
