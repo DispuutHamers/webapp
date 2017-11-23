@@ -38,20 +38,22 @@ class ApplicationController < ActionController::Base
       keys << d.device_key
     end
 
-    n = Rpush::Gcm::Notification.new
-    n.app = Rpush::Gcm::App.find_by_name("android_app")
-    n.registration_ids = keys
-    n.priority = 'high'        # Optional, can be either 'normal' or 'high'
-    n.content_available = true # Optional
-    n.data = { object: obj.to_json,
-               type: obj.class.name,
-               action: action
-    }
-    n.save!
+    unless keys.blank?
+      n = Rpush::Gcm::Notification.new
+      n.app = Rpush::Gcm::App.find_by_name("android_app")
+      n.registration_ids = keys
+      n.priority = 'high'        # Optional, can be either 'normal' or 'high'
+      n.content_available = true # Optional
+      n.data = { object: obj.to_json,
+                 type: obj.class.name,
+                 action: action
+      }
+      n.save!
+    end
   end
 
   def logged_in?
-    redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.' unless current_user&.active? 
+    redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.' unless current_user&.active?
   end
 
   def admin_user?
