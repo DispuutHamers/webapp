@@ -19,32 +19,32 @@ class NewsControllerTest < ActionController::TestCase
 
   test "should create news" do
     assert_difference('News.count') do
-      post :create, news: { body: @news.body, cat: @news.cat, date: @news.date, image: @news.image, title: @news.title }
+      post :create, params: { news: { body: @news.body, cat: @news.cat, date: @news.date, image: @news.image, title: @news.title } }
     end
 
-    assert_redirected_to news_path(assigns(:news))
+    assert_redirected_to root_path
   end
 
   test "should show news" do
-    get :show, id: @news
+    get :show, params: { id: @news }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @news
+    get :edit, params: { id: @news }
     assert_response :success
   end
 
   test "should update news" do
-    patch :update, id: @news, news: { body: @news.body, cat: @news.cat, date: @news.date, image: @news.image, title: @news.title }
+    patch :update, params: { id: @news, news: { body: @news.body, cat: @news.cat, date: @news.date, image: @news.image, title: @news.title } }
     assert_redirected_to news_path(assigns(:news))
   end
 
   test "should destroy news" do
     assert_difference('News.count', -1) do
-      delete :destroy, id: @news
+      delete :destroy, params: { id: @news }
     end
 
-    assert_redirected_to news_index_path
+    assert_redirected_to root_path
   end
 end

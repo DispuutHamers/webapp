@@ -3,7 +3,7 @@ require 'test_helper'
 class NotesControllerTest < ActionController::TestCase
   setup do
     @note = notes(:one)
-    sign_in users(:userone)
+    sign_in users(:one)
   end
 
   test "should get index" do
@@ -19,30 +19,30 @@ class NotesControllerTest < ActionController::TestCase
 
   test "should create note" do
     assert_difference('Note.count') do
-      post :create, note: { content: @note.content, title: @note.title }
+      post :create, params: { note: { content: @note.content, title: @note.title } }
     end
 
     assert_redirected_to note_path(assigns(:note))
   end
 
   test "should show note" do
-    get :show, id: @note
+    get :show, params: { id: @note }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @note
+    get :edit, params: { id: @note }
     assert_response :success
   end
 
   test "should update note" do
-    patch :update, id: @note, note: { content: @note.content, title: @note.title }
+    patch :update, params: { id: @note, note: { content: @note.content, title: @note.title } }
     assert_redirected_to note_path(assigns(:note))
   end
 
   test "should destroy note" do
     assert_difference('Note.count', -1) do
-      delete :destroy, id: @note
+      delete :destroy, params: { id: @note }
     end
 
     assert_redirected_to notes_path

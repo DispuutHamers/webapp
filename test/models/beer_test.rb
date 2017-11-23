@@ -22,8 +22,8 @@ class BeerTest < ActiveSupport::TestCase
 
   test 'Review grade correctly' do
     # users 3 and 4 don't have reviews yet (thus don't skew the ratings)
-    u = users(:userthree)
-    u2 = users(:userfour)
+    u = users(:three)
+    u2 = users(:four)
 
     b = beers(:one)
     # b.add_review(user, rating, description, proefdatum)
@@ -34,8 +34,8 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test 'Review grade with weight' do
-    u = users(:userone)
-    u2 = users(:usertwo)
+    u = users(:one)
+    u2 = users(:two)
 
     b = beers(:one)
     b2 = beers(:two)
@@ -65,7 +65,7 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test 'Review belongs to person' do
-    u = users(:userone)
+    u = users(:one)
     b = beers(:one)
 
     b.add_review!(u, 5.0, '', '')
@@ -73,7 +73,7 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test 'Rating should be correct' do
-    u = users(:userone)
+    u = users(:one)
     b = beers(:one)
 
     assert_nothing_raised do

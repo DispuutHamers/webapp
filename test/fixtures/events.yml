@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-eventone:
+one:
   id: 1
   beschrijving: Zondagborrel
   title: Zondagborrel
@@ -11,7 +11,7 @@ eventone:
   location: Enschede
   attendance: true
 
-eventtwo:
+two:
   id: 2
   beschrijving: Randomevent
   title: Randomevent
