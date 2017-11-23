@@ -35,7 +35,7 @@ class PublicPagesController < ApplicationController
   # PATCH/PUT /public_pages/1
   # PATCH/PUT /public_pages/1.json
   def update
-    update_by_owner_and_admin(@public_page, public_page_params)
+    update_by_owner_or_admin(@public_page, public_page_params)
   end
 
   # DELETE /public_pages/1

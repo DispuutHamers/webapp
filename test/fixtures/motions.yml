@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-motionone:
+one:
   motion_type: niet chill
   subject: Hamer
   content: Hij is nog steeds niet gelaserprint
