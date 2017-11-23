@@ -16,6 +16,7 @@ class StickersController < ApplicationController
   end
 
   def edit
+    @sticker = Sticker.find(params[:id])
   end
 
   def create
@@ -25,9 +26,12 @@ class StickersController < ApplicationController
   end
 
   def update
+    sticker = Sticker.find(params[:id])
+    update_by_owner_or_admin(sticker, sticker_params)
   end
 
   def show
+    redirect_to personal_sticker_path
   end
 
   def destroy
