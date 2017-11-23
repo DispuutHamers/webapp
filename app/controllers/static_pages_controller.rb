@@ -11,7 +11,7 @@ class StaticPagesController < ApplicationController
     @feed_items = Quote.with_user.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
-    @trail = PaperTrail::Version.last(5).reverse
+    @trail = PaperTrail::Version.includes(:item).last(5).reverse
   end
 
   def console
@@ -19,7 +19,7 @@ class StaticPagesController < ApplicationController
   end
 
   def trail
-    @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+    @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
   end
 
   def revert

@@ -19,3 +19,8 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require_tree .
+
+$( document ).on('turbolinks:load', function() {
+  $(".tablesorter").tablesorter();
+}
+);

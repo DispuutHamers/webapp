@@ -5,24 +5,24 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :lockable
-  has_paper_trail :ignore => [:encrypted_password, :reset_password_token, :reset_password_sent_at,
+  has_paper_trail :ignore => [:sunday_ratio, :encrypted_password, :reset_password_token, :reset_password_sent_at,
                               :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
                               :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
                               :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
   acts_as_paranoid :ignore => [:weight]
   before_save { self.email = email.downcase }
-  has_many :groups, foreign_key: 'user_id', dependent: :destroy
+  has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
   has_many :devices
   has_many :api_keys
-  has_many :reviews, :dependent => :destroy
+  has_many :reviews
   has_many :motions
   has_many :events
-  has_many :beers, through: :reviews
+  has_many :beers
   has_many :api_logs
-  has_many :signups, dependent: :destroy
-  has_many :nicknames, dependent: :destroy
+  has_many :signups
+  has_many :nicknames
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
