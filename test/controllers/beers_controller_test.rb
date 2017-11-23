@@ -2,8 +2,8 @@ require 'test_helper'
 
 class BeersControllerTest < ActionController::TestCase
   setup do
-    @beer = beers(:beerone)
-    sign_in users(:userone)
+    @beer = beers(:one)
+    sign_in users(:one)
   end
 
   test "should get index" do

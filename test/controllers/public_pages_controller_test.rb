@@ -19,30 +19,30 @@ class PublicPagesControllerTest < ActionController::TestCase
 
   test "should create public_page" do
     assert_difference('PublicPage.count') do
-      post :create, public_page: { content: @public_page.content, public: @public_page.public, title: @public_page.title }
+      post :create, params: { public_page: { content: @public_page.content, public: @public_page.public, title: @public_page.title } }
     end
 
     assert_redirected_to public_page_path(assigns(:public_page))
   end
 
   test "should show public_page" do
-    get :show, id: @public_page
+    get :show, params: { id: @public_page }
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @public_page
+    get :edit, params: { id: @public_page }
     assert_response :success
   end
 
   test "should update public_page" do
-    patch :update, id: @public_page, public_page: { content: @public_page.content, public: @public_page.public, title: @public_page.title }
+    patch :update, params: { id: @public_page, public_page: { content: @public_page.content, public: @public_page.public, title: @public_page.title } }
     assert_redirected_to public_page_path(assigns(:public_page))
   end
 
   test "should destroy public_page" do
     assert_difference('PublicPage.count', -1) do
-      delete :destroy, id: @public_page
+      delete :destroy, params: { id: @public_page }
     end
 
     assert_redirected_to public_pages_path

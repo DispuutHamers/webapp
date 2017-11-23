@@ -2,7 +2,7 @@ require 'test_helper'
 
 class StaticPagesControllerTest < ActionController::TestCase
   def setup 
-    sign_in users(:userone)
+    sign_in users(:one)
   end
 
   test "should get home" do

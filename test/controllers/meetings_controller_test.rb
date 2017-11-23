@@ -3,7 +3,7 @@ require 'test_helper'
 class MeetingsControllerTest < ActionController::TestCase
   setup do
     @meeting = meetings(:one)
-    sign_in users(:userone)
+    sign_in users(:one)
   end
 
   test "should get index" do
