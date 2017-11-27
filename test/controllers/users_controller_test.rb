@@ -19,7 +19,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, params: { user: { email: @user.email, name: @user.name } }
+      post :create, params: { user: { email: "Random@email.com", name: "Naam" } }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -41,7 +41,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should destroy user" do
-    assert_difference('User.count', -1) do
+    assert_difference('User.count', 0) do
       delete :destroy, params: { id: @user }
     end
 
