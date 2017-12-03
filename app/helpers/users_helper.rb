@@ -10,7 +10,7 @@ module UsersHelper
 
   def self.sunday_ratio_for(user)
     date = user.groups.where(group_id: 4).first.created_at
-    drinks = Event.where(attendance: true).where("created_at > ?", date).where("deadline < ?", Date.today)
+    drinks = Event.where(attendance: true).where("date > ?", date).where("deadline < ?", Date.today)
     total = 0.0
     sundays = 0.0
     drinks.each do |drink|
