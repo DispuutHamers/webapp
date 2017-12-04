@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupsTest < ActiveSupport::TestCase
   test 'Create group' do
-    u = users(:userone)
+    u = users(:one)
 
     ug = Usergroup.create
 
@@ -18,7 +18,7 @@ class GroupsTest < ActiveSupport::TestCase
   end
 
   test 'Delete group' do
-    g = groups(:groupone)
+    g = groups(:one)
 
     assert g.deleted_at.nil?
     g.delete
@@ -26,9 +26,9 @@ class GroupsTest < ActiveSupport::TestCase
   end
 
   test 'Group has to have group_id and user_id' do
-    u = users(:userone)
+    u = users(:one)
 
-    ug = usergroups(:usergroupone)
+    ug = usergroups(:one)
 
     assert !Group.create.save
     assert !Group.create(user_id: u.id).save
@@ -36,12 +36,12 @@ class GroupsTest < ActiveSupport::TestCase
   end
 
   test 'Add user to group' do
-    u = users(:userthree)
+    u = users(:three)
 
-    u2 = users(:userfour)
+    u2 = users(:four)
 
     # new usergroup, users aren't yet added to it
-    ug = usergroups(:usergroupthree)
+    ug = usergroups(:three)
 
     Group.create(user_id: u.id, group_id: ug.id)
     Group.create(user_id: u2.id, group_id: ug.id)
@@ -55,10 +55,10 @@ class GroupsTest < ActiveSupport::TestCase
 
   test 'Add user to multiple user groups' do
     # userthree since user three isn't yet in the groups created below
-    u = users(:userthree)
+    u = users(:three)
 
-    ug = usergroups(:usergroupone)
-    ug2 = usergroups(:usergrouptwo)
+    ug = usergroups(:one)
+    ug2 = usergroups(:two)
 
     Group.create(user_id: u.id, group_id: ug.id)
     Group.create(user_id: u.id, group_id: ug2.id)
