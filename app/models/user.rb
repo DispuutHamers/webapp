@@ -1,5 +1,6 @@
 #The user model
 class User < ActiveRecord::Base
+  include UtilHelper
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -58,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def sign(event, status, reason)
-    reason = swap(reason) if in_group?("Secretaris-generaal")
+    reason = UtilHelper.scramble_string(reason) if in_group?("Secretaris-generaal")
     if event.deadline > Time.now
       id = event.id
       stemmen = signups.where(event_id: id)
@@ -68,12 +69,6 @@ class User < ActiveRecord::Base
         self.signups.create!(event_id: id, status: status, reason: reason)
       end
     end
-  end
-
-  def swap(reason)
-    joke = reason.gsub 'd ', '###PH###'
-    joke = joke.gsub 't ', 'd '
-    joke = joke.gsub '###PH###', 't '
   end
 
   def generate_api_key(name)
