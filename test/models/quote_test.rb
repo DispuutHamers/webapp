@@ -2,7 +2,7 @@ require 'test_helper'
 
 class QuoteTest < ActiveSupport::TestCase
   test 'Add a quote' do
-    u = users(:userthree)
+    u = users(:one)
 
     old_count = Quote.count
 
@@ -12,7 +12,7 @@ class QuoteTest < ActiveSupport::TestCase
     assert_equal Quote.count, old_count + 1
   end
   test 'Give user a quote' do
-    u = users(:userthree)
+    u = users(:one)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
@@ -22,8 +22,8 @@ class QuoteTest < ActiveSupport::TestCase
 
   test 'Give multiple user multiple quotes' do
     # users three and four don't have quotes
-    u = users(:userthree)
-    u2 = users(:userfour)
+    u = users(:one)
+    u2 = users(:two)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
@@ -38,7 +38,7 @@ class QuoteTest < ActiveSupport::TestCase
   end
 
   test 'Delete quote' do
-    u = users(:userthree)
+    u = users(:one)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     q = Quote.create(text: quote_text, user_id: u.id)

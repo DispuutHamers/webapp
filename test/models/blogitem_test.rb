@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BlogitemTest < ActiveSupport::TestCase
   test 'Create blog' do
-    u = users(:userone)
+    u = users(:one)
 
     old_count = Blogitem.count
 
@@ -16,7 +16,7 @@ class BlogitemTest < ActiveSupport::TestCase
   end
 
   test 'Create blog without title' do
-    u = users(:userone)
+    u = users(:one)
 
     old_count = Blogitem.count
 

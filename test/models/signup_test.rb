@@ -3,7 +3,7 @@ require 'test_helper'
 class SignupTest < ActiveSupport::TestCase
   test 'Signup should go correctly' do
     # create user 'u'
-    u = users(:userone)
+    u = users(:one)
 
     # create event 'e'
     e = Event.create(title: 'Example event', end_time: '21:00',
@@ -17,7 +17,7 @@ class SignupTest < ActiveSupport::TestCase
     assert e.users[0].id == u.id
 
     # create second user 'u2'
-    u2 = users(:usertwo)
+    u2 = users(:two)
 
     # signup user 'u2' to event 'e'
     Signup.create(event_id: e.id, user_id: u2.id)
@@ -28,9 +28,9 @@ class SignupTest < ActiveSupport::TestCase
   end
 
   test "User can't signup twice" do
-    u = users(:userone)
+    u = users(:one)
 
-    u2 = users(:usertwo)
+    u2 = users(:two)
 
     e = Event.create(title: 'Example event', end_time: '21:00',
                      date: DateTime.now + 50, deadline: DateTime.now + 5,
@@ -52,7 +52,7 @@ class SignupTest < ActiveSupport::TestCase
   end
 
   test "User can't signup after deadline" do
-    u = users(:userone)
+    u = users(:one)
 
     e = Event.create(title: 'Example event', end_time: '21:00',
                      date: DateTime.now + 50, deadline: DateTime.now - 1,

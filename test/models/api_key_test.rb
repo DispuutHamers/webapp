@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ApiKeyTest < ActiveSupport::TestCase
   test 'Create ApiKey' do
-    u = users(:userone)
+    u = users(:one)
 
     old_count = ApiKey.count
 
@@ -15,7 +15,7 @@ class ApiKeyTest < ActiveSupport::TestCase
 
   test 'ApiKey belongs to user' do
     # user two doesn't have an api key yet
-    u = users(:usertwo)
+    u = users(:two)
 
     apikey = ApiKey.new
     apikey.user_id = u.id
@@ -32,8 +32,8 @@ class ApiKeyTest < ActiveSupport::TestCase
   end
 
   test 'ApiKey only belongs to 1 user' do
-    u = users(:userone)
-    u2 = users(:usertwo)
+    u = users(:one)
+    u2 = users(:two)
 
     apikey = ApiKey.new
     apikey.user_id = u.id

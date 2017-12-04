@@ -4,14 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-usergroupone: 
+one: 
   id: 1
   name: "Lid"
 
-usergrouptwo: 
+two: 
   id: 2
   name: "Developer"
 
-usergroupthree:
+three:
   id: 3
   name: "three"
