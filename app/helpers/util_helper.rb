@@ -11,15 +11,38 @@ module UtilHelper
     end
   end
 
+  def self.scramble_string(string)
+    words = string.split
+    result = ""
+    words.each do |word|
+      if word[-1].to_s == 'd'
+        if SecureRandom.random_number(100) > 94
+          word[-1] = 't'
+        end
+
+      elsif word[-1].to_s == 't'
+        if SecureRandom.random_number(100) > 94
+          word[-1] = 'd'
+        end
+      end
+
+      result = result + word + " "
+    end
+
+    result[-1] = ''
+    return result
+  end
+
   def update_object(obj, obj_params)
-    if obj.class.name == "User" # Hacky de user afzonderen 
+    if obj.class.name == "User" # Hacky de user afzonderen
       if obj.update_with_password(obj_params)
-        flash[:successs] = "Je profiel is geupdate" 
+        flash[:successs] = "Je profiel is geupdate"
         redirect_to obj
       else
-        flash[:error] = "Je profiel is niet geupdate" 
+        flash[:error] = "Je profiel is niet geupdate"
         redirect_to obj
       end
+
     elsif obj.update(obj_params)
       yield if block_given?
       flash[:success] = 'Succesvol bijgewerkt.'
@@ -65,7 +88,7 @@ module UtilHelper
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
   end
 
-  private 
+  private
   def verify_signup(event)
     extracted_params = params[:signup]
     if (event.attendance and "0" == extracted_params[:status])
