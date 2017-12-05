@@ -19,8 +19,10 @@
     <section>
       Reviews: <%= @user.reviews.count %><br>
       <% if @user.lid? %>
-        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%
+        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%<br>
       <% end %>
+      Ingelogt op: <br><%= @user.current_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.current_sign_in_ip %>)<br>
+      Laatste login op: <br><%= @user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.last_sign_in_ip %>)<br>
     </section>
     <section>
       <% if @user.lid? %>
