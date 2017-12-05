@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NicknameTest < ActiveSupport::TestCase
   test 'Create nickname' do
-    u = users(:userone)
+    u = users(:one)
 
     old_count = Nickname.count
 
@@ -12,7 +12,7 @@ class NicknameTest < ActiveSupport::TestCase
     assert_equal Nickname.count, old_count + 1
   end
   test 'Give user a nickname' do
-    u = users(:userone)
+    u = users(:one)
 
     nickname = 'Spijker'
     Nickname.create(nickname: nickname, user_id: u.id)
@@ -26,7 +26,7 @@ class NicknameTest < ActiveSupport::TestCase
   end
 
   test 'Delete a nickname' do
-    u = users(:userone)
+    u = users(:one)
 
     nickname = 'Spijker'
     n = Nickname.create(nickname: nickname, user_id: u.id)
@@ -37,7 +37,7 @@ class NicknameTest < ActiveSupport::TestCase
   end
 
   test 'Update a nickname' do
-    u = users(:userone)
+    u = users(:one)
 
     nickname = 'Spijker'
     n = Nickname.create(nickname: nickname, user_id: u.id)

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class MotionTest < ActiveSupport::TestCase
   test 'Create motion' do
-    u = users(:userone)
+    u = users(:one)
 
     old_count = Motion.count
 
@@ -11,7 +11,7 @@ class MotionTest < ActiveSupport::TestCase
     assert_equal Motion.count, old_count + 1
   end
   test 'Motion belongs to user' do
-    u = users(:userone)
+    u = users(:one)
 
     m = Motion.create(user_id: u.id)
 
@@ -23,7 +23,7 @@ class MotionTest < ActiveSupport::TestCase
   end
 
   test 'Delete motion' do
-    u = users(:userone)
+    u = users(:one)
 
     m = Motion.create(user_id: u.id)
 
