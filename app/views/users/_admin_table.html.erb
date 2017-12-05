@@ -6,6 +6,7 @@
           <th>Naam</th>
           <th>Groepen</th>
           <th>Lichting</th>
+          <th>Logins</th>
           <th></th>
         </tr>
       </thead>
@@ -21,6 +22,9 @@
             <%= form_for user, url: leden_admin_update_path(user) do |f| %>
               <td>
                 <%= f.number_field :batch %>
+              </td>
+              <td>
+                <%= user.sign_in_count %>
               </td>
               <td>
                 <%= f.submit "Opslaan" %>
