@@ -1,5 +1,5 @@
 <% if current_user.admin? %>
-  <h1>Groepen</h1>
+  <h1>Usergroepen van <%= @user.name %></h1>
   <ul>
     <% @usergroups.each do |group| %>
       <li>

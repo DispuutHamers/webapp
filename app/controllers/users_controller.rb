@@ -2,12 +2,23 @@
 class UsersController < ApplicationController
   before_action :logged_in?, except: [:new, :create, :index_public]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user?, only: [:index_extern, :destroy, :usergroups]
+  before_action :admin_user?, only: [:admin, :index_extern, :destroy, :usergroups]
 
   def index
     @leden = User.leden
     @aspiranten = User.aspiranten
     @oudelullen = User.oud
+  end
+
+  def admin
+    @leden = User.leden
+    @aspiranten = User.aspiranten
+    @oudelullen = User.oud
+  end
+
+  def admin_patch
+    lid = User.find(params[:id])
+    lid.update_attributes(user_params)
   end
 
   def index_public
