@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="../../assets/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="../../assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="../../overview.html"><img src="../../assets/images/logo.png" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="../../overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../../code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="../../smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Updated <time class='js-timeago' datetime='2017-11-14 18:50:56 +0100'>2017-11-14 18:50:56 +0100</time>
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>controllers/api2 /</small> events_controller.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating b big">
+              B
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">73</span><small> lines of codes</small></div>
+              <div><span class="metric">6</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">9.8</span><small> complexity/method</small></div>
+              <div><span class="metric">30</span><small> loc/method</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">58.52</span><small> complexity</small></div>
+              <div><span class="metric">0</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                4
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code"># Class is responsible for handling calls to &#39;/event&#39;
+class Api2::EventsController &lt; Api2::ApiController
+  resource_description do
+    api_versions &#39;2.0&#39;
+    formats [&#39;json&#39;]
+    app_info &#39;De hamers api docs&#39;
+  end
+
+  api :GET, &#39;/events&#39;, &#39;Show event index&#39;
+  description &#39;Deze methode heeft een extra sorting op datum die kan worden aangeroepen door &quot;?sorted=date&quot; achter de URL te plakken.&#39;
+  example &#39;[{&quot;id&quot;:1,&quot;beschrijving&quot;:&quot;~2100 verjdaag vieren bij Rick&quot;,&quot;created_at&quot;:&quot;2014-04-17T20:35:50.000+02:00&quot;,&quot;title&quot;:&quot;Rick\&#39;s Verjaardag&quot;,&quot;date&quot;:&quot;2014-04-17T02:00:00.000+02:00&quot;,&quot;user_id&quot;:null,&quot;deadline&quot;:null,&quot;end_time&quot;:null,&quot;location&quot;:null,&quot;signups&quot;:&quot;[{&quot;id&quot;:1,&quot;event_id&quot;:1,&quot;user_id&quot;:1,&quot;status&quot;:true,&quot;created_at&quot;:&quot;2014-04-18T17:00:52.000+02:00&quot;}]&quot;},{&quot;id&quot;:2,&quot;beschrijving&quot;:&quot;Zondag borrel in de beiaard&quot;,&quot;created_at&quot;:&quot;2014-04-18T01:45:12.000+02:00&quot;,&quot;title&quot;:&quot;Zondag borrel&quot;,&quot;date&quot;:&quot;2014-04-20T02:00:00.000+02:00&quot;,&quot;user_id&quot;:null,&quot;deadline&quot;:null,&quot;end_time&quot;:null,&quot;location&quot;:null,&quot;signups&quot;:&quot;[{&quot;id&quot;:3,&quot;event_id&quot;:2,&quot;user_id&quot;:1,&quot;status&quot;:true,&quot;created_at&quot;:&quot;2014-04-18T17:01:18.000+02:00&quot;},{&quot;id&quot;:9,&quot;event_id&quot;:2,&quot;user_id&quot;:7,&quot;status&quot;:true,&quot;created_at&quot;:&quot;2014-04-18T17:03:24.000+02:00&quot;},{&quot;id&quot;:19,&quot;event_id&quot;:2,&quot;user_id&quot;:2,&quot;status&quot;:true,&quot;created_at&quot;:&quot;2014-04-18T22:04:59.000+02:00&quot;},{&quot;id&quot;:21,&quot;event_id&quot;:2,&quot;user_id&quot;:3,&quot;status&quot;:true,&quot;created_at&quot;:&quot;2014-04-19T03:16:37.000+02:00&quot;},{&quot;id&quot;:22,&quot;event_id&quot;:2,&quot;user_id&quot;:8,&quot;status&quot;:false,&quot;created_at&quot;:&quot;2014-04-19T19:15:13.000+02:00&quot;}]&quot;}]&#39;
+  def index
+    sorting = params[:sorted]
+    events = get_event_list(params[:future])
+    events = events.order(&#39;date&#39;) if sorting
+    events = events.reverse_order if sorting == &#39;date-desc&#39;
+    render json: events
+  end
+
+  api :GET, &#39;/events/:id&#39;, &#39;Show event&#39;
+  param :id, :number
+  def show
+    render json: Event.find(params[:id])
+  end
+  
+  api :POST, &#39;/events/:id/remind&#39;, &#39;Send reminder emails&#39;
+  def remind<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Too-Many-Statements.md" target="_blank"><b>TooManyStatements</b></a>        </span>      </div>      <span>Api2::EventsController#remind has approx 6 statements</span>          </div>  </li></ol>
+    event = Event.find(params[:id])
+    unless DateTime.now &gt; event.deadline
+      unsigned_users = Usergroup.find_by(name: &#39;lid&#39;).users - event.users
+      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
+      render :status =&gt; :created, :text =&gt; &#39;{&quot;status&quot;:&quot;201&quot;,&quot;message&quot;:&quot;Created&quot;}&#39;
+    else
+      render :status =&gt; :bad_request, :text =&gt; &#39;{&quot;status&quot;:&quot;400&quot;,&quot;error&quot;:&quot;Bad request&quot;}&#39;
+    end
+  end
+
+  api :UPDATE, &#39;/events/:id&#39;, &#39;Update event&#39;
+  param :end_time, String, :required =&gt; true
+  param :deadline, String, :required =&gt; true
+  param :beschrijving, String, :required =&gt; true
+  param :title, String, :required =&gt; true
+  param :date, String, :required =&gt; true
+  param :location, String
+  def update
+    event = Event.find(params[:id])
+    update_by_owner_or_admin(event, event_params)
+  end
+
+  api :POST, &#39;/events&#39;, &#39;Create event&#39;
+  param :end_time, String, :required =&gt; true
+  param :deadline, String, :required =&gt; true
+  param :beschrijving, String, :required =&gt; true
+  param :title, String, :required =&gt; true
+  param :date, String, :required =&gt; true
+  param :location, String
+  def create
+    event = Event.new(event_params)
+    event.user_id = key.user.id
+    save_object(event, push=true)
+  end
+
+  private
+  def get_event_list(future)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>Api2::EventsController#get_event_list doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+    date = Date.current
+    case future<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Control-Parameter.md" target="_blank"><b>ControlParameter</b></a>        </span>      </div>      <span>Api2::EventsController#get_event_list is controlled by argument 'future'</span>          </div>  </li></ol>
+    when &quot;true&quot;
+      Event.with_signups.where(date: date..(date+15.years)) # Works with ranges for future scopes<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>Api2::EventsController#get_event_list calls 'Event.with_signups' 2 times</span>              <span>Locations:</span>                  <a href="events_controller.html#L68" class="js-smell-location">0</a>                  <a href="events_controller.html#L70" class="js-smell-location">1</a>                  </div>  </li></ol>
+    else
+      Event.with_signups.all<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden"true"=""></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>Api2::EventsController#get_event_list calls 'Event.with_signups' 2 times</span>              <span>Locations:</span>                  <a href="events_controller.html#L68" class="js-smell-location">0</a>                  <a href="events_controller.html#L70" class="js-smell-location">1</a>                  </div>  </li></ol>
+    end
+  end
+end
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascripts -->
+    <script src='../../assets/javascripts/jquery.min.js'></script>
+    <script src='../../assets/javascripts/jquery.tablesorter.min.js'></script>
+    <script src='../../assets/javascripts/jquery.scrollTo.min.js'></script>
+    <script src='../../assets/javascripts/jquery.timeago.js'></script>
+    <script src='../../assets/javascripts/highcharts.src-4.0.1.js'></script>
+    <script src='../../assets/javascripts/prettify.js'></script>
+    <script src='../../assets/javascripts/bootstrap.min.js'></script>
+    <script src='../../assets/javascripts/application.js'></script>
+    <script src='../../assets/javascripts/jquery.filtertable.min.js'></script>
+  </body>
+</html>

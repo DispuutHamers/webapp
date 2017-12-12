@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'ahoy_matey'
 gem 'rails-controller-testing'
 gem 'minidusen'
 gem 'bullet' 
