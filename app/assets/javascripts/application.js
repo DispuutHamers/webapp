@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= ahoy
+//= require ahoy
 //= require trix
 //= require cloudinary
 //= require twitter/bootstrap
