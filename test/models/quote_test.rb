@@ -26,15 +26,15 @@ class QuoteTest < ActiveSupport::TestCase
     u2 = users(:two)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
-    Quote.create(text: quote_text, user_id: u.id)
+    q = Quote.create(text: quote_text, user_id: u.id)
     quote_text2 = 'Het mag ook een hele mooie, goed schoongemaakte penis zijn..'
-    Quote.create(text: quote_text2, user_id: u.id)
+    q2 = Quote.create(text: quote_text2, user_id: u.id)
     quote_text3 = 'Ik hou wel van enorme lullen. '
-    Quote.create(text: quote_text3, user_id: u2.id)
+    q3 = Quote.create(text: quote_text3, user_id: u2.id)
 
-    assert_equal u.quotes[1].text, quote_text
-    assert_equal u.quotes[0].text, quote_text2
-    assert_equal u2.quotes[0].text, quote_text3
+    assert_includes u.quotes, q
+    assert_includes u.quotes, q2
+    assert_includes u2.quotes, q3
   end
 
   test 'Delete quote' do

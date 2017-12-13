@@ -17,11 +17,9 @@ class DeviceTest < ActiveSupport::TestCase
 
     assert d.user_id == u.id
     assert d2.user_id == u.id
-    # assert_includes, of assert dat [0]==d.id? dan moet je namelijk met volgorde gaan kutten
+    # use assert_includes, occasionally the order is changed
     assert_includes u.devices, d
     assert_includes u.devices, d2
-    # assert_equal u.devices[1].id, d.id
-    # assert_equal u.devices[0].id, d2.id
   end
 
   test "Device doesn't belong to other user" do
