@@ -12,6 +12,7 @@ module UtilHelper
   end
 
   def self.scramble_string(string)
+    return if string.length < 1
     words = string.split
     result = ""
     words.each do |word|
