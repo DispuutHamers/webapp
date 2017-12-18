@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171205153426) do
+ActiveRecord::Schema.define(version: 20171218175056) do
 
   create_table "accounts", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -272,6 +272,7 @@ ActiveRecord::Schema.define(version: 20171205153426) do
     t.datetime "revoked_at"
     t.string "scopes"
     t.index ["application_id"], name: "index_oauth_access_grants_on_application_id"
+    t.index ["resource_owner_id"], name: "fk_rails_330c32d8d9"
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
@@ -545,5 +546,7 @@ ActiveRecord::Schema.define(version: 20171205153426) do
 
   add_foreign_key "nicknames", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "users", column: "resource_owner_id"
 end
