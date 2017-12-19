@@ -31,7 +31,7 @@ module Hamers
       post do
         location = params[:location] ||= "TBD"
         Event.create!({
-          user: current_user,
+          user: resource_owner,
           beschrijving: params[:beschrijving],
           title: params[:title],
           date: params[:date],
