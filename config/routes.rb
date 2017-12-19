@@ -3,12 +3,6 @@ Hamers::Application.routes.draw do
   mount LetsencryptPlugin::Engine, at: '/'
   mount Hamers::API => '/'
   apipie
-  resources :documentation, only: [:index] do # swagger-ui
-    collection do # documentation token redirect
-      get :o2c
-      get :authorize
-    end
-  end
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]

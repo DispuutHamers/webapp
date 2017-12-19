@@ -17,7 +17,7 @@ module Hamers
       notes: <<-NOTE
   Marked down notes!
     NOTE
-    oauth2 'public', 'write'
+    oauth2 
     get :whoami do
       resource_owner
     end
@@ -27,7 +27,7 @@ module Hamers
 
     add_swagger_documentation \
       base_path: '/',
-      api_version: 'v3',
+      version: '3',
       endpoint_auth_wrapper: WineBouncer::OAuth2,
       info: {
 	title: "Hamers API.",
