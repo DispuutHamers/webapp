@@ -21,5 +21,6 @@ module Hamers
       Doorkeeper::AuthorizationsController.layout "application"
       Doorkeeper::AuthorizedApplicationsController.layout "application"
     end
+
   end
 end

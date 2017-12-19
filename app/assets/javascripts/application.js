@@ -15,6 +15,7 @@
 //= require ahoy
 //= require trix
 //= require cloudinary
+//= require swagger-ui
 //= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress

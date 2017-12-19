@@ -1,7 +1,15 @@
 Hamers::Application.routes.draw do
   use_doorkeeper
   mount LetsencryptPlugin::Engine, at: '/'
+  mount Hamers::API => '/'
   apipie
+  resources :documentation, only: [:index] do # swagger-ui
+    collection do # documentation token redirect
+      get :o2c
+      get :authorize
+    end
+  end
+
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
   resources :stickers
@@ -41,15 +49,17 @@ Hamers::Application.routes.draw do
 
   root  'static_pages#home'
 
-  devise_for :users 
-  devise_scope :user do 
+  devise_for :users
+  devise_scope :user do
     get 'signin', to: 'devise/sessions#new', as: "signin"
   end
+
   resources :users do
     member do
       get :usergroups
     end
   end
+
   match '/external_accounts', to: 'users#index_extern', via: 'get', as: 'external_accounts'
   match '/admin_accounts', to: 'users#admin', via: 'get', as: 'leden_admin'
   match '/admin_accounts/:id', to: 'users#admin_patch', via: 'patch', as: 'leden_admin_update'
