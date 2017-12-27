@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/plataformatec/devise
+  revision: 135d898e0e955bfeb539611cf0f575d244275b22
+  specs:
+    devise (4.3.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.2)
+      responders
+      warden (~> 1.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -120,12 +131,6 @@ GEM
     debug_inspector (0.0.3)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.3.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.2)
-      responders
-      warden (~> 1.2.3)
     diffy (3.2.0)
     documentation (0.0.1)
     domain_name (0.5.20170404)
@@ -403,7 +408,7 @@ DEPENDENCIES
   chartkick
   cloudinary
   coffee-rails
-  devise
+  devise!
   diffy
   documentation
   doorkeeper
@@ -453,4 +458,4 @@ DEPENDENCIES
   wine_bouncer
 
 BUNDLED WITH
-   1.15.4
+   1.16.1
