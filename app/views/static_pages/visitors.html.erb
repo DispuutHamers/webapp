@@ -14,7 +14,7 @@
   <tbody>
   <% @visitors.each do |visit| %>
       <tr>
-        <td><%= visit.visitor_token %></td>
+        <td><%= visit.visitor_token %><% if visit.user %> (<%= visit.user.name %>)<% end %></td>
         <td><%= "#{visit.city} (#{visit.country})" %></td>
         <td><%= visit.os %></td>
         <td><%= visit.referrer %></td>
