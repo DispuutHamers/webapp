@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 set :application, 'Hamers'
 set :repo_url, 'git@bitbucket.org:jackozi/hamers.git'
-set :rvm_ruby_version, '2.3.0'
+set :rvm_ruby_version, '2.5.0'
 set :default_env, { rvm_bin_path: '/home/jackozi/.rvm/bin' }
 
 # Default branch is :master
@@ -34,7 +34,6 @@ set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 # set :keep_releases, 5
 
 namespace :deploy do
-  #server "zdma.org", roles: [:web]
   desc "Restart passenger process"
   task :restart  do
     on roles(:web) do |host|
@@ -45,19 +44,9 @@ namespace :deploy do
 
   desc "Write cronfile"
   task :whenever do 
-    on roles(:cron) do |host|
+    on roles(:web) do |host|
         execute "whenever -w"
       end
-  end
-
-  desc "run bundle install"
-  task :bundleI do
-    "bundle install"
-  end
-
-  desc "run compile less"
-  task :cless do
-    "rails generate bootstrap:install less"
   end
 end
 

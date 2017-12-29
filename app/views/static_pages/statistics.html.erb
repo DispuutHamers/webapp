@@ -3,6 +3,26 @@
 <% end %>
 <div class="row">
   <div class="col-md-6 text-center">
+    <h2> Landen vanuit waar we bezocht zijn. </h2>
+    <%= pie_chart @visitCounties %>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3> Visit OS's </h3>
+    <%= pie_chart @visitOS %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 text-center">
+    <h2> Brondomein van bezoekers </h2>
+    <%= pie_chart @visitSource %>
+  </div>
+  <div class="col-md-6 text-center">
+    <h3> Referrer </h3>
+    <%= pie_char @visitReferrer %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 text-center">
     <h2> Aantal reviews </h2>
     <%= line_chart @cumulativeReviewData %>
   </div>

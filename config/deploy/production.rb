@@ -37,4 +37,4 @@ set :deploy_to, '/home/deploys/zondersikkel.nl'
 #     # password: 'please use keys'
 #   }
 # setting per server overrides global ssh_options
-  #after "deploy", "deploy:whenever"
+#after "deploy", "deploy:whenever"

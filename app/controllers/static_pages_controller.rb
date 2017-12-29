@@ -42,6 +42,10 @@ class StaticPagesController < ApplicationController
     @cumulativeStickerData = getCumulativeData Sticker
     @cumulativeMeetingData = getCumulativeData Meeting
     @cumulativeNewsData = getCumulativeData News
+    @visitCountries = Visit.group(:country).count
+    @visitOS = Visit.group(:os).count
+    @visitSource = Visit.group(:referring_domain).count
+    @visitReferrer = Visit.group(:referrer).count
   end
 
   private

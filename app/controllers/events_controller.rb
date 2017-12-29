@@ -49,7 +49,6 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    # TODO: validation that title exists
     event = Event.new(event_params)
     event.user_id = current_user.id
     save_object(event, push=true)
@@ -61,7 +60,7 @@ class EventsController < ApplicationController
       unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event).deliver }
       flash[:success] = "Mail verzonden"
     else
-      flash[:success] = "Mag niet"
+      flash[:error] = "Mag niet"
     end
 
     redirect_to @event
