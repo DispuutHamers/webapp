@@ -34,7 +34,7 @@ module Hamers
     mount Hamers::Quotes
 
     add_swagger_documentation \
-      host: "https://zondersikkel.nl/",
+      host: "zondersikkel.nl",
       base_path: '/',
       version: '3',
       endpoint_auth_wrapper: WineBouncer::OAuth2,
