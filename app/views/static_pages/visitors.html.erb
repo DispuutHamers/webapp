@@ -8,6 +8,9 @@
     <th>city (country)</th>
     <th>os</th>
     <th>referrer</th>
+    <th>user agent</th>
+    <th>device</th>
+    <th>time</th>
   </tr>
   </thead>
   <%= will_paginate @visitors %>
@@ -18,6 +21,9 @@
         <td><%= "#{visit.city} (#{visit.country})" %></td>
         <td><%= visit.os %></td>
         <td><%= visit.referrer %></td>
+        <td><%= visit.user_agent %></td>
+        <td><%= visit.device_type %></td>
+        <td><%= visit.started_at %></td>
       </tr>
   <% end %>
   </tbody>
