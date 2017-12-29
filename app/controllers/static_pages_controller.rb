@@ -52,6 +52,10 @@ class StaticPagesController < ApplicationController
     @visitors = Visit.all.paginate(page: params[:page])
   end
 
+  def visitor
+    @visitors = Visit.where(visitor_token: params[:token]).paginate(page: params[:page])
+  end
+
   private
   def getCumulativeData(table)
     sum = 0
