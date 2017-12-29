@@ -19,6 +19,16 @@ module Hamers
       resource_owner
     end
 
+    desc 'Laat de logs zien sinds de gespecificeerde tijd'
+    params do 
+      requires :since, type: DateTime, desc: 'De datum en tijd vanaf wanneer logs moeten worden laten zien'
+    end
+
+    oauth2
+    get :log do
+      PaperTrail::Version.where(created_at: params[:since]..DateTime.current).order(created_at: 'DESC')
+    end
+
     mount Hamers::Users
     mount Hamers::Events
     mount Hamers::Quotes
@@ -30,8 +40,8 @@ module Hamers
       info: {
 	title: "Hamers API.",
 	description: "Provides endpoints to the resources at zondersikkel.nl.",
-	contact_name: "Jacko Zuidema",
-	contact_email: "jacko@zondersikkel.nl",
+	contact_name: "Hamers zonder Sikkel",
+	contact_email: "dev@zondersikkel.nl",
 	contact_url: "https://www.zondersikkel.nl",
       }
   end
