@@ -24,6 +24,7 @@ module Hamers
 
     mount Hamers::Users
     mount Hamers::Events
+    mount Hamers::Quotes
 
     add_swagger_documentation \
       base_path: '/',
