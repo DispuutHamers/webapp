@@ -1,0 +1,25 @@
+<% content_for :title do %>
+    Bezoekers
+<% end %>
+<table class="tablesorter table table-hover">
+  <thead>
+  <tr>
+    <th>id</th>
+    <th>city (country)</th>
+    <th>os</th>
+    <th>referrer</th>
+  </tr>
+  </thead>
+  <%= will_paginate @visitors %>
+  <tbody>
+  <% @visitors.each do |visit| %>
+      <tr>
+        <td><%= visit.visitor_token %></td>
+        <td><%= "#{visit.city} (#{visit.country})" %></td>
+        <td><%= visit.os %></td>
+        <td><%= visit.referrer %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate @visitors %>
