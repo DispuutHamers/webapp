@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 gem 'wine_bouncer'
+gem 'swagger_ui_engine'
 gem 'ahoy_matey'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails-controller-testing'
