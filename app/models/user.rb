@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
 
   def anonymize
     devices.destroy_all
-    name = Faker::Name.name
-    email = Faker::Internet.email(name) unless self.dev?
+    self.name = Faker::Name.name
+    self.email = Faker::Internet.email(name) unless self.dev?
     save
   end
 
@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
   def sign(event, status, reason)
     reason = UtilHelper.scramble_string(reason) if in_group?("Secretaris-generaal")
     if event.deadline > Time.now
+      if event.attendance && !status
+        return false if reason.length < 1
+      end 
       id = event.id
       stemmen = signups.where(event_id: id)
       if stemmen.any?

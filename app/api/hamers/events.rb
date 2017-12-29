@@ -46,12 +46,12 @@ module Hamers
       desc 'Update een event'
       params do
         requires :id, type: Integer, desc: 'Event id'
-          optional :title, type: String, desc: 'Nieuwe title voor het event'
-          optional :beschrijving, type: String, desc: 'Nieuwe beschrijving voor het event'
-          optional :date, type: DateTime, desc: 'Nieuwe starttijd voor het event, stoptijd en deadline worden niet aangepast.'
-          optional :deadline, type: DateTime, desc: 'Nieuwe inschrijf deadline voor het event'
-          optional :endtime, type: DateTime, desc: 'Nieuwe eindtijd voor het event, starttijd en deadline worden niet aangepast'
-          optional :location, type: String, desc: 'Nieuwe locatie voor het event'
+        optional :title, type: String, desc: 'Nieuwe title voor het event'
+        optional :beschrijving, type: String, desc: 'Nieuwe beschrijving voor het event'
+        optional :date, type: DateTime, desc: 'Nieuwe starttijd voor het event, stoptijd en deadline worden niet aangepast.'
+        optional :deadline, type: DateTime, desc: 'Nieuwe inschrijf deadline voor het event'
+        optional :endtime, type: DateTime, desc: 'Nieuwe eindtijd voor het event, starttijd en deadline worden niet aangepast'
+        optional :location, type: String, desc: 'Nieuwe locatie voor het event'
       end
 
       oauth2
@@ -74,9 +74,36 @@ module Hamers
       end
 
       oauth2
-      route_param :id do 
+      route_param :id do
         delete do
           Event.find(params[:id]).destroy
+        end
+      end
+
+      params do
+        requires :id, type: Integer, desc: 'Event id'
+      end
+
+      route_param :id do
+        resources :signups do
+          desc 'Zie alle signups voor een event'
+
+          oauth2
+          get do
+            Event.find(params[:id]).signups
+          end
+
+          desc 'In of uitschrijven voor dit event'
+          params do
+            requires :status, type: Boolean, desc: "Kom je wel of kom je niet"
+            optional :reason, type: String, desc: "Bij events met attendance true verplicht bij afwezigheid, word als opmerking bij je inschrijving geplaatst"
+          end
+
+          oauth2
+          post do
+            event = Event.find(params[:id])
+            resource_owner.sign(event, params[:status], params[:reason])
+          end
         end
       end
     end

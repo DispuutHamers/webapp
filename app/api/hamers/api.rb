@@ -13,10 +13,7 @@ module Hamers
       error! e.response.description, 403
     end
 
-    desc 'Returns the current user.',
-      notes: <<-NOTE
-  Marked down notes!
-    NOTE
+    desc 'Returns the current user.'
     oauth2 
     get :whoami do
       resource_owner
