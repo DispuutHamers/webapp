@@ -32,6 +32,7 @@ module Hamers
     mount Hamers::Users
     mount Hamers::Events
     mount Hamers::Quotes
+    mount Hamers::Beers
 
     add_swagger_documentation \
       host: "zondersikkel.nl",
