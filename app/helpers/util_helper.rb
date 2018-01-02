@@ -14,7 +14,6 @@ module UtilHelper
   def self.scramble_string(string)
     return if string.length < 1
     string << " Overigens ben ik van mening dat correct taalgebruik zeer belangrijk is!"
-    return string
   end
 
   def update_object(obj, obj_params)
