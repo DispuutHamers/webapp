@@ -13,25 +13,8 @@ module UtilHelper
 
   def self.scramble_string(string)
     return if string.length < 1
-    words = string.split
-    result = ""
-    words.each do |word|
-      if word[-1].to_s == 'd'
-        if SecureRandom.random_number(100) > 94
-          word[-1] = 't'
-        end
-
-      elsif word[-1].to_s == 't'
-        if SecureRandom.random_number(100) > 94
-          word[-1] = 'd'
-        end
-      end
-
-      result = result + word + " "
-    end
-
-    result[-1] = ''
-    return result
+    string << " Overigens ben ik van mening dat correct taalgebruik zeer belangrijk is!"
+    return string
   end
 
   def update_object(obj, obj_params)
