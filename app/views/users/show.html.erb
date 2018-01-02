@@ -22,7 +22,7 @@
         Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%<br>
       <% end %>
       <% if @user.current_sign_in_at %>
-        Ingelogt op: <br><%= @user.current_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.current_sign_in_ip %>)<br>
+        Ingelogd op: <br><%= @user.current_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.current_sign_in_ip %>)<br>
       <% end %>
       <% if @user.last_sign_in_at %>
         Laatste login op: <br><%= @user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.last_sign_in_ip %>)<br>
