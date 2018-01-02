@@ -9,6 +9,7 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
+          - export LC_ALL=en_US.UTF-8
           - bundler --version
           - bundle install
           - rails db:create
