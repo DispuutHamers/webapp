@@ -8,7 +8,11 @@ image: ruby:2.5.0
 pipelines:
   default:
     - step:
+        cache: 
+          - bundler
         script: # Modify the commands below to build your repository.
+          - export LANG=en_US.UTF-8
+          - export LANGUAGE=en_US.UTF-8
           - export LC_ALL=en_US.UTF-8
           - bundler --version
           - bundle install
@@ -18,6 +22,8 @@ pipelines:
             - database
 
 definitions:
+  caches:
+    bundler: vendor/bundle
   services:
     database:
       image: mysql
