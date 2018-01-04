@@ -140,6 +140,7 @@ class User < ActiveRecord::Base
     json[:quotes] = quotes.count
     json[:sunday_ratio] = sunday_ratio
     json[:nicknames] = nicknames
+    json[:usergroups] = usergroups.to_json(only: [:id, :name])
     json[:lid] = self.lidstring
     json[:admin] = admin? 
 
