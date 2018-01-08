@@ -3,7 +3,7 @@ module Hamers
 
     resource :users do 
       desc 'Get all users'
-      oauth2
+      oauth2 
       get do
         User.all
       end
@@ -13,7 +13,7 @@ module Hamers
         requires :id, type: Integer, desc: 'User id'
       end
       route_param :id do
-        oauth2
+        oauth2 
         get do
           User.find(params[:id])
         end

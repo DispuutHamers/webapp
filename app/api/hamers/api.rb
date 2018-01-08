@@ -13,28 +13,48 @@ module Hamers
       error! e.response.description, 403
     end
 
-    desc 'Returns the current user.',
-      notes: <<-NOTE
-  Marked down notes!
-    NOTE
-    oauth2 'public', 'write'
+    desc 'Returns the current user.'
+    oauth2
     get :whoami do
       resource_owner
     end
 
+    desc 'Laat de logs zien sinds de gespecificeerde tijd'
+    params do
+      requires :since, type: DateTime, desc: 'De datum en tijd vanaf wanneer logs moeten worden laten zien'
+    end
+
+    oauth2
+    get :log do
+      PaperTrail::Version.where(created_at: params[:since]..DateTime.current).order(created_at: 'DESC')
+    end
+
     mount Hamers::Users
     mount Hamers::Events
+    mount Hamers::Quotes
+    mount Hamers::Beers
 
     add_swagger_documentation \
+      host: "zondersikkel.nl",
       base_path: '/',
-      api_version: 'v3',
+      version: '3',
       endpoint_auth_wrapper: WineBouncer::OAuth2,
+      #swagger_endpoint_guard: 'oauth2 false',
+      token_owner: 'resource_owner',
+      security_definitions: {
+        "hamers_auth": {
+          "type": "oauth2",
+          "authorizationUrl": "https://zondersikkel.nl/oauth/authorize",
+          "tokenUrl": "https://zondersikkel.nl/oauth/token",
+          "flow": "accessCode"
+        }
+      },
       info: {
-	title: "Hamers API.",
-	description: "Provides endpoints to the resources at zondersikkel.nl.",
-	contact_name: "Jacko Zuidema",
-	contact_email: "jacko@zondersikkel.nl",
-	contact_url: "https://www.zondersikkel.nl",
+        title: "Hamers API.",
+        description: "Provides endpoints to the resources at zondersikkel.nl.",
+        contact_name: "Hamers zonder Sikkel",
+        contact_email: "dev@zondersikkel.nl",
+        contact_url: "https://www.zondersikkel.nl",
       }
   end
 end

@@ -2,13 +2,8 @@ Hamers::Application.routes.draw do
   use_doorkeeper
   mount LetsencryptPlugin::Engine, at: '/'
   mount Hamers::API => '/'
+  mount SwaggerUiEngine::Engine, at: "/api_docs"
   apipie
-  resources :documentation, only: [:index] do # swagger-ui
-    collection do # documentation token redirect
-      get :o2c
-      get :authorize
-    end
-  end
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
@@ -18,6 +13,8 @@ Hamers::Application.routes.draw do
   resources :news
   get '/images' => 'albums#index', as: 'photo'
   get '/trail' => 'static_pages#trail' , as: 'trail'
+  get '/visitors' => 'static_pages#visitors', as: 'visitors'
+  get '/visitors/:token' => 'static_pages#visitor', as: 'visitor'
   get '/trail' => 'static_pages#trail' , as: 'device'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'

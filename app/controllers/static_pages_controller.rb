@@ -1,6 +1,6 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
-  before_action :ilid?, only: [:trail, :revert, :statistics]
+  before_action :ilid?, only: [:visitors, :trail, :revert, :statistics]
 
   def home
     return unless current_user&.active?
@@ -42,6 +42,18 @@ class StaticPagesController < ApplicationController
     @cumulativeStickerData = getCumulativeData Sticker
     @cumulativeMeetingData = getCumulativeData Meeting
     @cumulativeNewsData = getCumulativeData News
+    @visitCountries = Visit.group(:country).count
+    @visitOS = Visit.group(:os).count
+    @visitSource = Visit.group(:referring_domain).count
+    @visitReferrer = Visit.group(:referrer).count
+  end
+
+  def visitors
+    @visitors = Visit.all.paginate(page: params[:page])
+  end
+
+  def visitor
+    @visitors = Visit.where(visitor_token: params[:token]).paginate(page: params[:page])
   end
 
   private
