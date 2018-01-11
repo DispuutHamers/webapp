@@ -27,8 +27,8 @@ class ApiKeyTest < ActiveSupport::TestCase
 
     assert apikey.user_id == u.id
     assert apikey2.user_id == u.id
-    assert u.api_keys[0].id == apikey.id
-    assert u.api_keys[1].id == apikey2.id
+    assert_includes u.api_keys, apikey
+    assert_includes u.api_keys, apikey2
   end
 
   test 'ApiKey only belongs to 1 user' do

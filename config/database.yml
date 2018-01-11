@@ -2,12 +2,12 @@ development:
         adapter: mysql2
         encoding: utf8
         database: hamers
-        username: root
+        username: rens
         host: 127.0.0.1
 
 test:
         adapter: mysql2
         encoding: utf8
         database: hamers_test
-        username: root
+        username: rens
         host: 127.0.0.1

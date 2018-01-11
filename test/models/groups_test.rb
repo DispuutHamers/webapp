@@ -46,8 +46,8 @@ class GroupsTest < ActiveSupport::TestCase
     Group.create(user_id: u.id, group_id: ug.id)
     Group.create(user_id: u2.id, group_id: ug.id)
 
-    assert_equal ug.users[0].id, u.id
-    assert_equal ug.users[1].id, u2.id
+    assert_includes ug.users, u
+    assert_includes ug.users, u2
 
     assert_equal u.groups[0].group_id, ug.id
     assert_equal u2.groups[0].group_id, ug.id

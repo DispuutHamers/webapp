@@ -19,7 +19,7 @@ module UtilHelper
   def update_object(obj, obj_params)
     if obj.class.name == "User" # Hacky de user afzonderen
       if obj.update_with_password(obj_params)
-        flash[:successs] = "Je profiel is geupdate"
+        flash[:success] = "Je profiel is geupdate"
         redirect_to obj
       else
         flash[:error] = "Je profiel is niet geupdate"

@@ -18,8 +18,8 @@ class MotionTest < ActiveSupport::TestCase
     m2 = Motion.create(user_id: u.id)
 
     assert m.user_id == u.id
-    assert_equal u.motions[0].id, m.id
-    assert_equal u.motions[1].id, m2.id
+    assert_includes u.motions, m
+    assert_includes u.motions, m2
   end
 
   test 'Delete motion' do
