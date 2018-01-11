@@ -18,7 +18,7 @@ pipelines:
           - export LANGUAGE=en_US.UTF-8
           - export LC_ALL=en_US.UTF-8
           - bundler --version
-          - bundle install
+          - bundle install --path vendor/bundle
           - rails db:create
           - rails test test/models/*
         services:
