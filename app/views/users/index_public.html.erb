@@ -1,7 +1,7 @@
 <% content_for :title do %>
     Leden
 <% end %>
-<%= link_to 'Bekijk de interne leden pagina', users_path, class: 'btn btn-primary' if signed_in? %>
+<%= link_to 'Bekijk de interne leden pagina', users_path, class: 'btn btn-primary' if current_user.active? %>
 <div class="col-md-12">
   <% @users.each do |group| %>
       <div class='row'>

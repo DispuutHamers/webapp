@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.' unless current_user&.active?
+    redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.' unless current_user
   end
 
   def admin_user?

@@ -4,6 +4,8 @@ Hamers::Application.routes.draw do
   mount Hamers::API => '/'
   mount SwaggerUiEngine::Engine, at: "/api_docs"
   apipie
+  get 'switch_user', to: 'switch_user#set_current_user'
+  get 'switch_user/remember_user', to: 'switch_user#remember_user'
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]

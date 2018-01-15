@@ -53,10 +53,10 @@
         <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
         <%= f.password_field :current_password, autocomplete: "off" %>
       </div>
-      <%= f.label :batch, "Lichting" %>
-      <%= f.number_field :batch, class: "form-control" %>
-      <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
-      <%= f.check_box :anonymous, class: "form-control" %>
+      <% if current_user.active? %>
+        <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
+        <%= f.check_box :anonymous, class: "form-control" %>
+      <% end %>
       <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
   </div>
 <% end %>
