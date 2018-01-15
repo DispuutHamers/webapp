@@ -2,7 +2,7 @@ module Hamers
   class Events < Grape::API
     resources :events do
       desc 'Selecteer alle events'
-      oauth2
+      oauth2 'api'
       get do
         Event.all
       end
@@ -13,7 +13,7 @@ module Hamers
       end
 
       route_param :id do
-        oauth2
+        oauth2 'api'
         get do
           Event.find(params[:id])
         end
@@ -29,7 +29,7 @@ module Hamers
         optional :location, type: String, desc: 'Waar is het event'
       end
 
-      oauth2
+      oauth2 'api'
       post do
         location = params[:location] ||= "TBD"
         Event.create!({
@@ -54,7 +54,7 @@ module Hamers
         optional :location, type: String, desc: 'Nieuwe locatie voor het event'
       end
 
-      oauth2
+      oauth2 'api'
       route_param :id do
         put do
           Event.find(params[:id]).update({
@@ -73,7 +73,7 @@ module Hamers
         requires :id, type: Integer, desc: 'Event id'
       end
 
-      oauth2
+      oauth2 'api'
       route_param :id do
         delete do
           Event.find(params[:id]).destroy
@@ -88,7 +88,7 @@ module Hamers
         resources :signups do
           desc 'Zie alle signups voor een event'
 
-          oauth2
+          oauth2 'api'
           get do
             Event.find(params[:id]).signups
           end
@@ -99,7 +99,7 @@ module Hamers
             optional :reason, type: String, desc: "Bij events met attendance true verplicht bij afwezigheid, word als opmerking bij je inschrijving geplaatst"
           end
 
-          oauth2
+          oauth2 'api'
           post do
             event = Event.find(params[:id])
             resource_owner.sign(event, params[:status], params[:reason])

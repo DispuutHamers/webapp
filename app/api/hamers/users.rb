@@ -1,9 +1,9 @@
 module Hamers
   class Users < Grape::API
 
-    resource :users do 
+    resource :users do
       desc 'Get all users'
-      oauth2 
+      oauth2 'api'
       get do
         User.all
       end
@@ -12,8 +12,9 @@ module Hamers
       params do
         requires :id, type: Integer, desc: 'User id'
       end
+
       route_param :id do
-        oauth2 
+        oauth2 'api'
         get do
           User.find(params[:id])
         end

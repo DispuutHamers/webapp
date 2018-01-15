@@ -24,7 +24,7 @@ module Hamers
       requires :since, type: DateTime, desc: 'De datum en tijd vanaf wanneer logs moeten worden laten zien'
     end
 
-    oauth2
+    oauth2 'api'
     get :log do
       PaperTrail::Version.where(created_at: params[:since]..DateTime.current).order(created_at: 'DESC')
     end

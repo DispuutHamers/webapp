@@ -2,7 +2,7 @@ module Hamers
   class Beers < Grape::API
     resources :beers do
       desc 'Selecteer alle biertjes'
-      oauth2
+      oauth2 'api'
       get do
         Beer.all
       end
@@ -13,7 +13,7 @@ module Hamers
       end
 
       route_param :id do
-        oauth2
+        oauth2 'api'
         get do
           Beer.find(params[:id])
         end
@@ -30,7 +30,7 @@ module Hamers
         optional :URL, type: String, desc: "Voor als hier meer info over het biertje te vinden is"
       end
 
-      oauth2
+      oauth2 'api'
       post do
         Beer.create!({
           name: params[:name],
@@ -55,7 +55,7 @@ module Hamers
         optional :URL, type: String, desc: "Voor als hier meer info over het biertje te vinden is"
       end
 
-      oauth2
+      oauth2 'api'
       route_param :id do
         put do
           Beer.find(params[:id]).update({
@@ -75,7 +75,7 @@ module Hamers
         requires :id, type: Integer, desc: 'Bier id'
       end
 
-      oauth2
+      oauth2 'api'
       route_param :id do
         delete do
           Beer.find(params[:id]).destroy

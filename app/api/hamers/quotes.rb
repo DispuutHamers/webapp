@@ -2,7 +2,7 @@ module Hamers
   class Quotes < Grape::API
     resources :quotes do
       desc 'Selecteer alle quotes'
-      oauth2
+      oauth2 'api'
       get do
         Quote.all
       end
@@ -13,7 +13,7 @@ module Hamers
       end
 
       route_param :id do
-        oauth2
+        oauth2 'api'
         get do
           Quote.find(params[:id])
         end
@@ -25,7 +25,7 @@ module Hamers
         requires :user_id, type: Integer, desc: "De user id van de lul die het zei"
       end
 
-      oauth2
+      oauth2 'api'
       post do
         Quote.create!({
           reporter: resource_owner,
@@ -41,12 +41,12 @@ module Hamers
         optional :user_id, type: Integer, desc: "De user id van de lul die het zei"
       end
 
-      oauth2
+      oauth2 'api'
       route_param :id do
         put do
           Quote.find(params[:id]).update({
-          user_id: params[:user_id],
-          text: params[:text]
+            user_id: params[:user_id],
+            text: params[:text]
           })
         end
       end
@@ -56,8 +56,8 @@ module Hamers
         requires :id, type: Integer, desc: 'Quote id'
       end
 
-      oauth2
-      route_param :id do 
+      oauth2 'api'
+      route_param :id do
         delete do
           Quote.find(params[:id]).destroy
         end
