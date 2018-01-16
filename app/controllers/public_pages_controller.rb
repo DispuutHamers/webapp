@@ -13,8 +13,8 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1.json
   def show
     @public_page = PublicPage.where(title: params[:id]).first
-    redirect_to root_path if !@public_page.public && !current_user&.active?
     redirect_to root_path unless @public_page != nil
+    redirect_to root_path if !@public_page.public && !current_user&.active?
   end
 
   # GET /public_pages/new
