@@ -34,10 +34,10 @@
                 </ul>
               </li>
             <% end %>
-          <% end %>
-          <% PublicPage.all.each do |pp| %>
-            <% if pp.public %>
-              <li><%= link_to pp.title, "/#{pp.title}" %></li>
+            <% PublicPage.all.each do |pp| %>
+              <% if pp.public %>
+                <li><%= link_to pp.title, "/#{pp.title}" %></li>
+              <% end %>
             <% end %>
           <% end %>
           <% if current_user&.active? %>
