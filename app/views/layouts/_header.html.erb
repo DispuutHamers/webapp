@@ -20,6 +20,11 @@
             <li><%= link_to 'Leden', public_leden_path %> </li>
             <li><%= link_to 'Bieren', beers_path %></li>
             <li><%= link_to 'Blog', blogitems_path %></li>
+            <% PublicPage.all.each do |pp| %>
+              <% if pp.public %>
+                <li><%= link_to pp.title, "/#{pp.title}" %></li>
+              <% end %>
+            <% end %>
             <% if current_user && !current_user.active? %>
               <li id="fat-menu" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account
@@ -33,11 +38,6 @@
                   </li>
                 </ul>
               </li>
-            <% end %>
-            <% PublicPage.all.each do |pp| %>
-              <% if pp.public %>
-                <li><%= link_to pp.title, "/#{pp.title}" %></li>
-              <% end %>
             <% end %>
           <% end %>
           <% if current_user&.active? %>
@@ -54,6 +54,7 @@
                 <li><%= link_to 'Vergaderingen', meetings_path %></li>
                 <li><%= link_to 'Log', trail_path %></li>
                 <li><%= link_to 'Motie', new_motion_path %></li>
+                <li><%= link_to 'Openbare Paginas', public_pages_path %></li>
                 <li><%= link_to 'Notities', notes_path %></li>
                 <li><%= link_to 'Nieuws', news_index_path %></li>
                 <li><%= link_to 'Blog', blogitems_path %></li>
@@ -73,7 +74,6 @@
                   <li><%= link_to 'Leden Administratie', leden_admin_path %></li>
                   <li><%= link_to 'Moties', motions_path %></li>
                   <li><%= link_to 'Externe Accounts', external_accounts_path %></li>
-                  <li><%= link_to 'Openbare Paginas', public_pages_path %></li>
                 </ul>
               </li>
             <% end %>

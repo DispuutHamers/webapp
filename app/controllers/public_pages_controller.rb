@@ -1,6 +1,6 @@
 # Hosts our public pages
 class PublicPagesController < ApplicationController
-  before_action :lid?
+  before_action :lid, except: [:show]
   before_action :set_public_page, only: [:edit, :update, :destroy]
 
   # GET /public_pages
@@ -13,6 +13,7 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1.json
   def show
     @public_page = PublicPage.where(title: params[:id]).first
+    redirect_to root_path if !@public_page.public && current_user&.active?
     redirect_to root_path unless @public_page != nil
   end
 
