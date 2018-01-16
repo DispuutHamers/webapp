@@ -1,6 +1,6 @@
 # Hosts our public pages
 class PublicPagesController < ApplicationController
-  before_action :lid, except: [:show]
+  before_action :lid?, except: [:show]
   before_action :set_public_page, only: [:edit, :update, :destroy]
 
   # GET /public_pages
