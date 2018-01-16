@@ -26,7 +26,8 @@ Hamers::Application.routes.draw do
   match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions
   resources :api_keys, only: [:create, :show, :destroy]
-  resources :public_pages
+  resources :public_pages, except: [:show]
+  get '/public_pages/:id' => 'public_pages#find_id'
   resources :blogitems, path: 'blog'
   post 'blog/:id' => "blogitems#add_photo"
   post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
