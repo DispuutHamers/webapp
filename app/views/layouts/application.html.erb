@@ -17,7 +17,9 @@
       <% flash.each do |key, value| %>
         <% if key == "notice" %>
           <% key = "info" %>
-        <% end %> 
+        <% elsif key == "error" %>
+          <% key = "danger" %>
+        <% end %>
         <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
       <% end %>
       <% if content_for?(:title) %>
