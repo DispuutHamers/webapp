@@ -1,34 +1,42 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: false %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+<% content_for :title do %>
+  Registreer
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="row">
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
+          <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Naam" %>
+        </div>
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+          <%= f.email_field :email, autofocus: false, class: "form-control", placeholder: "email" %>
+        </div>
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
+        </div>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
+        </div>
+        &nbsp;
+
+        <div class="actions">
+          <%= f.submit "Sign up", class: "btn btn-large btn-success" %>
+        </div>
+      <%= render "devise/shared/links" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
