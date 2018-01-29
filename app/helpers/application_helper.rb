@@ -21,4 +21,8 @@ module ApplicationHelper
     redirect_to root_path unless current_user&.active? 
   end
 
+  def brewer? 
+    redirect_to root_path unless current_user&.brouwer?
+  end
+
 end

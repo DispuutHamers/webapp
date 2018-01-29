@@ -23,5 +23,8 @@
 
 $( document ).on('turbolinks:load', function() {
   $(".tablesorter").tablesorter();
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
 }
 );

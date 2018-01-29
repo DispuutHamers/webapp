@@ -20,6 +20,15 @@
             <li><%= link_to 'Leden', public_leden_path %> </li>
             <li><%= link_to 'Bieren', beers_path %></li>
             <li><%= link_to 'Blog', blogitems_path %></li>
+            <% if current_user&.brouwer? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Oude Brouwerij', "http://brewery.zondersikkel.nl/" %></li>
+                  <li><%= link_to "Recepten", recipe_index_path %></li>
+                </ul>
+              </li>
+            <% end %>
             <% PublicPage.all.each do |pp| %>
               <% if pp.public %>
                 <li><%= link_to pp.title, "/#{pp.title}" %></li>
@@ -62,9 +71,17 @@
                 <li><%= link_to 'Statistieken', stats_path %></li>
                 <li><%= link_to 'Bezoekers', visitors_path %></li>
                 <li><%= link_to 'Bijnamen', nicknames_path %></li>
-                <% if current_user.brouwer? %><li><%= link_to 'Brouwerij', "http://brewery.zondersikkel.nl/" %></li><% end %>
               </ul>
             </li>
+            <% if current_user&.brouwer? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to 'Oude Brouwerij', "http://brewery.zondersikkel.nl/" %></li>
+                  <li><%= link_to "Recepten", recipe_index_path %></li>
+                </ul>
+              </li>
+            <% end %>
             <% if current_user&.admin? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat

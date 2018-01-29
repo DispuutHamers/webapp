@@ -10,6 +10,11 @@ Hamers::Application.routes.draw do
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
   resources :stickers
+  resources :recipe, path: "recipes" do
+    member do 
+      resources :brews, except: [:index]
+    end
+  end
   get '/mystickers' => 'stickers#personal', as: 'personal_sticker'
 
   resources :news

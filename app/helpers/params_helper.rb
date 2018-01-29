@@ -8,6 +8,14 @@ module ParamsHelper
     params.require(:blogphoto).permit(:image, :blogitem_id, :description)
   end
 
+  def brew_params
+    params.require(:brew).permit(:description, :recipe_id)
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :beer, :description)
+  end
+
   def blog_params
     params.require(:blogitem).permit(:title, :body, :public)
   end
