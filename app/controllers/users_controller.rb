@@ -1,6 +1,6 @@
 # user controller
 class UsersController < ApplicationController
-  before_action :logged_in?, except: [:new, :create, :index_public]
+  before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:admin, :index_extern, :destroy, :usergroups]
 
@@ -68,6 +68,6 @@ class UsersController < ApplicationController
   private
   def correct_user
     user = User.find(params[:id])
-    redirect_to root_url, notice: 'Niet genoeg access' unless current_user?(user) or current_user.admin?
+    redirect_to root_url, notice: 'Je mag alleen je eigen profiel editen.' unless current_user?(user) or current_user.admin?
   end
 end

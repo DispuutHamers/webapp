@@ -14,15 +14,15 @@ module ApplicationHelper
   end
 
   def lid? 
-    redirect_to root_path unless current_user&.lid? || current_user&.olid? 
+    redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.lid? || current_user&.olid? 
   end
 
   def ilid?
-    redirect_to root_path unless current_user&.active? 
+    redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.active? 
   end
 
   def brewer? 
-    redirect_to root_path unless current_user&.brouwer?
+    redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.brouwer?
   end
 
 end
