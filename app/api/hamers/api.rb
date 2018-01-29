@@ -5,6 +5,10 @@ module Hamers
     use ::WineBouncer::OAuth2
     prefix :api
 
+    before do
+      raise WineBouncer::Errors::OAuthUnautherizedError unless resource_owner&.active?
+    end
+
     rescue_from WineBouncer::Errors::OAuthUnauthorizedError do |e|
       error! e.response.description, 401
     end
