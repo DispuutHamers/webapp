@@ -1,16 +1,37 @@
-<h2><%= t 'devise.invitations.edit.header' %></h2>
-
-<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :invitation_token, readonly: true %>
-
-  <% if f.object.class.require_password_on_accepting %>
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-  <% end %>
-
-  <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+<%= content_for :title do %>
+  Registreet
 <% end %>
+
+<div class="row">
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :invitation_token, readonly: true %>
+
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
+          <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Naam" %>
+        </div>
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
+        </div>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
+        </div>
+        <br>
+        <%= link_to "Privacy Statement", "/privacy" %>
+        <div class="actions">
+        <p><%= f.submit t("devise.invitations.edit.submit_button") %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
