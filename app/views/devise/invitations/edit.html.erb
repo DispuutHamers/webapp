@@ -1,5 +1,5 @@
 <%= content_for :title do %>
-  Registreet
+  Registreer
 <% end %>
 
 <div class="row">
@@ -12,6 +12,11 @@
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
           <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Naam" %>
+        </div>
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+          <%= f.email_field :email, autofocus: false, class: "form-control", readonly: true %>
         </div>
         &nbsp;
         <div class="input-group">
