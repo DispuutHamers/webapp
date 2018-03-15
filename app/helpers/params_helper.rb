@@ -71,7 +71,7 @@ module ParamsHelper
   def sticker_params
     params.require(:sticker).permit(:lat, :lon, :notes, :image)
   end
-  
+
   def note_params
     params.require(:note).permit(:title, :content)
   end
@@ -84,5 +84,6 @@ module ParamsHelper
     #params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:update, keys: [:name, :anonymous, :batch])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
   end
 end
