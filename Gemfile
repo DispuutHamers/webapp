@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 gem 'wine_bouncer'
 gem 'switch_user'
+gem 'devise_invitable'
 gem 'swagger_ui_engine'
 gem 'ahoy_matey'
 gem 'rack-cors', :require => 'rack/cors'

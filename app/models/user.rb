@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include UtilHelper
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable,
     :lockable
   has_paper_trail :ignore => [:sunday_ratio, :encrypted_password, :reset_password_token, :reset_password_sent_at,

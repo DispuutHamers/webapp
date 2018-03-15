@@ -141,6 +141,9 @@ GEM
     debug_inspector (0.0.3)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    devise_invitable (1.7.3)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
     diffy (3.2.0)
     documentation (0.0.1)
     domain_name (0.5.20170404)
@@ -424,6 +427,7 @@ DEPENDENCIES
   cloudinary
   coffee-rails
   devise!
+  devise_invitable
   diffy
   documentation
   doorkeeper

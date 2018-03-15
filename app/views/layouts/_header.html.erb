@@ -116,6 +116,7 @@
                 <li><%= link_to 'Mijn Stickers', personal_sticker_path %></li>
                 <li><%= link_to 'Mijn Authorisaties', oauth_authorized_applications_path %></li>
                 <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
+                <li><%= link_to 'Nieuw lid uitnodigen', new_user_invitation_path %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
