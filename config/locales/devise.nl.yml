@@ -1,26 +1,18 @@
 nl:
   devise:
     invitations:
-      send_instructions: "Een uitnodigingsmail aan %{email} is verstuurd."
+      send_instructions: "Een uitnodigingsmail is aan %{email} is verstuurd."
       invitation_token_invalid: "De uitnodigingscode is ongeldig!"
-      updated: "Uw wachtwoord is ingesteld. U bent nu ingelogd."
+      updated: "Uw account is gemaakt en U bent nu ingelogd."
       updated_not_active: "Uw wachtwoord is ingesteld."
       no_invitations_remaining: "Geen uitnodigingen over."
       invitation_removed: "Uw uitnodiging is verwijderd."
       new:
         header: "Verstuur uitnodiging"
-        submit_button: "Verstuur een uitnodiging"
+        submit_button: "Verstuur uitnodiging"
       edit:
         header: "Stel Uw wachtwoord in"
-        submit_button: "Stel mijn wachtwoord in"
-    mailer:
-      invitation_instructions:
-        subject: "Instructies voor uitnodigingen"
-        hello: "Beste %{email}"
-        someone_invited_you: "Iemand heeft U uitgenodigd voor %{url}, U kunt de uitnodiging accepteren via onderstaande link."
-        accept: "Accepteer uitnodiging"
-        accept_until: "Deze uitnodoging vervalt per %{due_date}."
-        ignore: "Indien U de uitnodiging niet wenst te accepteren, negeer dan alstublieft deze email.<br />\nUw account wordt niet aangemaakt indien U niet via bovenstaande link uw wachtwoord aanmaakt."
+        submit_button: "Maak account"
     confirmations:
       confirmed: 'Je account is bevestigd.'
       send_instructions: 'Je ontvangt via e-mail instructies hoe je je account kan bevestigen.'
@@ -38,6 +30,13 @@ nl:
       last_attempt: 'Je hebt nog een poging over voordat je account wordt geblokkeerd.'
       not_found_in_database: "Ongeldig e-mail of wachtwoord."
     mailer:
+      invitation_instructions:
+        subject: "Instructies voor uitnodigingen"
+        hello: "Beste %{email}"
+        someone_invited_you: "Iemand heeft U uitgenodigd voor %{url}, U kunt de uitnodiging accepteren via onderstaande link."
+        accept: "Accepteer uitnodiging"
+        accept_until: "Deze uitnodoging vervalt per %{due_date}."
+        ignore: "Indien U de uitnodiging niet wenst te accepteren, negeer dan alstublieft deze email.<br />\nUw account wordt niet aangemaakt indien U niet via bovenstaande link uw wachtwoord aanmaakt."
       confirmation_instructions:
         subject: 'Bevestiging mailadres'
       reset_password_instructions:

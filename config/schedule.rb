@@ -7,8 +7,8 @@ every :friday, :at => "7pm" do
 end
 
 every :day, :at => '6am' do
-  runner 'User.all.each{ |u| UsersHelper.update_weight_for(u) }'
-  runner 'User.all.each{ |u| UsersHelper.sunday_ratio_for(u) }'
-  runner 'Beer.all.each{ |b| b.update_cijfer }'
+  runner 'User.leden.each{ |u| UsersHelper.update_weight_for(u) }'
+  runner 'User.leden.each{ |u| UsersHelper.sunday_ratio_for(u) }'
+  runner 'Beer.leden.each{ |b| b.update_cijfer }'
   runner "Blogitem.unscoped.where(\"title is NULL OR length(title) < 1\").delete_all"
 end
