@@ -14,6 +14,9 @@ class StaticPagesController < ApplicationController
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
   end
 
+  def privacy
+  end
+
   def console
     redirect_to root_path unless current_user&.dev?
   end

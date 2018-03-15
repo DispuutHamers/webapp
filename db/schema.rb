@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_29_133744) do
+ActiveRecord::Schema.define(version: 2018_02_03_150155) do
 
   create_table "accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -120,6 +120,14 @@ ActiveRecord::Schema.define(version: 2018_01_29_133744) do
     t.string "image_content_type"
     t.integer "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "brew_temps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "brew_id"
+    t.float "temperature"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["brew_id"], name: "index_brew_temps_on_brew_id"
   end
 
   create_table "brews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -560,6 +568,7 @@ ActiveRecord::Schema.define(version: 2018_01_29_133744) do
     t.index ["deleted_at"], name: "index_votes_on_deleted_at"
   end
 
+  add_foreign_key "brew_temps", "brews"
   add_foreign_key "brews", "recipes"
   add_foreign_key "nicknames", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"

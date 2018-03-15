@@ -6,6 +6,7 @@ Hamers::Application.routes.draw do
   apipie
   get 'switch_user', to: 'switch_user#set_current_user'
   get 'switch_user/remember_user', to: 'switch_user#remember_user'
+  get 'privacy' => 'static_pages#privacy'
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]

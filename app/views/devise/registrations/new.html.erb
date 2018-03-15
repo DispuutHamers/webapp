@@ -29,10 +29,10 @@
           <span class="input-group-addon"><i class="fa fa-key"></i></span>
           <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
         </div>
-        &nbsp;
-
+        <br>
+        <%= link_to "Privacy Statement", "/privacy" %>
         <div class="actions">
-          <%= f.submit "Sign up", class: "btn btn-large btn-success" %>
+          <%= f.submit "Sign up", class: "btn btn-large btn-success", data: { confirm: "Door te registreren ga je akkoord met onze privacy statement." } %>
         </div>
       <%= render "devise/shared/links" %>
       <% end %>

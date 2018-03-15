@@ -6,7 +6,7 @@ module Hamers
     prefix :api
 
     before do
-      raise WineBouncer::Errors::OAuthUnautherizedError unless resource_owner&.active?
+      error!({ message: 'Unauthorized' }, 401) unless resource_owner&.active?
     end
 
     rescue_from WineBouncer::Errors::OAuthUnauthorizedError do |e|
@@ -37,6 +37,7 @@ module Hamers
     mount Hamers::Events
     mount Hamers::Quotes
     mount Hamers::Beers
+    mount Hamers::Callbacks
 
     add_swagger_documentation \
       host: "zondersikkel.nl",
