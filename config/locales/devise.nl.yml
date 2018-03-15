@@ -31,12 +31,12 @@ nl:
       not_found_in_database: "Ongeldig e-mail of wachtwoord."
     mailer:
       invitation_instructions:
-        subject: "Instructies voor uitnodigingen"
-        hello: "Beste %{email}"
-        someone_invited_you: "Iemand heeft U uitgenodigd voor %{url}, U kunt de uitnodiging accepteren via onderstaande link."
+        subject: "Welkom bij Hamers"
+        hello: "Beste Aspirant"
+        someone_invited_you: "Je bent uitgenodigt deel te nemen aan het aspiranten traject van Hamers zonder Sikkel."
         accept: "Accepteer uitnodiging"
         accept_until: "Deze uitnodoging vervalt per %{due_date}."
-        ignore: "Indien U de uitnodiging niet wenst te accepteren, negeer dan alstublieft deze email.<br />\nUw account wordt niet aangemaakt indien U niet via bovenstaande link uw wachtwoord aanmaakt."
+        ignore: ""
       confirmation_instructions:
         subject: 'Bevestiging mailadres'
       reset_password_instructions:
