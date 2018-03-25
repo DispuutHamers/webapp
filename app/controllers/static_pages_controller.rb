@@ -17,6 +17,9 @@ class StaticPagesController < ApplicationController
   def privacy
   end
 
+  def invited
+  end
+
   def console
     redirect_to root_path unless current_user&.dev?
   end
