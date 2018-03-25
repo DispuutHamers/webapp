@@ -29,6 +29,6 @@ function copyToClipboard(element) {
   <%= will_paginate @logs %>
 </table>
 <br>
-<form action="ical/<%= @rawkey %>/cal.ics">
+<form action="<%= request.base_url %>/ical/<%= @rawkey %>/cal.ics">
   <button type="submit" class="btn btn-large btn-success">iCal</button> (<%= "#{request.base_url}/ical/#{@rawkey}/cal.ics" %>)
 </form>
