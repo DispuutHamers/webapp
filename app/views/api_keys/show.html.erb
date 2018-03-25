@@ -1,32 +1,34 @@
 <script>
 function copyToClipboard(element) {
-	var $temp = $("<input>");
-	$("body").append($temp);
+  var $temp = $("<input>");
+  $("body").append($temp);
   $temp.val(element).select();
   document.execCommand("copy");
-	$temp.remove();
-	}
+  $temp.remove();
+}
 </script>
 
 <a href="#" onclick='copyToClipboard("<%= @rawkey %>");'>
-
-<center><img alt="Embedded Image" src="<%= @key %>" /></center>
-
+  <center><img alt="Embedded Image" src="<%= @key %>" /></center>
 </a><br><br>
 <table>
   <thead>
-  <tr>
-    <th>ip / time</th>
-    <th>call</th>
-  </tr>
+    <tr>
+      <th>ip / time</th>
+      <th>call</th>
+    </tr>
   </thead>
   <tbody>
-  <% @logs.each do |l| %>
+    <% @logs.each do |l| %>
       <tr>
-        <td><%= l.ip_addr%> / <%= l.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+        <td><%= l.ip_addr %> / <%= l.created_at.strftime('%d/%m/%Y %H:%M') %></td>
         <td><%= l.resource_call %></td>
       </tr>
-  <% end %>
+    <% end %>
   </tbody>
   <%= will_paginate @logs %>
 </table>
+<br>
+<form action="ical/<%= @rawkey %>/cal.ics">
+  <button type="submit" class="btn btn-large btn-success">iCal</button> (<%= "#{request.base_url}/ical/#{@rawkey}/cal.ics" %>)
+</form>

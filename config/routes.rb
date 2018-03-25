@@ -50,6 +50,7 @@ Hamers::Application.routes.draw do
 
   resources :events
   get '/ical/:key' => "events#index"
+  get '/ical/:key/cal' => "events#index"
 
   resources :signups
   resources :nicknames
