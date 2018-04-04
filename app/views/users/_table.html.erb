@@ -6,6 +6,7 @@
           <th>Naam</th>
           <th>Aantal quotes</th>
           <th>Aantal reviews</th>
+          <th>Gemiddeld cijfer</th>
           <% if ratio %>
             <th>Sunday Ratio</th>
           <% end %>
@@ -22,6 +23,8 @@
             </td>
             <td><%= user.quotes.count %></td>
             <td><%= user.reviews.count %></td>
+            
+            <td><%= user.weight %></td>
             <% if ratio %>
               <td>
                 <%= user.sunday_ratio.round(2) %>%
