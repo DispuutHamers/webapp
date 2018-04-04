@@ -18,6 +18,7 @@
     </section>
     <section>
       Reviews: <%= @user.reviews.count %><br>
+      Gemiddeld cijfer: <%= @user.weight %><br>
       <% if @user.lid? %>
         Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%<br>
       <% end %>
