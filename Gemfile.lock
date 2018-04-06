@@ -207,9 +207,6 @@ GEM
       less (~> 2.6.0)
       sprockets (> 2, < 4)
       tilt
-    letsencrypt_plugin (0.0.10)
-      acme-client (~> 0.6.1)
-      rails (>= 4.2)
     libv8 (3.16.14.19)
     loofah (2.1.1)
       crass (~> 1.0.2)
@@ -446,7 +443,6 @@ DEPENDENCIES
   incoming
   jbuilder
   jquery-rails
-  letsencrypt_plugin
   memory_profiler
   minidusen
   mysql2

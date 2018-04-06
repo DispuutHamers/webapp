@@ -1,6 +1,6 @@
 Hamers::Application.routes.draw do
   use_doorkeeper
-  mount LetsencryptPlugin::Engine, at: '/'
+  mount AcmePlugin::Engine, at: '/'
   mount Hamers::API => '/'
   mount SwaggerUiEngine::Engine, at: "/api_docs"
   apipie
