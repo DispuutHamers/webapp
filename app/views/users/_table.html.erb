@@ -24,7 +24,7 @@
             <td><%= user.quotes.count %></td>
             <td><%= user.reviews.count %></td>
             
-            <td><%= user.weight %></td>
+            <td><%= user.weight.round(2) %></td>
             <% if ratio %>
               <td>
                 <%= user.sunday_ratio.round(2) %>%
