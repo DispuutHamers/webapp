@@ -7,6 +7,7 @@
           <th>Groepen</th>
           <th>Lichting</th>
           <th>Logins</th>
+          <th>AD</th>
           <th></th>
         </tr>
       </thead>
@@ -25,6 +26,9 @@
               </td>
               <td>
                 <%= user.sign_in_count %>
+              </td>
+              <td>
+                <%= UsersHelper.attended_drinks_for(user) %>
               </td>
               <td>
                 <%= f.submit "Opslaan" %>

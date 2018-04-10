@@ -19,8 +19,32 @@ module UsersHelper
         sundays = sundays + 1.0
       end
     end
+
     ratio = (sundays / total) * 100
     user.update_attributes(sunday_ratio: ratio)
+  end
+
+  def self.attended_drinks_for(user)
+    unless usergroep = user.groups.where(group_id: 4).first 
+      return "User is geen lid"
+    end
+    date = usergroep.created_at
+    drinks = Event.where(attendance: true).where("created_at > ?", date)
+    wel = 0.0
+    niet = 0.0
+    drinks.each do |drink|
+      if drink.signups.where(user_id: user.id).last&.status
+        wel = wel + 1
+      else
+        niet = niet + 1
+      end
+    end
+
+    if drinks.count > 2
+      return ((wel / (niet + wel)) * 100).round(2)
+    else
+      return "Nog onbekend"
+    end
   end
 
   def missed_drinks_for(user)
@@ -41,6 +65,7 @@ module UsersHelper
     user.reviews.each do |review|
       cijfer += review.rating
     end
+
     weight = (cijfer / user.reviews.count) unless user.reviews.empty?
     user.update_attributes(weight: weight)
   end
