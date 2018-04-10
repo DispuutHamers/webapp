@@ -55,7 +55,11 @@ class StaticPagesController < ApplicationController
   end
 
   def visitors
-    @visitors = Visit.all.paginate(page: params[:page])
+    if params[:ip]
+      @visitors = Visit.where(ip: params[:ip]).paginate(page: params[:page])
+    else
+      @visitors = Visit.all.paginate(page: params[:page])
+    end
   end
 
   def visitor
