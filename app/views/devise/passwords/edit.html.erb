@@ -2,31 +2,26 @@
   Wachtwoord instellen
 <% end %>
 
-<div class="row">
-  <div class="container">
-    <div class="col-md-6 col-md-offset-3">
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
-        <%= f.hidden_field :reset_password_token %>
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-key"></i></span>
-          <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
-        </div>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        &nbsp;
-        <div class="input-group">
-          <span class="input-group-addon"><i class="fa fa-key"></i></span>
-          <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
-        </div>
-        &nbsp;
-        <div class="actions">
-          <%= f.submit "Update mijn wachtwoord", class: "btn btn-large btn-success" %>
-        </div>
-        <%= render "devise/shared/links" %>
-      <% end %>
-
+<%= render layout: 'layouts/forms/form_small' do %>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :put}) do |f| %>
+    <%= devise_error_messages! %>
+    <%= f.hidden_field :reset_password_token %>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-key"></i></span>
+      <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
     </div>
-  </div>
-</div>
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br/>
+    &nbsp;
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-key"></i></span>
+      <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
+    </div>
+    &nbsp;
+    <div class="actions">
+      <%= f.submit "Update mijn wachtwoord", class: "btn btn-large btn-success" %>
+    </div>
+    <%= render "devise/shared/links" %>
+  <% end %>
+<% end %>
