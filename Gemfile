@@ -34,7 +34,7 @@ gem 'nprogress-rails'
 gem 'paper_trail'
 gem 'paperclip'
 gem 'paranoia'
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 gem 'rack-mini-profiler'
 gem 'rails'
 gem 'rails-controller-testing'
@@ -55,7 +55,7 @@ gem 'twitter-bootstrap-rails'
 gem 'tzinfo'
 gem 'uglifier'
 gem 'web-console'
-gem 'whenever', :require => false
+gem 'whenever', require: false
 gem 'will_paginate'
 gem 'wine_bouncer'
 group :doc do
