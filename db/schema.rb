@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_11_210005) do
+ActiveRecord::Schema.define(version: 2018_04_11_220635) do
 
   create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "visit_id"
@@ -243,15 +243,6 @@ ActiveRecord::Schema.define(version: 2018_04_11_210005) do
     t.binary "data", limit: 16777215
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "notes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "title"
-    t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_notes_on_deleted_at"
   end
 
   create_table "oauth_access_grants", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
