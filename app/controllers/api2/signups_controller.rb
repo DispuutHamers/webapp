@@ -6,6 +6,11 @@ class Api2::SignupsController < Api2::ApiController
     app_info "De hamers api docs"
   end
 
+  api :GET, '/signups', "Show signups index"
+  def index
+    render json: Signup.all
+  end
+
   api :GET, '/signups/:id', 'Show signup'
   def show
     render json: Signup.find(params[:id])
@@ -25,9 +30,9 @@ class Api2::SignupsController < Api2::ApiController
   def create
     event = do_signup(key.user)
     if event
-      render :status => :created, :text => '{"status":"201","message":"Created"}'
+      render :status => :created, :plain => '{"status":"201","message":"Created"}'
     else
-      render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
+      render :status => :bad_request, :plain => '{"status":"400","error":"Bad request"}'
     end
   end
 end

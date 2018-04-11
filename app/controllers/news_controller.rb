@@ -1,7 +1,6 @@
 #Entry point for the news resource
 class NewsController < ApplicationController
-  before_action :logged_in?
-  before_action :admin_user?, only: [:edit, :update, :destroy,]
+  before_action :ilid?
   before_action :set_news, only: [:show, :edit, :update, :destroy]
 
   # GET /news
@@ -31,7 +30,7 @@ class NewsController < ApplicationController
     news = News.new(news_params)
     news.user_id = current_user.id
     news.date = Time.now
-    save_object(news, type = "news") #rare bug die alles stuk maakt bij aanmaken push
+    save_object(news, push=true) #rare bug die alles stuk maakt bij aanmaken push
   end
 
   # PATCH/PUT /news/1

@@ -1,6 +1,27 @@
 module ParamsHelper
+
   def quote_params
     params.require(:quote).permit(:user_id, :text, :reporter)
+  end
+
+  def photo_params
+    params.require(:blogphoto).permit(:image, :blogitem_id, :description)
+  end
+
+  def brew_params
+    params.require(:brew).permit(:description, :recipe_id)
+  end
+
+  def recipe_params
+    params.require(:recipe).permit(:name, :beer, :description)
+  end
+
+  def blog_params
+    params.require(:blogitem).permit(:title, :body, :public)
+  end
+
+  def push_params
+    params.require(:push).permit(:data, :user_id)
   end
 
   def signup_params
@@ -48,14 +69,21 @@ module ParamsHelper
   end
 
   def sticker_params
-    params.require(:sticker).permit(:lat, :lon, :notes)
+    params.require(:sticker).permit(:lat, :lon, :notes, :image)
   end
-  
+
   def note_params
     params.require(:note).permit(:title, :content)
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
+    params.require(:user).permit(:name, :email, :batch, :current_password, :password, :password_confirmation, :anonymous)
+  end
+
+  def configure_permitted_parameters
+    #params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:update, keys: [:name, :anonymous, :batch])
+    devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
   end
 end

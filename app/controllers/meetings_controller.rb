@@ -1,8 +1,7 @@
 #entry point for meetings controller
 class MeetingsController < ApplicationController
-  before_action :logged_in?
+  before_action :lid?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
-  before_action :check_access
   before_action :admin_user?, only: [:notuleer,:destroy, :create, :new]
 
   # GET /meetings
@@ -32,7 +31,7 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     meeting = Meeting.new(meeting_params)
-    save_object(meeting, type="meeting")
+    save_object(meeting, push=true)
   end
 
   # PATCH/PUT /meetings/1
@@ -51,11 +50,5 @@ class MeetingsController < ApplicationController
   private
   def set_meeting
     @meeting = Meeting.find(params[:id])
-  end
-
-  def check_access
-    unless current_user.lid?
-      redirect_to root_path
-    end
   end
 end

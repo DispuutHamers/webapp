@@ -1,11 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  text: MyString
+quoteone:
+  text: Dat neuken heb ik nog nooit geprobeerd, maar ik kijk wel eens poker.
   user_id: 1
+  reporter: 2
+
+quotetwo:
+  text: Het is het lelijkste dat ik ooit heb gezien - en ik heb baby's gezien.
+  user_id: 2
   reporter: 1
 
-two:
-  text: MyString
-  user_id: 1
-  reporter: 1
+quotethree:
+  text: Scintillianen zijn net joden.
+  user_id: 2
+  reporter: 4

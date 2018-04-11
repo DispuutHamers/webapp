@@ -6,6 +6,9 @@ class Signup < ActiveRecord::Base
   validates :user_id, uniqueness: {scope: :event_id}
   validate :event_deadline_has_passed
 
+#  default_scope {includes(:user) }
+  scope :with_user, -> { includes(:user) }
+
   def as_json(options)
     super({:only => [:id, :user_id, :reason, :event_id, :status, :created_at]}.merge(options))
   end

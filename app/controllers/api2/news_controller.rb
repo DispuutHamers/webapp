@@ -17,9 +17,9 @@ class Api2::NewsController < Api2::ApiController
   end
 
   api :UPDATE, '/news/:id', 'Update news'
-  param :cat, ['e', 'd', 'l'], :required => true
-  param :body, String, :required => true
-  param :title, String, :required => true
+  param :cat, ['e', 'd', 'l']
+  param :body, String
+  param :title, String
   param :image, String
   def update
     news = News.find(params[:id])
@@ -35,6 +35,6 @@ class Api2::NewsController < Api2::ApiController
     news = News.new(news_params)
     news.user_id = key.user.id
     news.date = Time.now
-    save_object(news, type="news", push = true)
+    save_object(news, push=true)
   end
 end

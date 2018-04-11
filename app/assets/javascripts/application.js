@@ -12,9 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ahoy
+//= require trix
 //= require cloudinary
 //= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress
 //= require nprogress-turbolinks
 //= require_tree .
+
+$( document ).on('turbolinks:load', function() {
+  $(".tablesorter").tablesorter();
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+}
+);

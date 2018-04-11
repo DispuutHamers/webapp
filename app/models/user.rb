@@ -1,34 +1,52 @@
 #The user model
 class User < ActiveRecord::Base
-  has_paper_trail :ignore => [:weight, :updated_at, :remember_token]
-  acts_as_paranoid :ignote => [:weight]
+  include UtilHelper
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :invitable, :database_authenticatable, #:registerable,
+    :recoverable, :rememberable, :trackable, :validatable,
+    :lockable
+  has_paper_trail :ignore => [:sunday_ratio, :encrypted_password, :reset_password_token, :reset_password_sent_at,
+                              :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
+                              :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
+                              :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
+  acts_as_paranoid :ignore => [:weight]
   before_save { self.email = email.downcase }
-  before_create :create_remember_token
-  has_many :groups, foreign_key: 'user_id', dependent: :destroy
-  has_many :usergroups, through: :groups
+  has_many :groups, foreign_key: 'user_id'
+  has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
   has_many :devices
   has_many :api_keys
-  has_many :reviews, :dependent => :destroy
+  has_many :reviews
   has_many :motions
   has_many :events
-  has_many :beers, through: :reviews
+  has_many :beers
   has_many :api_logs
-  has_many :signups, dependent: :destroy
-  has_many :nicknames, dependent: :destroy
+  has_many :signups
+  has_many :nicknames
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  has_secure_password
-  validates :password, :presence => true, :confirmation => true, length: {minimum: 6}, :if => :password
 
-  def name_with_nickname
-    name = read_attribute(:name)
-    nicknames = self.nicknames
-    if nicknames.count > 0
-      name = self.nickname + '(' + name + ')'
-    end
-    name
+  #  default_scope { includes(:usergroups) }
+  #
+  scope :leden, -> { joins(:groups).where(groups: { group_id: 4 } ) }
+  scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 } ) }
+  scope :oud, -> { joins(:groups).where(groups: { group_id: 12 } ) }
+
+  def anonymize
+    devices.destroy_all
+    self.name = Faker::Name.name
+    self.email = Faker::Internet.email(name) unless self.dev?
+    save
+  end
+
+  def active_for_authentication?
+    super #&& self.active?
+  end
+
+  def inactive_message
+    "Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen."
   end
 
   def nickname
@@ -36,120 +54,96 @@ class User < ActiveRecord::Base
     nicknames.order('created_at DESC').each do |nick|
       nickname = nick.nickname + ' ' + nickname
     end
+
     nickname
   end
 
-  def unreviewed_beers
-    urev_beers = Beer.all
-    beers.each do |beer|
-      urev_beers = urev_beers - [beer]
-    end
-    urev_beers
-  end
-
-  def sign!(event, status, reason)
+  def sign(event, status, reason)
+    reason = UtilHelper.scramble_string(reason) if in_group?("Secretaris-generaal")
     if event.deadline > Time.now
+      if event.attendance && !status
+        return false if reason.length < 1
+      end 
       id = event.id
       stemmen = signups.where(event_id: id)
       if stemmen.any?
-        stemmen.each { |stem| stem.really_destroy! }
+        stemmen.last.update_attributes(status: status, reason: reason)
+      else
+        self.signups.create!(event_id: id, status: status, reason: reason)
       end
-      self.signups.create!(event_id: id, status: status, reason: reason)
     end
-  end
-
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
   end
 
   def generate_api_key(name)
     ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
   end
 
-  def in_group?(group)
-    groups.find_by(group_id: group.id)
-  end
-
-  def join_group!(group)
+  def join_group(group)
     id = group.id
-    unless groups.only_deleted.where(group_id: id).empty?
+    if !groups.only_deleted.where(group_id: id).empty?
       groups.with_deleted.where(group_id: id).first.restore
     else
       groups.create!(group_id: id)
     end
   end
 
-  def remove_group!(group)
+  def remove_group(group)
     groups.find_by(group_id: group.id).destroy!
   end
 
-  def User.hash(token = nil)
-    if token
-      Digest::SHA1.hexdigest(token.to_s)
-    else
-      super()
+  def in_group?(name)
+    self.usergroups.each do |group|
+      return true if group.name == name.to_s
     end
+    false
   end
 
   def lid?
-    in_group?(Usergroup.find_by(name: 'lid'))
+    in_group?("Lid")
   end
 
   def alid?
-    in_group?(Usergroup.find_by(name: 'A-Lid'))
+    in_group?("A-Lid")
   end
 
   def olid?
-    in_group?(Usergroup.find_by(name: 'O-Lid'))
+    in_group?("O-Lid")
+  end
+
+  def active?
+    lid? or olid? or alid?
   end
 
   def admin?
-    in_group?(Usergroup.find_by(name: 'Triumviraat')) || dev?
+    in_group?("Triumviraat") || dev?
   end
 
   def dev?
-    in_group?(Usergroup.find_by(name: 'Developer'))
+    in_group?("Developer")
   end
 
-  def update_weight
-    cijfer = 0.0
-    reviews = Review.where(user_id: self.id)
-    reviews.each do |review|
-      cijfer += review.rating
-    end
-
-    self.weight = (cijfer / reviews.count) unless reviews.empty?
-    save
+  def brouwer?
+    in_group?("Brouwer") || dev?
   end
 
-  def schrijf_feut?
-    in_group?(Usergroup.find_by(name: 'Secretaris-generaal'))
+  def lidstring
+    return "lid" if lid?
+    return "alid" if alid?
+    return "olid" if olid?
+    "none"
   end
 
   def as_json(options)
-    h = super({ :only =>
-               [:id, :name, :email, :created_at, :batch] }.merge(options))
-    h[:reviews] = reviews.count
-    h[:quotes] = quotes.count
-    h[:nicknames] = nicknames(options)
-    if alid?
-      h[:lid] = 'alid'
-    elsif olid?
-      h[:lid] = 'olid'
-    elsif lid?
-      h[:lid] = 'lid'
-    else
-      h[:lid] = 'none'
-    end
+    json = super({ :only =>
+                [:id, :name, :email, :created_at, :batch] }.merge(options))
+    json[:reviews] = reviews.count
+    json[:quotes] = quotes.count
+    json[:sunday_ratio] = sunday_ratio
+    json[:nicknames] = nicknames
+    json[:usergroups] = usergroups
+    json[:lid] = self.lidstring
+    json[:admin] = admin? 
 
-    admin? ? h[:admin] = 1 : h[:admin] = 0
-
-    h
-  end
-
-  private
-
-  def create_remember_token
-    self.remember_token = User.hash(User.new_remember_token)
+    json
   end
 end

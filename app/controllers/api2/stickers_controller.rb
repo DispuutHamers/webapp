@@ -19,10 +19,11 @@ class Api2::StickersController < Api2::ApiController
   api :POST, '/stickers', 'Create sticker'
   param :lat, String, :required => true
   param :lon, String, :required => true
+  param :image, String
   param :notes, String
   def create
     sticker = Sticker.new(sticker_params)
     sticker.user_id = key.user.id
-    save_object(sticker)
+    save_object(sticker, push=true)
   end
 end

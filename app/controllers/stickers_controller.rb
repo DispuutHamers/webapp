@@ -1,8 +1,7 @@
 # Sticker controller
 class StickersController < ApplicationController
-  before_action :logged_in?, except: [:new, :create]
+  before_action :ilid?
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user?, only: [:destroy]
 
   def index
     @stickers = Sticker.all
@@ -17,22 +16,31 @@ class StickersController < ApplicationController
   end
 
   def edit
+    @sticker = Sticker.find(params[:id])
   end
 
   def create
     sticker = Sticker.new(sticker_params)
     sticker.user_id = current_user.id
-    save_object(sticker, type="sticker")
+    save_object(sticker, push=true)
   end
 
   def update
+    sticker = Sticker.find(params[:id])
+    update_by_owner_or_admin(sticker, sticker_params)
   end
 
   def show
+    redirect_to personal_sticker_path
   end
 
   def destroy
     sticker = Sticker.find(params[:id])
     delete_object(sticker)
+  end
+
+  private 
+  def correct_user
+    Sticker.find(params[:id]).user_id == current_user.id || current_user.admin?
   end
 end

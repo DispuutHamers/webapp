@@ -1,7 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  beschrijving: MyString
+  id: 1
+  beschrijving: Zondagborrel
+  title: Zondagborrel
+  date: 2015-01-10 00:22:44
+  user_id: 1
+  deadline: 2015-01-10 00:22:44
+  end_time: 2015-01-10 00:26:44
+  location: Enschede
+  attendance: true
 
 two:
-  beschrijving: MyString
+  id: 2
+  beschrijving: Randomevent
+  title: Randomevent
+  date: 2018-01-10 00:22:44
+  user_id: 1
+  deadline: 2017-01-10 00:22:44
+  end_time: 2018-01-10 00:28:44
+  location: Enschede
+  attendance: false

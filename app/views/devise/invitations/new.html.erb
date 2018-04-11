@@ -1,0 +1,21 @@
+<% content_for :title do %>
+  Nieuw lid uitnodigen
+<% end %>
+
+<div class="row">
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+
+      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+          <%= f.email_field :email, autofocus: false, class: "form-control", placeholder: "email" %>
+        </div>
+        &nbsp;
+        <p><%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-large btn-success" %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

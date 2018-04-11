@@ -1,22 +1,38 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
+  before_action :ilid?, only: [:visitors, :trail, :revert, :statistics]
+
   def home
-    return unless signed_in?
+    return unless current_user&.active?
     @beer = Beer.order('RAND()').first
-    @rQuote = Quote.unscoped.order('RAND()').first
+    @random_quote = Quote.order('RAND()').first
     @quote = current_user.quotes.build
-    @feed_items = Quote.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)
-    @events = Event.order('date').where(['date >= ?', Date.today]).limit(10)
+    @blog = Blogitem.last(3).reverse
+    @feed_items = Quote.with_user.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)
+    @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
+    @trail = PaperTrail::Version.includes(:item).last(5).reverse
+  end
+
+  def privacy
+  end
+
+  def invited
   end
 
   def console
-    redirect_to root_path unless current_user && current_user.admin?
+    redirect_to root_path unless current_user&.dev?
   end
 
   def trail
-    redirect_to root_path unless current_user && current_user.admin?
-    @trail = PaperTrail::Version.all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+    @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+  end
+
+  def revert
+    m = params[:model].constantize.unscoped.find(params[:id])
+    m = m.paper_trail.previous_version
+    m.save
+    redirect_to root_path
   end
 
   def quote
@@ -24,16 +40,35 @@ class StaticPagesController < ApplicationController
   end
 
   def statistics
-    redirect_to root_path unless signed_in?
     @cumulativeReviewData = getCumulativeData Review
     @cumulativeBeerData = getCumulativeData Beer
     @cumulativeQuoteData = getCumulativeData Quote
     @cumulativeEventData = getCumulativeData Event
+    @cumulativeUserData = getCumulativeData User
+    @cumulativeStickerData = getCumulativeData Sticker
+    @cumulativeMeetingData = getCumulativeData Meeting
+    @cumulativeNewsData = getCumulativeData News
+    @visitCountries = Visit.group(:country).count
+    @visitOS = Visit.group(:os).count
+    @visitSource = Visit.group(:referring_domain).count
+    @visitReferrer = Visit.group(:referrer).count
+  end
+
+  def visitors
+    if params[:ip]
+      @visitors = Visit.where(ip: params[:ip]).paginate(page: params[:page])
+    else
+      @visitors = Visit.all.paginate(page: params[:page])
+    end
+  end
+
+  def visitor
+    @visitors = Visit.where(visitor_token: params[:token]).paginate(page: params[:page])
   end
 
   private
   def getCumulativeData(table)
     sum = 0
-    table.unscoped.order('created_at asc').group('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
+    table.unscoped.group_by_day('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
   end
 end

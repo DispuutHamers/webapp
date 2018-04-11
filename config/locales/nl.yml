@@ -1,5 +1,9 @@
 ---
 nl:
+  doorkeeper: 
+    scopes: 
+      public: "Deze applicatie kan bevestigen dat je ingelogt bent"
+      api: "Deze applicatie kan de API benaderen met je account"
   apipie:
     api_documentation: "Hamers API"
   activerecord:

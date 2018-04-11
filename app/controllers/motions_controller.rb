@@ -1,7 +1,7 @@
 #entry point for motions resource
 class MotionsController < ApplicationController
   before_action :set_motion, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in?
+  before_action :lid?
   before_action :admin_user?, except: [:new, :create]
 
   # GET /motions
@@ -29,7 +29,7 @@ class MotionsController < ApplicationController
   def create
     motion = Motion.new(motion_params)
     motion.user_id = current_user.id
-    save_object(motion, type="motion")
+    save_object(motion)
   end
 
   # PATCH/PUT /motions/1

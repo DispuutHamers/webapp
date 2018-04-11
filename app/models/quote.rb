@@ -6,6 +6,9 @@ class Quote < ActiveRecord::Base
   validates :text, presence: true
   #validates :reporter, presence:true
   acts_as_paranoid
+  serialize :text
+
+  scope :with_user, -> { includes(:user) }
 
   def as_json(options)
     super({:only => [:id, :text, :user_id, :created_at]}.merge(options))

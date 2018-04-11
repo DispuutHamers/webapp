@@ -22,6 +22,18 @@ class Api2::EventsController < Api2::ApiController
   def show
     render json: Event.find(params[:id])
   end
+  
+  api :POST, '/events/:id/remind', 'Send reminder emails'
+  def remind
+    event = Event.find(params[:id])
+    unless DateTime.now > event.deadline
+      unsigned_users = Usergroup.find_by(name: 'lid').users - event.users
+      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
+      render :status => :created, :text => '{"status":"201","message":"Created"}'
+    else
+      render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
+    end
+  end
 
   api :UPDATE, '/events/:id', 'Update event'
   param :end_time, String, :required => true
@@ -45,7 +57,7 @@ class Api2::EventsController < Api2::ApiController
   def create
     event = Event.new(event_params)
     event.user_id = key.user.id
-    save_object(event, type="event", push = true)
+    save_object(event, push=true)
   end
 
   private
@@ -53,9 +65,9 @@ class Api2::EventsController < Api2::ApiController
     date = Date.current
     case future
     when "true"
-      Event.where(date: date..(date+15.years)) # Works with ranges for future scopes
+      Event.with_signups.where(date: date..(date+15.years)) # Works with ranges for future scopes
     else
-      Event.all
+      Event.with_signups.all
     end
   end
 end

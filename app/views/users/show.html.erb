@@ -2,25 +2,57 @@
   <aside class="col-md-4">
     <section>
       <h1>
-        <%= gravatar_for @user, size: 96  %>
+        <%= gravatar_for @user, size: 96 %>
         <%= @user.name %>
       </h1>
     </section>
+    <% unless @user.nicknames.blank? %>
+      <section>
+        <%= @user.nickname %>
+      </section>
+    <% end %>
     <section>
-      <% Usergroup.all.each do |g| %>
-          <% if @user.in_group?(g) %>
-              <%= g.name %><br/>
+      <% @user.usergroups.each do |g| %>
+        <%= g.name %><br>
+      <% end %>
+    </section>
+    <section>
+      Reviews: <%= @user.reviews.count %><br>
+      Gemiddeld cijfer:
+      <% if @user.weight %>
+        <%= @user.weight.round(2) %><br>
+      <% else %>
+        Nog onbekend<br>
+      <% end %>
+      <% if @user.lid? %>
+        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%<br>
+      <% end %>
+      <% if @user.current_sign_in_at %>
+        Ingelogd op: <br><%= @user.current_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.current_sign_in_ip %>)<br>
+      <% end %>
+      <% if @user.last_sign_in_at %>
+        Laatste login op: <br><%= @user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.last_sign_in_ip %>)<br>
+      <% end %>
+    </section>
+    <section>
+      <% if @user.lid? %>
+        <% missed_drinks = missed_drinks_for(@user) %>
+        <% unless missed_drinks.empty? %>
+          <b>Gemiste Zondagborrels</b><br>
+          <% missed_drinks.each do |md| %>
+            <%= link_to md.date.strftime("%d/%m/%Y"), md %><br>
           <% end %>
+        <% end %>
       <% end %>
     </section>
   </aside>
   <div class="col-md-8">
     <% if @user.quotes.any? %>
-        <h3>Quotes: (<%= @user.quotes.count %>)</h3>
-        <ol class="microposts">
-          <%= render @quotes %>
-        </ol>
-        <%= will_paginate @quotes %>
+      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
+      <ol class="microposts">
+        <%= render @quotes %>
+      </ol>
+      <%= will_paginate @quotes %>
     <% end %>
   </div>
 </div>

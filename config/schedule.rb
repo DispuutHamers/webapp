@@ -1,29 +1,14 @@
-# Use this file to easily define all of your cron jobs.
-#
-# It's helpful, but not entirely necessary to understand cron before proceeding.
-# http://en.wikipedia.org/wiki/Cron
-
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
-# Learn more: http://github.com/javan/whenever
-
 every :sunday, :at => '12pm' do # Use any day of the week or :weekend, :weekday
-	runner "Event.new(beschrijving: \"Zondagborrel\", attendance: true, title: \"Zondagborrel\", date: Time.now + 1.weeks + 9.hours, deadline: Time.now + 1.weeks + 8.hours, end_time: Time.now + 1.weeks + 14.hours, location: \"Beiaard Enschede\").save"
+  runner "Event.new(beschrijving: \"Zondag, wellicht de mooiste dag van de week. Voor sommigen de dag van God, maar voor ons voornamelijk de dag van bier! Na enkele weken onder de tyrannie van slecht gespelde evenementen is ook deze automatische uitnodiging danig ververst, dat het er fatsoenlijk uitziet. Wij moeten er ook fatsoenlijk uitzien, dus overhemd aan en naar de Beiaard!\", attendance: true, title: \"Zondagborrel\", date: Time.now + 1.weeks + 9.hours, deadline: Time.now + 1.weeks + 8.hours, end_time: Time.now + 1.weeks + 14.hours, location: \"Beiaard Enschede\").save"
+end
+
+every :friday, :at => "7pm" do
+  runner 'UtilHelper.remind_zondag'
 end
 
 every :day, :at => '6am' do
-        runner 'User.all.each{ |u| u.update_weight }'
-	runner 'Beer.all.each{ |b| b.update_cijfer }'
+  runner 'User.leden.each{ |u| UsersHelper.update_weight_for(u) }'
+  runner 'User.leden.each{ |u| UsersHelper.sunday_ratio_for(u) }'
+  runner 'Beer.all.each{ |b| b.update_cijfer }'
+  runner "Blogitem.unscoped.where(\"title is NULL OR length(title) < 1\").delete_all"
 end

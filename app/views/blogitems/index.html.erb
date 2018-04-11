@@ -1,0 +1,24 @@
+<% @items.each do |item| %>
+<div class="bs-calltoaction bs-calltoaction-default">
+  <div class="row">
+    <div class="col-md-9 cta-contents">
+      <h1 class="cta-title"><%= item.title %></h1>
+        <div class="cta-desc">
+          <p><%= markdown truncate(item.body, length: 500).html_safe %></p>
+        </div>
+    </div>
+    <div class="col-md-3 cta-button">
+      <%= link_to "Lees", item, class: "btn btn-lg btn-block btn-default" %>
+    </div>
+  </div>
+</div>
+<% end %>
+<% if current_user&.lid? || current_user&.alid? %>
+  <% unless @items.any? %>
+    <h4> Helaas, er zijn (nog) geen blogposts. </h4>
+  <% end %>
+  <%= link_to 'Schrijf een blogpost!', new_blogitem_path, class: 'btn btn-block btn-primary' %>
+<% else unless @items.any? %>
+  <h4> Helaas, er zijn (nog) geen publieke blogposts. </h4>
+<% end %>
+<% end %>

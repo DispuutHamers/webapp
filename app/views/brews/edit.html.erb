@@ -1,0 +1,7 @@
+<% content_for :title do %>
+  Uitvoering van <%= @recipe.name %> aanpassen
+<% end %>
+
+<%= render "form" %>
+
+<%= link_to 'Terug', recipe_path(@recipe), class: 'btn btn-default' %>

@@ -1,0 +1,42 @@
+<% content_for :title do %>
+  Registreer
+<% end %>
+
+<div class="row">
+  <div class="container">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
+          <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Naam" %>
+        </div>
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+          <%= f.email_field :email, autofocus: false, class: "form-control", placeholder: "email" %>
+        </div>
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
+        </div>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+        &nbsp;
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
+        </div>
+        <br>
+        <%= link_to "Privacy Statement", "/privacy" %>
+        <div class="actions">
+          <%= f.submit "Sign up", class: "btn btn-large btn-success", data: { confirm: "Door te registreren ga je akkoord met onze privacy statement." } %>
+        </div>
+      <%= render "devise/shared/links" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

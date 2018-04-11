@@ -1,0 +1,27 @@
+<ul>
+  <% @trail.each do |t| %>
+    <li>
+      <% if t.whodunnit %>
+        <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
+      <% else %>
+        System
+      <% end %>
+
+      <% if t.event == "create" %>
+        <% if t.item_type == "Signup" %>
+          heeft zich ingeschreven voor <%= link_to t.item.event.title, t.item.event %>
+      <% else %>
+        created <%= link_to t.item_type, t.item %>
+    <% end %>
+  <% elsif t.event == "destroy" %>
+    destroyed <%= t.item_type %>
+<% else %>
+  <% if t.item_type == "Signup" %>
+    heeft zijn inschrijving voor <%= link_to t.item.event.title, t.item.event %> geupdate
+  <% else %>
+    <%= t.event %>d <%= link_to t.item_type, t.item %>
+  <% end %>
+<% end %>
+    </li>
+  <% end %>
+</ul>

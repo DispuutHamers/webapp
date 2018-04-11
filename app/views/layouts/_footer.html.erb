@@ -5,7 +5,8 @@
   <nav>
     <ul>
       <% unless signed_in? %>
-          <li><%= link_to 'Inloggen', signin_path %></li>
+        <li><%= link_to 'Inloggen', signin_path %></li>
+        <li><%= link_to 'Registreer', invited_path %></li>
       <% end %>
     </ul>
   </nav>

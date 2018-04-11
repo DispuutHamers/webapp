@@ -1,0 +1,20 @@
+<% content_for :title do %>
+  <%= @recipe.name %>
+<% end %>
+<div class="row">
+  <div class="col-md-9">
+    <%= markdown(@recipe.description).html_safe %>
+  </div>
+  <div class="col-md-3">
+    Uitvoeringen:<br>
+    <% @recipe.brews.each do |brew| %>
+      <%= link_to brew.created_at.strftime("%d/%m/%Y"), brew_path(@recipe, brew) %><br>
+    <% end %>
+  </div>
+</div>
+<br>
+<div class="btn-group">
+  <%= link_to 'Vernieuwen', edit_recipe_path(@recipe), class: 'btn btn-primary' %>
+  <%= link_to 'Nieuwe uitvoering', new_brew_path(@recipe), class: 'btn btn-primary' %>
+  <%= link_to 'Terug', recipe_index_path, class: 'btn btn-default' %>
+</div>

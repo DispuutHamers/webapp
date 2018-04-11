@@ -1,0 +1,11 @@
+<% content_for :title do %>
+    Leden Admin
+<% end %>
+<h4>Leden</h4>
+<%= render "users/admin_table", users: @leden %>
+<% unless @aspiranten.blank? %>
+<h4>Aspiranten</h4>
+<%= render "users/admin_table", users: @aspiranten %>
+<% end %>
+<h4>Oud Leden</h4>
+<%= render "users/admin_table", users: @oudelullen %>

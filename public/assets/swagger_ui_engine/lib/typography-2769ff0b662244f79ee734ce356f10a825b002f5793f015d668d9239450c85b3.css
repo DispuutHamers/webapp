@@ -1,0 +1,15 @@
+/* Google Font's Droid Sans */
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'), url("/assets/swagger_ui_engine/DroidSans-90f0a053d61ba5042e1c2db00e49584bc8b0d0b3e07fb1609c391b541b0ab4fa.ttf") format('truetype');
+}
+/* Google Font's Droid Sans Bold */
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url("/assets/swagger_ui_engine/DroidSans-Bold-b0e676ab52e9859a10bda9f4493bc819ed844ce4d1b055b9ba818e26d287c1fc.ttf") format('truetype');
+}

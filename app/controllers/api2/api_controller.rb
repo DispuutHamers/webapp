@@ -3,8 +3,10 @@
 class Api2::ApiController < ApplicationController
   attr_reader :key
   before_action :restrict_access
+  #before_action :doorkeeper_authorize! # Require access token for all actions
   before_action :log_url
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
+  skip_before_action :track_ahoy_visit
   include ParamsHelper
   #resource_description do
   #	  api_versions "2"
@@ -25,22 +27,22 @@ class Api2::ApiController < ApplicationController
   api 'POST', '/register', 'Register a device for push notifications'
   param :device, String, required: true
   def register
-    device = @key.user.devices.first || Device.new
     user = @key.user
+    device = user.devices.first || Device.new
     device.assign_attributes(user_id: user.id, device_key: params[:device])
     if device.save
-      render :status => :created, :text => '{"status":"201","message":"Created"}'
+      render :status => :created, :plain => '{"status":"201","message":"Created"}'
     else
-      render :status => :bad_request, :text => '{"status":"400","error":"Bad request"}'
+      render :status => :bad_request, :plain => '{"status":"400","error":"Bad request"}'
     end
   end
 
   private
   def restrict(admin = nil)
+    return if dev_environment
     authenticate_or_request_with_http_token do |token, options|
       @key = ApiKey.where(key: token).first
-      user = @key&.user
-      admin ? user&.admin? : user&.lid?
+      admin ? @key&.user&.admin? : @key&.user&.active?
     end
   end
 
@@ -52,9 +54,9 @@ class Api2::ApiController < ApplicationController
     restrict
   end
 
-  def save_object(obj, type = nil, push = nil)
+  def save_object(obj, push = nil)
     if obj.save
-      update_app("{ data: { #{type}: #{obj.to_json} } }") if push
+      update_app(obj, "create") if push
       render json: obj, status: :created, location: obj
     else
       render json: obj.errors, status: :unprocessable_entity
@@ -63,8 +65,8 @@ class Api2::ApiController < ApplicationController
 
   def update_object(obj, obj_params)
     if obj.update(obj_params)
-      render json: obj, status: :updated, location: obj
-    else 
+      render json: obj, status: :created, location: obj
+    else
       render json: obj.errors, status: :unprocessable_entry
     end
   end
@@ -73,10 +75,8 @@ class Api2::ApiController < ApplicationController
     user = key.user
     if (obj.user_id != user.id and !user.admin?)
       render text: "HTTP Token: Access denied.", status: :access_denied
-    elsif obj.update(obj_params)
-      render json: obj
     else
-      render json: obj.errors, status: :unprocessable_entity
+      update_object(obj, obj_params)
     end
   end
 
@@ -85,5 +85,15 @@ class Api2::ApiController < ApplicationController
     resource_descriptor = (request.method + ": " + request.original_fullpath + " " + params.to_s)
     PaperTrail.whodunnit = id
     ApiLog.new(key: @key.key, user_id: id, ip_addr: request.remote_ip, resource_call: resource_descriptor).save
+  end
+
+  private
+  def dev_environment
+    if Rails.env.development?
+      @key = User.first.api_keys.first
+      return true
+    end
+
+    return false
   end
 end

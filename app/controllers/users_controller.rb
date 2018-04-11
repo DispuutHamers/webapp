@@ -1,20 +1,37 @@
 # user controller
 class UsersController < ApplicationController
-  before_action :logged_in?, except: [:new, :create, :index_public]
+  before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user?, only: [:destroy, :usergroups]
+  before_action :admin_user?, only: [:admin, :index_extern, :destroy, :usergroups]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @leden = User.leden
+    @aspiranten = User.aspiranten
+    @oudelullen = User.oud
+  end
+
+  def admin
+    @leden = User.leden
+    @aspiranten = User.aspiranten
+    @oudelullen = User.oud
+  end
+
+  def admin_patch
+    lid = User.find(params[:id])
+    lid.update_attributes(user_params)
   end
 
   def index_public
-    @users = User.order(batch: :desc).reject { |user| !user.lid? }.group_by {|user| user[:batch]}
+    @users = User.leden.order(batch: :desc).group_by {|user| user[:batch]}
+  end
+
+  def index_extern
+    @users = User.all - User.leden - User.aspiranten - User.oud
   end
 
   def show
     @user = User.find(params[:id])
-    @quotes = @user.quotes.paginate(page: params[:page])
+    @quotes = @user.quotes.order("created_at DESC").paginate(page: params[:page])
   end
 
   def new
@@ -23,6 +40,7 @@ class UsersController < ApplicationController
 
   def usergroups
     @usergroups = Usergroup.all
+    @user = User.find(params[:id])
   end
 
   def create
@@ -35,32 +53,21 @@ class UsersController < ApplicationController
   end
 
   def update
-    delete_empty_passwords
     user = User.find(params[:id])
-    update_object(user, user_params) { sign_in current_user }
+    update_object(user, user_params)
   end
 
   def destroy
     user = User.find(params[:id])
-    delete_object(user)
+    user.groups.each do |group|
+      group.destroy
+    end
+    redirect_to users_path
   end
 
   private
-  def delete_empty_passwords
-    if user_params[:password].blank?
-      user_params.delete(:password)
-      user_params.delete(:password_confirmation)
-    end
-  end
-
-  def skip_password_attribute
-    if params[:password].blank? && params[:password_confirmation].blank?
-      params.except!(:password, :password_confirmation)
-    end
-  end
-
   def correct_user
     user = User.find(params[:id])
-    redirect_to root_url, notice: 'Niet genoeg access' unless current_user?(user) or current_user.admin?
+    redirect_to root_url, notice: 'Je mag alleen je eigen profiel editen.' unless current_user?(user) or current_user.admin?
   end
 end

@@ -8,8 +8,15 @@ class Api2::QuotesController < Api2::ApiController
   end
 
   api :GET, '/quotes', "Show quote index"
+  description 'Deze methode heeft een extra sorting op datum die kan worden aangeroepen door "?sorted=date" achter de URL te plakken, of "?sorted=date-desc" om ze te sorteren met de nieuwste boven.'
+  example 'Example: "GET /api/v2/quotes?sorted=date-desc" geeft 
+  [{"id": 987, "text": "In liefde kan je je piemel niet steken, in een kut wel.", "user_id": 14, "created_at": "2017-06-04T23:44:06.000+02:00" }, { "id": 986, "text": "Klein zijn is best handig als je ergens wil inbreken.", "user_id": 14, "created_at": "2017-06-04T22:31:44.000+02:00" }]'
   def index
-    render json: Quote.all
+    sorting = params[:sorted]
+    quotes = Quote.all
+    quotes = quotes.order('created_at') if sorting
+    quotes = quotes.reverse_order if sorting == 'date-desc'
+    render json: quotes
   end
 
   api :GET, '/quotes/:id', "Show quote"
@@ -31,6 +38,6 @@ class Api2::QuotesController < Api2::ApiController
   def create
     quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
     quote.reporter = key.user.id
-    save_object(quote, type = "quote", push = true)
+    save_object(quote, push=true)
   end
 end

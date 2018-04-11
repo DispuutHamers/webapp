@@ -2,8 +2,12 @@
 
 one:
   user_id: 1
-  device_key: MyString
+  device_key: Phone1
 
 two:
   user_id: 1
-  device_key: MyString
+  device_key: Laptop1
+
+three:
+  user_id: 2
+  device_key: Phone
