@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_11_220635) do
+ActiveRecord::Schema.define(version: 2018_04_11_221910) do
 
   create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "visit_id"
@@ -51,16 +51,6 @@ ActiveRecord::Schema.define(version: 2018_04_11_220635) do
     t.string "key"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_api_logs_on_deleted_at"
-  end
-
-  create_table "arms", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "lat"
-    t.string "lon"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_arms_on_deleted_at"
   end
 
   create_table "beers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
