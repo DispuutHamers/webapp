@@ -17,8 +17,7 @@ class UsersController < ApplicationController
   end
 
   def admin_patch
-    lid = User.find(params[:id])
-    lid.update_attributes(user_params)
+    User.find(params[:id]).update_attributes(user_params)
   end
 
   def index_public
@@ -44,8 +43,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(user_params)
-    save_object(user, type="user")
+    save_object(User.new(user_params))
   end
 
   def edit
@@ -59,13 +57,12 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    user.groups.each do |group|
-      group.destroy
-    end
+    user.groups.each(&:destroy)
     redirect_to users_path
   end
 
   private
+
   def correct_user
     user = User.find(params[:id])
     redirect_to root_url, notice: 'Je mag alleen je eigen profiel editen.' unless current_user?(user) or current_user.admin?

@@ -1,5 +1,5 @@
 <%= form_for @sticker do |f| %>
-  <div class="form-group" xmlns="http://www.w3.org/1999/html">
+  <div class="form-group">
     <%= f.label :lat %>
     <%= f.text_field :lat, id: 'lat', class: 'form-control' %>
   </div>
@@ -18,20 +18,20 @@
 
 <button onclick="getLocation()">Get location</button>
 
-<script>
-var lat = document.getElementById("lat");
-var lon = document.getElementById("lon");
+<script type="application/javascript">
+    let lat = document.getElementById("lat");
+    let lon = document.getElementById("lon");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
 
-function showPosition(position) {
-  lat.value = position.coords.latitude;
-  lon.value = position.coords.longitude;
-}
+    function showPosition(position) {
+        lat.value = position.coords.latitude;
+        lon.value = position.coords.longitude;
+    }
 </script>

@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
         </button>
         <a href="#" class="pull-left navbar-brand" style="margin-top: -8px">
-          <img src=<%= image_path("logo_transparant_background_small.png") %>>
+          <img src=<%= image_path('logo_transparant_background_small.png') %>>
         </a>
 
         <%= link_to 'HAMERS', root_path, class: 'navbar-brand', id: 'logo' %>
@@ -22,15 +22,18 @@
             <li><%= link_to 'Blog', blogitems_path %></li>
             <% if current_user&.brouwer? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
+                  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Oude Brouwerij', "http://brewery.zondersikkel.nl/" %></li>
-                  <li><%= link_to "Recepten", recipe_index_path %></li>
+                  <li><%= link_to 'Oude Brouwerij', 'http://brewery.zondersikkel.nl/' %></li>
+                  <li><%= link_to 'Recepten', recipe_index_path %></li>
                 </ul>
               </li>
             <% end %>
             <% PublicPage.all.each do |pp| %>
-              <% if pp.public %>
+              <% if pp.
+
+                  public %>
                 <li><%= link_to pp.title, "/#{pp.title}" %></li>
               <% end %>
             <% end %>
@@ -50,58 +53,60 @@
             <% end %>
           <% end %>
           <% if current_user&.active? %>
-            <li>
-              <%= link_to "Sticker plakken", new_sticker_path %>
-            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor
                 Leden <span class="caret"></span></a>
               <ul class="dropdown-menu">
+                <li><%= link_to 'Activiteiten', events_path %></li>
+                <li><%= link_to 'Bier', beers_path %></li>
+                <li><%= link_to 'Bijnamen', nicknames_path %></li>
                 <li><%= link_to 'Leden', users_path %></li>
                 <li><%= link_to 'Stickers', stickers_path %></li>
-                <li><%= link_to 'Activiteiten', events_path %></li>
                 <li><%= link_to 'Vergaderingen', meetings_path %></li>
-                <li><%= link_to 'Log', trail_path %></li>
-                <li><%= link_to 'Openbare Paginas', public_pages_path %></li>
-                <li><%= link_to 'Nieuws', news_index_path %></li>
+                <li role="separator" class="divider"></li>
                 <li><%= link_to 'Blog', blogitems_path %></li>
-                <li><%= link_to 'Bier', beers_path %></li>
-                <li><%= link_to 'Statistieken', stats_path %></li>
+                <li><%= link_to 'Nieuws', news_index_path %></li>
+                <li><%= link_to 'Openbare Paginas', public_pages_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to 'Sticker plakken', new_sticker_path %></li>
+                <li><%= link_to 'Nieuw lid uitnodigen', new_user_invitation_path %></li>
+                <li role="separator" class="divider"></li>
                 <li><%= link_to 'Bezoekers', visitors_path %></li>
-                <li><%= link_to 'Bijnamen', nicknames_path %></li>
+                <li><%= link_to 'Statistieken', stats_path %></li>
+                <li><%= link_to 'Log', trail_path %></li>
               </ul>
             </li>
             <% if current_user&.brouwer? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
+                  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Oude Brouwerij', "http://brewery.zondersikkel.nl/" %></li>
-                  <li><%= link_to "Recepten", recipe_index_path %></li>
+                  <li><%= link_to 'Oude Brouwerij', 'http://brewery.zondersikkel.nl/' %></li>
+                  <li><%= link_to 'Recepten', recipe_index_path %></li>
                 </ul>
               </li>
             <% end %>
-            <% if current_user&.admin? %>
+            <% if current_user&.admin? or current_user.dev? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overig
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Groepen', groups_path %></li>
-                  <li><%= link_to 'Leden Administratie', leden_admin_path %></li>
-                  <li><%= link_to 'Externe Accounts', external_accounts_path %></li>
-                </ul>
-              </li>
-            <% end %>
-            <% if current_user.dev? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Developer
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <%= switch_user_select %>
-                  <li><%= link_to 'OAuth Applicaties', oauth_applications_path %></li>
-                  <li><%= link_to 'API Docs', '/api_docs' %></li>
-                  <li><%= link_to 'Push', new_push_path %></li>
-                  <li><%= link_to 'Download DB', dbdump_path %></li>
-                  <li><%= link_to 'Anonymize', anonymize_path, data: {confirm: 'Het is een tyfuswerk om dit ongedaan te maken dus weet je het zeker?'} %></li>
+                  <% if current_user&.admin? %>
+                    <li class="dropdown-header">Triumviraat</li>
+                    <li><%= link_to 'Groepen', groups_path %></li>
+                    <li><%= link_to 'Leden Administratie', leden_admin_path %></li>
+                    <li><%= link_to 'Externe Accounts', external_accounts_path %></li>
+                  <% end %>
+                  <% if current_user.dev? %>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Developer</li>
+                    <%= switch_user_select class: 'btn btn-dropdown-toggle' %>
+                    <li><%= link_to 'OAuth Applicaties', oauth_applications_path %></li>
+                    <li><%= link_to 'API Docs', '/api_docs' %></li>
+                    <li><%= link_to 'Push', new_push_path %></li>
+                    <li><%= link_to 'Download DB', dbdump_path %></li>
+                    <li><%= link_to 'Anonymize', anonymize_path, data: {confirm: 'Het is een tyfuswerk om dit ongedaan te maken dus weet je het zeker?'} %></li>
+                  <% end %>
                 </ul>
               </li>
             <% end %>
@@ -113,14 +118,13 @@
                 <li><%= link_to 'Mijn Stickers', personal_sticker_path %></li>
                 <li><%= link_to 'Mijn Authorisaties', oauth_authorized_applications_path %></li>
                 <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
-                <li><%= link_to 'Nieuw lid uitnodigen', new_user_invitation_path %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
                 </li>
-              <% end %>
-              </ul>
-            </li>
+          <% end %>
+          </ul>
+          </li>
         </ul>
       </div>
     </div>

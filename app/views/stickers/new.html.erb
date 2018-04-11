@@ -1,1 +1,7 @@
-<%= render "form" %>
+<%= content_for :title do %>
+  Nieuwe sticker
+<% end %>
+
+<%= render layout: 'layouts/forms/form_small' do %>
+  <%= render 'form' %>
+<% end %>
