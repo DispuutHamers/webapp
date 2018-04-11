@@ -4,8 +4,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, #:registerable,
-    :recoverable, :rememberable, :trackable, :validatable,
-    :lockable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :lockable
   has_paper_trail :ignore => [:sunday_ratio, :encrypted_password, :reset_password_token, :reset_password_sent_at,
                               :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
                               :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
   end
 
   def inactive_message
-    "Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen."
+    'Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.'
   end
 
   def nickname
@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   end
 
   def sign(event, status, reason)
-    reason = UtilHelper.scramble_string(reason) if in_group?("Secretaris-generaal")
+    reason = UtilHelper.scramble_string(reason) if in_group?('Secretaris-generaal')
     if event.deadline > Time.now
       if event.attendance && !status
         return false if reason.length < 1
@@ -99,15 +99,15 @@ class User < ActiveRecord::Base
   end
 
   def lid?
-    in_group?("Lid")
+    in_group?('Lid')
   end
 
   def alid?
-    in_group?("A-Lid")
+    in_group?('A-Lid')
   end
 
   def olid?
-    in_group?("O-Lid")
+    in_group?('O-Lid')
   end
 
   def active?
@@ -115,22 +115,22 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    in_group?("Triumviraat") || dev?
+    in_group?('Triumviraat') || dev?
   end
 
   def dev?
-    in_group?("Developer")
+    in_group?('Developer')
   end
 
   def brouwer?
-    in_group?("Brouwer") || dev?
+    in_group?('Brouwer') || dev?
   end
 
   def lidstring
-    return "lid" if lid?
-    return "alid" if alid?
-    return "olid" if olid?
-    "none"
+    return 'lid' if lid?
+    return 'alid' if alid?
+    return 'olid' if olid?
+    'none'
   end
 
   def as_json(options)
