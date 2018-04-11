@@ -10,33 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_03_15_140533) do
+ActiveRecord::Schema.define(version: 2018_04_11_210005) do
 
-  create_table "accounts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_accounts_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
-  end
-
-  create_table "afmeldingens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "reden"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "visit_id"
     t.integer "user_id"
     t.string "name"
@@ -102,7 +78,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["deleted_at"], name: "index_beers_on_deleted_at"
   end
 
-  create_table "blogitems", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "blogitems", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "user_id"
@@ -111,7 +87,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.boolean "public", default: false
   end
 
-  create_table "blogphotos", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "blogphotos", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "blogitem_id"
     t.string "description"
     t.datetime "created_at", null: false
@@ -122,7 +98,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.datetime "image_updated_at"
   end
 
-  create_table "brew_temps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "brew_temps", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.bigint "brew_id"
     t.float "temperature"
     t.datetime "created_at", null: false
@@ -130,7 +106,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["brew_id"], name: "index_brew_temps_on_brew_id"
   end
 
-  create_table "brews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "brews", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "description"
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
@@ -278,7 +254,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["deleted_at"], name: "index_notes_on_deleted_at"
   end
 
-  create_table "oauth_access_grants", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "oauth_access_grants", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.integer "application_id", null: false
     t.string "token", null: false
@@ -292,7 +268,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
-  create_table "oauth_access_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "oauth_access_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "resource_owner_id"
     t.integer "application_id"
     t.string "token", null: false
@@ -308,7 +284,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "oauth_applications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
@@ -317,12 +293,6 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
-  create_table "polls", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "beschrijving"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "public_pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -344,7 +314,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["deleted_at"], name: "index_pushes_on_deleted_at"
   end
 
-  create_table "quotes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin", force: :cascade do |t|
+  create_table "quotes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "text"
     t.integer "user_id"
     t.integer "reporter"
@@ -355,7 +325,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at"
   end
 
-  create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "beer"
     t.text "description"
@@ -375,7 +345,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["deleted_at"], name: "index_reviews_on_deleted_at"
   end
 
-  create_table "rpush_apps", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "rpush_apps", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "environment"
     t.text "certificate"
@@ -391,7 +361,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.datetime "access_token_expiration"
   end
 
-  create_table "rpush_feedback", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "rpush_feedback", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "device_token", limit: 64, null: false
     t.datetime "failed_at", null: false
     t.datetime "created_at", null: false
@@ -400,7 +370,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["device_token"], name: "index_rpush_feedback_on_device_token"
   end
 
-  create_table "rpush_notifications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "rpush_notifications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "badge"
     t.string "device_token", limit: 64
     t.string "sound", default: "default"
@@ -445,14 +415,6 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["deleted_at"], name: "index_signups_on_deleted_at"
   end
 
-  create_table "statics", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.string "p_content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "stickers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "lat"
     t.string "lon"
@@ -491,7 +453,9 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.float "weight", limit: 53, default: 0.0
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
+    t.string "string"
     t.datetime "reset_password_sent_at"
+    t.datetime "datetime"
     t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
@@ -539,7 +503,7 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
-  create_table "visits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "visits", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "visit_token"
     t.string "visitor_token"
     t.string "ip"
@@ -568,16 +532,6 @@ ActiveRecord::Schema.define(version: 2018_03_15_140533) do
     t.timestamp "started_at"
     t.index ["user_id"], name: "index_visits_on_user_id"
     t.index ["visit_token"], name: "index_visits_on_visit_token", unique: true
-  end
-
-  create_table "votes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "user_id"
-    t.boolean "result"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "poll_id"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_votes_on_deleted_at"
   end
 
   add_foreign_key "brew_temps", "brews"
