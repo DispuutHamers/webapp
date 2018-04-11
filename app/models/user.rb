@@ -6,19 +6,18 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
-  has_paper_trail :ignore => [:sunday_ratio, :encrypted_password, :reset_password_token, :reset_password_sent_at,
-                              :remember_created_at, :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip,
-                              :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at,
-                              :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at, :weight, :updated_at, :remember_token, :password_digest, :password, :password_confirmation]
+  has_paper_trail :ignore => %i[sunday_ratio encrypted_password reset_password_token reset_password_sent_at 
+remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip 
+last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at 
+remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation]
   acts_as_paranoid :ignore => [:weight]
-  before_save { self.email = email.downcase }
+  before_save {self.email = email.downcase}
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
   has_many :devices
   has_many :api_keys
   has_many :reviews
-  has_many :motions
   has_many :events
   has_many :beers
   has_many :api_logs
@@ -30,14 +29,14 @@ class User < ActiveRecord::Base
 
   #  default_scope { includes(:usergroups) }
   #
-  scope :leden, -> { joins(:groups).where(groups: { group_id: 4 } ) }
-  scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 } ) }
-  scope :oud, -> { joins(:groups).where(groups: { group_id: 12 } ) }
+  scope :leden, -> {joins(:groups).where(groups: {group_id: 4})}
+  scope :aspiranten, -> {joins(:groups).where(groups: {group_id: 5})}
+  scope :oud, -> {joins(:groups).where(groups: {group_id: 12})}
 
   def anonymize
     devices.destroy_all
     self.name = Faker::Name.name
-    self.email = Faker::Internet.email(name) unless self.dev?
+    self.email = Faker::Internet.email(name) unless dev?
     save
   end
 
@@ -63,19 +62,19 @@ class User < ActiveRecord::Base
     if event.deadline > Time.now
       if event.attendance && !status
         return false if reason.length < 1
-      end 
+      end
       id = event.id
       stemmen = signups.where(event_id: id)
       if stemmen.any?
         stemmen.last.update_attributes(status: status, reason: reason)
       else
-        self.signups.create!(event_id: id, status: status, reason: reason)
+        signups.create!(event_id: id, status: status, reason: reason)
       end
     end
   end
 
   def generate_api_key(name)
-    ApiKey.new(user_id: self.id, name: name, key: SecureRandom.urlsafe_base64).save
+    ApiKey.new(user_id: id, name: name, key: SecureRandom.urlsafe_base64).save
   end
 
   def join_group(group)
@@ -92,7 +91,7 @@ class User < ActiveRecord::Base
   end
 
   def in_group?(name)
-    self.usergroups.each do |group|
+    usergroups.each do |group|
       return true if group.name == name.to_s
     end
     false
@@ -134,15 +133,14 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options)
-    json = super({ :only =>
-                [:id, :name, :email, :created_at, :batch] }.merge(options))
+    json = super({:only => %i[id name email created_at batch]}.merge(options))
     json[:reviews] = reviews.count
     json[:quotes] = quotes.count
     json[:sunday_ratio] = sunday_ratio
     json[:nicknames] = nicknames
     json[:usergroups] = usergroups
-    json[:lid] = self.lidstring
-    json[:admin] = admin? 
+    json[:lid] = lidstring
+    json[:admin] = admin?
 
     json
   end
