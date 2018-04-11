@@ -53,7 +53,7 @@ module ParamsHelper
   end
 
   def arm_params
-    params.requre(:arm).permit(:lat, :lon)
+    params.require(:arm).permit(:lat, :lon)
   end
 
   def nickname_params
