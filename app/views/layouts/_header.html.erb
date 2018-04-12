@@ -25,8 +25,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to recipe_index_path do %><i class="fa fa-list-alt fa-fw"></i> Recepten<% end %></li>
-                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fa fa-external-link fa-fw"></i> Oude brouwerij<% end %></li>
+                  <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
+                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fas fa-external-link-alt fa-fw"></i> Oude brouwerij<% end %></li>
                 </ul>
               </li>
             <% end %>
@@ -46,7 +46,7 @@
                   <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
                   <li class="divider"></li>
                   <li><%= link_to destroy_user_session_path, method: 'delete' do %>
-                      <i class="fa fa-sign-out fa-fw"></i> Uitloggen
+                      <i class="fas fa-sign-out-alt fa-fw"></i> Uitloggen
                     <% end %>
                   </li>
                 </ul>
@@ -58,23 +58,23 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor
                 Leden <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to events_path do %><i class="fa fa-calendar fa-fw"></i> Activiteiten<% end %></li>
+                <li><%= link_to events_path do %><i class="far fa-calendar-alt fa-fw"></i> Activiteiten<% end %></li>
                 <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
-                <li><%= link_to nicknames_path do %><i class="fa fa-address-book-o fa-fw"></i> Bijnamen<% end %></li>
+                <li><%= link_to nicknames_path do %><i class="fa fa-address-book fa-fw"></i> Bijnamen<% end %></li>
                 <li><%= link_to users_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
-                <li><%= link_to stickers_path do %><i class="fa fa-sticky-note-o fa-fw"></i> Stickers<% end %></li>
+                <li><%= link_to stickers_path do %><i class="far fa-sticky-note fa-fw"></i> Stickers<% end %></li>
                 <li><%= link_to meetings_path do %><i class="fa fa-suitcase fa-fw"></i> Vergaderingen<% end %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
-                <li><%= link_to news_index_path do %><i class="fa fa-newspaper-o fa-fw"></i> Nieuws<% end %></li>
-                <li><%= link_to public_pages_path do %><i class="fa fa-file-text-o fa-fw"></i> Openbare pagina's<% end %></li>
+                <li><%= link_to news_index_path do %><i class="far fa-newspaper fa-fw"></i> Nieuws<% end %></li>
+                <li><%= link_to public_pages_path do %><i class="fa fa-file-alt fa-fw"></i> Openbare pagina's<% end %></li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to new_sticker_path do %><i class="fa fa-plus fa-fw"></i> Sticker plakken<% end %></li>
+                <li><%= link_to new_sticker_path do %><i class="far fa-copy fa-fw"></i> Sticker plakken<% end %></li>
                 <li><%= link_to new_user_invitation_path do %><i class="fa fa-user-plus fa-fw"></i> Lid uitnodigen<% end %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to visitors_path do %><i class="fa fa-users fa-fw"></i> Bezoekers<% end %></li>
-                <li><%= link_to stats_path do %><i class="fa fa-line-chart fa-fw"></i> Statistieken<% end %></li>
-                <li><%= link_to trail_path do %><i class="fa fa-archive fa-fw"></i> Log<% end %></li>
+                <li><%= link_to stats_path do %><i class="fas fa-chart-line fa-fw"></i> Statistieken<% end %></li>
+                <li><%= link_to trail_path do %><i class="fas fa-history fa-fw"></i> Log<% end %></li>
               </ul>
             </li>
             <% if current_user&.brouwer? %>
@@ -82,8 +82,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to recipe_index_path do %><i class="fa fa-list-alt fa-fw"></i> Recepten<% end %></li>
-                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fa fa-external-link fa-fw"></i> Oude brouwerij<% end %></li>
+                  <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
+                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fas fa-external-link-alt fa-fw"></i> Oude brouwerij<% end %></li>
                 </ul>
               </li>
             <% end %>
@@ -116,13 +116,13 @@
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to current_user do %><i class="fa fa-user-circle fa-fw"></i> Profiel<% end %></li>
-                <li><%= link_to personal_sticker_path do %><i class="fa fa-sticky-note-o fa-fw"></i> Mijn stickers<% end %></li>
+                <li><%= link_to personal_sticker_path do %><i class="far fa-sticky-note fa-fw"></i> Mijn stickers<% end %></li>
                 <li><%= link_to oauth_authorized_applications_path do %><i class="fa fa-unlock fa-fw"></i> Mijn authorisaties<% end %></li>
-                <li><%= link_to edit_user_path(current_user) do %><i class="fa fa-gear fa-fw"></i> Instellingen<% end %></li>
+                <li><%= link_to edit_user_path(current_user) do %><i class="fa fa-wrench fa-fw"></i> Instellingen<% end %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to destroy_user_session_path, method: 'delete' do %>
-                    <i class="fa fa-sign-out fa-fw"></i> Uitloggen
+                    <i class="fas fa-sign-out-alt fa-fw"></i> Uitloggen
                   <% end %>
                 </li>
           <% end %>

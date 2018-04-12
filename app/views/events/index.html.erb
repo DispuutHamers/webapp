@@ -28,11 +28,11 @@
             <td>
               <div class="btn-group" style="display: inline-block">
                     <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
-                        <i class="fa fa-pencil"></i>
+                        <i class="fas fa-pencil-alt"></i>
                     <% end %>
                 <% if current_user.admin? %>
                     <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
-                        <i class="fa fa-trash"></i>
+                        <i class="far fa-trash-alt"></i>
                     <% end %>
                 <% end %>
               </div>
