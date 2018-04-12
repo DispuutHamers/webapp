@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @quotes = @user.quotes.order("created_at DESC").paginate(page: params[:page])
+    @quotes = @user.quotes.order('created_at DESC').paginate(page: params[:page])
   end
 
   def new
