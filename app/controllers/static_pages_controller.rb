@@ -7,8 +7,8 @@ class StaticPagesController < ApplicationController
     @beer = Beer.order('RAND()').first
     @random_quote = Quote.order('RAND()').first
     @quote = current_user.quotes.build
-    @blog = Blogitem.last(3).reverse
-    @feed_items = Quote.with_user.all.order("created_at DESC").paginate(page: params[:page], :per_page => 8)
+    @blog = Blogitem.last(5).reverse
+    @quotes = Quote.with_user.all.order('created_at DESC').paginate(page: params[:page], :per_page => 10)
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse

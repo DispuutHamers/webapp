@@ -25,6 +25,10 @@ section {
   overflow: auto;
 }
 
+section ul {
+  padding-left: 14px;
+}
+
 textarea {
   resize: vertical;
 }
@@ -41,6 +45,7 @@ textarea {
 .microposts {
   list-style: none;
   margin: 10px 0 0 0;
+  padding-left: 0;
 
   li {
     padding: 10px 0;

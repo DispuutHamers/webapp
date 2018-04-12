@@ -4,13 +4,12 @@ class Quote < ActiveRecord::Base
   default_scope -> { order('created_at DESC') }
   validates :user_id, presence: true
   validates :text, presence: true
-  #validates :reporter, presence:true
   acts_as_paranoid
   serialize :text
 
   scope :with_user, -> { includes(:user) }
 
   def as_json(options)
-    super({:only => [:id, :text, :user_id, :created_at]}.merge(options))
+    super({ only: %i[id text user_id created_at] }.merge(options))
   end
 end

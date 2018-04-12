@@ -1,0 +1,15 @@
+<li id="quote_<%= quote.id %>">
+  <span class="content">
+    <%= quote.text %>
+  </span>
+  <span class="timestamp">
+    <i class="fa fa-clock-o"></i> <%= time_ago_in_words(quote.created_at) %> geleden
+  </span>
+  <%= link_to quote,
+              method: :delete,
+              data: {confirm: 'You sure?'},
+              title: quote.text,
+              class: 'btn btn-default btn-sm' do %>
+    <i class="fa fa-trash"></i>
+  <% end %>
+</li>

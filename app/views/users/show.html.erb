@@ -28,11 +28,11 @@
         Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%<br>
       <% end %>
       <% if @user.current_sign_in_at %>
-        Ingelogd op: <br><%= @user.current_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.current_sign_in_ip %>
+        Ingelogd op: <br><%= @user.current_sign_in_at.strftime('%d/%m/%Y %H:%M') %> (<%= @user.current_sign_in_ip %>
         )<br>
       <% end %>
       <% if @user.last_sign_in_at %>
-        Laatste login op: <br><%= @user.last_sign_in_at.strftime("%d/%m/%Y %H:%M") %> (<%= @user.last_sign_in_ip %>)<br>
+        Laatste login op: <br><%= @user.last_sign_in_at.strftime('%d/%m/%Y %H:%M') %> (<%= @user.last_sign_in_ip %>)<br>
       <% end %>
     </section>
     <section>
@@ -51,7 +51,7 @@
     <% if @user.quotes.any? %>
       <h3>Quotes: (<%= @user.quotes.count %>)</h3>
       <ol class="microposts">
-        <%= render @quotes %>
+        <%= render partial: 'quotes/quote_stripped', collection: @quotes, as: :quote %>
       </ol>
       <%= will_paginate @quotes %>
     <% end %>

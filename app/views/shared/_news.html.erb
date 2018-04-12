@@ -1,0 +1,6 @@
+<ul>
+  <% @news.each do |f| %>
+      <li>
+        <%= f.created_at.strftime('%d/%m/%Y') %> - <%= link_to f.title, f %></li>
+  <% end %>
+</ul>
