@@ -19,7 +19,7 @@
           <% c = 'success' if event.today? %>
           <tr class="<%= c %>">
             <td><%= link_to event.title, event %></td>
-            <td><%= event.date.strftime('%d/%m/%Y') %>
+            <td><%= event.date.strftime('%d-%m-%Y') %>
             <td>
               <% event.signups.with_user.where(status: true).each_with_index do |s, index| %>
                   <%= s.user.name + ',' %>

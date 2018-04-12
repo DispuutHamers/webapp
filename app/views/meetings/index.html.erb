@@ -15,7 +15,7 @@
   <tbody>
     <% @meetings.each do |m| %>
       <tr>
-        <td><%= m.date.strftime('%d/%m/%Y') %></td>
+        <td><%= m.date.strftime('%d-%m-%Y') %></td>
         <td><%= link_to m.onderwerp, m %></td>
         <% if current_user.admin? %>
           <td>
