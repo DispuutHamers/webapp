@@ -1,13 +1,14 @@
-<footer class="footer">
+<footer class="footer text-center">
   <small>
-    By <a href="http://zondersikkel.nl">Hamers zonder Sikkel</a>
+    <a href="https://zondersikkel.nl/">Hamers zonder Sikkel</a> <br>
+    Copyright © 2018
   </small>
-  <nav>
-    <ul>
-      <% unless signed_in? %>
+  <% unless signed_in? %>
+    <nav>
+      <ul>
         <li><%= link_to 'Inloggen', signin_path %></li>
         <li><%= link_to 'Registreer', invited_path %></li>
-      <% end %>
-    </ul>
-  </nav>
+      </ul>
+    </nav>
+  <% end %>
 </footer>

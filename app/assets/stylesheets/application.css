@@ -16,6 +16,10 @@
  *= require trix
  */
 
+#new_user label {
+    padding-left: 0;
+}
+
 #map {
   height: 100%;
 }
@@ -26,10 +30,6 @@
 
 .input-group-btn .btn-group {
   display: flex !important;
-}
-.btn-group .btn {
-  border-radius: 0;
-  margin-left: -1px;
 }
 .btn-group .btn:last-child {
   border-top-right-radius: 4px;

@@ -453,7 +453,7 @@ DEPENDENCIES
   paranoia
   rack-cors
   rack-mini-profiler
-  rails (= 5.2.0.beta2)
+  rails
   rails-controller-testing
   rails-i18n
   rb-readline

@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
         </button>
         <a href="#" class="pull-left navbar-brand" style="margin-top: -8px">
-          <img src=<%= image_path("logo_transparant_background_small.png") %>>
+          <img src=<%= image_path('logo_transparant_background_small.png') %>>
         </a>
 
         <%= link_to 'HAMERS', root_path, class: 'navbar-brand', id: 'logo' %>
@@ -17,20 +17,23 @@
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
           <% unless current_user&.active? %>
-            <li><%= link_to 'Leden', public_leden_path %> </li>
-            <li><%= link_to 'Bieren', beers_path %></li>
-            <li><%= link_to 'Blog', blogitems_path %></li>
+            <li><%= link_to public_leden_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
+            <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
+            <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
             <% if current_user&.brouwer? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
+                  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Oude Brouwerij', "http://brewery.zondersikkel.nl/" %></li>
-                  <li><%= link_to "Recepten", recipe_index_path %></li>
+                  <li><%= link_to recipe_index_path do %><i class="fa fa-list-alt fa-fw"></i> Recepten<% end %></li>
+                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fa fa-external-link fa-fw"></i> Oude brouwerij<% end %></li>
                 </ul>
               </li>
             <% end %>
             <% PublicPage.all.each do |pp| %>
-              <% if pp.public %>
+              <% if pp.
+
+                  public %>
                 <li><%= link_to pp.title, "/#{pp.title}" %></li>
               <% end %>
             <% end %>
@@ -42,69 +45,69 @@
                   <li><%= link_to 'Mijn Authorisaties', oauth_authorized_applications_path %></li>
                   <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
                   <li class="divider"></li>
-                  <li>
-                    <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
+                  <li><%= link_to destroy_user_session_path, method: 'delete' do %>
+                      <i class="fa fa-sign-out fa-fw"></i> Uitloggen
+                    <% end %>
                   </li>
                 </ul>
               </li>
             <% end %>
           <% end %>
           <% if current_user&.active? %>
-            <li>
-              <%= link_to "Sticker plakken", new_sticker_path %>
-            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor
                 Leden <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Leden', users_path %></li>
-                <li><%= link_to 'Stickers', stickers_path %></li>
-                <li><%= link_to 'Activiteiten', events_path %></li>
-                <li><%= link_to 'Vergaderingen', meetings_path %></li>
-                <li><%= link_to 'Log', trail_path %></li>
-                <li><%= link_to 'Motie', new_motion_path %></li>
-                <li><%= link_to 'Openbare Paginas', public_pages_path %></li>
-                <li><%= link_to 'Notities', notes_path %></li>
-                <li><%= link_to 'Nieuws', news_index_path %></li>
-                <li><%= link_to 'Blog', blogitems_path %></li>
-                <li><%= link_to 'Bier', beers_path %></li>
-                <li><%= link_to 'Statistieken', stats_path %></li>
-                <li><%= link_to 'Bezoekers', visitors_path %></li>
-                <li><%= link_to 'Bijnamen', nicknames_path %></li>
+                <li><%= link_to events_path do %><i class="fa fa-calendar fa-fw"></i> Activiteiten<% end %></li>
+                <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
+                <li><%= link_to nicknames_path do %><i class="fa fa-address-book-o fa-fw"></i> Bijnamen<% end %></li>
+                <li><%= link_to users_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
+                <li><%= link_to stickers_path do %><i class="fa fa-sticky-note-o fa-fw"></i> Stickers<% end %></li>
+                <li><%= link_to meetings_path do %><i class="fa fa-suitcase fa-fw"></i> Vergaderingen<% end %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
+                <li><%= link_to news_index_path do %><i class="fa fa-newspaper-o fa-fw"></i> Nieuws<% end %></li>
+                <li><%= link_to public_pages_path do %><i class="fa fa-file-text-o fa-fw"></i> Openbare pagina's<% end %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to new_sticker_path do %><i class="fa fa-plus fa-fw"></i> Sticker plakken<% end %></li>
+                <li><%= link_to new_user_invitation_path do %><i class="fa fa-user-plus fa-fw"></i> Lid uitnodigen<% end %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to visitors_path do %><i class="fa fa-users fa-fw"></i> Bezoekers<% end %></li>
+                <li><%= link_to stats_path do %><i class="fa fa-line-chart fa-fw"></i> Statistieken<% end %></li>
+                <li><%= link_to trail_path do %><i class="fa fa-archive fa-fw"></i> Log<% end %></li>
               </ul>
             </li>
             <% if current_user&.brouwer? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
+                  <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Oude Brouwerij', "http://brewery.zondersikkel.nl/" %></li>
-                  <li><%= link_to "Recepten", recipe_index_path %></li>
+                  <li><%= link_to recipe_index_path do %><i class="fa fa-list-alt fa-fw"></i> Recepten<% end %></li>
+                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fa fa-external-link fa-fw"></i> Oude brouwerij<% end %></li>
                 </ul>
               </li>
             <% end %>
-            <% if current_user&.admin? %>
+            <% if current_user&.admin? or current_user.dev? %>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overig
                   <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to 'Groepen', groups_path %></li>
-                  <li><%= link_to 'Leden Administratie', leden_admin_path %></li>
-                  <li><%= link_to 'Moties', motions_path %></li>
-                  <li><%= link_to 'Externe Accounts', external_accounts_path %></li>
-                </ul>
-              </li>
-            <% end %>
-            <% if current_user.dev? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Developer
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <%= switch_user_select %>
-                  <li><%= link_to 'OAuth Applicaties', oauth_applications_path %></li>
-                  <li><%= link_to 'API Docs', '/api_docs' %></li>
-                  <li><%= link_to 'Push', new_push_path %></li>
-                  <li><%= link_to 'Download DB', dbdump_path %></li>
-                  <li><%= link_to 'Anonymize', anonymize_path, data: {confirm: 'Het is een tyfuswerk om dit ongedaan te maken dus weet je het zeker?'} %></li>
+                  <% if current_user&.admin? %>
+                    <li class="dropdown-header">Triumviraat</li>
+                    <li><%= link_to 'Groepen', groups_path %></li>
+                    <li><%= link_to 'Leden Administratie', leden_admin_path %></li>
+                    <li><%= link_to 'Externe Accounts', external_accounts_path %></li>
+                  <% end %>
+                  <% if current_user.dev? %>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Developer</li>
+                    <%= switch_user_select class: 'btn btn-dropdown-toggle' %>
+                    <li><%= link_to 'OAuth Applicaties', oauth_applications_path %></li>
+                    <li><%= link_to 'API Docs', '/api_docs' %></li>
+                    <li><%= link_to 'Push', new_push_path %></li>
+                    <li><%= link_to 'Download DB', dbdump_path %></li>
+                    <li><%= link_to 'Anonymize', anonymize_path, data: {confirm: 'Het is een tyfuswerk om dit ongedaan te maken dus weet je het zeker?'} %></li>
+                  <% end %>
                 </ul>
               </li>
             <% end %>
@@ -112,18 +115,19 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account
                 <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><%= link_to 'Mijn Profiel', current_user %></li>
-                <li><%= link_to 'Mijn Stickers', personal_sticker_path %></li>
-                <li><%= link_to 'Mijn Authorisaties', oauth_authorized_applications_path %></li>
-                <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
-                <li><%= link_to 'Nieuw lid uitnodigen', new_user_invitation_path %></li>
+                <li><%= link_to current_user do %><i class="fa fa-user-circle fa-fw"></i> Profiel<% end %></li>
+                <li><%= link_to personal_sticker_path do %><i class="fa fa-sticky-note-o fa-fw"></i> Mijn stickers<% end %></li>
+                <li><%= link_to oauth_authorized_applications_path do %><i class="fa fa-unlock fa-fw"></i> Mijn authorisaties<% end %></li>
+                <li><%= link_to edit_user_path(current_user) do %><i class="fa fa-gear fa-fw"></i> Instellingen<% end %></li>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to 'Uitloggen', destroy_user_session_path, method: 'delete' %>
+                  <%= link_to destroy_user_session_path, method: 'delete' do %>
+                    <i class="fa fa-sign-out fa-fw"></i> Uitloggen
+                  <% end %>
                 </li>
-              <% end %>
-              </ul>
-            </li>
+          <% end %>
+          </ul>
+          </li>
         </ul>
       </div>
     </div>

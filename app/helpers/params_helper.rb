@@ -40,10 +40,6 @@ module ParamsHelper
     params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date, :location)
   end
 
-  def motion_params
-    params.require(:motion).permit(:motion_type, :subject, :content)
-  end
-
   def beer_params
     params.require(:beer).permit(:name, :soort, :picture, :percentage, :country, :brewer, :URL)
   end
@@ -57,7 +53,7 @@ module ParamsHelper
   end
 
   def arm_params
-    params.requre(:arm).permit(:lat, :lon)
+    params.require(:arm).permit(:lat, :lon)
   end
 
   def nickname_params
