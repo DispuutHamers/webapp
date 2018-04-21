@@ -1,44 +1,47 @@
 <% if current_user&.active? %>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <aside>
-            <section>
-              <%= render 'shared/user_info' %>
-            </section>
-            <section>
-              <%= render 'shared/random_biertje' %>
-            </section>
-            <section>
-              <%= render 'shared/random_quote' %>
-            </section>
-            <section style="overflow: visible;">
-              <%= render 'shared/quote_form' %>
-            </section>
-            <section>
-              <%= render 'shared/activiteiten' %>
-            </section>
-            <section>
-              <%= render 'shared/trail' %>
-            </section>
-            <section>
-              <%= render 'shared/blog' %>
-            </section>
-          </aside>
-        </div>
-        <div class="col-md-8">
-          <%= render 'shared/feed' %>
-          <hr>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <aside>
+          <section>
+            <%= render 'shared/user_info' %>
+          </section>
+          <section>
+            <%= render 'shared/random_biertje' %>
+          </section>
+          <section>
+            <%= render partial: 'quotes/quote', object: @random_quote %>
+          </section>
+          <section style="overflow: visible;">
+            <%= render 'shared/quote_form' %>
+          </section>
+          <section>
+            <h5><i class="far fa-calendar-alt"></i> Aankomende activiteiten</h5>
+            <%= render 'shared/activiteiten' %>
+          </section>
+          <section>
+            <h5><i class="far fa-newspaper"></i> Recent nieuws</h5>
+            <%= render 'shared/news' %>
+          </section>
+          <section>
+            <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
+            <%= render 'shared/blog' %>
+          </section>
+          <section>
+            <h5><i class="fas fa-history"></i> Log</h5>
+            <%= render 'shared/trail' %>
+          </section>
+        </aside>
       </div>
-      <div class="row">
-        <%= render 'shared/news_item' %>
+      <div class="col-md-7">
+        <%= render 'shared/feed' %>
       </div>
     </div>
+  </div>
 <% else %>
-    <div class="center jumbotron">
-      <h1>Hamers zonder Sikkel</h1>
-      <h2>defenestraties voorbehouden</h2>
-      <b>Email: hamers@zondersikkel.nl</b>
-    </div>
+  <div class="center jumbotron">
+    <h1>Hamers zonder Sikkel</h1>
+    <h2>defenestraties voorbehouden</h2>
+    <b>Email: hamers@zondersikkel.nl</b>
+  </div>
 <% end %>

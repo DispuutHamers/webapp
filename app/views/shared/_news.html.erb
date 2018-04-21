@@ -1,5 +1,5 @@
 <ul>
-  <% @events.each do |f| %>
+  <% @news.each do |f| %>
     <li>
       <%= link_to f do %>
         <%= f.created_at.strftime('%d-%m-%Y') %> - <%= f.title %>

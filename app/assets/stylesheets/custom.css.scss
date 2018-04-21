@@ -25,6 +25,10 @@ section {
   overflow: auto;
 }
 
+section ul {
+  padding-left: 14px;
+}
+
 textarea {
   resize: vertical;
 }
@@ -36,11 +40,12 @@ textarea {
   }
 }
 
-/* microposts */
+/* quotes */
 
-.microposts {
+.quotes {
   list-style: none;
   margin: 10px 0 0 0;
+  padding-left: 0;
 
   li {
     padding: 10px 0;
@@ -49,9 +54,6 @@ textarea {
 }
 .content {
   display: block;
-}
-.timestamp {
-  color: $grayLight;
 }
 .gravatar {
   float: left;
@@ -65,17 +67,12 @@ aside {
 }
 
 /* Users index */
-
 .users {
   list-style: none;
   margin: 0;
   li {
     overflow: auto;
     padding: 3px 0;
-/*    border-top: 1px solid $grayLight;
-    &:last-child {
-      border-bottom: 1px solid $grayLight; 
-    } */
   }
 }
 
@@ -85,8 +82,11 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
-/* header */
+.quote h4 {
+  margin-top: 0;
+}
 
+/* header */
 #logo {
   float: left;
   margin-right: 10px;
@@ -179,11 +179,6 @@ input {
 }
 
 /* other */
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
 .pagination {
   width: 100%;
 }

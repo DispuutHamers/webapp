@@ -17,7 +17,7 @@
       <% @user.api_keys.each do |ak| %>
         <%= ak.name %>
         : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
-        <i class="fa fa-trash"></i>
+        <i class="far fa-trash-alt"></i>
       <% end %><br>
       Last used:
       <% if log = ApiLog.where(key: ak.key).last %>

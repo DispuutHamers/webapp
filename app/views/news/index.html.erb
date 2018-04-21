@@ -28,16 +28,16 @@
             <% if current_user.admin? %>
                 <div class="btn-group">
                   <%= link_to edit_news_path(n), class: 'btn btn-default btn-sm' do %>
-                      <i class="fa fa-pencil"></i>
+                      <i class="fas fa-pencil-alt"></i>
                   <% end %>
                   <%= link_to n, method: :delete, data: {confirm: 'Weet je het zeker?'}, title: n.title, class: 'btn btn-default btn-sm' do %>
-                      <i class="fa fa-trash"></i>
+                      <i class="far fa-trash-alt"></i>
                   <% end %>
                 </div>
             <% end %></h4>
           <p>
             <small class="text-muted">
-              <i class="fa fa-clock-o"></i>
+              <i class="far fa-clock"></i>
                 <%= time_ago_in_words(n.created_at) %> geleden. (<%= n.created_at.strftime('%-d-%-m-%y %H:%M') %>)
             </small>
           </p>

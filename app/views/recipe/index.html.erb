@@ -19,8 +19,8 @@
         <td style="width: 50%;"><%= recipe.name %></td>
         <td><%= recipe.beer %></td>
         <td><%= recipe.brews.count %></td>
-        <td><%= recipe.created_at.strftime("%d/%m/%Y") %></td>
-        <td><%= recipe.updated_at.strftime("%d/%m/%Y") %></td>
+        <td><%= recipe.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= recipe.updated_at.strftime("%d-%m-%Y") %></td>
         <td>
           <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Zeker weten?' } %>
         </td>

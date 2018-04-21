@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require font_awesome5
 //= require ahoy
 //= require trix
 //= require cloudinary

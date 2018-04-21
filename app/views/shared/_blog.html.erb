@@ -1,5 +1,9 @@
 <ul>
   <% @blog.each do |f| %>
-      <li><%= f.created_at.strftime('%d/%m/%Y') %> - <%= link_to f.title, f %></li>
+      <li>
+        <%= link_to f do %>
+          <%= f.created_at.strftime('%d-%m-%Y') %> - <%= f.title %>
+          <% end %>
+      </li>
   <% end %>
 </ul>

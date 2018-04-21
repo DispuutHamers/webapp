@@ -8,7 +8,7 @@
   <div class="col-md-3">
     Uitvoeringen:<br>
     <% @recipe.brews.each do |brew| %>
-      <%= link_to brew.created_at.strftime("%d/%m/%Y"), brew_path(@recipe, brew) %><br>
+      <%= link_to brew.created_at.strftime("%d-%m-%Y"), brew_path(@recipe, brew) %><br>
     <% end %>
   </div>
 </div>

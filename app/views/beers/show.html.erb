@@ -25,10 +25,10 @@
         <div class="btn-group pull-right">
           <% if current_user&.active? %>
             <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
-              <i class="fa fa-pencil"></i>
+              <i class="fas fa-pencil-alt"></i>
             <% end %>
             <%= link_to r, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
-              <i class="fa fa-trash"></i>
+              <i class="far fa-trash-alt"></i>
             <% end %>
           <% end %>
         </div>

@@ -16,7 +16,7 @@ $(document).ready(function () {
   <tbody>
     <% @stickers.each do |m| %>
       <tr>
-        <td><%= m.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+        <td><%= m.created_at.strftime('%d-%m-%Y %H:%M') %></td>
         <td><%= "#{m.lat}, #{m.lon}" %><br>
           <% jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{m.lat},#{m.lon}&key=AIzaSyAz0ENeS5X1Vh9A_-KxxENHBf-qQYB2z-U")) %>
           <% mdata = JSON.parse(jdata.body) %>
@@ -26,10 +26,10 @@ $(document).ready(function () {
         <td>
           <div class="btn-group">
             <%= link_to edit_sticker_path(m), class: 'btn btn-info' do %>
-              <i class="fa fa-pencil"></i>
+              <i class="fas fa-pencil-alt"></i>
             <% end %>
             <%= link_to m, class: 'btn btn-danger', method: :delete, data: {confirm: 'Weet je het zeker?'} do %>
-              <i class="fa fa-trash"></i>
+              <i class="far fa-trash-alt"></i>
             <% end %>
           </div>
         </td>

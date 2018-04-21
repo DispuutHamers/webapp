@@ -15,7 +15,7 @@
                        <%= f.hidden_field :group_id %>
                        <%= f.hidden_field :user_id %>
                        <%= group.name %> <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
-                         <i class="fa fa-trash"></i>
+                         <i class="far fa-trash-alt"></i>
                        <% end %> | <%= f.submit 'add' %>
                      <% end %>
                    <% end %>
