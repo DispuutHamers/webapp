@@ -17,13 +17,15 @@
  */
 
 #new_user label {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 #map {
   height: 100%;
 }
-
+.fa .svg-inline--fa {
+  text-rendering: optimizeLegibility;
+}
 .trix-content {
   overflow: auto;
 }

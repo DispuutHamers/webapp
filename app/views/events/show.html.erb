@@ -25,42 +25,42 @@
         <h4>Aanwezig(<%= @event.signups.where(status: true).count %>):</h4>
         <p>
         <ul style="list-style-type: none;">
-        <% @event.signups.where(status: true).each do |s| %>
-          <li><%= s.user.name %>
-          <% if s.reason && s.reason.length > 2 %>
-            <ul style="list-style-type: none;">
-              <li><%= s.reason %></li>
-            </ul>
+          <% @event.signups.where(status: true).each do |s| %>
+            <li><%= s.user.name %>
+            <% if s.reason && s.reason.length > 2 %>
+              <ul style="list-style-type: none;">
+                <li><%= s.reason %></li>
+              </ul>
+            <% end %>
+            </li>
           <% end %>
-          </li>
-      <% end %>
         </ul>
-      <% if @event.deadline != nil and @event.deadline > Time.now %>
-        <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
-          <div><%= f.hidden_field :event_id %></div>
-          <div><%= f.hidden_field :user_id %></div>
-          <div><%= f.hidden_field :status %></div>
-          <%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %>
-          <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Opmerkingen?" %></div>
+        <% if @event.deadline != nil and @event.deadline > Time.now %>
+          <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
+            <div><%= f.hidden_field :event_id %></div>
+            <div><%= f.hidden_field :user_id %></div>
+            <div><%= f.hidden_field :status %></div>
+            <%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %>
+            <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Opmerkingen?" %></div>
+          <% end %>
         <% end %>
-      <% end %>
         </p>
         <hr>
 
         <h4>Afwezig(<%= @event.signups.where(status: false).count %>):</h4>
         <p>
-          <ul style="list-style-type: none;">
-        <% @event.signups.where(status: false).each do |s| %>
-          <li>
-          <%= s.user.name %>
-          <% if s.reason && s.reason.length > 1 %>
-            <ul style="list-style-type: none;">
-              <li><%= s.reason %></li>
-            </ul>
+        <ul style="list-style-type: none;">
+          <% @event.signups.where(status: false).each do |s| %>
+            <li>
+              <%= s.user.name %>
+              <% if s.reason && s.reason.length > 1 %>
+                <ul style="list-style-type: none;">
+                  <li><%= s.reason %></li>
+                </ul>
+              <% end %>
+            </li>
           <% end %>
-          </li>
-        <% end %>
-          </ul>
+        </ul>
         <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
             <div><%= f.hidden_field :event_id %></div>
@@ -72,19 +72,19 @@
         <% end %>
         </p>
         <hr>
-
-        <h4>Onbekend (<%= @nsusers.count %>):</h4>
-        <p>
-        <ul style="list-style-type: none;">
-        <% @nsusers.each do |s| %>
-        <li>
-        <%= s.name %>
-        </li>
+        <% if @nsusers.count > 0 %>
+          <h4>Onbekend (<%= @nsusers.count %>):</h4>
+          <p>
+          <ul style="list-style-type: none;">
+            <% @nsusers.each do |s| %>
+              <li>
+                <%= s.name %>
+              </li>
+            <% end %>
+          </ul>
+          </p>
+          <hr>
         <% end %>
-        </ul>
-        </p>
-        <hr>
-
         <p>
         <% if @event.location %>
           <div class="embed-responsive embed-responsive-4by3">
@@ -103,9 +103,9 @@
   </div>
 </div>
 <div class="btn-group">
-    <% if @event.deadline > DateTime.now %>
-      <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
-    <% end %>
-    <%= link_to 'Edit', edit_event_path(@event), :class => 'btn btn-info' %>
+  <% if @event.deadline > DateTime.now %>
+    <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
+  <% end %>
+  <%= link_to 'Edit', edit_event_path(@event), :class => 'btn btn-info' %>
   <%= link_to 'Terug', events_path, :class => 'btn btn-default' %>
 </div>

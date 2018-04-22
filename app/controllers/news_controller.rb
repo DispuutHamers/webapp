@@ -12,7 +12,7 @@ class NewsController < ApplicationController
   # GET /news/1
   # GET /news/1.json
   def show
-    redirect_to root_path
+    redirect_to news_index_path
   end
 
   # GET /news/new
