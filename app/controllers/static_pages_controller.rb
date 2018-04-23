@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def home
     return unless current_user&.active?
     @beer = Beer.order('RAND()').first
-    @random_quote = Quote.order('RAND()').first
+    @random_quote = Quote.unscoped.order('RAND()').first
     @quote = current_user.quotes.build
     @blog = Blogitem.last(5).reverse
     @quotes = Quote.with_user.all.order('created_at DESC').paginate(page: params[:page], :per_page => 10)
