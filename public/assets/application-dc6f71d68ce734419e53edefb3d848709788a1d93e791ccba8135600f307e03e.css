@@ -709,29 +709,25 @@ pre {
 a {
   color: #000;
 }
-/* line 23, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
-a:hover {
-  color: #000;
-}
 
-/* line 29, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
+/* line 26, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* line 34, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
+/* line 31, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
 #notice {
   color: green;
 }
 
-/* line 38, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
+/* line 35, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-/* line 44, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
+/* line 41, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -739,7 +735,7 @@ div.field, div.actions {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 50, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
+/* line 47, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -750,7 +746,7 @@ div.field, div.actions {
   background-color: #c00;
   color: #fff;
 }
-/* line 60, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
+/* line 57, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.css.scss */
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
@@ -784,32 +780,31 @@ a {
 }
 /* line 24, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 a:visited {
-  color: #666;
+  color: #000;
 }
-/* line 28, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 27, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 a:hover {
-  color: #fff;
-  background-color: #000;
+  color: #000;
 }
 
-/* line 35, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 33, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 div.field, div.actions {
   margin-bottom: 10px;
 }
 
-/* line 40, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 38, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 #notice {
   color: green;
 }
 
-/* line 44, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 42, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 .field_with_errors {
   padding: 2px;
   background-color: red;
   display: table;
 }
 
-/* line 50, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 48, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 #error_explanation {
   width: 450px;
   border: 2px solid red;
@@ -818,7 +813,7 @@ div.field, div.actions {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 58, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 56, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 #error_explanation h2 {
   text-align: left;
   font-weight: bold;
@@ -829,7 +824,7 @@ div.field, div.actions {
   background-color: #c00;
   color: #fff;
 }
-/* line 69, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
+/* line 67, /Users/jackozi/ruby/hamers/app/assets/stylesheets/scaffolds.scss */
 #error_explanation ul li {
   font-size: 12px;
   list-style: square;
