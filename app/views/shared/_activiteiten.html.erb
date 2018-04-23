@@ -2,7 +2,7 @@
   <% @events.each do |f| %>
     <li>
       <%= link_to f do %>
-        <%= f.created_at.strftime('%d-%m-%Y') %> - <%= f.title %>
+        <%= f.date.strftime('%d-%m-%Y') %> - <%= f.title %>
       <% end %>
     </li>
   <% end %>
