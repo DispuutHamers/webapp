@@ -2,6 +2,7 @@
 class BlogitemsController < ApplicationController
   before_action :ilid?, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  breadcrumb 'Blog', :blogitems_path
 
   def index
     if current_user&.active?
@@ -15,6 +16,7 @@ class BlogitemsController < ApplicationController
     if !@item.public && !current_user&.active?
       redirect_to blogitems_path 
     end
+    breadcrumb @item.title, blogitem_path(@item)
   end
 
   def add_photo

@@ -1,9 +1,12 @@
 class BrewsController < ApplicationController
   before_action :brewer?
   before_action :set_brew, only: [:show, :edit, :update, :destroy]
+  breadcrumb 'Brouwsels', :brews_path
+
 
   def show
     @recipe = @brew.recipe
+    breadcrumb @brew.name, brew_path(@brew)
   end
 
   def new

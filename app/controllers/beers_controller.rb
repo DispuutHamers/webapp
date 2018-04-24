@@ -2,6 +2,7 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
+  breadcrumb 'Bier', :beers_path
 
   # GET /beers
   # GET /beers.json
@@ -17,15 +18,19 @@ class BeersController < ApplicationController
       @beers = Beer.all.paginate(page: params[:page])
     end
 
+    breadcrumb "Zoeken", :beers_path
     render 'beers/index'
   end
 
   # GET /beers/1
   # GET /beers/1.json
   def show
+    breadcrumb @beer.name, beer_path(@beer)
   end
 
   def reviews
+    breadcrumb @beer.name, beer_path(@beer)
+    breadcrumb 'Review', reviews_beer_path(@beer)
   end
 
   # GET /beers/new

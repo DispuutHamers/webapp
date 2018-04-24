@@ -1,6 +1,8 @@
 #entry point for nicknames resource
 class NicknamesController < ApplicationController
   before_action :lid?
+  breadcrumb 'Bijnamen', :nicknames_path
+
 
   def index
     @nicknames = Nickname.with_user.all

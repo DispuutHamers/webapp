@@ -2,6 +2,7 @@
 class UsergroupsController < ApplicationController
   before_action :logged_in?
   before_action :admin_user?
+  breadcrumb 'Groepen', :groups_path
 
   def index
     @usergroups = Usergroup.all

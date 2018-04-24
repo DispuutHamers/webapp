@@ -4,6 +4,8 @@ class EventsController < ApplicationController
   before_action :ilid?, except: [:index]
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
   skip_before_action :track_ahoy_visit, only: [:index]
+  breadcrumb 'Activiteiten', :events_path
+
 
   # GET /events
   # GET /events.json
@@ -36,15 +38,18 @@ class EventsController < ApplicationController
         @nsusers << u
       end
     end
+    breadcrumb @event.title, event_path(@event)
   end
 
   # GET /events/new
   def new
     @event = Event.new
+    breadcrumb 'Nieuwe Activiteit', :new_event_path
   end
 
   # GET /events/1/edit
   def edit
+    breadcrumb @event.title, edit_event_path(@event)
   end
 
   # POST /events

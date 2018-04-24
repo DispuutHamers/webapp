@@ -17,6 +17,9 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    breadcrumb 'Bier', :beers_path
+    breadcrumb @review.beer.name, beer_path(@review.beer)
+    breadcrumb 'Review', edit_review_path(@review)
   end
 
   def update

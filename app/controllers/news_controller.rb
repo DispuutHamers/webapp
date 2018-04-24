@@ -2,6 +2,7 @@
 class NewsController < ApplicationController
   before_action :ilid?
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  breadcrumb 'Nieuws', :news_index_path
 
   # GET /news
   # GET /news.json
@@ -18,10 +19,12 @@ class NewsController < ApplicationController
   # GET /news/new
   def new
     @news = News.new
+    breadcrumb 'Nieuw Nieuws', :new_news_path
   end
 
   # GET /news/1/edit
   def edit
+    breadcrumb @news.title, edit_news_path(@news)
   end
 
   # POST /news

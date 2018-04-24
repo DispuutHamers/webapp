@@ -208,6 +208,8 @@ GEM
       sprockets (> 2, < 4)
       tilt
     libv8 (3.16.14.19)
+    loaf (0.6.2)
+      rails (>= 3.2)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -443,6 +445,7 @@ DEPENDENCIES
   incoming
   jbuilder
   jquery-rails
+  loaf
   memory_profiler
   minidusen
   mysql2

@@ -3,6 +3,8 @@ class MeetingsController < ApplicationController
   before_action :lid?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
   before_action :admin_user?, only: [:notuleer,:destroy, :create, :new]
+  breadcrumb 'Vergaderingen', :meetings_path
+
 
   # GET /meetings
   # GET /meetings.json
@@ -13,11 +15,13 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
   # GET /meetings/new
   def new
     @meeting = Meeting.new
+    breadcrumb 'Nieuwe Vergadering', new_meeting_path
   end
 
   # GET /meetings/1/edit
@@ -25,6 +29,8 @@ class MeetingsController < ApplicationController
   end
 
   def notuleer
+    breadcrumb @meeting.onderwerp, meeting_path(@meeting)
+    breadcrumb 'Notuleren', "/notuleer/#{@meeting.id}"
   end
 
   # POST /meetings

@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    <%= @item.title %>
+  <%= @item.title %>
 <% end %>
 <div class="row">
   <div class="col-md-9">
@@ -12,11 +12,11 @@
   </div>
 </div>
 <% if @item.user_id != nil %>
-    <p>Door: <i><%= link_to User.find(@item.user_id).name, User.find(@item.user_id) %></i></p>
+  <p>Door: <i><%= link_to User.find(@item.user_id).name, User.find(@item.user_id) %></i></p>
 <% end %>
 <div class="btn-group">
   <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
-      <%= link_to 'Wijzig', edit_blogitem_path(@item), class: 'btn btn-primary' %>
+    <%= link_to 'Wijzig', edit_blogitem_path(@item), class: 'btn btn-primary' %>
   <% end %>
   <%= link_to 'Terug', blogitems_path, class: 'btn btn-default' %>
 </div>

@@ -1,6 +1,7 @@
 # Entry point for the quote resource
 class QuotesController < ApplicationController
   before_action :ilid?
+  breadcrumb 'Quotes', :quotes_path
 
   def index
   end
@@ -14,6 +15,7 @@ class QuotesController < ApplicationController
   def edit
     @quote = Quote.find(params[:id])
     @userid = @quote.user_id
+    breadcrumb 'Edit Quote', edit_quote_path(@quote)
   end
 
   def update

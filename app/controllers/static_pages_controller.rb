@@ -15,6 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def privacy
+    breadcrumb 'Privacy', privacy_path
   end
 
   def invited
@@ -26,6 +27,8 @@ class StaticPagesController < ApplicationController
 
   def trail
     @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+    breadcrumb 'Log', trail_path
+
   end
 
   def revert
@@ -52,6 +55,7 @@ class StaticPagesController < ApplicationController
     @visitOS = Visit.group(:os).count
     @visitSource = Visit.group(:referring_domain).count
     @visitReferrer = Visit.group(:referrer).count
+    breadcrumb 'Statistics', :stats_path
   end
 
   def visitors
@@ -60,10 +64,12 @@ class StaticPagesController < ApplicationController
     else
       @visitors = Visit.all.paginate(page: params[:page])
     end
+    breadcrumb 'Visitors', :visitors_path
   end
 
   def visitor
     @visitors = Visit.where(visitor_token: params[:token]).paginate(page: params[:page])
+    breadcrumb 'Visitor', :visitors_path
   end
 
   private

@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
       Rack::MiniProfiler.authorize_request
     end
   end
+  breadcrumb 'Home', :root_path
 
   include UtilHelper
   include ParamsHelper
