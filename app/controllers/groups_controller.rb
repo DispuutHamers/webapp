@@ -2,7 +2,7 @@
 class GroupsController < ApplicationController
   before_action :admin_user?
   before_action :set_params
-  breadcrumb Groepen, usergroups_user_path(@user)
+  breadcrumb "Groepen", usergroups_user_path(@user)
 
   def create
     @user.join_group(@group)
