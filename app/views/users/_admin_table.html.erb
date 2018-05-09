@@ -8,7 +8,6 @@
           <th>Lichting</th>
           <th>Logins</th>
           <th>AD</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -18,22 +17,20 @@
             <%= link_to user.name, user %>
             </td>
             <td>
-             <%= link_to 'Groepen', usergroups_user_path(user) %>
+              <%= link_to 'Groepen', usergroups_user_path(user) %>
             </td>
-            <%= form_for user, url: leden_admin_update_path(user) do |f| %>
-              <td>
+            <td>
+              <%= form_for user, url: leden_admin_update_path(user) do |f| %>
                 <%= f.number_field :batch %>
-              </td>
-              <td>
-                <%= user.sign_in_count %>
-              </td>
-              <td>
-                <%= UsersHelper.attended_drinks_for(user) %>
-              </td>
-              <td>
                 <%= f.submit "Opslaan" %>
-              </td>
-            <% end %>
+              <% end %>
+            </td>
+            <td>
+              <%= user.sign_in_count %>
+            </td>
+            <td>
+              <%= UsersHelper.attended_drinks_for(user) %>
+            </td>
           </tr>
         <% end %>
       </tbody>
