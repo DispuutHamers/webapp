@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'google_drive'
 gem 'acme_plugin'
 gem 'ahoy_matey'
 gem 'better_errors'

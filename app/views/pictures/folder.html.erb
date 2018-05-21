@@ -1,0 +1,14 @@
+<% content_for :title do %>
+  Foto's
+<% end %>
+<% @files.each do |f| %>
+  <% if f.is_a? GoogleDrive::Collection %>
+    <%= link_to f.title, "/photos/#{f.id}" %> <br>
+  <% end %>
+<% end %>
+
+<% @files.each do |f| %>
+  <% unless f.is_a? GoogleDrive::Collection %>
+    <img src="/photos/image/<%= f.id %>" class="albumimage">
+  <% end %>
+<% end %>

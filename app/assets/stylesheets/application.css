@@ -16,6 +16,11 @@
  *= require trix
  */
 
+.albumimage {
+  padding: 10px;
+  height: 300px;
+}
+
 #new_user label {
   padding-left: 0;
 }
