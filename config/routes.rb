@@ -10,6 +10,7 @@ Hamers::Application.routes.draw do
   get 'invited' => 'static_pages#invited', as: "invited"
   get 'photos' => 'pictures#index', as: 'pictures'
   get 'photos/:folder' => 'pictures#folder'
+  get 'lustrum' => 'static_pages#lustrum'
   get 'photos/image/:image' => 'pictures#image'
 
   resources :notes

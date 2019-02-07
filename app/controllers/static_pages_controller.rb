@@ -14,6 +14,10 @@ class StaticPagesController < ApplicationController
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
   end
 
+  def lustrum 
+    redirect_to 'https://goo.gl/forms/FJhpc81i0sS81W072'
+  end
+
   def privacy
     breadcrumb 'Privacy', privacy_path
   end
