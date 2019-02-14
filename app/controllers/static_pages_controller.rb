@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def lustrum 
-    redirect_to 'https://goo.gl/forms/FJhpc81i0sS81W072'
+    redirect_to 'https://docs.google.com/forms/d/1Trm2A2PNjIjVJpPMp8SGZcjx7_UOJIxorYPepWLUPL4'
   end
 
   def privacy
