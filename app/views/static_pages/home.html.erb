@@ -16,15 +16,21 @@
             <%= render 'shared/quote_form' %>
           </section>
           <section>
-            <h5><i class="far fa-calendar-alt"></i> Aankomende activiteiten</h5>
+            <%= link_to events_path do %>
+              <h5><i class="far fa-calendar-alt"></i> Aankomende activiteiten</h5>
+            <% end %>
             <%= render 'shared/activiteiten' %>
           </section>
           <section>
-            <h5><i class="far fa-newspaper"></i> Recent nieuws</h5>
+            <%= link_to news_path %>
+              <h5><i class="far fa-newspaper"></i> Recent nieuws</h5>
+            <% end %>
             <%= render 'shared/news' %>
           </section>
           <section>
-            <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
+            <%= link_to blog_items_path %>
+              <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
+            <% end %>
             <%= render 'shared/blog' %>
           </section>
           <section>

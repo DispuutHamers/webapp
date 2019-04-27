@@ -63,7 +63,7 @@ Rails.application.configure do
     :address        => 'mail.zondersikkel.nl',
     :domain         => 'zondersikkel.nl',
     :user_name      => 'webapp@zondersikkel.nl',
-    :password       => 'kaij5Ahshug2oCu0reeMi7Ak',
+    :password       => 'Nv^XpHWk#WW6o~4D9pR}',
     :authentication => :plain,
     enable_starttls_auto: true 
   }
