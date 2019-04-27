@@ -22,13 +22,13 @@
             <%= render 'shared/activiteiten' %>
           </section>
           <section>
-            <%= link_to news_path %>
+            <%= link_to news_path do %>
               <h5><i class="far fa-newspaper"></i> Recent nieuws</h5>
             <% end %>
             <%= render 'shared/news' %>
           </section>
           <section>
-            <%= link_to blog_items_path %>
+            <%= link_to blog_items_path do %>
               <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
             <% end %>
             <%= render 'shared/blog' %>
