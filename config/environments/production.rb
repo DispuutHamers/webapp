@@ -60,7 +60,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :port           => 587,
-    :address        => 'mail.zondersikkel.nl',
+    :address        => 'box.bleeker-it.nl',
     :domain         => 'zondersikkel.nl',
     :user_name      => 'webapp@zondersikkel.nl',
     :password       => 'Nv^XpHWk#WW6o~4D9pR}',
