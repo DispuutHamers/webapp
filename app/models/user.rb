@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   devise :invitable, :database_authenticatable, #:registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable
-  has_paper_trail :ignore => %i[sunday_ratio encrypted_password reset_password_token reset_password_sent_at 
-remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip 
-last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at 
+  has_paper_trail :ignore => %i[sunday_ratio encrypted_password reset_password_token reset_password_sent_at
+remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip
+last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at
 remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation]
   acts_as_paranoid :ignore => [:weight]
   before_save {self.email = email.downcase}
@@ -119,10 +119,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def dev?
     in_group?('Developer')
-  end
-
-  def brouwer?
-    in_group?('Brouwer') || dev?
   end
 
   def lidstring

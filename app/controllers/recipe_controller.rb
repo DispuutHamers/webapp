@@ -1,7 +1,7 @@
 class RecipeController < ApplicationController
-  before_action :brewer?
+  before_action :lid?
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @recipes = Recipe.all.paginate(page: params[:page])
   end
@@ -29,7 +29,7 @@ class RecipeController < ApplicationController
     delete_object(@recipe)
   end
 
-  private 
+  private
   def set_recipe
     @recipe = Recipe.find(params[:id])
   end

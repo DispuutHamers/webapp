@@ -20,20 +20,8 @@
             <li><%= link_to public_leden_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
             <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
             <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
-            <% if current_user&.brouwer? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
-                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fas fa-external-link-alt fa-fw"></i> Oude brouwerij<% end %></li>
-                </ul>
-              </li>
-            <% end %>
             <% PublicPage.all.each do |pp| %>
-              <% if pp.
-
-                  public %>
+              <% if pp.public %>
                 <li><%= link_to pp.title, "/#{pp.title}" %></li>
               <% end %>
             <% end %>
@@ -77,16 +65,14 @@
                 <li><%= link_to trail_path do %><i class="fas fa-history fa-fw"></i> Log<% end %></li>
               </ul>
             </li>
-            <% if current_user&.brouwer? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
-                  <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fas fa-external-link-alt fa-fw"></i> Oude brouwerij<% end %></li>
-                </ul>
-              </li>
-            <% end %>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brouwerij
+                <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
+                <li><%= link_to 'https://brewery.zondersikkel.nl/' do %><i class="fas fa-external-link-alt fa-fw"></i> Oude brouwerij<% end %></li>
+              </ul>
+            </li>
             <% if current_user&.admin? or current_user.dev? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Overig
