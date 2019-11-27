@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
   end
 
-  def lustrum 
+  def lustrum
     redirect_to 'https://docs.google.com/forms/d/1Trm2A2PNjIjVJpPMp8SGZcjx7_UOJIxorYPepWLUPL4'
   end
 

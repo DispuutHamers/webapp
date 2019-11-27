@@ -1,4 +1,4 @@
-#Responsible for handling calls to '/meetings' 
+#Responsible for handling calls to '/meetings'
 class Api2::MeetingsController < Api2::ApiController
   before_action :restrict_to_admins, only: [:update, :post]
   resource_description do

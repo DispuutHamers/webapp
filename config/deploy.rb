@@ -43,7 +43,7 @@ namespace :deploy do
   end
 
   desc "Write cronfile"
-  task :whenever do 
+  task :whenever do
     on roles(:web) do |host|
         execute "whenever -w"
       end

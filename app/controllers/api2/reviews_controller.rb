@@ -11,7 +11,7 @@ class Api2::ReviewsController < Api2::ApiController
     param :description, String, :required => true
     param :rating, [1,2,3,4,5,6,7,8,9,10], :required => true
     param :proefdatum, String
-  end 
+  end
 
   api :GET, '/reviews', "Show review index"
   def index

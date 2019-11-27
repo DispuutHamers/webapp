@@ -2,7 +2,7 @@ class Event < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail
   has_many :signups, dependent: :destroy
-  has_many :signups_with_user, -> { with_user }, foreign_key: 'event_id', class_name: 'Signup' 
+  has_many :signups_with_user, -> { with_user }, foreign_key: 'event_id', class_name: 'Signup'
   has_many :users, through: :signups
   belongs_to :user
 

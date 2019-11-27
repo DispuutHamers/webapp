@@ -3,7 +3,7 @@ class EmailReceiver < Incoming::Strategies::HTTPPost
 
 	def receive(mail)
 		@mail = Email.new.to(mail.to.first, body: mail.subject)
-		@mail.save 
+		@mail.save
 	end
 end
 

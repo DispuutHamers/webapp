@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionController::TestCase
-  def setup 
+  def setup
     sign_in users(:one)
   end
 

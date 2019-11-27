@@ -22,7 +22,7 @@ class Api2::EventsController < Api2::ApiController
   def show
     render json: Event.find(params[:id])
   end
-  
+
   api :POST, '/events/:id/remind', 'Send reminder emails'
   def remind
     event = Event.find(params[:id])
