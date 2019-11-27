@@ -4,7 +4,7 @@ require 'rails/test_help'
 class ActionController::TestCase
   include Devise::Test::ControllerHelpers
 end
-  
+
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
 

@@ -12,10 +12,10 @@ class Signup < ActiveRecord::Base
   def as_json(options)
     super({:only => [:id, :user_id, :reason, :event_id, :status, :created_at]}.merge(options))
   end
- 
+
   private
   def event_deadline_has_passed
-    errors.add(:event_id, "Event deadline has already passed") if 
+    errors.add(:event_id, "Event deadline has already passed") if
       DateTime.now > Event.find(self.event_id).deadline
   end
 end

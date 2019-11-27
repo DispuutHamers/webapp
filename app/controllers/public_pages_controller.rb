@@ -20,7 +20,7 @@ class PublicPagesController < ApplicationController
     breadcrumb @public_page.title, public_page_path(@public_page)
   end
 
-  def find_id 
+  def find_id
     title = PublicPage.where(id: params[:id]).first.title
     redirect_to "/#{title}"
   end

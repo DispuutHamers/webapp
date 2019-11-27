@@ -4,7 +4,7 @@ class UpdateDescriptionOfEvent < ActiveRecord::Migration
 		  t.change :beschrijving, :text
 		end
 	end
-	 
+
 	def down
 		change_table :events do |t|
 			t.change :beschrijving, :string

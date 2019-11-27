@@ -22,7 +22,7 @@ class SignupsController < ApplicationController
   # POST /signups.json
   def create
     result = do_signup(current_user)
-    if result 
+    if result
       flash[:success] = 'Je staat erbij!'
       redirect_to result
     else

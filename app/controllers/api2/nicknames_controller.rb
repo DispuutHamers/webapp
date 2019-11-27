@@ -1,4 +1,4 @@
-#Responsible for handling calls to '/nicknames' 
+#Responsible for handling calls to '/nicknames'
 class Api2::NicknamesController < Api2::ApiController
   resource_description do
     api_versions "2.0"

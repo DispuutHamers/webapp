@@ -9,7 +9,7 @@ class Api2::QuotesController < Api2::ApiController
 
   api :GET, '/quotes', "Show quote index"
   description 'Deze methode heeft een extra sorting op datum die kan worden aangeroepen door "?sorted=date" achter de URL te plakken, of "?sorted=date-desc" om ze te sorteren met de nieuwste boven.'
-  example 'Example: "GET /api/v2/quotes?sorted=date-desc" geeft 
+  example 'Example: "GET /api/v2/quotes?sorted=date-desc" geeft
   [{"id": 987, "text": "In liefde kan je je piemel niet steken, in een kut wel.", "user_id": 14, "created_at": "2017-06-04T23:44:06.000+02:00" }, { "id": 986, "text": "Klein zijn is best handig als je ergens wil inbreken.", "user_id": 14, "created_at": "2017-06-04T22:31:44.000+02:00" }]'
   def index
     sorting = params[:sorted]

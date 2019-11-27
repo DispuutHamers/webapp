@@ -65,7 +65,7 @@ Rails.application.configure do
     :user_name      => 'webapp@zondersikkel.nl',
     :password       => 'Nv^XpHWk#WW6o~4D9pR}',
     :authentication => :plain,
-    enable_starttls_auto: true 
+    enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
