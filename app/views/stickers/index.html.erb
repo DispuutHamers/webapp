@@ -15,7 +15,7 @@ function initMap() {
     position: sticker<%= s.id %>,
     icon: '<%= image_path "pin.png" %>',
     map: map,
-    optimized: false
+    optimized: false,
     <% if s.notes.empty? %>
       title: 'Sticker #<%= s.id %>'
     <% else %>
