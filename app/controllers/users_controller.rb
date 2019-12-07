@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def index_public
-    @users = User.leden.order(batch: :desc).group_by {|user| user[:batch]}
+    @users = User.order(batch: :desc).group_by {|user| user[:batch]}
     breadcrumb 'Openbaar', public_leden_path
   end
 
