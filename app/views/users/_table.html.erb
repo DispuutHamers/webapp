@@ -36,12 +36,13 @@
             <% end %>
             <% if current_user.admin? %>
               <td>
-                <%= link_to 'Wijzig', edit_user_path(user), class: 'btn btn-info' do %>
+                <%= link_to edit_user_path(user), class: 'btn btn-info' do %>
                   <i class="fas fa-pencil-alt"></i>
                 <% end %>
-                <%= link_to 'Verwijder', user, class: 'btn btn-danger', method: :delete,
-                  data: {confirm: 'Weet je het zeker?'} do %>
+                <%= link_to user, class: 'btn btn-danger', method: :delete,
+                            data: {confirm: 'Weet je het zeker?'} do %>
                   <i class="far fa-trash-alt"></i>
+                <% end %>
               </td>
             <% end %>
           </tr>
