@@ -60,6 +60,7 @@ class PublicPagesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_public_page
     @public_page = PublicPage.find(params[:id])

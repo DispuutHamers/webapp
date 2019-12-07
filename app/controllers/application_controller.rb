@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :strict_transport_security
   before_action do
-    if current_user&.dev?
-      Rack::MiniProfiler.authorize_request
-    end
+    Rack::MiniProfiler.authorize_request if current_user&.dev?
   end
   breadcrumb 'Home', :root_path
 
@@ -61,11 +59,15 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.' unless current_user
+    unless current_user
+      redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.'
+    end
   end
 
   def admin_user?
     logged_in?
-    redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.' unless current_user&.admin?
+    unless current_user&.admin?
+      redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.'
+    end
   end
 end
