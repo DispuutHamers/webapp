@@ -21,7 +21,7 @@
             <td><%= link_to event.title, event %></td>
             <td><%= event.date.strftime('%d-%m-%Y') %>
             <td>
-              <% event.signups.with_user.where(status: true).each_with_index do |s, index| %>
+              <% event.signups.with_user.where(status: true).each do |s| %>
                 <%= s.user.name + ',' %>
               <% end %>..jij?
             </td>

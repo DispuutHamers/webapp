@@ -99,6 +99,7 @@
                   <% PublicPage.where(public: true).each do |pp| %>
                     <li><%= link_to pp.title, "/#{pp.title}" %></li>
                   <% end %>
+                <% end %>
               </ul>
             </li>
           <% end %>
@@ -109,14 +110,13 @@
               <li><%= link_to current_user do %><i class="fa fa-user-circle fa-fw"></i> Profiel<% end %></li>
               <li><%= link_to personal_sticker_path do %><i class="far fa-sticky-note fa-fw"></i> Mijn stickers<% end %></li>
               <li><%= link_to oauth_authorized_applications_path do %><i class="fa fa-unlock fa-fw"></i> Mijn authorisaties<% end %></li>
-              <li><%= link_to edit_user_path(current_user) do %><i class="fa fa-wrench fa-fw"></i> Instellingen<% end %></li>
+<!--              <li><%#= link_to edit_user_path(current_user) do %><i class="fa fa-wrench fa-fw"></i> Instellingen<%# end %></li>-->
               <li class="divider"></li>
               <li>
                 <%= link_to destroy_user_session_path, method: 'delete' do %>
                   <i class="fas fa-sign-out-alt fa-fw"></i> Uitloggen
                 <% end %>
               </li>
-            <% end %>
             </ul>
           </li>
         </ul>

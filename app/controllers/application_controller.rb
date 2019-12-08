@@ -15,9 +15,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   def strict_transport_security
-    if request.ssl?
-      response.headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains"
-    end
+    response.headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains" if request.ssl?
   end
 
   def devise_mapping
@@ -59,7 +57,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    unless current_user
+    unless current_user&.active?
       redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.'
     end
   end
