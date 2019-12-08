@@ -113,7 +113,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def admin?
-    in_group?('Triumviraat') || (Rails.env.development? && dev?)
+    in_group?('Triumviraat') || dev?
   end
 
   def dev?
