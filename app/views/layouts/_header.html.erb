@@ -16,29 +16,6 @@
       </div>
       <div class="collapse navbar-collapse" id="navigationbar">
         <ul class="nav navbar-nav navbar-right">
-          <% unless current_user&.active? %>
-            <li><%= link_to public_leden_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
-            <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
-            <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
-            <% PublicPage.where(public: true).each do |pp| %>
-              <li><%= link_to pp.title, "/#{pp.title}" %></li>
-            <% end %>
-            <% if current_user && !current_user.active? %>
-              <li id="fat-menu" class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account
-                  <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Mijn Authorisaties', oauth_authorized_applications_path %></li>
-                  <li><%= link_to 'Instellingen', edit_user_path(current_user) %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to destroy_user_session_path, method: 'delete' do %>
-                    <i class="fas fa-sign-out-alt fa-fw"></i> Uitloggen
-                  <% end %>
-                  </li>
-                </ul>
-              </li>
-            <% end %>
-          <% end %>
           <% if current_user&.active? %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Voor
@@ -102,6 +79,13 @@
                 <% end %>
               </ul>
             </li>
+          <% else %>
+            <li><%= link_to public_leden_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
+            <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
+            <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
+            <% PublicPage.where(public: true).each do |pp| %>
+              <li><%= link_to pp.title, "/#{pp.title}" %></li>
+            <% end %>
           <% end %>
           <li id="fat-menu" class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account
@@ -110,7 +94,7 @@
               <li><%= link_to current_user do %><i class="fa fa-user-circle fa-fw"></i> Profiel<% end %></li>
               <li><%= link_to personal_sticker_path do %><i class="far fa-sticky-note fa-fw"></i> Mijn stickers<% end %></li>
               <li><%= link_to oauth_authorized_applications_path do %><i class="fa fa-unlock fa-fw"></i> Mijn authorisaties<% end %></li>
-<!--              <li><%#= link_to edit_user_path(current_user) do %><i class="fa fa-wrench fa-fw"></i> Instellingen<%# end %></li>-->
+              <li><%= link_to edit_user_path(current_user) do %><i class="fa fa-wrench fa-fw"></i> Instellingen<% end %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to destroy_user_session_path, method: 'delete' do %>
