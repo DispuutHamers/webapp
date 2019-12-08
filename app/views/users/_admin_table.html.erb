@@ -17,7 +17,7 @@
             <%= link_to user.name, user %>
             </td>
             <td>
-              <%= link_to 'Groepen', usergroups_user_path(user) %>
+              <%= link_to 'Wijzig groepen', usergroups_user_path(user), class: 'btn btn-secondary' %>
             </td>
             <td>
               <%= form_for user, url: leden_admin_update_path(user) do |f| %>

@@ -1,7 +1,6 @@
 <% content_for :title do %>
     Leden
 <% end %>
-<%= link_to 'Bekijk de publieke leden pagina', public_leden_path, class: 'btn btn-primary' %>
 <h4>Leden</h4>
 <%= render "users/table", users: @leden, ratio: true %>
 <% unless @aspiranten.blank? %>
@@ -9,6 +8,6 @@
 <%= render "users/table", users: @aspiranten, ratio: false %>
 <% end %>
 <% unless @oudelullen.blank? %>
-<h4>Oud Leden</h4>
+<h4>Oud-leden</h4>
 <%= render "users/table", users: @oudelullen, ratio: false %>
 <% end %>

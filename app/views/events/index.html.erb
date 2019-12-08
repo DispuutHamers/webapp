@@ -1,19 +1,19 @@
 <% content_for :title do %>
-    Activiteiten
+  Activiteiten
 <% end %>
 <div class="row">
   <div class="col-md-12">
     <table class="events table table-hover">
       <thead>
-      <tr>
-        <th><h4>Activiteit</h4></th>
-        <th><h4>Datum</h4></th>
-        <th><h4>Aanwezig</h4></th>
-        <th><h4>Admin</h4></th>
-      </tr>
+        <tr>
+          <th><h4>Activiteit</h4></th>
+          <th><h4>Datum</h4></th>
+          <th><h4>Aanwezig</h4></th>
+          <th><h4>Admin</h4></th>
+        </tr>
       </thead>
       <tbody>
-      <% @events.each do |event| %>
+        <% @events.each do |event| %>
           <% c = 'info' if event.future? %>
           <% c = 'active' if event.past? %>
           <% c = 'success' if event.today? %>
@@ -21,28 +21,26 @@
             <td><%= link_to event.title, event %></td>
             <td><%= event.date.strftime('%d-%m-%Y') %>
             <td>
-              <% event.signups.with_user.where(status: true).each_with_index do |s, index| %>
-                  <%= s.user.name + ',' %>
+              <% event.signups.with_user.where(status: true).each do |s| %>
+                <%= s.user.name + ',' %>
               <% end %>..jij?
             </td>
             <td>
-              <div class="btn-group" style="display: inline-block">
-                    <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
-                        <i class="fas fa-pencil-alt"></i>
-                    <% end %>
-                <% if current_user.admin? %>
-                    <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
-                        <i class="far fa-trash-alt"></i>
-                    <% end %>
+              <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
+                <i class="fas fa-pencil-alt"></i>
+              <% end %>
+              <% if current_user.admin? %>
+                <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
+                  <i class="far fa-trash-alt"></i>
                 <% end %>
-              </div>
+              <% end %>
           </tr>
-      <% end %>
+        <% end %>
       </tbody>
     </table>
     <%= will_paginate %>
     <% if current_user&.active? %>
-        <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
+      <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
     <% end %>
   </div>
 </div>
