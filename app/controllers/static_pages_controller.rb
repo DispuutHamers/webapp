@@ -44,18 +44,18 @@ class StaticPagesController < ApplicationController
   end
 
   def statistics
-    @cumulativeReviewData = getCumulativeData Review
-    @cumulativeBeerData = getCumulativeData Beer
-    @cumulativeQuoteData = getCumulativeData Quote
-    @cumulativeEventData = getCumulativeData Event
-    @cumulativeUserData = getCumulativeData User
-    @cumulativeStickerData = getCumulativeData Sticker
-    @cumulativeMeetingData = getCumulativeData Meeting
-    @cumulativeNewsData = getCumulativeData News
-    @visitCountries = Visit.group(:country).count
-    @visitOS = Visit.group(:os).count
-    @visitSource = Visit.group(:referring_domain).count
-    @visitReferrer = Visit.group(:referrer).count
+    @cumulative_review_data = get_cumulative_data Review
+    @cumulative_beer_data = get_cumulative_data Beer
+    @cumulative_quote_data = get_cumulative_data Quote
+    @cumulative_event_data = get_cumulative_data Event
+    @cumulative_user_data = get_cumulative_data User
+    @cumulative_sticker_data = get_cumulative_data Sticker
+    @cumulative_meeting_data = get_cumulative_data Meeting
+    @cumulative_news_data = get_cumulative_data News
+    @visit_countries = Visit.group(:country).count
+    @visit_operating_systems = Visit.group(:os).count
+    @visit_source = Visit.group(:referring_domain).count
+    @visit_referrer = Visit.group(:referrer).count
     breadcrumb 'Statistics', :stats_path
   end
 
@@ -75,7 +75,7 @@ class StaticPagesController < ApplicationController
 
   private
 
-  def getCumulativeData(table)
+  def get_cumulative_data(table)
     sum = 0
     table.unscoped.group_by_day('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
   end
