@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/bcoia/trix
-  revision: 19c972e6766452bc3920fddb6beda6411d89dc92
-  specs:
-    trix (0.11.0)
-      rails (> 4.1, < 5.2)
-
-GIT
   remote: https://github.com/plataformatec/devise
   revision: 463351922fdafb96c50ba2496c7d0adaa3223283
   specs:
@@ -410,6 +403,8 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    trix-rails (2.2.0)
+      rails (> 4.1, < 6.1)
     turbolinks (5.1.0)
       turbolinks-source (~> 5.1)
     turbolinks-source (5.1.0)
@@ -512,7 +507,7 @@ DEPENDENCIES
   swagger_ui_engine
   switch_user
   therubyracer
-  trix!
+  trix-rails
   turbolinks
   twitter-bootstrap-rails
   tzinfo
@@ -523,4 +518,4 @@ DEPENDENCIES
   wine_bouncer
 
 BUNDLED WITH
-   1.16.1
+   2.0.2
