@@ -40,7 +40,7 @@ module Hamers
     mount Hamers::Callbacks
 
     add_swagger_documentation \
-      host: "zondersikkel.nl",
+      host: 'zondersikkel.nl',
       base_path: '/',
       version: '3',
       endpoint_auth_wrapper: WineBouncer::OAuth2,
@@ -48,18 +48,18 @@ module Hamers
       token_owner: 'resource_owner',
       security_definitions: {
         "hamers_auth": {
-          "type": "oauth2",
-          "authorizationUrl": "https://zondersikkel.nl/oauth/authorize",
-          "tokenUrl": "https://zondersikkel.nl/oauth/token",
-          "flow": "accessCode"
+          "type": 'oauth2',
+          "authorizationUrl": 'https://zondersikkel.nl/oauth/authorize',
+          "tokenUrl": 'https://zondersikkel.nl/oauth/token',
+          "flow": 'accessCode'
         }
       },
       info: {
-        title: "Hamers API.",
-        description: "Provides endpoints to the resources at zondersikkel.nl.",
-        contact_name: "Hamers zonder Sikkel",
-        contact_email: "dev@zondersikkel.nl",
-        contact_url: "https://www.zondersikkel.nl",
+        title: 'Hamers API.',
+        description: 'Provides endpoints to the resources at zondersikkel.nl.',
+        contact_name: 'Hamers zonder Sikkel',
+        contact_email: 'dev@zondersikkel.nl',
+        contact_url: 'https://www.zondersikkel.nl',
       }
   end
 end
