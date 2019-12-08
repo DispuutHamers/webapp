@@ -48,26 +48,26 @@
         <table class="table table-hover">
           <tr>
             <td>Naam:</td>
-            <td align="right"><%= @beer.name %></td>
+            <td style="text-align:right"><%= @beer.name %></td>
           </tr>
           <tr>
             <td>Soort:</td>
-            <td align="right"><%= @beer.soort %></td>
+            <td style="text-align:right"><%= @beer.soort %></td>
           </tr>
           <tr>
             <td>ALC:</td>
-            <td align="right"><%= @beer.percentage %></td>
+            <td style="text-align:right"><%= @beer.percentage %></td>
           </tr>
           <tr>
             <td>Brouwer:</td>
-            <td align="right"><%= @beer.brewer %></td>
+            <td style="text-align:right"><%= @beer.brewer %></td>
           </tr>
           <tr>
             <td>Land:</td>
-            <td align="right"><%= @beer.country %></td>
+            <td style="text-align:right"><%= @beer.country %></td>
           </tr>
         </table>
-        <% if @beer.URL %>
+        <% if @beer.URL.present? %>
           <%= link_to 'Meer info', @beer.URL, class: 'btn btn-primary btn-block' %>
         <% end %>
       </div>
