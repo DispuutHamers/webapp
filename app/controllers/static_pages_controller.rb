@@ -1,9 +1,10 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
-  before_action :ilid?, only: [:visitors, :trail, :revert, :statistics]
+  before_action :ilid?, only: %i[visitors trail revert statistics]
 
   def home
     return unless current_user&.active?
+
     @beer = Beer.order('RAND()').first
     @random_quote = Quote.unscoped.order('RAND()').first
     @quote = current_user.quotes.build
@@ -12,10 +13,6 @@ class StaticPagesController < ApplicationController
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
-  end
-
-  def lustrum
-    redirect_to 'https://docs.google.com/forms/d/1Trm2A2PNjIjVJpPMp8SGZcjx7_UOJIxorYPepWLUPL4'
   end
 
   def privacy
@@ -63,11 +60,11 @@ class StaticPagesController < ApplicationController
   end
 
   def visitors
-    if params[:ip]
-      @visitors = Visit.where(ip: params[:ip]).paginate(page: params[:page])
-    else
-      @visitors = Visit.all.paginate(page: params[:page])
-    end
+    @visitors = if params[:ip]
+                  Visit.where(ip: params[:ip]).paginate(page: params[:page])
+                else
+                  Visit.all.paginate(page: params[:page])
+                end
     breadcrumb 'Visitors', :visitors_path
   end
 
@@ -77,6 +74,7 @@ class StaticPagesController < ApplicationController
   end
 
   private
+
   def getCumulativeData(table)
     sum = 0
     table.unscoped.group_by_day('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)

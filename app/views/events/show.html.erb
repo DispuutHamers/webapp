@@ -22,7 +22,7 @@
         <% end %>
         <hr>
 
-        <h4>Aanwezig(<%= @event.signups.where(status: true).count %>):</h4>
+        <h4>Aanwezig <span class="text-muted"><%= @event.signups.where(status: true).count %></span></h4>
         <p>
         <ul style="list-style-type: none;">
           <% @event.signups.where(status: true).each do |s| %>
@@ -47,7 +47,7 @@
         </p>
         <hr>
 
-        <h4>Afwezig(<%= @event.signups.where(status: false).count %>):</h4>
+        <h4>Afwezig <span class="text-muted"><%= @event.signups.where(status: false).count %></span></h4>
         <p>
         <ul style="list-style-type: none;">
           <% @event.signups.where(status: false).each do |s| %>
@@ -73,7 +73,7 @@
         </p>
         <hr>
         <% if @nsusers.count > 0 %>
-          <h4>Onbekend (<%= @nsusers.count %>):</h4>
+          <h4>Onbekend <span class="text-muted"><%= @nsusers.count %></span></h4>
           <p>
           <ul style="list-style-type: none;">
             <% @nsusers.each do |s| %>

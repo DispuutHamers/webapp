@@ -1,5 +1,4 @@
 <% content_for :title do %>
-  Externe Accounts 
+  Externe Accounts
 <% end %>
-<%= link_to 'Bekijk de publieke leden pagina', public_leden_path, class: 'btn btn-primary' %>
 <%= render "users/table", users: @users, ratio: false %>
