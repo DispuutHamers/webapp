@@ -32,7 +32,7 @@ module Hamers
       oauth2 'api'
       post do
         location = params[:location] ||= "TBD"
-        Event.create!({
+        Event.create!(
           user: resource_owner,
           beschrijving: params[:beschrijving],
           title: params[:title],
@@ -40,7 +40,7 @@ module Hamers
           deadline: params[:deadline],
           end_time: params[:endtime],
           location: location
-        })
+        )
       end
 
       desc 'Update een event'
@@ -57,14 +57,14 @@ module Hamers
       oauth2 'api'
       route_param :id do
         put do
-          Event.find(params[:id]).update({
+          Event.find(params[:id]).update(
             beschrijving: params[:beschrijving],
             title: params[:title],
             date: params[:date],
             deadline: params[:deadline],
             end_time: params[:endtime],
             location: params[:location]
-          })
+          )
         end
       end
 
@@ -93,7 +93,7 @@ module Hamers
             Event.find(params[:id]).signups
           end
 
-          desc 'In of uitschrijven voor dit event'
+          desc 'In- of uitschrijven voor dit event'
           params do
             requires :status, type: Boolean, desc: "Kom je wel of kom je niet"
             optional :reason, type: String, desc: "Bij events met attendance true verplicht bij afwezigheid, word als opmerking bij je inschrijving geplaatst"

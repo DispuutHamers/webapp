@@ -10,17 +10,13 @@ function initMap() {
   });
 
   <% @stickers.each do |s| %>
-      var sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
-  let marker<%= s.id %> = new google.maps.Marker({
+    let sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
+    let marker<%= s.id %> = new google.maps.Marker({
     position: sticker<%= s.id %>,
     icon: '<%= image_path "pin.png" %>',
     map: map,
     optimized: false,
-    <% if s.notes.empty? %>
-      title: 'Sticker #<%= s.id %>'
-    <% else %>
-      title: '<%= s.notes %>'
-    <% end %>
+    title: <% if s.notes.empty? %>'Sticker #<%= s.id %>'<% else %>'<%= s.notes %>'<% end %>,
   });
 <% end %>
 }
