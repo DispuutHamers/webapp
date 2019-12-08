@@ -67,7 +67,7 @@
             <td style="text-align:right"><%= @beer.country %></td>
           </tr>
         </table>
-        <% unless @beer.URL.empty? %>
+        <% if @beer.URL.present? %>
           <%= link_to 'Meer info', @beer.URL, class: 'btn btn-primary btn-block' %>
         <% end %>
       </div>
