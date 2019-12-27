@@ -4,61 +4,61 @@
 <div class="row">
   <div class="col-md-6 text-center">
     <h2> Landen vanuit waar we bezocht zijn. </h2>
-    <%= pie_chart @visitCountries %>
+    <%= pie_chart @visit_countries %>
   </div>
   <div class="col-md-6 text-center">
     <h3> Visit OS's </h3>
-    <%= pie_chart @visitOS %>
+    <%= pie_chart @visit_operating_systems %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-6 text-center">
     <h2> Brondomein van bezoekers </h2>
-    <%= pie_chart @visitSource %>
+    <%= pie_chart @visit_source %>
   </div>
   <div class="col-md-6 text-center">
     <h3> Referrer </h3>
-    <%= pie_chart @visitReferrer %>
+    <%= pie_chart @visit_referrer %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-6 text-center">
     <h2> Aantal reviews </h2>
-    <%= line_chart @cumulativeReviewData %>
+    <%= line_chart @cumulative_review_data %>
   </div>
   <div class="col-md-6 text-center">
     <h3> Aantal biertjes </h3>
-    <%= line_chart @cumulativeBeerData %>
+    <%= line_chart @cumulative_beer_data %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-6 text-center">
     <h2> Aantal quotes </h2>
-    <%= line_chart @cumulativeQuoteData %>
+    <%= line_chart @cumulative_quote_data %>
   </div>
   <div class="col-md-6 text-center">
     <h2> Aantal activiteiten </h2>
-    <%= line_chart @cumulativeEventData %>
+    <%= line_chart @cumulative_event_data %>
   </div>
 </div>
 <div class="row">
   <div class="col-md-6 text-center">
     <h2> Aantal gebruikers </h2>
-    <%= line_chart @cumulativeUserData %>
+    <%= line_chart @cumulative_user_data %>
   </div>
   <div class="col-md-6 text-center">
     <h2> Aantal stickers </h2>
-    <%= line_chart @cumulativeStickerData %>
+    <%= line_chart @cumulative_sticker_data %>
   </div>		      
 </div>
 <div class="row">
   <div class="col-md-6 text-center">
     <h2> Aantal vergaderingen </h2>
-    <%= line_chart @cumulativeMeetingData %>
+    <%= line_chart @cumulative_meeting_data %>
   </div>
   <div class="col-md-6 text-center">
     <h2> Aantal nieuws artikelen </h2>
-    <%= line_chart @cumulativeNewsData %>
+    <%= line_chart @cumulative_news_data %>
   </div>
 </div>
 

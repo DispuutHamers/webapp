@@ -27,27 +27,27 @@ module Hamers
 
       oauth2 'api'
       post do
-        Quote.create!({
+        Quote.create!(
           reporter: resource_owner,
           user_id: params[:user_id],
           text: params[:text]
-        })
+        )
       end
 
       desc 'Update een quote'
       params do
         requires :id, type: Integer, desc: 'Quote id'
-        optional :text, type: String, desc: "Wat heeft deze lul gezegt"
+        optional :text, type: String, desc: "Wat heeft deze lul gezegd"
         optional :user_id, type: Integer, desc: "De user id van de lul die het zei"
       end
 
       oauth2 'api'
       route_param :id do
         put do
-          Quote.find(params[:id]).update({
+          Quote.find(params[:id]).update(
             user_id: params[:user_id],
             text: params[:text]
-          })
+          )
         end
       end
 

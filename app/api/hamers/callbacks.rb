@@ -15,10 +15,10 @@ module Hamers
 
       #oauth2 'api'
       post do
-        BrewTemp.create!({
+        BrewTemp.create!(
           temperature: params[:temperature],
           brew: Brew.last
-        })
+        )
       end
     end
   end
