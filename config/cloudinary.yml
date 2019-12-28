@@ -1,6 +1,0 @@
-production:
-  cloud_name: hamers
-  api_key: ***REMOVED***
-  api_secret: ***REMOVED***
-  enhance_image_tag: true
-  static_image_support: true

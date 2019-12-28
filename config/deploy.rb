@@ -1,8 +1,8 @@
 # config valid only for Capistrano 3.1
 set :application, 'Hamers'
 set :repo_url, 'git@bitbucket.org:jackozi/hamers.git'
-set :rvm_ruby_version, '2.5.0'
-set :default_env, { rvm_bin_path: '/home/jackozi/.rvm/bin' }
+set :rvm_ruby_version, '2.6.5'
+set :default_env, { rvm_bin_path: '/home/deploy/.rvm/bin' }
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
@@ -22,7 +22,7 @@ set :stages, %w(production)
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{tmp/rpush.pid log/rpush.log config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
+set :linked_files, %w{tmp/rpush.pid log/rpush.log config/secret_token.rb config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -51,3 +51,5 @@ namespace :deploy do
 end
 
 after "deploy", "deploy:restart"
+after "deploy", "deploy:whenever"
+
