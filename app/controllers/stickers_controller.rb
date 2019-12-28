@@ -25,9 +25,10 @@ class StickersController < ApplicationController
   end
 
   def create
-    sticker = Sticker.new(sticker_params)
-    sticker.user_id = current_user.id
-    save_object(sticker, push=true)
+    @sticker = Sticker.new(sticker_params)
+    @sticker.user_id = current_user.id
+    redirect_to stickers_path if @sticker.save
+    render :new
   end
 
   def update
