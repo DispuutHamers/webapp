@@ -52,25 +52,7 @@ class StaticPagesController < ApplicationController
     @cumulative_sticker_data = get_cumulative_data Sticker
     @cumulative_meeting_data = get_cumulative_data Meeting
     @cumulative_news_data = get_cumulative_data News
-    @visit_countries = Visit.group(:country).count
-    @visit_operating_systems = Visit.group(:os).count
-    @visit_source = Visit.group(:referring_domain).count
-    @visit_referrer = Visit.group(:referrer).count
     breadcrumb 'Statistics', :stats_path
-  end
-
-  def visitors
-    @visitors = if params[:ip]
-                  Visit.where(ip: params[:ip]).paginate(page: params[:page])
-                else
-                  Visit.all.paginate(page: params[:page])
-                end
-    breadcrumb 'Visitors', :visitors_path
-  end
-
-  def visitor
-    @visitors = Visit.where(visitor_token: params[:token]).paginate(page: params[:page])
-    breadcrumb 'Visitor', :visitors_path
   end
 
   private
