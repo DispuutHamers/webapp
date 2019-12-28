@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 gem 'acme_plugin'
-gem 'ahoy_matey'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'bootstrap-will_paginate'
