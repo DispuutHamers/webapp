@@ -12,7 +12,8 @@ class EventsController < ApplicationController
     respond_to do |current_request|
       current_request.html do
         ilid?
-        @events = Event.all.order(date: :desc).paginate(page: params[:page])
+        @past_events = Event.past.order(date: :desc).paginate(page: params[:page])
+        @upcoming_events = Event.upcoming.order(date: :asc)
       end
 
       current_request.ics do
@@ -91,7 +92,7 @@ class EventsController < ApplicationController
 
   def generate_calendar(key)
     ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
-    feed = Event.all.order('date').where(['date >= ?', Date.today])
+    feed = Event.future.order('date')
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"
     tz = TZInfo::Timezone.get tzid
