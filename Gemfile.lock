@@ -102,6 +102,9 @@ GEM
     capistrano-rpush (0.2.1)
       capistrano (~> 3.9, >= 3.9.1)
       rpush (>= 2.7)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     chartkick (3.3.1)
     chronic (0.10.2)
     chunky_png (1.3.11)
@@ -453,6 +456,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails (~> 1.1)
   capistrano-rpush
+  capistrano-rvm
   chartkick
   cloudinary
   coffee-rails
