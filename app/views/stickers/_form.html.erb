@@ -1,11 +1,13 @@
 <%= form_for @sticker do |f| %>
   <div class="form-group">
     <%= f.label :lat %>
-    <%= f.text_field :lat, id: 'lat', class: 'form-control' %>
+    <%= f.text_field :lat, id: 'lat', class: 'form-control', pattern: '\d*\.\d*', required: true %>
+    <%= @sticker.errors.full_messages_for(:lat).first[3..] if @sticker.errors[:lat].any? %>
   </div>
   <div class="form-group">
     <%= f.label :lon %>
-    <%= f.text_field :lon, id: 'lon', class: 'form-control' %>
+    <%= f.text_field :lon, id: 'lon', class: 'form-control', pattern: '\d*\.\d*', required: true %>
+    <%= @sticker.errors.full_messages_for(:lon).first[3..] if @sticker.errors[:lon].any?  %>
   </div>
   <div class="form-group">
     <%= f.label :notes %>
