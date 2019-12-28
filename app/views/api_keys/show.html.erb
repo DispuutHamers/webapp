@@ -1,34 +1,47 @@
-<script>
-function copyToClipboard(element) {
-  var $temp = $("<input>");
-  $("body").append($temp);
-  $temp.val(element).select();
-  document.execCommand("copy");
-  $temp.remove();
-}
-</script>
+<% content_for :title do %>
+  API sleutel: <%= @rawkey %>
+<% end %>
 
-<a href="#" onclick='copyToClipboard("<%= @rawkey %>");'>
-  <center><img alt="Embedded Image" src="<%= @key %>" /></center>
-</a><br><br>
-<table>
-  <thead>
-    <tr>
-      <th>ip / time</th>
-      <th>call</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @logs.each do |l| %>
-      <tr>
-        <td><%= l.ip_addr %> / <%= l.created_at.strftime('%d-%m-%Y %H:%M') %></td>
-        <td><%= l.resource_call %></td>
-      </tr>
-    <% end %>
-  </tbody>
-  <%= will_paginate @logs %>
-</table>
-<br>
-<form action="<%= request.base_url %>/ical/<%= @rawkey %>/cal.ics">
-  <button type="submit" class="btn btn-large btn-success">iCal</button> (<%= "#{request.base_url}/ical/#{@rawkey}/cal.ics" %>)
-</form>
+<div class="row">
+  <div class="col-md-12">
+    <form id="ical_form" action="<%= "#{request.base_url}/ical/#{@rawkey}/cal.ics" %>"></form>
+    <div class="btn-group">
+      <button type="submit" class="btn btn-primary" form="ical_form">iCal</button>
+      <button class="btn btn-primary" onclick='copyToClipboard("<%= @rawkey %>");'>
+        Kopieer naar klembord
+      </button>
+    </div>
+
+    <hr>
+
+    <h2>API key gebruiksgeschiedenis</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ip / time</th>
+            <th>call</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @logs.each do |l| %>
+            <tr>
+              <td><%= l.ip_addr %> / <%= l.created_at.strftime('%d-%m-%Y %H:%M') %></td>
+              <td><%= l.resource_call %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @logs %>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  function copyToClipboard(element) {
+    var $temp = $("<input>");
+    $("body").append($temp);
+    $temp.val(element).select();
+    document.execCommand("copy");
+    $temp.remove();
+  }
+</script>
