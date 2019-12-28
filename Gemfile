@@ -46,6 +46,7 @@ gem 'rpush'
 gem 'rqrcode_png'
 gem 'sass-rails'
 gem "sassc", "< 2.1.0"
+gem 'sprockets', '~> 3.7.2'
 gem 'stackprof'
 gem 'swagger-ui_rails'
 gem 'swagger_ui_engine'
