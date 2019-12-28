@@ -10,18 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_28_163521) do
-
-  create_table "ahoy_events", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "visit_id"
-    t.integer "user_id"
-    t.string "name"
-    t.text "properties"
-    t.timestamp "time"
-    t.index ["name", "time"], name: "index_ahoy_events_on_name_and_time"
-    t.index ["user_id", "name"], name: "index_ahoy_events_on_user_id_and_name"
-    t.index ["visit_id", "name"], name: "index_ahoy_events_on_visit_id_and_name"
-  end
+ActiveRecord::Schema.define(version: 2019_12_28_165347) do
 
   create_table "api_keys", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "key"

@@ -2,7 +2,8 @@ development:
         adapter: mysql2
         encoding: utf8
         database: hamers
-        username: root
+        username: hamers
+        password: hamers
         host: 127.0.0.1
 
 test:
