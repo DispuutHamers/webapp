@@ -6,7 +6,6 @@ class Api2::ApiController < ApplicationController
   #before_action :doorkeeper_authorize! # Require access token for all actions
   before_action :log_url
   skip_before_action :verify_authenticity_token
-  skip_before_action :track_ahoy_visit
   include ParamsHelper
   #resource_description do
   #	  api_versions "2"

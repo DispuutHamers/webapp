@@ -3,7 +3,6 @@ class EventsController < ApplicationController
   require 'icalendar/tzinfo'
   before_action :ilid?, except: [:index]
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
-  skip_before_action :track_ahoy_visit, only: [:index]
   breadcrumb 'Activiteiten', :events_path
 
 
