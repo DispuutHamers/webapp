@@ -12,6 +12,15 @@
       <% c = 'info' if event.future? %>
       <% c = 'active' if event.past? %>
       <% c = 'success' if event.today? %>
+      <% c = if event.today?
+               'success'
+             elsif event.past?
+               'active'
+             else
+               'info'
+             end
+        %>
+
       <tr class="<%= c %>">
         <td><%= link_to event.title, event %></td>
         <td><%= event.date.strftime('%d-%m-%Y') %>
