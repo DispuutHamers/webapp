@@ -3,6 +3,19 @@
 <% end %>
 <div class="row">
   <div class="col-md-12">
+    <div class="collapse" id="collapseExample">
+      <div class="well well-sm">
+        <p>Voeg onderstaand url toe aan je Google of Apple calendar als je mooie intergatie wil. Als je nog geen API key hebt aangemaakt doe dat dan
+        <%= link_to 'hier', edit_user_path(current_user) %>.</p>
+        <ul>
+          <% current_user.api_keys.each do |ak| %>
+            <li><%= ak.name %> --> https://zondersikkel.nl/ical/<%= ak.key %>.ics</li>
+          <% end %>
+        </ul>
+        </div>
+      </div>
+    </div>
+   </div>
     <table class="events table table-hover">
       <thead>
         <tr>
