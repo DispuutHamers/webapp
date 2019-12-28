@@ -1,6 +1,6 @@
 # config valid only for Capistrano 3.1
 set :application, 'Hamers'
-set :repo_url, 'git@bitbucket.org:jackozi/hamers.git'
+set :repo_url, 'git@github.com:jackozi/hamers.git'
 set :rvm_ruby_version, '2.6.5'
 set :default_env, { rvm_bin_path: '/home/deploy/.rvm/bin' }
 
@@ -22,7 +22,7 @@ set :stages, %w(production)
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{tmp/rpush.pid log/rpush.log config/initializers/secret_token.rb config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
+set :linked_files, %w{tmp/rpush.pid log/rpush.log config/initializers/secret_token.rb config/environments/production.rb config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
