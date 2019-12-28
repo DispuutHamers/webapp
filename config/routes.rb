@@ -25,9 +25,6 @@ Hamers::Application.routes.draw do
   resources :news
   get '/images' => 'albums#index', as: 'photo'
   get '/trail' => 'static_pages#trail' , as: 'trail'
-  get '/visitors' => 'static_pages#visitors', as: 'visitors'
-  get '/visitors/ip/:ip' => 'static_pages#visitors'
-  get '/visitors/:token' => 'static_pages#visitor', as: 'visitor'
   get '/trail' => 'static_pages#trail' , as: 'device'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
