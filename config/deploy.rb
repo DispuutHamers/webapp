@@ -22,7 +22,7 @@ set :stages, %w(production)
 set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{tmp/rpush.pid log/rpush.log config/secret_token.rb config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
+set :linked_files, %w{tmp/rpush.pid log/rpush.log config/initializers/secret_token.rb config/database.yml config/key.pem certificates/zondersikkel.nl-cert.pem certificates/zondersikkel.nl-chain.pem certificates/zondersikkel.nl-fullchain.pem certificates/zondersikkel.nl-key.pem}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
