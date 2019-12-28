@@ -1,6 +1,7 @@
 <% content_for :title do %>
   Activiteiten
 <% end %>
+
 <div class="row">
   <div class="col-md-12">
     <div class="collapse" id="collapseExample">
@@ -15,45 +16,31 @@
         </div>
       </div>
     </div>
-   </div>
-    <table class="events table table-hover">
-      <thead>
-        <tr>
-          <th><h4>Activiteit</h4></th>
-          <th><h4>Datum</h4></th>
-          <th><h4>Aanwezig</h4></th>
-          <th><h4>Admin</h4></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @events.each do |event| %>
-          <% c = 'info' if event.future? %>
-          <% c = 'active' if event.past? %>
-          <% c = 'success' if event.today? %>
-          <tr class="<%= c %>">
-            <td><%= link_to event.title, event %></td>
-            <td><%= event.date.strftime('%d-%m-%Y') %>
-            <td>
-              <% event.signups.with_user.where(status: true).each do |s| %>
-                <%= s.user.name + ',' %>
-              <% end %>..jij?
-            </td>
-            <td>
-              <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
-                <i class="fas fa-pencil-alt"></i>
-              <% end %>
-              <% if current_user.admin? %>
-                <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= will_paginate %>
+
+    <ul class="nav nav-pills nav-justified" style="margin-bottom: 16px;">
+      <li class="presentation active"><a data-toggle="tab" href="#upcoming">Aankomend</a></li>
+      <li class="presentation"><a data-toggle="tab" href="#past">Vroegâh</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div id="upcoming" class="tab-pane fade in active">
+        <%= render "events/table", events: @upcoming_events %>
+      </div>
+      <div id="past" class="tab-pane fade">
+        <%= render "events/table", events: @past_events %>
+        <%= will_paginate @past_events %>
+      </div>
+    </div>
+
     <% if current_user&.active? %>
       <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
     <% end %>
   </div>
 </div>
+
+<script type="application/javascript">
+  document.addEventListener('turbolinks:render', function() {
+    if (/[?&]page=/.test(location.search))
+      $('.nav-pills a:last').tab('show')
+  }, false);
+</script>

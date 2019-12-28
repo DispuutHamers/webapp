@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
 
 #  default_scope {includes(:signups)}
   scope :with_signups, -> { includes(:signups) }
+  scope :upcoming, -> { where(['date >= ?', Date.today]) }
+  scope :past, -> { where(['date <= ?', Date.today]) }
 
   def to_ics
     event = Icalendar::Event.new
