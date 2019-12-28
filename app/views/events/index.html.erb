@@ -1,10 +1,10 @@
 <% content_for :title do %>
-  Activiteiten <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> 
+  Activiteiten <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#uitlegbox"> 
   <i class="fas fa-calendar-alt"></i></button>
 <% end %> 
 <div class="row">
   <div class="col-md-12">
-    <div class="collapse" id="collapseExample">
+    <div id="uitlegbox" class="collapse">
       <div class="well well-sm">
         <p>Voeg onderstaand url toe aan je Google of Apple calendar als je mooie intergatie wil. Als je nog geen API key hebt aangemaakt doe dat dan
         <%= link_to 'hier', edit_user_path(current_user) %>.</p>
