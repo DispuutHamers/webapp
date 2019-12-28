@@ -2,11 +2,11 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_165347) do
     t.string "role"
     t.string "file_name"
     t.string "file_type"
-    t.binary "data", limit: 16777215
+    t.binary "data", size: :medium
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -361,7 +361,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_165347) do
     t.string "type", null: false
     t.string "collapse_key"
     t.boolean "delay_while_idle", default: false, null: false
-    t.text "registration_ids", limit: 16777215
+    t.text "registration_ids", size: :medium
     t.integer "app_id", null: false
     t.integer "retries", default: 0
     t.string "uri"
@@ -469,16 +469,16 @@ ActiveRecord::Schema.define(version: 2019_12_28_165347) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "item_type", limit: 191, null: false
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "old_object", limit: 4294967295
+    t.text "old_object", size: :long
     t.datetime "created_at"
-    t.text "old_object_changes", limit: 4294967295
-    t.text "object", limit: 4294967295, collation: "utf8mb4_bin"
-    t.text "object_changes", limit: 4294967295, collation: "utf8mb4_bin"
+    t.text "old_object_changes", size: :long
+    t.json "object"
+    t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
