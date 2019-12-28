@@ -1,7 +1,7 @@
 # config valid only for Capistrano 3.1
 set :application, 'Hamers'
 set :repo_url, 'git@github.com:jackozi/hamers.git'
-set :rvm_ruby_version, '2.6.5'
+set :rvm_ruby_version, '2.7.0'
 set :default_env, { rvm_bin_path: '/home/deploy/.rvm/bin' }
 
 # Default branch is :master

@@ -450,6 +450,7 @@ DEPENDENCIES
   bootstrap_form
   bullet
   capistrano
+  capistrano-bundler
   capistrano-rails (~> 1.1)
   capistrano-rpush
   chartkick
