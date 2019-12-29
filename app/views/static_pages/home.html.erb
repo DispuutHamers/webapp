@@ -34,7 +34,9 @@
             <%= render 'shared/blog' %>
           </section>
           <section>
-            <h5><i class="fas fa-history"></i> Log</h5>
+            <%= link_to trail_path do %>
+              <h5><i class="fas fa-history"></i> Log</h5>
+            <% end %>
             <%= render 'shared/trail' %>
           </section>
         </aside>
