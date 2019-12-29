@@ -1,6 +1,6 @@
-class ChangeResourceToTextInApiLog < ActiveRecord::Migration
-  class ChangeDateFormatInMyTable < ActiveRecord::Migration
-		  def up
+class ChangeResourceToTextInApiLog < ActiveRecord::Migration[5.0]
+class ChangeDateFormatInMyTable < ActiveRecord::Migration[5.0]
+def up
 				    change_column :api_logs, :resource_log, :text
 						  end
 

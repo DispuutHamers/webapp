@@ -1,4 +1,4 @@
-class AddDefaultValueToUserApprovedAttribute < ActiveRecord::Migration
+class AddDefaultValueToUserApprovedAttribute < ActiveRecord::Migration[5.0]
 def up
     change_column :users, :approved, :boolean, :default => false
 end

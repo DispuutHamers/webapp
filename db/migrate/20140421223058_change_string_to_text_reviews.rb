@@ -1,5 +1,5 @@
-class ChangeStringToTextReviews < ActiveRecord::Migration
-  def up
+class ChangeStringToTextReviews < ActiveRecord::Migration[5.0]
+def up
     change_column :reviews, :description, :text
 end
 def down

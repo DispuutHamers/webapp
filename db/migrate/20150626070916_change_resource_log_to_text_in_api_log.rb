@@ -1,5 +1,5 @@
-class ChangeResourceLogToTextInApiLog < ActiveRecord::Migration
-  def change
+class ChangeResourceLogToTextInApiLog < ActiveRecord::Migration[5.0]
+def change
 		reversible do |dir|
 			      change_table :api_logs do |t|
 							        dir.up   { t.change :resource_call, :text }

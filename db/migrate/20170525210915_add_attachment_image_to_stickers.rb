@@ -1,5 +1,5 @@
-class AddAttachmentImageToStickers < ActiveRecord::Migration
-  def self.up
+class AddAttachmentImageToStickers < ActiveRecord::Migration[5.0]
+def self.up
     change_table :stickers do |t|
       t.attachment :image
     end
