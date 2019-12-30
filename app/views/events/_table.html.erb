@@ -9,20 +9,12 @@
   </thead>
   <tbody>
     <% events.each do |event| %>
-      <% c = 'info' if event.future? %>
-      <% c = 'active' if event.past? %>
-      <% c = 'success' if event.today? %>
-      <% c = if event.today?
-               'success'
-             elsif event.past?
-               'active'
-             else
-               'info'
-             end
-        %>
-
-      <tr class="<%= c %>">
-        <td><%= link_to event.title, event %></td>
+      <tr>
+        <td><%= link_to event.title, event %>
+            <% if event.today? %>
+              <span class="label label-primary">Vandaag</span>
+            <% end %>
+        </td>
         <td><%= event.date.strftime('%d-%m-%Y') %>
         <td>
           <% event.signups.with_user.where(status: true).each do |s| %>
