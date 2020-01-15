@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require font_awesome5
-//= require trix
 //= require cloudinary
 //= require twitter/bootstrap
 //= require turbolinks
