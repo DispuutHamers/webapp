@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 gem 'acme_plugin'
+gem 'apipie-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap_form'
 gem 'bullet'
-gem 'capistrano-rpush'
 gem 'chartkick'
 gem 'cloudinary'
 gem 'coffee-rails'
@@ -37,7 +37,7 @@ gem 'paperclip'
 gem 'paranoia'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-mini-profiler'
-gem 'rails', '6.0.2'
+gem 'rails', '~>6'
 gem 'rails-controller-testing'
 gem 'rails-i18n'
 gem 'rb-readline'
@@ -64,7 +64,10 @@ gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
 end
-gem 'apipie-rails'
-gem 'capistrano', group: :development
-gem 'capistrano-rails', '~> 1.1'
-gem 'rvm-capistrano'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rpush'
+  gem 'capistrano-rvm'
+end
