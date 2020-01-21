@@ -3,7 +3,11 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
-    <%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil %>
+    <% if @meeting.actiontext_notes.blank? %>
+      <%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil %>
+    <% else %>
+      <%= @meeting.actiontext_notes %>
+    <% end %>
   </div>
   <div class="col-md-3">
     <%= markdown(@meeting.agenda).html_safe unless @meeting.agenda == nil %>

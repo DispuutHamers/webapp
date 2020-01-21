@@ -3,7 +3,11 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
-    <%= markdown(@item.body).html_safe unless @item.body == nil %>
+    <% if @item.actiontext_body.blank? %>
+      <%= markdown(@item.body).html_safe unless @item.body == nil %>
+    <% else %>
+      <%= @item.actiontext_body %>
+    <% end %>
   </div>
   <div class="col-md-3">
     <% @item.blogphotos.each do |p| %>
