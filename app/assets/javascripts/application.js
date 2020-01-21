@@ -17,6 +17,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress
+//= require trix/dist/trix
 //= require nprogress-turbolinks
 //= require_tree .
 
