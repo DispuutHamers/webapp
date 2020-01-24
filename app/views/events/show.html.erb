@@ -11,7 +11,11 @@
       <p><i class="fa fa-map-marker"></i> <%= @event.location %></p>
     <% end %>
     <p>
-    <%= markdown(@event.beschrijving).html_safe %>
+    <% if @event.description.blank? %>
+      <%= markdown(@event.beschrijving).html_safe %>
+    <% else %>
+      <%= @event.description %>
+    <% end %>
     </p>
   </div>
   <div class="col-md-4">

@@ -9,15 +9,15 @@ module ParamsHelper
   end
 
   def brew_params
-    params.require(:brew).permit(:description, :recipe_id)
+    params.require(:brew).permit(:description, :actiontext_description, :recipe_id)
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :beer, :description)
+    params.require(:recipe).permit(:name, :beer, :description, :actiontext_description)
   end
 
   def blog_params
-    params.require(:blogitem).permit(:title, :body, :public)
+    params.require(:blogitem).permit(:title, :body, :public, :actiontext_body)
   end
 
   def push_params
@@ -37,7 +37,7 @@ module ParamsHelper
   end
 
   def event_params
-    params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date, :location)
+    params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date, :location, :description)
   end
 
   def beer_params
@@ -52,24 +52,16 @@ module ParamsHelper
     params.require(:device).permit(:device_key)
   end
 
-  def arm_params
-    params.require(:arm).permit(:lat, :lon)
-  end
-
   def nickname_params
     params.require(:nickname).permit(:user_id, :nickname, :description)
   end
 
   def meeting_params
-    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date)
+    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :actiontext_notes)
   end
 
   def sticker_params
     params.require(:sticker).permit(:lat, :lon, :notes, :image)
-  end
-
-  def note_params
-    params.require(:note).permit(:title, :content)
   end
 
   def user_params

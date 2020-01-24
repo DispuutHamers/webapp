@@ -42,7 +42,7 @@ gem 'rails-controller-testing'
 gem 'rails-i18n'
 gem 'rb-readline'
 gem 'redcarpet'
-gem 'rpush'
+gem 'rpush', "~>3"
 gem 'rqrcode_png'
 gem 'sass-rails'
 gem "sassc", "< 2.1.0"
@@ -52,12 +52,12 @@ gem 'swagger-ui_rails'
 gem 'swagger_ui_engine'
 gem 'switch_user'
 gem 'therubyracer'
-gem 'trix-rails', require: 'trix'
 gem 'turbolinks'
 gem 'twitter-bootstrap-rails'
 gem 'tzinfo'
 gem 'uglifier'
 gem 'web-console'
+gem "webpacker"
 gem 'whenever', require: false
 gem 'will_paginate'
 gem 'wine_bouncer'

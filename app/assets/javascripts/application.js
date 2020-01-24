@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require font_awesome5
-//= require trix
 //= require cloudinary
 //= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress
+//= require trix/dist/trix
 //= require nprogress-turbolinks
 //= require_tree .
 

@@ -18,7 +18,7 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
   <div class="field">
     <%= f.label :notes %><br>
-    <%= f.trix_editor :notes %>
+    <%= f.rich_text_area :actiontext_notes %>
   </div>
   <div class="actions">
     <%= f.submit %>
