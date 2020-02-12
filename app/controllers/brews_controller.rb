@@ -1,7 +1,7 @@
 class BrewsController < ApplicationController
   before_action :lid?
   before_action :set_brew, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Recepten', :recipes_path
+  breadcrumb 'Recepten', :recipe_index_path
 
 
   def show

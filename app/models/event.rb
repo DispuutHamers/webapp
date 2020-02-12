@@ -17,7 +17,7 @@ class Event < ActiveRecord::Base
     event.dtstart = date.strftime('%Y%m%dT%H%M%S')
     event.dtend = end_time.strftime('%Y%m%dT%H%M%S')
     event.summary = title
-    event.description = beschrijving
+    event.description = description || beschrijving
     event.location = location
     event.ip_class = 'PUBLIC'
     event.url = "http://zondersikkel.nl/events/#{self.id}"
@@ -37,7 +37,7 @@ class Event < ActiveRecord::Base
   end
 
   def as_json(options)
-    h = super({:only => [:id, :attendance, :title, :beschrijving, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
+    h = super({:only => [:id, :attendance, :title, :beschrijving, :description, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
     h[:signups] = signups.as_json(options)
     h
   end

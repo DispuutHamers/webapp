@@ -1,7 +1,9 @@
-<div style="height: 800px;">
+<div style="height: 800px; margin-bottom: 12px;">
   <div id="map" style="height: 100%;"></div>
 </div>
-<hr>
+
+<%= link_to new_sticker_path, class: 'btn btn-block btn-primary' do %><i class="far fa-copy fa-fw"></i> Sticker plakken<% end %>
+
 <script type="application/javascript">
 function initMap() {
   let map = new google.maps.Map(document.getElementById('map'), {

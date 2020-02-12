@@ -3,7 +3,11 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
-    <%= markdown(@recipe.description).html_safe %>
+    <% if @recipe.actiontext_description.blank? %>
+      <%= markdown(@recipe.description).html_safe %>
+    <% else %>
+      <%= @recipe.actiontext_description %>
+    <% end %>
   </div>
   <div class="col-md-3">
     Uitvoeringen:<br>
