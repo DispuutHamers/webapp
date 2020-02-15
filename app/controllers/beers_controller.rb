@@ -3,22 +3,24 @@ class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
   breadcrumb 'Bier', :beers_path
+  
+  ALLOWED_SORTING_FIELDS = %w[name soort grade brewer country review_count]
 
   # GET /beers
   # GET /beers.json
   def index
-    @beers = Beer.all.paginate(page: params[:page])
-  end
-
-  def search
-    if params["search"]
-      @sp = params[:search][:terms]
-      @beers = BeerFilter.new.filter(Beer.all, @sp).paginate(page: params[:page], per_page: 500)
+    sorting = params[:sort] if ALLOWED_SORTING_FIELDS.include?(params[:sort])
+    ordering = params[:order] if %w[asc desc].include?(params[:order])
+    @sp = params[:search] || ""
+    if sorting == "review_count"
+      @beers = BeerFilter.new.filter(Beer.all, @sp)
+        .left_joins(:reviews)
+        .group(:beer_id)
+        .order("count(reviews.id) #{ordering}")
+        .paginate(page: params[:page], per_page: 10)
     else
-      @beers = Beer.all.paginate(page: params[:page])
+      @beers = BeerFilter.new.filter(Beer.all, @sp).order("#{sorting} #{ordering}").paginate(page: params[:page], per_page: 10)
     end
-
-    breadcrumb "Zoeken", :beers_path
     render 'beers/index'
   end
 
