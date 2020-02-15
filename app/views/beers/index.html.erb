@@ -9,16 +9,12 @@
   <div class="col-md-6">
     <div class="pagination">
       <div class="pagination">
-        <%= form_for 'search', class: "form-horizontal", url: beer_search_path do |f| %>
+        <%= form_tag beers_path, class: "form-horizontal", method: :get do %>
           <div class="input-group" id="adv-search">
-            <% if @sp %>
-              <%= f.text_field :terms, class: 'form-control', value: @sp %>
-            <% else %>
-              <%= f.text_field :terms, class: 'form-control', placeholder: 'Vind hier, je bier' %>
-            <% end %>
+              <%= text_field_tag :search, @sp, class: 'form-control', placeholder: 'Vind hier, je bier' %>
             <div class="input-group-btn">
               <div class="btn-group" role="group">
-                <%= f.submit "Zoek", class: "btn btn-primary" %>
+                <%= submit_tag "Zoek", class: "btn btn-primary" %>
               </div>
             </div>
           </div>
@@ -29,15 +25,17 @@
 </div>
 
 
-<table id="bier" class="tablesorter table table-hover">
+<table id="bier" class="table table-hover">
   <thead>
     <tr>
-      <th>Naam</th>
-      <th>Soort</th>
-      <th>Cijfer</th>
-      <th>Brouwer</th>
-      <th>Land</th>
-      <th>Aantal reviews</th>
+      <% ordering = params[:order] == "asc" ? "desc" : "asc" %>
+      <th><%= link_to "Naam", params.permit(:sort, :order, :search, :utf8).merge({sort: :name, order: ordering}) %></th>
+      <th><%= link_to "Soort", params.permit(:sort, :order, :search, :utf8).merge({sort: :soort, order: ordering}) %></th>
+      <th><%= link_to "Cijfer", params.permit(:sort, :order, :search, :utf8).merge({sort: :grade, order: ordering}) %></th>
+      <th><%= link_to "Brouwer", params.permit(:sort, :order, :search, :utf8).merge({sort: :brewer, order: ordering}) %></th>
+      <th><%= link_to "Land", params.permit(:sort, :order, :search, :utf8).merge({sort: :country, order: ordering}) %></th>
+      <th><%= link_to "Aantal reviews", params.permit(:sort, :order, :search, :utf8).merge({sort: :review_count, order: ordering}) %></th>
+
       <% if current_user&.admin? %>
         <th></th>
       <% end %>
