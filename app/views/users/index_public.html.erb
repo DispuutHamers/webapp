@@ -1,32 +1,40 @@
 <% content_for :title do %>
-    Leden
+  Leden
 <% end %>
-<div class="col-md-12">
+
+<div class="col-md-12 mb-5">
+  <figure class="figure">
+    <img src="<%= image_path('members.jpg') %>" class="img-responsive" alt="Responsive image">
+    <figcaption class="figure-caption">Hamers zonder Sikkel - 23 maart 2019. Copyright Tom Feij.</figcaption>
+  </figure>
+
+  <hr>
+
   <% @users.each do |group| %>
-      <div class='row'>
-        <% if group[0] %>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h1 class="panel-title text-center">
-                  <%= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>
-                </h1>
+    <div class='row'>
+      <% if group[0] %>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h1 class="panel-title text-center">
+              <%= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>
+            </h1>
+          </div>
+          <div class="panel-body center">
+            <% group[1].each do |user| %>
+              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <div class="thumbnail thumbnail-member">
+                  <%= gravatar_for user, size: 150, class: 'img img-responsive' %>
+                  <div class="caption">
+                    <h4>
+                      <%= user.name %> <%= '(Aspirant)' if user.alid? %>
+                    </h4>
+                  </div>
+                </div>
               </div>
-              <div class="panel-body">
-                <% group[1].each do |user| %>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                      <div class="thumbnail thumbnail-member">
-                        <%= gravatar_for user, size: 150, class: 'img img-responsive' %>
-                        <div class="caption">
-                          <h4>
-                            <%= user.name %> <%= '(Aspirant)' if user.alid? %>
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
-                <% end %>
-              </div>
-            </div>
-        <% end %>
-      </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
