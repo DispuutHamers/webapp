@@ -10,6 +10,7 @@ class UserMailer < ApplicationMailer
   end
 
   def mail_reservation(event)
+    @event = event
     mail(to: 'han@devluchte.nl', subject: "Hamers: #{event.signups.where(status: true).count} personen")
   end
 
