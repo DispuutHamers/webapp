@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <p>Beste Han,</p>
+    <p>Wij komen morgen met <%= @event.signups.where(status: true).count %> personen</p>
+
+    <ul style="list-style-type: none;">
+      <% @event.signups.where(status: true).each do |s| %>
+        <li><%= s.user.name %>: <li><%= s.reason %></li>
+      <% end %>
+    </ul>
+
+    <p>Tot morgen,</p>
+    <p>Hamers</p>
+  </body>
+</html>

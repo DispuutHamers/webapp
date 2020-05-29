@@ -1,0 +1,10 @@
+Beste Han,
+
+Wij komen morgen met <%= @event.signups.where(status: true).count %> personen
+
+<% @event.signups.where(status: true).each do |s| %>
+  <%= s.user.name %>: <li><%= s.reason %>
+<% end %>
+
+Tot morgen,
+Hamers
