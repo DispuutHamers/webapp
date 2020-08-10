@@ -42,6 +42,10 @@
         <%= f.text_field :name, class: "form-control" %>
         <%= f.label :email, "Email" %>
         <%= f.text_field :email, class: "form-control" %>
+        <%= f.label :phone_number, "Telefoonnummer" %>
+        <%= f.text_field :phone_number, class: "form-control" %>
+        <%= f.label :birthday, "Verjaardag" %>
+        <%= f.date_field :birthday, class: "form-control" %>
         <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
         <%= f.password_field :password, autocomplete: "off" %>
         <% if @minimum_password_length %>
