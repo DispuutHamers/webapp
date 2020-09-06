@@ -9,6 +9,12 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Doe eens inschrijven...")
   end
 
+  def mail_event_reminder_druif(user, event)
+    @user = user
+    @event = event
+    mail(to: @user.email, subject: "Doe eens inschrijven, deze mail geldt dus ook voor jouw " + @user.name)
+  end
+
   def mail_reservation(event)
     @event = event
     mail(to: 'han@devluchte.nl', subject: "Hamers: #{event.signups.where(status: true).count} personen")
