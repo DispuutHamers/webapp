@@ -1,10 +1,11 @@
 Hallo <%= @user.name %>,
 
 Helaas ben je er tot op heden niet in geslaagd je aan of af te melden voor het event: "<%= @event.title %>" op <%= @event.date.strftime("%d/%m/%Y") %>. Om voor iedereen het te verwachte aantal aanwezige leden zo overzichtelijk mogelijk te maken wordt je hierbij verzocht dat zo snel mogelijk nog te doen.
+<% if @druif %>
 In het verleden lijk je geen gebruik te hebben gemaakt van deze herrinering, waardoor je een zorgwekkend laag sunday ratio hebt, dus doe eens inschrijven.
+<% end %>
 
 Veel succes, moeilijk is het niet
 
 P.S.
 https://www.zondersikkel.nl/events/<%= @event.id %>
-

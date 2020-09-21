@@ -69,8 +69,7 @@ module UtilHelper
     signed_users = event.users
     unsigned_users = User.leden.order(:sunday_ratio) - signed_users
     #degene met de laagste sunday_ratio
-    druif = unsigned_users.first
-    unsigned_users = unsigned_users - [druif]
+    druif = unsigned_users.shift
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
     UserMailer.mail_event_reminder_druif(druif, event).deliver
   end
