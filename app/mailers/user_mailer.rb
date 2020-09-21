@@ -3,17 +3,13 @@ class UserMailer < ApplicationMailer
   layout 'mailer', only: %i[mail_event_reminder]
   layout 'reservation', only: %i[mail_reservation]
 
-  def mail_event_reminder(user, event)
+  def mail_event_reminder(user, event, druif: false)
     @user = user
     @event = event
-    mail(to: @user.email, subject: "Doe eens inschrijven...")
-  end
+    @druif = druif  
+    @subject = druif ? "Doe eens inschrijven, deze mail geldt dus ook voor jou #{user.name}" : "Doe eens inschrijven" 
+    mail(to: @user.email, subject: @subject)
 
-  def mail_event_reminder_druif(user, event, druif: false)
-    @user = user
-  @druif = druif  
-  @subject = druif ? "subject voor druif" : "subject voor rest" 
-  mail(to: @user.email, subject: "Doe eens inschrijven, deze mail geldt dus ook voor jouw #{user.name}", druif)
   end
 
   def mail_reservation(event)

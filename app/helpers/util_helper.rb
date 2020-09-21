@@ -71,7 +71,7 @@ module UtilHelper
     #degene met de laagste sunday_ratio
     druif = unsigned_users.shift
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
-    UserMailer.mail_event_reminder_druif(druif, event).deliver
+    UserMailer.mail_event_reminder(druif, event, druif: true).deliver
   end
 
   def self.make_reservation
