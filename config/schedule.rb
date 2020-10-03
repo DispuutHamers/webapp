@@ -6,9 +6,9 @@ every :friday, :at => "7pm" do
   runner 'UtilHelper.remind_zondag'
 end
 
-every :sunday, :at => "7pm" do
-  runner 'UtilHelper.make_reservation'
-end
+# every :sunday, :at => "7pm" do
+#   runner 'UtilHelper.make_reservation'
+# end
 
 every :day, :at => '6am' do
   runner 'User.leden.each{ |u| UsersHelper.update_weight_for(u) }'
