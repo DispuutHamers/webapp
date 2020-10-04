@@ -13,7 +13,7 @@
 
     <ul style="list-style-type: none;">
       <% @event.signups.where(status: true).each do |s| %>
-        <li><%= s.user.name %>: <li><%= s.reason %></li>
+        <li><%= s.user.name %> (<%= s.user.phone_number %>): Gezond </li>
       <% end %>
     </ul>
 
