@@ -19,7 +19,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :reviews
   has_many :events
   has_many :beers
-  has_many :api_logs
   has_many :signups
   has_many :nicknames
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true

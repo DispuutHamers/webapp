@@ -4,7 +4,6 @@ class Api2::ApiController < ApplicationController
   attr_reader :key
   before_action :restrict_access
   #before_action :doorkeeper_authorize! # Require access token for all actions
-  before_action :log_url
   skip_before_action :verify_authenticity_token
   include ParamsHelper
   #resource_description do
@@ -77,13 +76,6 @@ class Api2::ApiController < ApplicationController
     else
       update_object(obj, obj_params)
     end
-  end
-
-  def log_url
-    id = @key.user.id
-    resource_descriptor = (request.method + ": " + request.original_fullpath + " " + params.to_s)
-    PaperTrail.whodunnit = id
-    ApiLog.new(key: @key.key, user_id: id, ip_addr: request.remote_ip, resource_call: resource_descriptor).save
   end
 
   private
