@@ -20,10 +20,6 @@ module ParamsHelper
     params.require(:blogitem).permit(:title, :body, :public, :actiontext_body)
   end
 
-  def push_params
-    params.require(:push).permit(:data, :user_id)
-  end
-
   def signup_params
     params.require(:signup).permit(:event_id, :status, :reason)
   end
