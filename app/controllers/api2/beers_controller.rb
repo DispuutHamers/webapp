@@ -48,6 +48,6 @@ class Api2::BeersController < Api2::ApiController
   param :URL, String
   def create
     beer = Beer.new(beer_params)
-    save_object(beer, push=true)
+    save_object(beer)
   end
 end
