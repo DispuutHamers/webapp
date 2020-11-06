@@ -1,6 +1,6 @@
 # Takes over work from controllers and puts logic in a single place
 module UtilHelper
-  def save_object(obj, push = nil)
+  def save_object(obj)
     if obj.save
       flash[:success] = "#{obj.class.name} succesvol aangemaakt."
       redirect_to obj
