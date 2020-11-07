@@ -1,5 +1,0 @@
-class DropRpushFeedback < ActiveRecord::Migration[6.0]
-  def change
-    drop_table :rpush_feedback
-  end
-end
