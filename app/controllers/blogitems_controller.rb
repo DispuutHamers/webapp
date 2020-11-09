@@ -48,7 +48,7 @@ class BlogitemsController < ApplicationController
     # TODO: validation that title exists
     item = Blogitem.new(blog_params)
     item.user_id = current_user.id
-    save_object(item, push=true)
+    save_object(item)
   end
 
   def update

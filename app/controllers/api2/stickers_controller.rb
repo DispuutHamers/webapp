@@ -24,6 +24,6 @@ class Api2::StickersController < Api2::ApiController
   def create
     sticker = Sticker.new(sticker_params)
     sticker.user_id = key.user.id
-    save_object(sticker, push=true)
+    save_object(sticker)
   end
 end
