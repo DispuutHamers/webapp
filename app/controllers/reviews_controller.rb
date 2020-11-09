@@ -4,8 +4,7 @@ class ReviewsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
-    review = Review.new(review_params)
-    review.user_id = current_user.id
+    review = current_user.reviews.new(review_params)
     beer = Beer.find(params[:review][:beer_id]) # Nog nakijken voor injection
     reviews = current_user.reviews.where(beer_id: params[:review][:beer_id]).any?
     redirect_to beer, notice: 'Doe es niet valsspelen' and return if reviews.any?
