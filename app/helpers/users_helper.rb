@@ -14,7 +14,7 @@ module UsersHelper
     sundays = 0.0
     drinks.each do |drink|
       total = total + 1.0
-      unless drink.signups.where(user_id: user.id).blank?
+      if drink.signups.where(user_id: user.id).present?
         sundays = sundays + 1.0
       end
     end
