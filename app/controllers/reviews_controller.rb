@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     review = Review.new(review_params)
     review.user_id = current_user.id
     beer = Beer.find(params[:review][:beer_id]) # Nog nakijken voor injection
-    reviews = User.find(current_user.id).reviews.where(beer_id: beer.id)
+    reviews = current_user.reviews.where(beer_id: params[:review][:beer_id]).any?
     redirect_to beer, notice: 'Doe es niet valsspelen' and return if reviews.any?
     save_object(review)
   end
