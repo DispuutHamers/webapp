@@ -17,7 +17,7 @@
           <hr>
         <% end %>
 
-        <% if @item.blogphotos.count > 0 %>
+        <% if @item.blogphotos.any? %>
           <% @item.blogphotos.each do |p| %>
             <%= image_tag p.image.url(:medium) %> <br>
           <% end %>
