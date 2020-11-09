@@ -53,17 +53,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
     t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
   end
 
-  create_table "api_logs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "ip_addr"
-    t.text "resource_call"
-    t.integer "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "key"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_api_logs_on_deleted_at"
-  end
-
   create_table "beers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "soort"
