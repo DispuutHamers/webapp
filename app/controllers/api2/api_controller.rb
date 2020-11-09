@@ -22,19 +22,6 @@ class Api2::ApiController < ApplicationController
     app_info "Documentatie van de Hamers zonder Sikkel API\n\nVoor alles requests is het vereist een API key te gebruiken. Dit word gedaan door een \"Authorization\" header mee te sturen met daarin: \"Token token=<key>\""
   end
 
-  api 'POST', '/register', 'Register a device for push notifications'
-  param :device, String, required: true
-  def register
-    user = @key.user
-    device = user.devices.first || Device.new
-    device.assign_attributes(user_id: user.id, device_key: params[:device])
-    if device.save
-      render :status => :created, :plain => '{"status":"201","message":"Created"}'
-    else
-      render :status => :bad_request, :plain => '{"status":"400","error":"Bad request"}'
-    end
-  end
-
   private
   def restrict(admin = nil)
     return if dev_environment
@@ -52,9 +39,8 @@ class Api2::ApiController < ApplicationController
     restrict
   end
 
-  def save_object(obj, push = nil)
+  def save_object(obj)
     if obj.save
-      update_app(obj, "create") if push
       render json: obj, status: :created, location: obj
     else
       render json: obj.errors, status: :unprocessable_entity

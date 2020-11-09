@@ -33,7 +33,7 @@ class NewsController < ApplicationController
     news = News.new(news_params)
     news.user_id = current_user.id
     news.date = Time.now
-    save_object(news, push=true) #rare bug die alles stuk maakt bij aanmaken push
+    save_object(news)
   end
 
   # PATCH/PUT /news/1

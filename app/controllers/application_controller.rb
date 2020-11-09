@@ -36,26 +36,6 @@ class ApplicationController < ActionController::Base
     response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
   end
 
-  def update_app(obj, action)
-    keys = []
-    Device.all.each do |d|
-      keys << d.device_key
-    end
-
-    unless keys.blank?
-      n = Rpush::Gcm::Notification.new
-      n.app = Rpush::Gcm::App.find_by_name("android_app")
-      n.registration_ids = keys
-      n.priority = 'high'        # Optional, can be either 'normal' or 'high'
-      n.content_available = true # Optional
-      n.data = { object: obj.to_json,
-                 type: obj.class.name,
-                 action: action
-      }
-      n.save!
-    end
-  end
-
   def logged_in?
     unless current_user&.active?
       redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.'

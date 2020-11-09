@@ -42,7 +42,6 @@ gem 'rails-controller-testing'
 gem 'rails-i18n'
 gem 'rb-readline'
 gem 'redcarpet'
-gem 'rpush', "~>3"
 gem 'rqrcode_png'
 gem 'sass-rails'
 gem "sassc", "< 2.1.0"
@@ -68,6 +67,5 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-  gem 'capistrano-rpush'
   gem 'capistrano-rvm'
 end
