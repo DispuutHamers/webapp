@@ -91,7 +91,6 @@ class EventsController < ApplicationController
   end
 
   def generate_calendar(key)
-    ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
     feed = Event.upcoming.order('date')
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"
