@@ -12,7 +12,7 @@
   <div class="col-md-3">
     <div class="panel panel-default">
       <div class="panel-body">
-        <% if @item.user_id != nil %>
+        <% if @user %>
           Blogpost door: <i><%= link_to @user.name, @user %></i>
           <hr>
         <% end %>
