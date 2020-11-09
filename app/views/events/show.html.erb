@@ -42,9 +42,8 @@
         <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
             <div><%= f.hidden_field :event_id %></div>
-            <div><%= f.hidden_field :user_id %></div>
             <div><%= f.hidden_field :status %></div>
-            <%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %>
+            <div><%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %></div>
             <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Opmerkingen?" %></div>
           <% end %>
         <% end %>
@@ -67,7 +66,6 @@
         <% if @event.deadline != nil and @event.deadline > Time.now %>
           <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
             <div><%= f.hidden_field :event_id %></div>
-            <div><%= f.hidden_field :user_id %></div>
             <div><%= f.hidden_field :status %></div>
             <div><%= f.submit 'Ik zal niet aanwezig zijn.', class: 'btn btn-danger' %></div>
             <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Waarom niet?" %></div>
