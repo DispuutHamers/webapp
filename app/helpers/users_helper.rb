@@ -1,6 +1,6 @@
 module UsersHelper
 
-  def gravatar_for(user, options = {size: 64, class: 'gravatar img img-repsonsive'})
+  def gravatar_for(user, options = {size: 64, class: 'gravatar img img-responsive'})
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
     html_class = options[:class]
@@ -15,7 +15,7 @@ module UsersHelper
     sundays = 0.0
     drinks.each do |drink|
       total = total + 1.0
-      if !drink.signups.where(user_id: user.id).blank?
+      unless drink.signups.where(user_id: user.id).blank?
         sundays = sundays + 1.0
       end
     end
@@ -25,10 +25,10 @@ module UsersHelper
   end
 
   def self.attended_drinks_for(user)
-    unless usergroep = user.groups.where(group_id: 4).first
+    unless usergroup == user.groups.where(group_id: 4).first
       return "User is geen lid"
     end
-    date = usergroep.created_at
+    date = usergroup.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     wel = 0.0
     niet = 0.0
