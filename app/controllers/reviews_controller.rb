@@ -4,10 +4,7 @@ class ReviewsController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
-    review = Review.new(review_params)
-    beer = Beer.find(params[:review][:beer_id]) # Nog nakijken voor injection
-    reviews = User.find(params[:review][:user_id]).reviews.where(beer_id: beer.id)
-    redirect_to beer, notice: 'Doe es niet valsspelen' and return if reviews.any?
+    review = current_user.reviews.new(review_params)
     save_object(review)
   end
 

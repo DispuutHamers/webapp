@@ -1,47 +1,48 @@
 <% content_for :title do %>
-  Activiteiten <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#uitlegbox">
-  <i class="fas fa-calendar-alt"></i></button>
+  Activiteiten
+  <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#uitlegbox">
+    <i class="fas fa-calendar-alt"></i></button>
 <% end %>
 
 <div class="row">
   <div class="col-md-12">
     <div id="uitlegbox" class="collapse">
       <div class="well well-sm">
-        <p>Voeg onderstaand url toe aan je Google of Apple calendar als je mooie intergatie wil. Als je nog geen API key hebt aangemaakt doe dat dan
-        <%= link_to 'hier', edit_user_path(current_user) %>.</p>
+        <p>Voeg onderstaand url toe aan je Google of Apple calendar als je mooie intergatie wil. Als je nog geen API key
+          hebt aangemaakt doe dat dan
+          <%= link_to 'hier', edit_user_path(current_user) %>.</p>
         <ul>
           <% current_user.api_keys.each do |ak| %>
             <li><%= ak.name %> --> https://zondersikkel.nl/ical/<%= ak.key %>.ics</li>
           <% end %>
         </ul>
-        </div>
       </div>
     </div>
-
-    <ul class="nav nav-pills nav-justified" style="margin-bottom: 16px;">
-      <li class="presentation active"><a data-toggle="tab" href="#upcoming">Aankomend</a></li>
-      <li class="presentation"><a data-toggle="tab" href="#past">Vroegâh</a></li>
-    </ul>
-
-    <div class="tab-content">
-      <div id="upcoming" class="tab-pane fade in active">
-        <%= render "events/table", events: @upcoming_events %>
-      </div>
-      <div id="past" class="tab-pane fade">
-        <%= render "events/table", events: @past_events %>
-        <%= will_paginate @past_events %>
-      </div>
-    </div>
-
-    <% if current_user&.active? %>
-      <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
-    <% end %>
   </div>
+
+  <ul class="nav nav-pills nav-justified" style="margin-bottom: 16px;">
+    <li class="presentation active"><a data-toggle="tab" href="#upcoming">Aankomend</a></li>
+    <li class="presentation"><a data-toggle="tab" href="#past">Vroegâh</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="upcoming" class="tab-pane fade in active">
+      <%= render "events/table", events: @upcoming_events %>
+    </div>
+    <div id="past" class="tab-pane fade">
+      <%= render "events/table", events: @past_events %>
+      <%= will_paginate @past_events %>
+    </div>
+  </div>
+
+  <% if current_user&.active? %>
+    <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
+  <% end %>
 </div>
 
 <script type="application/javascript">
-  document.addEventListener('turbolinks:render', function() {
-    if (/[?&]page=/.test(location.search))
-      $('.nav-pills a:last').tab('show')
-  }, false);
+    document.addEventListener('turbolinks:render', function () {
+        if (/[?&]page=/.test(location.search))
+            $('.nav-pills a:last').tab('show')
+    }, false);
 </script>
