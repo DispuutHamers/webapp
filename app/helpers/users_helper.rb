@@ -24,7 +24,7 @@ module UsersHelper
   end
 
   def self.attended_drinks_for(user)
-    unless usergroep == user.groups.where(group_id: 4).first
+    unless (usergroep = user.groups.where(group_id: 4).first)
       return "User is geen lid"
     end
     date = usergroep.created_at
