@@ -22,7 +22,7 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <% if @event.user_id %>
+        <% if @event.user %>
           <p><strong>Event door:</strong> <%= @event.user.name %></p>
           <hr>
         <% end %>
