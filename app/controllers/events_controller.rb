@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @unknown = []
-    User.leden.each do |u|
+@unknown = User.leden.find(Signup.where(event_id: @event.id).pluck(:user_id))
       if u.signups.where(event_id: @event.id).blank?
         @unknown << u
       end
