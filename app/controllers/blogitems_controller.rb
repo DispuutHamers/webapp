@@ -16,7 +16,6 @@ class BlogitemsController < ApplicationController
     if !@item.public && !current_user&.active?
       redirect_to blogitems_path
     end
-    # @user = User.find(@item.user_id)
     breadcrumb @item.title, blogitem_path(@item)
   end
 

@@ -25,10 +25,10 @@ module UsersHelper
   end
 
   def self.attended_drinks_for(user)
-    unless usergroup == user.groups.where(group_id: 4).first
+    unless usergroep == user.groups.where(group_id: 4).first
       return "User is geen lid"
     end
-    date = usergroup.created_at
+    date = usergroep.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     wel = 0.0
     niet = 0.0
