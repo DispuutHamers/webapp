@@ -22,6 +22,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :api_logs
   has_many :signups
   has_many :nicknames
+  has_many :blogitems
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }

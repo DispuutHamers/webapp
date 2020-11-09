@@ -35,7 +35,6 @@ class BlogitemsController < ApplicationController
 
   def new
     @item = Blogitem.new
-    @item.save
     @photo = Blogphoto.new
   end
 
