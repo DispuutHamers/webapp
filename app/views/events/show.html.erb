@@ -27,13 +27,12 @@
         <% end %>
 
         <h4>Aanwezig <span class="text-muted small"><%= @event.signups.where(status: true).count %></span></h4>
-        <ul style="list-style-type: none; padding-left: 8px">
+        <ul class="signup-list">
           <% @event.signups.where(status: true).each do |s| %>
             <li><%= s.user.name %>
               <% if s.reason %>
-                <ul style="list-style-type: none;">
-                  <li><%= s.reason %></li>
-                </ul>
+                <% if s.reason %><span><%= s.reason %></span>
+                <% end %>
               <% end %>
             </li>
           <% end %>
@@ -49,15 +48,12 @@
 
         <hr>
 
-        <h4>Afwezig <span class="text-muted"><%= @event.signups.where(status: false).count %></span></h4>
-        <ul style="list-style-type: none;">
+        <h4>Afwezig <span class="text-muted small"><%= @event.signups.where(status: false).count %></span></h4>
+        <ul class="signup-list">
           <% @event.signups.where(status: false).each do |s| %>
             <li>
               <%= s.user.name %>
-              <% if s.reason && s.reason.length > 1 %>
-                <ul style="list-style-type: none;">
-                  <li><%= s.reason %></li>
-                </ul>
+              <% if s.reason %><span><%= s.reason %></span>
               <% end %>
             </li>
           <% end %>

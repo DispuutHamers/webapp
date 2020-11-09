@@ -1,25 +1,35 @@
-<% if current_user.admin? %>
-  <h1>Usergroepen van <%= @user.name %></h1>
-  <ul>
-    <% @usergroups.each do |group| %>
-      <li>
-        <% if @user.usergroups.include? group %>
-          <%= form_for(@user.groups.find_by(group_id: group.id, user_id: @user.id),
-                       html: { method: :delete }) do |f| %>
-                       <%= f.hidden_field :group_id %>
-                       <%= f.hidden_field :user_id %>
-                       <%= group.name %> | <%= f.submit 'remove' %>
-                     <% end %>
-                   <% else %>
-                     <%= form_for(@user.groups.new(group_id: group.id, user_id: @user.id)) do |f| %>
-                       <%= f.hidden_field :group_id %>
-                       <%= f.hidden_field :user_id %>
-                       <%= group.name %> <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
-                         <i class="far fa-trash-alt"></i>
-                       <% end %> | <%= f.submit 'add' %>
-                     <% end %>
-                   <% end %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<h1>Groepen van <%= @user.name %></h1>
+
+<h3>Lid</h3>
+<ul>
+  <% @member.each do |group| %>
+    <li>
+      <%= form_for(@user.groups.find_by(group_id: group.id, user_id: @user.id), html: {method: :delete}) do |f| %>
+        <%= f.hidden_field :group_id %>
+        <%= f.hidden_field :user_id %>
+        <%= group.name %>
+        <button type="submit" class="btn btn-default btn-sm">
+          <i class="far fa-trash-alt"></i>
+          Verwijder uit deze groep
+        </button>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Geen lid</h3>
+<ul>
+  <% @notmember.each do |group| %>
+    <li>
+      <%= form_for(@user.groups.new(group_id: group.id, user_id: @user.id)) do |f| %>
+        <%= f.hidden_field :group_id %>
+        <%= f.hidden_field :user_id %>
+        <%= group.name %>
+        <button type="submit" class="btn btn-default btn-sm">
+          <i class="fas fa-plus"></i>
+          Voeg toe aan deze groep
+        </button>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
