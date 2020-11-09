@@ -26,7 +26,9 @@
 
         <div class="btn-group">
           <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
-            <%= link_to 'Wijzig blogpost', edit_blogitem_path(@item), class: 'btn btn-default' %>
+            <%= link_to edit_blogitem_path(@item), class: 'btn btn-default' do %>
+              <i class="fas fa-pencil-alt"></i> Wijzig blogpost
+            <% end %>
           <% end %>
         </div>
       </div>
