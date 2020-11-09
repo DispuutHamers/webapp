@@ -86,11 +86,20 @@
           <hr>
         <% end %>
 
-        <div>
-          <% if @event.deadline > DateTime.now %>
-            <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
+        <div class="btn-group btn-group-vertical">
+          <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
+            <i class="fas fa-pencil-alt"></i> Wijzig event
           <% end %>
-          <%= link_to 'Wijzig event', edit_event_path(@event), :class => 'btn btn-primary' %>
+          <% if @event.deadline > DateTime.now %>
+            <%= link_to reminder_path(@event), class: 'btn btn-default' do %>
+              <i class="fa fa-bell"></i> Herinner Hamers
+            <% end %>
+          <% end %>
+          <% if current_user.admin? %>
+            <%= link_to @event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default' do %>
+              <i class="far fa-trash-alt"></i> Verwijder event
+            <% end %>
+          <% end %>
         </div>
 
         <hr>
