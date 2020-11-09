@@ -31,7 +31,7 @@
         <ul style="list-style-type: none; padding-left: 8px">
           <% @event.signups.where(status: true).each do |s| %>
             <li><%= s.user.name %>
-              <% if s.reason && s.reason.length > 2 %>
+              <% if s.reason %>
                 <ul style="list-style-type: none;">
                   <li><%= s.reason %></li>
                 </ul>
