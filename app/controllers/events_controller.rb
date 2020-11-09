@@ -32,10 +32,10 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @nsusers = []
+    @unknown = []
     User.leden.each do |u|
       if u.signups.where(event_id: @event.id).blank?
-        @nsusers << u
+        @unknown << u
       end
     end
     breadcrumb @event.title, event_path(@event)

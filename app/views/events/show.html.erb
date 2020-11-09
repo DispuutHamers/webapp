@@ -4,38 +4,38 @@
 <div class="row">
   <div class="col-md-8">
     <p>
-    <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-  <% if @event.end_time? %>tot <%= @event.end_time.strftime('%d-%m-%Y %H:%M') %><% end %>
+      <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+      <% if @event.end_time? %>tot <%= @event.end_time.strftime('%d-%m-%Y %H:%M') %>
+      <% end %>
     </p>
     <% if @event.location != nil and @event.location.length > 1 %>
       <p><i class="fa fa-map-marker"></i> <%= @event.location %></p>
     <% end %>
     <p>
-    <% if @event.description.blank? %>
-      <%= markdown(@event.beschrijving).html_safe %>
-    <% else %>
-      <%= @event.description %>
-    <% end %>
+      <% if @event.description.blank? %>
+        <%= markdown(@event.beschrijving).html_safe %>
+      <% else %>
+        <%= @event.description %>
+      <% end %>
     </p>
   </div>
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <% if @event.user_id != nil %>
+        <% if @event.user_id %>
           <p><strong>Event door:</strong> <%= @event.user.name %></p>
+          <hr>
         <% end %>
-        <hr>
 
-        <h4>Aanwezig <span class="text-muted"><%= @event.signups.where(status: true).count %></span></h4>
-        <p>
-        <ul style="list-style-type: none;">
+        <h4>Aanwezig <span class="text-muted small"><%= @event.signups.where(status: true).count %></span></h4>
+        <ul style="list-style-type: none; padding-left: 8px">
           <% @event.signups.where(status: true).each do |s| %>
             <li><%= s.user.name %>
-            <% if s.reason && s.reason.length > 2 %>
-              <ul style="list-style-type: none;">
-                <li><%= s.reason %></li>
-              </ul>
-            <% end %>
+              <% if s.reason && s.reason.length > 2 %>
+                <ul style="list-style-type: none;">
+                  <li><%= s.reason %></li>
+                </ul>
+              <% end %>
             </li>
           <% end %>
         </ul>
@@ -48,11 +48,10 @@
             <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Opmerkingen?" %></div>
           <% end %>
         <% end %>
-        </p>
+
         <hr>
 
         <h4>Afwezig <span class="text-muted"><%= @event.signups.where(status: false).count %></span></h4>
-        <p>
         <ul style="list-style-type: none;">
           <% @event.signups.where(status: false).each do |s| %>
             <li>
@@ -74,42 +73,40 @@
             <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Waarom niet?" %></div>
           <% end %>
         <% end %>
-        </p>
+
         <hr>
-        <% if @nsusers.count > 0 %>
-          <h4>Onbekend <span class="text-muted"><%= @nsusers.count %></span></h4>
-          <p>
-          <ul style="list-style-type: none;">
-            <% @nsusers.each do |s| %>
-              <li>
-                <%= s.name %>
-              </li>
+
+        <% if @unknown.count > 0 %>
+          <h4>Onbekend <span class="text-muted"><%= @unknown.count %></span></h4>
+          <div>
+            <%- @unknown.each do |s| %>
+              <%= link_to gravatar_for s, class: "small-profile-picture" %>
             <% end %>
-          </ul>
-          </p>
+          </div>
           <hr>
         <% end %>
-        <p>
+
+        <div>
+          <% if @event.deadline > DateTime.now %>
+            <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
+          <% end %>
+          <%= link_to 'Wijzig event', edit_event_path(@event), :class => 'btn btn-primary' %>
+        </div>
+
+        <hr>
+
         <% if @event.location %>
           <div class="embed-responsive embed-responsive-4by3">
             <iframe
-               class="embed-responsive-item"
-               width="300"
-               height="266"
-               frameborder="0" style="border:0"
-                               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>" allowfullscreen>
+              class="embed-responsive-item"
+              width="300"
+              height="266"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>" allowfullscreen>
             </iframe>
           </div>
         <% end %>
-        </p>
       </div>
     </div>
   </div>
-</div>
-<div class="btn-group">
-  <% if @event.deadline > DateTime.now %>
-    <%= link_to 'Reminder', reminder_path(@event), :class => 'btn btn-danger' %>
-  <% end %>
-  <%= link_to 'Edit', edit_event_path(@event), :class => 'btn btn-info' %>
-  <%= link_to 'Terug', events_path, :class => 'btn btn-default' %>
 </div>
