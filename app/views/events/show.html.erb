@@ -74,7 +74,7 @@
 
         <hr>
 
-        <% if @unknown.count > 0 %>
+        <% if @unknown.any? %>
           <h4>Onbekend <span class="text-muted"><%= @unknown.count %></span></h4>
           <div>
             <%- @unknown.each do |s| %>
