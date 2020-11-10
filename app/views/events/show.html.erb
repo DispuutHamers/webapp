@@ -31,7 +31,8 @@
           <% @event.signups.where(status: true).each do |s| %>
             <li><%= s.user.name %>
               <% if s.reason %>
-                <% if s.reason %><span><%= s.reason %></span>
+                <% if s.reason %>
+                  <span><%= s.reason %></span>
                 <% end %>
               <% end %>
             </li>
@@ -53,7 +54,8 @@
           <% @event.signups.where(status: false).each do |s| %>
             <li>
               <%= s.user.name %>
-              <% if s.reason %><span><%= s.reason %></span>
+              <% if s.reason %>
+                <span><%= s.reason %></span>
               <% end %>
             </li>
           <% end %>
