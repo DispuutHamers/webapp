@@ -1,36 +1,27 @@
 <table class="events table table-hover">
   <thead>
-    <tr>
-      <th>Activiteit</th>
-      <th>Datum</th>
-      <th>Aanwezig</th>
-      <th class="admin-column">Admin</th>
-    </tr>
+  <tr>
+    <th>Activiteit</th>
+    <th>Datum</th>
+    <th>Aanwezig</th>
+  </tr>
   </thead>
   <tbody>
-    <% events.each do |event| %>
-      <tr>
-        <td><%= link_to event.title, event %>
-            <% if event.today? %>
-              <span class="label label-primary">Vandaag</span>
-            <% end %>
-        </td>
-        <td><%= event.date.strftime('%d-%m-%Y') %>
-        <td>
-          <% event.signups.with_user.where(status: true).each do |s| %>
-            <%= s.user.name + ',' %>
-          <% end %>..jij?
-        </td>
-        <td>
-          <%= link_to edit_event_path(event), :class => 'btn btn-info' do %>
-            <i class="fas fa-pencil-alt"></i>
-          <% end %>&nbsp;
-          <% if current_user.admin? %>
-            <%= link_to event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-danger' do %>
-              <i class="far fa-trash-alt"></i>
-            <% end %>
-          <% end %>
-      </tr>
-    <% end %>
+  <% events.each do |event| %>
+    <tr>
+      <td>
+        <%= link_to event.title, event %>
+        <% if event.today? %>
+          <span class="label label-primary">Vandaag</span>
+        <% end %>
+      </td>
+      <td><%= event.date.strftime('%d-%m-%Y') %>
+      <td>
+        <% event.signups.with_user.where(status: true).each do |s| %>
+          <%= s.user.name + ',' %>
+        <% end %>..jij?
+      </td>
+    </tr>
+  <% end %>
   </tbody>
 </table>

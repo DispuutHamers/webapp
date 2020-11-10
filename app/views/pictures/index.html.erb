@@ -1,6 +1,0 @@
-<% content_for :title do %>
-  Foto's
-<% end %>
-<% @files.each do |f| %>
-  <%= link_to f.title, "/photos/#{f.id}" %><br>
-<% end %>

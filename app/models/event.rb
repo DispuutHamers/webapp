@@ -7,7 +7,6 @@ class Event < ActiveRecord::Base
   has_rich_text :description
   belongs_to :user
 
-#  default_scope {includes(:signups)}
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Date.today]) }
   scope :past, -> { where(['date <= ?', Date.today]) }

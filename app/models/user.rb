@@ -19,7 +19,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :reviews
   has_many :events
   has_many :beers
-  has_many :api_logs
   has_many :signups
   has_many :nicknames
   has_many :blogitems
@@ -32,6 +31,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
+  scope :extern, -> { joins(:groups).where.not(groups: [4, 5, 12])}
 
   def anonymize
     devices.destroy_all

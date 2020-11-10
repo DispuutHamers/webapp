@@ -32,12 +32,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @nsusers = []
-    User.leden.each do |u|
-      if u.signups.where(event_id: @event.id).blank?
-        @nsusers << u
-      end
-    end
+    @unknown = User.leden.where.not(id: Signup.where(event_id: @event.id).pluck(:user_id))
     breadcrumb @event.title, event_path(@event)
   end
 
@@ -91,7 +86,6 @@ class EventsController < ApplicationController
   end
 
   def generate_calendar(key)
-    ApiLog.new(key: key.key, user_id: key.user.id, ip_addr: request.remote_ip, resource_call: "Agenda sync").save
     feed = Event.upcoming.order('date')
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"

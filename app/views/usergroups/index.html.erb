@@ -1,17 +1,30 @@
 <% content_for :title do %>
-    Groepen
+  Groepen
 <% end %>
-<% @usergroups.each do |group| %>
-    <li>
-      <%= group.name %>
-    </li>
-<% end %>
-<% if current_user.admin? %>
-    <%= form_for(@group) do |f| %>
+
+<div class="row">
+  <div class="col-md-8">
+    <ul>
+      <% @usergroups.each do |group| %>
+        <li>
+          <%= group.name %>
+          <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default btn-sm' do %>
+            <i class="far fa-trash-alt"></i> Verwijder groep
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+    <h4>Nieuwe groep aanmaken</h4>
+    <% if current_user.admin? %>
+      <%= form_for @group, html: {id: 'usergroup-form', class: 'form-inline'} do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <div class="form-group">
-          <%= f.text_field :name, placeholder: 'Groep', class: '' %>
-          <%= f.submit 'Create', class: 'btn btn-large btn-primary' %>
-        </div>
+        <%= f.text_field :name, placeholder: 'Groepnaam', class: 'form-control' %>
+        <%= f.submit 'Opslaan', class: 'btn btn-default' %>
+      <% end %>
     <% end %>
-<% end %>
+  </div>
+</div>
+

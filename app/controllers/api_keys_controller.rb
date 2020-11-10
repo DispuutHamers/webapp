@@ -10,7 +10,6 @@ class ApiKeysController < ApplicationController
   def show
     k = ApiKey.find(params[:id])
     @rawkey = k.key
-    @logs = ApiLog.where(key: k.key).order(created_at: :desc).paginate(page: params[:page], :per_page => 10)
 
     breadcrumb current_user.name, user_path(current_user)
     breadcrumb 'API sleutels', edit_user_path(current_user)

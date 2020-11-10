@@ -1,16 +1,9 @@
 Hamers::Application.routes.draw do
   use_doorkeeper
-  mount AcmePlugin::Engine, at: '/'
-  mount Hamers::API => '/'
-  mount SwaggerUiEngine::Engine, at: "/api_docs"
-  apipie
   get 'switch_user', to: 'switch_user#set_current_user'
   get 'switch_user/remember_user', to: 'switch_user#remember_user'
   get 'privacy' => 'static_pages#privacy'
   get 'invited' => 'static_pages#invited', as: "invited"
-  get 'photos' => 'pictures#index', as: 'pictures'
-  get 'photos/:folder' => 'pictures#folder'
-  get 'photos/image/:image' => 'pictures#image'
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
@@ -87,26 +80,5 @@ Hamers::Application.routes.draw do
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
     get 'email' => 'endpoints/email#create'
-  end
-
-  scope 'api' do
-    scope 'v2' do
-      resources :users, module: 'api2', only: [:index, :show]
-      resources :beers, module: 'api2', only: [:index, :show, :update, :create]
-      resources :quotes, module: 'api2', only: [:index, :show, :update, :create]
-      resources :meetings, module: 'api2', only: [:index, :show, :update, :create]
-      resources :news, module: 'api2', only: [:index, :show, :update, :create]
-      resources :signups, module: 'api2', only: [:index, :show, :update, :create]
-      resources :stickers, module: 'api2', only: [:index, :show, :create]
-      resources :reviews, module: 'api2', only: [:index, :show, :update, :create]
-      resources :events, module: 'api2', only: [:index, :show, :update, :create]
-      resources :motions, module: 'api2', only: [:index, :show, :update, :create]
-      resources :nicknames, module: 'api2', only: [:index, :update, :create]
-      get 'full_backup' => 'api2/backups#index'
-      get 'whoami' => "api2/users#whoami"
-      get 'changes' => 'api2/changes#index'
-      post 'events/:id/remind' => 'api2/events#remind'
-      post 'register' => "api2/api#register"
-    end
   end
 end
