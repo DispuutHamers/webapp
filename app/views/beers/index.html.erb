@@ -63,8 +63,7 @@
   <tbody>
   <% @beers.each do |beer| %>
     <% if current_user %>
-      <% rating = beer.reviews.where(user_id: current_user.id).take&.rating %>
-      <% case rating
+      <% case current_user.reviews.find_by(beer: beer)&.rating
          when 1..4 %>
         <tr class="danger">
       <% when 4..6 %>
