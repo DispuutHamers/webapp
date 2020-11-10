@@ -10,6 +10,9 @@
   <% unless @oudelullen.blank? %>
     <li class="presentation"><a data-toggle="tab" href="#oud-leden">Oud-leden</a></li>
   <% end %>
+  <% unless @extern.blank? %>
+    <li class="presentation"><a data-toggle="tab" href="#externe-accounts">Externe-accounts</a></li>
+  <% end %>
 </ul>
 
 <div class="tab-content">
@@ -24,6 +27,11 @@
   <% unless @oudelullen.blank? %>
     <div id="oud-leden" class="tab-pane fade">
       <%= render "users/table", users: @oudelullen, ratio: false %>
+    </div>
+  <% end %>
+  <% unless @extern.blank? %>
+    <div id="externe-accounts" class="tab-pane fade">
+      <%= render "users/table", users: @extern, ratio: false %>
     </div>
   <% end %>
 </div>
