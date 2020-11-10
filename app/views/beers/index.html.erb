@@ -38,12 +38,18 @@
     <% ordering = params[:order] == "asc" ? "desc" : "asc" %>
 
     <% case params[:sort]
-      when "name" %><% name_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-      <% when "soort" %><% soort_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-      <% when "grade" %><% grade_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-      <% when "brewer" %><% brewer_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-      <% when "country" %><% country_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-      <% when "review_count" %><% review_count_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+       when "name" %>
+      <% name_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% when "soort" %>
+      <% soort_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% when "grade" %>
+      <% grade_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% when "brewer" %>
+      <% brewer_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% when "country" %>
+      <% country_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% when "review_count" %>
+      <% review_count_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
     <% end %>
 
     <th><%= link_to "Naam" + name_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :name, order: ordering}) %></th>
@@ -57,16 +63,19 @@
   <tbody>
   <% @beers.each do |beer| %>
     <% if current_user %>
-      <% if beer.reviews.where('user_id = ?', current_user.id).empty? %>
-        <tr class="default">
-      <% elsif beer.reviews.where('user_id = ?', current_user.id).take.rating > 6 %>
-        <tr class="success">
-      <% elsif beer.reviews.where('user_id = ?', current_user.id).take.rating > 4 %>
-        <tr class="info">
-      <% else %>
+      <% rating = beer.reviews.where(user_id: current_user.id).take&.rating %>
+      <% case rating
+         when 1..4 %>
         <tr class="danger">
+      <% when 4..6 %>
+        <tr class="info">
+      <% when 6..10 %>
+        <tr class="success">
+      <% else %>
+        <tr class="default">
       <% end %>
     <% end %>
+
     <td><%= link_to beer.name, beer %></td>
     <td><%= beer.soort %></td>
     <td><%= beer.cijfer? %></td>
@@ -79,5 +88,5 @@
 </table>
 
 <% if current_user&.active? %>
-  <%= link_to 'Nieuw bier', new_beer_path, :class => 'btn btn-block btn-primary' %>
+  <%= link_to 'Voeg bier toe', new_beer_path, :class => 'btn btn-block btn-primary' %>
 <% end %>
