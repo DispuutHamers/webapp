@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @leden = User.leden
     @aspiranten = User.aspiranten
     @oudelullen = User.oud
-    @extern = User.all - @leden - @aspiranten - @oudelullen
+    @extern = User.extern
   end
 
   def admin
