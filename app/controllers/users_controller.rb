@@ -40,8 +40,9 @@ class UsersController < ApplicationController
   end
 
   def usergroups
-    @usergroups = Usergroup.all
     @user = User.find(params[:id])
+    @member = @user.usergroups
+    @notmember = Usergroup.where.not(id: @member)
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Groepen', usergroups_user_path(@user)
   end
