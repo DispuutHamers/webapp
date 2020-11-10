@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_161020) do
+ActiveRecord::Schema.define(version: 2020_11_10_212607) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
@@ -88,44 +88,12 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
     t.datetime "image_updated_at"
   end
 
-  create_table "brew_temps", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.bigint "brew_id"
-    t.float "temperature"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["brew_id"], name: "index_brew_temps_on_brew_id"
-  end
-
   create_table "brews", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "description"
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
-  end
-
-  create_table "devices", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "device_key"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_devices_on_deleted_at"
-  end
-
-  create_table "documentation_pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "title"
-    t.string "permalink"
-    t.text "content"
-    t.text "compiled_content"
-    t.integer "parent_id"
-    t.integer "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "documentation_screenshots", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "alt_text"
   end
 
   create_table "emails", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -187,17 +155,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
     t.index ["deleted_at"], name: "index_meetings_on_deleted_at"
   end
 
-  create_table "motions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "motion_type"
-    t.string "subject"
-    t.text "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer "user_id"
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_motions_on_deleted_at"
-  end
-
   create_table "news", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "cat"
     t.text "body"
@@ -220,19 +177,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_nicknames_on_deleted_at"
     t.index ["user_id"], name: "index_nicknames_on_user_id"
-  end
-
-  create_table "nifty_attachments", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "parent_id"
-    t.string "parent_type"
-    t.string "token"
-    t.string "digest"
-    t.string "role"
-    t.string "file_name"
-    t.string "file_type"
-    t.binary "data", size: :medium
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "oauth_access_grants", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -274,16 +218,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
-  end
-
-  create_table "pictures", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "uuid"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
   end
 
   create_table "public_pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -339,14 +273,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
     t.index ["deleted_at"], name: "index_signups_on_deleted_at"
   end
 
-  create_table "statics", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.string "title"
-    t.string "content"
-    t.string "p_content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "stickers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "lat"
     t.string "lon"
@@ -374,7 +300,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
   create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
-    t.boolean "approved", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "remember_token"
@@ -438,7 +363,6 @@ ActiveRecord::Schema.define(version: 2020_11_09_161020) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "brew_temps", "brews"
   add_foreign_key "brews", "recipes"
   add_foreign_key "nicknames", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
