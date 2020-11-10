@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'apipie-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'bootstrap-will_paginate'
