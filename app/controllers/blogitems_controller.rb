@@ -34,8 +34,7 @@ class BlogitemsController < ApplicationController
   end
 
   def new
-    @item = Blogitem.new
-    @item.user_id = current_user.id
+    @item = Blogitem.create
     @item.save
     @photo = Blogphoto.new
   end
@@ -44,13 +43,10 @@ class BlogitemsController < ApplicationController
     @photo = Blogphoto.new
   end
 
-  def create
-    # TODO: validation that title exists
-    item = Blogitem.new(blog_params)
-    save_object(item)
-  end
-
   def update
+    if @item.user_id == nil
+      @item.user_id = current_user.id
+    end
     update_object(@item, blog_params)
   end
 
