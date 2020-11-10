@@ -37,23 +37,13 @@
 
     <% ordering = params[:order] == "asc" ? "desc" : "asc" %>
 
-    <% if params[:sort] == "name" %>
-      <% name_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% end %>
-    <% if params[:sort] == "soort" %>
-      <% soort_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% end %>
-    <% if params[:sort] == "grade" %>
-      <% grade_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% end %>
-    <% if params[:sort] == "brewer" %>
-      <% brewer_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% end %>
-    <% if params[:sort] == "country" %>
-      <% country_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% end %>
-    <% if params[:sort] == "review_count" %>
-      <% review_count_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% case params[:sort]
+      when "name" %><% name_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+      <% when "soort" %><% soort_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+      <% when "grade" %><% grade_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+      <% when "brewer" %><% brewer_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+      <% when "country" %><% country_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+      <% when "review_count" %><% review_count_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
     <% end %>
 
     <th><%= link_to "Naam" + name_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :name, order: ordering}) %></th>
