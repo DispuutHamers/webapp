@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-gem 'acme_plugin'
 gem 'apipie-rails'
 gem 'better_errors'
 gem 'binding_of_caller'
@@ -18,8 +17,6 @@ gem 'doorkeeper-i18n'
 gem 'faker'
 gem 'flamegraph'
 gem 'font_awesome5_rails'
-gem 'grape'
-gem 'grape-swagger'
 gem 'groupdate'
 gem 'icalendar'
 gem 'incoming'
@@ -46,8 +43,6 @@ gem 'sass-rails'
 gem "sassc", "< 2.1.0"
 gem 'sprockets', '~> 3.7.2'
 gem 'stackprof'
-gem 'swagger-ui_rails'
-gem 'swagger_ui_engine'
 gem 'switch_user'
 gem 'therubyracer'
 gem 'turbolinks'
@@ -61,10 +56,4 @@ gem 'will_paginate'
 gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
-end
-group :development do
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rvm'
 end

@@ -1,14 +1,10 @@
 Hamers::Application.routes.draw do
   use_doorkeeper
-  mount AcmePlugin::Engine, at: '/'
   apipie
   get 'switch_user', to: 'switch_user#set_current_user'
   get 'switch_user/remember_user', to: 'switch_user#remember_user'
   get 'privacy' => 'static_pages#privacy'
   get 'invited' => 'static_pages#invited', as: "invited"
-  get 'photos' => 'pictures#index', as: 'pictures'
-  get 'photos/:folder' => 'pictures#folder'
-  get 'photos/image/:image' => 'pictures#image'
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
