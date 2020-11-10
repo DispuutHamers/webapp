@@ -62,17 +62,13 @@
   </thead>
   <tbody>
   <% @beers.each do |beer| %>
-    <% if current_user %>
-      <% case current_user.reviews.find_by(beer: beer)&.rating
-         when 1..4 %>
-        <tr class="danger">
-      <% when 4..6 %>
-        <tr class="info">
-      <% when 6..10 %>
-        <tr class="success">
-      <% else %>
-        <tr class="default">
-      <% end %>
+    <% case current_user&.reviews&.find_by(beer: beer)&.rating
+       when 1..4 %>
+      <tr class="danger">
+    <% when 4..6 %>
+      <tr class="info">
+    <% when 6..10 %>
+      <tr class="success">
     <% else %>
       <tr class="default">
     <% end %>
