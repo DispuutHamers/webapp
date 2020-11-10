@@ -63,7 +63,7 @@
                   <li><%= link_to 'Download DB', dbdump_path %></li>
                   <% if Rails.env.development? %>
                     <li><%= link_to 'Anonymize', anonymize_path, data: {confirm: 'Het is een tyfuswerk om dit ongedaan te maken dus weet je het zeker?'} %></li>
-                  <% end %>>
+                  <% end %>
                 <% end %>
                 <li class="dropdown-header">Openbare pagina's</li>
                 <li><%= link_to "Leden", public_leden_path %></li>
