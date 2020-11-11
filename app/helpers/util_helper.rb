@@ -53,13 +53,8 @@ module UtilHelper
   end
 
   def do_signup(user)
-    extracted_params = params[:signup]
-    event = Event.find(extracted_params[:event_id])
-    if user.sign(event, extracted_params[:status], extracted_params[:reason])
-      event
-    else
-      nil
-    end
+    event = Event.find(params[:signup][:event_id])
+    user.signup(event, params[:signup][:status], params[:signup][:reason])
   end
 
   def self.remind_zondag

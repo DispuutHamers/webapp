@@ -22,8 +22,13 @@
   <div id="event-info-panel" class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
+        <% if @event.attendance %>
+          <i class="fa fa-exclamation-triangle fa-fw"></i> Op deze activiteit wordt je verwacht aanwezig te zijn.
+          <hr>
+        <% end %>
+
         <% if @event.user %>
-          <p><strong>Activiteit door:</strong> <%= @event.user.name %></p>
+          <strong>Activiteit door:</strong> <%= @event.user.name %>
           <hr>
         <% end %>
 
