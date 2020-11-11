@@ -31,7 +31,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
-  scope :extern, -> { joins(:groups).where.not(groups: [4, 5, 12])}
+  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def anonymize
     devices.destroy_all
@@ -127,18 +127,5 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return 'olid' if olid?
 
     'none'
-  end
-
-  def as_json(options)
-    json = super({ only: %i[id name email created_at batch] }.merge(options))
-    json[:reviews] = reviews.count
-    json[:quotes] = quotes.count
-    json[:sunday_ratio] = sunday_ratio
-    json[:nicknames] = nicknames
-    json[:usergroups] = usergroups
-    json[:lid] = lidstring
-    json[:admin] = admin?
-
-    json
   end
 end

@@ -17,15 +17,15 @@
       <% @user.api_keys.each do |ak| %>
         <%= ak.name %>
         : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
-        <i class="far fa-trash-alt"></i>
+          <i class="far fa-trash-alt"></i>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= form_for(ApiKey.new) do |f| %>
-      <div class="form-group">
-        <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
-        <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
-      </div>
-    <% end %>
+      <%= form_for(ApiKey.new) do |f| %>
+        <div class="form-group">
+          <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
+          <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
+        </div>
+      <% end %>
     </section>
   </aside>
   <div class="col-md-6">
@@ -40,22 +40,24 @@
         <%= f.text_field :phone_number, class: "form-control" %>
         <%= f.label :birthday, "Verjaardag" %>
         <%= f.date_field :birthday, class: "form-control" %>
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: 'form-control' %>
         <% if @minimum_password_length %>
-          <br />
+          <br>
           <em><%= @minimum_password_length %> characters minimum</em>
         <% end %>
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "off" %>
+        <%= f.label :password_confirmation %><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: 'form-control' %>
       </div>
       <% if current_user.active? %>
-        <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
-        <%= f.check_box :anonymous, class: "form-control" %>
+        <div class="form-group">
+          <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
+          <%= f.check_box :anonymous, class: "form-control" %>
+        </div>
       <% end %>
-      <%= f.submit "Opslaan", class: "btn btn-large btn-primary" %>
-  </div>
-<% end %>
-</div>
+      <%= f.submit "Opslaan", class: "btn btn-default" %>
+      </div>
+    <% end %>
+    </div>
