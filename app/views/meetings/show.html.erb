@@ -16,9 +16,21 @@
           <p>Genotuleerd door: <b><%= link_to @notulist.name, @notulist %></b></p>
           <hr>
         <% end %>
+
         <h2>Agenda <%= @meeting.onderwerp %></h2>
         <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
+
         <hr>
+
+        <% if @meeting.attendees.any? %>
+          <h4>Aanwezigen</h4>
+          <% %>
+          <% @meeting.attendees.each do |a| %>
+            <%= gravatar_for a.user, class: "small-profile-picture" %>
+          <% end %>
+          <hr>
+        <% end %>
+
         <% if current_user.admin? %>
           <td>
             <div class="btn-group btn-group-vertical btn-group-sm">
