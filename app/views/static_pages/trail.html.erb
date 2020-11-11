@@ -41,7 +41,7 @@
       <td>
         <% t.changeset.each do |c, v| %>
           <% next if c == 'updated_at' || c == 'created_at' %>
-          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %><br>
+          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %>
         <% end %>
       </td>
     </tr>
