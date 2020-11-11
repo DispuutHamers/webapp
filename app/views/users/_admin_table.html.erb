@@ -16,7 +16,7 @@
             <%= link_to user.name, user %>
           </td>
           <td>
-            <%= user.usergroups.map(&:name).join(",") %>
+            <%= user.usergroups.map(&:name).join(", ") %>
             <%= link_to 'Wijzig groepen', usergroups_user_path(user), class: 'btn btn-default' %>
           </td>
           <td>
