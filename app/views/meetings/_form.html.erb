@@ -32,14 +32,7 @@
   <div class="form-group">
     <%= f.label :aanwezigen, class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">
-      <%#= collection_select(:meeting, :attendee_ids, User.all, :id, :name, {selected: @meeting.attendee_ids}, {multiple: true}) %>
       <%= f.select :user_ids, User.all.collect { |x| [x.name, x.id] }, {}, multiple: true %>
-      <%#= form_for @remark, :url => salveaza_responsabili_remark_path(@remark) do |f| %>
-        <%# @users.each do |user| %>
-          <%#= check_box_tag 'user_ids[]', user.id, @remark.users.include?(user) %>
-          <%#= user.name %>
-        <%# end %>
-      <%# end %>
     </div>
   </div>
   <div class="actions">
