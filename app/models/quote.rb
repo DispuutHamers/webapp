@@ -8,8 +8,4 @@ class Quote < ActiveRecord::Base
   serialize :text
 
   scope :with_user, -> { includes(:user) }
-
-  def as_json(options)
-    super({ only: %i[id text user_id created_at] }.merge(options))
-  end
 end

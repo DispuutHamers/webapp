@@ -7,8 +7,4 @@ class Usergroup < ActiveRecord::Base
   def empty?
     Group.where(group_id: id).count.zero?
   end
-
-  def as_json
-    super(only: [:id, :name])
-  end
 end
