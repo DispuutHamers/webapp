@@ -1,16 +1,16 @@
-<% unless @beer %>
-<div class="media">
+<% if @random_beer %>
+  <div class="media">
     <span class="media-left media-middle">
-      <img class="media-object gravatar" style="max-height: 75px;" src="<%=  @beer.picture  %>" alt="<%=  @beer.name  %>">
+      <img class="media-object gravatar" style="max-height: 75px;" src="<%= @random_beer.picture %>" alt="<%= @random_beer.name %>">
     </span>
-  <div class="media-body media-middle">
-    <h4 class="media-heading"><%=  link_to @beer.name, @beer  %></h4>
-    <span>
-        Cijfer: <%=  @beer.cijfer?  %>
+    <div class="media-body media-middle">
+      <h4 class="media-heading"><%= link_to @random_beer.name, @random_beer %></h4>
+      <span>
+        Cijfer: <%= @random_beer.cijfer? %>
       </span>
-    <span>
-        <%= pluralize(@beer.reviews.count, 'review') %>
+      <span>
+        <%= pluralize(@random_beer.reviews.count, 'review') %>
       </span>
+    </div>
   </div>
-</div>
-<%  end %>
+<% end %>
