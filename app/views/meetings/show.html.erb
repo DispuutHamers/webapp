@@ -12,14 +12,16 @@
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
+        Datum: <%= @meeting.date.strftime('%d-%m-%Y') %>
+        <hr>
+
         <% if @meeting.user_id %>
-          <p>Genotuleerd door: <b><%= link_to @notulist.name, @notulist %></b></p>
+          Genotuleerd door: <%= link_to @notulist.name, @notulist %>
           <hr>
         <% end %>
 
         <h2>Agenda <%= @meeting.onderwerp %></h2>
         <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
-
         <hr>
 
         <% if @meeting.attendees.any? %>
