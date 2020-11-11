@@ -2,7 +2,7 @@
   Notuleren
 <% end %>
 
-<%= form_for(@meeting) do |f| %>
+<%= form_for @meeting do |f| %>
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
@@ -16,11 +16,11 @@
   <% end %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :notes %><br>
-    <%= f.rich_text_area :actiontext_notes %>
+    <%= f.rich_text_area :actiontext_notes, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
   </div>
 <% end %>

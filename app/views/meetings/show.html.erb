@@ -13,7 +13,7 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <% if @meeting.user_id %>
-          <p>Genotuleerd door: <b><%= link_to @meeting.user.name, @meeting.user %></b></p>
+          <p>Genotuleerd door: <b><%= link_to @notulist.name, @notulist %></b></p>
           <hr>
         <% end %>
         <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>

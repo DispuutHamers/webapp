@@ -15,6 +15,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    @notulist = User.find_by(id: @meeting.user_id)
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
