@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    breadcrumb 'Nieuwe Activiteit', :new_event_path
+    breadcrumb 'Nieuwe activiteit', :new_event_path
   end
 
   # GET /events/1/edit

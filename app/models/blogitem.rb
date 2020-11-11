@@ -3,6 +3,7 @@ class Blogitem < ApplicationRecord
   serialize :body
   serialize :title
   has_many :blogphotos, dependent: :destroy
+  belongs_to :user
 
   has_rich_text :actiontext_body
   
