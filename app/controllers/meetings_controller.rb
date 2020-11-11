@@ -2,7 +2,7 @@
 class MeetingsController < ApplicationController
   before_action :lid?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
-  before_action :admin_user?, only: [:notuleer,:destroy, :create, :new]
+  before_action :admin_user?, only: [:notuleer, :destroy, :create, :new]
   breadcrumb 'Vergaderingen', :meetings_path
 
 
@@ -39,14 +39,17 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    meeting = Meeting.new(meeting_params)
-    save_object(meeting)
+    @meeting = Meeting.new(meeting_params)
+    save_object(@meeting)
   end
 
   # PATCH/PUT /meetings/1
   # PATCH/PUT /meetings/1.json
   def update
     @meeting.user_id = current_user.id if meeting_params[:notes]
+    @meeting.attendees.delete
+    @meeting.attendee_ids << meeting_params[:user_ids]
+    @meeting.save
     update_object(@meeting, meeting_params)
   end
 
@@ -57,6 +60,7 @@ class MeetingsController < ApplicationController
   end
 
   private
+
   def set_meeting
     @meeting = Meeting.find(params[:id])
   end
