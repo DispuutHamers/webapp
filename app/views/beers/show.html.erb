@@ -1,6 +1,7 @@
 <% content_for :title do %>
   <%= @beer.name %>
 <% end %>
+
 <div class="row">
   <div class="col-md-8">
     <% @beer.reviews.with_user.each do |r| %>
@@ -18,8 +19,8 @@
         <p><i><%= simple_format(r.description) %></i></p>
 
         <p>
-        Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
-        <i><%= r.proefdatum.strftime('%d-%m-%Y') %></i>
+          Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
+          <i><%= r.proefdatum.strftime('%d-%m-%Y') %></i>
         </p>
 
         <div class="btn-group pull-right">
@@ -37,47 +38,55 @@
       <hr>
     <% end %>
   </div>
-  <div class="col-md-4">
+  <div id="beer-info-panel" class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
         <% if current_user&.active? && @beer.picture? %>
-          <%= image_tag(@beer.picture, :class => 'img img-responsive center-block') %>
+          <%= image_tag @beer.picture, class: 'img img-responsive center-block' %>
         <% else %>
           <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
         <% end %>
         <table class="table table-hover">
           <tr>
             <td>Naam:</td>
-            <td style="text-align:right"><%= @beer.name %></td>
+            <td><%= @beer.name %></td>
           </tr>
           <tr>
             <td>Soort:</td>
-            <td style="text-align:right"><%= @beer.soort %></td>
+            <td><%= @beer.soort %></td>
           </tr>
           <tr>
             <td>ALC:</td>
-            <td style="text-align:right"><%= @beer.percentage %></td>
+            <td><%= @beer.percentage %></td>
           </tr>
           <tr>
             <td>Brouwer:</td>
-            <td style="text-align:right"><%= @beer.brewer %></td>
+            <td><%= @beer.brewer %></td>
           </tr>
           <tr>
             <td>Land:</td>
-            <td style="text-align:right"><%= @beer.country %></td>
+            <td><%= @beer.country %></td>
           </tr>
         </table>
         <% if @beer.URL.present? %>
-          <%= link_to 'Meer info', @beer.URL, class: 'btn btn-primary btn-block' %>
+          <%= link_to 'Meer info', @beer.URL, class: 'btn btn-default btn-block' %>
+        <% end %>
+
+        <% if current_user&.active? %>
+          <hr>
+
+          <div class="btn-group btn-group-vertical">
+            <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
+              <%= link_to new_review_path(@beer), :class => 'btn btn-default' do %>
+                <i class="fas fa-edit"></i> Review dit bier
+              <% end %>
+            <% end %>
+            <%= link_to edit_beer_path(@beer), :class => 'btn btn-default' do %>
+              <i class="fas fa-pencil-alt"></i> Wijzig dit bier
+            <% end %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
-</div>
-<div class="btn-group">
-  <% if current_user&.active? %>
-    <%= link_to 'Review', reviews_beer_path(@beer), :class => 'btn btn-primary' unless current_user.reviews.find_by(beer_id: @beer.id) %>
-    <%= link_to 'Edit', edit_beer_path(@beer), :class => 'btn btn-info' %>
-  <% end %>
-  <%= link_to 'Back', beers_path, :class => 'btn btn-default' %>
 </div>
