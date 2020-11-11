@@ -2,7 +2,7 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
-  breadcrumb 'Bier', :beers_path
+  breadcrumb 'Bieren', :beers_path
   
   ALLOWED_SORTING_FIELDS = %w[name soort grade brewer country review_count]
 
@@ -38,10 +38,13 @@ class BeersController < ApplicationController
   # GET /beers/new
   def new
     @beer = Beer.new
+    breadcrumb "Bier toevoegen", new_beer_path
   end
 
   # GET /beers/1/edit
   def edit
+    breadcrumb @beer.name, beer_path(@beer)
+    breadcrumb "Aanpassen", edit_beer_path(@beer)
   end
 
   # POST /beers

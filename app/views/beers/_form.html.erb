@@ -1,45 +1,61 @@
-<%= form_for(@beer) do |f| %>
+<%= form_for @beer, html: {class: 'form-horizontal'} do |f| %>
   <% if @beer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@beer.errors.count, 'error') %> prohibited this beer from being saved:</h2>
 
       <ul>
-      <% @beer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @beer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name %><br>
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :name, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :picture %><br>
-    <%= f.text_field :picture, class: 'form-control' %>
+    <%= f.label :picture, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :picture, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :soort %><br>
-    <%= f.text_field :soort, class: 'form-control' %>
+    <%= f.label :soort, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :soort, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :percentage %>
-    <%= f.text_field :percentage, class: 'form-control' %>
+    <%= f.label :percentage, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :percentage, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :brewer %>
-    <%= f.text_field :brewer, class: 'form-control' %>
+    <%= f.label :brewer, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :brewer, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :country %>
-    <%= f.text_field :country, class: 'form-control' %>
+    <%= f.label :country, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :country, class: 'form-control' %>
+    </div>
   </div>
   <div class="form-group">
-    <%= f.label :URL %>
-    <%= f.text_field :URL, class: 'form-control' %>
+    <%= f.label :URL, class: 'control-label col-sm-2' %>
+    <div class="col-sm-10">
+      <%= f.text_field :URL, class: 'form-control' %>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>
