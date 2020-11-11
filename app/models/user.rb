@@ -14,7 +14,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
-  has_many :devices
   has_many :api_keys
   has_many :reviews
   has_many :events
@@ -22,7 +21,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :signups
   has_many :nicknames
   has_many :blogitems
-  has_and_belongs_to_many :meetings
+  has_many :meetings, class_name: "Attendee"
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
@@ -35,7 +34,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def anonymize
-    devices.destroy_all
     self.name = Faker::Name.name
     self.email = Faker::Internet.email(name) unless dev?
     save
