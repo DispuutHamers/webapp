@@ -127,17 +127,4 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
     'none'
   end
-
-  def as_json(options)
-    json = super({ only: %i[id name email created_at batch] }.merge(options))
-    json[:reviews] = reviews.count
-    json[:quotes] = quotes.count
-    json[:sunday_ratio] = sunday_ratio
-    json[:nicknames] = nicknames
-    json[:usergroups] = usergroups
-    json[:lid] = lidstring
-    json[:admin] = admin?
-
-    json
-  end
 end

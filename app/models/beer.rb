@@ -30,10 +30,4 @@ class Beer < ActiveRecord::Base
     self.grade = cijfer / avg unless avg == 0.0
     self.save
   end
-
-  def as_json(options)
-    h = super({:only => [:id, :name, :soort, :picture, :created_at, :percentage, :brewer, :country, :URL]}.merge(options))
-    h[:cijfer] = cijfer?
-    h
-  end
 end

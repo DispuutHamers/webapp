@@ -9,10 +9,6 @@ class Signup < ActiveRecord::Base
 #  default_scope {includes(:user) }
   scope :with_user, -> { includes(:user) }
 
-  def as_json(options)
-    super({:only => [:id, :user_id, :reason, :event_id, :status, :created_at]}.merge(options))
-  end
-
   private
   def event_deadline_has_passed
     errors.add(:event_id, "Event deadline has already passed") if

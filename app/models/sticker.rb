@@ -5,7 +5,4 @@ class Sticker < ActiveRecord::Base
   acts_as_paranoid
   validates :lat, presence: true, format: { with: /\A(-?\d*\.\d*)\z/i, message: "Gast, dit is geen coördinaat"}
   validates :lon, presence: true, format: { with: /\A(-?\d*\.\d*)\z/i, message: "Gast, dit is geen coördinaat"}
-  def as_json(options)
-    super({ only: %i[id lat lon notes user_id] }.merge(options))
-  end
 end
