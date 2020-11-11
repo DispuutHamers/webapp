@@ -19,31 +19,32 @@
         <% if t.whodunnit %>
           <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
         <% else %>
-          System </td>
+          System
         <% end %>
-        <% if t.event == "create" %>
-          <td>created <%= link_to t.item_type, t.item %></td>
-        <% elsif t.event == "destroy" %>
-          <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %>
-            <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
-              <%= f.submit "Revert", class: 'btn btn-default' %>
-            <% end %>
-          </td>
-        <% else %>
-          <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %>
-            <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
-              <%= f.submit "Revert", class: 'btn btn-default' %>
-            <% end %>
-          </td>
-        <% end %>
-        <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
-        <td>
-          <% t.changeset.each do |c, v| %>
-            <% next if c == 'updated_at' || c == 'created_at' %>
-            <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %><br>
+      </td>
+      <% if t.event == "create" %>
+        <td>created <%= link_to t.item_type, t.item %></td>
+      <% elsif t.event == "destroy" %>
+        <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %>
+          <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+            <%= f.submit "Revert", class: 'btn btn-default' %>
           <% end %>
         </td>
-        </tr>
+      <% else %>
+        <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %>
+          <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+            <%= f.submit "Revert", class: 'btn btn-default' %>
+          <% end %>
+        </td>
+      <% end %>
+      <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
+      <td>
+        <% t.changeset.each do |c, v| %>
+          <% next if c == 'updated_at' || c == 'created_at' %>
+          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %><br>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
   </tbody>
 </table>
