@@ -1,6 +1,7 @@
 <% content_for :title do %>
   <%= @event.title %>
 <% end %>
+
 <div class="row">
   <div class="col-md-8">
     <p>
@@ -18,11 +19,11 @@
       <% end %>
     </p>
   </div>
-  <div class="col-md-4">
+  <div id="event-info-panel" class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
         <% if @event.user %>
-          <p><strong>Event door:</strong> <%= @event.user.name %></p>
+          <p><strong>Activiteit door:</strong> <%= @event.user.name %></p>
           <hr>
         <% end %>
 
@@ -39,11 +40,11 @@
           <% end %>
         </ul>
         <% if @event.deadline != nil and @event.deadline > Time.now %>
-          <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1)) do |f| %>
-            <div><%= f.hidden_field :event_id %></div>
-            <div><%= f.hidden_field :status %></div>
-            <div><%= f.submit 'Ik zal aanwezig zijn.', class: 'btn btn-success' %></div>
-            <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Opmerkingen?" %></div>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
+            <%= f.hidden_field :event_id %>
+            <%= f.hidden_field :status %>
+            <%= f.text_field :reason, placeholder: "Opmerkingen?", class: 'form-control' %>
+            <%= f.submit 'Aanwezig', class: 'btn btn-default' %>
           <% end %>
         <% end %>
 
@@ -61,11 +62,11 @@
           <% end %>
         </ul>
         <% if @event.deadline != nil and @event.deadline > Time.now %>
-          <%= form_for(@event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0)) do |f| %>
-            <div><%= f.hidden_field :event_id %></div>
-            <div><%= f.hidden_field :status %></div>
-            <div><%= f.submit 'Ik zal niet aanwezig zijn.', class: 'btn btn-danger' %></div>
-            <div style="padding-top: 5px;"><%= f.text_field :reason, placeholder: "Waarom niet?" %></div>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: 'form-inline'} do |f| %>
+            <%= f.hidden_field :event_id %>
+            <%= f.hidden_field :status %>
+            <%= f.text_field :reason, placeholder: "Waarom niet?", class: 'form-control' %>
+            <%= f.submit 'Afwezig', class: 'btn btn-default' %>
           <% end %>
         <% end %>
 
