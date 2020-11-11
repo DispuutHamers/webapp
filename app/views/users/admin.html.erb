@@ -2,11 +2,16 @@
   Ledenadministratie
 <% end %>
 
-<h4>Leden</h4>
+<h2>Leden</h2>
 <%= render "users/admin_table", users: @leden %>
+
+<h2>Aspiranten
+<%= link_to new_user_invitation_path, class: 'btn btn-default' do %>
+  <i class="fa fa-user-plus fa-fw"></i> Aspirant uitnodigen
+<% end %>
+</h2>
 <% unless @aspiranten.blank? %>
-  <h4>Aspiranten</h4>
   <%= render "users/admin_table", users: @aspiranten %>
 <% end %>
-<h4>Oud-leden</h4>
+<h2>Oud-leden</h2>
 <%= render "users/admin_table", users: @oudelullen %>

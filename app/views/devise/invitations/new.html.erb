@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  Nieuw lid uitnodigen
+  Aspirant uitnodigen
 <% end %>
 
 <%= render layout: 'layouts/forms/form_small' do %>
@@ -7,10 +7,10 @@
     <%= devise_error_messages! %>
 
     <div class="input-group">
-      <span class="input-group-addon"><i class="fas fa-envelope-o"></i></span>
-      <%= f.email_field :email, autofocus: false, class: "form-control", placeholder: "email" %>
+      <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+      <%= f.email_field :email, class: "form-control", placeholder: "E-mail adres" %>
     </div>
-    &nbsp;
-    <p><%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-large btn-success" %></p>
+    &nbsp
+    <p><%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-large btn-primary" %></p>
   <% end %>
 <% end %>
