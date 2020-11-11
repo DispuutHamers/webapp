@@ -24,10 +24,13 @@
           <hr>
         <% end %>
 
-        <div class="btn-group">
+        <div class="btn-group btn-group-vertical">
           <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
-            <%= link_to edit_blogitem_path(@item), class: 'btn btn-default' do %>
+            <%= link_to edit_blogitem_path(@item), class: 'btn btn-default btn-sm' do %>
               <i class="fas fa-pencil-alt"></i> Wijzig blogpost
+            <% end %>
+            <%= link_to @item, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
+              <i class="far fa-trash-alt"></i> Verwijder blogpost
             <% end %>
           <% end %>
         </div>
