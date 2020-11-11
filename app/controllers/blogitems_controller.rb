@@ -45,8 +45,8 @@ class BlogitemsController < ApplicationController
   end
 
   def update
-    if @item.user_id == nil
-      @item.user_id = current_user.id
+    if @item.user_id
+      @item.user ||= current_user
     end
     update_object(@item, blog_params)
   end
