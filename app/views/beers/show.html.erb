@@ -72,20 +72,18 @@
           <%= link_to 'Meer info', @beer.URL, class: 'btn btn-default btn-block' %>
         <% end %>
 
-        <% if current_user&.active? %>
-          <hr>
+        <hr>
 
-          <div class="btn-group btn-group-vertical">
-            <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
-              <%= link_to new_review_path(@beer), :class => 'btn btn-default' do %>
-                <i class="fas fa-edit"></i> Review dit bier
-              <% end %>
+        <div class="btn-group btn-group-vertical">
+          <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
+            <%= link_to reviews_beer_path(@beer), :class => 'btn btn-default' do %>
+              <i class="fas fa-edit"></i> Review dit bier
             <% end %>
-            <%= link_to edit_beer_path(@beer), :class => 'btn btn-default' do %>
-              <i class="fas fa-pencil-alt"></i> Wijzig dit bier
-            <% end %>
-          </div>
-        <% end %>
+          <% end %>
+          <%= link_to edit_beer_path(@beer), :class => 'btn btn-default' do %>
+            <i class="fas fa-pencil-alt"></i> Wijzig dit bier
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
