@@ -22,6 +22,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :signups
   has_many :nicknames
   has_many :blogitems
+  has_and_belongs_to_many :meetings
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
@@ -111,13 +112,5 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def dev?
     in_group?('Developer')
-  end
-
-  def lidstring
-    return 'lid' if lid?
-    return 'alid' if alid?
-    return 'olid' if olid?
-
-    'none'
   end
 end
