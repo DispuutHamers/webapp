@@ -63,6 +63,9 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
       if event.attendance && !status
         return false if reason.length < 1
       end
+      if event.attendance and status == "0"
+        return false if reason.length < 6
+      end
       id = event.id
       stemmen = signups.where(event_id: id)
       if stemmen.any?

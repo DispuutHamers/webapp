@@ -55,8 +55,7 @@ module UtilHelper
   def do_signup(user)
     extracted_params = params[:signup]
     event = Event.find(extracted_params[:event_id])
-    if event.deadline > Time.now and !!verify_signup(event)
-      user.sign(event, extracted_params[:status], extracted_params[:reason])
+    if user.sign(event, extracted_params[:status], extracted_params[:reason])
       event
     else
       nil
@@ -73,15 +72,5 @@ module UtilHelper
   def self.make_reservation
     event = Event.where(attendance: true).last
     UserMailer.mail_reservation(event)
-  end
-
-  private
-  def verify_signup(event)
-    extracted_params = params[:signup]
-    if event.attendance and "0" == extracted_params[:status]
-      extracted_params[:reason].length > 5
-    else
-      true
-    end
   end
 end
