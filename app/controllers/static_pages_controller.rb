@@ -29,7 +29,6 @@ class StaticPagesController < ApplicationController
   def trail
     @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
     breadcrumb 'Log', trail_path
-
   end
 
   def revert
