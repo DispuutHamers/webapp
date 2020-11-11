@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-md-8">
     <% if @meeting.actiontext_notes.blank? %>
-      <%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil %>
+      <%= markdown(@meeting.notes).html_safe if @meeting.notes %>
     <% else %>
       <%= @meeting.actiontext_notes %>
     <% end %>
@@ -13,9 +13,10 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <% if @meeting.user_id %>
-          <p>Genotuleerd door: <b><%= link_to @meeting.user.name, @meeting.user %></b></p>
+          <p>Genotuleerd door: <b><%= link_to @notulist.name, @notulist %></b></p>
           <hr>
         <% end %>
+        <h2>Agenda <%= @meeting.onderwerp %></h2>
         <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
         <hr>
         <% if current_user.admin? %>
