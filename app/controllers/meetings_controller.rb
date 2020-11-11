@@ -21,11 +21,13 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
-    breadcrumb 'Nieuwe Vergadering', new_meeting_path
+    breadcrumb 'Nieuwe vergadering', new_meeting_path
   end
 
   # GET /meetings/1/edit
   def edit
+    breadcrumb @meeting.onderwerp, meeting_path(@meeting)
+    breadcrumb 'Wijzig vergadering', edit_meeting_path(@meeting)
   end
 
   def notuleer
