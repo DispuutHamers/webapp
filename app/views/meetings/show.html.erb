@@ -1,23 +1,39 @@
 <% content_for :title do %>
-    <%= @meeting.onderwerp %>
+  <%= @meeting.onderwerp %>
 <% end %>
 <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-8">
     <% if @meeting.actiontext_notes.blank? %>
       <%= markdown(@meeting.notes).html_safe unless @meeting.notes == nil %>
     <% else %>
       <%= @meeting.actiontext_notes %>
     <% end %>
   </div>
-  <div class="col-md-3">
-    <%= markdown(@meeting.agenda).html_safe unless @meeting.agenda == nil %>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if @meeting.user_id %>
+          <p>Genotuleerd door: <b><%= link_to User.find(@meeting.user_id).name, User.find(@meeting.user_id) %></b></p>
+          <hr>
+        <% end %>
+        <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
+        <hr>
+        <% if current_user.admin? %>
+          <td>
+            <div class="btn-group btn-group-vertical btn-group-sm">
+              <%= link_to "/notuleer/#{@meeting.id}", class: 'btn btn-default' do %>
+                <i class="fas fa-pencil-alt"></i> Wijzig notulen
+              <% end %>
+              <%= link_to edit_meeting_path(@meeting), class: 'btn btn-default' do %>
+                <i class="fas fa-pencil-alt"></i> Wijzig vergadering
+              <% end %>
+              <%= link_to @meeting, class: 'btn btn-default', method: :delete, data: {confirm: 'Weet je het zeker?'} do %>
+                <i class="far fa-trash-alt"></i> Verwijder vergadering
+              <% end %>
+            </div>
+          </td>
+        <% end %>
+      </div>
+    </div>
   </div>
-</div>
-<% if @meeting.user_id != nil %>
-    <p>Genotuleerd door: <i><%= link_to User.find(@meeting.user_id).name, User.find(@meeting.user_id) %></i></p>
-<% end %>
-<div class="btn-group">
-      <%= link_to 'Wijzig vergadering', edit_meeting_path(@meeting), class: 'btn btn-primary' %>
-      <%= link_to 'Wijzig notulen', "/notuleer/#{@meeting.id}", class: 'btn btn-primary' %>
-  <%= link_to 'Terug', meetings_path, class: 'btn btn-default' %>
 </div>

@@ -4,10 +4,9 @@
 <table id="meeting" class="tablesorter table table-hover">
   <thead>
     <tr>
-      <th>datum</th>
-      <th>onderwerp</th>
+      <th>Datum</th>
+      <th>Onderwerp</th>
       <% if current_user.admin? %>
-        <th>Admin stuff</th>
       <% end %>
     </tr>
   </thead>
@@ -17,18 +16,6 @@
       <tr>
         <td><%= m.date.strftime('%d-%m-%Y') %></td>
         <td><%= link_to m.onderwerp, m %></td>
-        <% if current_user.admin? %>
-          <td>
-            <div class="btn-group">
-              <%= link_to edit_meeting_path(m), class: 'btn btn-info' do %>
-                <i class="fas fa-pencil-alt"></i>
-              <% end %>
-              <%= link_to m, class: 'btn btn-danger', method: :delete, data: {confirm: 'Weet je het zeker?'} do %>
-                <i class="far fa-trash-alt"></i>
-              <% end %>
-            </div>
-          </td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>
