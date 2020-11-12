@@ -7,7 +7,7 @@
       </h1>
     </section>
 
-    <% unless @user.nicknames.blank? %>
+    <% if @user.nicknames.present? %>
       <section>
         <h4>Bijnamen</h4>
         <ul>
