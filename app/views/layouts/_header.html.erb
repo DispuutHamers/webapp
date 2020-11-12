@@ -55,7 +55,9 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li>Andere gebruiker: <%= switch_user_select class: 'btn btn-dropdown-toggle' %></li>
+                  <% if Rails.env.development? %>
+                    <li>Andere gebruiker: <%= switch_user_select class: 'btn btn-dropdown-toggle' %></li>
+                  <% end %>
                   <li><%= link_to 'OAuth-applicaties', oauth_applications_path %></li>
                   <li><%= link_to 'Download database dump', dbdump_path %></li>
                   <% if Rails.env.development? %>
