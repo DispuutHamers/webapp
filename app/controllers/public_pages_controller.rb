@@ -40,7 +40,7 @@ class PublicPagesController < ApplicationController
   # POST /public_pages.json
   def create
     public_page = PublicPage.new(public_page_params)
-    save_object(public_page, type="public page")
+    save_object(public_page)
   end
 
   # PATCH/PUT /public_pages/1
