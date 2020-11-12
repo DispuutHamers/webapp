@@ -11,7 +11,9 @@
       <section>
         <h4>Bijnamen</h4>
         <ul>
-          <li><%= @user.nickname %></li>
+          <% @user.nicknames.each do |nickname| %>
+            <li><%= nickname.nickname %></li>
+          <% end %>
         </ul>
       </section>
     <% end %>

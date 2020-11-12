@@ -89,7 +89,7 @@
 
         <div class="btn-group btn-group-vertical">
           <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
-            <i class="fas fa-pencil-alt"></i> Wijzig event
+            <i class="fas fa-pencil-alt"></i> Wijzig activiteit
           <% end %>
           <% if @event.deadline > DateTime.now %>
             <%= link_to reminder_path(@event), class: 'btn btn-default' do %>
@@ -98,7 +98,7 @@
           <% end %>
           <% if current_user.admin? %>
             <%= link_to @event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default' do %>
-              <i class="far fa-trash-alt"></i> Verwijder event
+              <i class="far fa-trash-alt"></i> Verwijder activiteit
             <% end %>
           <% end %>
         </div>
