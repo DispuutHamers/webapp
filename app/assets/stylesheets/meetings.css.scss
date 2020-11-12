@@ -5,3 +5,13 @@
 #meeting-form .actions input {
   width: auto;
 }
+
+#meeting-form {
+  #meeting_agenda {
+    min-height: 250px;
+  }
+  #meeting_user_ids {
+    min-height: 200px;
+    min-width: 30%;
+  }
+}
