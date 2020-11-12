@@ -39,8 +39,8 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    @meeting = Meeting.new(meeting_params)
-    save_object(@meeting)
+    meeting = Meeting.new(meeting_params)
+    save_object(meeting)
   end
 
   # PATCH/PUT /meetings/1
