@@ -17,7 +17,7 @@
           </td>
           <td>
             <%= user.usergroups.map(&:name).join(", ") %>
-            <%= link_to 'Wijzig groepen', usergroups_user_path(user), class: 'btn btn-default' %>
+            <%= link_to 'Wijzig groepen', usergroups_user_path(user), class: 'btn btn-default btn-sm' %>
           </td>
           <td>
             <%= form_for user, url: leden_admin_update_path(user), html: {class: 'form-inline'} do |f| %>

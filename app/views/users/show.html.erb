@@ -6,54 +6,120 @@
         <%= @user.name %>
       </h1>
     </section>
+
     <% unless @user.nicknames.blank? %>
       <section>
-        <%= @user.nickname %>
+        <h4>Bijnamen</h4>
+        <ul>
+          <li><%= @user.nickname %></li>
+        </ul>
       </section>
     <% end %>
+
     <section>
-      <% @user.usergroups.each do |g| %>
-        <%= g.name %><br>
-      <% end %>
-    </section>
-    <section>
-      Reviews: <%= @user.reviews.count %><br>
-      Gemiddeld cijfer:
-      <% if @user.weight %>
-        <%= @user.weight.round(2) %><br>
-      <% else %>
-        Nog onbekend<br>
-      <% end %>
-      <% if @user.lid? %>
-        Sunday Ratio: <%= @user.sunday_ratio.round(2) %>%<br>
-      <% end %>
-      <% if @user.current_sign_in_at %>
-        Ingelogd op: <br><%= @user.current_sign_in_at.strftime('%d-%m-%Y %H:%M') %> (<%= @user.current_sign_in_ip %>
-        )<br>
-      <% end %>
-      <% if @user.last_sign_in_at %>
-        Laatste login op: <br><%= @user.last_sign_in_at.strftime('%d-%m-%Y %H:%M') %> (<%= @user.last_sign_in_ip %>)<br>
-      <% end %>
-    </section>
-    <section>
-      <% if @user.lid? %>
-        <% missed_drinks = missed_drinks_for(@user) %>
-        <% unless missed_drinks.empty? %>
-          <b>Gemiste Zondagborrels</b><br>
-          <% missed_drinks.each do |md| %>
-            <%= link_to md.date.strftime("%d-%m-%Y"), md %><br>
-          <% end %>
+      <h4>Groepen</h4>
+      <ul>
+        <% @user.usergroups.each do |group| %>
+          <li><%= group.name %></li>
+        <% end %>
+      </ul>
+      <% if current_user.admin? %>
+        <%= link_to usergroups_user_path(@user), class: 'btn btn-default btn-sm' do %>
+          <i class="fa fa-pencil-alt fa-fw"></i> Wijzig groepen
         <% end %>
       <% end %>
     </section>
+
+    <% if @user.lid? %>
+      <section>
+        <% missed_drinks = missed_drinks_for(@user) %>
+        <% unless missed_drinks.empty? %>
+          <h4>Gemiste Zondagborrels</h4>
+          <ul>
+            <% missed_drinks.each do |md| %>
+              <li><%= link_to md.date.strftime("%d-%m-%Y"), md %><br></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </section>
+    <% end %>
+
+    <section>
+      <h4>Stats</h4>
+      <table id="api-key-table" class="table table-hover table-striped">
+        <tr>
+          <td>Aantal quotes</td>
+          <td><%= @user.quotes.count %></td>
+        </tr>
+        <tr>
+          <td>Aantal reviews</td>
+          <td><%= @user.reviews.count %></td>
+        </tr>
+        <tr>
+          <td>Aantal evenementen georganiseerd</td>
+          <td><%= @user.events.count %></td>
+        </tr>
+        <tr>
+          <td>Aantal blogposts geschreven</td>
+          <td><%= @user.blogitems.count %></td>
+        </tr>
+        <tr>
+          <td>Gemiddeld review cijfer</td>
+          <td>
+            <% if @user.weight %>
+              <%= @user.weight.round(2) %>
+            <% else %>
+              Nog onbekend
+            <% end %>
+          </td>
+        </tr>
+
+        <% if @user.lid? %>
+          <tr>
+            <td>Sunday ratio</td>
+            <td><%= @user.sunday_ratio.round(2) %></td>
+          </tr>
+        <% end %>
+
+        <tr>
+          <td>Account aangemaakt</td>
+          <td><%= @user.created_at.strftime('%d-%m-%Y') %></td>
+        </tr>
+
+        <% if @user.current_sign_in_at %>
+          <tr>
+            <td>Tijdstip huidige login</td>
+            <td><%= @user.current_sign_in_at.strftime('%d-%m-%Y %H:%M') %></td>
+          </tr>
+          <tr>
+            <td>IP huidige login</td>
+            <td><%= @user.current_sign_in_ip %></td>
+          </tr>
+        <% end %>
+
+        <% if @user.last_sign_in_at %>
+          <tr>
+            <td>Tijdstip laatste login</td>
+            <td><%= @user.last_sign_in_at.strftime('%d-%m-%Y %H:%M') %></td>
+          </tr>
+          <tr>
+            <td>IP laatste login</td>
+            <td><%= @user.last_sign_in_ip %></td>
+          </tr>
+        <% end %>
+      </table>
+    </section>
+
   </aside>
+
   <div class="col-md-8">
     <% if @user.quotes.any? %>
-      <h3>Quotes: (<%= @user.quotes.count %>)</h3>
+      <h2>Quotes</h2>
       <ol class="microposts">
         <%= render partial: 'quotes/quote_stripped', collection: @quotes, as: :quote %>
       </ol>
       <%= will_paginate @quotes %>
     <% end %>
   </div>
+
 </div>

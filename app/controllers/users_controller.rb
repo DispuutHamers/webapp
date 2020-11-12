@@ -53,6 +53,9 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+
+    redirect_to root_url, notice: "Je mag niet andersmans profiel aanpassen!" unless @user == current_user
+
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
   end
