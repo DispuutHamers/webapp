@@ -10,7 +10,7 @@ remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sig
 last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at
 remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation]
   acts_as_paranoid ignore: [:weight]
-  before_save {self.email = email.downcase}
+  before_save { self.email = email.downcase }
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
@@ -25,14 +25,15 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :meetings, through: :attendees
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
   default_scope { includes(:groups, :usergroups) }
 
-  scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
-  scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
-  scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
+  scope :leden, -> { joins(:groups).where(groups: {group_id: 4}) }
+  scope :aspiranten, -> { joins(:groups).where(groups: {group_id: 5}) }
+  scope :oud, -> { joins(:groups).where(groups: {group_id: 12}) }
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
+  scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def anonymize
     self.name = Faker::Name.name
