@@ -3,7 +3,7 @@ Hamers::Application.routes.draw do
   get 'switch_user', to: 'switch_user#set_current_user'
   get 'switch_user/remember_user', to: 'switch_user#remember_user'
   get 'privacy' => 'static_pages#privacy'
-  get 'invited' => 'static_pages#invited', as: "invited"
+  get 'activate_account' => 'static_pages#activate_account', as: "activate_account"
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]

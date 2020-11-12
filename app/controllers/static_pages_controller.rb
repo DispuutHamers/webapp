@@ -19,7 +19,8 @@ class StaticPagesController < ApplicationController
     breadcrumb 'Privacy', privacy_path
   end
 
-  def invited
+  def activate_account
+    breadcrumb 'Account activeren', activate_account_path
   end
 
   def console
