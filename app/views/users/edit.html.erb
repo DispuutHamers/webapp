@@ -23,31 +23,33 @@
     </section>
 
     <section>
-      <% if @user.api_keys.any? %>
-        <h4>Api keys</h4>
-        <table id="api-key-table" class="table table-hover">
-          <thead>
-          <tr>
-            <th>Naam</th>
-            <th>Key</th>
-          </tr>
-          </thead>
-          <% @user.api_keys.each do |key| %>
+      <% if @user == current_user %>
+        <% if @user.api_keys.any? %>
+          <h4>Api keys</h4>
+          <table id="api-key-table" class="table table-hover">
+            <thead>
             <tr>
-              <td><%= key.name %></td>
-              <td>
-                <%= link_to key.key, key %>
-                <%= link_to key, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-default btn-sm' do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              </td>
+              <th>Naam</th>
+              <th>Key</th>
             </tr>
-          <% end %>
-        </table>
-      <% end %>
-      <%= form_for ApiKey.new, html: {class: 'form-inline'} do |f| %>
-        <%= f.text_field :name, placeholder: 'Sleutelnaam', class: 'form-control' %>
-        <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
+            </thead>
+            <% @user.api_keys.each do |key| %>
+              <tr>
+                <td><%= key.name %></td>
+                <td>
+                  <%= link_to key.key, key %>
+                  <%= link_to key, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-default btn-sm' do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+        <%= form_for ApiKey.new, html: {class: 'form-inline'} do |f| %>
+          <%= f.text_field :name, placeholder: 'Sleutelnaam', class: 'form-control' %>
+          <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
+        <% end %>
       <% end %>
     </section>
   </aside>
