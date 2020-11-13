@@ -1,1 +1,29 @@
-<%= render "form" %>
+<% content_for :title do %>
+  Schrijf je in voor <%= @event.title %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default" style="margin-top: 32px;">
+      <div class="panel-heading">
+        <h2 class="panel-title">Informatie over de activiteit</h2>
+      </div>
+      <div class="panel-body">
+        <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+        <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
+        <hr>
+        <i class="fa fa-map-marker"></i> Locatie: <%= @event.location %>
+        <hr>
+        <% if @event.description.blank? %>
+          <%= markdown(@event.beschrijving).html_safe %>
+        <% else %>
+          <%= @event.description %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 col-md-offset-1">
+    <h2 class="text-center" style="margin-bottom: 24px;">Schrijf je in!</h2>
+    <%= render "form" %>
+  </div>
+</div>

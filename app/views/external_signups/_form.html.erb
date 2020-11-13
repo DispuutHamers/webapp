@@ -1,22 +1,39 @@
-<%= form_for @external_signup, url: create_external_signup_event_path(invitation_code: @invitation_code) do |f| %>
-    <% if @external_signup.errors.any? %>
-        <div id="error_explanation">
-          <ul>
-            <% @external_signup.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <div class="form-group">
-      <%= f.label :first_name, "voornaam" %>
+<%= form_for @external_signup, url: create_external_signup_event_path(invitation_code: @invitation_code), html: {class: "form-horizontal"} do |f| %>
+  <% if @external_signup.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% @external_signup.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :first_name, "Voornaam", class: 'col-sm-3' %>
+    <div class="col-sm-9">
       <%= f.text_field :first_name, class: "form-control" %>
-      <%= f.label :last_name, "achternaam" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name, "Achternaam", class: 'col-sm-3' %>
+    <div class="col-sm-9">
       <%= f.text_field :last_name, class: "form-control" %>
-      <%= f.label :email, "email" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :email, "E-mailadres", class: 'col-sm-3' %>
+    <div class="col-sm-9">
       <%= f.text_field :email, class: "form-control" %>
-      <%= f.label :note, "Opmerkingen" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :note, "Opmerkingen", class: 'col-sm-3' %>
+    <div class="col-sm-9">
       <%= f.text_area :note, class: 'form-control' %>
     </div>
-    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+  </div>
+<div class="col-sm-9 col-sm-offset-3">
+  <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+</div>
 <% end %>
