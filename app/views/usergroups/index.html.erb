@@ -4,35 +4,32 @@
 
 <div class="row">
   <div class="col-md-5">
-
     <% @usergroups.each do |group| %>
-      <div class="row">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class="panel-title">
-              <%= group.name %>
-              <span class="text-muted text-small"><%= group.users.count %></span>
-              <% if group.users.any? %>
-                <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"
-                        title="De groep moet leeg zijn voor je deze kunt verwijderen.">
-                  <i class="far fa-trash-alt"></i>
-                </button>
-              <% elsif [4, 5, 12].include?(group.id) %>
-                <button class="btn btn-default btn-sm disabled">Deze groep kan niet verwijderd worden</button>
-              <% else %>
-                <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
-                  <i class="far fa-trash-alt"></i> Verwijder groep
-                <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1 class="panel-title">
+            <%= group.name %>
+            <span class="text-muted text-small"><%= group.users.count %></span>
+            <% if group.users.any? %>
+              <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"
+                      title="De groep moet leeg zijn voor je deze kunt verwijderen.">
+                <i class="far fa-trash-alt"></i>
+              </button>
+            <% elsif [4, 5, 12].include?(group.id) %>
+              <button class="btn btn-default btn-sm disabled">Deze groep kan niet verwijderd worden</button>
+            <% else %>
+              <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
+                <i class="far fa-trash-alt"></i> Verwijder groep
               <% end %>
-            </h1>
-          </div>
-          <div class="panel-body">
-            <ul>
-              <% group.users.each do |user| %>
-                <li><%= user.name %></li>
-              <% end %>
-            </ul>
-          </div>
+            <% end %>
+          </h1>
+        </div>
+        <div class="panel-body">
+          <ul>
+            <% group.users.each do |user| %>
+              <li><%= user.name %></li>
+            <% end %>
+          </ul>
         </div>
       </div>
     <% end %>

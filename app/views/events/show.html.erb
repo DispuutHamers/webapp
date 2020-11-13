@@ -77,16 +77,6 @@
 
         <hr>
 
-        <% if @unknown.any? %>
-          <h4>Onbekend <span class="text-muted"><%= @unknown.count %></span></h4>
-          <div>
-            <%- @unknown.each do |s| %>
-              <%= link_to gravatar_for s, class: "small-profile-picture" %>
-            <% end %>
-          </div>
-          <hr>
-        <% end %>
-
         <% if @event.public? || @event.external_signups.any? %>
           <h4>Plebs <span class="text-muted"><%= @event.external_signups.count %></span></h4>
           <ul class="signup-list">
@@ -99,12 +89,25 @@
               </li>
             <% end %>
           </ul>
-          <br>
-          <%= link_to "Plebuitnodiglink", @event.invitation_link if @event.public?%>
+          <hr>
+        <% end %>
+
+        <% if @unknown.any? %>
+          <h4>Onbekend <span class="text-muted"><%= @unknown.count %></span></h4>
+          <div>
+            <%- @unknown.each do |s| %>
+              <%= link_to gravatar_for s, class: "small-profile-picture" %>
+            <% end %>
+          </div>
           <hr>
         <% end %>
 
         <div class="btn-group btn-group-vertical">
+          <% if @event.public? %>
+            <a href="<%= @event.invitation_link %>" class="btn btn-default" target="_blank">
+              <i class="fas fa-user-friends"></i> Plebuitnodiglink
+            </a>
+          <% end %>
           <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
             <i class="fas fa-pencil-alt"></i> Wijzig activiteit
           <% end %>
