@@ -1,8 +1,10 @@
 class Event < ActiveRecord::Base
+  attr_accessor :public
   acts_as_paranoid
   has_paper_trail
   has_many :signups, dependent: :destroy
   has_many :signups_with_user, -> { with_user }, foreign_key: 'event_id', class_name: 'Signup'
+  has_many :external_signups
   has_many :users, through: :signups
   has_rich_text :description
   belongs_to :user
@@ -10,6 +12,7 @@ class Event < ActiveRecord::Base
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Date.today]) }
   scope :past, -> { where(['date <= ?', Date.today]) }
+  scope :are_public, -> { where.not(invitation_code: nil) }
 
   def to_ics
     event = Icalendar::Event.new
@@ -24,14 +27,30 @@ class Event < ActiveRecord::Base
   end
 
   def future?
-    self.date.future?
+    date.future?
   end
 
   def today?
-    self.date.today?
+    date.today?
   end
 
   def past?
-    !self.date.future?
+    date.past?
+  end
+
+  def public?
+    invitation_code.present?
+  end
+
+  def invitation_link
+    return unless invitation_code
+
+    base_url = if Rails.env.development?
+                 "http://localhost:3000"
+               else
+                 "https://www.zondersikkel.nl"
+               end
+
+    "#{base_url}/events/#{id}/public_signup?invitation_code=#{invitation_code}"
   end
 end

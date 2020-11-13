@@ -1,0 +1,22 @@
+<%= form_for @external_signup, url: create_external_signup_event_path(invitation_code: @invitation_code) do |f| %>
+    <% if @external_signup.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+            <% @external_signup.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :first_name, "voornaam" %>
+      <%= f.text_field :first_name, class: "form-control" %>
+      <%= f.label :last_name, "achternaam" %>
+      <%= f.text_field :last_name, class: "form-control" %>
+      <%= f.label :email, "email" %>
+      <%= f.text_field :email, class: "form-control" %>
+      <%= f.label :note, "Opmerkingen" %>
+      <%= f.text_area :note, class: 'form-control' %>
+    </div>
+    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+<% end %>
