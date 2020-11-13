@@ -5,7 +5,9 @@
       <tr>
         <th>Naam</th>
         <th>Groepen</th>
-        <th>Lichting</th>
+        <% unless extern %>
+          <th>Lichting</th>
+        <% end %>
         <th>AD</th>
       </tr>
       </thead>
@@ -19,12 +21,14 @@
             <%= user.usergroups.map(&:name).join(", ") %>
             <%= link_to 'Wijzig groepen', usergroups_user_path(user), class: 'btn btn-default btn-sm' %>
           </td>
-          <td>
-            <%= form_for user, url: leden_admin_update_path(user), html: {class: 'form-inline'} do |f| %>
-              <%= f.number_field :batch, class: "form-control" %>
-              <%= f.submit "Opslaan", class: "btn btn-default" %>
-            <% end %>
-          </td>
+          <% unless extern %>
+            <td>
+              <%= form_for user, url: leden_admin_update_path(user), html: {class: 'form-inline'} do |f| %>
+                <%= f.number_field :batch, class: "form-control" %>
+                <%= f.submit "Opslaan", class: "btn btn-default" %>
+              <% end %>
+            </td>
+          <% end %>
           <td>
             <%= UsersHelper.attended_drinks_for(user) %>
           </td>
