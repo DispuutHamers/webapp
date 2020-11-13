@@ -87,6 +87,23 @@
           <hr>
         <% end %>
 
+        <% if @event.public? || @event.external_signups.any? %>
+          <h4>Plebs <span class="text-muted"><%= @event.external_signups.count %></span></h4>
+          <ul class="signup-list">
+            <%- @event.external_signups.each do |s| %>
+              <li>
+                <%= "#{s.first_name} #{s.last_name} (#{s.email})" %>
+                <% if s.note %>
+                  <span><%= s.note %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <br>
+          <%= link_to "Plebuitnodiglink", @event.invitation_link if @event.public?%>
+          <hr>
+        <% end %>
+
         <div class="btn-group btn-group-vertical">
           <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
             <i class="fas fa-pencil-alt"></i> Wijzig activiteit
