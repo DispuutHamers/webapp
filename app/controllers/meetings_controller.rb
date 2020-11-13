@@ -15,17 +15,20 @@ class MeetingsController < ApplicationController
   # GET /meetings/1
   # GET /meetings/1.json
   def show
+    @notulist = User.find_by(id: @meeting.user_id)
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
   # GET /meetings/new
   def new
     @meeting = Meeting.new
-    breadcrumb 'Nieuwe Vergadering', new_meeting_path
+    breadcrumb 'Nieuwe vergadering', new_meeting_path
   end
 
   # GET /meetings/1/edit
   def edit
+    breadcrumb @meeting.onderwerp, meeting_path(@meeting)
+    breadcrumb 'Wijzig vergadering', edit_meeting_path(@meeting)
   end
 
   def notuleer
@@ -37,7 +40,7 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     meeting = Meeting.new(meeting_params)
-    save_object(meeting, push=true)
+    save_object(meeting)
   end
 
   # PATCH/PUT /meetings/1

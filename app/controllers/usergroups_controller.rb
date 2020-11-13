@@ -11,7 +11,7 @@ class UsergroupsController < ApplicationController
 
   def create
     usergroup = Usergroup.new(usergroup_params)
-    save_object(usergroup, type="usergroup")
+    save_object(usergroup)
   end
 
   def destroy

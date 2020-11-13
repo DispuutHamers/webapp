@@ -1,47 +1,51 @@
 <% content_for :title do %>
   Log
 <% end %>
+
 <table id="trail" class="tablesorter table table-hover">
   <thead>
-    <tr>
-      <th>Wie</th>
-      <th>Wat</th>
-      <th>Waneer</th>
-      <th>Hoe</th>
-    </tr>
+  <tr>
+    <th>Wie</th>
+    <th>Wat</th>
+    <th>Waneer</th>
+    <th>Hoe</th>
+  </tr>
   </thead>
   <%= will_paginate @trail %>
   <tbody>
-    <% @trail.each do |t| %>
-      <tr>
-        <td><% if t.whodunnit %>
+  <% @trail.each do |t| %>
+    <tr>
+      <td>
+        <% if t.whodunnit %>
           <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
         <% else %>
-          System </td>
-      <% end %>
+          System
+        <% end %>
+      </td>
       <% if t.event == "create" %>
         <td>created <%= link_to t.item_type, t.item %></td>
       <% elsif t.event == "destroy" %>
         <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %>
-        <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
-          <%= f.submit "Revert" %>
-        <% end %>
+          <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+            <%= f.submit "Revert", class: 'btn btn-default' %>
+          <% end %>
         </td>
       <% else %>
         <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %>
-        <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
-          <%= f.submit "Revert" %>
-        <% end %>
+          <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+            <%= f.submit "Revert", class: 'btn btn-default' %>
+          <% end %>
         </td>
       <% end %>
       <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
       <td>
-        <% t.changeset.each do |c,v| %>
-          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %><br>
+        <% t.changeset.each do |c, v| %>
+          <% next if c == 'updated_at' || c == 'created_at' %>
+          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %>
         <% end %>
       </td>
-      </tr>
-    <% end %>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 <%= will_paginate @trail %>

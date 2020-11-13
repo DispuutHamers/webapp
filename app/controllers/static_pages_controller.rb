@@ -5,11 +5,11 @@ class StaticPagesController < ApplicationController
   def home
     return unless current_user&.active?
 
-    @beer = Beer.order('RAND()').first
+    @random_beer = Beer.unscoped.order('RAND()').first
     @random_quote = Quote.unscoped.order('RAND()').first
     @quote = current_user.quotes.build
     @blog = Blogitem.last(5).reverse
-    @quotes = Quote.with_user.all.order('created_at DESC').paginate(page: params[:page], :per_page => 10)
+    @quotes = Quote.with_user.all.order('created_at DESC').paginate(page: params[:page], :per_page => 12)
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
@@ -19,7 +19,8 @@ class StaticPagesController < ApplicationController
     breadcrumb 'Privacy', privacy_path
   end
 
-  def invited
+  def activate_account
+    breadcrumb 'Account activeren', activate_account_path
   end
 
   def console
@@ -29,7 +30,6 @@ class StaticPagesController < ApplicationController
   def trail
     @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
     breadcrumb 'Log', trail_path
-
   end
 
   def revert

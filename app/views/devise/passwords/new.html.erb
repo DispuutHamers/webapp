@@ -7,12 +7,12 @@
     <%= devise_error_messages! %>
 
     <div class="input-group">
-      <span class="input-group-addon"><i class="fas fa-envelope-o"></i></span>
-      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "email" %>
+      <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-mail adres" %>
     </div>
     &nbsp;
     <div class="actions">
-      <%= f.submit "Stuur reset instructies", class: "btn btn-large btn-danger" %>
+      <%= f.submit "Verstuur reset instructies", class: "btn btn-large btn-primary" %>
     </div>
     <%= render "devise/shared/links" %>
   <% end %>

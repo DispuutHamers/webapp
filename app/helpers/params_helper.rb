@@ -20,10 +20,6 @@ module ParamsHelper
     params.require(:blogitem).permit(:title, :body, :public, :actiontext_body)
   end
 
-  def push_params
-    params.require(:push).permit(:data, :user_id)
-  end
-
   def signup_params
     params.require(:signup).permit(:event_id, :status, :reason)
   end
@@ -37,7 +33,7 @@ module ParamsHelper
   end
 
   def event_params
-    params.require(:event).permit(:end_time, :deadline, :user_id, :beschrijving, :title, :date, :location, :description)
+    params.require(:event).permit(:end_time, :deadline, :beschrijving, :title, :date, :location, :description)
   end
 
   def beer_params

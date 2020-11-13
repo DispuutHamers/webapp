@@ -1,8 +1,7 @@
 # Takes over work from controllers and puts logic in a single place
 module UtilHelper
-  def save_object(obj, push = nil)
+  def save_object(obj)
     if obj.save
-      update_app(obj, "create") if push
       flash[:success] = "#{obj.class.name} succesvol aangemaakt."
       redirect_to obj
     else
@@ -54,14 +53,8 @@ module UtilHelper
   end
 
   def do_signup(user)
-    extracted_params = params[:signup]
-    event = Event.find(extracted_params[:event_id])
-    if (event.deadline > Time.now and !!verify_signup(event))
-      user.sign(event, extracted_params[:status], extracted_params[:reason])
-      return event
-    else
-      return nil
-    end
+    event = Event.find(params[:signup][:event_id])
+    user.signup(event, params[:signup][:status], params[:signup][:reason])
   end
 
   def self.remind_zondag
@@ -74,15 +67,5 @@ module UtilHelper
   def self.make_reservation
     event = Event.where(attendance: true).last
     UserMailer.mail_reservation(event)
-  end
-
-  private
-  def verify_signup(event)
-    extracted_params = params[:signup]
-    if (event.attendance and "0" == extracted_params[:status])
-      return extracted_params[:reason].length > 5
-    else
-      return true
-    end
   end
 end

@@ -10,17 +10,31 @@
     <% end %>
   </div>
   <div class="col-md-3">
-    <% @item.blogphotos.each do |p| %>
-      <%= image_tag p.image.url(:medium) %> <br>
-    <% end %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <% if @user %>
+          Blogpost door: <i><%= link_to @user.name, @user %></i>
+          <hr>
+        <% end %>
+
+        <% if @item.blogphotos.any? %>
+          <% @item.blogphotos.each do |p| %>
+            <%= image_tag p.image.url(:medium) %> <br>
+          <% end %>
+          <hr>
+        <% end %>
+
+        <div class="btn-group btn-group-vertical">
+          <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
+            <%= link_to edit_blogitem_path(@item), class: 'btn btn-default btn-sm' do %>
+              <i class="fas fa-pencil-alt"></i> Wijzig blogpost
+            <% end %>
+            <%= link_to @item, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
+              <i class="far fa-trash-alt"></i> Verwijder blogpost
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<% if @item.user_id != nil %>
-  <p>Door: <i><%= link_to User.find(@item.user_id).name, User.find(@item.user_id) %></i></p>
-<% end %>
-<div class="btn-group">
-  <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
-    <%= link_to 'Wijzig', edit_blogitem_path(@item), class: 'btn btn-primary' %>
-  <% end %>
-  <%= link_to 'Terug', blogitems_path, class: 'btn btn-default' %>
 </div>

@@ -16,6 +16,7 @@ class BlogitemsController < ApplicationController
     if !@item.public && !current_user&.active?
       redirect_to blogitems_path
     end
+    @user = User.find_by(id: @item&.user_id)
     breadcrumb @item.title, blogitem_path(@item)
   end
 
@@ -34,8 +35,7 @@ class BlogitemsController < ApplicationController
   end
 
   def new
-    @item = Blogitem.new
-    @item.save
+    @item = Blogitem.create
     @photo = Blogphoto.new
   end
 
@@ -43,14 +43,8 @@ class BlogitemsController < ApplicationController
     @photo = Blogphoto.new
   end
 
-  def create
-    # TODO: validation that title exists
-    item = Blogitem.new(blog_params)
-    item.user_id = current_user.id
-    save_object(item, push=true)
-  end
-
   def update
+    @item.user ||= current_user
     update_object(@item, blog_params)
   end
 

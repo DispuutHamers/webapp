@@ -7,7 +7,6 @@ class Event < ActiveRecord::Base
   has_rich_text :description
   belongs_to :user
 
-#  default_scope {includes(:signups)}
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Date.today]) }
   scope :past, -> { where(['date <= ?', Date.today]) }
@@ -34,11 +33,5 @@ class Event < ActiveRecord::Base
 
   def past?
     !self.date.future?
-  end
-
-  def as_json(options)
-    h = super({:only => [:id, :attendance, :title, :beschrijving, :description, :location, :deadline, :date, :user_id, :end_time, :created_at]}.merge(options))
-    h[:signups] = signups.as_json(options)
-    h
   end
 end

@@ -19,9 +19,9 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :reviews
   has_many :events
   has_many :beers
-  has_many :api_logs
   has_many :signups
   has_many :nicknames
+  has_many :blogitems
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
@@ -31,6 +31,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
+  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def anonymize
     devices.destroy_all
@@ -56,20 +57,13 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     nickname
   end
 
-  def sign(event, status, reason)
+  def signup(event, status, reason)
+    return if event.deadline < Time.now
+    return if event.attendance && status == "0" && reason.length < 6
+
     reason = UtilHelper.scramble_string(reason) if in_group?('Secretaris-generaal')
-    if event.deadline > Time.now
-      if event.attendance && !status
-        return false if reason.length < 1
-      end
-      id = event.id
-      stemmen = signups.where(event_id: id)
-      if stemmen.any?
-        stemmen.last.update_attributes(status: status, reason: reason)
-      else
-        signups.create!(event_id: id, status: status, reason: reason)
-      end
-    end
+    signups.find_or_create_by(event_id: event.id).update_attributes(status: status, reason: reason)
+    event
   end
 
   def generate_api_key(name)
@@ -77,11 +71,10 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def join_group(group)
-    id = group.id
-    if !groups.only_deleted.where(group_id: id).empty?
-      groups.with_deleted.where(group_id: id).first.restore
+    if !groups.only_deleted.where(group_id: group.id).empty?
+      groups.with_deleted.where(group_id: group.id).first.restore
     else
-      groups.create!(group_id: id)
+      groups.create!(group_id: group.id)
     end
   end
 
@@ -126,18 +119,5 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return 'olid' if olid?
 
     'none'
-  end
-
-  def as_json(options)
-    json = super({ only: %i[id name email created_at batch] }.merge(options))
-    json[:reviews] = reviews.count
-    json[:quotes] = quotes.count
-    json[:sunday_ratio] = sunday_ratio
-    json[:nicknames] = nicknames
-    json[:usergroups] = usergroups
-    json[:lid] = lidstring
-    json[:admin] = admin?
-
-    json
   end
 end
