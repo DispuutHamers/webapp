@@ -2,36 +2,8 @@
   Groepen
 <% end %>
 
-<%# @users.each do |group| %>
-<!--  <div class='row'>-->
-<%# if group[0] %>
-<!--      <div class="panel panel-info">-->
-<!--        <div class="panel-heading">-->
-<!--          <h1 class="panel-title text-center">-->
-<%#= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>
-<!--          </h1>-->
-<!--        </div>-->
-<!--        <div class="panel-body center">-->
-<%# group[1].each do |user| %>
-<!--            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">-->
-<!--              <div class="thumbnail thumbnail-member">-->
-<%#= gravatar_for user, size: 150 %>
-<!--                <div class="caption">-->
-<!--                  <h4>-->
-<%#= user.name %> <%#= '(Aspirant)' if user.alid? %>
-<!--                  </h4>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<%# end %>
-<!--        </div>-->
-<!--      </div>-->
-<%# end %>
-<!--  </div>-->
-<%# end %>
-
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-5">
 
     <% @usergroups.each do |group| %>
       <div class="row">
@@ -39,33 +11,32 @@
           <div class="panel-heading">
             <h1 class="panel-title">
               <%= group.name %>
-              <span class="text-muted"><%= group.users.count %></span>
-              <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default btn-sm' do %>
-                <i class="far fa-trash-alt"></i> Verwijder groep
+              <span class="text-muted text-small"><%= group.users.count %></span>
+              <% if group.users.any? %>
+                <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"
+                        title="De groep moet leeg zijn voor je deze kunt verwijderen.">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              <% else %>
+                <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
+                  <i class="far fa-trash-alt"></i> Verwijder groep
+                <% end %>
               <% end %>
             </h1>
-            <div class="panel-body">
-              <ul>
-                <% group.users.each do |user| %>
-                  <li><%= user.name %></li>
-                <% end %>
-              </ul>
-            </div>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% group.users.each do |user| %>
+                <li><%= user.name %></li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
     <% end %>
-
-
-    <ul>
-      <% @usergroups.each do |group| %>
-        <li>
-          <%= group.name %>
-
-        </li>
-      <% end %>
-    </ul>
   </div>
+
+  <div class="col-md-3"></div>
 
   <div class="col-md-4">
     <h4>Nieuwe groep aanmaken</h4>
@@ -79,3 +50,8 @@
   </div>
 </div>
 
+<script type="application/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

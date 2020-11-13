@@ -19,7 +19,7 @@ class UsergroupsController < ApplicationController
     if usergroup.empty?
       usergroup.destroy!
     else
-      flash[:error] = "Usergroup is niet leeg"
+      flash[:error] = "De groep moet leeg zijn voor je deze kunt verwijderen!"
     end
     redirect_to root_path
   end
