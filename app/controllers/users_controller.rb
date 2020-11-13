@@ -1,7 +1,7 @@
 # user controller
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :get_user, only: [:show, :usergroups, :edit, :update, :destroy]
+  before_action :user, only: [:show, :usergroups, :edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:admin, :destroy, :usergroups]
   breadcrumb 'Leden', :users_path
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
 
   private
 
-  def get_user
+  def user
     @user ||= User.find(params[:id])
   end
 
