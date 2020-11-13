@@ -6,7 +6,7 @@ class ExternalSignupsController < ApplicationController
     redirect_to event_path(@event), notice: "Je bent al ingelogd" if current_user
     @external_signup = ExternalSignup.new
 
-    breadcrumb @event.title, event_path(@event)
+    breadcrumb @event.title, @event.invitation_link
     breadcrumb "Schrijf je in", @event.invitation_link
   end
 
