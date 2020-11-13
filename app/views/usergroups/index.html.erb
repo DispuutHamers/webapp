@@ -17,6 +17,8 @@
                         title="De groep moet leeg zijn voor je deze kunt verwijderen.">
                   <i class="far fa-trash-alt"></i>
                 </button>
+              <% elsif [4, 5, 12].include?(group.id) %>
+                <button class="btn btn-default btn-sm disabled">Deze groep kan niet verwijderd worden</button>
               <% else %>
                 <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
                   <i class="far fa-trash-alt"></i> Verwijder groep
