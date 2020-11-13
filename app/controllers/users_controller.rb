@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @aspiranten = User.aspiranten
     @oudelullen = User.oud
     @extern = User.extern
-    breadcrumb 'Admin', leden_admin_path
+    breadcrumb 'Ledenadministratie', leden_admin_path
   end
 
   def admin_patch
