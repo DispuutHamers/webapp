@@ -5,26 +5,51 @@
   <aside class="col-md-4">
     <section>
       <%= gravatar_for @user, size: 120 %>
-      <a role="button" class="btn btn-default" href="http://gravatar.com/emails" target="_blank">Wijzig</a>
+      <a role="button" class="btn btn-default" href="http://gravatar.com/emails" target="_blank">Wijzig profielfoto</a>
     </section>
-    <% if current_user.admin? %>
-      <section>
-        <%= link_to 'Groepen', usergroups_user_path(@user) %>
-      </section>
-    <% end %>
+
     <section>
-      Api keys:<br/>
-      <% @user.api_keys.each do |ak| %>
-        <%= ak.name %>
-        : <%= link_to ak.key, ak %> <%= link_to ak, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-xs' do %>
-          <i class="far fa-trash-alt"></i>
+      <h4>Groepen</h4>
+      <ul>
+        <% @user.usergroups.each do |group| %>
+          <li><%= group.name %></li>
+        <% end %>
+      </ul>
+      <% if current_user.admin? %>
+        <%= link_to usergroups_user_path(@user), class: 'btn btn-default btn-sm' do %>
+          <i class="fa fa-pencil-alt fa-fw"></i> Wijzig groepen
         <% end %>
       <% end %>
-      <%= form_for(ApiKey.new) do |f| %>
-        <div class="form-group">
-          <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
+    </section>
+
+    <section>
+      <% if @user == current_user %>
+        <% if @user.api_keys.any? %>
+          <h4>Api keys</h4>
+          <table id="api-key-table" class="table table-hover">
+            <thead>
+            <tr>
+              <th>Naam</th>
+              <th>Key</th>
+            </tr>
+            </thead>
+            <% @user.api_keys.each do |key| %>
+              <tr>
+                <td><%= key.name %></td>
+                <td>
+                  <%= link_to key.key, key %>
+                  <%= link_to key, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-default btn-sm' do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+        <%= form_for ApiKey.new, html: {class: 'form-inline'} do |f| %>
+          <%= f.text_field :name, placeholder: 'Sleutelnaam', class: 'form-control' %>
           <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
-        </div>
+        <% end %>
       <% end %>
     </section>
   </aside>
