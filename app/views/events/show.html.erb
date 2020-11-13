@@ -104,9 +104,10 @@
 
         <div class="btn-group btn-group-vertical">
           <% if @event.public? %>
-            <a href="<%= @event.invitation_link %>" class="btn btn-default" target="_blank">
+            <%= link_to @event.invitation_link, class: "btn btn-default", target: "_blank" do %>
               <i class="fas fa-user-friends"></i> Plebuitnodiglink
-            </a>
+            <% end %>
+ 
           <% end %>
           <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
             <i class="fas fa-pencil-alt"></i> Wijzig activiteit
