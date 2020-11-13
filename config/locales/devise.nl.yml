@@ -3,7 +3,7 @@ nl:
     invitations:
       send_instructions: "Een uitnodigingsmail is aan %{email} is verstuurd."
       invitation_token_invalid: "De uitnodigingscode is ongeldig!"
-      updated: "Uw account is gemaakt en U bent nu ingelogd."
+      updated: "Het account is gemaakt en u bent nu ingelogd. Let op: Het account dient nog geactiveerd te worden voordat de rest van de site beschikbaar is."
       updated_not_active: "Uw wachtwoord is ingesteld."
       no_invitations_remaining: "Geen uitnodigingen over."
       invitation_removed: "Uw uitnodiging is verwijderd."
