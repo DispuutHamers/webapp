@@ -3,7 +3,7 @@ class ExternalSignupsController < ApplicationController
   before_action :event
 
   def new
-    # redirect_to event_path(@event), notice: "Je bent al ingelogd" if current_user
+    redirect_to event_path(@event), notice: "Je bent al ingelogd" if current_user
     @external_signup = ExternalSignup.new
 
     breadcrumb @event.title, event_path(@event)
