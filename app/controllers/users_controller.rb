@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @leden = User.leden
     @aspiranten = User.aspiranten
     @oudelullen = User.oud
+    @extern = User.extern
     breadcrumb 'Admin', leden_admin_path
   end
 
