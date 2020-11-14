@@ -24,6 +24,10 @@ module ParamsHelper
     params.require(:signup).permit(:event_id, :status, :reason)
   end
 
+  def external_signup_params
+    params.require(:external_signup).permit(:first_name, :last_name, :email, :note, :invitation_code)
+  end
+
   def review_params
     params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
   end
@@ -33,7 +37,7 @@ module ParamsHelper
   end
 
   def event_params
-    params.require(:event).permit(:end_time, :deadline, :beschrijving, :title, :date, :location, :description)
+    params.require(:event).permit(:end_time, :deadline, :beschrijving, :public, :title, :date, :location, :description)
   end
 
   def beer_params

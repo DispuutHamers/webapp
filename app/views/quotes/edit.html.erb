@@ -2,7 +2,7 @@
     Quote aanpassen
 <% end %>
 
-<%= render layout: 'layouts/forms/form_small' do %>
+<%= render layout: 'layouts/small_width' do %>
   <%= form_for(@quote) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :text %>

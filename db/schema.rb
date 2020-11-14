@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_11_162154) do
+ActiveRecord::Schema.define(version: 2020_11_13_132831) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(version: 2020_11_11_162154) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
+  end
+
+  create_table "attendees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["meeting_id"], name: "index_attendees_on_meeting_id"
+    t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
   create_table "beers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -116,7 +123,18 @@ ActiveRecord::Schema.define(version: 2020_11_11_162154) do
     t.string "location"
     t.datetime "deleted_at"
     t.boolean "attendance", default: false
+    t.string "invitation_code"
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
+  end
+
+  create_table "external_signups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.text "note"
+    t.integer "event_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "groups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -337,6 +355,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_162154) do
     t.integer "invitations_count", default: 0
     t.string "phone_number"
     t.date "birthday"
+    t.bigint "meeting_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -344,6 +363,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_162154) do
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
+    t.index ["meeting_id"], name: "index_users_on_meeting_id"
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

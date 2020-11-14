@@ -51,6 +51,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     event = Event.new(event_params)
+    event.invitation_code = SecureRandom.uuid if event_params[:public] == "1"
     event.user_id = current_user.id
     save_object(event)
   end
@@ -70,6 +71,8 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @event.invitation_code = SecureRandom.uuid if event_params[:public] == "1" && !@event.invitation_code
+    @event.update(invitation_code: nil) if event_params[:public] == "0"
     update_object(@event, event_params)
   end
 

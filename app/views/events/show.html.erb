@@ -77,6 +77,21 @@
 
         <hr>
 
+        <% if @event.public? || @event.external_signups.any? %>
+          <h4>Plebs <span class="text-muted"><%= @event.external_signups.count %></span></h4>
+          <ul class="signup-list">
+            <%- @event.external_signups.each do |s| %>
+              <li>
+                <%= "#{s.first_name} #{s.last_name} (#{s.email})" %>
+                <% if s.note %>
+                  <span><%= s.note %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <hr>
+        <% end %>
+
         <% if @unknown.any? %>
           <h4>Onbekend <span class="text-muted"><%= @unknown.count %></span></h4>
           <div>
@@ -88,8 +103,14 @@
         <% end %>
 
         <div class="btn-group btn-group-vertical">
+          <% if @event.public? %>
+            <%= link_to @event.invitation_link, class: "btn btn-default", target: "_blank" do %>
+              <i class="fas fa-user-friends"></i> Plebuitnodiglink
+            <% end %>
+ 
+          <% end %>
           <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
-            <i class="fas fa-pencil-alt"></i> Wijzig event
+            <i class="fas fa-pencil-alt"></i> Wijzig activiteit
           <% end %>
           <% if @event.deadline > DateTime.now %>
             <%= link_to reminder_path(@event), class: 'btn btn-default' do %>
@@ -98,7 +119,7 @@
           <% end %>
           <% if current_user.admin? %>
             <%= link_to @event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default' do %>
-              <i class="far fa-trash-alt"></i> Verwijder event
+              <i class="far fa-trash-alt"></i> Verwijder activiteit
             <% end %>
           <% end %>
         </div>

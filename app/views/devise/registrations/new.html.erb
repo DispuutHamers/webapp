@@ -2,7 +2,7 @@
   Registreren
 <% end %>
 
-<%= render layout: 'layouts/forms/form_small' do %>
+<%= render layout: 'layouts/small_width' do %>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <div class="input-group">

@@ -3,7 +3,7 @@
 <% end %>
 
 <h2>Leden</h2>
-<%= render "users/admin_table", users: @leden %>
+<%= render "users/admin_table", users: @leden, extern: false %>
 
 <h2>Aspiranten
 <%= link_to new_user_invitation_path, class: 'btn btn-default' do %>
@@ -11,7 +11,10 @@
 <% end %>
 </h2>
 <% unless @aspiranten.blank? %>
-  <%= render "users/admin_table", users: @aspiranten %>
+  <%= render "users/admin_table", users: @aspiranten, extern: false %>
 <% end %>
 <h2>Oud-leden</h2>
-<%= render "users/admin_table", users: @oudelullen %>
+<%= render "users/admin_table", users: @oudelullen, extern: false %>
+
+<h2>Externe accounts</h2>
+<%= render "users/admin_table", users: @extern, extern: true %>

@@ -2,7 +2,7 @@
   Account activeren
 <% end %>
 
-<%= render layout: 'layouts/forms/form_small' do %>
+<%= render layout: 'layouts/small_width' do %>
   <%= form_for "", :url => "users/invitation/accept", :html => {:method => :get} do |f| %>
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-user"></i></span>

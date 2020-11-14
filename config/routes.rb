@@ -40,14 +40,20 @@ Hamers::Application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events do
+    member do
+      get '/public_signup' => "external_signups#new", as: "new_external_signup"
+      post '/public_signup' => "external_signups#create", as: "create_external_signup"
+      get '/see_you_soon' => "external_signups#see_you_soon", as: "see_you_soon"
+    end
+  end
   get '/ical/:key' => "events#index"
   get '/ical/:key/cal' => "events#index"
 
   resources :signups
   resources :nicknames
 
-  root  'static_pages#home'
+  root 'static_pages#home'
 
   devise_for :users
   devise_scope :user do
