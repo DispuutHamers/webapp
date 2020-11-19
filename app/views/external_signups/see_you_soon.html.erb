@@ -1,0 +1,27 @@
+<% content_for :title do %>
+  Bedankt voor je inschrijving!
+<% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default" style="margin-top: 32px;">
+      <div class="panel-body">
+        <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+        <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
+        <hr>
+        <i class="fa fa-map-marker"></i> Locatie: <%= @event.location %>
+        <hr>
+        <% if @event.description.blank? %>
+          <%= markdown(@event.beschrijving).html_safe %>
+        <% else %>
+          <%= @event.description %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-7 col-md-offset-1">
+    <div class="alert alert-success" style="margin-top: 32px;">
+      <strong>Gelukt!</strong> Je bent succesvol ingeschreven. Tot snel!
+    </div>
+  </div>
+</div>
