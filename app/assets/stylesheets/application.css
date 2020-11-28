@@ -35,6 +35,11 @@
   overflow: auto;
 }
 
+button:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
 .input-group-btn .btn-group {
   display: flex !important;
 }

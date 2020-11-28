@@ -42,6 +42,10 @@ class Event < ActiveRecord::Base
     invitation_code.present?
   end
 
+  def open?
+    deadline != nil and deadline > Time.now
+  end
+
   def invitation_link
     return unless invitation_code
 

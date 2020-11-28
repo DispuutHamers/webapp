@@ -27,6 +27,11 @@
           <hr>
         <% end %>
 
+        <% if @event.deadline %>
+          <strong>Inschrijfdeadline:</strong> <%= @event.deadline.strftime('%d-%m-%Y %H:%M') %>
+          <hr>
+          <% end %>
+
         <% if @event.user %>
           <strong>Activiteit door:</strong> <%= @event.user.name %>
           <hr>
@@ -44,13 +49,15 @@
             </li>
           <% end %>
         </ul>
-        <% if @event.deadline != nil and @event.deadline > Time.now %>
+        <% if @event.open? %>
           <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <%= f.text_field :reason, placeholder: "Opmerkingen?", class: 'form-control' %>
             <%= f.submit 'Aanwezig', class: 'btn btn-default' %>
           <% end %>
+        <% else %>
+          <button type="button" class="btn btn-sm btn-default btn-block" disabled>De inschrijving is gesloten.</button>
         <% end %>
 
         <hr>
@@ -66,19 +73,21 @@
             </li>
           <% end %>
         </ul>
-        <% if @event.deadline != nil and @event.deadline > Time.now %>
+        <% if @event.open? %>
           <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: 'form-inline'} do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <%= f.text_field :reason, placeholder: "Waarom niet?", class: 'form-control' %>
             <%= f.submit 'Afwezig', class: 'btn btn-default' %>
           <% end %>
+        <% else %>
+          <button type="button" class="btn btn-sm btn-default btn-block" disabled>De inschrijving is gesloten.</button>
         <% end %>
 
         <hr>
 
         <% if @event.public? || @event.external_signups.any? %>
-          <h4>Plebs <span class="text-muted"><%= @event.external_signups.count %></span></h4>
+          <h4>Plebs <span class="text-muted small"><%= @event.external_signups.count %></span></h4>
           <ul class="signup-list">
             <%- @event.external_signups.each do |s| %>
               <li>
@@ -93,7 +102,7 @@
         <% end %>
 
         <% if @unknown.any? %>
-          <h4>Onbekend <span class="text-muted"><%= @unknown.count %></span></h4>
+          <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
           <div>
             <%- @unknown.each do |s| %>
               <%= link_to gravatar_for s, class: "small-profile-picture" %>
@@ -105,14 +114,14 @@
         <div class="btn-group btn-group-vertical">
           <% if @event.public? %>
             <%= link_to @event.invitation_link, class: "btn btn-default", target: "_blank" do %>
-              <i class="fas fa-user-friends"></i> Plebuitnodiglink
+              <i class="fas fa-link"></i> Plebuitnodiglink
             <% end %>
- 
+
           <% end %>
           <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
             <i class="fas fa-pencil-alt"></i> Wijzig activiteit
           <% end %>
-          <% if @event.deadline > DateTime.now %>
+          <% if @event.open? %>
             <%= link_to reminder_path(@event), class: 'btn btn-default' do %>
               <i class="fa fa-bell"></i> Herinner Hamers
             <% end %>

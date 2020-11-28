@@ -22,8 +22,14 @@
       </div>
     </div>
   </div>
-  <div class="col-md-7 col-md-offset-1">
-    <h2 class="text-center" style="margin-bottom: 24px;">Schrijf je in!</h2>
-    <%= render "form" %>
+  <div class="col-md-6 col-md-offset-1">
+    <% if @event.open? %>
+      <h2 class="text-center" style="margin-bottom: 24px;">Schrijf je in!</h2>
+      <%= render "form" %>
+    <% else %>
+      <div class="alert alert-info" style="margin-top: 32px;">
+        Het is helaas niet meer mogelijk je in te schrijven voor deze activiteit.
+      </div>
+    <% end %>
   </div>
 </div>
