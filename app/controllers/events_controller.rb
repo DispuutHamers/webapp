@@ -32,7 +32,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @unknown = User.leden.where.not(id: Signup.where(event_id: @event.id).pluck(:user_id))
+    @unknown = User.leden.where.not(id: Signup.where(event_id: @event.id).select(:user_id))
     breadcrumb @event.title, event_path(@event)
   end
 
