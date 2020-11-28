@@ -2,7 +2,7 @@ class Meeting < ActiveRecord::Base
   has_paper_trail
   acts_as_paranoid
 
-  has_many :drafts, as: :entity
+  has_many :drafts, as: :entity, dependent: :destroy
 
   has_rich_text :actiontext_notes
 
