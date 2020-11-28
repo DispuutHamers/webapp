@@ -50,7 +50,7 @@ class MeetingsController < ApplicationController
   # PATCH/PUT /meetings/1
   # PATCH/PUT /meetings/1.json
   def update
-    @meeting.attributes = meeting_params
+    @meeting.actiontext_notes = meeting_params[:actiontext_notes]
     @meeting.user_id = current_user.id if meeting_params[:actiontext_notes]
 
     respond_to do |format|
