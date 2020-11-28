@@ -47,8 +47,9 @@ class ExternalSignupsController < ApplicationController
     tz = TZInfo::Timezone.get tzid
     timezone = tz.ical_timezone event.date
     calendar.add_timezone timezone
-    calendar.add_event(event)
+    calendar.add_event(event.to_ics)
 
     calendar.publish
+    calendar
   end
 end
