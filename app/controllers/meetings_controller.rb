@@ -58,7 +58,7 @@ class MeetingsController < ApplicationController
         format.html { redirect_to @meeting, notice: 'Vergadering is geupdate.' }
       elsif params[:commit] == "Annuleren"
         @meeting.drafts.where(user: current_user).take.destroy
-        format.html { redirect_to @meeting, notice: "Draft is verwijdert"}
+        format.html { redirect_to @meeting, notice: "Concept is verwijderd."}
       elsif @meeting.save_draft(current_user)
         format.js
       else
