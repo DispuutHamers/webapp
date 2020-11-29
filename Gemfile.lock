@@ -236,6 +236,8 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
+    rails-ujs (0.1.0)
+      railties (>= 3.1)
     railties (6.0.3.4)
       actionpack (= 6.0.3.4)
       activesupport (= 6.0.3.4)
@@ -367,6 +369,7 @@ DEPENDENCIES
   rails (~> 6)
   rails-controller-testing
   rails-i18n
+  rails-ujs
   rb-readline
   redcarpet
   rqrcode_png
