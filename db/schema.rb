@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_11_28_155815) do
 
-  create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
     t.string "record_type", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -51,13 +51,6 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
-  end
-
-  create_table "attendees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.bigint "meeting_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["meeting_id"], name: "index_attendees_on_meeting_id"
-    t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
   create_table "beers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -103,7 +96,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
   end
 
-  create_table "drafts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "drafts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "entity_type"
     t.bigint "entity_id"
     t.integer "user_id"
@@ -136,7 +129,7 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
   end
 
-  create_table "external_signups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "external_signups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
@@ -186,7 +179,6 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.string "cat"
     t.text "body"
     t.string "title"
-    t.string "image"
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -364,7 +356,6 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.integer "invitations_count", default: 0
     t.string "phone_number"
     t.date "birthday"
-    t.bigint "meeting_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -372,13 +363,12 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
-    t.index ["meeting_id"], name: "index_users_on_meeting_id"
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "item_type", limit: 191, null: false
     t.integer "item_id", null: false
     t.string "event", null: false
@@ -386,8 +376,8 @@ ActiveRecord::Schema.define(version: 2020_11_28_155815) do
     t.text "old_object", size: :long
     t.datetime "created_at"
     t.text "old_object_changes", size: :long
-    t.text "object", size: :long, collation: "utf8mb4_bin"
-    t.text "object_changes", size: :long, collation: "utf8mb4_bin"
+    t.json "object"
+    t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
