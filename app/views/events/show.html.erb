@@ -103,7 +103,7 @@
 
         <% if @unknown.any? %>
           <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
-          <div>
+          <div class="clearfix">
             <%- @unknown.each do |s| %>
               <%= link_to gravatar_for(s), s, class: "small-profile-picture" %>
             <% end %>
