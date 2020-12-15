@@ -12,7 +12,7 @@
       <p><i class="fa fa-map-marker"></i> <%= @event.location %></p>
     <% end %>
     <p>
-      <% if @event.description.blank? %>
+      <% if @event.beschrijving.present? %>
         <%= markdown(@event.beschrijving).html_safe %>
       <% else %>
         <%= @event.description %>
