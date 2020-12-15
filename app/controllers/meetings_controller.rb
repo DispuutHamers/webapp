@@ -32,6 +32,10 @@ class MeetingsController < ApplicationController
   end
 
   def notuleer
+    if (draft = @meeting.drafts.where(user: current_user).take)
+      @meeting.actiontext_notes = draft.rich_data
+    end
+
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
     breadcrumb 'Notuleren', "/notuleer/#{@meeting.id}"
   end
@@ -46,8 +50,22 @@ class MeetingsController < ApplicationController
   # PATCH/PUT /meetings/1
   # PATCH/PUT /meetings/1.json
   def update
-    @meeting.user_id = current_user.id if meeting_params[:notes]
-    update_object(@meeting, meeting_params)
+    @meeting.actiontext_notes = meeting_params[:actiontext_notes]
+    @meeting.user_id = current_user.id if meeting_params[:actiontext_notes]
+
+    respond_to do |format|
+      if params[:commit] == "Opslaan" && @meeting.save
+        format.html { redirect_to @meeting, notice: 'Vergadering is geupdate.' }
+      elsif params[:commit] == "Annuleren"
+        @meeting.drafts.where(user: current_user).take.destroy
+        format.html { redirect_to @meeting, notice: "Concept is verwijderd."}
+      elsif @meeting.save_draft(current_user)
+        format.js
+      else
+        format.html { render :edit }
+        format.js { head :unprocessable_entity }
+      end
+    end
   end
 
   # DELETE /meetings/1

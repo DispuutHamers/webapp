@@ -10,8 +10,10 @@ class Signup < ActiveRecord::Base
   scope :with_user, -> { includes(:user) }
 
   private
+
   def event_deadline_has_passed
-    errors.add(:event_id, "Event deadline has already passed") if
-      DateTime.now > Event.find(self.event_id).deadline
+    return unless DateTime.now > Event.find(self.event_id).deadline
+
+    errors.add(:event_id, "Event deadline has already passed")
   end
 end

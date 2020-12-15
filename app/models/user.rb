@@ -21,17 +21,16 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :beers
   has_many :signups
   has_many :nicknames
+  has_many :drafts
   has_many :blogitems
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
 
-  default_scope { includes(:groups, :usergroups) }
-
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
-  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
+  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).select(:user_id).uniq) }
 
   def anonymize
     devices.destroy_all

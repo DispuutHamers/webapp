@@ -2,7 +2,7 @@
   Notuleren
 <% end %>
 
-<%= form_for @meeting do |f| %>
+<%= form_with model: @meeting, data: { remote: true, controller: "autosave", target: "autosave.form", action: "ajax:success->autosave#success ajax:error->autosave#error" } do |f| %>
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
@@ -15,12 +15,13 @@
     </div>
   <% end %>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
   <div class="form-group">
     <%= f.label :notes %><br>
-    <%= f.rich_text_area :actiontext_notes, class: 'form-control' %>
+    <%= f.rich_text_area :actiontext_notes, class: 'form-control', data: { action: 'keyup->autosave#save' } %>
   </div>
   <div class="actions">
-    <%= f.submit :Verstuur, class: 'btn btn-primary' %>
+    <%= f.submit "Opslaan", class: 'btn btn-primary' %>
+    <%= f.submit "Annuleren", class: 'btn btn-danger' %>
+    <span class="text-muted" data-target="autosave.status"></span>
   </div>
 <% end %>

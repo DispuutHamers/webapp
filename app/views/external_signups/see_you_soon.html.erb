@@ -16,6 +16,10 @@
         <% else %>
           <%= @event.description %>
         <% end %>
+        <hr>
+        <%= link_to "#{@event.title}.ics?invitation_code=#{@event.invitation_code}", class: "btn btn-default" do %>
+          <i class="fas fa-calendar-plus"></i> Toevoegen aan je kalender
+        <% end %>
       </div>
     </div>
   </div>
