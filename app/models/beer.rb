@@ -6,6 +6,7 @@ class Beer < ActiveRecord::Base
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
 
+  scope :random, -> { order('RAND()') }
   def add_review!(user, rating, description, proefdatum)
     self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)
   end
