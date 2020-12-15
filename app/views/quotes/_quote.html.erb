@@ -1,5 +1,5 @@
 <li id="quote_<%= quote.id %>">
-  <%= link_to gravatar_for quote.user %>
+  <%= link_to gravatar_for(quote.user), quote.user %>
   <span class="user">
     <%= link_to quote.user.name, quote.user %>
   </span>
