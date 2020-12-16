@@ -29,7 +29,7 @@ module ParamsHelper
   end
 
   def review_params
-    params.require(:review).permit(:user_id, :beer_id, :description, :rating, :proefdatum)
+    params.require(:review).permit(:user_id, :beer_id, :description, :actiontext_description, :rating, :proefdatum)
   end
 
   def micropost_params

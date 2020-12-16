@@ -16,11 +16,17 @@
           zei over dit bier:
         </h4>
 
-        <p><i><%= simple_format(r.description) %></i></p>
+        <p>
+        <% if r.actiontext_description.present? %>
+          <%= r.actiontext_description %>
+        <% else %>
+          <i><%= simple_format(r.description) %></i>
+        <% end %>
+        </p>
 
         <p>
           Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
-          <i><%= r.proefdatum.strftime('%d-%m-%Y') %></i>
+          <i><%= r.proefdatum&.strftime('%d-%m-%Y') %></i>
         </p>
 
         <div class="btn-group pull-right">
