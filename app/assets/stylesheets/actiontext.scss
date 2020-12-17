@@ -40,4 +40,8 @@ trix-editor {
   &.form-control {
     height: auto;
   }
+
+  &.higher {
+    min-height: 340px;
+  }
 }

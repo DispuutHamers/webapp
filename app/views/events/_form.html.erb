@@ -9,19 +9,53 @@
           </ul>
         </div>
     <% end %>
-    <div class="form-group">
-      <%= f.label :title %>
-      <%= f.text_field :title, class: 'form-control' %>
-      <%= f.label :locatie %>
-      <%= f.text_field :location, class: 'form-control' %>
-      <%= f.label :date %><br>
-      <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
-      <%= f.label :end_time %><br>
-      <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
-      <%= f.label :deadline, 'Inschrijf deadline' %><br>
-      <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select' %><br>
-      <%= f.rich_text_area :description, class: 'form-control', placeholder: 'Wat gaan we doen?' %>
-      <%= f.check_box :public, {checked: @event.invitation_code?} %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
+    <div class="row">
+      <div class="col-md-7">
+        <%= f.rich_text_area :description, class: 'form-control higher form-input', placeholder: 'Wat gaan we doen?' %>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.label :title, "Titel" %>
+          </div>
+          <div class="col-md-9">
+            <%= f.text_field :title, class: 'form-control form-input' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.label :locatie, "Locatie" %>
+          </div>
+          <div class="col-md-9">
+            <%= f.text_field :location, class: 'form-control form-input' %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.label :date, "Datum" %>
+          </div>
+          <div class="col-md-10">
+            <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <%= f.label :end_time, "Eindtijd" %>
+          </div>
+          <div class="col-md-10">
+            <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+        <%= f.label :deadline, 'Inschrijf deadline' %>
+        </div>
+          <div class="col-md-10">
+        <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
+                  </div>
+        </div>
+        <%= f.check_box :public, {checked: @event.invitation_code?} %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
+        <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
+      </div>
     </div>
-    <%= f.submit :Opslaan, class: 'btn btn-primary' %>
 <% end %>
