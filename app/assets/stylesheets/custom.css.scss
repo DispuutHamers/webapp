@@ -141,6 +141,10 @@ aside {
   @include box_sizing;
 }
 
+.form-input {
+  margin-bottom: 5px;
+}
+
 input {
   height: auto !important;
 }
