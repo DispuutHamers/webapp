@@ -25,27 +25,6 @@ module UsersHelper
     user.update_attributes(sunday_ratio: ratio)
   end
 
-  def self.attended_drinks_for(user)
-    return "User is geen lid" unless (usergroep = user.groups.where(group_id: 4).first)
-    date = usergroep.created_at
-    drinks = Event.where(attendance: true).where("created_at > ?", date)
-    wel = 0.0
-    niet = 0.0
-    drinks.each do |drink|
-      if drink.signups.where(user_id: user.id).last&.status
-        wel = wel + 1
-      else
-        niet = niet + 1
-      end
-    end
-
-    if drinks.count > 2
-      return ((wel / (niet + wel)) * 100).round(2)
-    else
-      return "Nog onbekend"
-    end
-  end
-
   def missed_drinks_for(user)
     date = user.groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)

@@ -30,7 +30,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
-  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).select(:user_id).uniq) }
+  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def anonymize
     devices.destroy_all
