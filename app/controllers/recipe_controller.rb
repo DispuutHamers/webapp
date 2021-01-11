@@ -9,11 +9,13 @@ class RecipeController < ApplicationController
 
   def show
     @brews = @recipe.brews
+
     breadcrumb @recipe.name, recipe_path(@recipe)
   end
 
   def edit
     breadcrumb @recipe.name, recipe_path(@recipe)
+    breadcrumb 'Wijzig'
   end
 
   def update
@@ -22,6 +24,8 @@ class RecipeController < ApplicationController
 
   def new
     @recipe = Recipe.new
+
+    breadcrumb 'Nieuw recept'
   end
 
   def create
