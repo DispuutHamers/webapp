@@ -7,23 +7,19 @@
       <th>Naam</th>
       <th>Soort</th>
       <th>Aantal x gebrouwen</th>
-      <th>Gemaakt op</th>
-      <th>Laatst verbetert op</th>
-      <th>Actions</th>
+      <th>Aangemaakt op</th>
+      <th>Bijgewerkt op</th>
     </tr>
   </thead>
   <%= will_paginate @recipes %>
   <tbody>
     <% @recipes.each do |recipe| %>
       <tr data-link="<%= recipe_path(recipe) %>">
-        <td style="width: 50%;"><%= recipe.name %></td>
+        <td><%= recipe.name %></td>
         <td><%= recipe.beer %></td>
         <td><%= recipe.brews.count %></td>
         <td><%= recipe.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= recipe.updated_at.strftime("%d-%m-%Y") %></td>
-        <td>
-          <%= link_to 'Destroy', recipe, method: :delete, data: { confirm: 'Zeker weten?' } %>
-        </td>
       </tr>
     <% end %>
   </tbody>
