@@ -1,14 +1,14 @@
 class RecipeController < ApplicationController
   before_action :lid?
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Recepten', :recepe_path
+  breadcrumb 'Recepten', :recipe_path
 
   def index
     @recipes = Recipe.all.paginate(page: params[:page])
   end
 
   def show
-    breadcrumb @recepe, recepe_path(@recepe)
+    breadcrumb @recepe, recipe_path(@recepe)
   end
 
   def edit
