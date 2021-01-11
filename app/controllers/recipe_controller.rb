@@ -8,6 +8,7 @@ class RecipeController < ApplicationController
   end
 
   def show
+    @brews = @recipe.brews
     breadcrumb @recipe, recipe_path(@recipe)
   end
 
