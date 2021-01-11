@@ -15,7 +15,7 @@ class RecipeController < ApplicationController
 
   def edit
     breadcrumb @recipe.name, recipe_path(@recipe)
-    breadcrumb 'Wijzig'
+    breadcrumb 'Wijzig', edit_recipe_path(@redipe)
   end
 
   def update
@@ -25,7 +25,7 @@ class RecipeController < ApplicationController
   def new
     @recipe = Recipe.new
 
-    breadcrumb 'Nieuw recept'
+    breadcrumb 'Nieuw recept', new_recipe_path
   end
 
   def create
