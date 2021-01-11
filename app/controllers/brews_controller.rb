@@ -6,12 +6,17 @@ class BrewsController < ApplicationController
 
   def show
     @recipe = @brew.recipe
+
+    breadcrumb @brew.recipe
     breadcrumb @brew.created_at.strftime("%d-%m-%Y"), brew_path(@brew)
   end
 
   def new
     @recipe = Recipe.find(params[:id])
     @brew = @recipe.brews.build(recipe_id: @recipe.id)
+
+    breadcrumb @recipe.name, recipe_path(@recipe)
+    breadcrumb 'Nieuwe uitvoering'
   end
 
   def create

@@ -1,7 +1,7 @@
 class RecipeController < ApplicationController
   before_action :lid?
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Recepten', :recipe_path
+  breadcrumb 'Recepten', :recipe_index_path
 
   def index
     @recipes = Recipe.all.paginate(page: params[:page])
@@ -9,10 +9,11 @@ class RecipeController < ApplicationController
 
   def show
     @brews = @recipe.brews
-    breadcrumb @recipe, recipe_path(@recipe)
+    breadcrumb @recipe.name, recipe_path(@recipe)
   end
 
   def edit
+    breadcrumb @recipe.name, recipe_path(@recipe)
   end
 
   def update
