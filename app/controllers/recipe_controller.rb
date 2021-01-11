@@ -8,7 +8,7 @@ class RecipeController < ApplicationController
   end
 
   def show
-    breadcrumb @recepe, recipe_path(@recepe)
+    breadcrumb @recipe, recipe_path(@recipe)
   end
 
   def edit
