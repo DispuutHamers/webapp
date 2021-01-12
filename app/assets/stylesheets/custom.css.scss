@@ -210,3 +210,10 @@ table.events thead tr th, table.tablesorter tfoot tr th {
   border: none;
   transition: none;
 }
+
+.confetti-canvas {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: -2;
+}

@@ -3,6 +3,7 @@
     "@rails/actiontext": "^6.0.2",
     "@rails/ujs": "^6.0.3-4",
     "@rails/webpacker": "4.2.2",
+    "confetti-js": "^0.0.18",
     "core-js": "^3.8.0",
     "rails-ujs": "^5.2.4-4",
     "regenerator-runtime": "^0.13.7",

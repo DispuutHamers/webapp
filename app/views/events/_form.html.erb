@@ -1,13 +1,14 @@
-<%= form_for(@event) do |f| %>
+<div data-controller="confetti toggle">
+  <%= form_for(@event) do |f| %>
     <% if @event.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
-          <ul>
-            <% @event.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
+        <ul>
+          <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
     <div class="row">
       <div class="col-md-7">
@@ -48,14 +49,19 @@
         </div>
         <div class="row">
           <div class="col-md-2">
-        <%= f.label :deadline, 'Inschrijf deadline' %>
-        </div>
+            <%= f.label :deadline, 'Inschrijf deadline' %>
+          </div>
           <div class="col-md-10">
-        <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
-                  </div>
+            <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
+          </div>
         </div>
-        <%= f.check_box :public, {checked: @event.invitation_code?} %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
+        <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
+        <%= f.check_box :public, {disabled: true, checked: @event.invitation_code?, data: {target: "toggle.toggle"}} %>
+        <button type="button" class="btn btn-success form-input" data-action="click-> confetti#stop click->toggle#enable">Ja</button>
+        <button type="button" class="btn btn-danger form-input" data-action="click->confetti#start click->toggle#disable">Nee</button>
         <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
       </div>
     </div>
-<% end %>
+  <% end %>
+  <canvas class="confetti-canvas" data-target="confetti.canvas"></canvas>
+</div>
