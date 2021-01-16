@@ -34,25 +34,46 @@
           <div class="col-md-2">
             <%= f.label :date, "Datum" %>
           </div>
-          <div class="col-md-10">
-            <%= f.datetime_select :date, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
+          <div class="col-md-9">
+            <%= f.text_field :date,
+              class: 'form-control form-input',
+              data: {
+                controller: "flatpickr",
+                flatpickr_date_format: "d-m-Y H:i",
+                flatpickr_enable_time: true,
+                flatpickr_min_date: Time.zone.now
+              } %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-2">
             <%= f.label :end_time, "Eindtijd" %>
           </div>
-          <div class="col-md-10">
-            <%= f.datetime_select :end_time, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
+          <div class="col-md-9">
+            <%= f.text_field :end_time,
+              class: 'form-control form-input',
+              data: {
+                controller: "flatpickr",
+                flatpickr_date_format: "d-m-Y H:i",
+                flatpickr_enable_time: true,
+                flatpickr_min_date: Time.zone.now
+              } %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-2">
         <%= f.label :deadline, 'Inschrijf deadline' %>
         </div>
-          <div class="col-md-10">
-        <%= f.datetime_select :deadline, {:order => [:day, :month, :year, :hour,:minute], :use_month_names => ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November','December'], :minute_step => 10}, class: 'form-control datetime-select form-input' %><br>
-                  </div>
+          <div class="col-md-9">
+            <%= f.text_field :deadline,
+              class: 'form-control form-input',
+              data: {
+                controller: "flatpickr",
+                flatpickr_date_format: "d-m-Y H:i",
+                flatpickr_enable_time: true,
+                flatpickr_min_date: Time.zone.now
+              } %>
+          </div>
         </div>
         <%= f.check_box :public, {checked: @event.invitation_code?} %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
         <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>

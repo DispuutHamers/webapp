@@ -17,10 +17,13 @@
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-
+import Flatpickr from 'stimulus-flatpickr'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+require("flatpickr/dist/flatpickr.css")
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
+application.register('flatpickr', Flatpickr)
