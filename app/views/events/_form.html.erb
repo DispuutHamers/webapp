@@ -57,9 +57,9 @@
         </div>
         <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
         <%= f.check_box :public, {disabled: true, checked: @event.invitation_code?, data: {target: "toggle.toggle"}} %>
-        <button type="button" class="btn btn-success form-input" data-action="click-> confetti#stop click->toggle#enable">Ja</button>
+        <button type="button" class="btn btn-success form-input" data-action="click->confetti#stop click->toggle#enable">Ja</button>
         <button type="button" class="btn btn-danger form-input" data-action="click->confetti#start click->toggle#disable">Nee</button>
-        <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
+        <%= f.submit :Opslaan, class: 'btn btn-primary form-control form-input' %>
       </div>
     </div>
   <% end %>
