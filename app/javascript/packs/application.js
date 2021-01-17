@@ -17,9 +17,9 @@
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import Flatpickr from 'stimulus-flatpickr'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
+import Flatpickr from 'stimulus-flatpickr'
 
 require("flatpickr/dist/flatpickr.css")
 
