@@ -19,7 +19,8 @@ export default class extends Controller {
       target: this.canvasTarget,
       size: 1.2,
       clock: 30,
-      rotate: true
+      rotate: true,
+      props: [{ "type": "svg", "src": "/assets/hamers.svg" }]
     });
   }
 }
