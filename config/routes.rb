@@ -51,7 +51,6 @@ Hamers::Application.routes.draw do
   get '/ical/:key/cal' => "events#index"
 
   resources :signups
-  resources :nicknames
 
   root 'static_pages#home'
 

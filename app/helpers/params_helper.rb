@@ -52,10 +52,6 @@ module ParamsHelper
     params.require(:device).permit(:device_key)
   end
 
-  def nickname_params
-    params.require(:nickname).permit(:user_id, :nickname, :description)
-  end
-
   def meeting_params
     params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :actiontext_notes)
   end

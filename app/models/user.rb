@@ -20,7 +20,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :events
   has_many :beers
   has_many :signups
-  has_many :nicknames
   has_many :drafts
   has_many :blogitems
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
@@ -45,15 +44,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def inactive_message
     'Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.'
-  end
-
-  def nickname
-    nickname = ''
-    nicknames.order('created_at DESC').each do |nick|
-      nickname = nick.nickname + ' ' + nickname
-    end
-
-    nickname
   end
 
   def signup(event, status, reason)

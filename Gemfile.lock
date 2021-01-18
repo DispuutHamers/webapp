@@ -364,7 +364,7 @@ DEPENDENCIES
   paranoia
   rack-cors
   rack-mini-profiler
-  rails (~> 6)
+  rails
   rails-controller-testing
   rails-i18n
   rails-ujs
@@ -372,10 +372,9 @@ DEPENDENCIES
   redcarpet
   rqrcode_png
   sass-rails
-  sassc (< 2.1.0)
   sdoc
   secure_headers (~> 6.3)
-  sprockets (~> 3.7.2)
+  sprockets
   stackprof
   switch_user
   therubyracer
