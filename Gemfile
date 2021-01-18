@@ -38,6 +38,7 @@ gem 'rb-readline'
 gem 'redcarpet'
 gem 'rqrcode_png'
 gem 'sass-rails'
+gem "secure_headers", "~> 6.3"
 gem 'sprockets'
 gem 'stackprof'
 gem 'switch_user'
@@ -54,5 +55,3 @@ gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
 end
-
-gem "secure_headers", "~> 6.3"
