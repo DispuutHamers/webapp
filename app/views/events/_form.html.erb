@@ -1,85 +1,85 @@
 <%= form_for(@event) do |f| %>
-    <% if @event.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
-          <ul>
-            <% @event.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-    <div class="row">
-      <div class="col-md-7">
-        <%= f.rich_text_area :description, class: 'form-control higher form-input', placeholder: 'Wat gaan we doen?' %>
-      </div>
-      <div class="col-md-5">
-        <div class="row">
-          <div class="col-md-2">
-            <%= f.label :title, "Titel" %>
-          </div>
-          <div class="col-md-9">
-            <%= f.text_field :title, class: 'form-control form-input' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <%= f.label :locatie, "Locatie" %>
-          </div>
-          <div class="col-md-9">
-            <%= f.text_field :location, class: 'form-control form-input' %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <%= f.label :date, "Datum" %>
-          </div>
-          <div class="col-md-9">
-            <%= f.text_field :date,
-              class: 'form-control form-input',
-              data: {
-                controller: "flatpickr",
-                flatpickr_date_format: "d-m-Y H:i",
-                flatpickr_enable_time: true,
-                time_24hr: true,
-                flatpickr_min_date: Time.zone.now
-              } %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-            <%= f.label :end_time, "Eindtijd" %>
-          </div>
-          <div class="col-md-9">
-            <%= f.text_field :end_time,
-              class: 'form-control form-input',
-              data: {
-                controller: "flatpickr",
-                flatpickr_date_format: "d-m-Y H:i",
-                flatpickr_enable_time: true,
-                time_24hr: true,
-                flatpickr_min_date: Time.zone.now
-              } %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-2">
-        <%= f.label :deadline, 'Inschrijf deadline' %>
-        </div>
-          <div class="col-md-9">
-            <%= f.text_field :deadline,
-              class: 'form-control form-input',
-              data: {
-                controller: "flatpickr",
-                flatpickr_date_format: "d-m-Y H:i",
-                flatpickr_enable_time: true,
-                time_24hr: true,
-                flatpickr_min_date: Time.zone.now
-              } %>
-          </div>
-        </div>
-        <%= f.check_box :public, {checked: @event.invitation_code?} %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
-        <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
-      </div>
+  <% if @event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
+      <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-7">
+      <%= f.rich_text_area :description, class: 'form-control higher form-input', placeholder: 'Wat gaan we doen?' %>
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :title, "Titel" %>
+        </div>
+        <div class="col-md-9">
+          <%= f.text_field :title, class: 'form-control form-input' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :locatie, "Locatie" %>
+        </div>
+        <div class="col-md-9">
+          <%= f.text_field :location, class: 'form-control form-input' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :date, "Datum" %>
+        </div>
+        <div class="col-md-9">
+          <%= f.text_field :date,
+                           class: 'form-control form-input',
+                           data: {
+                             controller: "flatpickr",
+                             flatpickr_date_format: "d-m-Y H:i",
+                             flatpickr_enable_time: true,
+                             flatpickr_time_24hr: true,
+                             flatpickr_min_date: Time.zone.now
+                           } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :end_time, "Eindtijd" %>
+        </div>
+        <div class="col-md-9">
+          <%= f.text_field :end_time,
+                           class: 'form-control form-input',
+                           data: {
+                             controller: "flatpickr",
+                             flatpickr_date_format: "d-m-Y H:i",
+                             flatpickr_enable_time: true,
+                             flatpickr_time_24hr: true,
+                             flatpickr_min_date: Time.zone.now
+                           } %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :deadline, 'Inschrijf deadline' %>
+        </div>
+        <div class="col-md-9">
+          <%= f.text_field :deadline,
+                           class: 'form-control form-input',
+                           data: {
+                             controller: "flatpickr",
+                             flatpickr_date_format: "d-m-Y H:i",
+                             flatpickr_enable_time: true,
+                             flatpickr_time_24hr: true,
+                             flatpickr_min_date: Time.zone.now
+                           } %>
+        </div>
+      </div>
+      <%= f.check_box :public, { checked: @event.invitation_code? } %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
+      <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
+    </div>
+  </div>
 <% end %>
