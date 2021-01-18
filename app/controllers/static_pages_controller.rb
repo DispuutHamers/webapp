@@ -42,11 +42,4 @@ class StaticPagesController < ApplicationController
   def quote
     redirect_to root_path
   end
-
-  private
-
-  def get_cumulative_data(table)
-    sum = 0
-    table.unscoped.group_by_day('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
-  end
 end
