@@ -30,7 +30,7 @@ gem 'paperclip'
 gem 'paranoia'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-mini-profiler'
-gem 'rails', '~>6'
+gem 'rails'
 gem 'rails-controller-testing'
 gem 'rails-i18n'
 gem 'rails-ujs'
@@ -38,8 +38,8 @@ gem 'rb-readline'
 gem 'redcarpet'
 gem 'rqrcode_png'
 gem 'sass-rails'
-gem "sassc", "< 2.1.0"
-gem 'sprockets', '~> 3.7.2'
+gem "secure_headers", "~> 6.3"
+gem 'sprockets'
 gem 'stackprof'
 gem 'switch_user'
 gem 'therubyracer'
@@ -55,5 +55,3 @@ gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
 end
-
-gem "secure_headers", "~> 6.3"
