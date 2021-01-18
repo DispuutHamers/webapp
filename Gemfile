@@ -55,3 +55,5 @@ gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
 end
+
+gem "secure_headers", "~> 6.3"
