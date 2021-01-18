@@ -7,17 +7,6 @@
       </h1>
     </section>
 
-    <% if @user.nicknames.present? %>
-      <section>
-        <h4>Bijnamen</h4>
-        <ul>
-          <% @user.nicknames.each do |nickname| %>
-            <li><%= nickname.nickname %></li>
-          <% end %>
-        </ul>
-      </section>
-    <% end %>
-
     <section>
       <h4>Groepen</h4>
       <ul>
