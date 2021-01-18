@@ -276,6 +276,7 @@ GEM
       tilt
     sdoc (1.0.0)
       rdoc (>= 5.0)
+    secure_headers (6.3.1)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -378,6 +379,7 @@ DEPENDENCIES
   sass-rails
   sassc (< 2.1.0)
   sdoc
+  secure_headers (~> 6.3)
   sprockets (~> 3.7.2)
   stackprof
   switch_user
