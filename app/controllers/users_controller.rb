@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def admin_patch
-    User.find(params[:id]).update_attributes(user_params)
+    User.find(params[:id]).update(user_params)
   end
 
   def index_public

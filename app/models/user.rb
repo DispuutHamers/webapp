@@ -51,7 +51,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return if event.attendance && status == "0" && reason.length < 6
 
     reason = UtilHelper.scramble_string(reason) if in_group?('Secretaris-generaal')
-    signups.find_or_create_by(event_id: event.id).update_attributes(status: status, reason: reason)
+    signups.find_or_create_by(event_id: event.id).update(status: status, reason: reason)
     event
   end
 
