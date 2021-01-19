@@ -5,11 +5,11 @@
 <div class="row">
   <div class="col-md-8">
     <p>
-      <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+      <i class="fas fa-clock fa-fw"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
       <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
     </p>
     <% if @event.location != nil and @event.location.length > 1 %>
-      <p><i class="fa fa-map-marker"></i> <%= @event.location %></p>
+      <p><i class="fa fa-map-marker fa-fw"></i> <%= @event.location %></p>
     <% end %>
     <p>
       <% if @event.beschrijving.present? %>
@@ -23,17 +23,31 @@
     <div class="panel panel-default">
       <div class="panel-body">
         <% if @event.attendance %>
-          <i class="fa fa-exclamation-triangle fa-fw"></i> Op deze activiteit wordt je verwacht aanwezig te zijn.
-          <hr>
+          <p>
+            <i class="fa fa-exclamation-triangle fa-fw"></i> Op deze activiteit word je verwacht aanwezig te zijn.<br>
+          </p>
         <% end %>
 
         <% if @event.deadline %>
-          <strong>Inschrijfdeadline:</strong> <%= @event.deadline.strftime('%d-%m-%Y %H:%M') %>
-          <hr>
-          <% end %>
+          <p data-toggle="tooltip" data-placement="left" title="Deadline">
+            <i class="fas fa-stopwatch fa-fw"></i> <%= @event.deadline.strftime('%d-%m-%Y %H:%M') %><br>
+          </p>
+        <% end %>
 
         <% if @event.user %>
-          <strong>Activiteit door:</strong> <%= @event.user.name %>
+          <p data-toggle="tooltip" data-placement="left" title="Georganiseerd door">
+            <i class="fas fa-user-circle fa-fw"></i>
+            <%= link_to @event.user.name, @event.user %>
+          </p>
+        <% end %>
+
+        <% if @event.public? %>
+          <p>
+            <i class="fas fa-globe-europe fa-fw"></i> Deze activiteit is publiek.
+          </p>
+        <% end %>
+
+        <% if @event.attendance || @event.deadline || @event.user || @event.public? %>
           <hr>
         <% end %>
 
@@ -43,18 +57,22 @@
             <li><%= s.user.name %>
               <% if s.reason %>
                 <% if s.reason %>
-                  <span><%= s.reason %></span>
+                  <span class="text-muted"><%= s.reason %></span>
                 <% end %>
               <% end %>
             </li>
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "form-inline" } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
-            <%= f.text_field :reason, placeholder: "Opmerkingen?", class: 'form-control' %>
+            <div class="input-group input-group-sm">
+              <%= f.text_field :reason, placeholder: "Opmerkingen?", class: 'form-control' %>
+              <span class="input-group-btn">
             <%= f.submit 'Aanwezig', class: 'btn btn-default' %>
+              </span>
+            </div>
           <% end %>
         <% else %>
           <button type="button" class="btn btn-sm btn-default btn-block" disabled>De inschrijving is gesloten.</button>
@@ -68,17 +86,21 @@
             <li>
               <%= s.user.name %>
               <% if s.reason %>
-                <span><%= s.reason %></span>
+                <span class="text-muted"><%= s.reason %></span>
               <% end %>
             </li>
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: 'form-inline'} do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: { class: 'form-inline' } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
-            <%= f.text_field :reason, placeholder: "Waarom niet?", class: 'form-control' %>
-            <%= f.submit 'Afwezig', class: 'btn btn-default' %>
+            <div class="input-group input-group-sm">
+              <%= f.text_field :reason, placeholder: "Waarom niet?", class: 'form-control' %>
+              <span class="input-group-btn">
+              <%= f.submit 'Afwezig', class: 'btn btn-sm btn-default' %>
+              </span>
+            </div>
           <% end %>
         <% else %>
           <button type="button" class="btn btn-sm btn-default btn-block" disabled>De inschrijving is gesloten.</button>
@@ -111,7 +133,7 @@
           <hr>
         <% end %>
 
-        <div class="btn-group btn-group-vertical">
+        <div class="btn-group btn-group-sm btn-group-vertical">
           <% if @event.public? %>
             <%= link_to @event.invitation_link, class: "btn btn-default", target: "_blank" do %>
               <i class="fas fa-link"></i> Plebuitnodiglink
@@ -127,7 +149,7 @@
             <% end %>
           <% end %>
           <% if current_user.admin? %>
-            <%= link_to @event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default' do %>
+            <%= link_to @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn btn-default' do %>
               <i class="far fa-trash-alt"></i> Verwijder activiteit
             <% end %>
           <% end %>
@@ -141,7 +163,7 @@
               class="embed-responsive-item"
               width="300"
               height="266"
-              frameborder="0" style="border:0"
+              style="border:0"
               src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>" allowfullscreen>
             </iframe>
           </div>
