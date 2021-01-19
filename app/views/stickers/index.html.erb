@@ -2,27 +2,28 @@
   <div id="map" style="height: 100%;"></div>
 </div>
 
-<%= link_to new_sticker_path, class: 'btn btn-block btn-primary' do %><i class="far fa-copy fa-fw"></i> Sticker plakken
+<%= link_to new_sticker_path, class: 'btn btn-block btn-primary' do %>
+  <i class="far fa-copy fa-fw"></i> Sticker plakken
 <% end %>
 
 <script type="application/javascript">
-    function initMap() {
-        let map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: {lat: 52.14, lng: 6.53}
-        });
+  function initMap() {
+    let map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: {lat: 52.14, lng: 6.53}
+    });
 
-        <% @stickers.each do |s| %>
-        let sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
-        let marker<%= s.id %> = new google.maps.Marker({
-            position: sticker<%= s.id %>,
-            icon: '<%= image_path "pin.png" %>',
-            map: map,
-            optimized: false,
-            title: <% if s.notes.empty? %>'Sticker #<%= s.id %>'<% else %>'<%= s.notes %>'<% end %>,
-        });
-        <% end %>
-    }
+    <% @stickers.each do |s| %>
+    let sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
+    let marker<%= s.id %> = new google.maps.Marker({
+      position: sticker<%= s.id %>,
+      icon: '<%= image_path "pin.png" %>',
+      map: map,
+      optimized: false,
+      title: <% if s.notes.empty? %>'Sticker #<%= s.id %>'<% else %>'<%= s.notes %>'<% end %>,
+    });
+    <% end %>
+  }
 </script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&callback=initMap">
