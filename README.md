@@ -1,4 +1,4 @@
-# hamers
+# Hamers zonder Sikkel
 webapp voor https://www.zondersikkel.nl/
 
 # Setting up a development environment 
