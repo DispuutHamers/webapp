@@ -1,19 +1,19 @@
 <% content_for :title do %>
-    Recept verbeteren
+  Recept verbeteren
 <% end %>
 
 <div>
   <%= form_for @recipe, url: recipe_path(@recipe) do |f| %>
     <% if @recipe.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@recipe.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
+      <div id="error_explanation">
+        <h2><%= pluralize(@recipe.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
 
-          <ul>
-            <% @recipe.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+        <ul>
+          <% @recipe.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
 
     <div class="form-group">
@@ -30,6 +30,6 @@
     <div class="actions">
       <%= f.submit :Verstuur, class: 'btn btn-primary' %>
     </div>
-<% end %>
+  <% end %>
 </div>
 <%= link_to 'Terug', recipe_path(@recipe), class: 'btn btn-default' %>

@@ -22,7 +22,7 @@
           </td>
           <% unless extern %>
             <td>
-              <%= form_for user, url: leden_admin_update_path(user), html: {class: 'form-inline'} do |f| %>
+              <%= form_for user, url: leden_admin_update_path(user), html: { class: 'form-inline' } do |f| %>
                 <%= f.number_field :batch, class: "form-control" %>
                 <%= f.submit "Opslaan", class: "btn btn-default" %>
               <% end %>

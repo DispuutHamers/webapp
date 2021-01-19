@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    Signups
+  Signups
 <% end %>
 <table>
   <thead>
@@ -15,15 +15,15 @@
   </thead>
   <tbody>
   <% @signups.each do |signup| %>
-      <tr>
-        <td><%= signup.event_id %></td>
-        <td><%= signup.user_id %></td>
-        <td><%= signup.status %></td>
-        <td><%= signup.reason %></td>
-        <td><%= link_to 'Show', signup %></td>
-        <td><%= link_to 'Edit', edit_signup_path(signup) %></td>
-        <td><%= link_to 'Destroy', signup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= signup.event_id %></td>
+      <td><%= signup.user_id %></td>
+      <td><%= signup.status %></td>
+      <td><%= signup.reason %></td>
+      <td><%= link_to 'Show', signup %></td>
+      <td><%= link_to 'Edit', edit_signup_path(signup) %></td>
+      <td><%= link_to 'Destroy', signup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
   </tbody>
 </table>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <style>
       /* Email styles need to be inline */
-    </style>
-  </head>
+  </style>
+</head>
 
-  <body>
-    <p>Hallo <%= @user.name %>,</p>
-    <p>Helaas ben je er tot op heden niet in geslaagd je aan of af te melden voor het event: "<%= @event.title %>" op <%= @event.date.strftime("%d-%m-%Y") %>. Om voor iedereen het te verwachte aantal aanwezige leden zo overzichtelijk mogelijk te maken wordt je hierbij verzocht dat zo snel mogelijk alsnog te doen.</p>
-    <p>Veel succes, moeilijk is het niet</p>
-    <p>P.S.</p>
-    <p>https://zondersikkel.nl/events/<%= @event.id %></p>
-  </body>
+<body>
+<p>Hallo <%= @user.name %>,</p>
+<p>Helaas ben je er tot op heden niet in geslaagd je aan of af te melden voor het event: "<%= @event.title %>"
+  op <%= @event.date.strftime("%d-%m-%Y") %>. Om voor iedereen het te verwachte aantal aanwezige leden zo overzichtelijk
+  mogelijk te maken wordt je hierbij verzocht dat zo snel mogelijk alsnog te doen.</p>
+<p>Veel succes, moeilijk is het niet</p>
+<p>P.S.</p>
+<p>https://zondersikkel.nl/events/<%= @event.id %></p>
+</body>
 </html>

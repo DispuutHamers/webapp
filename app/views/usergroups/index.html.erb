@@ -18,7 +18,7 @@
             <% elsif [4, 5, 12].include?(group.id) %>
               <button class="btn btn-default btn-sm disabled">Deze groep kan niet verwijderd worden</button>
             <% else %>
-              <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
+              <%= link_to group, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'btn btn-default btn-sm' do %>
                 <i class="far fa-trash-alt"></i> Verwijder groep
               <% end %>
             <% end %>
@@ -40,7 +40,7 @@
   <div class="col-md-4">
     <h4>Nieuwe groep aanmaken</h4>
     <% if current_user.admin? %>
-      <%= form_for @group, html: {id: 'usergroup-form', class: 'form-inline'} do |f| %>
+      <%= form_for @group, html: { id: 'usergroup-form', class: 'form-inline' } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <%= f.text_field :name, placeholder: 'Groepnaam', class: 'form-control' %>
         <%= f.submit 'Opslaan', class: 'btn btn-default' %>

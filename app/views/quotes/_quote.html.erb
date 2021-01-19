@@ -11,14 +11,14 @@
   </span>
   <div class="btn-group">
     <%= link_to edit_quote_path(quote),
-      class: 'btn btn-default btn-sm' do %>
+                class: 'btn btn-default btn-sm' do %>
       <i class="fas fa-pencil-alt"></i>
     <% end %>
     <%= link_to quote,
-      method: :delete,
-      data: {confirm: 'Weet je het zeker?'},
-      title: quote.text,
-      class: 'btn btn-default btn-sm' do %>
+                method: :delete,
+                data: { confirm: 'Weet je het zeker?' },
+                title: quote.text,
+                class: 'btn btn-default btn-sm' do %>
       <i class="far fa-trash-alt"></i>
     <% end %>
   </div>

@@ -3,21 +3,21 @@
 <% end %>
 <table id="meeting" class="tablesorter table table-hover">
   <thead>
-    <tr>
-      <th>Datum</th>
-      <th>Onderwerp</th>
-      <% if current_user.admin? %>
-      <% end %>
-    </tr>
+  <tr>
+    <th>Datum</th>
+    <th>Onderwerp</th>
+    <% if current_user.admin? %>
+    <% end %>
+  </tr>
   </thead>
   <%= will_paginate %>
   <tbody>
-    <% @meetings.each do |m| %>
-      <tr>
-        <td><%= m.date.strftime('%d-%m-%Y') %></td>
-        <td><%= link_to m.onderwerp, m %></td>
-      </tr>
-    <% end %>
+  <% @meetings.each do |m| %>
+    <tr>
+      <td><%= m.date.strftime('%d-%m-%Y') %></td>
+      <td><%= link_to m.onderwerp, m %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 <%= will_paginate %>

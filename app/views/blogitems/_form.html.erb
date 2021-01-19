@@ -1,15 +1,15 @@
 <div>
   <%= form_for(@item) do |f| %>
     <% if @item.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
+      <div id="error_explanation">
+        <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
 
-          <ul>
-            <% @item.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+        <ul>
+          <% @item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
 
     <div class="form-group">
@@ -18,7 +18,7 @@
     </div>
     <div class="form-group">
       <%= f.label :title %><br>
-      <%= f.text_field :title, class: 'form-control', required: true, minlength: 2%>
+      <%= f.text_field :title, class: 'form-control', required: true, minlength: 2 %>
     </div>
     <div class="form-group">
       <%= f.label :public %><br>
@@ -27,7 +27,7 @@
     <div class="actions">
       <%= f.submit :Verstuur, class: 'btn btn-primary' %>
     </div>
-<% end %>
+  <% end %>
 </div>
 <div class="photos">
   <% @item.blogphotos.each do |p| %>
@@ -36,10 +36,10 @@
   <% end %>
 </div>
 <div class="form-group">
-<%= form_for @photo, url: @item, html: { multipart: true } do |form| %>
-  <%= form.file_field :image %>
-  <%= form.text_field :description, placeholder: "Beschrijving" %>
-  <%= form.hidden_field :blogitem_id, value: @item.id %>
-  <%= form.submit :Upload %>
-<% end %>
+  <%= form_for @photo, url: @item, html: { multipart: true } do |form| %>
+    <%= form.file_field :image %>
+    <%= form.text_field :description, placeholder: "Beschrijving" %>
+    <%= form.hidden_field :blogitem_id, value: @item.id %>
+    <%= form.submit :Upload %>
+  <% end %>
 </div>

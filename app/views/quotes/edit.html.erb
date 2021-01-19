@@ -1,17 +1,17 @@
 <% content_for :title do %>
-    Quote aanpassen
+  Quote aanpassen
 <% end %>
 
 <%= render layout: 'layouts/small_width' do %>
   <%= form_for(@quote) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <%= f.label :text %>
-      <%= f.text_area :text, class: 'form-control' %>
-      <%= f.label :user_id %>
-      <% users_array = User.all.map { |user| [user.name, user.id] } %>
-      <div class="form-group">
-        <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: 'form-control' %>
-      </div>
-      <%= f.submit 'Edit quote', class: 'btn btn-large btn-primary' %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :text %>
+    <%= f.text_area :text, class: 'form-control' %>
+    <%= f.label :user_id %>
+    <% users_array = User.all.map { |user| [user.name, user.id] } %>
+    <div class="form-group">
+      <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: 'form-control' %>
+    </div>
+    <%= f.submit 'Edit quote', class: 'btn btn-large btn-primary' %>
   <% end %>
 <% end %>

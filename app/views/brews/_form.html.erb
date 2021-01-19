@@ -1,15 +1,15 @@
 <div>
   <%= form_for @brew do |f| %>
     <% if @brew.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@brew.errors.count, 'error') %> prohibited this brew from being saved:</h2>
+      <div id="error_explanation">
+        <h2><%= pluralize(@brew.errors.count, 'error') %> prohibited this brew from being saved:</h2>
 
-          <ul>
-            <% @brew.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+        <ul>
+          <% @brew.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
     <div class="form-group">
       <%= f.rich_text_area :actiontext_description, class: 'form-control' %>
@@ -17,5 +17,5 @@
     <div class="actions">
       <%= f.submit :Verstuur, class: 'btn btn-primary' %>
     </div>
-<% end %>
+  <% end %>
 </div>

@@ -38,7 +38,7 @@
                 <td><%= key.name %></td>
                 <td>
                   <%= link_to key.key, key %>
-                  <%= link_to key, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-default btn-sm' do %>
+                  <%= link_to key, method: :delete, data: { confirm: 'Zeker weten?' }, class: 'btn btn-default btn-sm' do %>
                     <i class="far fa-trash-alt"></i>
                   <% end %>
                 </td>
@@ -46,7 +46,7 @@
             <% end %>
           </table>
         <% end %>
-        <%= form_for ApiKey.new, html: {class: 'form-inline'} do |f| %>
+        <%= form_for ApiKey.new, html: { class: 'form-inline' } do |f| %>
           <%= f.text_field :name, placeholder: 'Sleutelnaam', class: 'form-control' %>
           <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
         <% end %>

@@ -4,9 +4,9 @@
       <h2><%= pluralize(@signup.errors.count, 'error') %> prohibited this signup from being saved:</h2>
 
       <ul>
-      <% @signup.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @signup.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
