@@ -2,9 +2,8 @@
 class MeetingsController < ApplicationController
   before_action :lid?
   before_action :set_meeting, only: [:show, :notuleer, :edit, :update, :destroy]
-  before_action :admin_user?, only: [:notuleer,:destroy, :create, :new]
+  before_action :admin_user?, only: [:notuleer, :destroy, :create, :new]
   breadcrumb 'Vergaderingen', :meetings_path
-
 
   # GET /meetings
   # GET /meetings.json
@@ -58,7 +57,7 @@ class MeetingsController < ApplicationController
         format.html { redirect_to @meeting, notice: 'Vergadering is geupdate.' }
       elsif params[:commit] == "Annuleren"
         @meeting.drafts.where(user: current_user).take.destroy
-        format.html { redirect_to @meeting, notice: "Concept is verwijderd."}
+        format.html { redirect_to @meeting, notice: "Concept is verwijderd." }
       elsif @meeting.save_draft(current_user)
         format.js
       else
@@ -75,6 +74,7 @@ class MeetingsController < ApplicationController
   end
 
   private
+
   def set_meeting
     @meeting = Meeting.find(params[:id])
   end

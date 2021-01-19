@@ -3,7 +3,7 @@ class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show]
   breadcrumb 'Bieren', :beers_path
-  
+
   ALLOWED_SORTING_FIELDS = %w[name soort grade brewer country review_count]
 
   # GET /beers
@@ -14,10 +14,10 @@ class BeersController < ApplicationController
     @sp = params[:search] || ""
     if sorting == "review_count"
       @beers = BeerFilter.new.filter(Beer.all, @sp)
-        .left_joins(:reviews)
-        .group(:beer_id)
-        .order("count(reviews.id) #{ordering}")
-        .paginate(page: params[:page], per_page: 10)
+                         .left_joins(:reviews)
+                         .group(:beer_id)
+                         .order("count(reviews.id) #{ordering}")
+                         .paginate(page: params[:page], per_page: 10)
     else
       sorting = "name" unless sorting
       ordering = "ASC" unless ordering
@@ -69,6 +69,7 @@ class BeersController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_beer
     @beer = Beer.find(params[:id])

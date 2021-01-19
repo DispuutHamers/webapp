@@ -25,6 +25,7 @@ class UsergroupsController < ApplicationController
   end
 
   private
+
   def usergroup_params
     params.require(:usergroup).permit(:name, :text)
   end

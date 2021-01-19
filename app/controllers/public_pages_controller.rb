@@ -4,7 +4,6 @@ class PublicPagesController < ApplicationController
   before_action :set_public_page, only: [:edit, :update, :destroy]
   breadcrumb 'Openbare Paginas', :public_pages_path, except: [:show]
 
-
   # GET /public_pages
   # GET /public_pages.json
   def index

@@ -4,7 +4,6 @@ class StickersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   breadcrumb 'Stickers', :stickers_path
 
-
   def index
     @stickers = Sticker.all
   end
@@ -46,6 +45,7 @@ class StickersController < ApplicationController
   end
 
   private
+
   def correct_user
     Sticker.find(params[:id]).user_id == current_user.id || current_user.admin?
   end

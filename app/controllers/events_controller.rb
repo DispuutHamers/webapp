@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
   breadcrumb 'Activiteiten', :events_path
 
-
   # GET /events
   # GET /events.json
   def index
@@ -83,6 +82,7 @@ class EventsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])

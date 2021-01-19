@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
   end
 
   private
+
   def set_params
     param = params[:group]
     @user = User.find(param[:user_id])
