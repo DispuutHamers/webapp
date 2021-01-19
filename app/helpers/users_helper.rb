@@ -39,13 +39,10 @@ module UsersHelper
   end
 
   def self.update_weight_for(user)
-    cijfer = 0.0
-    user.reviews.each do |review|
-      cijfer += review.rating
-    end
+    return unless user.reviews.any?
 
-    weight = (cijfer / user.reviews.count) unless user.reviews.empty?
-    user.update(weight: weight) if weight
+    weight = user.reviews.sum(:rating) / user.reviews.count
+    user.update(weight: weight)
   end
 
   def unreviewed_beer_for(user)

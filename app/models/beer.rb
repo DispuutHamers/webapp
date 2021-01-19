@@ -12,12 +12,7 @@ class Beer < ActiveRecord::Base
   end
 
   def cijfer?
-    grade = self.grade
-    if grade
-      grade.round(2)
-    else
-      "No grade"
-    end
+    grade&.round(2) || "Nog geen cijfer."
   end
 
   def update_cijfer
