@@ -45,7 +45,7 @@ module UsersHelper
     end
 
     weight = (cijfer / user.reviews.count) unless user.reviews.empty?
-    user.update(weight: weight)
+    user.update(weight: weight) if weight
   end
 
   def unreviewed_beer_for(user)

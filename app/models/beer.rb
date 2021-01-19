@@ -14,9 +14,9 @@ class Beer < ActiveRecord::Base
   def cijfer?
     grade = self.grade
     if grade
-      return grade.round(2)
+      grade.round(2)
     else
-      return "No grade"
+      "No grade"
     end
   end
 

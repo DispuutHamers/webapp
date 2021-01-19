@@ -76,21 +76,7 @@ padding-left:160px;
   border-left-color: #fff;
   content: " ";
 }
-.timeline > li > .timeline-badge {
-  color: #fff;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  font-size: 1.4em;
-  text-align: center;
-  position: absolute;
-  top: 16px;
-  left: 50%;
-  margin-left: -25px;
-  background-color: #999999;
-  z-index: 100;
-  border-radius: 50%;
-}
+.timeline > li > .timeline-badge,
 .timeline > a > li > .timeline-badge {
   color: #fff;
   width: 50px;

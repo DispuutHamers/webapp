@@ -1,7 +1,7 @@
 #entry point for beer resource
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
-  before_action :ilid?, except: [:index, :show, :search]
+  before_action :ilid?, except: [:index, :show]
   breadcrumb 'Bieren', :beers_path
   
   ALLOWED_SORTING_FIELDS = %w[name soort grade brewer country review_count]

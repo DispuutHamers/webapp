@@ -5,8 +5,6 @@ Hamers::Application.routes.draw do
   get 'privacy' => 'static_pages#privacy'
   get 'activate_account' => 'static_pages#activate_account', as: "activate_account"
 
-  resources :notes
-  resources :pushes, only: [:index, :show, :create, :new]
   resources :stickers
   resources :recipe, path: "recipes" do
     member do
@@ -16,14 +14,12 @@ Hamers::Application.routes.draw do
   get '/mystickers' => 'stickers#personal', as: 'personal_sticker'
 
   resources :news
-  get '/images' => 'albums#index', as: 'photo'
   get '/trail' => 'static_pages#trail' , as: 'trail'
   get '/trail' => 'static_pages#trail' , as: 'device'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
 
   match '/webconsole', to: 'static_pages#console', via: 'get'
-  resources :motions
   resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
