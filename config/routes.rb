@@ -15,7 +15,6 @@ Hamers::Application.routes.draw do
 
   resources :news
   get '/trail' => 'static_pages#trail', as: 'trail'
-  get '/trail' => 'static_pages#trail', as: 'device'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
 
