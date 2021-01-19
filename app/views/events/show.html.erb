@@ -24,13 +24,13 @@
       <div class="panel-body">
         <% if @event.attendance %>
           <p>
-            <i class="fa fa-exclamation-triangle fa-fw"></i> Op deze activiteit word je verwacht aanwezig te zijn.<br>
+            <i class="fa fa-exclamation-triangle fa-fw"></i> Op deze activiteit word je verwacht aanwezig te zijn.
           </p>
         <% end %>
 
         <% if @event.deadline %>
           <p data-toggle="tooltip" data-placement="left" title="Deadline">
-            <i class="fas fa-stopwatch fa-fw"></i> <%= @event.deadline.strftime('%d-%m-%Y %H:%M') %><br>
+            <i class="fas fa-stopwatch fa-fw"></i> <%= @event.deadline.strftime('%d-%m-%Y %H:%M') %>
           </p>
         <% end %>
 
