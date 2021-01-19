@@ -1,6 +1,6 @@
 module UsersHelper
 
-  def gravatar_for(user, options = {size: 64, class: 'gravatar img img-responsive img-rounded'})
+  def gravatar_for(user, options = { size: 64, class: 'gravatar img img-responsive img-rounded' })
     options[:size] = 64 unless options[:size]
     options[:class] = "gravatar img img-responsive img-rounded" unless options[:class]
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)

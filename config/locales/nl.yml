@@ -1,7 +1,7 @@
 ---
 nl:
-  doorkeeper: 
-    scopes: 
+  doorkeeper:
+    scopes:
       public: "Deze applicatie kan bevestigen dat je ingelogt bent"
       api: "Deze applicatie kan de API benaderen met je account"
   apipie:
@@ -15,57 +15,57 @@ nl:
           has_many: Kan item niet verwijderen omdat afhankelijke %{record} bestaan
   date:
     abbr_day_names:
-    - zo
-    - ma
-    - di
-    - wo
-    - do
-    - vr
-    - za
+      - zo
+      - ma
+      - di
+      - wo
+      - do
+      - vr
+      - za
     abbr_month_names:
-    -
-    - jan
-    - feb
-    - mrt
-    - apr
-    - mei
-    - jun
-    - jul
-    - aug
-    - sep
-    - okt
-    - nov
-    - dec
+      -
+      - jan
+      - feb
+      - mrt
+      - apr
+      - mei
+      - jun
+      - jul
+      - aug
+      - sep
+      - okt
+      - nov
+      - dec
     day_names:
-    - zondag
-    - maandag
-    - dinsdag
-    - woensdag
-    - donderdag
-    - vrijdag
-    - zaterdag
+      - zondag
+      - maandag
+      - dinsdag
+      - woensdag
+      - donderdag
+      - vrijdag
+      - zaterdag
     formats:
       default: "%d-%m-%Y"
       long: "%e %B %Y"
       short: "%e %b"
     month_names:
-    -
-    - januari
-    - februari
-    - maart
-    - april
-    - mei
-    - juni
-    - juli
-    - augustus
-    - september
-    - oktober
-    - november
-    - december
+      -
+      - januari
+      - februari
+      - maart
+      - april
+      - mei
+      - juni
+      - juli
+      - augustus
+      - september
+      - oktober
+      - november
+      - december
     order:
-    - :day
-    - :month
-    - :year
+      - :day
+      - :month
+      - :year
   datetime:
     distance_in_words:
       about_x_hours:
