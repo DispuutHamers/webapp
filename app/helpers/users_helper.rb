@@ -22,7 +22,7 @@ module UsersHelper
     end
 
     ratio = (sundays / total) * 100
-    user.update_attributes(sunday_ratio: ratio)
+    user.update(sunday_ratio: ratio)
   end
 
   def missed_drinks_for(user)
@@ -45,7 +45,7 @@ module UsersHelper
     end
 
     weight = (cijfer / user.reviews.count) unless user.reviews.empty?
-    user.update_attributes(weight: weight)
+    user.update(weight: weight)
   end
 
   def unreviewed_beer_for(user)
