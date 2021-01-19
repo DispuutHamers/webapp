@@ -1,6 +1,6 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
-  before_action :ilid?, only: %i[trail revert statistics]
+  before_action :ilid?, only: %i[trail revert]
 
   def home
     return unless current_user&.active?
@@ -41,24 +41,5 @@ class StaticPagesController < ApplicationController
 
   def quote
     redirect_to root_path
-  end
-
-  def statistics
-    @cumulative_review_data = get_cumulative_data Review
-    @cumulative_beer_data = get_cumulative_data Beer
-    @cumulative_quote_data = get_cumulative_data Quote
-    @cumulative_event_data = get_cumulative_data Event
-    @cumulative_user_data = get_cumulative_data User
-    @cumulative_sticker_data = get_cumulative_data Sticker
-    @cumulative_meeting_data = get_cumulative_data Meeting
-    @cumulative_news_data = get_cumulative_data News
-    breadcrumb 'Statistics', :stats_path
-  end
-
-  private
-
-  def get_cumulative_data(table)
-    sum = 0
-    table.unscoped.group_by_day('DATE(created_at)').count.map { |x, y| {x => (sum += y)} }.reduce({}, :merge)
   end
 end

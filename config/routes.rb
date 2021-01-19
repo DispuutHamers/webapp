@@ -80,8 +80,7 @@ Hamers::Application.routes.draw do
   match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/anonymize', to: 'dbdump#anonymize', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
-  match '/register',  to: 'users#new',            via: 'get'
-  match '/stats', to: 'static_pages#statistics', via: 'get'
+  match '/register',  to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
     get 'email' => 'endpoints/email#create'
