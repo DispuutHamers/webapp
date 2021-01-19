@@ -39,10 +39,10 @@
                            class: 'form-control form-input',
                            data: {
                              controller: "flatpickr",
+                             flatpickr_default_date: @event.date.strftime("%d-%m-%Y %H:%i"),
                              flatpickr_date_format: "d-m-Y H:i",
                              flatpickr_enable_time: true,
-                             flatpickr_time_24hr: true,
-                             flatpickr_min_date: Time.zone.now
+                             flatpickr_time_24hr: true
                            } %>
         </div>
       </div>
@@ -55,10 +55,10 @@
                            class: 'form-control form-input',
                            data: {
                              controller: "flatpickr",
+                             flatpickr_default_date: @event.end_time.strftime("%d-%m-%Y %H:%i"),
                              flatpickr_date_format: "d-m-Y H:i",
                              flatpickr_enable_time: true,
-                             flatpickr_time_24hr: true,
-                             flatpickr_min_date: Time.zone.now
+                             flatpickr_time_24hr: true
                            } %>
         </div>
       </div>
@@ -71,10 +71,10 @@
                            class: 'form-control form-input',
                            data: {
                              controller: "flatpickr",
+                             flatpickr_default_date: @event.deadline.strftime("%d-%m-%Y %H:%i"),
                              flatpickr_date_format: "d-m-Y H:i",
                              flatpickr_enable_time: true,
-                             flatpickr_time_24hr: true,
-                             flatpickr_min_date: Time.zone.now
+                             flatpickr_time_24hr: true
                            } %>
         </div>
       </div>
