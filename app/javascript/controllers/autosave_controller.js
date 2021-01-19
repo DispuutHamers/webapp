@@ -1,10 +1,10 @@
-import { Controller } from "stimulus"
+import {Controller} from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "form", "status" ]
+  static targets = ["form", "status"]
 
   connect() {
-    this.timeout  = null
+    this.timeout = null
     this.duration = this.data.get("duration") || 1000
   }
 
