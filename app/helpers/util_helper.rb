@@ -64,8 +64,4 @@ module UtilHelper
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
   end
 
-  def self.make_reservation
-    event = Event.where(attendance: true).last
-    UserMailer.mail_reservation(event)
-  end
 end
