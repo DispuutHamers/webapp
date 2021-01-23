@@ -47,9 +47,7 @@
           </p>
         <% end %>
 
-        <% if @event.attendance || @event.deadline || @event.user || @event.public? %>
-          <hr>
-        <% end %>
+        <hr>
 
         <h4>Aanwezig <span class="text-muted small"><%= @event.signups.where(status: true).count %></span></h4>
         <ul class="signup-list">
@@ -64,7 +62,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "form-inline" } do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
@@ -92,7 +90,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: { class: 'form-inline' } do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: 'form-inline'} do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
@@ -149,7 +147,7 @@
             <% end %>
           <% end %>
           <% if current_user.admin? %>
-            <%= link_to @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn btn-default' do %>
+            <%= link_to @event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default' do %>
               <i class="far fa-trash-alt"></i> Verwijder activiteit
             <% end %>
           <% end %>
