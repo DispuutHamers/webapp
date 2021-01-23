@@ -9,7 +9,7 @@
       <%= @meeting.actiontext_notes %>
     <% end %>
   </div>
-  <div class="col-md-4">
+  <div id="meeting-info-panel" class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
         <p><b>Datum:</b> <%= @meeting.date.strftime('%d-%m-%Y') %></p>
@@ -25,11 +25,12 @@
         <hr>
 
         <% if @meeting.attendees.any? %>
-          <h4>Aanwezigen</h4>
-          <% %>
-          <% @meeting.attendees.each do |a| %>
-            <%= gravatar_for a.user, class: "small-profile-picture" %>
-          <% end %>
+          <h4>Aanwezigen <span class="text-muted small"><%= @meeting.attendees.count %></span></h4>
+          <div class="clearfix">
+            <% @meeting.attendees.each do |a| %>
+              <%= link_to gravatar_for(a.user), a.user, class: "small-profile-picture" %>
+            <% end %>
+          </div>
           <hr>
         <% end %>
 
