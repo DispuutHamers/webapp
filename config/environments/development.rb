@@ -1,5 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Lockbox.master_key = "dbab377e5cb6defb28aee4f4dc4c042d968212e95cd2b4f7749572e7fbbdcda2"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -47,6 +48,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.action_mailer.default_url_options = { :host => "127.0.0.1" }
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

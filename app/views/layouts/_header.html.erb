@@ -23,18 +23,24 @@
               <ul class="dropdown-menu">
                 <li><%= link_to events_path do %><i class="far fa-calendar-alt fa-fw"></i> Activiteiten<% end %></li>
                 <li><%= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<% end %></li>
-                <li><%= link_to nicknames_path do %><i class="fa fa-address-book fa-fw"></i> Bijnamen<% end %></li>
                 <li><%= link_to users_path do %><i class="fa fa-user fa-fw"></i> Leden<% end %></li>
                 <li><%= link_to stickers_path do %><i class="far fa-sticky-note fa-fw"></i> Stickers<% end %></li>
+                <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
                 <li><%= link_to meetings_path do %><i class="fa fa-suitcase fa-fw"></i> Vergaderingen<% end %></li>
+                <li><%= link_to trail_path do %><i class="fas fa-history fa-fw"></i> Log<% end %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<% end %></li>
                 <li><%= link_to news_index_path do %><i class="far fa-newspaper fa-fw"></i> Nieuws<% end %></li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to recipe_index_path do %><i class="fas fa-book fa-fw"></i> Recepten<% end %></li>
-                <li role="separator" class="divider"></li>
-                <li><%= link_to stats_path do %><i class="fas fa-chart-line fa-fw"></i> Statistieken<% end %></li>
-                <li><%= link_to trail_path do %><i class="fas fa-history fa-fw"></i> Log<% end %></li>
+                <li class="dropdown-header">Extern</li>
+                <li><a target="_blank" href="https://discord.gg/7tH7dWbQkH">
+                  <i class="fab fa-fw fa-discord"></i> Discord</a></li>
+                <li><a target="_blank" href="https://drive.google.com/drive/folders/0B560gHNlIBG9a0Q5MFR0WWtGWDg">
+                  <i class="fab fa-fw fa-google-drive"></i> Google Drive</a></li>
+                <li><a target="_blank" href="https://github.com/dispuuthamers/">
+                  <i class="fab fa-fw fa-github"></i> GitHub</a></li>
+                <li><a target="_blank" href="https://moneybird.com/275570381306201797">
+                  <i class="fa fa-fw fa-coins"></i> Moneybird</a></li>
               </ul>
             </li>
             <% if current_user&.admin? %>

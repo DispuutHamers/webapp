@@ -3,7 +3,7 @@ Hamers::Application.routes.draw do
   get 'switch_user', to: 'switch_user#set_current_user'
   get 'switch_user/remember_user', to: 'switch_user#remember_user'
   get 'privacy' => 'static_pages#privacy'
-  get 'invited' => 'static_pages#invited', as: "invited"
+  get 'activate_account' => 'static_pages#activate_account', as: "activate_account"
 
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
@@ -40,14 +40,19 @@ Hamers::Application.routes.draw do
     end
   end
 
-  resources :events
+  resources :events do
+    member do
+      get '/public_signup' => "external_signups#new", as: "new_external_signup"
+      post '/public_signup' => "external_signups#create", as: "create_external_signup"
+      get '/see_you_soon' => "external_signups#see_you_soon", as: "see_you_soon"
+    end
+  end
   get '/ical/:key' => "events#index"
   get '/ical/:key/cal' => "events#index"
 
   resources :signups
-  resources :nicknames
 
-  root  'static_pages#home'
+  root 'static_pages#home'
 
   devise_for :users
   devise_scope :user do
@@ -75,8 +80,7 @@ Hamers::Application.routes.draw do
   match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/anonymize', to: 'dbdump#anonymize', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
-  match '/register',  to: 'users#new',            via: 'get'
-  match '/stats', to: 'static_pages#statistics', via: 'get'
+  match '/register',  to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
     get 'email' => 'endpoints/email#create'

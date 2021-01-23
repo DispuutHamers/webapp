@@ -4,10 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hamers zonder Sikkel</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag '//www.google.com/jsapi', 'chartkick' %>
-    <%= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js', 'data-turbolinks-track' => true %>
+    <%= javascript_pack_tag 'application' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tags %>
   </head>
   <body>

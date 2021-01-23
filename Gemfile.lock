@@ -77,7 +77,6 @@ GEM
     bullet (6.1.0)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
-    chartkick (3.4.0)
     chronic (0.10.2)
     chunky_png (1.3.11)
     climate_control (0.2.0)
@@ -116,7 +115,7 @@ GEM
     edge_rider (1.1.0)
       activerecord (>= 3.2)
     equalizer (0.0.11)
-    erubi (1.9.0)
+    erubi (1.10.0)
     execjs (2.7.0)
     faker (2.10.0)
       i18n (>= 1.6, < 1.8)
@@ -133,8 +132,6 @@ GEM
       rack (>= 1.3.0)
       rack-accept
       virtus (>= 1.0.0)
-    groupdate (4.3.0)
-      activesupport (>= 5)
     i18n (1.7.1)
       concurrent-ruby (~> 1.0)
     icalendar (2.6.1)
@@ -143,7 +140,7 @@ GEM
     ice_nine (0.11.2)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
-    jquery-rails (4.3.5)
+    jquery-rails (4.4.0)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
@@ -156,7 +153,8 @@ GEM
     libv8 (3.16.14.19)
     loaf (0.8.1)
       rails (>= 3.2)
-    loofah (2.7.0)
+    lockbox (0.6.1)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -170,12 +168,12 @@ GEM
     mime-types-data (3.2019.1009)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.0)
     minidusen (0.9)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
       edge_rider (>= 0.2.5)
-    minitest (5.14.2)
+    minitest (5.14.3)
     mustermann (1.0.3)
     mustermann-grape (1.0.0)
       mustermann (~> 1.0.0)
@@ -183,8 +181,9 @@ GEM
     net-http-persistent (3.1.0)
       connection_pool (~> 2.2)
     nio4r (2.5.4)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nprogress-rails (0.2.0.2)
     orm_adapter (0.5.0)
     paper_trail (10.3.1)
@@ -198,6 +197,7 @@ GEM
       terrapin (~> 0.6.0)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
+    racc (1.5.2)
     rack (2.2.3)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -236,16 +236,18 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
+    rails-ujs (0.1.0)
+      railties (>= 3.1)
     railties (6.0.3.4)
       actionpack (= 6.0.3.4)
       activesupport (= 6.0.3.4)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
-    rake (13.0.1)
+    rake (13.0.3)
     rb-readline (0.5.5)
     rdoc (6.2.1)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     ref (2.0.0)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -272,6 +274,7 @@ GEM
       tilt
     sdoc (1.0.0)
       rdoc (>= 5.0)
+    secure_headers (6.3.1)
     sprockets (3.7.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -297,7 +300,7 @@ GEM
       execjs (>= 2.2.2, >= 2.2)
       less-rails (>= 2.5.0)
       railties (>= 3.1)
-    tzinfo (1.2.7)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -327,7 +330,7 @@ GEM
     wine_bouncer (1.0.4)
       doorkeeper (>= 1.4, < 6.0)
       grape (>= 0.10, < 1.3)
-    zeitwerk (2.4.1)
+    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
@@ -338,7 +341,6 @@ DEPENDENCIES
   bootstrap-will_paginate
   bootstrap_form
   bullet
-  chartkick
   coffee-rails
   devise
   devise_invitable
@@ -349,11 +351,11 @@ DEPENDENCIES
   faker
   flamegraph
   font_awesome5_rails
-  groupdate
   icalendar
   jbuilder
   jquery-rails
   loaf
+  lockbox
   memory_profiler
   minidusen
   mysql2
@@ -364,16 +366,17 @@ DEPENDENCIES
   paranoia
   rack-cors
   rack-mini-profiler
-  rails (~> 6)
+  rails
   rails-controller-testing
   rails-i18n
+  rails-ujs
   rb-readline
   redcarpet
   rqrcode_png
   sass-rails
-  sassc (< 2.1.0)
   sdoc
-  sprockets (~> 3.7.2)
+  secure_headers (~> 6.3)
+  sprockets
   stackprof
   switch_user
   therubyracer

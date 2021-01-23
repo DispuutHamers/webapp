@@ -19,6 +19,8 @@ class BeersController < ApplicationController
         .order("count(reviews.id) #{ordering}")
         .paginate(page: params[:page], per_page: 10)
     else
+      sorting = "name" unless sorting
+      ordering = "ASC" unless ordering
       @beers = BeerFilter.new.filter(Beer.all, @sp).order("#{sorting} #{ordering}").paginate(page: params[:page], per_page: 16)
     end
     render 'beers/index'

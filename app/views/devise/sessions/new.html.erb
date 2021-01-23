@@ -2,21 +2,21 @@
   Log in
 <% end %>
 
-<%= render layout: 'layouts/forms/form_small' do %>
+<%= render layout: 'layouts/small_width' do %>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'email' %>
+      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'E-mail adres' %>
     </div>
     &nbsp;
     <div class="input-group">
       <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <%= f.password_field :password, autocomplete: 'off', type: 'password', class: 'form-control', placeholder: 'wachtwoord' %>
+      <%= f.password_field :password, autocomplete: 'off', type: 'password', class: 'form-control', placeholder: 'Wachtwoord' %>
     </div>
     <% if devise_mapping.rememberable? -%>
       <div class="checkbox">
-        <%= f.label :remember_me %>
         <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
       </div>
     <% end -%>
 

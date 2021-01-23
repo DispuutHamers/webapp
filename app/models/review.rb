@@ -6,5 +6,7 @@ class Review < ActiveRecord::Base
   belongs_to :beer
   acts_as_paranoid
 
+  has_rich_text :actiontext_description
+
   scope :with_user, -> { includes(:user) }
 end

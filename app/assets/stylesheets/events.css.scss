@@ -2,19 +2,28 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.signup-list {
-  list-style-type: none;
-  padding-left: 8px
-}
+#event-info-panel {
+  .signup-list {
+    list-style-type: none;
+    padding-left: 8px
+  }
 
-.signup-list span {
-  display: block;
-  padding-left: 8px;
-  font-style: italic;
-}
+  .signup-list span {
+    display: block;
+    padding-left: 8px;
+  }
 
-.small-profile-picture {
-  width: 56px;
-  height: 56px;
-  margin-bottom: 4px;
+  .small-profile-picture {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 4px;
+
+    .gravatar {
+      margin: 2px;
+    }
+  }
+
+  .input-group {
+    width: 100%;
+  }
 }

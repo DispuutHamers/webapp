@@ -16,11 +16,17 @@
           zei over dit bier:
         </h4>
 
-        <p><i><%= simple_format(r.description) %></i></p>
+        <p>
+        <% if r.actiontext_description.present? %>
+          <%= r.actiontext_description %>
+        <% else %>
+          <i><%= simple_format(r.description) %></i>
+        <% end %>
+        </p>
 
         <p>
           Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
-          <i><%= r.proefdatum.strftime('%d-%m-%Y') %></i>
+          <i><%= r.proefdatum&.strftime('%d-%m-%Y') %></i>
         </p>
 
         <div class="btn-group pull-right">
@@ -44,7 +50,7 @@
         <% if current_user&.active? && @beer.picture? %>
           <%= image_tag @beer.picture, class: 'img img-responsive center-block' %>
         <% else %>
-          <img src="http://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
+          <img src="https://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
         <% end %>
         <table class="table table-hover">
           <tr>
@@ -72,18 +78,19 @@
           <%= link_to 'Meer info', @beer.URL, class: 'btn btn-default btn-block' %>
         <% end %>
 
-        <hr>
-
-        <div class="btn-group btn-group-vertical">
-          <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
-            <%= link_to reviews_beer_path(@beer), :class => 'btn btn-default' do %>
-              <i class="fas fa-edit"></i> Review dit bier
+        <% if current_user %>
+          <hr>
+          <div class="btn-group btn-group-vertical">
+            <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
+              <%= link_to reviews_beer_path(@beer), :class => 'btn btn-default' do %>
+                <i class="fas fa-edit"></i> Review dit bier
+              <% end %>
             <% end %>
-          <% end %>
-          <%= link_to edit_beer_path(@beer), :class => 'btn btn-default' do %>
-            <i class="fas fa-pencil-alt"></i> Wijzig dit bier
-          <% end %>
-        </div>
+            <%= link_to edit_beer_path(@beer), :class => 'btn btn-default' do %>
+              <i class="fas fa-pencil-alt"></i> Wijzig dit bier
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

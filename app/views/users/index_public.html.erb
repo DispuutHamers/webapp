@@ -13,7 +13,7 @@
   <% @users.each do |group| %>
     <div class='row'>
       <% if group[0] %>
-        <div class="panel panel-info">
+        <div class="panel panel-default">
           <div class="panel-heading">
             <h1 class="panel-title text-center">
               <%= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>

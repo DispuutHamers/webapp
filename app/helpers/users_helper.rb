@@ -1,6 +1,8 @@
 module UsersHelper
 
-  def gravatar_for(user, options = {size: 64, class: 'gravatar img img-responsive'})
+  def gravatar_for(user, options = {size: 64, class: 'gravatar img img-responsive img-rounded'})
+    options[:size] = 64 unless options[:size]
+    options[:class] = "gravatar img img-responsive img-rounded" unless options[:class]
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     size = options[:size]
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}&r=x&d=monsterid"
@@ -20,31 +22,10 @@ module UsersHelper
     end
 
     ratio = (sundays / total) * 100
-    user.update_attributes(sunday_ratio: ratio)
+    user.update(sunday_ratio: ratio)
   end
 
-  def self.attended_drinks_for(user)
-    return "User is geen lid" unless (usergroep = user.groups.where(group_id: 4).first)
-    date = usergroep.created_at
-    drinks = Event.where(attendance: true).where("created_at > ?", date)
-    wel = 0.0
-    niet = 0.0
-    drinks.each do |drink|
-      if drink.signups.where(user_id: user.id).last&.status
-        wel = wel + 1
-      else
-        niet = niet + 1
-      end
-    end
-
-    if drinks.count > 2
-      return ((wel / (niet + wel)) * 100).round(2)
-    else
-      return "Nog onbekend"
-    end
-  end
-
-  def missed_drinks_for(user)
+  def self.missed_drinks_for(user)
     date = user.groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     unattended = []
@@ -64,7 +45,7 @@ module UsersHelper
     end
 
     weight = (cijfer / user.reviews.count) unless user.reviews.empty?
-    user.update_attributes(weight: weight)
+    user.update(weight: weight)
   end
 
   def unreviewed_beer_for(user)

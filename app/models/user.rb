@@ -19,7 +19,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :events
   has_many :beers
   has_many :signups
-  has_many :nicknames
+  has_many :drafts
   has_many :blogitems
   has_many :attendees
   has_many :meetings_attended, through: :attendees, source: :meeting
@@ -27,11 +27,9 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
-  default_scope { includes(:groups, :usergroups) }
-
-  scope :leden, -> { joins(:groups).where(groups: {group_id: 4}) }
-  scope :aspiranten, -> { joins(:groups).where(groups: {group_id: 5}) }
-  scope :oud, -> { joins(:groups).where(groups: {group_id: 12}) }
+  scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
+  scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
+  scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
   scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
@@ -49,21 +47,12 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     'Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.'
   end
 
-  def nickname
-    nickname = ''
-    nicknames.order('created_at DESC').each do |nick|
-      nickname = nick.nickname + ' ' + nickname
-    end
-
-    nickname
-  end
-
   def signup(event, status, reason)
     return if event.deadline < Time.now
     return if event.attendance && status == "0" && reason.length < 6
 
     reason = UtilHelper.scramble_string(reason) if in_group?('Secretaris-generaal')
-    signups.find_or_create_by(event_id: event.id).update_attributes(status: status, reason: reason)
+    signups.find_or_create_by(event_id: event.id).update(status: status, reason: reason)
     event
   end
 

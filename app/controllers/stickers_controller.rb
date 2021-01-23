@@ -11,17 +11,17 @@ class StickersController < ApplicationController
 
   def personal
     @stickers = Sticker.where(user_id: current_user.id).paginate(page: params[:page])
-    breadcrumb 'Stickers Aanpassen', personal_sticker_path
+    breadcrumb 'Stickers aanpassen', personal_sticker_path
   end
 
   def new
     @sticker = Sticker.new
-    breadcrumb 'Sticker Plakken', new_sticker_path
+    breadcrumb 'Sticker plakken', new_sticker_path
   end
 
   def edit
     @sticker = Sticker.find(params[:id])
-    breadcrumb 'Sticker Aanpassen', edit_sticker_path(@sticker)
+    breadcrumb 'Sticker aanpassen', edit_sticker_path(@sticker)
   end
 
   def create

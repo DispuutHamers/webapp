@@ -2,17 +2,17 @@
   Wachtwoord vergeten?
 <% end %>
 
-<%= render layout: 'layouts/forms/form_small' do %>
+<%= render layout: 'layouts/small_width' do %>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {method: :post}) do |f| %>
     <%= devise_error_messages! %>
 
     <div class="input-group">
       <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "email" %>
+      <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "E-mail adres" %>
     </div>
     &nbsp;
     <div class="actions">
-      <%= f.submit "Stuur reset instructies", class: "btn btn-large btn-danger" %>
+      <%= f.submit "Verstuur reset instructies", class: "btn btn-large btn-primary" %>
     </div>
     <%= render "devise/shared/links" %>
   <% end %>

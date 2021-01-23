@@ -2,7 +2,7 @@
   Aspirant uitnodigen
 <% end %>
 
-<%= render layout: 'layouts/forms/form_small' do %>
+<%= render layout: 'layouts/small_width' do %>
   <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
     <%= devise_error_messages! %>
 
