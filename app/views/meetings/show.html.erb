@@ -12,10 +12,20 @@
   <div id="meeting-info-panel" class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-body">
-        <p><b>Datum:</b> <%= @meeting.date.strftime('%d-%m-%Y') %></p>
+        <p data-toggle="tooltip" data-placement="left" title="Datum">
+          <i class="fas fa-fw fa-clock"></i> <%= @meeting.date.strftime('%d-%m-%Y') %>
+        </p>
 
-        <% if @meeting.user_id %>
-          <p><b>Genotuleerd door:</b> <%= link_to @notulist.name, @notulist %></p>
+        <% if @chairman %>
+          <p data-toggle="tooltip" data-placement="left" title="Voorgezeten door">
+            <i class="fas fa-fw fa-gavel"></i> <%= link_to @chairman.name, @chairman %>
+          </p>
+        <% end %>
+
+        <% if @secretary %>
+          <p data-toggle="tooltip" data-placement="left" title="Genotuleerd door">
+            <i class="fas fa-fw fa-keyboard"></i> <%= link_to @secretary.name, @secretary %>
+          </p>
         <% end %>
 
         <hr>
@@ -31,10 +41,11 @@
               <%= link_to gravatar_for(a.user), a.user, class: "small-profile-picture" %>
             <% end %>
           </div>
-          <hr>
         <% end %>
 
         <% if current_user.admin? %>
+          <hr>
+
           <td>
             <div class="btn-group btn-group-vertical btn-group-sm">
               <%= link_to "/notuleer/#{@meeting.id}", class: 'btn btn-default' do %>

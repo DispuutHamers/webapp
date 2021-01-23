@@ -10,7 +10,8 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @notulist = User.find_by(id: @meeting.user_id)
+    @chairman = User.find_by(id: @meeting.chairman)
+    @secretary = User.find_by(id: @meeting.secretary)
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
@@ -40,7 +41,8 @@ class MeetingsController < ApplicationController
 
   def update
     @meeting.actiontext_notes = meeting_params[:actiontext_notes]
-    @meeting.user_id = current_user.id if meeting_params[:actiontext_notes]
+    @meeting.chairman_id = meeting_params[:chairman_id]
+    @meeting.secretary_id = meeting_params[:secretary_id]
 
     respond_to do |format|
       if params[:commit] == "Opslaan" && @meeting.save
