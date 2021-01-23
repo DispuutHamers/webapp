@@ -153,6 +153,7 @@ GEM
     libv8 (3.16.14.19)
     loaf (0.8.1)
       rails (>= 3.2)
+    lockbox (0.6.1)
     loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -354,6 +355,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   loaf
+  lockbox
   memory_profiler
   minidusen
   mysql2
