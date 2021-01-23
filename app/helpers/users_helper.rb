@@ -25,7 +25,7 @@ module UsersHelper
     user.update(sunday_ratio: ratio)
   end
 
-  def missed_drinks_for(user)
+  def self.missed_drinks_for(user)
     date = user.groups.where(group_id: 4).first.created_at
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     unattended = []
