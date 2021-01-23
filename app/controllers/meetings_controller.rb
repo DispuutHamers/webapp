@@ -5,27 +5,20 @@ class MeetingsController < ApplicationController
   before_action :admin_user?, only: [:notuleer, :destroy, :create, :new]
   breadcrumb 'Vergaderingen', :meetings_path
 
-
-  # GET /meetings
-  # GET /meetings.json
   def index
     @meetings = Meeting.all.paginate(page: params[:page])
   end
 
-  # GET /meetings/1
-  # GET /meetings/1.json
   def show
     @notulist = User.find_by(id: @meeting.user_id)
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
-  # GET /meetings/new
   def new
     @meeting = Meeting.new
     breadcrumb 'Nieuwe vergadering', new_meeting_path
   end
 
-  # GET /meetings/1/edit
   def edit
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
     breadcrumb 'Wijzig vergadering', edit_meeting_path(@meeting)
@@ -40,40 +33,36 @@ class MeetingsController < ApplicationController
     breadcrumb 'Notuleren', "/notuleer/#{@meeting.id}"
   end
 
-  # POST /meetings
-  # POST /meetings.json
   def create
     meeting = Meeting.new(meeting_params)
     save_object(meeting)
   end
 
-  # PATCH/PUT /meetings/1
-  # PATCH/PUT /meetings/1.json
   def update
     @meeting.actiontext_notes = meeting_params[:actiontext_notes]
     @meeting.user_id = current_user.id if meeting_params[:actiontext_notes]
-    @meeting.attendees.delete
-    @meeting.attendee_ids << meeting_params[:user_ids]
-    @meeting.save
-    update_object(@meeting, meeting_params)
 
     respond_to do |format|
       if params[:commit] == "Opslaan" && @meeting.save
-        format.html { redirect_to @meeting, notice: 'Vergadering is geupdate.' }
+        format.html {redirect_to @meeting, notice: 'Vergadering is geüpdate.'}
       elsif params[:commit] == "Annuleren"
         @meeting.drafts.where(user: current_user).take.destroy
-        format.html { redirect_to @meeting, notice: "Concept is verwijderd."}
+        format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
+      elsif params[:commit] == "Verstuur"
+        format.html do
+          @meeting.user_ids = meeting_params[:user_ids]
+          @meeting.save
+          redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
+        end
       elsif @meeting.save_draft(current_user)
         format.js
       else
-        format.html { render :edit }
-        format.js { head :unprocessable_entity }
+        format.html {render :edit}
+        format.js {head :unprocessable_entity}
       end
     end
   end
 
-  # DELETE /meetings/1
-  # DELETE /meetings/1.json
   def destroy
     delete_object(@meeting)
   end
