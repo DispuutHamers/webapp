@@ -1,6 +1,6 @@
 <% if @quotes.any? %>
-    <ol class="quotes">
-      <%= render @quotes %>
-    </ol>
-    <%= will_paginate @quotes %>
+  <ul class="quotes">
+    <%= render @quotes %>
+  </ul>
+  <%= will_paginate @quotes %>
 <% end %>
