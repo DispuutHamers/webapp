@@ -39,8 +39,6 @@ class MeetingsController < ApplicationController
 
   def update
     @meeting.actiontext_notes = meeting_params[:actiontext_notes]
-    @meeting.chairman_id = meeting_params[:chairman_id]
-    @meeting.secretary_id = meeting_params[:secretary_id]
 
     respond_to do |format|
       if params[:commit] == "Opslaan" && @meeting.save
@@ -50,6 +48,8 @@ class MeetingsController < ApplicationController
         format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
       elsif params[:commit] == "Verstuur"
         format.html do
+          @meeting.chairman_id = meeting_params[:chairman_id]
+          @meeting.secretary_id = meeting_params[:secretary_id]
           @meeting.user_ids = meeting_params[:user_ids]
           if @meeting.save
             redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
