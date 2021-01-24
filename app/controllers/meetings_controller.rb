@@ -75,6 +75,6 @@ class MeetingsController < ApplicationController
   private
 
   def set_meeting
-    @meeting = Meeting.find(params[:id])
+    @meeting = Meeting.includes(:chairman, :secretary).find(params[:id])
   end
 end
