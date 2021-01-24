@@ -16,15 +16,15 @@
           <i class="fas fa-fw fa-clock"></i> <%= @meeting.date.strftime('%d-%m-%Y') %>
         </p>
 
-        <% if @chairman %>
+        <% if @meeting.chairman %>
           <p data-toggle="tooltip" data-placement="left" title="Voorgezeten door">
-            <i class="fas fa-fw fa-gavel"></i> <%= link_to @chairman.name, @chairman %>
+            <i class="fas fa-fw fa-gavel"></i> <%= link_to @meeting.chairman.name, @meeting.chairman %>
           </p>
         <% end %>
 
-        <% if @secretary %>
+        <% if @meeting.secretary %>
           <p data-toggle="tooltip" data-placement="left" title="Genotuleerd door">
-            <i class="fas fa-fw fa-keyboard"></i> <%= link_to @secretary.name, @secretary %>
+            <i class="fas fa-fw fa-keyboard"></i> <%= link_to @meeting.secretary.name, @meeting.secretary %>
           </p>
         <% end %>
 
