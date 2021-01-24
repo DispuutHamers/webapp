@@ -32,9 +32,9 @@
 
         <h2>Agenda <%= @meeting.onderwerp %></h2>
         <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
-        <hr>
 
         <% if @meeting.attendees.any? %>
+          <hr>
           <h4>Aanwezigen <span class="text-muted small"><%= @meeting.attendees.count %></span></h4>
           <div class="clearfix">
             <% @meeting.attendees.each do |a| %>

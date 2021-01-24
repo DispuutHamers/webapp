@@ -47,7 +47,7 @@ class MeetingsController < ApplicationController
           render :edit
         end
       elsif params[:commit] == "Annuleren"
-        @meeting.drafts.where(user: current_user).take.destroy
+        @meeting.drafts.where(user: current_user).take&.destroy
         format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
       elsif params[:commit] == "Verstuur"
         format.html do
