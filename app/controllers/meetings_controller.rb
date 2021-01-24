@@ -10,7 +10,6 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @notulist = User.find_by(id: @meeting.user_id)
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
@@ -39,17 +38,21 @@ class MeetingsController < ApplicationController
   end
 
   def update
-    @meeting.actiontext_notes = meeting_params[:actiontext_notes]
-    @meeting.user_id = current_user.id if meeting_params[:actiontext_notes]
-
     respond_to do |format|
-      if params[:commit] == "Opslaan" && @meeting.save
-        format.html {redirect_to @meeting, notice: 'Vergadering is geüpdate.'}
+      if params[:commit] == "Opslaan"
+        @meeting.actiontext_notes = meeting_params[:actiontext_notes]
+        if @meeting.save
+          format.html {redirect_to @meeting, notice: 'Vergadering is geüpdate.'}
+        else
+          render :edit
+        end
       elsif params[:commit] == "Annuleren"
-        @meeting.drafts.where(user: current_user).take.destroy
+        @meeting.drafts.where(user: current_user).take&.destroy
         format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
       elsif params[:commit] == "Verstuur"
         format.html do
+          @meeting.chairman_id = meeting_params[:chairman_id]
+          @meeting.secretary_id = meeting_params[:secretary_id]
           @meeting.user_ids = meeting_params[:user_ids]
           if @meeting.save
             redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
@@ -73,6 +76,6 @@ class MeetingsController < ApplicationController
   private
 
   def set_meeting
-    @meeting = Meeting.find(params[:id])
+    @meeting = Meeting.includes(:chairman, :secretary).find(params[:id])
   end
 end

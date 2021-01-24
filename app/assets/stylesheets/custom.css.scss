@@ -223,6 +223,20 @@ table.events thead tr th, table.tablesorter tfoot tr th {
 }
 
 .info-panel {
+  .signup-list {
+    list-style-type: none;
+    padding-left: 8px
+  }
+
+  .signup-list span {
+    display: block;
+    padding-left: 8px;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
   .small-profile-picture {
     width: 56px;
     height: 56px;

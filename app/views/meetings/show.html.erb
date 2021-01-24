@@ -12,29 +12,40 @@
   <div class="col-md-4 info-panel">
     <div class="panel panel-default">
       <div class="panel-body">
-        <p><b>Datum:</b> <%= @meeting.date.strftime('%d-%m-%Y') %></p>
+        <p data-toggle="tooltip" data-placement="left" title="Datum">
+          <i class="fas fa-fw fa-clock"></i> <%= @meeting.date.strftime('%d-%m-%Y') %>
+        </p>
 
-        <% if @meeting.user_id %>
-          <p><b>Genotuleerd door:</b> <%= link_to @notulist.name, @notulist %></p>
+        <% if @meeting.chairman %>
+          <p data-toggle="tooltip" data-placement="left" title="Voorgezeten door">
+            <i class="fas fa-fw fa-gavel"></i> <%= link_to @meeting.chairman.name, @meeting.chairman %>
+          </p>
+        <% end %>
+
+        <% if @meeting.secretary %>
+          <p data-toggle="tooltip" data-placement="left" title="Genotuleerd door">
+            <i class="fas fa-fw fa-keyboard"></i> <%= link_to @meeting.secretary.name, @meeting.secretary %>
+          </p>
         <% end %>
 
         <hr>
 
         <h2>Agenda <%= @meeting.onderwerp %></h2>
         <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
-        <hr>
 
         <% if @meeting.attendees.any? %>
+          <hr>
           <h4>Aanwezigen <span class="text-muted small"><%= @meeting.attendees.count %></span></h4>
           <div class="clearfix">
             <% @meeting.attendees.each do |a| %>
               <%= link_to gravatar_for(a.user), a.user, class: "small-profile-picture" %>
             <% end %>
           </div>
-          <hr>
         <% end %>
 
         <% if current_user.admin? %>
+          <hr>
+
           <td>
             <div class="btn-group btn-group-vertical btn-group-sm">
               <%= link_to "/notuleer/#{@meeting.id}", class: 'btn btn-default' do %>
