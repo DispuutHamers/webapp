@@ -10,8 +10,8 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @chairman = User.find_by(id: @meeting.chairman)
-    @secretary = User.find_by(id: @meeting.secretary)
+    @chairman = @meeting.chairman
+    @secretary = @meeting.secretary
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
   end
 
