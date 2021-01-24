@@ -38,11 +38,14 @@ class MeetingsController < ApplicationController
   end
 
   def update
-    @meeting.actiontext_notes = meeting_params[:actiontext_notes]
-
     respond_to do |format|
-      if params[:commit] == "Opslaan" && @meeting.save
-        format.html {redirect_to @meeting, notice: 'Vergadering is geüpdate.'}
+      if params[:commit] == "Opslaan"
+        @meeting.actiontext_notes = meeting_params[:actiontext_notes]
+        if @meeting.save
+          format.html {redirect_to @meeting, notice: 'Vergadering is geüpdate.'}
+        else
+          render :edit
+        end
       elsif params[:commit] == "Annuleren"
         @meeting.drafts.where(user: current_user).take.destroy
         format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
