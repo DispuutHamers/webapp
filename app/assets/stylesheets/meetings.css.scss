@@ -2,15 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#meeting-form .actions input {
-  width: auto;
-}
-
-#meeting-form {
-  #meeting_agenda {
+.meeting-form {
+  textarea {
     min-height: 250px;
   }
-  #meeting_user_ids {
+
+  select {
     min-height: 200px;
     min-width: 30%;
   }
