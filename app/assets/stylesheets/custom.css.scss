@@ -44,12 +44,16 @@ textarea {
 
 .quotes {
   list-style: none;
-  margin: 10px 0 0 0;
+  margin: 0;
   padding-left: 0;
 
   li {
     padding: 10px 0;
     border-top: 1px solid #e8e8e8;
+  }
+
+  li:first-child {
+    border-top: 0 !important;
   }
 }
 
