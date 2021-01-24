@@ -54,6 +54,14 @@
           <td><%= @user.blogitems.count %></td>
         </tr>
         <tr>
+          <td>Aantal vergaderingen voorgezeten</td>
+          <td><%= @user.meetings_chaired.count %></td>
+        </tr>
+        <tr>
+          <td>Aantal vergaderingen genotuleerd</td>
+          <td><%= @user.meetings_minuted.count %></td>
+        </tr>
+        <tr>
           <td>Gemiddeld review cijfer</td>
           <td>
             <% if @user.weight %>
