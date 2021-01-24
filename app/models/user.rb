@@ -10,11 +10,10 @@ remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sig
 last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at
 remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation]
   acts_as_paranoid ignore: [:weight]
-  before_save {self.email = email.downcase}
+  before_save { self.email = email.downcase }
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
-  has_many :devices
   has_many :api_keys
   has_many :reviews
   has_many :events
@@ -22,17 +21,19 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :signups
   has_many :drafts
   has_many :blogitems
+  has_many :attendees
+  has_many :meetings_attended, through: :attendees, source: :meeting
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: { case_sensitive: false }
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
 
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
+  scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def anonymize
-    devices.destroy_all
     self.name = Faker::Name.name
     self.email = Faker::Internet.email(name) unless dev?
     save
@@ -100,13 +101,5 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def dev?
     in_group?('Developer')
-  end
-
-  def lidstring
-    return 'lid' if lid?
-    return 'alid' if alid?
-    return 'olid' if olid?
-
-    'none'
   end
 end

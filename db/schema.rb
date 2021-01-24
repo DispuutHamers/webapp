@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
   end
 
+  create_table "attendees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "meeting_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["meeting_id"], name: "index_attendees_on_meeting_id"
+    t.index ["user_id"], name: "index_attendees_on_user_id"
+  end
+
   create_table "beers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "soort"
@@ -356,6 +363,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.integer "invitations_count", default: 0
     t.string "phone_number"
     t.date "birthday"
+    t.bigint "meeting_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -363,6 +371,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
+    t.index ["meeting_id"], name: "index_users_on_meeting_id"
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
