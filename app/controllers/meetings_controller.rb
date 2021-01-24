@@ -53,13 +53,16 @@ class MeetingsController < ApplicationController
       elsif params[:commit] == "Verstuur"
         format.html do
           @meeting.user_ids = meeting_params[:user_ids]
-          @meeting.save
-          redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
+          if @meeting.save
+            redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
+          else
+            render :edit
+          end
         end
       elsif @meeting.save_draft(current_user)
         format.js
       else
-        format.html {render :edit}
+        format.html {render :notuleer}
         format.js {head :unprocessable_entity}
       end
     end
