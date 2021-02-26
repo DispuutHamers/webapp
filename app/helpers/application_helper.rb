@@ -1,12 +1,12 @@
 module ApplicationHelper
-
   def markdown(text)
-    if text
-      markdown = Redcarpet::Markdown.new(
-          Redcarpet::Render::HTML.new
-      )
-      markdown.render(text).html_safe
-    end
+    return unless text
+
+    markdown = Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML.new
+    )
+
+    markdown.render(text).html_safe
   end
 
   def current_user?(user)
@@ -14,11 +14,14 @@ module ApplicationHelper
   end
 
   def lid?
+    return unless logged_in?
+
     redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.lid? || current_user&.olid?
   end
 
   def ilid?
+    return unless logged_in?
+
     redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.active?
   end
-
 end
