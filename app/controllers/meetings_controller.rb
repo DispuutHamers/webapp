@@ -51,12 +51,7 @@ class MeetingsController < ApplicationController
         format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
       elsif params[:commit] == "Verstuur"
         format.html do
-          @meeting.chairman_id = meeting_params[:chairman_id]
-          @meeting.secretary_id = meeting_params[:secretary_id]
-          @meeting.user_ids = meeting_params[:user_ids]
-          @meeting.date = meeting_params[:date]
-          @meeting.onderwerp = meeting_params[:onderwerp]
-          @meeting.agenda = meeting_params[:agenda]
+          @meeting.attributes = meeting_params.except(:actiontext_notes)
           if @meeting.save
             redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
           else
