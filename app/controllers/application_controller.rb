@@ -1,6 +1,7 @@
 #entry point for the application parent class for all controllers
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :store_user_location
   before_action :set_cache_buster
   before_action :set_paper_trail_whodunnit
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -37,15 +38,31 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    unless current_user&.active?
-      redirect_to signin_url, notice: 'Deze webapp is een save-space, voor toegang neem dus contact op met een der leden.'
-    end
+    return true if current_user&.active?
+
+    redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
+    false
   end
 
   def admin_user?
-    logged_in?
-    unless current_user&.admin?
-      redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.'
-    end
+    return true if logged_in? && current_user&.admin?
+
+    redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.'
+    false
+  end
+
+  def after_sign_in_path_for(resource_or_scope)
+    stored_location_for(resource_or_scope) || super
+  end
+
+  private
+
+  def store_user_location
+    return unless request.get?
+    return unless is_navigational_format?
+    return if devise_controller?
+    return if request.xhr?
+
+    store_location_for(:user, request.fullpath)
   end
 end
