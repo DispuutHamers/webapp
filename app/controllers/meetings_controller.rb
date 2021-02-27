@@ -54,6 +54,9 @@ class MeetingsController < ApplicationController
           @meeting.chairman_id = meeting_params[:chairman_id]
           @meeting.secretary_id = meeting_params[:secretary_id]
           @meeting.user_ids = meeting_params[:user_ids]
+          @meeting.date = meeting_params[:date]
+          @meeting.onderwerp = meeting_params[:onderwerp]
+          @meeting.agenda = meeting_params[:agenda]
           if @meeting.save
             redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
           else
