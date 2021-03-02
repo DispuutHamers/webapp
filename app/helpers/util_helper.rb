@@ -10,11 +10,6 @@ module UtilHelper
     end
   end
 
-  def self.scramble_string(string)
-    return if string.length < 1
-    string << " Overigens ben ik van mening dat correct taalgebruik zeer belangrijk is!"
-  end
-
   def update_object(obj, obj_params)
     if obj.class.name == "User" # Hacky de user afzonderen
       if obj.update_with_password(obj_params)
