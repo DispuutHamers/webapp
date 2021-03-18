@@ -9,10 +9,13 @@ class UsergroupsController < ApplicationController
     @group = Usergroup.new
   end
 
-  def create
-    Usergroup.new(usergroup_params)
-    flash[:success] = "Groep succesvol aangemaakt."
+  def show
     redirect_to groups_path
+  end
+
+  def create
+    usergroup = Usergroup.new(usergroup_params)
+    save_object(usergroup)
   end
 
   def destroy
