@@ -1,7 +1,7 @@
 # Usergroup controller
 class UsergroupsController < ApplicationController
   before_action :logged_in?
-  before_action :admin_user?
+  before_action :admin_user?, only: [:create, :destroy]
   breadcrumb 'Groepen', :groups_path
 
   def index
@@ -21,7 +21,7 @@ class UsergroupsController < ApplicationController
     else
       flash[:error] = "De groep moet leeg zijn voor je deze kunt verwijderen!"
     end
-    redirect_to root_path
+    redirect_to groups_path
   end
 
   private
@@ -30,7 +30,6 @@ class UsergroupsController < ApplicationController
   end
 
   def admin_user
-    @quote = Quote.find_by_id(params[:id])
     redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user.admin?
   end
 end
