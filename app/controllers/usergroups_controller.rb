@@ -9,13 +9,14 @@ class UsergroupsController < ApplicationController
     @group = Usergroup.new
   end
 
-  def show
-    redirect_to groups_path
-  end
-
   def create
-    usergroup = Usergroup.new(usergroup_params)
-    save_object(usergroup)
+    @group = Usergroup.new(usergroup_params)
+    if @group.save
+      redirect_to groups_path
+    else
+      render 'usergroups/index'
+    end
+
   end
 
   def destroy
