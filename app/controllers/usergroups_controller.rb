@@ -28,8 +28,4 @@ class UsergroupsController < ApplicationController
   def usergroup_params
     params.require(:usergroup).permit(:name, :text)
   end
-
-  def admin_user
-    redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user.admin?
-  end
 end
