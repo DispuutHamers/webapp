@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def show
     @quotes = @user.quotes.order('created_at DESC').paginate(page: params[:page])
-    @missed_drinks = UsersHelper.missed_drinks_for(@user)
+    @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
     breadcrumb @user.name, user_path(@user)
   end
 
