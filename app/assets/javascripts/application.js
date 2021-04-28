@@ -15,11 +15,3 @@
 //= require turbolinks
 //= require trix/dist/trix
 //= require_tree .
-
-// $(document).on('turbolinks:click', function() {
-//     NProgress.start();
-// });
-// $(document).on('turbolinks:render', function() {
-//     NProgress.done();
-//     NProgress.remove();
-// });

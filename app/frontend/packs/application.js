@@ -27,6 +27,8 @@ import '@fortawesome/fontawesome-free/js/all'
 import 'bootstrap-select/dist/js/bootstrap-select';
 import Tablesort from 'tablesort'
 
+require("turbolinks").start();
+
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
