@@ -21,7 +21,6 @@ import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
 import "@fortawesome/fontawesome-free/js/all"
-require("flatpickr/dist/flatpickr.js")
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
