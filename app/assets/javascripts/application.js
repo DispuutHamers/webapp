@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress
 //= require trix/dist/trix
