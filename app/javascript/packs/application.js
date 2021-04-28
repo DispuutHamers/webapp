@@ -20,6 +20,7 @@ import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
+import "@fortawesome/fontawesome-free/css/all"
 
 require("flatpickr/dist/flatpickr.css")
 

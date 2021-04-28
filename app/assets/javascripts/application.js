@@ -12,7 +12,6 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require font_awesome5
 //= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress
