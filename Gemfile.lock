@@ -119,8 +119,6 @@ GEM
       i18n (>= 1.6, < 2)
     ffi (1.14.2)
     flamegraph (0.9.5)
-    font_awesome5_rails (1.3.0)
-      railties (>= 4.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     grape (1.2.5)
@@ -343,7 +341,6 @@ DEPENDENCIES
   doorkeeper-i18n
   faker
   flamegraph
-  font_awesome5_rails
   icalendar
   jquery-rails
   loaf

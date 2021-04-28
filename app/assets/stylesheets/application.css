@@ -12,7 +12,6 @@
  = require "nprogress-bootstrap"
  = require_tree .
  *= require 'trix/dist/trix'
- *= require font_awesome5
  *= require rails_bootstrap_forms
  */
 
