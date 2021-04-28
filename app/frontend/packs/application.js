@@ -21,7 +21,8 @@ import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
-import "@fortawesome/fontawesome-free/js/all"
+import '@fortawesome/fontawesome-free/js/all'
+import 'bootstrap-select/dist/js/bootstrap-select';
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
