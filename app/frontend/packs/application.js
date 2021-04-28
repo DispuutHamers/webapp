@@ -20,9 +20,7 @@ import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
-import "@fortawesome/fontawesome-free/css/all"
-
-require("flatpickr/dist/flatpickr.css")
+import "@fortawesome/fontawesome-free/js/all"
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
