@@ -16,15 +16,15 @@
 // const imagePath = (name) => images(name, true)
 
 import 'jquery'
-import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
-import 'nprogress'
 import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
+import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
-import 'bootstrap-select/dist/js/bootstrap-select';
+import 'bootstrap-select/dist/js/bootstrap-select'
 import Tablesort from 'tablesort'
 
 require("turbolinks").start();
