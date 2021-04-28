@@ -9,6 +9,7 @@
     "core-js": "^3.8.0",
     "flatpickr": "^4.6.9",
     "jquery": "3.4.1",
+    "nprogress": "^0.2.0",
     "popper.js": "^1.16.1",
     "rails-ujs": "^5.2.4-4",
     "regenerator-runtime": "^0.13.7",

@@ -18,6 +18,7 @@
 import 'jquery'
 import 'bootstrap/dist/js/bootstrap';
 import 'core-js/stable'
+import 'nprogress'
 import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"

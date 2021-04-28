@@ -13,7 +13,13 @@
 //= require rails-ujs
 //= require jquery
 //= require turbolinks
-//= require nprogress
 //= require trix/dist/trix
-//= require nprogress-turbolinks
 //= require_tree .
+
+// $(document).on('turbolinks:click', function() {
+//     NProgress.start();
+// });
+// $(document).on('turbolinks:render', function() {
+//     NProgress.done();
+//     NProgress.remove();
+// });
