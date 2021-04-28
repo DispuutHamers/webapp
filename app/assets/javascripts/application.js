@@ -17,10 +17,3 @@
 //= require trix/dist/trix
 //= require nprogress-turbolinks
 //= require_tree .
-
-$( document ).on('turbolinks:load', function() {
-  $(".tablesorter").tablesorter();
-  $("tr[data-link]").click(function() {
-    window.location = $(this).data("link")
-  })
-});

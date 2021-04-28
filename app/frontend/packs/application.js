@@ -15,6 +15,7 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import 'jquery'
 import 'bootstrap/dist/js/bootstrap';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
@@ -23,8 +24,24 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
 import '@fortawesome/fontawesome-free/js/all'
 import 'bootstrap-select/dist/js/bootstrap-select';
+import Tablesort from 'tablesort'
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 application.register('flatpickr', Flatpickr)
+
+document.addEventListener("turbolinks:load", function() {
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('[data-toggle="popover"]').popover()
+        $("tr[data-link]").click(function() {
+            window.location = $(this).data("link")
+        })
+
+        const tables = document.getElementsByClassName('tablesorter');
+        for (let t of tables) {
+            new Tablesort(t);
+        }
+    })
+})
