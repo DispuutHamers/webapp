@@ -15,6 +15,8 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import 'jquery'
+import 'bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
