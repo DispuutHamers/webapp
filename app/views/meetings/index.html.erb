@@ -14,7 +14,7 @@
   <tbody>
     <% @meetings.each do |m| %>
       <tr>
-        <td><%= m.date.strftime('%d-%m-%Y') %></td>
+        <td data-sort="<%= m.date.strftime('%Y%m%d') %>"><%= m.date.strftime('%d-%m-%Y') %></td>
         <td><%= link_to m.onderwerp, m %></td>
       </tr>
     <% end %>

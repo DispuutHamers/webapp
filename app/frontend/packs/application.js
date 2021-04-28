@@ -26,6 +26,7 @@ import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
 import 'bootstrap-select/dist/js/bootstrap-select'
 import Tablesort from 'tablesort'
+import 'trix';
 
 require("turbolinks").start();
 
