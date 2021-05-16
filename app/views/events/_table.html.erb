@@ -13,6 +13,7 @@
         <%= link_to event.title, event %>
         <% if event.today? %><span class="label label-default">Vandaag</span><% end %>
         <% if event.public? %><span class="label label-default">Publiek</span><% end %>
+        <% if event.usergroup %><span class="label label-default"><%= event.usergroup.name %></span><% end %>
       </td>
       <td><%= event.date.strftime('%d-%m-%Y') %>
       <td>
