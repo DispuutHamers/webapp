@@ -44,10 +44,6 @@ document.addEventListener("turbolinks:load", function() {
             window.location = $(this).data("link")
         })
 
-        //document.querySelectorAll('table[data-sortable]').forEach((e) => new Tablesort(e));
-        const tables = document.getElementsByClassName('tablesorter');
-        for (let t of tables) {
-            new Tablesort(t);
-        }
+        document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
     })
 })
