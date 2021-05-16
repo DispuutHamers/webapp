@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_211239) do
+ActiveRecord::Schema.define(version: 2021_05_15_232956) do
 
-  create_table "action_text_rich_texts", charset: "latin1", force: :cascade do |t|
+  create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
     t.string "record_type", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", charset: "latin1", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "latin1", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "api_keys", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "api_keys", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "key"
     t.integer "user_id"
     t.string "name"
@@ -53,14 +53,14 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
   end
 
-  create_table "attendees", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "attendees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "meeting_id", null: false
     t.bigint "user_id", null: false
     t.index ["meeting_id"], name: "index_attendees_on_meeting_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
-  create_table "beers", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "beers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "soort"
     t.datetime "created_at"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_beers_on_deleted_at"
   end
 
-  create_table "blogitems", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "blogitems", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "title"
     t.text "body"
     t.integer "user_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.boolean "public", default: false
   end
 
-  create_table "blogphotos", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "blogphotos", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "blogitem_id"
     t.string "description"
     t.datetime "created_at", null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.datetime "image_updated_at"
   end
 
-  create_table "brews", charset: "latin1", force: :cascade do |t|
+  create_table "brews", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "description"
     t.bigint "recipe_id"
     t.datetime "created_at", null: false
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
   end
 
-  create_table "drafts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "drafts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "entity_type"
     t.bigint "entity_id"
     t.integer "user_id"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["entity_type", "entity_id"], name: "index_drafts_on_entity_type_and_entity_id"
   end
 
-  create_table "emails", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "emails", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "from"
     t.string "to"
     t.text "body"
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "events", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "beschrijving"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -133,10 +133,11 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.datetime "deleted_at"
     t.boolean "attendance", default: false
     t.string "invitation_code"
+    t.integer "usergroup_id"
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
   end
 
-  create_table "external_signups", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "external_signups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "email"
@@ -146,7 +147,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "groups", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "groups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
     t.datetime "created_at"
@@ -158,7 +159,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-  create_table "images", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "images", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "title"
     t.string "image_id"
     t.string "description"
@@ -170,7 +171,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_images_on_deleted_at"
   end
 
-  create_table "meetings", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "meetings", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "agenda"
     t.text "notes"
     t.datetime "created_at"
@@ -183,7 +184,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_meetings_on_deleted_at"
   end
 
-  create_table "news", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "news", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "cat"
     t.text "body"
     t.string "title"
@@ -196,7 +197,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_news_on_deleted_at"
   end
 
-  create_table "nicknames", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "nicknames", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "user_id"
     t.string "nickname"
     t.string "description"
@@ -207,7 +208,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["user_id"], name: "index_nicknames_on_user_id"
   end
 
-  create_table "oauth_access_grants", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "oauth_access_grants", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.integer "application_id", null: false
     t.string "token", null: false
@@ -221,7 +222,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
-  create_table "oauth_access_tokens", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "oauth_access_tokens", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "resource_owner_id"
     t.integer "application_id"
     t.string "token", null: false
@@ -237,7 +238,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "oauth_applications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
@@ -248,7 +249,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "public_pages", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "public_pages", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "content"
     t.string "title"
     t.boolean "public"
@@ -258,7 +259,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_public_pages_on_deleted_at"
   end
 
-  create_table "quotes", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "quotes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "user_id"
     t.integer "reporter"
     t.datetime "created_at"
@@ -269,7 +270,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at"
   end
 
-  create_table "recipes", charset: "latin1", force: :cascade do |t|
+  create_table "recipes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "beer"
     t.text "description"
@@ -277,7 +278,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reviews", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "reviews", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "beer_id"
     t.integer "user_id"
     t.text "description"
@@ -290,7 +291,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["user_id", "beer_id"], name: "index_reviews_on_user_id_and_beer_id", unique: true
   end
 
-  create_table "signups", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "signups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
     t.boolean "status"
@@ -301,7 +302,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_signups_on_deleted_at"
   end
 
-  create_table "stickers", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "stickers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "lat"
     t.string "lon"
     t.text "notes"
@@ -317,7 +318,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_stickers_on_deleted_at"
   end
 
-  create_table "usergroups", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "usergroups", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "name"
@@ -325,7 +326,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["deleted_at"], name: "index_usergroups_on_deleted_at"
   end
 
-  create_table "users", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "users", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.string "email", default: "", null: false
     t.datetime "created_at"
@@ -379,7 +380,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "versions", id: :integer, charset: "utf8mb4", force: :cascade do |t|
+  create_table "versions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "item_type", limit: 191, null: false
     t.integer "item_id", null: false
     t.string "event", null: false
@@ -387,8 +388,8 @@ ActiveRecord::Schema.define(version: 2021_01_23_211239) do
     t.text "old_object", size: :long
     t.datetime "created_at"
     t.text "old_object_changes", size: :long
-    t.text "object", size: :long, collation: "utf8mb4_bin"
-    t.text "object_changes", size: :long, collation: "utf8mb4_bin"
+    t.json "object"
+    t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
     t.check_constraint "json_valid(`object_changes`)", name: "object_changes"
     t.check_constraint "json_valid(`object`)", name: "object"

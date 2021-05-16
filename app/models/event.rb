@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   has_many :users, through: :signups
   has_rich_text :description
   belongs_to :user
+  belongs_to :usergroup
 
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Date.today]) }
