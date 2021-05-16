@@ -78,6 +78,14 @@
                            } %>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.label :usergroup_id, 'Groep (optioneel)' %>
+        </div>
+        <div class="col-md-9">
+          <%= f.select :usergroup_id, Usergroup.all.collect { |x| [x.name, x.id] }, include_blank: true %>
+        </div>
+      </div>
       <%= f.check_box :public, { checked: @event.invitation_code? } %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
       <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
     </div>

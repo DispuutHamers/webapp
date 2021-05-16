@@ -5,7 +5,6 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
   breadcrumb 'Activiteiten', :events_path
 
-
   # GET /events
   # GET /events.json
   def index
@@ -33,6 +32,8 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @unknown = User.leden.where.not(id: Signup.where(event_id: @event.id).select(:user_id))
+    @unknown = @unknown.where(:id => @event.usergroup.users.all) if @event.usergroup
+
     breadcrumb @event.title, event_path(@event)
   end
 
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
   end
 
   def remind
-    unless DateTime.now > @event.deadline
+    if DateTime.now < @event.deadline
       unsigned_users = User.leden - @event.users
       unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event).deliver }
       flash[:success] = "Mail verzonden"
