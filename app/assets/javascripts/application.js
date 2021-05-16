@@ -12,16 +12,8 @@
 //
 //= require rails-ujs
 //= require jquery
-//= require twitter/bootstrap
 //= require turbolinks
 //= require nprogress
 //= require trix/dist/trix
 //= require nprogress-turbolinks
 //= require_tree .
-
-$( document ).on('turbolinks:load', function() {
-  $(".tablesorter").tablesorter();
-  $("tr[data-link]").click(function() {
-    window.location = $(this).data("link")
-  })
-});

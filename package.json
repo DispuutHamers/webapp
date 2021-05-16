@@ -4,17 +4,23 @@
     "@rails/actiontext": "^6.0.2",
     "@rails/ujs": "^6.0.3-4",
     "@rails/webpacker": "5.3.0",
+    "bootstrap": "3.3.7",
+    "bootstrap-select": "^1.12.4",
     "core-js": "^3.8.0",
     "flatpickr": "^4.6.9",
+    "jquery": "3.4.1",
+    "popper.js": "^1.16.1",
     "rails-ujs": "^5.2.4-4",
     "regenerator-runtime": "^0.13.7",
     "stimulus": "^1.1.1",
     "stimulus-flatpickr": "^1.4.0",
+    "tablesort": "^5.2.1",
     "trix": "^1.0.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
+    "resolve-url-loader": "^3.1.2",
     "webpack-dev-server": "^3.11.2"
   }
 }
