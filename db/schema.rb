@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_193317) do
+ActiveRecord::Schema.define(version: 2021_05_15_232956) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.datetime "deleted_at"
     t.boolean "attendance", default: false
     t.string "invitation_code"
+    t.integer "usergroup_id"
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
   end
 
@@ -176,9 +177,10 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "onderwerp"
-    t.integer "user_id"
+    t.integer "secretary_id"
     t.datetime "date"
     t.datetime "deleted_at"
+    t.integer "chairman_id"
     t.index ["deleted_at"], name: "index_meetings_on_deleted_at"
   end
 
@@ -186,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.string "cat"
     t.text "body"
     t.string "title"
+    t.string "image"
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -235,7 +238,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "oauth_applications", id: :integer, charset: "latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false
@@ -388,6 +391,8 @@ ActiveRecord::Schema.define(version: 2021_01_23_193317) do
     t.json "object"
     t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+    t.check_constraint "json_valid(`object_changes`)", name: "object_changes"
+    t.check_constraint "json_valid(`object`)", name: "object"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

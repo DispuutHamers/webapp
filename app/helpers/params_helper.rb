@@ -37,7 +37,7 @@ module ParamsHelper
   end
 
   def event_params
-    params.require(:event).permit(:end_time, :deadline, :beschrijving, :public, :title, :date, :location, :description)
+    params.require(:event).permit(:end_time, :deadline, :beschrijving, :public, :title, :date, :location, :description, :usergroup_id)
   end
 
   def beer_params

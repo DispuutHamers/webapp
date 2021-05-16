@@ -3,6 +3,7 @@
 <% end %>
 
 <div class="row">
+
   <div class="col-md-8">
     <p>
       <i class="fas fa-clock fa-fw"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
@@ -19,6 +20,7 @@
       <% end %>
     </p>
   </div>
+
   <div class="col-md-4 info-panel">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -39,6 +41,13 @@
             <i class="fas fa-user-circle fa-fw"></i>
             <%= link_to @event.user.name, @event.user %>
           </p>
+        <% end %>
+
+        <% if @event.usergroup %>
+        <p data-toggle="tooltip" data-placement="left" data-html="true" title="<b>Bijbehorende groep:</b><br><% @event.usergroup.users.each do |user| %><%= user.name %><br><% end %>">
+          <i class="fas fa-users fa-fw"></i>
+          <%= @event.usergroup.name %>
+        </p>
         <% end %>
 
         <% if @event.public? %>
@@ -62,7 +71,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "form-inline" } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
@@ -90,7 +99,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: 'form-inline'} do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: { class: 'form-inline' } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
@@ -123,6 +132,9 @@
 
         <% if @unknown.any? %>
           <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
+          <% if @event.usergroup %>
+            <p class="text-muted small">Omdat deze activiteit een bijbehorende groep heeft worden alleen onbekenden uit die group weergegeven. </p>
+          <% end %>
           <div class="clearfix">
             <%- @unknown.each do |s| %>
               <%= link_to gravatar_for(s), s, class: "small-profile-picture" %>
@@ -147,7 +159,7 @@
             <% end %>
           <% end %>
           <% if current_user.admin? %>
-            <%= link_to @event, method: :delete, data: {confirm: 'Weet je het zeker?'}, :class => 'btn btn-default' do %>
+            <%= link_to @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn btn-default' do %>
               <i class="far fa-trash-alt"></i> Verwijder activiteit
             <% end %>
           <% end %>
@@ -169,4 +181,5 @@
       </div>
     </div>
   </div>
+
 </div>
