@@ -16,15 +16,20 @@
 // const imagePath = (name) => images(name, true)
 
 import 'jquery'
-import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
+import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
-import 'bootstrap-select/dist/js/bootstrap-select';
-import Tablesort from 'tablesort'
+import 'bootstrap-select/dist/js/bootstrap-select'
+import 'tablesort/dist/sorts/tablesort.number.min'
+import 'tablesort/dist/sorts/tablesort.date.min'
+import 'trix';
+
+require("turbolinks").start();
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
@@ -39,9 +44,6 @@ document.addEventListener("turbolinks:load", function() {
             window.location = $(this).data("link")
         })
 
-        const tables = document.getElementsByClassName('tablesorter');
-        for (let t of tables) {
-            new Tablesort(t);
-        }
+        document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
     })
 })
