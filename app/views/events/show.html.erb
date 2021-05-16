@@ -44,10 +44,10 @@
         <% end %>
 
         <% if @event.usergroup %>
-        <p data-toggle="tooltip" data-placement="left" data-html="true" title="<b>Bijbehorende groep:</b><br><% @event.usergroup.users.each do |user| %><%= user.name %><br><% end %>">
-          <i class="fas fa-users fa-fw"></i>
-          <%= @event.usergroup.name %>
-        </p>
+          <p data-toggle="tooltip" data-placement="left" data-html="true" title="<b>Bijbehorende groep:</b><br><% @event.usergroup.users.each do |user| %><%= user.name %><br><% end %>">
+            <i class="fas fa-users fa-fw"></i>
+            <%= @event.usergroup.name %>
+          </p>
         <% end %>
 
         <% if @event.public? %>
@@ -133,7 +133,7 @@
         <% if @unknown.any? %>
           <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
           <% if @event.usergroup %>
-            <p class="text-muted small">Omdat deze activiteit een bijbehorende groep heeft worden alleen onbekenden uit die group weergegeven. </p>
+            <p class="text-muted small">Omdat deze activiteit een bijbehorende groep heeft worden alleen onbekenden uit die groep weergegeven. </p>
           <% end %>
           <div class="clearfix">
             <%- @unknown.each do |s| %>
