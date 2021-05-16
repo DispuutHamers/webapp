@@ -238,7 +238,7 @@ ActiveRecord::Schema.define(version: 2021_05_15_232956) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", id: :integer, charset: "latin1", force: :cascade do |t|
+  create_table "oauth_applications", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "uid", null: false
     t.string "secret", null: false

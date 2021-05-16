@@ -71,7 +71,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "form-inline" } do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
@@ -99,7 +99,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: { class: 'form-inline' } do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: "form-inline"} do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
