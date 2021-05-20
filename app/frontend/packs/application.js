@@ -16,6 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 import 'jquery'
+import Rails from '@rails/ujs';
 import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
@@ -29,6 +30,7 @@ import 'tablesort/dist/sorts/tablesort.number.min'
 import 'tablesort/dist/sorts/tablesort.date.min'
 import 'trix';
 
+Rails.start();
 require("turbolinks").start();
 
 const application = Application.start()
