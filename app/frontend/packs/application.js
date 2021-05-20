@@ -16,6 +16,7 @@
 // const imagePath = (name) => images(name, true)
 
 import 'jquery'
+import 'jquery-ujs'
 import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
