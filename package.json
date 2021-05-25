@@ -8,7 +8,7 @@
     "bootstrap-select": "^1.13.6",
     "core-js": "^3.8.0",
     "flatpickr": "^4.6.9",
-    "jquery": "3.5.0",
+    "jquery": "3.5.1",
     "nprogress": "^0.2.0",
     "popper.js": "^1.16.1",
     "regenerator-runtime": "^0.13.7",
