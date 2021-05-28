@@ -1,6 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  Lockbox.master_key = "dbab377e5cb6defb28aee4f4dc4c042d968212e95cd2b4f7749572e7fbbdcda2"
+  Lockbox.master_key = "10a6ce454101d0b7ca5a2c39d74101d976cffad4d043a4a1c0c68e2c021e570c"
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
