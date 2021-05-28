@@ -6,7 +6,7 @@ class Quote < ActiveRecord::Base
   acts_as_paranoid
   serialize :text
 
-  encrypts :text, previous_versions: [{master_key: previous_key}]
+  encrypts :text
 
   scope :ordered, -> { order('created_at DESC') }
   scope :random, -> { order('RAND()') }
