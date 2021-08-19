@@ -1,17 +1,17 @@
 set :chronic_options, hours24: true
 
-every :monday, at: "1200" do
+every :wednesday, at: "1200" do
   # Use any day of the week or :weekend, :weekday
-  runner "Event.new(beschrijving: \"Maandag, wellicht de mooiste dag van de week. Voor sommigen de dag van God, maar voor ons voornamelijk de dag van bier! Na enkele weken onder de tyrannie van slecht gespelde evenementen is ook deze automatische uitnodiging danig ververst, dat het er fatsoenlijk uitziet. Wij moeten er ook fatsoenlijk uitzien, dus overhemd aan en naar de Vluchte!\",
-                    attendance: true, title: \"Maandagborrel\",
+  runner "Event.new(description: \"Woensdag, wellicht de mooiste dag van de week. Voor sommigen de dag van God, maar voor ons voornamelijk de dag van bier! Na enkele weken onder de tyrannie van slecht gespelde evenementen is ook deze automatische uitnodiging danig ververst, dat het er fatsoenlijk uitziet. Wij moeten er ook fatsoenlijk uitzien, dus overhemd aan en naar de Vluchte!\",
+                    attendance: true, title: \"Dispuutsborrel\",
                     date: Time.now + 1.weeks + 9.hours,
-                    deadline: Time.now + 7.days + 6.hours,
+                    deadline: Time.now + 1.weeks + 6.hours,
                     end_time: Time.now + 1.weeks + 14.hours,
                     location: \"De Vluchte Enschede\"
           ).save"
 end
 
-every :friday, at: "1900" do
+every :sunday, at: "1900" do
   runner 'UtilHelper.remind_zondag'
 end
 
