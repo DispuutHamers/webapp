@@ -44,3 +44,7 @@ gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
 end
+
+group :development do
+  gem 'rails-controller-testing'
+end

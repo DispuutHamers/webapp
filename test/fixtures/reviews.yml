@@ -7,7 +7,7 @@ one:
   rating: 1
 
 two:
-  beer_id: 1
+  beer_id: 2
   user_id: 1
   description: MyString
   rating: 1
