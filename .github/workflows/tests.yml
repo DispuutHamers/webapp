@@ -19,4 +19,5 @@ jobs:
         run: |
           sudo systemctl start mysql
           cp config/database-ci.yml config/database.yml
+          bundle exec rake db:setup
           bundle exec rake
