@@ -28,6 +28,6 @@ jobs:
           bundler-cache: true
       - name: Run tests
         run: |
-          - systemctl start mysql
-          - cp config/database-ci.yml config/database.yml
-          - bundle exec rake
+          sudo systemctl start mysql
+          cp config/database-ci.yml config/database.yml
+          bundle exec rake
