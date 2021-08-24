@@ -27,4 +27,4 @@ jobs:
       - name: Setup rails database
         run: bundle exec rails db:setup
       - name: Run tests
-        run: bundle exec rails
+        run: bundle exec rails test
