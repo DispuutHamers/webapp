@@ -14,7 +14,7 @@ jobs:
         env:
           MARIADB_HOST: 127.0.0.1
           MARIADB_DB: hamers_test
-          MARIADB_USER: hamers@localhost
+          MARIADB_USER: hamers
           MARIADB_PASSWORD: hamers
           MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
         ports: [3306]
