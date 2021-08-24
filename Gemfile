@@ -11,7 +11,6 @@ gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 gem 'faker'
 gem 'flamegraph'
-gem "honeybadger", "~> 4.0"
 gem 'icalendar'
 gem 'loaf'
 gem 'lockbox'
@@ -44,6 +43,10 @@ gem 'will_paginate'
 gem 'wine_bouncer'
 group :doc do
   gem 'sdoc', require: false
+end
+
+group :production do
+  gem "honeybadger", "~> 4.0"
 end
 
 group :test do
