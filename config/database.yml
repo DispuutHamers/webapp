@@ -11,6 +11,6 @@ test:
   encoding: utf8mb4
   database: hamers_test
   username: root
-  password: hamers
+  password:
   host: 127.0.0.1
   strict: false
