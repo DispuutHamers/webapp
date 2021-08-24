@@ -12,10 +12,11 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_HOST: 127.0.0.1
           MYSQL_DB: hamers_test
           MYSQL_USER: hamers
-          MYSQL_PASSWORD: hamers
+#          MYSQL_PASSWORD: hamers
         ports: [3306]
     steps:
     - uses: actions/checkout@v2
