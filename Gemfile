@@ -11,6 +11,7 @@ gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 gem 'faker'
 gem 'flamegraph'
+gem "honeybadger", "~> 4.0"
 gem 'icalendar'
 gem 'loaf'
 gem 'lockbox'
