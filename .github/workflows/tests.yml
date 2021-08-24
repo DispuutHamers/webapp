@@ -16,16 +16,10 @@ jobs:
           MYSQL_DB: hamers_test
           MYSQL_USER: hamers
           MYSQL_PASSWORD: hamers
-          MYSQL_ROOT_PASSWORD: password
+          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
         ports: [3306]
     steps:
     - uses: actions/checkout@v2
-#    - name: Set up mysql
-#      uses: mirromutth/mysql-action@v1.1
-#      with:
-#        mysql database: 'hamers_test'
-#        mysql user: 'hamers'
-#        mysql password: 'hamers'
     - name: Set up ruby
       uses: ruby/setup-ruby@v1
       with:
