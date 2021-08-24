@@ -4,12 +4,10 @@ one:
   cat: MyString
   body: MyText
   title: MyString
-  image: MyString
   date: 2015-01-10 00:22:44
 
 two:
   cat: MyString
   body: MyText
   title: MyString
-  image: MyString
   date: 2015-01-10 00:22:44

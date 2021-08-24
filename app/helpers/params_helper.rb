@@ -48,10 +48,6 @@ module ParamsHelper
     params.require(:news).permit(:cat, :body, :title, :image, :date)
   end
 
-  def device_params
-    params.require(:device).permit(:device_key)
-  end
-
   def meeting_params
     params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :actiontext_notes, :chairman_id, :secretary_id, user_ids: [])
   end

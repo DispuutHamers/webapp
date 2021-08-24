@@ -1,16 +1,20 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# Quotes are encrypted with development lockbox key
 quoteone:
-  text: Dat neuken heb ik nog nooit geprobeerd, maar ik kijk wel eens poker.
+  # Dat neuken heb ik nog nooit geprobeerd, maar ik kijk wel eens poker.
+  text_ciphertext: SkrODLC5EHCKlHq8Pw5QGyQjHJvmEU/45pBaGKZ3/PQVJUKJZF/PeTz/xTVxL1spo4iFVcnTdjttT5r5gVlzwixPrG6WO/AwkPIiSGAXbMVb6vp3VQZwjgs9+1zjA2ZbHjYBXKg=
   user_id: 1
   reporter: 2
 
 quotetwo:
-  text: Het is het lelijkste dat ik ooit heb gezien - en ik heb baby's gezien.
+  # Het is het lelijkste dat ik ooit heb gezien - en ik heb baby's gezien.
+  text_ciphertext: S46iB8BhVl0doSoCeq+EiwFa+fkts5Q9jlp1PWVdwyhtFllSofEJJ4g8uekyyCaA+ecnpK6jfM/gvQ4RJB4ehovz8lG8VqnDD0XEVvUio2Skh6+QhBgUfJPQi3xxWsuCyL/mFbVJ6A==
   user_id: 2
   reporter: 1
 
 quotethree:
-  text: Scintillianen zijn net joden.
+  # Scintillianen zijn net joden.
+  text_ciphertext: OftRZsNnuNke778sRGe5momfG59YOAn0bAKFChJ3htc/d1zSS6fzgcDqSqzVkW+2zOEcTdLd1bG6J+6cwyY=
   user_id: 2
   reporter: 4

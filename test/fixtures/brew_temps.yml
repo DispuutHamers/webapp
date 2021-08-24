@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  brew: one
-  temperature: 1.5
-
-two:
-  brew: two
-  temperature: 1.5
