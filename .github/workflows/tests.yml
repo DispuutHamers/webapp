@@ -18,12 +18,11 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
-      - name: Start database server
-        run: sudo systemctl start mysql
-      - name: Setup database connection configuration
-        run: cp config/database-ci.yml config/database.yml
-      - name: Setup database
-        run: bundle exec rails db:setup
+      - name: Set up database
+        run: |
+          sudo systemctl start mysql
+          cp config/database-ci.yml config/database.yml
+          bundle exec rails db:setup
       - name: Yarn install
         run: yarn install --check-files
       - name: Procompile assets
