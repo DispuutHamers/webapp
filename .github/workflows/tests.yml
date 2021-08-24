@@ -9,13 +9,13 @@ jobs:
       matrix:
         ruby-version: ['2.7.2', '2.7.4']
     services:
-      mysql:
+      mariadb:
         image: mariadb:latest
         env:
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_DB: hamers_test
-          MYSQL_USER: hamers
-          MYSQL_PASSWORD: hamers
+          MARIADB_HOST: 127.0.0.1
+          MARIADB_DB: hamers_test
+          MARIADB_USER: hamers@localhost
+          MARIADB_PASSWORD: hamers
           MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
         ports: [3306]
     steps:
