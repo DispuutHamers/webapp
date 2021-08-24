@@ -265,6 +265,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sqlite3 (1.4.2)
     stackprof (0.2.17)
     switch_user (1.5.4)
     terrapin (0.6.0)
@@ -346,6 +347,7 @@ DEPENDENCIES
   sdoc
   secure_headers (~> 6.3)
   sprockets
+  sqlite3
   stackprof
   switch_user
   therubyracer

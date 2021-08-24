@@ -1,13 +1,13 @@
 development:
-        adapter: mysql2
-        encoding: utf8
-        database: hamers
-        username: root
-        host: 127.0.0.1
+  adapter: mysql2
+  encoding: utf8mb4
+  database: hamers
+  username: hamers
+  password: hamers
+  host: 127.0.0.1
 
 test:
-        adapter: mysql2
-        encoding: utf8
-        database: hamers_test
-        username: root
-        host: 127.0.0.1
+  adapter: sqlite3
+  database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
