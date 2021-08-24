@@ -22,12 +22,12 @@ class PublicPagesControllerTest < ActionController::TestCase
       post :create, params: { public_page: { content: @public_page.content, public: @public_page.public, title: @public_page.title } }
     end
 
-    assert_redirected_to public_page_path(assigns(:public_page))
+    assert_redirected_to public_page_path(id: PublicPage.last.id)
   end
 
   test "should show public_page" do
     get :show, params: { id: @public_page }
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should get edit" do
