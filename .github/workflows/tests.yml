@@ -8,17 +8,6 @@ jobs:
     strategy:
       matrix:
         ruby-version: ['2.7.2', '2.7.4']
-#    services:
-#      mariadb:
-#        image: mariadb:latest
-#        env:
-#          MARIADB_HOST: 127.0.0.1
-#          MARIADB_DB: hamers_test
-#          MARIADB_USER: hamers
-#          MARIADB_PASSWORD: hamers
-#          MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
-#        ports: [3306]
-#        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - uses: actions/checkout@v2
       - name: Set up ruby
