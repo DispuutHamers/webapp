@@ -60,6 +60,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    ast (2.4.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -181,8 +182,11 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    parallel (1.20.1)
     paranoia (2.4.3)
       activerecord (>= 4.0, < 6.2)
+    parser (3.0.2.0)
+      ast (~> 2.4.1)
     racc (1.5.2)
     rack (2.2.3)
     rack-accept (0.4.5)
@@ -228,16 +232,19 @@ GEM
       method_source
       rake (>= 0.13)
       thor (~> 1.0)
+    rainbow (3.0.0)
     rake (13.0.6)
     rb-readline (0.5.5)
     rdoc (6.3.1)
     redcarpet (3.5.1)
     ref (2.0.0)
+    regexp_parser (2.1.1)
     request_store (1.5.0)
       rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.5)
     rqrcode (2.0.0)
       chunky_png (~> 1.0)
       rqrcode_core (~> 1.0)
@@ -245,6 +252,25 @@ GEM
     rqrcode_png (0.1.5)
       chunky_png
       rqrcode
+    rubocop (1.19.1)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.9.1, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.11.0)
+      parser (>= 3.0.1.1)
+    rubocop-performance (1.11.5)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.11.3)
+      activesupport (>= 4.2.0)
+      rack (>= 1.1)
+      rubocop (>= 1.7.0, < 2.0)
+    ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -282,6 +308,7 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (2.0.0)
     uniform_notifier (1.14.2)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -347,6 +374,9 @@ DEPENDENCIES
   rb-readline
   redcarpet
   rqrcode_png
+  rubocop
+  rubocop-performance
+  rubocop-rails
   sass-rails
   sdoc
   secure_headers (~> 6.3)
