@@ -10,7 +10,7 @@ test:
   adapter: mysql2
   encoding: utf8mb4
   database: hamers_test
-  username: root
-  password:
+  username: hamers
+  password: hamers
   host: 127.0.0.1
   strict: false

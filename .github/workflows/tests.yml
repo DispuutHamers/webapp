@@ -27,5 +27,4 @@ jobs:
         bundler-cache: true
     - name: Run tests
       run: |
-        sudo service mysql start
         bundle exec rake
