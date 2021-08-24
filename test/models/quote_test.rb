@@ -11,13 +11,14 @@ class QuoteTest < ActiveSupport::TestCase
 
     assert_equal Quote.count, old_count + 1
   end
+
   test 'Give user a quote' do
     u = users(:one)
 
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
 
-    assert_equal u.quotes[0].text, quote_text
+    assert_equal u.quotes.last.text, quote_text
   end
 
   test 'Give multiple user multiple quotes' do

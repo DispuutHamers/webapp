@@ -3,7 +3,7 @@ require 'test_helper'
 class NewsControllerTest < ActionController::TestCase
   setup do
     @news = news(:one)
-    sign_in users(:userone)
+    sign_in users(:one)
   end
 
   test "should get index" do
@@ -19,15 +19,15 @@ class NewsControllerTest < ActionController::TestCase
 
   test "should create news" do
     assert_difference('News.count') do
-      post :create, params: { news: { body: @news.body, cat: @news.cat, date: @news.date, image: @news.image, title: @news.title } }
+      post :create, params: { news: { body: @news.body, cat: @news.cat, date: @news.date, title: @news.title } }
     end
 
-    assert_redirected_to root_path
+    assert_response :redirect
   end
 
   test "should show news" do
     get :show, params: { id: @news }
-    assert_response :success
+    assert_response :redirect
   end
 
   test "should get edit" do
@@ -36,7 +36,7 @@ class NewsControllerTest < ActionController::TestCase
   end
 
   test "should update news" do
-    patch :update, params: { id: @news, news: { body: @news.body, cat: @news.cat, date: @news.date, image: @news.image, title: @news.title } }
+    patch :update, params: { id: @news, news: { body: @news.body, cat: @news.cat, date: @news.date, title: @news.title } }
     assert_redirected_to news_path(assigns(:news))
   end
 
