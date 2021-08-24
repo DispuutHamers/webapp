@@ -21,4 +21,4 @@ jobs:
           bundler-cache: true
 
       - name: Run brakeman
-        run: bundle exec rails brakeman
+        run: bundle exec brakeman
