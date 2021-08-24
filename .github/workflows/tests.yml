@@ -21,10 +21,7 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Verify mysql connection from container
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mariadb-client
-          mysql --host mariadb -uroot -e "SHOW DATABASES"
+        run: mysql --host mariadb -uroot -e "SHOW DATABASES"
       - uses: actions/checkout@v2
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
