@@ -8,19 +8,29 @@ jobs:
     strategy:
       matrix:
         ruby-version: ['2.7.2', '2.7.4']
-
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DB: hamers_test
+          MYSQL_USER: hamers
+          MYSQL_PASSWORD: hamers
+        ports: [3306]
     steps:
     - uses: actions/checkout@v2
-    - name: Set up mysql
-      uses: mirromutth/mysql-action@v1.1
-      with:
-        mysql database: 'hamers_test'
-        mysql user: 'hamers'
-        mysql password: 'hamers'
+#    - name: Set up mysql
+#      uses: mirromutth/mysql-action@v1.1
+#      with:
+#        mysql database: 'hamers_test'
+#        mysql user: 'hamers'
+#        mysql password: 'hamers'
     - name: Set up ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: true
     - name: Run tests
-      run: bundle exec rake
+      run: |
+        sudo service mysql start
+        bundle exec rake
