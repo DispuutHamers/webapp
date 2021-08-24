@@ -49,6 +49,7 @@ group :production, :development do
 end
 
 group :production do
+  gem "honeybadger", "~> 4.0"
   gem 'whenever', require: false
 end
 
