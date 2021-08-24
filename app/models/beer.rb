@@ -7,8 +7,10 @@ class Beer < ActiveRecord::Base
   validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
 
   scope :random, -> { order('RAND()') }
+
+  # This method is (only) used in the tests
   def add_review!(user, rating, description, proefdatum)
-    self.reviews.create!(user_id: user.id, rating: rating, description: description, proefdatum: proefdatum)
+    self.reviews.create!(user_id: user.id, rating: rating.round, description: description, proefdatum: proefdatum)
   end
 
   def cijfer?

@@ -18,7 +18,7 @@ class QuoteTest < ActiveSupport::TestCase
     quote_text = 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar'
     Quote.create(text: quote_text, user_id: u.id)
 
-    assert_equal u.quotes[0].text, quote_text
+    assert_equal u.quotes.last.text, quote_text
   end
 
   test 'Give multiple user multiple quotes' do
