@@ -48,6 +48,12 @@ group :production, :development do
   gem 'mysql2'
 end
 
+group :development, :test do
+  'rubocop'
+  'rubocop-performance'
+  'rubocop-rails'
+end
+
 group :production do
   gem "honeybadger", "~> 4.0"
   gem 'whenever', require: false
