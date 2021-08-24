@@ -16,6 +16,8 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
       - name: Run tests
+        env:
+          RAILS_ENV: test
         run: |
           sudo systemctl start mysql
           cp config/database-ci.yml config/database.yml
