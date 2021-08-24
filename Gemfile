@@ -49,9 +49,9 @@ group :production, :development do
 end
 
 group :development, :test do
-  'rubocop'
-  'rubocop-performance'
-  'rubocop-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
 end
 
 group :production do
