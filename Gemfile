@@ -16,7 +16,6 @@ gem 'loaf'
 gem 'lockbox'
 gem 'memory_profiler'
 gem 'minidusen'
-gem 'mysql2'
 gem 'net-http-persistent'
 gem 'paperclip'
 gem 'paper_trail'
@@ -38,13 +37,22 @@ gem 'tzinfo'
 gem 'uglifier'
 gem 'web-console'
 gem "webpacker"
-gem 'whenever', require: false
 gem 'will_paginate'
 gem 'wine_bouncer'
+
 group :doc do
   gem 'sdoc', require: false
 end
 
+group :production, :development do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'whenever', require: false
+end
+
 group :test do
   gem 'rails-controller-testing'
+  gem 'sqlite3'
 end
