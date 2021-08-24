@@ -22,9 +22,9 @@ jobs:
         run: sudo systemctl start mysql
       - name: Setup database connection configuration
         run: cp config/database-ci.yml config/database.yml
-      - name: Webpack compilation
-        run: bundle exec rails webpacker:install
-      - name: Setup rails database
+      - name: Procompile assets
+        run: bundle exec rails assets:precompile
+      - name: Setup database
         run: bundle exec rails db:setup
       - name: Run tests
         run: bundle exec rails test
