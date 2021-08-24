@@ -23,7 +23,7 @@
         <% end %>
       <% end %>
 
-    <small class="text-muted">&hyphen; <%= t.created_at.strftime('%d-%m-%Y %H:%M') %></small>
+    <small class="text-muted">&hyphen; <%= time_ago_in_words(t.created_at) %> geleden</small>
     </li>
   <% end %>
 </ul>
