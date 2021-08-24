@@ -19,4 +19,5 @@ jobs:
           bundler-cache: true
 
       - name: Run RuboCop
+        continue-on-error: true
         run: bundle exec rubocop --parallel
