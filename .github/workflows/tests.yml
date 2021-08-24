@@ -22,11 +22,11 @@ jobs:
         run: sudo systemctl start mysql
       - name: Setup database connection configuration
         run: cp config/database-ci.yml config/database.yml
+      - name: Setup database
+        run: bundle exec rails db:setup
       - name: Yarn install
         run: yarn install --check-files
       - name: Procompile assets
         run: bundle exec rails assets:precompile
-      - name: Setup database
-        run: bundle exec rails db:setup
       - name: Run tests
         run: bundle exec rails test
