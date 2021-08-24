@@ -73,6 +73,7 @@ GEM
     bootstrap_form (4.5.0)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
+    brakeman (5.1.1)
     builder (3.2.4)
     bullet (6.1.4)
       activesupport (>= 3.0.0)
@@ -317,6 +318,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-will_paginate
   bootstrap_form
+  brakeman
   bullet
   coffee-rails
   devise

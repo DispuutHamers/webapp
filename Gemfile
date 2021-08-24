@@ -53,6 +53,10 @@ group :production do
   gem 'whenever', require: false
 end
 
+group :development do
+  gem "brakeman", require: false
+end
+
 group :test do
   gem 'rails-controller-testing'
   gem 'sqlite3'
