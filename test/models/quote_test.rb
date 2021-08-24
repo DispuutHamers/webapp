@@ -11,6 +11,7 @@ class QuoteTest < ActiveSupport::TestCase
 
     assert_equal Quote.count, old_count + 1
   end
+
   test 'Give user a quote' do
     u = users(:one)
 

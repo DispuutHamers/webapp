@@ -45,6 +45,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :development do
+group :test do
   gem 'rails-controller-testing'
 end

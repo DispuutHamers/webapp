@@ -3,7 +3,7 @@ require 'test_helper'
 class PublicPagesControllerTest < ActionController::TestCase
   setup do
     @public_page = public_pages(:one)
-    sign_in users(:userone)
+    sign_in users(:one)
   end
 
   test "should get index" do
