@@ -20,10 +20,10 @@ jobs:
         ports: [3306]
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
-      - name: Verify MySQL connection from container
+      - name: Verify mysql connection from container
         run: |
-          apt-get update
-          apt-get install -y mariadb-client
+          sudo apt-get update
+          sudo apt-get install -y mariadb-client
           mysql --host mariadb -uroot -e "SHOW DATABASES"
       - uses: actions/checkout@v2
       - name: Set up ruby
