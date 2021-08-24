@@ -21,4 +21,5 @@ jobs:
           bundler-cache: true
 
       - name: Run brakeman
+        continue-on-error: true
         run: bundle exec brakeman
