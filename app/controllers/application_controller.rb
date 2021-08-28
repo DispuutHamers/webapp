@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_action do
     Rack::MiniProfiler.authorize_request if current_user&.dev?
   end
+  layout 'application_public'
   breadcrumb 'Home', :root_path
 
   include UtilHelper
