@@ -40,12 +40,10 @@ document.addEventListener("turbo:load", function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('[data-toggle="popover"]').popover()
-        $("tr[data-link]").on( "click", function() {
+        $("tr[data-link]").on("click", function() {
             window.location = $(this).data("link")
         });
 
         document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
-    })
-})
-
-import "@hotwired/turbo-rails"
+    });
+});
