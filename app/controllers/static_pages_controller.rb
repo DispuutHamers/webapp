@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   before_action :ilid?, only: %i[trail revert]
 
   def home
-    return render 'frontpage', layout: 'layouts/application_public' unless current_user&.active?
+    return render 'frontpage', layout: 'application_public' unless current_user&.active?
 
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take
@@ -21,6 +21,8 @@ class StaticPagesController < ApplicationController
 
   def activate_account
     breadcrumb 'Account activeren', activate_account_path
+
+    render 'activate_account' , layout: 'application_public'
   end
 
   def console

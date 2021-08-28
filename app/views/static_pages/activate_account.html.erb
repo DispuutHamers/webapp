@@ -2,14 +2,15 @@
   Account activeren
 <% end %>
 
-<%= render layout: 'layouts/small_width' do %>
-  <%= form_for "", :url => "users/invitation/accept", :html => {:method => :get} do |f| %>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-      <%= f.text_field :invitation_token, autofocus: true, class: "form-control", placeholder: "Uitnodigingscode" %>
+<main class="mx-auto items-center justify-center mt-16 mb-32 max-w-md w-full py-12 px-4 sm:px-6 lg:px-8">
+  <%= form_for "", :url => "users/invitation/accept", html: { :method => :get } do |f| %>
+    <div class="relative rounded-md shadow-sm">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <i class="fa fa-key"></i>
+      </div>
+      <%= f.text_field :invitation_token, autofocus: true, class: 'focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md', placeholder: "Uitnodigingscode" %>
     </div>
-    <br>
-    <%= link_to "Privacy Statement", "/privacy", class: 'pull-right align-right' %>
-    <%= f.submit "Registreer", class: "btn btn-large btn-primary" %>
+    <%= f.button "Registreer", type: 'submit', class: "w-full justify-center inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
   <% end %>
-<% end %>
+</main>
+gs
