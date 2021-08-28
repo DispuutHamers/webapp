@@ -17,7 +17,6 @@
 
 import 'jquery'
 import Rails from '@rails/ujs';
-import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
@@ -26,7 +25,6 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
 import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
-import 'bootstrap-select/dist/js/bootstrap-select'
 import 'tablesort/dist/sorts/tablesort.number.min'
 import 'tablesort/dist/sorts/tablesort.date.min'
 import 'trix';
@@ -49,3 +47,5 @@ document.addEventListener("turbo:load", function() {
         document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
     })
 })
+
+import "@hotwired/turbo-rails"
