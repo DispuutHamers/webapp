@@ -28,6 +28,7 @@ import '@fortawesome/fontawesome-free/js/all'
 import 'tablesort/dist/sorts/tablesort.number.min'
 import 'tablesort/dist/sorts/tablesort.date.min'
 import 'trix';
+import 'styles/application.css';
 
 Rails.start();
 
@@ -38,7 +39,7 @@ application.register('flatpickr', Flatpickr)
 
 document.addEventListener("turbo:load", function () {
     $(function () {
-        $("tr[data-link]").click(function () {
+        $("tr[data-link]").on("click", function () {
             window.location = $(this).data("link")
         });
 

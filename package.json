@@ -4,7 +4,7 @@
     "@hotwired/turbo-rails": "^7.0.0-rc.2",
     "@rails/actiontext": "^6.0.2",
     "@rails/ujs": "^6.0.3-4",
-    "@rails/webpacker": "5.3.0",
+    "@rails/webpacker": "5.4.0",
     "core-js": "^3.8.0",
     "flatpickr": "^4.6.9",
     "jquery": "3.5.1",
@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "resolve-url-loader": "^3.1.2",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.0.0"
   }
 }
