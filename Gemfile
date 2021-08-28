@@ -38,7 +38,6 @@ gem 'tzinfo'
 gem 'uglifier'
 gem 'web-console'
 gem "webpacker"
-gem 'webrick'
 gem 'will_paginate'
 gem 'wine_bouncer'
 
