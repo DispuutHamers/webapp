@@ -13,7 +13,7 @@ class StaticPagesController < ApplicationController
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
-    render layout: 'static_pages/home'
+    render 'static_pages/home'
   end
 
   def privacy
