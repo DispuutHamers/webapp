@@ -40,7 +40,7 @@
 </div>
 
 <script type="application/javascript">
-    document.addEventListener('turbolinks:render', function () {
+    document.addEventListener('turbo:render', function () {
         if (/[?&]page=/.test(location.search))
             $('.nav-pills a:last').tab('show')
     }, false);
