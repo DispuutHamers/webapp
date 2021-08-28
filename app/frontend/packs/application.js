@@ -36,7 +36,7 @@ const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 application.register('flatpickr', Flatpickr)
 
-document.addEventListener("turbo:load", function () {
+document.addEventListener("turbo:load", function() {
     $(function () {
         $("tr[data-link]").click(function() {
             window.location = $(this).data("link")

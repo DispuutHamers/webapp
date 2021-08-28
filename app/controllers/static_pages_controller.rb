@@ -3,20 +3,17 @@ class StaticPagesController < ApplicationController
   before_action :ilid?, only: %i[trail revert]
 
   def home
-    if current_user&.active?
-      @random_beer = Beer.random.take
-      @random_quote = Quote.random.take
-      @quote = current_user.quotes.build
-      @blog = Blogitem.last(5).reverse
-      @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
-      @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
-      @news = News.last(5).reverse
-      @trail = PaperTrail::Version.includes(:item).last(5).reverse
+    return render 'frontpage', layout: 'layouts/application-public' unless current_user&.active?
 
-      render layout: 'static_pages/home'
-    else
-      render 'frontpage', layout: 'layouts/application-public'
-    end
+    @random_beer = Beer.random.take
+    @random_quote = Quote.random.take
+    @quote = current_user.quotes.build
+    @blog = Blogitem.last(5).reverse
+    @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
+    @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
+    @news = News.last(5).reverse
+    @trail = PaperTrail::Version.includes(:item).last(5).reverse
+    render layout: 'static_pages/home'
   end
 
   def privacy
