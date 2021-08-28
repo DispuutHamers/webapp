@@ -1,14 +1,8 @@
-<footer class="footer text-center">
-  <small>
-    <a href="https://zondersikkel.nl/">Hamers zonder Sikkel</a> <br>
-    Copyright © <%= Time.current.year %> - version <%= "#{`git rev-list HEAD --count`} (#{`git rev-parse --short HEAD`.chomp})" %>
-  </small>
-  <% unless signed_in? %>
-    <nav>
-      <ul>
-        <li><%= link_to 'Inloggen', signin_path %></li>
-        <li><%= link_to 'Registreren', activate_account_path %></li>
-      </ul>
-    </nav>
-  <% end %>
+<footer class="bg-white">
+  <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+    <p class="text-center text-base text-gray-400">
+      <a href="https://zondersikkel.nl/">Hamers zonder Sikkel</a> <br>
+      &copy; <%= Time.current.year %> - version <%= "#{`git rev-list HEAD --count`} (#{`git rev-parse --short HEAD`.chomp})" %>
+    </p>
+  </div>
 </footer>
