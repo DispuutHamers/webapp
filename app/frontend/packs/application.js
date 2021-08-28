@@ -20,8 +20,8 @@ import Rails from '@rails/ujs';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
-import {Application} from "stimulus"
-import {definitionsFromContext} from "stimulus/webpack-helpers"
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
 import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
