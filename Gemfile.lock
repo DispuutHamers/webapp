@@ -304,6 +304,8 @@ GEM
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
+    turbo-rails (0.7.7)
+      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -386,6 +388,7 @@ DEPENDENCIES
   stackprof
   switch_user
   therubyracer
+  turbo-rails
   tzinfo
   uglifier
   web-console

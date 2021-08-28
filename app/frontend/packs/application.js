@@ -49,3 +49,5 @@ document.addEventListener("turbolinks:load", function() {
         document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
     })
 })
+
+import "@hotwired/turbo-rails"
