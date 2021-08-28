@@ -28,7 +28,7 @@ gem 'rb-readline'
 gem 'redcarpet'
 gem 'rqrcode_png'
 gem 'sass-rails'
-gem "secure_headers", "~> 6.3"
+gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
 gem 'switch_user'
@@ -49,6 +49,7 @@ group :production, :development do
 end
 
 group :development, :test do
+  gem 'puma'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
