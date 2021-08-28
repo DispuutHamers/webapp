@@ -20,7 +20,7 @@ import Rails from '@rails/ujs';
 import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import Turbo from "@hotwired/turbo"
+import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
