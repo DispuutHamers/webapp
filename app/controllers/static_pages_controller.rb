@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
 
       render layout: 'static_pages/home'
     else
-      render 'frontpage'
+      render 'frontpage', layout: 'layouts/application-public'
     end
   end
 
