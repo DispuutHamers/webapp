@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
   before_action :ilid?, only: %i[trail revert]
 
   def home
-    return render 'frontpage', layout: 'layouts/application-public' unless current_user&.active?
+    return render 'frontpage', layout: 'layouts/application_public' unless current_user&.active?
 
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take
