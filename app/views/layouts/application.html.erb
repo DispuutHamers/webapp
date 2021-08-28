@@ -16,9 +16,11 @@
         <%= render 'layouts/nav' %>
         <% if content_for?(:title) %>
           <header class="py-10">
-              <div class="row">
-                <div class="col-md-12 text-center">
-                  <h1><%= yield(:title) %></h1>
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-white">
+                  <%= yield :title %>
+                </h1>
+                <div class="text-white">
                   <%= render 'shared/breadcrumbs' %>
                 </div>
               </div>

@@ -20,18 +20,16 @@ export default class extends Controller {
 
   run() {
     this.invisibleValue = !this.invisibleValue
-    let state = []
     if (this.invisibleValue) {
-      state.push('dropOut', 'speed-200')
+      this.hide();
     } else {
-      this.hide()
-      state.push('dropIn', 'speed-200')
+      this.hide();
     }
   }
 
-  clickedAway(event) {
+  close(event) {
     if (this.element.contains(event.target) === false && this.invisibleValue === false) {
-      this.run()
+      this.run();
     }
   }
 }
