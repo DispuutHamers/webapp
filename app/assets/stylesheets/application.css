@@ -10,7 +10,6 @@
  = require_self
  = require_tree .
  *= require 'trix/dist/trix'
- *= require rails_bootstrap_forms
  */
 
 .albumimage {

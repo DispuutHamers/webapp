@@ -1,7 +1,5 @@
 source 'https://rubygems.org'
 gem 'binding_of_caller'
-gem 'bootstrap-will_paginate'
-gem 'bootstrap_form'
 gem 'bullet'
 gem 'coffee-rails'
 gem 'devise'
