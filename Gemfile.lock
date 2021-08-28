@@ -113,7 +113,6 @@ GEM
     execjs (2.8.1)
     faker (2.18.0)
       i18n (>= 1.6, < 2)
-    ffi (1.15.1)
     flamegraph (0.9.5)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -269,16 +268,6 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     sdoc (2.2.0)
       rdoc (>= 5.0)
     secure_headers (6.3.2)
@@ -293,6 +282,8 @@ GEM
     sqlite3 (1.4.2)
     stackprof (0.2.17)
     switch_user (1.5.4)
+    tailwindcss-rails (0.4.3)
+      rails (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     therubyracer (0.12.3)
@@ -300,7 +291,6 @@ GEM
       ref
     thor (1.1.0)
     thread_safe (0.3.6)
-    tilt (2.0.10)
     turbo-rails (0.7.7)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
@@ -375,13 +365,13 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
-  sass-rails
   sdoc
   secure_headers (~> 6.3)
   sprockets
   sqlite3
   stackprof
   switch_user
+  tailwindcss-rails (~> 0.4.3)
   therubyracer
   turbo-rails
   tzinfo

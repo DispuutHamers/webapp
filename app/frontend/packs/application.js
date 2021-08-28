@@ -38,8 +38,6 @@ application.register('flatpickr', Flatpickr)
 
 document.addEventListener("turbolinks:load", function() {
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('[data-toggle="popover"]').popover()
         $("tr[data-link]").click(function() {
             window.location = $(this).data("link")
         })
