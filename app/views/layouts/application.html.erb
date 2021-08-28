@@ -13,6 +13,32 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
+    <div>
+      <div class="bg-gray-800 pb-32">
+
+        <% if content_for?(:title) %>
+          <header class="py-10">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <h1><%= yield(:title) %></h1>
+                  <%= render 'shared/breadcrumbs' %>
+                </div>
+              </div>
+          </header>
+        <% end %>
+      </div>
+
+      <main class="-mt-32">
+        <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+            <%= yield %>
+        </div>
+      </main>
+    </div>
+
+
+
+
+
     <%= render 'layouts/header' %>
     <div class="container">
       <% flash.each do |key, value| %>
