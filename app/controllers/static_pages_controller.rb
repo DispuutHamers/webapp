@@ -1,10 +1,8 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
-  before_action :ilid?, only: %i[trail revert]
+  before_action :ilid?, only: %i[home trail revert]
 
   def home
-    return unless current_user&.active?
-
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take
     @quote = current_user.quotes.build
@@ -13,6 +11,10 @@ class StaticPagesController < ApplicationController
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
+  end
+
+  def frontpage
+    layout 'application'
   end
 
   def privacy
