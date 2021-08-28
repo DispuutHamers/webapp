@@ -19,6 +19,7 @@ import 'jquery'
 import Rails from '@rails/ujs';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
@@ -29,23 +30,20 @@ import 'tablesort/dist/sorts/tablesort.date.min'
 import 'trix';
 
 Rails.start();
-require("turbolinks").start();
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 application.register('flatpickr', Flatpickr)
 
-document.addEventListener("turbolinks:load", function() {
+document.addEventListener("turbo:load", function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
         $('[data-toggle="popover"]').popover()
-        $("tr[data-link]").click(function() {
+        $("tr[data-link]").on("click", function() {
             window.location = $(this).data("link")
-        })
+        });
 
         document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
-    })
-})
-
-import "@hotwired/turbo-rails"
+    });
+});
