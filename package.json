@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
+    "@hotwired/turbo-rails": "^7.0.0-rc.2",
     "@rails/actiontext": "^6.0.2",
     "@rails/ujs": "^6.0.3-4",
     "@rails/webpacker": "5.3.0",
