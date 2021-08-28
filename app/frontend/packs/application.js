@@ -20,8 +20,8 @@ import Rails from '@rails/ujs';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import {Application} from "stimulus"
+import {definitionsFromContext} from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
 import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
@@ -36,11 +36,9 @@ const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 application.register('flatpickr', Flatpickr)
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:load", function () {
     $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('[data-toggle="popover"]').popover()
-        $("tr[data-link]").on("click", function() {
+        $("tr[data-link]").click(function () {
             window.location = $(this).data("link")
         });
 
