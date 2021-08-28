@@ -21,21 +21,17 @@ end
 
 every :tuesday, at: "1900" do
   runner 'UtilHelper.remind_drink'
+
+  # Ping healthchecks.io for monitoring purposes
   runner "Net::HTTP.get(URI.parse('https://hc-ping.com/fed0752c-e524-4af6-907e-23bd47336eb9'))"
 end
 
 every :day, at: '0605' do
   runner 'User.leden.each{ |u| UsersHelper.update_weight_for(u) }'
-  runner "Net::HTTP.get(URI.parse('https://hc-ping.com/3a65b459-ea8f-4f0c-89ce-c8f1b750c5fb'))"
-end
-
-every :day, at: '0610' do
   runner 'User.leden.each{ |u| UsersHelper.sunday_ratio_for(u) }'
-  runner "Net::HTTP.get(URI.parse('https://hc-ping.com/9aae137c-070f-43fa-90db-cbb775cc4c6c'))"
-end
-
-every :day, at: '0615' do
   runner 'Beer.all.each{ |b| b.update_cijfer }'
   runner "Blogitem.unscoped.where(\"title is NULL OR length(title) < 1\").delete_all"
-  runner "Net::HTTP.get(URI.parse('https://hc-ping.com/2662ecd3-7c44-4a4f-8ef6-bfde61301e04'))"
+
+  # Ping healthchecks.io for monitoring purposes
+  runner "Net::HTTP.get(URI.parse('https://hc-ping.com/3a65b459-ea8f-4f0c-89ce-c8f1b750c5fb'))"
 end
