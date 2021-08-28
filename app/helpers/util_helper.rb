@@ -57,15 +57,10 @@ module UtilHelper
     user.signup(event, params[:signup][:status], params[:signup][:reason])
   end
 
-  def self.remind_zondag
+  def self.remind_drink
     event = Event.where(attendance: true).last
     signed_users = event.users
     unsigned_users = User.leden - signed_users
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
-  end
-
-  def self.make_reservation
-    event = Event.where(attendance: true).last
-    UserMailer.mail_reservation(event)
   end
 end
