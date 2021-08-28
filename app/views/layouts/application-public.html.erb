@@ -13,25 +13,17 @@
 </head>
 <body>
 <div class="container mx-auto">
-  <% flash.each do |key, value| %>
-    <% if key == "notice" %>
-      <% key = "info" %>
-    <% elsif key == "error" || key == "alert" %>
-      <% key = "danger" %>
-    <% end %>
-    <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
-  <% end %>
+  <%= render 'layouts/alert' %>
+
   <% if content_for?(:title) %>
     <div class="row">
       <div class="col-md-12 text-center">
       </div>
     </div>
   <% end %>
-  <div class="row">
-    <div class="col-md-12">
-      <%= yield %>
-    </div>
-  </div>
+
+  <%= yield %>
+
   <%= render 'layouts/footer' %>
   <%= render 'layouts/debug' if Rails.env.development? %>
 </div>
