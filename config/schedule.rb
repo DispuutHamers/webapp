@@ -18,7 +18,7 @@ every :wednesday, at: "1200" do
   runner "Net::HTTP.get(URI.parse('https://hc-ping.com/fffa8b9f-1d79-4e3b-89a3-1f704c145138'))"
 end
 
-every :tuesday, at: "1900" do
+every :monday, at: "1900" do
   runner 'UtilHelper.remind_drink'
 
   # Ping healthchecks.io for monitoring purposes
