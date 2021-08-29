@@ -29,6 +29,7 @@ gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
 gem 'switch_user'
+gem "tailwindcss-rails-webpacker", "~> 0.1.2"
 gem 'therubyracer'
 gem 'turbo-rails'
 gem 'tzinfo'
@@ -66,5 +67,3 @@ group :test do
   gem 'rails-controller-testing'
   gem 'sqlite3'
 end
-
-gem "tailwindcss-rails-webpacker", "~> 0.1.2"
