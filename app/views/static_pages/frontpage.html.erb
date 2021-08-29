@@ -18,3 +18,37 @@
 </main>
 
 <%= yield %>
+
+<!--<li><%#= link_to public_leden_path do %><i class="fa fa-user fa-fw"></i> Leden<%# end %></li>-->
+<!--<li><%#= link_to beers_path do %><i class="fa fa-beer fa-fw"></i> Bier<%# end %></li>-->
+<!--<li><%#= link_to blogitems_path do %><i class="fa fa-rss fa-fw"></i> Blog<%# end %></li>-->
+<%# PublicPage.where(public: true).each do |pp| %>
+<!--  <li><%#= link_to pp.title, "/#{pp.title}" %></li>-->
+<%# end %>
+
+
+<nav class="flex flex-wrap justify-center" aria-label="Footer">
+  <div class="px-5 py-2">
+    <%= link_to public_leden_path, class: "text-base text-gray-500 hover:text-gray-900" do %>
+      Leden
+    <% end %>
+  </div>
+
+  <div class="px-5 py-2">
+    <%= link_to beers_path, class: "text-base text-gray-500 hover:text-gray-900" do %>
+      Bieren
+    <% end %>
+  </div>
+
+  <div class="px-5 py-2">
+    <%= link_to blogitems_path, class: "text-base text-gray-500 hover:text-gray-900" do %>
+      Blog
+    <% end %>
+  </div>
+
+  <% PublicPage.where(public: true).each do |pp| %>
+    <div class="px-5 py-2">
+      <%= link_to pp.title, "/#{pp.title}", class: "text-base text-gray-500 hover:text-gray-900" %>
+    </div>
+  <% end %>
+</nav>
