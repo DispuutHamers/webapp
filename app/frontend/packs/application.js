@@ -28,6 +28,7 @@ import '@fortawesome/fontawesome-free/js/all'
 import 'tablesort/dist/sorts/tablesort.number.min'
 import 'tablesort/dist/sorts/tablesort.date.min'
 import 'trix';
+import "stylesheets/application"
 
 Rails.start();
 
