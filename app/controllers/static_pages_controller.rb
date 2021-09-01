@@ -1,9 +1,10 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
   before_action :ilid?, only: %i[trail revert]
+  layout 'application_public'
 
   def home
-    return render 'frontpage', layout: 'layouts/application_public' unless current_user&.active?
+    return render 'frontpage' unless current_user&.active?
 
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take
@@ -13,6 +14,8 @@ class StaticPagesController < ApplicationController
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
+
+    render layout: 'application'
   end
 
   def privacy
