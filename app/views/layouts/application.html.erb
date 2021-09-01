@@ -10,10 +10,20 @@
 
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <div class=bg-gray-100>
+  <body class="h-screen">
+    <div class="bg-gray-100 h-full">
       <div class="bg-gray-800 pb-32">
         <%= render 'layouts/nav' %>
+
+        <% flash.each do |key, value| %>
+          <% if key == "notice" %>
+            <% key = "info" %>
+          <% elsif key == "error" || key == "alert" %>
+            <% key = "danger" %>
+          <% end %>
+          <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
+        <% end %>
+
         <% if content_for?(:title) %>
           <header class="py-10">
               <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -35,38 +45,8 @@
           </div>
         </div>
       </main>
-    </div>
 
-
-
-
-
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <% if key == "notice" %>
-          <% key = "info" %>
-        <% elsif key == "error" || key == "alert" %>
-          <% key = "danger" %>
-        <% end %>
-        <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
-      <% end %>
-      <% if content_for?(:title) %>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h1><%= yield(:title) %></h1>
-            <%= render 'shared/breadcrumbs' %>
-          </div>
-        </div>
-      <% end %>
-      <div class="row">
-        <div class="col-md-12">
-          <%= yield %>
-        </div>
-      </div>
-      <hr>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      <%= render "layouts/footer" %>
     </div>
   </body>
 </html>
