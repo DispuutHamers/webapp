@@ -5,7 +5,7 @@ export default class extends Controller {
   static values = { invisible: Boolean }
 
   connect() {
-    this.run()
+
   }
 
   toggle(event) {
@@ -28,7 +28,7 @@ export default class extends Controller {
   }
 
   close(event) {
-    if (this.element.contains(event.target) === false && this.invisibleValue === false) {
+    if (this.element.contains(event.target) === false && this.invisibleValue === true) {
       this.run();
     }
   }
