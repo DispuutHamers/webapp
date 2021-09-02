@@ -24,8 +24,6 @@ class StaticPagesController < ApplicationController
 
   def activate_account
     breadcrumb 'Account activeren', activate_account_path
-
-    render 'activate_account' , layout: 'application_public'
   end
 
   def console
