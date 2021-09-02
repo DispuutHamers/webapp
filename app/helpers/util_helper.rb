@@ -1,6 +1,3 @@
-require 'net/http'
-require 'uri'
-
 # Takes over work from controllers and puts logic in a single place
 module UtilHelper
   def save_object(obj)
