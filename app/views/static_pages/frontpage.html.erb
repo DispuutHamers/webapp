@@ -21,3 +21,29 @@
 </main>
 
 <%= yield %>
+
+<nav class="flex flex-wrap justify-center" aria-label="Footer">
+  <div class="px-5 py-2">
+    <%= link_to public_leden_path, class: "text-base text-gray-500 hover:text-gray-900" do %>
+      Leden
+    <% end %>
+  </div>
+
+  <div class="px-5 py-2">
+    <%= link_to beers_path, class: "text-base text-gray-500 hover:text-gray-900" do %>
+      Bieren
+    <% end %>
+  </div>
+
+  <div class="px-5 py-2">
+    <%= link_to blogitems_path, class: "text-base text-gray-500 hover:text-gray-900" do %>
+      Blog
+    <% end %>
+  </div>
+
+  <% PublicPage.where(public: true).each do |pp| %>
+    <div class="px-5 py-2">
+      <%= link_to pp.title, "/#{pp.title}", class: "text-base text-gray-500 hover:text-gray-900" %>
+    </div>
+  <% end %>
+</nav>

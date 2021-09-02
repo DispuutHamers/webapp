@@ -25,8 +25,6 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 import Flatpickr from 'stimulus-flatpickr'
 import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
-import 'tablesort/dist/sorts/tablesort.number.min'
-import 'tablesort/dist/sorts/tablesort.date.min'
 import 'trix';
 import "stylesheets/application"
 
@@ -37,9 +35,9 @@ const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 application.register('flatpickr', Flatpickr)
 
-document.addEventListener("turbo:load", function() {
-    $(function() {
-        $("tr[data-link]").click(function() {
+document.addEventListener("turbo:load", function () {
+    $(function () {
+        $("tr[data-link]").on("click", function () {
             window.location = $(this).data("link")
         });
 
