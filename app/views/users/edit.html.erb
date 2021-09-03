@@ -1,88 +1,88 @@
 <% content_for :title do %>
   Wijzig je profiel
 <% end %>
-<div class="row">
-  <aside class="col-md-4">
-    <section>
+
+<div class="divide-y divide-gray-200 lg:grid lg:grid-cols-12 lg:divide-y-0 lg:divide-x">
+
+  <aside class="lg:col-span-3">
+    <%= link_to "https://gravatar.com/emails", target: "_blank" do %>
       <%= gravatar_for @user, size: 120 %>
-      <a role="button" class="btn btn-default" href="http://gravatar.com/emails" target="_blank">Wijzig profielfoto</a>
-    </section>
-
-    <section>
-      <h4>Groepen</h4>
-      <ul>
-        <% @user.usergroups.each do |group| %>
-          <li><%= group.name %></li>
-        <% end %>
-      </ul>
-      <% if current_user.admin? %>
-        <%= link_to usergroups_user_path(@user), class: 'btn btn-default btn-sm' do %>
-          <i class="fa fa-pencil-alt fa-fw"></i> Wijzig groepen
-        <% end %>
-      <% end %>
-    </section>
-
-    <section>
-      <% if @user == current_user %>
-        <% if @user.api_keys.any? %>
-          <h4>Api keys</h4>
-          <table id="api-key-table" class="table table-hover">
-            <thead>
-            <tr>
-              <th>Naam</th>
-              <th>Key</th>
-            </tr>
-            </thead>
-            <% @user.api_keys.each do |key| %>
-              <tr>
-                <td><%= key.name %></td>
-                <td>
-                  <%= link_to key.key, key %>
-                  <%= link_to key, method: :delete, data: {confirm: 'Zeker weten?'}, class: 'btn btn-default btn-sm' do %>
-                    <i class="far fa-trash-alt"></i>
-                  <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </table>
-        <% end %>
-        <%= form_for ApiKey.new, html: {class: 'form-inline'} do |f| %>
-          <%= f.text_field :name, placeholder: 'Sleutelnaam', class: 'form-control' %>
-          <%= f.submit 'Toevoegen', class: 'btn btn-default' %>
-        <% end %>
-      <% end %>
-    </section>
+    <% end %>
   </aside>
-  <div class="col-md-6">
-    <%= form_for(@user) do |f| %>
+
+  <%= form_for @user, class: 'divide-y divide-gray-200 lg-col-span-9' do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label :name, "Naam" %>
+    <%= f.text_field :name, class: "form-control" %>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email, class: "form-control" %>
+    <%= f.label :phone_number, "Telefoonnummer" %>
+    <%= f.text_field :phone_number, class: "form-control" %>
+    <%= f.label :birthday, "Verjaardag" %>
+    <%= f.date_field :birthday, class: "form-control" %>
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: 'form-control' %>
+    <% if @minimum_password_length %>
+      <br>
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+    <%= f.label :password_confirmation %><br/>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+    <%= f.label :current_password %>
+    <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: 'form-control' %>
+    <% if current_user.active? %>
       <div class="form-group">
-        <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :name, "Naam" %>
-        <%= f.text_field :name, class: "form-control" %>
-        <%= f.label :email, "Email" %>
-        <%= f.text_field :email, class: "form-control" %>
-        <%= f.label :phone_number, "Telefoonnummer" %>
-        <%= f.text_field :phone_number, class: "form-control" %>
-        <%= f.label :birthday, "Verjaardag" %>
-        <%= f.date_field :birthday, class: "form-control" %>
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: 'form-control' %>
-        <% if @minimum_password_length %>
-          <br>
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
-        <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: 'form-control' %>
-      </div>
-      <% if current_user.active? %>
-        <div class="form-group">
-          <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
-          <%= f.check_box :anonymous, class: "form-control" %>
-        </div>
-      <% end %>
-      <%= f.submit "Opslaan", class: "btn btn-default" %>
+        <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
+        <%= f.check_box :anonymous, class: "form-control" %>
       </div>
     <% end %>
-    </div>
+    <%= f.submit "Opslaan", class: "btn btn-default" %>
+  <% end %>
+
+  <!--<section>-->
+  <!--  <h4>Groepen</h4>-->
+  <!--  <ul>-->
+  <%# @user.usergroups.each do |group| %>
+  <!--      <li><%#= group.name %></li>-->
+  <%# end %>
+  <!--  </ul>-->
+  <%# if current_user.admin? %>
+  <%#= link_to usergroups_user_path(@user), class: 'btn btn-default btn-sm' do %>
+  <!--      <i class="fa fa-pencil-alt fa-fw"></i> Wijzig groepen-->
+  <%# end %>
+  <%# end %>
+  <!--</section>-->
+
+  <!--<section>-->
+  <%# if @user == current_user %>
+  <%# if @user.api_keys.any? %>
+  <!--      <h4>Api keys</h4>-->
+  <!--      <table id="api-key-table" class="table table-hover">-->
+  <!--        <thead>-->
+  <!--        <tr>-->
+  <!--          <th>Naam</th>-->
+  <!--          <th>Key</th>-->
+  <!--        </tr>-->
+  <!--        </thead>-->
+  <%# @user.api_keys.each do |key| %>
+  <!--          <tr>-->
+  <!--            <td><%#= key.name %></td>-->
+  <!--            <td>-->
+  <%#= link_to key.key, key %>
+  <%#= link_to key, method: :delete, data: { confirm: 'Zeker weten?' }, class: 'btn btn-default btn-sm' do %>
+  <!--                <i class="far fa-trash-alt"></i>-->
+  <%# end %>
+  <!--            </td>-->
+  <!--          </tr>-->
+  <%# end %>
+  <!--      </table>-->
+  <%# end %>
+  <%#= form_for ApiKey.new, html: { class: 'form-inline' } do |f| %>
+  <%#= f.text_field :name, placeholder: 'Sleutelnaam', class: 'form-control' %>
+  <%#= f.submit 'Toevoegen', class: 'btn btn-default' %>
+  <%# end %>
+  <%# end %>
+  <!--</section>-->
+
+
+</div>
