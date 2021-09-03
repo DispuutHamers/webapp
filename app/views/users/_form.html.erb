@@ -1,4 +1,4 @@
-<%= form_for @user, html: { class: 'space-y-8 space-y divide-gray-200' } do |f| %>
+<%= form_for @user, html: { class: 'space-y-6 space-y' } do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
 
   <% fields = %i[name email phone_number] %>
@@ -23,26 +23,36 @@
     <div class="mt-1">
       <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
       <% if @minimum_password_length %>
-        <p class="mt-2 text-sm text-gray-500" id="email-description"><%= @minimum_password_length %> characters minimum</p>
+        <p class="text-sm text-gray-500" id="email-description"><%= @minimum_password_length %> characters minimum</p>
       <% end %>
     </div>
   </div>
 
+  <div class="sm:col-span-6">
+    <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
+  </div>
 
-  <%= f.label :password %>
+  <div class="sm:col-span-6">
+    <%= f.label :current_password, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
+  </div>
 
-  <% if @minimum_password_length %>
-    <br>
-    <em><%= @minimum_password_length %> characters minimum</em>
-  <% end %>
-  <%= f.label :password_confirmation %><br/>
-  <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-  <%= f.label :current_password %>
-  <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: 'form-control' %>
+
   <% if current_user.active? %>
-    <div class="form-group">
-      <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
-      <%= f.check_box :anonymous, class: "form-control" %>
+    <legend class="sr-only">Notifications</legend>
+    <div class="relative flex items-start">
+      <div class="flex items-center h-5">
+        <%= f.check_box :anonymous, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
+      </div>
+      <div class="ml-3 text-sm">
+        <%= f.label :anonymous, "Anoniem op publieke pagina's", class: "font-medium text-gray-700" %>
+        <span id="comments-description" class="text-gray-500"><span class="sr-only">Anoniem op publieke pagina's  </span>(je staat wel op de ledenpagina).</span>
+      </div>
     </div>
   <% end %>
 
