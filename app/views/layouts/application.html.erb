@@ -3,41 +3,50 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hamers zonder Sikkel</title>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
     <%= stylesheet_link_tag "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbo-track' => true %>
 
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <div class="container mx-auto">
-      <% flash.each do |key, value| %>
-        <% if key == "notice" %>
-          <% key = "info" %>
-        <% elsif key == "error" || key == "alert" %>
-          <% key = "danger" %>
+  <body class="h-screen">
+    <div class="bg-gray-100 h-full">
+      <div class="bg-gray-800 pb-32">
+        <%= render 'layouts/nav' %>
+
+        <% flash.each do |key, value| %>
+          <% if key == "notice" %>
+            <% key = "info" %>
+          <% elsif key == "error" || key == "alert" %>
+            <% key = "danger" %>
+          <% end %>
+          <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
         <% end %>
-        <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
-      <% end %>
-      <% if content_for?(:title) %>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h1><%= yield(:title) %></h1>
-            <%= render 'shared/breadcrumbs' %>
+
+        <% if content_for?(:title) %>
+          <header class="py-10">
+              <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-3xl font-bold text-white">
+                  <%= yield :title %>
+                </h1>
+                <div class="text-white">
+                  <%= render 'shared/breadcrumbs' %>
+                </div>
+              </div>
+          </header>
+        <% end %>
+      </div>
+
+      <main class="-mt-32">
+        <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
+          <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
+            <%= yield %>
           </div>
         </div>
-      <% end %>
-      <div class="row">
-        <div class="col-md-12">
-          <%= yield %>
-        </div>
-      </div>
-      <hr>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      </main>
+
+      <%= render "layouts/footer" %>
     </div>
   </body>
 </html>
