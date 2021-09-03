@@ -1,7 +1,7 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
   before_action :ilid?, only: %i[trail revert]
-  layout 'application_public'
+  layout 'application_public', except: :trail
 
   def home
     return render 'frontpage' unless current_user&.active?
@@ -24,10 +24,6 @@ class StaticPagesController < ApplicationController
 
   def activate_account
     breadcrumb 'Account activeren', activate_account_path
-  end
-
-  def console
-    redirect_to root_path unless current_user&.dev?
   end
 
   def trail
