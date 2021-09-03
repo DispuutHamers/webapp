@@ -19,7 +19,7 @@ module Hamers
     config.to_prepare do
       Doorkeeper::ApplicationsController.layout 'application'
       Doorkeeper::AuthorizationsController.layout 'application'
-      Doorkeeper::AuthorizedApplicationsController.layout "application"
+      Doorkeeper::AuthorizedApplicationsController.layout 'application'
       
       Devise::SessionsController.layout 'application_public'
       Devise::RegistrationsController.layout 'application_public'
