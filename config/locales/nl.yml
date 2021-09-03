@@ -7,6 +7,10 @@ nl:
   apipie:
     api_documentation: "Hamers API"
   activerecord:
+    attributes:
+      user:
+        birthday: Verjaardag
+        phone_number: Telefoonnummer
     errors:
       messages:
         record_invalid: 'Validatie mislukt: %{errors}'

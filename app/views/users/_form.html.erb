@@ -1,29 +1,50 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being saved:</h2>
+<%= form_for @user, html: { class: 'space-y-8 space-y divide-gray-200' } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+  <% fields = %i[name email phone_number] %>
+  <% fields.each do |field| %>
+    <div class="sm:col-span-6">
+      <%= f.label field, class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1">
+        <%= f.text_field field, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="sm:col-span-6">
+    <%= f.label :birthday, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= f.date_field :birthday, class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :picture %><br>
-    <%= f.text_field :picture %>
+
+  <div class="sm:col-span-6">
+    <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+    <div class="mt-1">
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      <% if @minimum_password_length %>
+        <p class="mt-2 text-sm text-gray-500" id="email-description"><%= @minimum_password_length %> characters minimum</p>
+      <% end %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+
+  <%= f.label :password %>
+
+  <% if @minimum_password_length %>
+    <br>
+    <em><%= @minimum_password_length %> characters minimum</em>
+  <% end %>
+  <%= f.label :password_confirmation %><br/>
+  <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+  <%= f.label :current_password %>
+  <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: 'form-control' %>
+  <% if current_user.active? %>
+    <div class="form-group">
+      <%= f.label :anonymous, "Anoniem op publieke pagina's (je staat wel bij leden)" %>
+      <%= f.check_box :anonymous, class: "form-control" %>
+    </div>
+  <% end %>
+
+  <%= f.submit "Opslaan", class: "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 <% end %>
