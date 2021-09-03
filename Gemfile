@@ -35,7 +35,6 @@ gem 'switch_user'
 gem 'therubyracer'
 gem 'tzinfo'
 gem 'uglifier'
-gem 'web-console'
 gem "webpacker"
 gem 'will_paginate'
 gem 'wine_bouncer'
@@ -62,6 +61,7 @@ end
 
 group :development do
   gem "brakeman", require: false
+  gem 'web-console'
 end
 
 group :test do
