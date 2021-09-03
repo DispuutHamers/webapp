@@ -17,9 +17,15 @@ module Hamers
     config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
     config.i18n.default_locale = :'nl'
     config.to_prepare do
-      Doorkeeper::ApplicationsController.layout "application"
-      Doorkeeper::AuthorizationsController.layout "application"
+      Doorkeeper::ApplicationsController.layout 'application'
+      Doorkeeper::AuthorizationsController.layout 'application'
       Doorkeeper::AuthorizedApplicationsController.layout "application"
+      
+      Devise::SessionsController.layout 'application_public'
+      Devise::RegistrationsController.layout 'application_public'
+      Devise::ConfirmationsController.layout 'application_public'
+      Devise::UnlocksController.layout 'application_public'
+      Devise::PasswordsController.layout 'application_public'
     end
 
   end
