@@ -1,7 +1,7 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
   before_action :ilid?, only: %i[trail revert]
-  layout 'application_public', except: %i[trail revert]
+  layout 'application_public', except: :trail
 
   def home
     return render 'frontpage' unless current_user&.active?
