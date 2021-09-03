@@ -26,7 +26,7 @@ import Flatpickr from 'stimulus-flatpickr'
 import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
 import 'trix';
-import "stylesheets/application.scss"
+import "./application"
 
 Rails.start();
 
