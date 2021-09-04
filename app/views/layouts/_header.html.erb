@@ -65,9 +65,6 @@
                     <li>Andere gebruiker: <%= switch_user_select class: 'btn btn-dropdown-toggle' %></li>
                   <% end %>
                   <li><%= link_to 'OAuth-applicaties', oauth_applications_path %></li>
-                  <% if Rails.env.development? %>
-                    <li><%= link_to 'Anonymize', anonymize_path, data: {confirm: 'Het is een tyfuswerk om dit ongedaan te maken dus weet je het zeker?'} %></li>
-                  <% end %>
                 </ul>
               </li>
             <% end %>
