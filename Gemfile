@@ -61,6 +61,7 @@ end
 group :development do
   gem "brakeman", require: false
   gem 'web-console'
+  gem 'pry'
 end
 
 group :test do
