@@ -1,0 +1,9 @@
+<% if list.any? %>
+  <div>
+    <ul role="list" class="divide-y divide-gray-200">
+      <%= render list %>
+    </ul>
+
+    <%= will_paginate list %>
+  </div>
+<% end %>
