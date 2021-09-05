@@ -116,8 +116,6 @@ GEM
     equalizer (0.0.11)
     erubi (1.10.0)
     execjs (2.8.1)
-    faker (2.18.0)
-      i18n (>= 1.6, < 2)
     ffi (1.15.1)
     flamegraph (0.9.5)
     globalid (0.5.2)
@@ -355,7 +353,6 @@ DEPENDENCIES
   diffy
   doorkeeper
   doorkeeper-i18n
-  faker
   flamegraph
   honeybadger (~> 4.0)
   icalendar
