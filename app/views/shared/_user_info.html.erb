@@ -1,7 +1,32 @@
-<%= link_to gravatar_for current_user, size: 96, class: 'gravatar' %>
-<h1>
-  <%= link_to current_user.name, current_user %>
-</h1>
-<span>
-<%= pluralize(current_user.quotes.count, 'quote') %>
-</span>
+<div class="bg-white overflow-hidden shadow rounded-lg hidden md:block">
+  <div class="p-5">
+    <div class="flex items-center">
+      <div class="flex-shrink-0">
+        <%= gravatar_for current_user, class:"inline-block h-9 w-9 rounded-full" %>
+      </div>
+      <div class="ml-5 w-0 flex-1">
+        <%= link_to current_user, class: "flex-shrink-0 group block" do %>
+        <div class="flex items-center">
+          <div class="ml-3">
+            <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
+              <%= current_user.name %>
+            </p>
+            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+              <%= pluralize(current_user.quotes.count, 'quote') %>
+            </p>
+            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+              <%= pluralize(current_user.reviews.count, 'review') %>
+            </p>
+            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+              <%= pluralize(current_user.events.count, 'event') %>
+            </p>
+            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+              <%= pluralize(current_user.blogitems.count, 'blogs') %>
+            </p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
