@@ -1,31 +1,20 @@
 <div class="bg-white overflow-hidden shadow rounded-lg hidden md:block">
   <div class="p-5">
     <div class="flex items-center">
-      <div class="flex-shrink-0">
-        <%= gravatar_for current_user, class:"inline-block h-9 w-9 rounded-full" %>
-      </div>
       <div class="ml-5 w-0 flex-1">
-        <%= link_to current_user, class: "flex-shrink-0 group block" do %>
-        <div class="flex items-center">
-          <div class="ml-3">
-            <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-              <%= current_user.name %>
-            </p>
-            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              <%= pluralize(current_user.quotes.count, 'quote') %>
-            </p>
-            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              <%= pluralize(current_user.reviews.count, 'review') %>
-            </p>
-            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              <%= pluralize(current_user.events.count, 'event') %>
-            </p>
-            <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              <%= pluralize(current_user.blogitems.count, 'blogs') %>
-            </p>
-          </div>
+        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 class="text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+            <span class="block">Welkom <%= current_user.name %></span>
+          </h2>
+            <span class="block font-extrabold">
+              Je bent <span class="text-indigo-400"><%= current_user.quotes.count %></span> keer geciteerd,
+              hebt <span class="text-indigo-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
+              <span class="text-indigo-400"><%= current_user.blogitems.count %></span> blogs geschreven en
+              bent bij <span
+                class="text-indigo-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
+                borrels geweest.
+              </span>
         </div>
-        <% end %>
       </div>
     </div>
   </div>

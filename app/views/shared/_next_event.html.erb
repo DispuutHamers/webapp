@@ -2,25 +2,23 @@
   <div class="md:p-5">
     <div class="flex items-center justify-center">
       <% if @next_event %>
-
-      <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
-        Volgende activiteit:
-        <h2 class="text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
-          <span class="block"><%= link_to @next_event.title, @next_event %></span>
-          <span class="block text-indigo-400">in <%= time_ago_in_words(@next_event.date) %>.</span>
-        </h2>
-        <div class="mt-8 flex">
-          <div class="inline-flex rounded-md shadow w-full">
-            <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: {class: "w-full"} do |f| %>
-            <%= f.hidden_field :event_id %>
-            <%= f.hidden_field :status %>
-            <%= f.submit 'Aanwezig', class: 'w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700' %>
-            </span>
+        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
+          Volgende activiteit:
+          <h2 class="text-xl font-extrabold tracking-tight text-gray-900 sm:text-2xl">
+            <span class="block"><%= link_to @next_event.title, @next_event %></span>
+            <span class="block text-indigo-400">in <%= time_ago_in_words(@next_event.date) %>.</span>
+          </h2>
+          <div class="mt-8 flex">
+            <div class="inline-flex rounded-md shadow w-full">
+              <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: {class: "w-full"} do |f| %>
+              <%= f.hidden_field :event_id %>
+              <%= f.hidden_field :status %>
+              <%= f.submit 'Aanwezig', class: 'w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700' %>
+              </span>
+            </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
-      </div>
-
       <% else %>
         <div class="text-center">
           <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
