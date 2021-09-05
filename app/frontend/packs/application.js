@@ -22,8 +22,6 @@ import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
-import Flatpickr from 'stimulus-flatpickr'
-import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
 import 'trix';
 import "./application"
@@ -33,14 +31,11 @@ Rails.start();
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
-application.register('flatpickr', Flatpickr)
 
 document.addEventListener("turbo:load", function () {
     $(function () {
         $("tr[data-link]").on("click", function () {
-            window.location = $(this).data("link")
+            Turbo.visit($(this).data("link"))
         });
-
-        document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
     });
 });
