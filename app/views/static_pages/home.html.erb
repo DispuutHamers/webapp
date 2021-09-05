@@ -18,9 +18,4 @@
     </div>
   </div>
 
-<div>
-  <ul role="list" class="divide-y divide-gray-200">
-      <%= render @quotes %>
-    </ul>
-  </div>
-</div>
+<%= render 'layouts/list', list: @quotes %>
