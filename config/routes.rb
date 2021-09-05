@@ -17,7 +17,7 @@ Hamers::Application.routes.draw do
 
   resources :news
   get '/images' => 'albums#index', as: 'photo'
-  get '/trail' => 'static_pages#trail' , as: 'trail'
+  get '/trail' => 'static_pages#trail', as: 'trail'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
 
@@ -59,8 +59,12 @@ Hamers::Application.routes.draw do
   end
 
   resources :users do
+    collection do
+      get '/:id/password/' => "users#edit_password", as: "edit_password"
+      patch 'update_password'
+    end
     resources :api_keys do
-      get '/api_keys/' => "users#edit_api_keys", as: "edit_api_keys"
+      get '/:id/api_keys/' => "users#edit_api_keys", as: "edit_api_keys"
     end
     member do
       get :usergroups
@@ -82,7 +86,7 @@ Hamers::Application.routes.draw do
   match '/dbdump', to: 'dbdump#show', via: 'get'
   match '/anonymize', to: 'dbdump#anonymize', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
-  match '/register',  to: 'users#new', via: 'get'
+  match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
     get 'email' => 'endpoints/email#create'
