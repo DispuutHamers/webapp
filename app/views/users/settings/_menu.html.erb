@@ -1,45 +1,22 @@
 <nav class="space-y-1">
 
   <% items = {
-    Profiel: { path: edit_user_path, icon: 'outline/user-circle'},
+    Profiel: { path: edit_user_path, icon: 'user-circle' },
+    Wachtwoord: { path: edit_password_users_path, icon: 'lock-closed' },
+    'API-sleutels': { path: '#', icon: 'key' }
   } %>
 
-  <!-- Current: "bg-teal-50 border-teal-500 text-hamers-red-300 hover:bg-teal-50 hover:text-hamers-red-300",
-  Default: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900" -->
   <% items.each do |name, options| %>
-    <%= link_to options['path'], class: "border-hamers-red-400 text-hamers-red-400 hover:bg-gray-50 hover:text-hamers-red-600 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
-      <svg class="text-hamers-red-400 group-hover:text-hamers-red-600 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-      <span class="truncate"><%= name %></span>
+    <% if current_page?(options[:path]) %>
+      <%= link_to options[:path], class: "border-hamers-red-400 text-hamers-red-400 hover:bg-gray-50 hover:text-hamers-red-600 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
+        <%= heroicon(options[:icon], style: :outline, class_name: "text-hamers-red-400 group-hover:text-hamers-red-600 flex-shrink-0 -ml-1 mr-3 h-6 w-6") %>
+        <span class="truncate"><%= name %></span>
+      <% end %>
+    <% else %>
+      <%= link_to options[:path], class: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
+        <%= heroicon(options[:icon], style: :outline, class_name: "text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6") %>
+        <span class="truncate"><%= name %></span>
+      <% end %>
     <% end %>
   <% end %>
-
-
-  <a href="#" class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium">
-    <!-- Heroicon name: outline/cog -->
-    <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-    </svg>
-    <span class="truncate">Account</span>
-  </a>
-
-  <%= link_to edit_password_users_path, class: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
-    <!-- Heroicon name: outline/lock -->
-    <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-    </svg>
-
-    <span class="truncate">Wachtwoord</span>
-  <% end %>
-
-
-  <a href="#" class="border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium">
-    <!-- Heroicon name: outline/key -->
-    <svg class="text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/>
-    </svg>
-    <span class="truncate">API keys</span>
-  </a>
 </nav>
