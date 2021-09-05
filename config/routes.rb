@@ -23,7 +23,7 @@ Hamers::Application.routes.draw do
 
   match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions
-  resources :api_keys, only: [:create, :show, :destroy]
+  # resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
   resources :blogitems, path: 'blog'
@@ -60,11 +60,11 @@ Hamers::Application.routes.draw do
 
   resources :users do
     collection do
-      get '/:id/password/' => "users#edit_password", as: "edit_password"
+      get '/:id/edit/password/' => "users#edit_password", as: "edit_password"
       patch 'update_password'
     end
     resources :api_keys do
-      get '/:id/api_keys/' => "users#edit_api_keys", as: "edit_api_keys"
+      get '/edit/api_keys/' => "api_keys#index"
     end
     member do
       get :usergroups

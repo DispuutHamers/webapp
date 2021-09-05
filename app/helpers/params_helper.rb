@@ -1,4 +1,7 @@
 module ParamsHelper
+  def api_key_params
+    params.require(:api_key).permit(:name)
+  end
 
   def quote_params
     params.require(:quote).permit(:user_id, :text, :reporter)
