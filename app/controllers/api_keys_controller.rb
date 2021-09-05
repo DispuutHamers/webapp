@@ -4,6 +4,7 @@ class ApiKeysController < ApplicationController
   before_action :correct_user?, only: %i[show]
 
   def index
+    breadcrumb 'Leden', :users_path
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
     breadcrumb 'API keys', user_api_keys_path(@user)

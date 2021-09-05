@@ -61,10 +61,11 @@ Hamers::Application.routes.draw do
   resources :users do
     collection do
       get '/:id/edit/password/' => "users#edit_password", as: "edit_password"
-      patch 'update_password'
+      patch '/:id/edit/password' => "users#update_password", as: "update_password"
     end
     resources :api_keys do
       get '/edit/api_keys/' => "api_keys#index"
+      post '/edit/api_keys/new' => "api_keys#create", as: "api_key"
     end
     member do
       get :usergroups
