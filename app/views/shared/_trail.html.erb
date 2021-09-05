@@ -13,7 +13,11 @@
             <% when "Quote" %>
               <div class="flex-1 space-y-1">
                 <div class="flex items-center justify-between">
-                  <span class="text-sm font-medium"><%= "citeerde #{t.item.user.name}" %></span>
+                  <% if t.item %>
+                    <span class="text-sm font-medium"><%= "citeerde #{t.item.user.name}" %></span>
+                  <% else %>
+                    <span class="text-sm font-medium"><%= "citeerde onjuist" %></span>
+                  <% end %>
                 </div>
                 <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
               </div>
