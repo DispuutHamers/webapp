@@ -59,9 +59,11 @@ Hamers::Application.routes.draw do
   end
 
   resources :users do
+    resources :api_keys do
+      get '/api_keys/' => "users#edit_api_keys", as: "edit_api_keys"
+    end
     member do
       get :usergroups
-      get '/edit/:user_id/api-keys', to: "users#edit_api_keys", as: :edit_api_keys
     end
   end
 

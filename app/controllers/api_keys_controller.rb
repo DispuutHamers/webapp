@@ -1,6 +1,10 @@
 class ApiKeysController < ApplicationController
   before_action :ilid?
-  before_action :correct_user?, only: [:show]
+  before_action :correct_user?, only: %i[index show]
+
+  def index
+
+  end
 
   def create
     current_user.generate_api_key(api_key_params[:name])

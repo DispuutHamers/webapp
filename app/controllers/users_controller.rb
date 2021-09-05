@@ -55,15 +55,23 @@ class UsersController < ApplicationController
   def edit
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
+
+    render 'users/settings/main'
+  end
+
+  def update
+    update_object(@user, user_params)
   end
 
   def edit_api_keys
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
-    breadcrumb 'API keys', edit_api_keys_path(@user)
+    breadcrumb 'API keys', edit_api_keys_users_path(@user)
+
+    render 'users/settings/api_keys'
   end
 
-  def update
+  def update_api_keys
     update_object(@user, user_params)
   end
 
