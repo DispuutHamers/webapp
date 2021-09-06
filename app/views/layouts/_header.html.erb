@@ -44,16 +44,6 @@
                   <i class="fa fa-fw fa-coins"></i> Moneybird</a></li>
               </ul>
             </li>
-            <% if current_user&.admin? %>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Triumviraat
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to new_user_invitation_path do %><i class="fa fa-user-plus fa-fw"></i> Aspirant uitnodigen<% end %></li>
-                </ul>
-              </li>
-            <% end %>
             <% if current_user.dev? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Developer
