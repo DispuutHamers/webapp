@@ -5,6 +5,7 @@ class Signup < ActiveRecord::Base
   belongs_to :event
   validates :user_id, uniqueness: {scope: :event_id}
   validate :event_deadline_has_passed
+  attribute :status, :boolean, default: true
 
 #  default_scope {includes(:user) }
   scope :with_user, -> { includes(:user) }
