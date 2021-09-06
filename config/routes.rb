@@ -59,15 +59,16 @@ Hamers::Application.routes.draw do
   end
 
   resources :users do
+    collection do
+      get '/admin', to: 'users_admin#index', as: 'admin'
+      patch '/admin/:id', to: 'users_admin#admin_patch', as: 'admin_update'
+    end
     member do
-      get :usergroups
+      get :usergroups, to: 'users_admin#usergroups'
     end
   end
 
   match '/external_accounts', to: 'users#index_extern', via: 'get', as: 'external_accounts'
-  match '/admin_accounts', to: 'users#admin', via: 'get', as: 'leden_admin'
-  match '/admin_accounts/:id', to: 'users#admin_patch', via: 'patch', as: 'leden_admin_update'
-
   get 'leden', to: "users#index_public", as: "public_leden"
 
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
