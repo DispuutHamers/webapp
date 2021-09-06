@@ -21,6 +21,16 @@
       <% end %>
     </section>
 
+    <% if current_user.admin? %>
+      <section>
+        <h4>Wijzig lichting</h4>
+        <%= form_for @user, url: users_path(@user), html: { class: 'form-inline' } do |f| %>
+          <%= f.number_field :batch, class: "form-control input-sm" %>
+          <%= f.submit "Opslaan", class: "btn btn-default btn-sm" %>
+        <% end %>
+      </section>
+    <% end %>
+
     <% if @user.lid? %>
       <% unless @missed_drinks.empty? %>
         <section>

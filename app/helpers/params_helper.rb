@@ -1,4 +1,7 @@
 module ParamsHelper
+  def api_key_params
+    params.require(:api_key).permit(:name)
+  end
 
   def quote_params
     params.require(:quote).permit(:user_id, :text, :reporter)
@@ -58,6 +61,10 @@ module ParamsHelper
 
   def user_params
     params.require(:user).permit(:name, :email, :phone_number, :birthday, :batch, :current_password, :password, :password_confirmation, :anonymous)
+  end
+
+  def usergroup_params
+    params.require(:usergroup).permit(:name, :text)
   end
 
   def configure_permitted_parameters

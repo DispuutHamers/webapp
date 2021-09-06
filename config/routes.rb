@@ -65,9 +65,6 @@ Hamers::Application.routes.draw do
   end
 
   match '/external_accounts', to: 'users#index_extern', via: 'get', as: 'external_accounts'
-  match '/admin_accounts', to: 'users#admin', via: 'get', as: 'leden_admin'
-  match '/admin_accounts/:id', to: 'users#admin_patch', via: 'patch', as: 'leden_admin_update'
-
   get 'leden', to: "users#index_public", as: "public_leden"
 
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
