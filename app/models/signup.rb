@@ -1,5 +1,5 @@
 class Signup < ActiveRecord::Base
-  has_paper_trail
+  has_paper_trail on: [:update]
   acts_as_paranoid
   belongs_to :user
   belongs_to :event
