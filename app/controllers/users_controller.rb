@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   def edit_password
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
-    breadcrumb 'Wachtwoord', edit_password_users_path(@user)
+    breadcrumb 'Wachtwoord', edit_password_user_path(@user)
 
     render 'users/settings/password'
   end
