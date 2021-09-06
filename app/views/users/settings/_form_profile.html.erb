@@ -18,31 +18,6 @@
     </div>
   </div>
 
-  <div class="sm:col-span-6">
-    <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
-    <div class="mt-1">
-      <%= f.password_field :password, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
-      <% if @minimum_password_length %>
-        <p class="text-sm text-gray-500" id="email-description"><%= @minimum_password_length %> characters minimum</p>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="sm:col-span-6">
-    <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
-    <div class="mt-1">
-      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Leave blank if you don't want to change it", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
-    </div>
-  </div>
-
-  <div class="sm:col-span-6">
-    <%= f.label :current_password, class: "block text-sm font-medium text-gray-700" %>
-    <div class="mt-1">
-      <%= f.password_field :current_password, autocomplete: "off", placeholder: "We need your current password to confirm your changes", class: "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
-    </div>
-  </div>
-
-
   <% if current_user.active? %>
     <legend class="sr-only">Notifications</legend>
     <div class="relative flex items-start">
