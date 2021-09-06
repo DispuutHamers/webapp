@@ -1,13 +1,13 @@
 class ApiKeysController < ApplicationController
   before_action :ilid?
-  before_action :user, only: :index
+  before_action :user, only: [:index, :show]
   before_action :correct_user?, only: %i[show]
 
   def index
     breadcrumb 'Leden', :users_path
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
-    breadcrumb 'API keys', user_api_keys_path(@user)
+    breadcrumb 'API-sleutels', user_api_keys_path(@user)
 
     render 'users/settings/api_keys'
   end
@@ -18,8 +18,10 @@ class ApiKeysController < ApplicationController
   end
 
   def show
-    breadcrumb current_user.name, user_path(current_user)
-    breadcrumb 'API-sleutels', edit_user_path(current_user)
+    breadcrumb 'Leden', :users_path
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Update', edit_user_path(@user)
+    breadcrumb 'API-sleutels', user_api_keys_path(@user)
     breadcrumb @rawkey, api_key_path(k)
 
     k = ApiKey.find(params[:id])
@@ -34,7 +36,7 @@ class ApiKeysController < ApplicationController
   private
 
   def user
-    @user ||= User.find(params[:user_id])
+
   end
 
   def correct_user?
