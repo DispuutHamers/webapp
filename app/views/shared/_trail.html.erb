@@ -10,7 +10,7 @@
       <% if t.event == "create" %>
         <% if t.item_type == "Signup" %>
           heeft zich ingeschreven voor
-          <% if t.item.event %>
+          <% if t.item %>
             <%= link_to t.item.event.title, t.item.event %>
           <% else %>
             een verwijderd event
