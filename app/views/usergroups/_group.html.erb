@@ -11,15 +11,7 @@
           <div class="flex overflow-hidden -space-x-1">
             <% group.users.each do |user| %>
               <%= link_to user, class: "inline-block" do %>
-                <%= gravatar_for user, class: " h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
-              <% end %>
-
-              <%= link_to user, class: "inline-block" do %>
-                <%= gravatar_for user, class: " h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
-              <% end %>
-
-              <%= link_to user, class: "inline-block" do %>
-                <%= gravatar_for user, class: " h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
+                <%= gravatar_for user, class: "h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
               <% end %>
             <% end %>
           </div>
