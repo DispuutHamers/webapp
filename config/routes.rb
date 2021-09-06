@@ -65,7 +65,13 @@ Hamers::Application.routes.draw do
     member do
       get :usergroups
       get '/edit/password/' => "users#edit_password", as: "edit_password"
-      patch '/edit/password' => "users#update_password", as: "update_password"
+      # patch '/edit/password' => "users#update_password", as: "update_password"
+    end
+  end
+
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password' => "users#update_password"
     end
   end
 
