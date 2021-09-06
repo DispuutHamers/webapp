@@ -284,7 +284,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.integer "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date "proefdatum", default: "2021-09-06"
+    t.date "proefdatum", default: Date.today
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_reviews_on_deleted_at"
     t.index ["user_id", "beer_id"], name: "index_reviews_on_user_id_and_beer_id", unique: true
