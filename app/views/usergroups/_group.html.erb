@@ -1,32 +1,30 @@
-<div class="col-md-4">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h1 class="panel-title">
-        <%= group.name %>
-        <span class="text-muted text-small"><%= group.users.count %></span>
+<li>
+  <div class="block hover:bg-gray-100">
+    <div class="px-4 py-4 flex items-center sm:px-6">
+      <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+        <div class="truncate">
+          <div class="flex text-sm">
+            <p class="font-medium text-hamers-red-500 truncate"><%= group.name %></p>
+          </div>
+        </div>
+        <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
+          <div class="flex overflow-hidden -space-x-1">
+            <% group.users.each do |user| %>
+              <%= link_to user, class: "inline-block" do %>
+                <%= gravatar_for user, class: " h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
+              <% end %>
 
-        <% if current_user.admin? %>
-          <% if group.users.any? %>
-            <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"
-                    title="De groep moet leeg zijn voor je deze kunt verwijderen.">
-              <i class="far fa-trash-alt"></i>
-            </button>
-          <% elsif [4, 5, 12].include?(group.id) %>
-            <button class="btn btn-default btn-sm disabled">Deze groep kan niet verwijderd worden</button>
-          <% else %>
-            <%= link_to group, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
-              <i class="far fa-trash-alt"></i> Verwijder groep
+              <%= link_to user, class: "inline-block" do %>
+                <%= gravatar_for user, class: " h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
+              <% end %>
+
+              <%= link_to user, class: "inline-block" do %>
+                <%= gravatar_for user, class: " h-8 w-8 rounded-full ring-2 ring-white", size: 80, alt: "user.name" %>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>
-      </h1>
-    </div>
-    <div class="panel-body">
-      <ul>
-        <% group.users.each do |user| %>
-          <li><%= link_to user.name, user %></li>
-        <% end %>
-      </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</li>

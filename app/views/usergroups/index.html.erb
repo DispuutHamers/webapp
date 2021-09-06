@@ -1,39 +1,26 @@
 <% content_for :title do %>
   Groepen
-  <% if current_user.admin? %>
-    <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#createGroupModal">
-      Nieuwe groep
-    </button>
-
-    <div class="modal fade" id="createGroupModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Nieuwe groep aanmaken</h4>
-          </div>
-          <div class="modal-body">
-            <% if current_user.admin? %>
-              <%= form_for @group, html: {id: 'usergroup-form', class: 'form-inline'} do |f| %>
-                <%= render 'shared/error_messages', object: f.object %>
-                <%= f.text_field :name, placeholder: 'Naam', class: 'form-control' %>
-                <%= f.submit 'Opslaan', class: 'btn btn-default' %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <% end %>
 <% end %>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="row">
-      <% @usergroups.each do |group| %>
-        <%= render "usergroups/group", group: group %>
-      <% end %>
+<div class="bg-white shadow overflow-hidden sm:rounded-md">
+  <ul role="list" class="divide-y divide-gray-200">
+    <% @usergroups.each do |group| %>
+      <%= render 'usergroups/group', group: group %>
+    <% end %>
+  </ul>
+</div>
+
+<% if current_user.admin? %>
+  <div class="relative md:my-4">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-center">
+      <span class="px-2 bg-white text-md text-gray-600">
+        Nieuwe groep
+      </span>
     </div>
   </div>
-</div>
+
+  <%= render 'usergroups/form' %>
+<% end %>
