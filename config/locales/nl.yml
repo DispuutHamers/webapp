@@ -10,7 +10,10 @@ nl:
     attributes:
       user:
         birthday: Verjaardag
+        current_password: Huidige wachtwoord
         phone_number: Telefoonnummer
+        password: Wachtwoord
+        password_confirmation: Wachtwoordbevestiging
     errors:
       messages:
         record_invalid: 'Validatie mislukt: %{errors}'
