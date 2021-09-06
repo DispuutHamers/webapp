@@ -22,7 +22,7 @@
         destroyed <%= t.item_type %>
       <% else %>
         <% if t.item_type == "Signup" %>
-          heeft zijn inschrijving voor <%= link_to t.object[:title], t.item.event %> geupdate
+          heeft zijn inschrijving voor <%= link_to t.item.event, t.item.event %> geupdate
         <% else %>
           <%= t.event %>d <%= link_to t.item_type, t.item %>
         <% end %>
