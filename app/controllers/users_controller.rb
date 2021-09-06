@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :user, only: [:show, :edit, :update]
+  before_action :user, only: [:show, :edit, :update, :usergroups, :destroy]
+  before_action :admin_user?, only: [:destroy, :usergroups]
   before_action :correct_user, only: [:edit, :update]
 
   breadcrumb 'Leden', :users_path
@@ -15,6 +16,13 @@ class UsersController < ApplicationController
   def index_public
     @users = User.order(batch: :desc).group_by { |user| user[:batch] }
     breadcrumb 'Openbaar', public_leden_path
+  end
+
+  def usergroups
+    @member = @user.usergroups
+    @notmember = Usergroup.where.not(id: @member)
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Groepen', usergroups_user_path(@user)
   end
 
   def show
@@ -39,6 +47,11 @@ class UsersController < ApplicationController
 
   def update
     update_object(@user, user_params)
+  end
+
+  def destroy
+    @user.groups.each(&:destroy)
+    redirect_to users_path
   end
 
   private

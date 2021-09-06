@@ -59,13 +59,8 @@ Hamers::Application.routes.draw do
   end
 
   resources :users do
-    collection do
-      get '/admin', to: 'users_admin#index', as: 'admin'
-      patch '/admin/update/:id', to: 'users_admin#admin_patch', as: 'admin_update'
-      post '/admin/delete/:id', to: 'users_admin#destroy', as: 'destroy'
-    end
     member do
-      get :usergroups, to: 'users_admin#usergroups'
+      get :usergroups
     end
   end
 
