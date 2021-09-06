@@ -18,18 +18,16 @@
     </div>
   </div>
 
-  <% if current_user.active? %>
-    <legend class="sr-only">Notifications</legend>
-    <div class="relative flex items-start">
-      <div class="flex items-center h-5">
-        <%= f.check_box :anonymous, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
-      </div>
-      <div class="ml-3 text-sm">
-        <%= f.label :anonymous, "Anoniem op publieke pagina's", class: "font-medium text-gray-700" %>
-        <span id="comments-description" class="text-gray-500"><span class="sr-only">Anoniem op publieke pagina's  </span>(je staat wel op de ledenpagina).</span>
-      </div>
+  <legend class="sr-only">Notifications</legend>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :anonymous, class: "focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" %>
     </div>
-  <% end %>
+    <div class="ml-3 text-sm">
+      <%= f.label :anonymous, "Anoniem op publieke pagina's", class: "font-medium text-gray-700" %>
+      <span id="comments-description" class="text-gray-500"><span class="sr-only">Anoniem op publieke pagina's  </span>(je staat wel op de ledenpagina).</span>
+    </div>
+  </div>
 
   <%= f.submit "Opslaan", class: "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 <% end %>
