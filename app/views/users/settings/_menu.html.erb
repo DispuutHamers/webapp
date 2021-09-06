@@ -7,7 +7,7 @@
     'API-sleutels': { path: user_api_keys_path(current_user), icon: 'key' }
   } %>
 
-  <div class="hidden lg:block">
+  <div class="hidden md:block">
     <% items.each do |name, options| %>
       <% if current_page?(options[:path]) %>
         <%= link_to options[:path], class: "border-hamers-red-400 text-hamers-red-400 hover:bg-gray-50 hover:text-hamers-red-600 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
@@ -23,7 +23,7 @@
     <% end %>
   </div>
 
-  <div class="lg:hidden ml-6">
+  <div class="md:hidden ml-6">
     <label for="selected-tab" class="sr-only">Select a tab</label>
     <select id="selected-tab" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
       <% items.each do |name, options| %>
