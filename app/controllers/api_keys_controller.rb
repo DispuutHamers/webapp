@@ -18,14 +18,14 @@ class ApiKeysController < ApplicationController
   end
 
   def show
+    k = ApiKey.find(params[:id])
+    @rawkey = k.key
+
     breadcrumb 'Leden', :users_path
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
     breadcrumb 'API-sleutels', user_api_keys_path(@user)
     breadcrumb @rawkey, api_key_path(k)
-
-    k = ApiKey.find(params[:id])
-    @rawkey = k.key
   end
 
   def destroy
