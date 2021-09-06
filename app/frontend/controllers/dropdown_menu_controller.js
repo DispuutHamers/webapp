@@ -8,6 +8,6 @@ export default class extends Controller {
   }
 
   run() {
-    window.location.href = this.optionTarget.dataset.url
+    Turbo.visit.href = this.optionTarget.dataset.url
   }
 }
