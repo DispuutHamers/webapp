@@ -1,0 +1,40 @@
+<nav class="space-y-1">
+
+  <% items = {
+    Profiel: { path: edit_user_path(current_user), icon: 'user' },
+    Foto: { path: "https://gravatar.com/emails", icon: 'user-circle' },
+    Wachtwoord: { path: edit_password_user_path(current_user), icon: 'lock-closed' },
+    'API-sleutels': { path: user_api_keys_path(current_user), icon: 'key' }
+  } %>
+
+  <div class="hidden md:block">
+    <% items.each do |name, options| %>
+      <% if current_page?(options[:path]) %>
+        <%= link_to options[:path], class: "border-hamers-red-400 text-hamers-red-400 hover:bg-gray-50 hover:text-hamers-red-600 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
+          <%= heroicon(options[:icon], style: :outline, class_name: "text-hamers-red-400 group-hover:text-hamers-red-600 flex-shrink-0 -ml-1 mr-3 h-6 w-6") %>
+          <span class="truncate"><%= name %></span>
+        <% end %>
+      <% else %>
+        <%= link_to options[:path], class: "border-transparent text-gray-900 hover:bg-gray-50 hover:text-gray-900 group border-l-4 px-3 py-2 flex items-center text-sm font-medium" do %>
+          <%= heroicon(options[:icon], style: :outline, class_name: "text-gray-400 group-hover:text-gray-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6") %>
+          <span class="truncate"><%= name %></span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="md:hidden ml-6">
+    <label for="selected-tab" class="sr-only">Select a tab</label>
+    <select id="selected-tab" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
+      <% items.each do |name, options| %>
+        <option <%= 'selected' if current_page?(options[:path]) %>
+                data-controller="dropdown-menu"
+                data-action="click->dropdown-menu#run"
+                data-dropdown-menu-target="option"
+                data-url="<%= options[:path] %>">
+          <%= name %>
+        </option>
+      <% end %>
+    </select>
+  </div>
+</nav>

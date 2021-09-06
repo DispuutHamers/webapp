@@ -17,13 +17,12 @@ Hamers::Application.routes.draw do
 
   resources :news
   get '/images' => 'albums#index', as: 'photo'
-  get '/trail' => 'static_pages#trail' , as: 'trail'
+  get '/trail' => 'static_pages#trail', as: 'trail'
   get '/quotes/:id' => 'static_pages#quote', as: 'quote'
   get '/remind/:id' => 'events#remind', as: 'reminder'
 
   match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :motions
-  resources :api_keys, only: [:create, :show, :destroy]
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
   resources :blogitems, path: 'blog'
@@ -59,8 +58,14 @@ Hamers::Application.routes.draw do
   end
 
   resources :users do
+    resources :api_keys do
+      get '/edit/api_keys/' => "api_keys#index"
+      post '/edit/api_keys/new' => "api_keys#create", as: "api_key"
+    end
     member do
       get :usergroups
+      get '/edit/password/' => "users#edit_password", as: "edit_password"
+      patch '/edit/password' => "users#update_password", as: "update_password"
     end
   end
 
@@ -74,7 +79,7 @@ Hamers::Application.routes.draw do
 
   match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
-  match '/register',  to: 'users#new', via: 'get'
+  match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
     get 'email' => 'endpoints/email#create'

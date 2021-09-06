@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :user, only: [:show, :usergroups, :edit, :update, :destroy]
+  before_action :user, only: [:show, :usergroups, :edit, :edit_password, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy, :usergroups]
   breadcrumb 'Leden', :users_path
@@ -42,10 +42,31 @@ class UsersController < ApplicationController
   def edit
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
+
+    render 'users/settings/main'
   end
 
   def update
     update_object(@user, user_params)
+  end
+
+  def edit_password
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Update', edit_user_path(@user)
+    breadcrumb 'Wachtwoord', edit_password_user_path(@user)
+
+    render 'users/settings/password'
+  end
+
+  def update_password
+    @user = current_user
+    if @user.update(user_params)
+      # Sign in the user bypassing validation in case their password changed
+      bypass_sign_in(@user)
+      redirect_to
+    else
+      render "users/settings/password"
+    end
   end
 
   def destroy

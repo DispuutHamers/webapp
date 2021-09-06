@@ -1,0 +1,13 @@
+<% content_for :title do %>
+  Wijzig je profiel
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="-ml-6 my-6 md:col-span-3 md:pr-6">
+    <%= render partial: 'users/settings/menu' %>
+  </aside>
+
+  <div class='md:col-span-9 md:pl-6'>
+    <%= render 'users/settings/form_profile' %>
+  </div>
+</div>
