@@ -36,7 +36,7 @@ class ApiKeysController < ApplicationController
   private
 
   def user
-    @user ||= User.find(params[:id])
+    @user ||= User.find(params[:user_id])
   end
 
   def correct_user?
