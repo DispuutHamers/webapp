@@ -70,9 +70,6 @@ Hamers::Application.routes.draw do
   end
 
   match '/external_accounts', to: 'users#index_extern', via: 'get', as: 'external_accounts'
-  match '/admin_accounts', to: 'users#admin', via: 'get', as: 'leden_admin'
-  match '/admin_accounts/:id', to: 'users#admin_patch', via: 'patch', as: 'leden_admin_update'
-
   get 'leden', to: "users#index_public", as: "public_leden"
 
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
@@ -81,8 +78,6 @@ Hamers::Application.routes.draw do
   resources :quotes, only: [:create, :destroy, :update, :edit]
 
   match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
-  match '/dbdump', to: 'dbdump#show', via: 'get'
-  match '/anonymize', to: 'dbdump#anonymize', via: 'get'
   match '/groups', to: 'usergroups#index', via: 'get'
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'

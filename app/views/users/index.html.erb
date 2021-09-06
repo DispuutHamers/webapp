@@ -4,7 +4,7 @@
 
 <ul class="nav nav-pills nav-justified" style="margin-bottom: 16px;">
   <li class="presentation active"><a data-toggle="tab" href="#leden">Leden</a></li>
-  <% if @aspiranten.present? %>
+  <% if @aspiranten.present? || current_user&.admin? %>
     <li class="presentation"><a data-toggle="tab" href="#aspiranten">Aspirant-leden</a></li>
   <% end %>
   <% if @oudelullen.present? %>
@@ -19,8 +19,11 @@
   <div id="leden" class="tab-pane fade in active">
     <%= render "users/table", users: @leden, ratio: true %>
   </div>
-  <% if @aspiranten.present? %>
+  <% if @aspiranten.present? || current_user&.admin? %>
     <div id="aspiranten" class="tab-pane fade">
+      <%= link_to new_user_invitation_path, class: "btn btn-default btn-sm" do %>
+        <i class="fa fa-user-plus fa-fw"></i> Aspirant uitnodigen
+      <% end %>
       <%= render "users/table", users: @aspiranten, ratio: false %>
     </div>
   <% end %>

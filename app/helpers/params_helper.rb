@@ -63,6 +63,10 @@ module ParamsHelper
     params.require(:user).permit(:name, :email, :phone_number, :birthday, :batch, :current_password, :password, :password_confirmation, :anonymous)
   end
 
+  def usergroup_params
+    params.require(:usergroup).permit(:name, :text)
+  end
+
   def configure_permitted_parameters
     #params.require(:user).permit(:name, :email, :batch, :password, :password_confirmation, :anonymous)
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
