@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
   before_action :user, only: [:show, :edit, :update, :usergroups, :destroy]
-  before_action :admin_user?, only: [:destroy, :usergroups]
   before_action :correct_user, only: [:edit, :update]
+  before_action :admin_user?, only: [:destroy, :usergroups]
 
   breadcrumb 'Leden', :users_path
 
