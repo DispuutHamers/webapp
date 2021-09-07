@@ -2,39 +2,54 @@
   Leden
 <% end %>
 
-<ul class="nav nav-pills nav-justified" style="margin-bottom: 16px;">
-  <li class="presentation active"><a data-toggle="tab" href="#leden">Leden</a></li>
-  <% if @aspiranten.present? || current_user&.admin? %>
-    <li class="presentation"><a data-toggle="tab" href="#aspiranten">Aspirant-leden</a></li>
-  <% end %>
-  <% if @oudelullen.present? %>
-    <li class="presentation"><a data-toggle="tab" href="#oud-leden">Oud-leden</a></li>
-  <% end %>
-  <% if @extern.present? %>
-    <li class="presentation"><a data-toggle="tab" href="#externe-accounts">Externe accounts</a></li>
-  <% end %>
-</ul>
+<div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
+  <div>
+    <div class="sm:hidden">
+      <label for="tabs" class="sr-only">Select a tab</label>
+      <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
+        <option data-action="click->tabs#change" data-index="0">Leden</option>
+        <option data-action="click->tabs#change" data-index="1">Aspirant-leden</option>
+        <option data-action="click->tabs#change" data-index="2">Oud-leden</option>
+        <option data-action="click->tabs#change" data-index="3">Overige accounts</option>
+      </select>
+    </div>
 
-<div class="tab-content">
-  <div id="leden" class="tab-pane fade in active">
+    <div class="hidden sm:block -mt-4">
+      <div class="border-b border-gray-200">
+        <nav class="-mb-px flex space-x-8">
+          <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Leden
+          </button>
+          <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Aspirant-leden
+          </button>
+          <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Oud-leden
+          </button>
+          <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Externe accounts
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden" data-tabs-target="panel">
     <%= render "users/table", users: @leden, ratio: true %>
   </div>
-  <% if @aspiranten.present? || current_user&.admin? %>
-    <div id="aspiranten" class="tab-pane fade">
-      <%= link_to new_user_invitation_path, class: "btn btn-default btn-sm" do %>
-        <i class="fa fa-user-plus fa-fw"></i> Aspirant uitnodigen
+  <div class="hidden" data-tabs-target="panel">
+    <%= render "users/table", users: @aspiranten %>
+
+    <% if current_user&.admin? %>
+      <%= link_to new_user_invitation_path, class: "inline-flex items-center px-3 py-2 mt-4 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" do %>
+        <%= heroicon('user-add', style: :outline, class_name: "h-4 w-4 mr-1") %> Aspirant uitnodigen
       <% end %>
-      <%= render "users/table", users: @aspiranten, ratio: false %>
-    </div>
-  <% end %>
-  <% if @oudelullen.present? %>
-    <div id="oud-leden" class="tab-pane fade">
-      <%= render "users/table", users: @oudelullen, ratio: false %>
-    </div>
-  <% end %>
-  <% if @extern.present? %>
-    <div id="externe-accounts" class="tab-pane fade">
-      <%= render "users/table", users: @extern, ratio: false %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+  <div class="hidden" data-tabs-target="panel">
+    <%= render "users/table", users: @oudelullen %>
+  </div>
+  <div class="hidden" data-tabs-target="panel">
+    <%= render "users/table", users: @extern %>
+  </div>
 </div>
