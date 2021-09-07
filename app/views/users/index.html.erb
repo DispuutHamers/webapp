@@ -6,7 +6,7 @@
   <div>
     <div class="sm:hidden">
       <label for="tabs" class="sr-only">Select a tab</label>
-      <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+      <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
         <option data-action="click->tabs#change" data-index="0">Leden</option>
         <option data-action="click->tabs#change" data-index="1">Aspirant-leden</option>
         <option data-action="click->tabs#change" data-index="2">Oud-leden</option>
@@ -38,12 +38,13 @@
     <%= render "users/table", users: @leden, ratio: true %>
   </div>
   <div class="hidden" data-tabs-target="panel">
+    <%= render "users/table", users: @aspiranten %>
+
     <% if current_user&.admin? %>
-      <%= link_to new_user_invitation_path, class: "btn btn-default btn-sm" do %>
-        <i class="fa fa-user-plus fa-fw"></i> Aspirant uitnodigen
+      <%= link_to new_user_invitation_path, class: "inline-flex items-center px-3 py-2 mt-4 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" do %>
+        <%= heroicon('user-add', style: :outline, class_name: "h-4 w-4 mr-1") %> Aspirant uitnodigen
       <% end %>
     <% end %>
-    <%= render "users/table", users: @aspiranten %>
   </div>
   <div class="hidden" data-tabs-target="panel">
     <%= render "users/table", users: @oudelullen %>
