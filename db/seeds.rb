@@ -62,7 +62,7 @@ Review.create(user_id: 2, beer_id: 1, rating: 8, actiontext_description: "Goed b
 Review.create(user_id: 3, beer_id: 1, rating: 5, actiontext_description: "Meh..")
 Review.create(user_id: 3, beer_id: 2, rating: 1, actiontext_description: "Wat voor bocht is dit?")
 Review.create(user_id: 5, beer_id: 2, rating: 9, actiontext_description: "Beste bier ooit!")
-Review.create(user_id: 6, beer_id: 2, rating: 0, actiontext_description: "Fuck the system.")
+Review.create(user_id: 6, beer_id: 2, rating: 3, actiontext_description: "Matig..")
 
 # Create events
 Event.create(title: 'Past event', date: '2020-01-01 20:30', end_time: '2020-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 5)
@@ -80,8 +80,8 @@ Signup.create(event_id: 2, user_id: 3, status: false, reason: "Geen zin")
 Signup.create(event_id: 2, user_id: 6)
 
 # Create blogposts
-Blogitem.create(user_id: 1, title: 'Test publieke blogpost', public: true)
-Blogitem.create(user_id: 3, title: 'Test gewone blogpost')
+Blogitem.create(user_id: 1, title: 'Test publieke blogpost', body: "Lorem ipsum", public: true)
+Blogitem.create(user_id: 3, title: 'Test gewone blogpost', body: "Lorem ipsum")
 
 # Create news items
 News.create(title: "Test-nieuwsbericht", body: "Lorem ipsum.")
