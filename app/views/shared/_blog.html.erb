@@ -8,7 +8,7 @@
         <% @blogitems.each do |b| %>
        <li class="py-1 w-full">
           <div class="flex space-x-3">
-            <%= gravatar_for b.user, class: "h-6 w-6 rounded-full" %>
+            <%= gravatar_for b.user, class: "h-6 w-6 rounded-full self-center" %>
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
                 <span class="text-sm font-medium"><%= link_to b.title, b %></span>
