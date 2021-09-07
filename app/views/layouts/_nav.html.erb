@@ -14,12 +14,18 @@
           <div class="ml-4 flex items-center md:ml-6">
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
-                <div data-controller="popup-menu">
-                  <a href="#" class="text-gray-300 px-3 py-2 rounded-md text-sm font-medium" aria-current="page" data-action="click->popup-menu#toggle click@window->popup-menu#close" id="leden-menu" aria-expanded="false" aria-haspopup="true">
+                <div data-controller="dropdown"
+                     data-dropdown-invisible-class="opacity-0 scale-95"
+                     data-dropdown-visible-class="opacity-100 scale-100"
+                     data-dropdown-entering-class="ease-out duration-100"
+                     data-dropdown-enter-timeout="300"
+                     data-dropdown-leaving-class="ease-in duration-100"
+                     data-dropdown-leave-timeout="300">
+                  <button class="text-gray-300 px-3 py-2 rounded-md text-sm font-medium" data-action="click->dropdown#toggle click@window->dropdown#hide" id="leden-menu">
                     <%= heroicon('menu', style: :outline, class_name: "block h-6 w-6") %>
-                  </a>
+                  </button>
 
-                  <div class="absolute z-10 -ml-4 mt-2 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 opacity-0 hidden" data-popup-menu-target="menu">
+                  <div class="absolute z-10 -ml-4 mt-2 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
                     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                       <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                         <%= link_to events_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
@@ -150,15 +156,21 @@
 
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-            <div class="ml-3 relative" data-controller="popup-menu">
+            <div class="ml-3 relative" data-controller="dropdown"
+                 data-dropdown-invisible-class="opacity-0 scale-95"
+                 data-dropdown-visible-class="opacity-100 scale-100"
+                 data-dropdown-entering-class="ease-out duration-100"
+                 data-dropdown-enter-timeout="300"
+                 data-dropdown-leaving-class="ease-in duration-100"
+                 data-dropdown-leave-timeout="300">
               <div>
-                <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->popup-menu#toggle click@window->popup-menu#close" id="user-menu" aria-expanded="false" aria-haspopup="true">
+                <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide" id="user-menu">
                   <span class="sr-only">Open user menu</span>
                   <%= gravatar_for current_user, class: "h-8 w-8 rounded-full" %>
                 </button>
               </div>
 
-              <div class="origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-popup-menu-target="menu">
+              <div class="origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 scale-95" role="menu" tabindex="-1" data-dropdown-target="menu">
                 <div class="overflow-hidden">
                   <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                     <%= link_to current_user, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
@@ -213,13 +225,19 @@
 
         <div class="-mr-2 flex md:hidden">
           <!-- Mobile menu button -->
-          <div data-controller="popup-menu">
-            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->popup-menu#toggle click@window->popup-menu#close" aria-controls="mobile-menu" aria-expanded="false">
+          <div data-controller="dropdown"
+               data-dropdown-invisible-class="opacity-0 scale-95"
+               data-dropdown-visible-class="opacity-100 scale-100"
+               data-dropdown-entering-class="ease-out duration-100"
+               data-dropdown-enter-timeout="300"
+               data-dropdown-leaving-class="ease-in duration-100"
+               data-dropdown-leave-timeout="300">
+            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
               <span class="sr-only">Open main menu</span>
               <%= heroicon('menu', style: :outline, class_name: "block h-6 w-6") %>
             </button>
 
-            <div class="absolute z-10 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 hidden" data-popup-menu-target="menu">
+            <div class="absolute z-10 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
                   <%= link_to events_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
@@ -319,13 +337,19 @@
 
         <div class="-mr-2 flex md:hidden">
           <!-- Mobile menu button -->
-          <div data-controller="popup-menu">
-            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->popup-menu#toggle click@window->popup-menu#close" aria-controls="mobile-menu" aria-expanded="false">
+          <div data-controller="dropdown"
+               data-dropdown-invisible-class="opacity-0 scale-95"
+               data-dropdown-visible-class="opacity-100 scale-100"
+               data-dropdown-entering-class="ease-out duration-100"
+               data-dropdown-enter-timeout="300"
+               data-dropdown-leaving-class="ease-in duration-100"
+               data-dropdown-leave-timeout="300">
+            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
               <span class="sr-only">Open account menu</span>
               <%= gravatar_for current_user, class: "h-8 w-8 rounded-full" %>
             </button>
 
-            <div class="absolute z-10 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 hidden" data-popup-menu-target="menu">
+            <div class="absolute z-10 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
                   <%= link_to current_user, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>

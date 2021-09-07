@@ -28,9 +28,9 @@
     <select id="selected-tab" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
       <% items.each do |name, options| %>
         <option <%= 'selected' if current_page?(options[:path]) %>
-                data-controller="dropdown-menu"
-                data-action="click->dropdown-menu#run"
-                data-dropdown-menu-target="option"
+                data-controller="select-menu"
+                data-action="click->select-menu#run"
+                data-select-menu-target="option"
                 data-url="<%= options[:path] %>">
           <%= name %>
         </option>
