@@ -32,6 +32,9 @@ const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
+import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+application.register('tabs', Tabs)
+
 document.addEventListener("turbo:load", function () {
     $(function () {
         $("tr[data-link]").on("click", function () {
