@@ -8,9 +8,9 @@
       <label for="tabs" class="sr-only">Select a tab</label>
       <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
         <option data-action="click->tabs#change" data-index="0">Leden</option>
-        <option data-action="click->tabs#change" data-index="1" >Aspirant-leden</option>
-        <option data-action="click->tabs#change" data-index="2" >Oud-leden</option>
-        <option data-action="click->tabs#change" data-index="3" >Externe accounts</option>
+        <option data-action="click->tabs#change" data-index="1">Aspirant-leden</option>
+        <option data-action="click->tabs#change" data-index="2">Oud-leden</option>
+        <option data-action="click->tabs#change" data-index="3">Overige accounts</option>
       </select>
     </div>
 
@@ -43,12 +43,12 @@
         <i class="fa fa-user-plus fa-fw"></i> Aspirant uitnodigen
       <% end %>
     <% end %>
-    <%= render "users/table", users: @aspiranten, ratio: false %>
+    <%= render "users/table", users: @aspiranten %>
   </div>
   <div class="hidden" data-tabs-target="panel">
-    <%= render "users/table", users: @oudelullen, ratio: false %>
+    <%= render "users/table", users: @oudelullen %>
   </div>
   <div class="hidden" data-tabs-target="panel">
-    <%= render "users/table", users: @extern, ratio: false %>
+    <%= render "users/table", users: @extern %>
   </div>
 </div>
