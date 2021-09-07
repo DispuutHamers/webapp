@@ -1,35 +1,39 @@
-<table class="tablesorter table table-hover">
-  <thead>
-  <tr>
-    <th>Naam</th>
-    <th>Aantal quotes</th>
-    <th>Aantal reviews</th>
-    <th>Gemiddeld cijfer</th>
-    <% if ratio %>
-      <th>Sunday Ratio</th>
-    <% end %>
-  </tr>
-  </thead>
-  <tbody>
-  <% users.each do |user| %>
+<% if users.any? %>
+  <table class="tablesorter table table-hover">
+    <thead>
     <tr>
-      <td><%= gravatar_for user, size: 52 %>
-        <%= link_to user.name, user %>
-      </td>
-      <td><%= user.quotes.count %></td>
-      <td><%= user.reviews.count %></td>
-
-      <% if user.weight %>
-        <td><%= user.weight.round(2) %></td>
-      <% else %>
-        <td>Nog onbekend</td>
-      <% end %>
+      <th>Naam</th>
+      <th>Aantal quotes</th>
+      <th>Aantal reviews</th>
+      <th>Gemiddeld cijfer</th>
       <% if ratio %>
-        <td>
-          <%= user.sunday_ratio.round(2) %>%
-        </td>
+        <th>Sunday Ratio</th>
       <% end %>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= gravatar_for user, size: 52 %>
+          <%= link_to user.name, user %>
+        </td>
+        <td><%= user.quotes.count %></td>
+        <td><%= user.reviews.count %></td>
+
+        <% if user.weight %>
+          <td><%= user.weight.round(2) %></td>
+        <% else %>
+          <td>Nog onbekend</td>
+        <% end %>
+        <% if ratio %>
+          <td>
+            <%= user.sunday_ratio.round(2) %>%
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  Geen data beschikbaar.
+<% end %>
