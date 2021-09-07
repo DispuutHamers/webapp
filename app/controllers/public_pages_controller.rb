@@ -14,7 +14,7 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1
   # GET /public_pages/1.json
   def show
-    raise ActionController::RoutingError.new('Not Found') if params[:id] == "robots.txt" 
+    return raise ActionController::RoutingError.new('Not Found') if params[:id] == "robots.txt" 
     
     @public_page = PublicPage.where(id: params[:id]).first
     redirect_to root_path unless @public_page
