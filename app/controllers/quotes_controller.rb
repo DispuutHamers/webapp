@@ -13,18 +13,18 @@ class QuotesController < ApplicationController
   end
 
   def edit
-    @quote = Quote.find(params[:id])
+    @quote = Quote.find_by_id!(params[:id])
     @userid = @quote.user_id
     breadcrumb 'Edit Quote', edit_quote_path(@quote)
   end
 
   def update
-    quote = Quote.find(params[:id])
+    quote = Quote.find_by_id!(params[:id])
     update_object(quote, quote_params)
   end
 
   def destroy
-    quote = Quote.find(params[:id])
+    quote = Quote.find_by_id!(params[:id])
     delete_object(quote)
   end
 end

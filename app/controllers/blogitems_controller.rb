@@ -22,7 +22,7 @@ class BlogitemsController < ApplicationController
 
   def add_photo
     photo = Blogphoto.create(photo_params)
-    blog = Blogitem.unscoped.find(params[:id])
+    blog = Blogitem.unscoped.find_by_id!(params[:id])
     photo.save
     redirect_to edit_blogitem_path(blog)
   end
@@ -55,6 +55,6 @@ class BlogitemsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_item
-    @item = Blogitem.unscoped.find(params[:id])
+    @item = Blogitem.unscoped.find_by_id!(params[:id])
   end
 end
