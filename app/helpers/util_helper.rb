@@ -71,8 +71,8 @@ module UtilHelper
 
     Event.new(description: description, attendance: true,  title: title, date: date, end_time: end_time, deadline: deadline, location: location).save
 
-    # Ping healthchecks.io for monitoring purposes
-    Net::HTTP.get(URI.parse('https://hc-ping.com/fffa8b9f-1d79-4e3b-89a3-1f704c145138'))
+    # Ping Honeybadger for monitoring purposes
+    Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/P0Imk4'))
   end
 
   def self.remind_drink
@@ -81,8 +81,8 @@ module UtilHelper
     unsigned_users = User.leden - signed_users
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
 
-    # Ping healthchecks.io for monitoring purposes
-    Net::HTTP.get(URI.parse('https://hc-ping.com/fed0752c-e524-4af6-907e-23bd47336eb9'))
+    # Ping Honeybadger for monitoring purposes
+    Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/RYI9a8'))
   end
 
   def self.cleanup
@@ -91,7 +91,7 @@ module UtilHelper
     Beer.all.each{ |b| b.update_cijfer }
     Blogitem.unscoped.where("title is NULL OR length(title) < 1").delete_all
 
-    # Ping healthchecks.io for monitoring purposes
-    Net::HTTP.get(URI.parse('https://hc-ping.com/3a65b459-ea8f-4f0c-89ce-c8f1b750c5fb'))
+    # Ping Honeybadger for monitoring purposes
+    Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/oWI2ay'))
   end
 end
