@@ -65,7 +65,7 @@ class PublicPagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_public_page
-    @public_page = PublicPage.find(params[:id])
+    @public_page = PublicPage.find_by_id!(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
