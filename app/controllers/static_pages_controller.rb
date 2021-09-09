@@ -1,6 +1,6 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
-  before_action :alid?, only: %i[trail revert]
+  before_action :lid?, only: %i[trail revert]
 
   def home
     return unless current_user&.active?
