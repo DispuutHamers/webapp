@@ -1,6 +1,6 @@
 <div class="bg-white overflow-hidden md:shadow md:rounded-lg">
-  <div class="md:p-5 md:mx-5">
-    <h2 class="text-indigo-400 text-xl font-extrabold my-2">Quote</h2>
+  <div class="md:p-5">
+    <h2 class="text-indigo-400 text-xl font-extrabold my-2 md:mx-5">Quote</h2>
     <div class="flex items-center">
       <%= form_for @quote, html: { class: "w-full" } do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
