@@ -9,8 +9,6 @@ class SignupTest < ActiveSupport::TestCase
                           deadline: DateTime.now + 5,
                           user: @user)
     @signup = Signup.new(event: @event, user: @user)
-
-    pp @event
   end
 
   test 'valid signup' do
