@@ -46,4 +46,21 @@ class ReviewTest < ActiveSupport::TestCase
     @review.rating = 11
     refute @review.valid?
   end
+
+  test 'invalid if review for beer+user already exists' do
+    @review.save
+
+    second_review = Review.new(beer: @beer, user: @user, rating: 8)
+    refute second_review.valid?
+  end
+
+  test 'invalid if user does not exist' do
+    @review.user_id = -1
+    refute @review.valid?
+  end
+
+  test 'invalid if beer does not exist' do
+    @review.beer_id = -1
+    refute @review.valid?
+  end
 end
