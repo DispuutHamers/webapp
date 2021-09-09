@@ -9,6 +9,8 @@ class Event < ActiveRecord::Base
   has_rich_text :description
   belongs_to :user
   belongs_to :usergroup
+  validates :title, presence: true, allow_blank: false
+  validates :date, presence: true, allow_blank: false
 
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Date.today]) }
