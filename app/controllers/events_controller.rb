@@ -12,7 +12,7 @@ class EventsController < ApplicationController
       current_request.html do
         ilid?
         @past_events = Event.past.order(date: :desc).paginate(page: params[:page])
-        @upcoming_events = Event.upcoming.order(date: :asc)
+        @upcoming_events = Event.upcoming.order(date: :asc).includes(:usergroup)
       end
 
       current_request.ics do

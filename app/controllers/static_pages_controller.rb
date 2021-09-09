@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
     @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
     @next_event = Event.upcoming.order(date: :asc).first
     @trail = PaperTrail::Version.includes(:item).last(4).reverse
-    @blogitems = Blogitem.last(4).reverse
+    @blogitems = Blogitem.includes(:user).last(4).reverse
     @random_beer = Beer.random.take
 
     render layout: 'application'
