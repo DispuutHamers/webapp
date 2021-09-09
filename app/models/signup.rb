@@ -3,17 +3,19 @@ class Signup < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :user
   belongs_to :event
-  validates :user_id, uniqueness: {scope: :event_id}
+  validates :user, uniqueness: { scope: [:user, :event] }, presence: true
+  validates :event, presence: true
+  validates :status, inclusion: { in: [true, false] }
   validate :event_deadline_has_passed
   attribute :status, :boolean, default: true
 
-#  default_scope {includes(:user) }
+  # default_scope {includes(:user) }
   scope :with_user, -> { includes(:user) }
 
   private
 
   def event_deadline_has_passed
-    return unless DateTime.now > Event.find(self.event_id).deadline
+    return unless event && DateTime.now > event.deadline
 
     errors.add(:event_id, "Event deadline has already passed")
   end
