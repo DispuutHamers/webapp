@@ -19,7 +19,7 @@ class UsergroupsController < ApplicationController
   end
 
   def destroy
-    usergroup = Usergroup.find(params[:id])
+    usergroup = Usergroup.find_by_id!(params[:id])
     if usergroup.empty?
       usergroup.destroy!
     else

@@ -9,29 +9,29 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    redirect_to Review.find(params[:id]).beer
+    redirect_to Review.find_by_id!(params[:id]).beer
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = Review.find_by_id!(params[:id])
     breadcrumb 'Bier', :beers_path
     breadcrumb @review.beer.name, beer_path(@review.beer)
     breadcrumb 'Review', edit_review_path(@review)
   end
 
   def update
-    review = Review.find(params[:id])
+    review = Review.find_by_id!(params[:id])
     update_by_owner_or_admin(review, review_params)
   end
 
   def destroy
-    review = Review.find(params[:id])
+    review = Review.find_by_id!(params[:id])
     delete_object(review)
   end
 
   private
   def correct_user
-    @user = Review.find(params[:id]).user
+    @user = Review.find_by_id!(params[:id]).user
     redirect_to root_url, notice: 'Niet genoeg access' unless current_user?(@user) || current_user.admin?
   end
 end

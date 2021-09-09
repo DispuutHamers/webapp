@@ -27,9 +27,9 @@ class BeerTest < ActiveSupport::TestCase
 
     b = beers(:one)
     # b.add_review(user, rating, description, proefdatum)
-    b.add_review!(u, 8.0, 'Heel lekker biertje', 'Vandaag')
+    b.add_review!(u, 8.0, 'Heel lekker biertje')
 
-    b.add_review!(u2, 7.0, 'Vrij lekker biertje', 'Gisteren')
+    b.add_review!(u2, 7.0, 'Vrij lekker biertje')
 
   end
 
@@ -44,31 +44,31 @@ class BeerTest < ActiveSupport::TestCase
     b5 = beers(:five)
     b6 = beers(:six)
     # set weight of user u
-    b.add_review!(u, 9.0, '', '')
-    b2.add_review!(u, 9.0, '', '')
-    b3.add_review!(u, 9.0, '', '')
-    b4.add_review!(u, 9.0, '', '')
+    b.add_review!(u, 9.0, '')
+    b2.add_review!(u, 9.0, '',)
+    b3.add_review!(u, 9.0, '')
+    b4.add_review!(u, 9.0, '')
 
     # set weight of user u2
-    b.add_review!(u2, 2.0, '', '')
-    b2.add_review!(u2, 2.0, '', '')
-    b3.add_review!(u2, 2.0, '', '')
-    b4.add_review!(u2, 2.0, '', '')
+    b.add_review!(u2, 2.0, '')
+    b2.add_review!(u2, 2.0, '')
+    b3.add_review!(u2, 2.0, '')
+    b4.add_review!(u2, 2.0, '')
 
-    b5.add_review!(u, 8.0, '', '')
-    b5.add_review!(u2, 9.0, '', '')
+    b5.add_review!(u, 8.0, '')
+    b5.add_review!(u2, 9.0, '')
     b5.update_cijfer
     # what todo with the rating:
     #  keep it weighted or just average
-    b6.add_review!(u, 8.0, '', '')
-    b6.add_review!(u2, 2.0, '', '')
+    b6.add_review!(u, 8.0, '')
+    b6.add_review!(u2, 2.0, '')
   end
 
   test 'Review belongs to person' do
     u = users(:one)
     b = beers(:one)
 
-    b.add_review!(u, 5.0, '', '')
+    b.add_review!(u, 5.0, '')
     assert_equal b.reviews.last.user, u
   end
 
@@ -78,17 +78,17 @@ class BeerTest < ActiveSupport::TestCase
     b = beers(:one)
 
     assert_nothing_raised do
-      b.add_review!(u, 5, '', '')
-      b.add_review!(u, 1.0, '', '')
-      b.add_review!(u, 10.0, '', '')
-      b.add_review!(u, 5, '', '')
+      b.add_review!(u, 5, '')
+      b.add_review!(u, 1.0, '')
+      b.add_review!(u, 10.0, '')
+      b.add_review!(u, 5, '')
     end
 
-    assert_raise { b.add_review!(u, 50, '', '') }
-    assert_raise { b.add_review!(u, 0, '', '') }
-    assert_raise { b.add_review!(u, 'something', '', '') }
-    assert_raise { b.add_review!(u, '', '', '') }
-    assert_raise { b.add_review!(u, 7.6, '', '') }
-    assert_raise { b.add_review!(u, 7.62345445, '', '') }
+    assert_raise { b.add_review!(u, 50, '') }
+    assert_raise { b.add_review!(u, 0, '') }
+    assert_raise { b.add_review!(u, 'something', '') }
+    assert_raise { b.add_review!(u, '', '') }
+    assert_raise { b.add_review!(u, 7.6, '') }
+    assert_raise { b.add_review!(u, 7.62345445, '') }
   end
 end

@@ -18,7 +18,7 @@ class ApiKeysController < ApplicationController
   end
 
   def show
-    k = ApiKey.find(params[:id])
+    k = ApiKey.find_by_id!(params[:id])
     @rawkey = k.key
 
     breadcrumb 'Leden', :users_path
@@ -29,7 +29,7 @@ class ApiKeysController < ApplicationController
   end
 
   def destroy
-    key = ApiKey.find(params[:id])
+    key = ApiKey.find_by_id!(params[:id])
     delete_object(key)
   end
 
@@ -40,6 +40,6 @@ class ApiKeysController < ApplicationController
   end
 
   def correct_user?
-    redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user == ApiKey.find(params[:id]).user || current_user.admin?
+    redirect_to root_url, notice: 'Niet genoeg access bitch' unless current_user == ApiKey.find_by_id!(params[:id]).user || current_user.admin?
   end
 end

@@ -48,9 +48,9 @@ Group.create!(user_id: 5, group_id: 12)
 Group.create!(user_id: 6, group_id: 5)
 
 # Create quotes
-Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter: 2)
-Quote.create!(user_id: 2, text: "Het mag ook een hele mooie, goed schoongemaakte penis zijn..", reporter: 3)
-Quote.create!(user_id: 3, text: "Ik hou wel van enorme lullen", reporter: 1)
+Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
+Quote.create!(user_id: 2, text: "Het mag ook een hele mooie, goed schoongemaakte penis zijn..", reporter_id: 3)
+Quote.create!(user_id: 3, text: "Ik hou wel van enorme lullen", reporter_id: 1)
 
 # Create beers
 Beer.create(name: "Leffe Blond", soort: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")

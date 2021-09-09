@@ -14,6 +14,8 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1
   # GET /public_pages/1.json
   def show
+    raise ActionController::RoutingError.new('Not Found') if params[:id] == "robots"
+
     @public_page = PublicPage.where(id: params[:id]).first
     redirect_to root_path unless @public_page
     redirect_to root_path unless @public_page.public && !current_user&.active?
@@ -63,7 +65,7 @@ class PublicPagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_public_page
-    @public_page = PublicPage.find(params[:id])
+    @public_page = PublicPage.find_by_id!(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
