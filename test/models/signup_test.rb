@@ -3,10 +3,14 @@ require 'test_helper'
 class SignupTest < ActiveSupport::TestCase
   setup do
     @user = users(:one)
-    @event = Event.create(title: 'Example event', end_time: '21:00',
-                          date: DateTime.now + 50, deadline: DateTime.now + 5,
+    @event = Event.create(title: 'Example event',
+                          date: DateTime.now + 1.day,
+                          end_time: DateTime.now + 1.day + 2.hours,
+                          deadline: DateTime.now + 5,
                           user: @user)
     @signup = Signup.new(event: @event, user: @user)
+
+    pp @event
   end
 
   test 'valid signup' do
