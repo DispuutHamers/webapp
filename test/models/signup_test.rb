@@ -1,63 +1,54 @@
 require 'test_helper'
 
 class SignupTest < ActiveSupport::TestCase
-  test 'Signup should go correctly' do
-    # create user 'u'
-    u = users(:one)
-
-    # create event 'e'
-    e = Event.create(title: 'Example event', end_time: '21:00',
-                     date: DateTime.now + 50, deadline: DateTime.now + 5,
-                     user_id: u.id)
-
-    # signup user 'u' to event 'e'
-    Signup.create(event_id: e.id, user_id: u.id)
-
-    # assert user 'u' is signed up to event 'e'
-    assert e.users[0].id == u.id
-
-    # create second user 'u2'
-    u2 = users(:two)
-
-    # signup user 'u2' to event 'e'
-    Signup.create(event_id: e.id, user_id: u2.id)
-
-    # assert both users are signed up to event 'e'
-    assert e.signups[0].user_id == u.id
-    assert e.signups[1].user_id == u2.id
+  setup do
+    @user = users(:one)
+    @event = Event.create(title: 'Example event', end_time: '21:00',
+                          date: DateTime.now + 50, deadline: DateTime.now + 5,
+                          user: @user)
+    @signup = Signup.new(event: @event, user: @user)
   end
 
-  test "User can't signup twice" do
-    u = users(:one)
-
-    u2 = users(:two)
-
-    e = Event.create(title: 'Example event', end_time: '21:00',
-                     date: DateTime.now + 50, deadline: DateTime.now + 5,
-                     user_id: u.id)
-
-    # signup user 'u' to event 'e'
-    Signup.create(event_id: e.id, user_id: u.id)
-
-    # assert user 'u' can't signup
-    assert !Signup.create(event_id: e.id, user_id: u.id).save
-
-    # assert user 'u2' can't signup (user 'u' created the event,
-    #  might be seen differently)
-
-    # signup user 'u2' to event 'e'
-    Signup.create(event_id: e.id, user_id: u2.id)
-
-    assert !Signup.create(event_id: e.id, user_id: u2.id).save
+  test 'valid signup' do
+    assert @signup.valid?
   end
 
-  test "User can't signup after deadline" do
-    u = users(:one)
+  test 'valid absence signup' do
+    @signup.status = false
+    assert @signup.valid?
+  end
 
-    e = Event.create(title: 'Example event', end_time: '21:00',
-                     date: DateTime.now + 50, deadline: DateTime.now - 1,
-                     user_id: u.id)
+  test 'valid signup with reason' do
+    @signup.reason = "I will be there!"
+    assert @signup.valid?
+  end
 
-    assert !Signup.create(event_id: e.id, user_id: u.id).save
+  test 'invalid if signup for user+event already exists' do
+    @signup.save
+
+    second_signup = Signup.new(event: @event, user: @user)
+    refute second_signup.valid?
+  end
+
+  test 'invalid if deadline is passed' do
+    @event.deadline = DateTime.now - 1
+    @event.save
+
+    refute @signup.valid?
+  end
+
+  test 'invalid if user does not exist' do
+    @signup.user_id = -1
+    refute @signup.valid?
+  end
+
+  test 'invalid if event does not exist' do
+    @signup.event_id = -1
+    refute @signup.valid?
+  end
+
+  test 'invalid if signup has empty status' do
+    @signup.status = nil
+    refute @signup.valid?
   end
 end
