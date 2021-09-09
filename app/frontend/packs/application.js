@@ -32,6 +32,11 @@ const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
+// Other options: Alert, Autosave, Dropdown, Modal, Popover, Toggle, Slideover
+import { Dropdown, Tabs } from "tailwindcss-stimulus-components"
+application.register('dropdown', Dropdown)
+application.register('tabs', Tabs)
+
 document.addEventListener("turbo:load", function () {
     $(function () {
         $("tr[data-link]").on("click", function () {
@@ -39,3 +44,4 @@ document.addEventListener("turbo:load", function () {
         });
     });
 });
+
