@@ -3,7 +3,7 @@ require 'test_helper'
 class QuoteTest < ActiveSupport::TestCase
   setup do
     @user = users(:one)
-    @quote = Quote.new(user: @user, text: "Het mag ook een hele mooie, goed schoongemaakte penis zijn..")
+    @quote = Quote.new(user: @user, text: "Het mag ook een hele mooie, goed schoongemaakte penis zijn..", reporter: users(:two))
   end
 
   test 'valid quote' do
@@ -15,13 +15,13 @@ class QuoteTest < ActiveSupport::TestCase
     assert @quote.valid?
   end
 
-  test 'valid without reporter' do
-    @quote.reporter = nil
-    assert @quote.valid?
-  end
-
   test 'invalid without user' do
     @quote.user = nil
+    refute @quote.valid?
+  end
+
+  test 'invalid without reporter' do
+    @quote.reporter = nil
     refute @quote.valid?
   end
 
@@ -36,14 +36,14 @@ class QuoteTest < ActiveSupport::TestCase
   end
 
   test 'invalid if reporter does not exist' do
-    @quote.reporter = -1
+    @quote.reporter_id = -1
     refute @quote.valid?
   end
 
   test 'user can have multiple quotes' do
     @quote.save
-    q2 = Quote.create(user: @user, text: "Quote 2")
-    q3 = Quote.create(user: @user, text: "Quote 3")
+    q2 = Quote.create(user: @user, text: "Quote 2", reporter: users(:two))
+    q3 = Quote.create(user: @user, text: "Quote 3", reporter: users(:two))
 
     assert_includes @user.quotes.all, @quote
     assert_includes @user.quotes, q2

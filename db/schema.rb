@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_193418) do
+ActiveRecord::Schema.define(version: 2021_09_09_183516) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.text "beschrijving"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "title", limit: 255
-    t.datetime "date"
+    t.string "title", limit: 255, null: false
+    t.datetime "date", null: false
     t.integer "user_id"
     t.datetime "deadline"
     t.datetime "end_time"
@@ -196,17 +196,6 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.index ["deleted_at"], name: "index_news_on_deleted_at"
   end
 
-  create_table "nicknames", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "nickname", limit: 255
-    t.string "description", limit: 255
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "deleted_at"
-    t.index ["deleted_at"], name: "index_nicknames_on_deleted_at"
-    t.index ["user_id"], name: "index_nicknames_on_user_id"
-  end
-
   create_table "oauth_access_grants", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.integer "application_id", null: false
@@ -260,7 +249,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
 
   create_table "quotes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "reporter"
+    t.integer "reporter_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
@@ -284,7 +273,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.integer "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date "proefdatum", default: Date.today
+    t.date "proefdatum"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_reviews_on_deleted_at"
     t.index ["user_id", "beer_id"], name: "index_reviews_on_user_id_and_beer_id", unique: true
@@ -392,7 +381,6 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "brews", "recipes"
-  add_foreign_key "nicknames", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_grants", "users", column: "resource_owner_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"

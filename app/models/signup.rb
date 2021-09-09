@@ -5,7 +5,7 @@ class Signup < ActiveRecord::Base
   belongs_to :event
   validates :user, uniqueness: { scope: [:user, :event] }, presence: true
   validates :event, presence: true
-  validates :status, inclusion: { in: [ true, false ] }
+  validates :status, inclusion: { in: [true, false] }
   validate :event_deadline_has_passed
   attribute :status, :boolean, default: true
 
@@ -15,8 +15,8 @@ class Signup < ActiveRecord::Base
   private
 
   def event_deadline_has_passed
-    if event && DateTime.now > event.deadline
-      errors.add(:event_id, "Event deadline has already passed")
-    end
+    return unless event && DateTime.now > event.deadline
+
+    errors.add(:event_id, "Event deadline has already passed")
   end
 end
