@@ -9,7 +9,12 @@
 
       <% if t.event == "create" %>
         <% if t.item_type == "Signup" %>
-          heeft zich ingeschreven voor <%= link_to t.item.event.title, t.item.event %>
+          heeft zich ingeschreven voor
+          <% if t.item %>
+            <%= link_to t.item.event.title, t.item.event %>
+          <% else %>
+            een verwijderd event
+          <% end %>
         <% else %>
           created <%= link_to t.item_type, t.item %>
         <% end %>
@@ -23,7 +28,7 @@
         <% end %>
       <% end %>
 
-    <small class="text-muted">&hyphen; <%= time_ago_in_words(t.created_at) %> geleden</small>
+      <small class="text-muted">&hyphen; <%= time_ago_in_words(t.created_at) %> geleden</small>
     </li>
   <% end %>
 </ul>

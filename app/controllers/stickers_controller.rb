@@ -20,7 +20,7 @@ class StickersController < ApplicationController
   end
 
   def edit
-    @sticker = Sticker.find(params[:id])
+    @sticker = Sticker.find_by_id!(params[:id])
     breadcrumb 'Sticker aanpassen', edit_sticker_path(@sticker)
   end
 
@@ -32,7 +32,7 @@ class StickersController < ApplicationController
   end
 
   def update
-    sticker = Sticker.find(params[:id])
+    sticker = Sticker.find_by_id!(params[:id])
     update_by_owner_or_admin(sticker, sticker_params)
   end
 
@@ -41,12 +41,12 @@ class StickersController < ApplicationController
   end
 
   def destroy
-    sticker = Sticker.find(params[:id])
+    sticker = Sticker.find_by_id!(params[:id])
     delete_object(sticker)
   end
 
   private
   def correct_user
-    Sticker.find(params[:id]).user_id == current_user.id || current_user.admin?
+    Sticker.find_by_id!(params[:id]).user_id == current_user.id || current_user.admin?
   end
 end

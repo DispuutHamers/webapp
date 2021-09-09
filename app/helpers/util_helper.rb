@@ -57,10 +57,41 @@ module UtilHelper
     user.signup(event, params[:signup][:status], params[:signup][:reason])
   end
 
+  # Tasks that are run automatically (with cron) and are monitored
+
+  def self.create_drink
+    title = 'Dispuutsborrel'
+    location = 'De Vluchte'
+    description = 'Woensag is een speciale dag. Voor de oude Germanen betekent dat \'de dag van Wodan\', hun oppergod.'\
+                'Voor de werkenden betekent het dat de werkweek doormidden is en naar het weekend uitgekeken kan worden.' \
+                'Voor ons betekent het een gezellige avond, vol speciaalbier en vertier. Daarom wordt van ieder verwacht dat ze hun overhemd aandoen en met gezwinde spoed naar de Vluchte gaan!'
+    date = Time.now + 1.weeks + 9.hours # Next wednesday, 21:00h
+    end_time = Time.now + 1.weeks + 14.hours # Next thursday, 02:00h
+    deadline = Time.now + 1.weeks + 6.hours # Next wednesday, 18:00h
+
+    Event.new(description: description, attendance: true,  title: title, date: date, end_time: end_time, deadline: deadline, location: location).save
+
+    # Ping Honeybadger for monitoring purposes
+    Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/P0Imk4'))
+  end
+
   def self.remind_drink
     event = Event.where(attendance: true).last
     signed_users = event.users
     unsigned_users = User.leden - signed_users
     unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
+
+    # Ping Honeybadger for monitoring purposes
+    Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/RYI9a8'))
+  end
+
+  def self.cleanup
+    User.leden.each{ |u| UsersHelper.update_weight_for(u) }
+    User.leden.each{ |u| UsersHelper.sunday_ratio_for(u) }
+    Beer.all.each{ |b| b.update_cijfer }
+    Blogitem.unscoped.where("title is NULL OR length(title) < 1").delete_all
+
+    # Ping Honeybadger for monitoring purposes
+    Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/oWI2ay'))
   end
 end

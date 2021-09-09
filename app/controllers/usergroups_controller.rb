@@ -16,21 +16,15 @@ class UsergroupsController < ApplicationController
     else
       render 'usergroups/index'
     end
-
   end
 
   def destroy
-    usergroup = Usergroup.find(params[:id])
+    usergroup = Usergroup.find_by_id!(params[:id])
     if usergroup.empty?
       usergroup.destroy!
     else
       flash[:error] = "De groep moet leeg zijn voor je deze kunt verwijderen!"
     end
     redirect_to groups_path
-  end
-
-  private
-  def usergroup_params
-    params.require(:usergroup).permit(:name, :text)
   end
 end

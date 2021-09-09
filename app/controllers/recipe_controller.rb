@@ -40,6 +40,6 @@ class RecipeController < ApplicationController
   private
 
   def set_recipe
-    @recipe ||= Recipe.find(params[:id])
+    @recipe ||= Recipe.find_by_id!(params[:id])
   end
 end

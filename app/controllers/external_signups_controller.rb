@@ -32,7 +32,7 @@ class ExternalSignupsController < ApplicationController
   private
 
   def event
-    @event ||= Event.find(params[:id])
+    @event ||= Event.find_by_id!(params[:id])
   end
 
   def check_invitation_code
