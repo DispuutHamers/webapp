@@ -14,27 +14,40 @@ class ActionTextMigrationHelperTest < ActionView::TestCase
                           user: @user)
   end
 
+  # Test eligble_events method
   test 'works on events with description and beschrijving' do
-    assert_equal 0, find_eligible_events
+    assert_equal 0, eligible_events.count
     @event.beschrijving = "Heeft oude beschrijving"
     @event.description = "Heeft nieuwe description"
     @event.save
-    assert_equal 1, find_eligible_events
+    assert_equal 1, eligible_events.count
   end
 
   test 'works on events without description but with beschrijving' do
-    assert_equal 0, find_eligible_events
+    assert_equal 0, eligible_events.count
     @event.beschrijving = "Heeft oude beschrijving"
     @event.save
     assert_nil @event.description
-    assert_equal 1, find_eligible_events
+    assert_equal 1, eligible_events.count
   end
 
   test 'ignores events with description but without beschrijving' do
-    assert_equal 0, find_eligible_events
+    assert_equal 0, eligible_events.count
     @event.description = "Heeft nieuwe description"
     @event.save
     assert_nil @event.beschrijving
-    assert_equal 0, find_eligible_events
+    assert_equal 0, eligible_events.count
+  end
+
+  # Test actual conversion method
+  test 'convert events without description and with beschrijving' do
+    @event.beschrijving = "Oude beschrijving"
+    @event.save
+
+    convert_events
+
+    @event.reload
+    assert_nil @event.beschrijving
+    pp @event
   end
 end
