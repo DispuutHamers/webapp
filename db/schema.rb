@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 2021_09_09_143845) do
     t.text "beschrijving"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "title", limit: 255, null: false
-    t.datetime "date", null: false
+    t.string "title", limit: 255
+    t.datetime "date"
     t.integer "user_id"
     t.datetime "deadline"
     t.datetime "end_time"
@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(version: 2021_09_09_143845) do
 
   create_table "quotes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "reporter_id"
+    t.integer "reporter"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
