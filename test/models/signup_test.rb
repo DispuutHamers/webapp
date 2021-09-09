@@ -37,6 +37,16 @@ class SignupTest < ActiveSupport::TestCase
     refute @signup.valid?
   end
 
+  test 'invalid without user' do
+    @signup.user = nil
+    refute @signup.valid?
+  end
+
+  test 'invalid without event' do
+    @signup.event = nil
+    refute @signup.valid?
+  end
+
   test 'invalid if user does not exist' do
     @signup.user_id = -1
     refute @signup.valid?
