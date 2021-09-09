@@ -86,7 +86,7 @@ class EventsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_event
-    @event = Event.find(params[:id])
+    @event = Event.find_by_id!(params[:id])
   end
 
   def generate_calendar(key)

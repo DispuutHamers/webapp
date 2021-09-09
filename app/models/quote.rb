@@ -1,9 +1,11 @@
 class Quote < ActiveRecord::Base
   has_paper_trail ignore: %i[text]
-  belongs_to :user
-  validates :user_id, presence: true
-  validates :text, presence: true
   acts_as_paranoid
+  belongs_to :user
+  belongs_to :reporter, class_name: "User"
+  validates :user, presence: true
+  validates :reporter, presence: true
+  validates :text, presence: true
   serialize :text
 
   encrypts :text

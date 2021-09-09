@@ -12,7 +12,7 @@ class BrewsController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find_by_id!(params[:id])
     @brew = @recipe.brews.build(recipe_id: @recipe.id)
 
     breadcrumb @recipe.name, recipe_path(@recipe)
@@ -21,7 +21,7 @@ class BrewsController < ApplicationController
 
   def create
     brew = Brew.new(brew_params)
-    brew.recipe = Recipe.find(params[:id])
+    brew.recipe = Recipe.find_by_id!(params[:id])
     save_object(brew)
   end
 
@@ -45,6 +45,6 @@ class BrewsController < ApplicationController
   private
 
   def set_brew
-    @brew ||= Brew.find(params[:id])
+    @brew ||= Brew.find_by_id!(params[:id])
   end
 end

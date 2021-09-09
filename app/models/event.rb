@@ -9,6 +9,8 @@ class Event < ActiveRecord::Base
   has_rich_text :description
   belongs_to :user
   belongs_to :usergroup
+  validates :title, presence: true, allow_blank: false
+  validates :date, presence: true, allow_blank: false
 
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Date.today]) }
@@ -50,12 +52,6 @@ class Event < ActiveRecord::Base
   def invitation_link
     return unless invitation_code
 
-    base_url = if Rails.env.development?
-                 "http://localhost:3000"
-               else
-                 "https://www.zondersikkel.nl"
-               end
-
-    "#{base_url}/events/#{id}/public_signup?invitation_code=#{invitation_code}"
+    "/events/#{id}/public_signup?invitation_code=#{invitation_code}"
   end
 end

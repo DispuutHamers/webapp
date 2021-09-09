@@ -8,23 +8,23 @@ class QuotesController < ApplicationController
 
   def create
     quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
-    quote.reporter = current_user.id
+    quote.reporter_id = current_user.id
     save_object(quote)
   end
 
   def edit
-    @quote = Quote.find(params[:id])
+    @quote = Quote.find_by_id!(params[:id])
     @userid = @quote.user_id
     breadcrumb 'Edit Quote', edit_quote_path(@quote)
   end
 
   def update
-    quote = Quote.find(params[:id])
+    quote = Quote.find_by_id!(params[:id])
     update_object(quote, quote_params)
   end
 
   def destroy
-    quote = Quote.find(params[:id])
+    quote = Quote.find_by_id!(params[:id])
     delete_object(quote)
   end
 end
