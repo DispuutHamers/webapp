@@ -12,7 +12,7 @@ module ActionTextMigrationHelper
         # Default situation -> Store beschrijving as new description
         event.update(description: simple_format(event.beschrijving),
                      beschrijving: nil)
-      elsif event.beschrijving && event.description
+      elsif event.description && event.beschrijving
         #  Weird situation (both fields exist) -> Delete old beschrijving
         event.update(beschrijving: nil)
       end
