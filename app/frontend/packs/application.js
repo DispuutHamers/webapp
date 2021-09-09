@@ -15,7 +15,6 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import 'jquery'
 import Rails from '@rails/ujs';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
@@ -23,9 +22,13 @@ import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
-import 'trix';
+import 'trix/dist/trix.css'
+import 'trix/dist/trix.js'
+import '@rails/actiontext'
 import "./application"
+import * as ActiveStorage from "@rails/activestorage"
 
+ActiveStorage.start()
 Rails.start();
 
 const application = Application.start()
@@ -37,13 +40,3 @@ import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
 application.register('dropdown', Dropdown)
 application.register('tabs', Tabs)
 application.register('popover', Popover)
-
-
-document.addEventListener("turbo:load", function () {
-    $(function () {
-        $("tr[data-link]").on("click", function () {
-            Turbo.visit($(this).data("link"))
-        });
-    });
-});
-

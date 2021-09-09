@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_193418) do
+ActiveRecord::Schema.define(version: 2021_09_09_191811) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -22,25 +22,32 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.string "name", limit: 255, null: false
-    t.string "record_type", limit: 255, null: false
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.string "key", limit: 255, null: false
-    t.string "filename", limit: 255, null: false
-    t.string "content_type", limit: 255
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
     t.text "metadata"
+    t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", limit: 255, null: false
-    t.datetime "created_at", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", precision: 6, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "api_keys", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -284,7 +291,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.integer "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.date "proefdatum", default: Date.today
+    t.date "proefdatum", default: "2021-09-07"
     t.datetime "deleted_at"
     t.index ["deleted_at"], name: "index_reviews_on_deleted_at"
     t.index ["user_id", "beer_id"], name: "index_reviews_on_user_id_and_beer_id", unique: true
@@ -365,6 +372,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.integer "invitations_count", default: 0
     t.string "phone_number", limit: 255
     t.date "birthday"
+    t.bigint "meeting_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -372,6 +380,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.index ["invitations_count"], name: "index_users_on_invitations_count"
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by_type_and_invited_by_id"
+    t.index ["meeting_id"], name: "index_users_on_meeting_id"
     t.index ["remember_token"], name: "index_users_on_remember_token"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
@@ -385,12 +394,13 @@ ActiveRecord::Schema.define(version: 2021_09_06_193418) do
     t.text "old_object", size: :long
     t.datetime "created_at"
     t.text "old_object_changes", size: :long
-    t.text "object", size: :long
-    t.text "object_changes", size: :long
+    t.json "object"
+    t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "brews", "recipes"
   add_foreign_key "nicknames", "users"
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
