@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 2021_09_09_131532) do
     t.text "beschrijving"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "title", limit: 255, null: false
-    t.datetime "date", null: false
+    t.string "title", limit: 255
+    t.datetime "date"
     t.integer "user_id"
     t.datetime "deadline"
     t.datetime "end_time"
