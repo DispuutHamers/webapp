@@ -6,25 +6,29 @@
         <div class="px-4 py-4 flex items-center sm:px-6">
           <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
             <div class="truncate">
-              <div class="flex text-sm">
-                <p class="font-medium text-indigo-600 truncate"><%= event.title %></p>
-                <p class="ml-1 flex-shrink-0 font-normal text-gray-500">
-                  in <%= event.location %>
-                </p>
-                <% if event.public?%>
-                  <p class="ml-2">
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                      Plebs
-                    </span>
+              <div class="text-sm min-w-0 flex-1 sm:flex sm:items-center">
+                <div class="flex">
+                  <p class="font-medium text-indigo-600 truncate"><%= event.title %></p>
+                  <p class="ml-1 flex-shrink-0 font-normal text-gray-500">
+                    in <%= event.location %>
                   </p>
-                <% end %>
-                <% if event.usergroup %>
-                  <p class="ml-2">
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                      <%= event.usergroup.name %>
-                    </span>
-                  </p>
-                <% end %>
+                </div>
+                <div class="flex flex-shrink-0 text-sm">
+                  <% if event.public?%>
+                    <p class="md:ml-2">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        Plebs
+                      </span>
+                    </p>
+                  <% end %>
+                  <% if event.usergroup %>
+                    <p class="md:ml-2">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <%= event.usergroup.name %>
+                      </span>
+                    </p>
+                  <% end %>
+                </div>
               </div>
               <div class="mt-2 flex">
                 <div class="flex items-center text-sm text-gray-500">
