@@ -50,12 +50,6 @@ class Event < ActiveRecord::Base
   def invitation_link
     return unless invitation_code
 
-    base_url = if Rails.env.development?
-                 "http://localhost:3000"
-               else
-                 "https://www.zondersikkel.nl"
-               end
-
-    "#{base_url}/events/#{id}/public_signup?invitation_code=#{invitation_code}"
+    "/events/#{id}/public_signup?invitation_code=#{invitation_code}"
   end
 end
