@@ -5,6 +5,7 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :beer
   acts_as_paranoid
+  attribute :proefdatum, :date, default: Date.today
 
   has_rich_text :actiontext_description
 
