@@ -45,9 +45,21 @@ class ActionTextMigrationHelperTest < ActionView::TestCase
     @event.save
 
     convert_events
-
     @event.reload
+
     assert_nil @event.beschrijving
-    pp @event
+    assert_equal @event.description.to_plain_text, "Oude beschrijving"
+  end
+
+  test 'deletes old beschrijving if description exists' do
+    @event.beschrijving = "Exists"
+    @event.description = "Exists also"
+    @event.save
+
+    convert_events
+    @event.reload
+
+    assert_nil @event.beschrijving
+    assert_equal @event.description.to_plain_text, "Exists also"
   end
 end

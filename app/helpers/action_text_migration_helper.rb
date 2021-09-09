@@ -8,11 +8,13 @@ module ActionTextMigrationHelper
 
   def convert_events
     eligible_events.each do |event|
-      # Default situation -> Store beschrijving as new description
-      if event.description.blank? && !event.beschrijving.nil?
-        p "CONVERSION!"
-        event.update_attribute(:description, simple_format(event.beschrijving))
-        event.update_attribute(:beschrijving, nil)
+      if event.description.blank? && event.beschrijving
+        # Default situation -> Store beschrijving as new description
+        event.update(description: simple_format(event.beschrijving),
+                     beschrijving: nil)
+      elsif event.beschrijving && event.description
+        #  Weird situation (both fields exist) -> Delete old beschrijving
+        event.update(beschrijving: nil)
       end
     end
   end
