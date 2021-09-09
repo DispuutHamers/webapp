@@ -27,6 +27,8 @@ import 'trix/dist/trix.js'
 import '@rails/actiontext'
 import "./application"
 import * as ActiveStorage from "@rails/activestorage"
+import Flatpickr from 'stimulus-flatpickr'
+require("flatpickr/dist/flatpickr.css")
 
 ActiveStorage.start()
 Rails.start();
@@ -40,3 +42,4 @@ import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
 application.register('dropdown', Dropdown)
 application.register('tabs', Tabs)
 application.register('popover', Popover)
+application.register('flatpickr', Flatpickr)
