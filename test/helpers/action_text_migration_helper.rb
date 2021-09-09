@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# Rename to <>_test.rb to activate.
 class ActionTextMigrationHelperTest < ActionView::TestCase
   setup do
     # Clear all current events
