@@ -2,3 +2,13 @@
 #   record: name_of_fixture (ClassOfFixture)
 #   name: content
 #   body: <p>In a <i>million</i> stars!</p>
+
+event_one:
+  record: one (Event)
+  name: body
+  body: Dispuutsborrel
+
+event_two:
+  record: two (Event)
+  name: body
+  body: Randomevent
