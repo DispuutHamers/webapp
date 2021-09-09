@@ -36,8 +36,6 @@ class SignupTest < ActiveSupport::TestCase
 
   test 'invalid if deadline is passed' do
     @event.deadline = DateTime.now - 1
-    @event.save
-
     refute @signup.valid?
   end
 
