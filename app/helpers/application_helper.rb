@@ -24,4 +24,10 @@ module ApplicationHelper
 
     redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.active?
   end
+
+  def alid?
+    return unless logged_in?
+
+    redirect_to root_path, notice: "Je account mag niet bij deze resource." if current_user&.alid?
+  end
 end

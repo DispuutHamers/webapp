@@ -31,12 +31,14 @@
         <% end %>
         <%= render 'shared/blog' %>
       </section>
-      <section>
-        <%= link_to trail_path do %>
-          <h5><i class="fas fa-history"></i> Log</h5>
-        <% end %>
-        <%= render 'shared/trail' %>
-      </section>
+      <% unless current_user.alid? %>
+        <section>
+          <%= link_to trail_path do %>
+            <h5><i class="fas fa-history"></i> Log</h5>
+          <% end %>
+          <%= render 'shared/trail' %>
+        </section>
+      <% end %>
     </aside>
   </div>
   <div class="col-md-7">
