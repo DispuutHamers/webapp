@@ -8,11 +8,6 @@ class Beer < ActiveRecord::Base
 
   scope :random, -> { order('RAND()') }
 
-  # This method is (only) used in the tests
-  def add_review!(user, rating, description, proefdatum = Date.today)
-    self.reviews.create!(user_id: user.id, rating: rating.round, description: description, proefdatum: proefdatum)
-  end
-
   def cijfer?
     grade = self.grade
     if grade
