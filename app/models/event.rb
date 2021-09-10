@@ -22,7 +22,7 @@ class Event < ActiveRecord::Base
     event.dtstart = date.strftime('%Y%m%dT%H%M%S')
     event.dtend = end_time.strftime('%Y%m%dT%H%M%S')
     event.summary = title
-    event.description = description.to_plain_text || beschrijving
+    event.description = description.to_plain_text
     event.location = location
     event.ip_class = 'PUBLIC'
     event.url = "http://zondersikkel.nl/events/#{self.id}"
