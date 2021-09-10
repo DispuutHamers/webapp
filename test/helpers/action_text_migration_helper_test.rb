@@ -8,59 +8,55 @@ class ActionTextMigrationHelperTest < ActionView::TestCase
 
     # Setup data
     @user = users(:one)
-    @meeting = Event.create(title: 'Example event',
-                          date: DateTime.now + 1.day,
-                          end_time: DateTime.now + 1.day + 2.hours,
-                          deadline: DateTime.now + 5,
-                          user: @user)
+    @meeting = Meeting.create(agenda: "Agenda", onderwerp: "Onderwerp")
   end
 
-  # Test eligble_events method
-  test 'works on events with description and beschrijving' do
+  # Test eligible_meetings method
+  test 'works on meetings with actiontext_notes and notes' do
     assert_equal 0, eligible_meetings.count
-    @meeting.beschrijving = "Heeft oude beschrijving"
-    @meeting.description = "Heeft nieuwe description"
+    @meeting.notes = "Heeft oude notes"
+    @meeting.actiontext_notes = "Heeft nieuwe actiontext_notes"
     @meeting.save
     assert_equal 1, eligible_meetings.count
   end
 
-  test 'works on events without description but with beschrijving' do
+  test 'works on meetings without actiontext_notes but with notes' do
     assert_equal 0, eligible_meetings.count
-    @meeting.beschrijving = "Heeft oude beschrijving"
+    @meeting.notes = "Heeft oude notes"
     @meeting.save
-    assert_nil @meeting.description
+    assert_nil @meeting.actiontext_notes
     assert_equal 1, eligible_meetings.count
   end
 
-  test 'ignores events with description but without beschrijving' do
+  test 'ignores meetings with actiontext_notes but without notes' do
     assert_equal 0, eligible_meetings.count
-    @meeting.description = "Heeft nieuwe description"
+    @meeting.actiontext_notes = "Heeft nieuwe actiontext_notes"
     @meeting.save
-    assert_nil @meeting.beschrijving
+    assert_nil @meeting.notes
     assert_equal 0, eligible_meetings.count
   end
 
   # Test actual conversion method
-  test 'convert events without description and with beschrijving' do
-    @meeting.beschrijving = "Oude beschrijving"
+  test 'convert meetings without actiontext_notes and with notes' do
+    @meeting.notes = "Oude notes"
     @meeting.save
 
-    convert_events
+    convert_meetings
     @meeting.reload
 
-    assert_nil @meeting.beschrijving
-    assert_equal @meeting.description.to_plain_text, "Oude beschrijving"
+    assert_nil @meeting.notes
+    assert_equal @meeting.actiontext_notes.to_plain_text, "Oude notes"
   end
 
-  test 'deletes old beschrijving if description exists' do
-    @meeting.beschrijving = "Exists"
-    @meeting.description = "Exists also"
+  test 'deletes old notes if actiontext_notes exists' do
+    @meeting.notes = "Exists"
+    @meeting.actiontext_notes = "Exists also"
     @meeting.save
 
-    convert_events
+    convert_meetings
     @meeting.reload
 
-    assert_nil @meeting.beschrijving
-    assert_equal @meeting.description.to_plain_text, "Exists also"
+    assert_nil @meeting.notes
+    assert_equal @meeting.actiontext_notes.to_plain_text, "Exists also"
   end
 end

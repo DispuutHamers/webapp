@@ -7,12 +7,12 @@ module ActionTextMigrationHelper
 
   def convert_meetings
     eligible_meetings.each do |meeting|
-      if meeting.description.blank? && meeting.beschrijving
-        # Default situation -> Store beschrijving as new description
-        meeting.update(description: simple_format(meeting.beschrijving),
+      if meeting.actiontext_notes.blank? && meeting.notes
+        # Default situation -> Store notes as new actiontext_notes
+        meeting.update(actiontext_notes: simple_format(meeting.notes),
                      notes: nil)
-      elsif meeting.description && meeting.beschrijving
-        #  Weird situation (both fields exist) -> Delete old beschrijving
+      elsif meeting.actiontext_notes && meeting.notes
+        #  Weird situation (both fields exist) -> Delete old notes
         meeting.update(notes: nil)
       end
     end
