@@ -52,10 +52,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     event
   end
 
-  def generate_api_key(name)
-    ApiKey.new(user_id: id, name: name, key: SecureRandom.urlsafe_base64).save
-  end
-
   def join_group(group)
     if !groups.only_deleted.where(group_id: group.id).empty?
       groups.with_deleted.where(group_id: group.id).first.restore
