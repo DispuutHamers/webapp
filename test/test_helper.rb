@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
+
 class ActionController::TestCase
   include Devise::Test::ControllerHelpers
 end
@@ -14,6 +15,7 @@ class ActiveSupport::TestCase
   # -- they do not yet inherit this setting
   fixtures :all
 
+  # Allow manually enable versioning for specific tests
   def with_versioning
     was_enabled = PaperTrail.enabled?
     was_enabled_for_request = PaperTrail.request.enabled?
