@@ -6,6 +6,8 @@ module ActionTextMigrationHelper
   end
 
   def convert_meetings
+    PaperTrail.request.disable_model(Meeting)
+
     eligible_meetings.each do |meeting|
       if meeting.actiontext_notes.blank? && meeting.notes
         # Default situation -> Store notes as new actiontext_notes
@@ -15,5 +17,7 @@ module ActionTextMigrationHelper
         meeting.update(notes: nil)
       end
     end
+
+    PaperTrail.request.enable_model(Meeting)
   end
 end
