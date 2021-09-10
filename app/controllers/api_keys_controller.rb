@@ -3,7 +3,7 @@ class ApiKeysController < ApplicationController
   before_action :correct_user?, only: [:show]
 
   def create
-    current_user.generate_api_key(api_key_params[:name])
+    ApiKey.create(user: current_user, name: api_key_params[:name])
     redirect_to request.referer
   end
 

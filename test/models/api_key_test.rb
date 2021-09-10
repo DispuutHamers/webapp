@@ -1,34 +1,33 @@
 require 'test_helper'
 
 class ApiKeyTest < ActiveSupport::TestCase
-  test 'Create ApiKey' do
-    u = users(:one)
-
-    old_count = ApiKey.count
-
-    apikey = ApiKey.new
-    apikey.user_id = u.id
-    apikey.save!
-
-    assert ApiKey.count == old_count + 1
+  setup do
+    @user = users(:one)
+    @key = ApiKey.new(user: @user)
   end
 
-  test 'ApiKey belongs to user' do
-    # user two doesn't have an api key yet
-    u = users(:two)
+  test 'valid api key' do
+    assert @key.valid?
+  end
 
-    apikey = ApiKey.new
-    apikey.user_id = u.id
-    apikey.save!
+  test 'creates random key' do
+    @key.save
 
-    apikey2 = ApiKey.new
-    apikey2.user_id = u.id
-    apikey2.save!
+    assert_not_nil @key.key
+  end
 
-    assert apikey.user_id == u.id
-    assert apikey2.user_id == u.id
-    assert_includes u.api_keys, apikey
-    assert_includes u.api_keys, apikey2
+  test 'api key belongs to user' do
+    @key.save
+
+    key2 = ApiKey.create(user: users(:two))
+
+    @user.reload
+
+    assert @key.user = @user
+    assert key2.user = @user
+
+    assert_includes @user.api_keys, @key
+    assert_includes @user.api_keys, key2
   end
 
   test 'ApiKey only belongs to 1 user' do

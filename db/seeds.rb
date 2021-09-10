@@ -13,8 +13,8 @@ users = {
 
 users.each do |email, options|
   u = User.create!(email: email, password: "12345678", password_confirmation: "12345678", **options)
-  u.generate_api_key(SecureRandom.hex[0, 6])
-  u.generate_api_key(SecureRandom.hex[0, 6])
+  ApiKey.create(user: u, name: "Key 1")
+  ApiKey.create(user: u, name: "Key 2")
 end
 
 # Create groups
