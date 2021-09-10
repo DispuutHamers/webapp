@@ -63,4 +63,47 @@ class ReviewTest < ActiveSupport::TestCase
     @review.beer_id = -1
     refute @review.valid?
   end
+
+  test 'has versions (papertrail)' do
+    assert_nothing_raised { @review.versions }
+  end
+
+  test 'has a new version when rating changes' do
+    with_versioning do
+      @review.save
+      assert_difference '@review.versions.count' do
+        @review.rating = 6
+        @review.save
+      end
+    end
+  end
+
+  test 'has a new version when description changes' do
+    with_versioning do
+      @review.save
+      assert_difference '@review.versions.count' do
+        @review.actiontext_description = "New description"
+        @review.save
+      end
+    end
+  end
+
+  test 'has a new version when proefdatum changes' do
+    with_versioning do
+      @review.save
+      assert_difference '@review.versions.count' do
+        @review.proefdatum = Date.today - 1.day
+        @review.save
+      end
+    end
+  end
+
+  test 'has a new version when it is deleted' do
+    with_versioning do
+      @review.save
+      assert_difference 'PaperTrail::Version.count', 2 do
+        @review.destroy
+      end
+    end
+  end
 end

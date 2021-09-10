@@ -10,9 +10,7 @@ class BeerTest < ActiveSupport::TestCase
   end
 
   test 'beer does have versions (papertrail)' do
-    assert_nothing_raised do
-      @beer.versions
-    end
+    assert_nothing_raised { @beer.versions }
 
     with_versioning do
       @beer.save

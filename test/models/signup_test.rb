@@ -62,11 +62,11 @@ class SignupTest < ActiveSupport::TestCase
     refute @signup.valid?
   end
 
-  test 'signup has versions (papertrail)' do
+  test 'has versions (papertrail)' do
     assert_nothing_raised { @signup.versions }
   end
 
-  test 'signup has a new version when status changes' do
+  test 'has a new version when status changes' do
     with_versioning do
       @signup.save
       assert_difference '@signup.versions.count' do
@@ -76,12 +76,21 @@ class SignupTest < ActiveSupport::TestCase
     end
   end
 
-  test 'signup has a new version when reason changes' do
+  test 'has a new version when reason changes' do
     with_versioning do
       @signup.save
       assert_difference '@signup.versions.count' do
         @signup.reason = "New reason"
         @signup.save
+      end
+    end
+  end
+
+  test 'has a new version when it is deleted' do
+    with_versioning do
+      @signup.save
+      assert_difference 'PaperTrail::Version.count', 2 do
+        @signup.destroy
       end
     end
   end
