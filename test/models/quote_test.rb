@@ -57,4 +57,43 @@ class QuoteTest < ActiveSupport::TestCase
     @quote.delete
     refute @quote.deleted_at.nil?
   end
+
+  test 'has a new version when text changes' do
+    with_versioning do
+      @quote.save
+      assert_difference '@quote.versions.count' do
+        @quote.text = "New quote body"
+        @quote.save
+      end
+    end
+  end
+
+  test 'has a new version when user changes' do
+    with_versioning do
+      @quote.save
+      assert_difference '@quote.versions.count' do
+        @quote.user = users(:two)
+        @quote.save
+      end
+    end
+  end
+
+  test 'has a new version when reporter changes' do
+    with_versioning do
+      @quote.save
+      assert_difference '@quote.versions.count' do
+        @quote.reporter = users(:three)
+        @quote.save
+      end
+    end
+  end
+
+  test 'has a new version when it is deleted' do
+    with_versioning do
+      @quote.save
+      assert_difference 'PaperTrail::Version.count' do
+        @quote.destroy
+      end
+    end
+  end
 end

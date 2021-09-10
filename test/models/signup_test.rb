@@ -89,7 +89,7 @@ class SignupTest < ActiveSupport::TestCase
   test 'has a new version when it is deleted' do
     with_versioning do
       @signup.save
-      assert_difference 'PaperTrail::Version.count', 2 do
+      assert_difference 'PaperTrail::Version.count' do
         @signup.destroy
       end
     end

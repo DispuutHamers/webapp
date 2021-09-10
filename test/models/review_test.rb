@@ -101,6 +101,7 @@ class ReviewTest < ActiveSupport::TestCase
   test 'has a new version when it is deleted' do
     with_versioning do
       @review.save
+      # TODO: Why is this 2?
       assert_difference 'PaperTrail::Version.count', 2 do
         @review.destroy
       end
