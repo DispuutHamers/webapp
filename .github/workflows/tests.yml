@@ -50,8 +50,5 @@ jobs:
       - name: Procompile assets
         run: bundle exec rails assets:precompile
 
-      - name: Run unit tests
-        run: bundle exec rails test
-
-      - name: Run unit tests
-        run: bundle exec rails test:system
+      - name: Run tests
+        run: bundle exec rails test:all
