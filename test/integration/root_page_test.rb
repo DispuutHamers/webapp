@@ -1,8 +1,6 @@
-require 'test_helper'
+require 'application_system_test_case'
 
-class RootPageTest < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :firefox, screen_size: [1400, 1400]
-
+class RootPageTest < ApplicationSystemTestCase
   test 'root' do
     visit root_path
 
