@@ -11,11 +11,7 @@
         <hr>
         <i class="fa fa-map-marker"></i> Locatie: <%= @event.location %>
         <hr>
-        <% if @event.description.blank? %>
-          <%= markdown(@event.beschrijving).html_safe %>
-        <% else %>
-          <%= @event.description %>
-        <% end %>
+        <%= @event.description %>
         <hr>
         <%= link_to "#{@event.title}.ics?invitation_code=#{@event.invitation_code}", class: "btn btn-default" do %>
           <i class="fas fa-calendar-plus"></i> Toevoegen aan je kalender
