@@ -1,20 +1,19 @@
 # Module to help with migration of old fields to action texts,
 # so that we can finally ditch the old columns.
-# Note to self: description is the new field, beschrijving the old one.
 module ActionTextMigrationHelper
-  def eligible_events
-    Event.all.with_rich_text_description.where.not(beschrijving: [nil, ""])
+  def eligible_meetings
+    Meeting.all.with_rich_text_actiontext_notes.where.not(notes: [nil, ""])
   end
 
-  def convert_events
-    eligible_events.each do |event|
-      if event.description.blank? && event.beschrijving
+  def convert_meetings
+    eligible_meetings.each do |meeting|
+      if meeting.description.blank? && meeting.beschrijving
         # Default situation -> Store beschrijving as new description
-        event.update(description: simple_format(event.beschrijving),
-                     beschrijving: nil)
-      elsif event.description && event.beschrijving
+        meeting.update(description: simple_format(meeting.beschrijving),
+                     notes: nil)
+      elsif meeting.description && meeting.beschrijving
         #  Weird situation (both fields exist) -> Delete old beschrijving
-        event.update(beschrijving: nil)
+        meeting.update(notes: nil)
       end
     end
   end
