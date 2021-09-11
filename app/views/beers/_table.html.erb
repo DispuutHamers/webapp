@@ -60,7 +60,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= beer.country %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap  overflow-hidden -space-x-1">
+                <td class="px-6 py-4 whitespace-nowrap  overflow-hidden -space-x-3">
                   <% beer.reviews.each.each do |review| %>
                     <%= link_to review.user, class: "inline-block" do %>
                       <%= gravatar_for review.user, class: "h-8 w-8 rounded-full ring-2 ring-white", alt: review.user.name %>
@@ -77,6 +77,9 @@
 
             </tbody>
           </table>
+
+          <%= render 'shared/pagination' %>
+
         </div>
       </div>
     </div>
