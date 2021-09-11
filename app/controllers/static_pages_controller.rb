@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     return render 'frontpage' unless current_user&.active?
 
     @quote = current_user.quotes.build
-    @pagy, @quotes = pagy(Quote.with_user.ordered, items: 12)
+    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
     @next_event = Event.upcoming.order(date: :asc).first
     @trail = PaperTrail::Version.includes(:item).last(4).reverse
     @blogitems = Blogitem.last(4).reverse

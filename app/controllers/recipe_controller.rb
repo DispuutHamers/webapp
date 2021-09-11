@@ -4,7 +4,7 @@ class RecipeController < ApplicationController
   breadcrumb 'Recepten', :recipe_index_path
 
   def index
-    @recipes = Recipe.all.paginate(page: params[:page])
+    @pagy, @recipes = pagy(Recipe.all, page: params[:page])
   end
 
   def show
