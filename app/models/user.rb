@@ -22,6 +22,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :drafts
   has_many :blogitems
   has_many :attendees
+  has_many :stickers
   has_many :meetings_attended, through: :attendees, source: :meeting
   has_many :meetings_chaired, class_name: "Meeting", inverse_of: :secretary, foreign_key: :chairman_id
   has_many :meetings_minuted, class_name: "Meeting", inverse_of: :secretary, foreign_key: :secretary_id
