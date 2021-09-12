@@ -1,12 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  agenda: MyText
-  notes: MyText
-  date: 2015-01-10 00:22:44
+  agenda: Agenda
+  date: 2020-01-10 21:00:00
 
 two:
-  agenda: MyText
-  notes: MyText
-  date: 2015-01-10 00:22:44
+  agenda: Agenda
+  date: 2011-06-10 18:00:00
 
