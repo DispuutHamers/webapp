@@ -10,21 +10,21 @@ class EventTest < ActiveSupport::TestCase
   end
 
   test 'valid attendee count' do
-    assert_equal 0, @event.attendees
+    assert_equal 0, @event.attendee_count
 
     Signup.create(event: @event, user: users(:one))
-    assert_equal 1, @event.attendees
+    assert_equal 1, @event.attendee_count
 
     Signup.create(event: @event, user: users(:two))
-    assert_equal 2, @event.attendees
+    assert_equal 2, @event.attendee_count
 
     ExternalSignup.create(event: @event, user: users(:three),
                           first_name: "Test", last_name: "User", email: "test@example.com")
-    assert_equal 3, @event.attendees
+    assert_equal 3, @event.attendee_count
 
     ExternalSignup.create(event: @event, user: users(:two),
                           first_name: "Test", last_name: "User2", email: "test2@example.com")
-    assert_equal 4, @event.attendees
+    assert_equal 4, @event.attendee_count
   end
 
 end
