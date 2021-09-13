@@ -55,7 +55,7 @@ class Event < ActiveRecord::Base
     "/events/#{id}/public_signup?invitation_code=#{invitation_code}"
   end
 
-  def attendees
+  def attendee_count
     self.signups.count + self.external_signups.count
   end
 end
