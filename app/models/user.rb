@@ -19,6 +19,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :events
   has_many :beers
   has_many :signups
+  has_many :guests, class_name: 'ExternalSignup', foreign_key: 'user_id'
   has_many :drafts
   has_many :blogitems
   has_many :attendees
@@ -26,8 +27,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :meetings_chaired, class_name: "Meeting", inverse_of: :secretary, foreign_key: :chairman_id
   has_many :meetings_minuted, class_name: "Meeting", inverse_of: :secretary, foreign_key: :secretary_id
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
+  validates :email, presence: true, format: Devise.email_regexp, uniqueness: {case_sensitive: false}
 
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
