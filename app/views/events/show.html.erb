@@ -51,14 +51,16 @@
           <% if @event.open? %>
             <div class="flex w-full border-t border-gray-200 mt-2 pt-2">
               <%= form_for @event.signups.new(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
-                <div class="flex w-full justify-between items-center">
-                  <div class="border w-1/2 border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                <div class="md:flex w-full md:justify-between md:items-center">
+                  <div class="border w-full md:w-1/2 border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
                     <label for="reason" class="block text-xs font-medium text-gray-900">Opmerkingen</label>
                     <%= f.text_field :reason, class: "block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" %>
                   </div>
                   <%= f.hidden_field :event_id, value: @event.id %>
-                  <%= f.submit 'Aanwezig', class: 'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' %>
-                  <%= f.submit 'Afwezig', class: 'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500' %>
+                  <div class="flex items-center justify-between mt-2 md:mt-0">
+                    <%= f.submit 'Aanwezig', class: 'mx-2 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' %>
+                    <%= f.submit 'Afwezig', class: 'mx-2 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500' %>
+                  </div>
                 </div>
               <% end %>
             </div>
