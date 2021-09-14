@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   breadcrumb 'Vergaderingen', :meetings_path
 
   def index
-    @meetings = Meeting.all.paginate(page: params[:page])
+    @pagy, @meetings = pagy(Meeting.all, page: params[:page])
   end
 
   def show
@@ -25,7 +25,7 @@ class MeetingsController < ApplicationController
 
   def notuleer
     if (draft = @meeting.drafts.where(user: current_user).take)
-      @meeting.actiontext_notes = draft.rich_data
+      @meeting.notes = draft.rich_data
     end
 
     breadcrumb @meeting.onderwerp, meeting_path(@meeting)
@@ -40,18 +40,18 @@ class MeetingsController < ApplicationController
   def update
     respond_to do |format|
       if params[:commit] == "Opslaan"
-        @meeting.actiontext_notes = meeting_params[:actiontext_notes]
+        @meeting.notes = meeting_params[:notes]
         if @meeting.save
-          format.html {redirect_to @meeting, notice: 'Vergadering is geüpdate.'}
+          format.html { redirect_to @meeting, notice: 'Vergadering is geüpdate.' }
         else
           render :edit
         end
       elsif params[:commit] == "Annuleren"
         @meeting.drafts.where(user: current_user).take&.destroy
-        format.html {redirect_to @meeting, notice: "Concept is verwijderd."}
+        format.html { redirect_to @meeting, notice: "Concept is verwijderd." }
       elsif params[:commit] == "Verstuur"
         format.html do
-          @meeting.attributes = meeting_params.except(:actiontext_notes)
+          @meeting.attributes = meeting_params.except(:notes)
           if @meeting.save
             redirect_to(@meeting, notice: 'Vergadering is geüpdate.')
           else
@@ -61,8 +61,8 @@ class MeetingsController < ApplicationController
       elsif @meeting.save_draft(current_user)
         format.js
       else
-        format.html {render :notuleer}
-        format.js {head :unprocessable_entity}
+        format.html { render :notuleer }
+        format.js { head :unprocessable_entity }
       end
     end
   end

@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   include UtilHelper
   include ParamsHelper
   include ApplicationHelper
+  include Pagy::Backend
 
   def strict_transport_security
     response.headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains" if request.ssl?

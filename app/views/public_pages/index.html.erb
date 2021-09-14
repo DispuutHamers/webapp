@@ -15,7 +15,7 @@
     <th>Admin stuff</th>
   </tr>
   </thead>
-  <%= will_paginate %>
+  <%== pagy_nav(@pagy) %>
   <tbody>
   <% @public_pages.each do |m| %>
       <tr>
@@ -35,5 +35,5 @@
   <% end %>
   </tbody>
 </table>
-<%= will_paginate %>
+<%== pagy_nav(@pagy) %>
 <%= link_to 'Voeg openbare pagina toe', new_public_page_path, class: 'btn btn-primary btn-block' %>

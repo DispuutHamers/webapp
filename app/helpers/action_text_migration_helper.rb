@@ -1,21 +1,23 @@
 # Module to help with migration of old fields to action texts,
 # so that we can finally ditch the old columns.
-# Note to self: description is the new field, beschrijving the old one.
 module ActionTextMigrationHelper
-  def eligible_events
-    Event.all.with_rich_text_description.where.not(beschrijving: [nil, ""])
+  def eligible_reviews
+    Review.all.with_rich_text_actiontext_description.where.not(description: [nil, ""])
   end
 
-  def convert_events
-    eligible_events.each do |event|
-      if event.description.blank? && event.beschrijving
-        # Default situation -> Store beschrijving as new description
-        event.update(description: simple_format(event.beschrijving),
-                     beschrijving: nil)
-      elsif event.description && event.beschrijving
-        #  Weird situation (both fields exist) -> Delete old beschrijving
-        event.update(beschrijving: nil)
+  def convert_reviews
+    PaperTrail.request.disable_model(Review)
+
+    eligible_reviews.each do |review|
+      if review.actiontext_description.blank? && review.description
+        # Default situation -> Store description as new actiontext_description
+        review.update(actiontext_description: simple_format(review.description), description: nil)
+      elsif review.actiontext_description && review.description
+        #  Weird situation (both fields exist) -> Delete old description
+        review.update(description: nil)
       end
     end
+
+    PaperTrail.request.enable_model(Review)
   end
 end

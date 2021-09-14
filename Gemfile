@@ -15,6 +15,7 @@ gem 'lockbox'
 gem 'memory_profiler'
 gem 'minidusen'
 gem 'net-http-persistent'
+gem 'pagy', '~> 4.8'
 gem 'paperclip'
 gem 'paper_trail'
 gem 'paranoia'
@@ -30,13 +31,12 @@ gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
 gem 'switch_user'
-gem "tailwindcss-rails-webpacker", "~> 0.1.2"
+gem 'tailwindcss-rails-webpacker', "~> 0.1.2"
 gem 'therubyracer'
 gem 'turbo-rails'
 gem 'tzinfo'
 gem 'uglifier'
 gem "webpacker"
-gem 'will_paginate'
 gem 'wine_bouncer'
 
 group :doc do
@@ -66,6 +66,8 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'rails-controller-testing'
   gem 'sqlite3'
+  gem 'webdrivers'
 end

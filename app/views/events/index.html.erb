@@ -52,7 +52,7 @@
 
   <div class="hidden" data-tabs-target="panel">
     <%= render "events/table", events: @past_events %>
-    <%= will_paginate @past_events %>
+    <%= pagy_nav(@pagy) %>
   </div>
 </div>
 
