@@ -57,12 +57,12 @@ Beer.create(name: "Leffe Blond", soort: "Blond", brewer: "Leffe", country: "Belg
 Beer.create(name: "Abt 12", soort: "Abbey Ale", brewer: "St. Bernardus", country: "Nederland", percentage: "10 %")
 
 # Create reviews
-Review.create(user_id: 1, beer_id: 1, rating: 6, actiontext_description: "Wel okay.")
-Review.create(user_id: 2, beer_id: 1, rating: 8, actiontext_description: "Goed bier.")
-Review.create(user_id: 3, beer_id: 1, rating: 5, actiontext_description: "Meh..")
-Review.create(user_id: 3, beer_id: 2, rating: 1, actiontext_description: "Wat voor bocht is dit?")
-Review.create(user_id: 5, beer_id: 2, rating: 9, actiontext_description: "Beste bier ooit!")
-Review.create(user_id: 6, beer_id: 2, rating: 3, actiontext_description: "Matig..")
+Review.create(user_id: 1, beer_id: 1, rating: 6, description: "Wel okay.")
+Review.create(user_id: 2, beer_id: 1, rating: 8, description: "Goed bier.")
+Review.create(user_id: 3, beer_id: 1, rating: 5, description: "Meh..")
+Review.create(user_id: 3, beer_id: 2, rating: 1, description: "Wat voor bocht is dit?")
+Review.create(user_id: 5, beer_id: 2, rating: 9, description: "Beste bier ooit!")
+Review.create(user_id: 6, beer_id: 2, rating: 3, description: "Matig..")
 
 # Create events
 Event.create(title: 'Past event', date: '2020-01-01 20:30', end_time: '2020-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 5)

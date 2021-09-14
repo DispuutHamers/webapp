@@ -17,11 +17,7 @@
         </h4>
 
         <p>
-        <% if r.actiontext_description.present? %>
-          <%= r.actiontext_description %>
-        <% else %>
-          <i><%= simple_format(r.description) %></i>
-        <% end %>
+          <%= r.description %>
         </p>
 
         <p>
@@ -34,7 +30,7 @@
             <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
               <i class="fas fa-pencil-alt"></i>
             <% end %>
-            <%= link_to r, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
+            <%= link_to r, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'btn btn-default btn-sm' do %>
               <i class="far fa-trash-alt"></i>
             <% end %>
           <% end %>

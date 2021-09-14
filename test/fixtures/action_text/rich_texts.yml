@@ -22,3 +22,13 @@ meeting_two:
   record: two (Meeting)
   name: body
   body: Testnotulen
+
+review_one:
+  record: one (Review)
+  name: body
+  body: Testreview
+
+review_two:
+  record: two (Review)
+  name: body
+  body: Testreview
