@@ -1,28 +1,24 @@
 <%= f.hidden_field :beer_id %>
 
-<div class="form-group">
-  <%= f.label "Je review", class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
-    <%= f.rich_text_area :actiontext_description, placeholder: 'Wat vonden we ervan?', class: 'form-control' %>
+<div class="sm:col-span-6">
+  <%= f.label "Je review", class: 'block text-sm font-medium text-gray-700' %>
+  <div class="mt-1">
+    <%= f.rich_text_area :actiontext_description, placeholder: 'Wat vonden we ervan?', class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md' %>
   </div>
 </div>
 
-<div class="form-group">
-  <%= f.label :Cijfer, class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
-    <%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {}, {class: 'form-control'} %>
+<div class="sm:col-span-6">
+  <%= f.label :Cijfer, class: 'block text-sm font-medium text-gray-700' %>
+  <div class="mt-1">
+    <%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {}, { class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md' } %>
   </div>
 </div>
 
-<div class="form-group">
-  <%= f.label :Proefdatum, class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
-    <%= f.date_field :proefdatum, class: 'form-control' %>
+<div class="sm:col-span-6">
+  <%= f.label :Proefdatum, class: 'block text-sm font-medium text-gray-700' %>
+  <div class="mt-1">
+    <%= f.date_field :proefdatum, class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md' %>
   </div>
 </div>
 
-<div class="actions">
-  <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit "Verstuur", class: 'btn btn-primary' %>
-  </div>
-</div>
+<%= f.submit "Opslaan", class: "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" %>

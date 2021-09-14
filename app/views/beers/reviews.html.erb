@@ -2,6 +2,6 @@
   Nieuwe review
 <% end %>
 
-<%= form_for @beer.reviews.build(user_id: current_user.id, beer_id: @beer.id), html: {class: 'form-horizontal'} do |f| %>
+<%= form_for @beer.reviews.build(user_id: current_user.id, beer_id: @beer.id), html: {class: 'space-y-4 space-y'} do |f| %>
   <%= render partial: 'reviews/form', locals: {f: f} %>
 <% end %>

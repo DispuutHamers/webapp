@@ -3,10 +3,6 @@
 <% end %>
 
 <div class="row">
-  <div class="mx-auto text-center my-4">
-    <%= will_paginate %>
-  </div>
-
   <% if current_user&.active? %>
     <%= link_to 'Voeg bier toe', new_beer_path, :class => 'btn btn-block btn-primary' %>
   <% end %>
