@@ -9,8 +9,14 @@ class Meeting < ActiveRecord::Base
   has_many :drafts, as: :entity, dependent: :destroy
 
   has_rich_text :actiontext_notes
+  has_rich_text :notes
+
+  before_save do
+    self.notes = self.actiontext_notes
+    self.actiontext_notes.destroy
+  end
 
   def save_draft(user)
-    drafts.find_or_create_by(user: user).update(rich_data: actiontext_notes)
+    drafts.find_or_create_by(user: user).update(rich_data: notes)
   end
 end
