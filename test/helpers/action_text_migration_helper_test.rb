@@ -8,8 +8,8 @@ class ActionTextMigrationHelperTest < ActionView::TestCase
 
     # Setup data
     @user = users(:one)
-    @beer = Beer.new(name: "Testbier")
-    @review = Review.create(user: @user, beer: @beer)
+    @beer = Beer.create(name: "Testbier", percentage: 0)
+    @review = Review.create(user: @user, beer: @beer, rating: 1)
   end
 
   # Test eligible_reviews method
