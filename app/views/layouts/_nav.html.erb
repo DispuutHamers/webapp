@@ -1,3 +1,30 @@
+<% menu_items = {
+  Activiteiten: { description: "Wat gaan we doen?", path: events_path, icon: 'calendar' },
+  Bier: { description: "Heb je nog wat gedronken?", path: beers_path, icon: 'emoji-happy' },
+  Leden: { description: "Overzicht van onze leden", path: users_path, icon: 'user' },
+  Groupen: { description: "Groepen binnen het dispuut", path: groups_path, icon: 'user-group' },
+  Stickers: { description: "Waar hangen onze stickers?", path: stickers_path, icon: 'chip' },
+  Recepten: { description: "Wat hebben wij gebrouwen?", path: recipe_index_path, icon: 'beaker' },
+  Vergaderingen: { description: "Lees hier de notulen", path: meetings_path, icon: 'chat-alt-2' },
+  Log: { description: "Logs van de website", path: trail_path, icon: 'book-open' },
+  Blog: { description: "Wat hebben we gedaan?", path: blogitems_path, icon: 'pencil-alt' },
+  Nieuws: { description: "Is er nog een nieuwtje?", path: news_index_path, icon: 'rss' },
+} %>
+
+<% user_items = {
+  Profiel: { description: "Mijn account", path: current_user, icon: 'user-circle' },
+  Instellingen: { description: "Mijn account aanpassen", path: edit_user_path(current_user), icon: 'pencil' },
+  Autorisaties: { description: "Mijn OAuth autorisaties", path: oauth_authorized_applications_path, icon: 'lock-closed' },
+  Uitloggen: { description: "Uitloggen van de website", path: destroy_user_session_path, icon: 'logout' },
+} %>
+
+<% external_links = {
+  Discord: { url: 'https://discord.gg/7tH7dWbQkH', icon: 'fab fa-discord' },
+  'Google Drive': { url: 'https://drive.google.com/drive/folders/0AJQtnx7mawWRUk9PVA', icon: 'fab fa-google-drive' },
+  Github: { url: 'https://github.com/dispuuthamers/', icon: 'fab fa-github' },
+  Moneybird: { url: 'https://moneybird.com/275570381306201797', icon: 'fa fa-coins' }
+} %>
+
 <nav class="bg-gray-800">
   <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
     <div class="border-b border-gray-700">
@@ -28,116 +55,20 @@
                   <div class="absolute z-10 -ml-4 mt-2 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
                     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                       <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
-                        <%= link_to events_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('calendar', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Activiteiten</p>
-                            <p class="mt-1 text-sm text-gray-500">Wat gaan we doen?</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to beers_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('emoji-happy', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Bier</p>
-                            <p class="mt-1 text-sm text-gray-500">Heb je nog wat gedronken?</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to users_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('user', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Leden</p>
-                            <p class="mt-1 text-sm text-gray-500">Overzicht van onze leden</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to groups_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('user-group', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Groepen</p>
-                            <p class="mt-1 text-sm text-gray-500">Groepen binnen het dispuut</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to stickers_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('chip', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Stickers</p>
-                            <p class="mt-1 text-sm text-gray-500">Waar hangen onze stickers?</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to recipe_index_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('beaker', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Recepten</p>
-                            <p class="mt-1 text-sm text-gray-500">Wat hebben wij gebrouwen?</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to meetings_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('chat-alt-2', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Vergaderingen</p>
-                            <p class="mt-1 text-sm text-gray-500">Lees hier notulen</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to trail_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('book-open', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Log</p>
-                            <p class="mt-1 text-sm text-gray-500">Logs van de website</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to blogitems_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('pencil-alt', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Blog</p>
-                            <p class="mt-1 text-sm text-gray-500">Wat hebben we gedaan?</p>
-                          </div>
-                        <% end %>
-
-                        <%= link_to news_index_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                          <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                            <%= heroicon('rss', style: :outline, class_name: "h-6 w-6") %>
-                          </div>
-                          <div class="ml-4">
-                            <p class="text-base font-medium text-gray-900">Nieuws</p>
-                            <p class="mt-1 text-sm text-gray-500">Is er nog een nieuwtje?</p>
-                          </div>
+                        <% menu_items.each do |name, options| %>
+                          <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
+                            <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
+                              <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
+                            </div>
+                            <div class="ml-4">
+                              <p class="text-base font-medium text-gray-900"><%= name %></p>
+                              <p class="mt-1 text-sm text-gray-500"><%= options[:description] %></p>
+                            </div>
+                          <% end %>
                         <% end %>
                       </div>
 
                       <div class="justify-center px-5 py-5 bg-gray-50 space-y-6 sm:flex sm:space-y-0 sm:space-x-10 sm:px-8">
-
-                        <% external_links = {
-                          Discord: { url: 'https://discord.gg/7tH7dWbQkH', icon: 'fab fa-discord' },
-                          'Google Drive': { url: 'https://drive.google.com/drive/folders/0AJQtnx7mawWRUk9PVA', icon: 'fab fa-google-drive' },
-                          Github: { url: 'https://github.com/dispuuthamers/', icon: 'fab fa-github' },
-                          Moneybird: { url: 'https://moneybird.com/275570381306201797', icon: 'fa fa-coins' }
-                        } %>
-
                         <% external_links.each do |name, options| %>
                           <div class="flow-root">
                             <%= link_to options[:url], target: :blank, class: "-m-3 p-1 flex items-center rounded-md text-base font-medium text-gray-500 hover:bg-gray-100 transition ease-in-out duration-150" do %>
@@ -173,48 +104,17 @@
               <div class="origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 scale-95" role="menu" tabindex="-1" data-dropdown-target="menu">
                 <div class="overflow-hidden">
                   <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
-                    <%= link_to current_user, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                        <%= heroicon('user-circle', style: :outline, class_name: "h-6 w-6") %>
-                      </div>
+                    <% user_items.each do |name, options| %>
+                      <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
+                        <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
+                          <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
+                        </div>
 
-                      <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900">Profiel</p>
-                        <p class="mt-1 text-sm text-gray-500">Mijn account</p>
-                      </div>
-                    <% end %>
-
-                    <%= link_to edit_user_path(current_user), class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                        <%= heroicon('pencil', style: :outline, class_name: "h-6 w-6") %>
-                      </div>
-
-                      <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900">Instellingen</p>
-                        <p class="mt-1 text-sm text-gray-500">Mijn account aanpassen</p>
-                      </div>
-                    <% end %>
-
-                    <%= link_to oauth_authorized_applications_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                        <%= heroicon('lock-closed', style: :outline, class_name: "h-6 w-6") %>
-                      </div>
-
-                      <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900">Autorisaties</p>
-                        <p class="mt-1 text-sm text-gray-500">Mijn OAuth autorisaties</p>
-                      </div>
-                    <% end %>
-
-                    <%= link_to destroy_user_session_path, method: 'delete', class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                        <%= heroicon('logout', style: :outline, class_name: "h-6 w-6") %>
-                      </div>
-
-                      <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900">Uitloggen</p>
-                        <p class="mt-1 text-sm text-gray-500">Uitloggen van de website</p>
-                      </div>
+                        <div class="ml-4">
+                          <p class="text-base font-medium text-gray-900"><%= name %></p>
+                          <p class="mt-1 text-sm text-gray-500"><%= options[:description] %></p>
+                        </div>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>
@@ -240,94 +140,16 @@
             <div class="absolute z-10 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
-                  <%= link_to events_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('calendar', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Activiteiten</p>
-                    </div>
-                  <% end %>
 
-                  <%= link_to beers_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('emoji-happy', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Bier</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to users_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('user', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Leden</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to groups_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('user-group', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Groepen</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to stickers_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('chip', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Stickers</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to recipe_index_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('beaker', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Recepten</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to meetings_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('chat-alt-2', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Vergaderingen</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to trail_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('book-open', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Log</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to blogitems_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('pencil-alt', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Blog</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to news_index_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('rss', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Nieuws</p>
-                    </div>
+                  <% menu_items.each do |name, options| %>
+                    <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
+                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
+                        <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
+                      </div>
+                      <div class="ml-4">
+                        <p class="text-base font-medium text-gray-900"><%= name %></p>
+                      </div>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
@@ -352,44 +174,16 @@
             <div class="absolute z-10 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
-                  <%= link_to current_user, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('user-circle', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
+                  <% user_items.each do |name, options| %>
+                    <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
+                      <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
+                        <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
+                      </div>
 
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Profiel</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to edit_user_path(current_user), class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('pencil', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Instellingen</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to oauth_authorized_applications_path, class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('lock-closed', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Autorisaties</p>
-                    </div>
-                  <% end %>
-
-                  <%= link_to destroy_user_session_path, method: 'delete', class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
-                    <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
-                      <%= heroicon('logout', style: :outline, class_name: "h-6 w-6") %>
-                    </div>
-
-                    <div class="ml-4">
-                      <p class="text-base font-medium text-gray-900">Uitloggen</p>
-                    </div>
+                      <div class="ml-4">
+                        <p class="text-base font-medium text-gray-900"><%= name %></p>
+                      </div>
+                    <% end %>
                   <% end %>
                 </div>
               </div>
