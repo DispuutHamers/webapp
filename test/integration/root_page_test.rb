@@ -5,8 +5,8 @@ class RootPageTest < ApplicationSystemTestCase
     visit root_path
 
     assert_selector "h1", text: "Hamers zonder Sikkel"
-    assert_selector "h2", text: "defenestraties voorbehouden"
-    assert_selector "a", text: "Inloggen"
-    assert_selector "a", text: "Registreren"
+    assert_selector "p", text: "defenestraties voorbehouden"
+    assert_selector "a", text: "Log in"
+    assert_selector "a", text: "Registreer"
   end
 end
