@@ -45,7 +45,7 @@ class QuoteTest < ActiveSupport::TestCase
     q2 = Quote.create(user: @user, text: "Quote 2", reporter: users(:two))
     q3 = Quote.create(user: @user, text: "Quote 3", reporter: users(:two))
 
-    assert_includes @user.quotes.all, @quote
+    assert_includes @user.quotes, @quote
     assert_includes @user.quotes, q2
     assert_includes @user.quotes, q3
   end

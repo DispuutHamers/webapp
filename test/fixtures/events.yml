@@ -2,8 +2,7 @@
 
 one:
   id: 1
-  beschrijving: Zondagborrel
-  title: Zondagborrel
+  title: Dispuutsborrel
   date: 2015-01-10 00:22:44
   user_id: 1
   deadline: 2015-01-10 00:22:44
@@ -13,7 +12,6 @@ one:
 
 two:
   id: 2
-  beschrijving: Randomevent
   title: Randomevent
   date: 2018-01-10 00:22:44
   user_id: 1

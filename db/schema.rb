@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_09_183516) do
+ActiveRecord::Schema.define(version: 2021_09_14_134649) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -121,7 +121,6 @@ ActiveRecord::Schema.define(version: 2021_09_09_183516) do
   end
 
   create_table "events", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.text "beschrijving"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "title", limit: 255, null: false
@@ -145,6 +144,7 @@ ActiveRecord::Schema.define(version: 2021_09_09_183516) do
     t.integer "event_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "groups", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
@@ -173,7 +173,6 @@ ActiveRecord::Schema.define(version: 2021_09_09_183516) do
 
   create_table "meetings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "agenda"
-    t.text "notes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "onderwerp", limit: 255
@@ -269,7 +268,6 @@ ActiveRecord::Schema.define(version: 2021_09_09_183516) do
   create_table "reviews", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "beer_id"
     t.integer "user_id"
-    t.text "description"
     t.integer "rating"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,51 +1,53 @@
 require 'test_helper'
 
 class ApiKeyTest < ActiveSupport::TestCase
-  test 'Create ApiKey' do
-    u = users(:one)
-
-    old_count = ApiKey.count
-
-    apikey = ApiKey.new
-    apikey.user_id = u.id
-    apikey.save!
-
-    assert ApiKey.count == old_count + 1
+  setup do
+    @user = users(:one)
+    @key = ApiKey.new(user: @user, name: "Key 1")
   end
 
-  test 'ApiKey belongs to user' do
-    # user two doesn't have an api key yet
-    u = users(:two)
-
-    apikey = ApiKey.new
-    apikey.user_id = u.id
-    apikey.save!
-
-    apikey2 = ApiKey.new
-    apikey2.user_id = u.id
-    apikey2.save!
-
-    assert apikey.user_id == u.id
-    assert apikey2.user_id == u.id
-    assert_includes u.api_keys, apikey
-    assert_includes u.api_keys, apikey2
+  test 'valid api key' do
+    assert @key.valid?
   end
 
-  test 'ApiKey only belongs to 1 user' do
-    u = users(:one)
-    u2 = users(:two)
+  test 'invalid without name' do
+    @key.name = nil
+    refute @key.valid?
+  end
 
-    apikey = ApiKey.new
-    apikey.user_id = u.id
-    apikey.save!
+  test 'invalid with blank name' do
+    @key.name = ''
+    refute @key.valid?
+  end
 
-    apikey2 = ApiKey.new
-    apikey2.user_id = u2.id
-    apikey2.save!
+  test 'invalid if user does not exist' do
+    @key.user_id = -1
+    refute @key.valid?
+  end
 
-    assert apikey.user_id == u.id && apikey.user_id != u2.id
-    assert apikey2.user_id == u2.id && apikey2.user_id != u.id
+  test 'creates random key' do
+    @key.save
+    assert_not_nil @key.key
+  end
 
-    assert u.api_keys != u2.api_keys
+  test 'api key belongs to (single) user' do
+    @key.save
+
+    key2 = ApiKey.create(user: users(:one), name: "Key 2")
+    key3 = ApiKey.create(user: users(:three), name: "Key 3")
+
+    assert_equal @key.user, @user
+    assert_equal key2.user, @user
+    assert_not_equal key3.user, @user
+
+    assert_includes @user.api_keys, @key
+    assert_includes @user.api_keys, key2
+    assert_not_includes @user.api_keys, key3
+  end
+
+  test 'api key does not have versions (papertrail)' do
+    assert_raises NoMethodError do
+      @key.versions
+    end
   end
 end

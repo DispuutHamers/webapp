@@ -2,16 +2,11 @@
 class Beer < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail :ignore => [:grade]
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
 
   scope :random, -> { order('RAND()') }
-
-  # This method is (only) used in the tests
-  def add_review!(user, rating, description, proefdatum = Date.today)
-    self.reviews.create!(user_id: user.id, rating: rating.round, description: description, proefdatum: proefdatum)
-  end
 
   def cijfer?
     grade = self.grade
