@@ -1,6 +1,6 @@
 <%= form_for [current_user, ApiKey.new], html: { class: 'space-y-6 space-y mb-6' } do |f| %>
   <div>
-    <label for="email" class="block text-sm font-medium text-gray-700">Sleutel toevoegen</label>
+    <label for="email" class="<%= label_classes %>">Sleutel toevoegen</label>
     <div class="mt-1 flex rounded-md shadow-sm">
       <div class="relative flex items-stretch flex-grow focus-within:z-10">
         <%= f.text_field :name, placeholder: 'Sleutelnaam', class: 'focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300' %>

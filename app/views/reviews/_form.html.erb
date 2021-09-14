@@ -1,24 +1,18 @@
 <%= f.hidden_field :beer_id %>
 
-<div class="sm:col-span-6">
-  <%= f.label "Je review", class: 'block text-sm font-medium text-gray-700' %>
-  <div class="mt-1">
-    <%= f.rich_text_area :actiontext_description, placeholder: 'Wat vonden we ervan?', class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md' %>
-  </div>
+<%= f.label "Je review", class: label_classes %>
+<div class="mt-1">
+  <%= f.rich_text_area :actiontext_description, placeholder: 'Wat vonden we ervan?', class: input_classes %>
 </div>
 
-<div class="sm:col-span-6">
-  <%= f.label :Cijfer, class: 'block text-sm font-medium text-gray-700' %>
-  <div class="mt-1">
-    <%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {}, { class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md' } %>
-  </div>
+<%= f.label :Cijfer, class: label_classes %>
+<div class="mt-1">
+  <%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {}, { class: input_classes } %>
 </div>
 
-<div class="sm:col-span-6">
-  <%= f.label :Proefdatum, class: 'block text-sm font-medium text-gray-700' %>
-  <div class="mt-1">
-    <%= f.date_field :proefdatum, class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md' %>
-  </div>
+<%= f.label :Proefdatum, class: label_classes %>
+<div class="mt-1">
+  <%= f.date_field :proefdatum, class: input_classes %>
 </div>
 
-<%= f.submit "Opslaan", class: "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" %>
+<%= f.submit "Opslaan", class: submit_classes %>
