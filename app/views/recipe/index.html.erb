@@ -12,7 +12,7 @@
       <th>Bijgewerkt op</th>
     </tr>
   </thead>
-  <%= will_paginate @recipes %>
+  <%== pagy_nav(@pagy) %>
   <tbody>
     <% @recipes.each do |recipe| %>
       <tr data-link="<%= recipe_path(recipe) %>">
@@ -24,6 +24,6 @@
       </tr>
     <% end %>
   </tbody>
-  <%= will_paginate @recipes %>
+  <%== pagy_nav(@pagy) %>
 </table>
 <%= link_to 'Schrijf een recept!', new_recipe_path, class: 'btn btn-block btn-primary' %>

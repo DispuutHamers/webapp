@@ -166,6 +166,7 @@ GEM
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (4.11.0)
     paper_trail (12.0.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
@@ -325,7 +326,6 @@ GEM
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    will_paginate (3.3.0)
     wine_bouncer (1.0.4)
       doorkeeper (>= 1.4, < 6.0)
       grape (>= 0.10, < 1.3)
@@ -353,6 +353,7 @@ DEPENDENCIES
   minidusen
   mysql2
   net-http-persistent
+  pagy (~> 4.8)
   paper_trail
   paperclip
   paranoia
@@ -384,7 +385,6 @@ DEPENDENCIES
   web-console
   webpacker
   whenever
-  will_paginate
   wine_bouncer
 
 BUNDLED WITH

@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <%= will_paginate %>
+    <%== pagy_nav(@pagy) %>
   </div>
   <div class="col-md-6">
     <div class="pagination">
@@ -52,12 +52,12 @@
       <% review_count_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
     <% end %>
 
-    <th><%= link_to "Naam" + name_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :name, order: ordering}) %></th>
-    <th><%= link_to "Soort" + soort_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :soort, order: ordering}) %></th>
-    <th><%= link_to "Cijfer" + grade_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :grade, order: ordering}) %></th>
-    <th><%= link_to "Brouwer" + brewer_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :brewer, order: ordering}) %></th>
-    <th><%= link_to "Land" + country_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :country, order: ordering}) %></th>
-    <th><%= link_to "Aantal reviews" + review_count_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :review_count, order: ordering}) %></th>
+    <th><%= link_to "Naam" + name_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({ sort: :name, order: ordering }) %></th>
+    <th><%= link_to "Soort" + soort_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({ sort: :soort, order: ordering }) %></th>
+    <th><%= link_to "Cijfer" + grade_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({ sort: :grade, order: ordering }) %></th>
+    <th><%= link_to "Brouwer" + brewer_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({ sort: :brewer, order: ordering }) %></th>
+    <th><%= link_to "Land" + country_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({ sort: :country, order: ordering }) %></th>
+    <th><%= link_to "Aantal reviews" + review_count_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({ sort: :review_count, order: ordering }) %></th>
   </tr>
   </thead>
   <tbody>

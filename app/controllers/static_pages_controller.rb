@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
     return render 'frontpage' unless current_user&.active?
 
     @quote = current_user.quotes.build
-    @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
+    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
     @next_event = Event.upcoming.order(date: :asc).first
     @trail = PaperTrail::Version.includes(:item).last(4).reverse
     @blogitems = Blogitem.last(4).reverse
@@ -25,7 +25,9 @@ class StaticPagesController < ApplicationController
   end
 
   def trail
-    @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+    @pagy, @trail = pagy(PaperTrail::Version.includes(:item).all.order(created_at: "DESC"),
+                         page: params[:page],
+                         items: 20)
     breadcrumb 'Log', trail_path
   end
 
