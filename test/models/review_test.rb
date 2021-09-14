@@ -5,7 +5,7 @@ class ReviewTest < ActiveSupport::TestCase
     @user = users(:one)
     # New beer to rule out existing reviews interfering with our test.
     @beer = Beer.new(name: "Testbier")
-    @review = Review.new(beer: @beer, user: @user, rating: 8, actiontext_description: "Goed bier.")
+    @review = Review.new(beer: @beer, user: @user, rating: 8, description: "Goed bier.")
   end
 
   test 'valid review' do
