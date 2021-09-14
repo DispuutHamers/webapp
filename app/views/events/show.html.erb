@@ -2,184 +2,148 @@
   <%= @event.title %>
 <% end %>
 
-<div class="row">
-
-  <div class="col-md-8">
-    <p>
-      <i class="fas fa-clock fa-fw"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-      <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
-    </p>
-    <% if @event.location != nil and @event.location.length > 1 %>
-      <p><i class="fa fa-map-marker fa-fw"></i> <%= @event.location %></p>
-    <% end %>
-    <p>
-      <% if @event.beschrijving.present? %>
-        <%= markdown(@event.beschrijving).html_safe %>
-      <% else %>
-        <%= @event.description %>
-      <% end %>
-    </p>
-  </div>
-
-  <div class="col-md-4 info-panel">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <% if @event.attendance %>
-          <p>
-            <i class="fa fa-exclamation-triangle fa-fw"></i> Op deze activiteit word je verwacht aanwezig te zijn.
-          </p>
-        <% end %>
-
-        <% if @event.deadline %>
-          <p data-toggle="tooltip" data-placement="left" title="Deadline">
-            <i class="fas fa-stopwatch fa-fw"></i> <%= @event.deadline.strftime('%d-%m-%Y %H:%M') %>
-          </p>
-        <% end %>
-
-        <% if @event.user %>
-          <p data-toggle="tooltip" data-placement="left" title="Georganiseerd door">
-            <i class="fas fa-user-circle fa-fw"></i>
-            <%= link_to @event.user.name, @event.user %>
-          </p>
-        <% end %>
-
-        <% if @event.usergroup %>
-          <p data-toggle="tooltip" data-placement="left" data-html="true" title="<b>Bijbehorende groep:</b><br><% @event.usergroup.users.each do |user| %><%= user.name %><br><% end %>">
-            <i class="fas fa-users fa-fw"></i>
-            <%= @event.usergroup.name %>
-          </p>
-        <% end %>
-
-        <% if @event.public? %>
-          <p>
-            <i class="fas fa-globe-europe fa-fw"></i> Deze activiteit is publiek.
-          </p>
-        <% end %>
-
-        <hr>
-
-        <h4>Aanwezig <span class="text-muted small"><%= @event.signups.where(status: true).count %></span></h4>
-        <ul class="signup-list">
-          <% @event.signups.where(status: true).each do |s| %>
-            <li><%= s.user.name %>
-              <% if s.reason %>
-                <% if s.reason %>
-                  <span class="text-muted"><%= s.reason %></span>
+<div class="flex-grow w-full max-w-7md mx-auto md:px-8 lg:flex">
+  <div class="flex-1 min-w-0 bg-white md:flex">
+    <div class="border-b border-gray-200 md:border-b-0 bg-white lg:min-w-0 lg:flex-1">
+      <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
+        <div class="relative h-full">
+          <div class="border-b border-gray-200 mb-2 pb-2">
+            <div class="flex items-center justify-between">
+              <div>
+                <i class="fas fa-clock fa-fw"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+                <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
+              </div>
+              <div class="flex items-center justify-between">
+                <% if @event.public? %>
+                  <%= link_to @event.invitation_link, class: "mx-2", target: "_blank" do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:stroke-current hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  <% end %>
                 <% end %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
-            <%= f.hidden_field :event_id %>
-            <%= f.hidden_field :status %>
-            <div class="input-group input-group-sm">
-              <%= f.text_field :reason, placeholder: "Opmerkingen?", class: 'form-control' %>
-              <span class="input-group-btn">
-            <%= f.submit 'Aanwezig', class: 'btn btn-default' %>
-              </span>
-            </div>
-          <% end %>
-        <% else %>
-          <button type="button" class="btn btn-sm btn-default btn-block" disabled>De inschrijving is gesloten.</button>
-        <% end %>
-
-        <hr>
-
-        <h4>Afwezig <span class="text-muted small"><%= @event.signups.where(status: false).count %></span></h4>
-        <ul class="signup-list">
-          <% @event.signups.where(status: false).each do |s| %>
-            <li>
-              <%= s.user.name %>
-              <% if s.reason %>
-                <span class="text-muted"><%= s.reason %></span>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-        <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: "form-inline"} do |f| %>
-            <%= f.hidden_field :event_id %>
-            <%= f.hidden_field :status %>
-            <div class="input-group input-group-sm">
-              <%= f.text_field :reason, placeholder: "Waarom niet?", class: 'form-control' %>
-              <span class="input-group-btn">
-              <%= f.submit 'Afwezig', class: 'btn btn-sm btn-default' %>
-              </span>
-            </div>
-          <% end %>
-        <% else %>
-          <button type="button" class="btn btn-sm btn-default btn-block" disabled>De inschrijving is gesloten.</button>
-        <% end %>
-
-        <hr>
-
-        <% if @event.public? || @event.external_signups.any? %>
-          <h4>Plebs <span class="text-muted small"><%= @event.external_signups.count %></span></h4>
-          <ul class="signup-list">
-            <%- @event.external_signups.each do |s| %>
-              <li>
-                <%= "#{s.first_name} #{s.last_name} (#{s.email})" %>
-                <% if s.note %>
-                  <span><%= s.note %></span>
+                <%= link_to edit_event_path(@event), class: 'mx-2' do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:stroke-current hover:text-hamers-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                  </svg>
                 <% end %>
-              </li>
-            <% end %>
-          </ul>
-          <hr>
-        <% end %>
-
-        <% if @unknown.any? %>
-          <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
-          <% if @event.usergroup %>
-            <p class="text-muted small">Omdat deze activiteit een bijbehorende groep heeft worden alleen onbekenden uit die groep weergegeven. </p>
-          <% end %>
-          <div class="clearfix">
-            <%- @unknown.each do |s| %>
-              <%= link_to gravatar_for(s), s, class: "small-profile-picture" %>
-            <% end %>
+                <% if @event.open? %>
+                  <%= link_to reminder_path(@event), class: 'mx-2' do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:stroke-current hover:text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                    </svg>
+                  <% end %>
+                <% end %>
+                <% if current_user.admin? %>
+                  <%= link_to @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'mx-2' do %>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:stroke-current hover:text-hamers-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
-          <hr>
-        <% end %>
 
-        <div class="btn-group btn-group-sm btn-group-vertical">
-          <% if @event.public? %>
-            <%= link_to @event.invitation_link, class: "btn btn-default", target: "_blank" do %>
-              <i class="fas fa-link"></i> Plebuitnodiglink
-            <% end %>
+          <div>
+            <%= @event.description %>
+          </div>
 
-          <% end %>
-          <%= link_to edit_event_path(@event), class: 'btn btn-default' do %>
-            <i class="fas fa-pencil-alt"></i> Wijzig activiteit
-          <% end %>
           <% if @event.open? %>
-            <%= link_to reminder_path(@event), class: 'btn btn-default' do %>
-              <i class="fa fa-bell"></i> Herinner Hamers
-            <% end %>
+            <div class="flex w-full border-t border-gray-200 mt-2 pt-2">
+              <%= form_for @event.signups.new(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
+                <div class="flex w-full justify-between items-center">
+                  <div class="border w-1/2 border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600">
+                    <label for="reason" class="block text-xs font-medium text-gray-900">Opmerkingen</label>
+                    <%= f.text_field :reason, class: "block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm" %>
+                  </div>
+                  <%= f.hidden_field :event_id, value: @event.id %>
+                  <%= f.submit 'Aanwezig', class: 'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' %>
+                  <%= f.submit 'Afwezig', class: 'inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500' %>
+                </div>
+              <% end %>
+            </div>
+            <p class="text-center">
+              Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %>
+            </p>
           <% end %>
-          <% if current_user.admin? %>
-            <%= link_to @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, :class => 'btn btn-default' do %>
-              <i class="far fa-trash-alt"></i> Verwijder activiteit
-            <% end %>
+
+          <% if @event.location.present? %>
+            <div class="border-t border-gray-200 mt-2 pt-2">
+              <p><i class="fa fa-map-marker fa-fw"></i> <%= @event.location %></p>
+              <div class="embed-responsive embed-responsive-4by3">
+                <iframe
+                  class="embed-responsive-item w-full"
+                  height="266"
+                  style="border:0"
+                  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>" allowfullscreen>
+                </iframe>
+              </div>
+            </div>
           <% end %>
         </div>
+      </div>
+    </div>
 
-        <hr>
+    <div
+      class="border-gray-200 md:flex-shrink-0 md:w-64 md:border-l md:border-gray-200 bg-white">
+      <div class="h-full pl-4 pr-6 md:pl-0">
+        <div class="h-full relative" style="min-height: 12rem;">
+          <div class="mt-6 mx-3 gap-y-6 gap-x-4">
+            <h4>Aanwezig <span class="text-muted small"><%= @event.signups.where(status: true).count %></span></h4>
+            <ul role="list" class="divide-y divide-gray-200">
+              <% @event.signups.where(status: true).each do |s| %>
+                <li class="py-4 flex">
+                  <%= gravatar_for s.user, class: "h-6 w-6 rounded-full" %>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900"><%= s.user.name %></p>
+                    <p class="text-sm text-gray-500"><%= s.reason %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
 
-        <% if @event.location %>
-          <div class="embed-responsive embed-responsive-4by3">
-            <iframe
-              class="embed-responsive-item"
-              width="300"
-              height="266"
-              style="border:0"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>" allowfullscreen>
-            </iframe>
+            <h4>Afwezig <span class="text-muted small"><%= @event.signups.where(status: false).count %></span></h4>
+            <ul role="list" class="divide-y divide-gray-200">
+              <% @event.signups.where(status: false).each do |s| %>
+                <li class="py-4 flex">
+                  <%= gravatar_for s.user, class: "h-6 w-6 rounded-full" %>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900"><%= s.user.name %></p>
+                    <p class="text-sm text-gray-500"><%= s.reason %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+
+            <% if @event.public? %>
+              <h4>Plebs <span class="text-muted small"><%= @event.external_signups.count %></span></h4>
+              <ul role="list" class="divide-y divide-gray-200">
+                <% @event.external_signups.each do |s| %>
+                  <li class="py-4 flex">
+                    <%= gravatar_for_email s.email, class: "h-6 w-6 rounded-full" %>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900"><%= "#{s.first_name} #{s.last_name}" %></p>
+                      <p class="text-sm text-gray-500"><%= s.note %></p>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
+
+            <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
+            <ul role="list" class="divide-y divide-gray-200">
+              <% @unknown.each do |s| %>
+                <li class="py-4 flex">
+                  <%= gravatar_for s, class: "h-6 w-6 rounded-full" %>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-gray-900"><%= s.name %></p>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
-
 </div>

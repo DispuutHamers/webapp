@@ -21,14 +21,11 @@ class SignupsController < ApplicationController
   # POST /signups
   # POST /signups.json
   def create
-    result = do_signup(current_user)
-    if result
-      flash[:success] = 'Je staat erbij!'
-      redirect_to result
-    else
-      flash[:error] = 'De deadline is al verstreken of er is geen reden opgegeven'
-      redirect_to root_path
-    end
+    event = Event.find(signup_params[:event_id])
+    current_user.signup(event, params[:commit] == "Aanwezig", signup_params[:reason])
+
+    flash[:success] = 'Je staat erbij!'
+    redirect_to event
   end
 
   # PATCH/PUT /signups/1
