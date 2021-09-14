@@ -17,11 +17,7 @@
         </h4>
 
         <p>
-        <% if r.actiontext_description.present? %>
-          <%= r.actiontext_description %>
-        <% else %>
-          <i><%= simple_format(r.description) %></i>
-        <% end %>
+          <%= r.description %>
         </p>
 
         <p>

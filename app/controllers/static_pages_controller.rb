@@ -1,6 +1,6 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
-  before_action :ilid?, only: %i[trail revert]
+  before_action :lid?, only: %i[trail revert]
   layout 'application_public', except: :trail
 
   def home

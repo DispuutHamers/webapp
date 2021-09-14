@@ -13,11 +13,7 @@
       <p><i class="fa fa-map-marker fa-fw"></i> <%= @event.location %></p>
     <% end %>
     <p>
-      <% if @event.beschrijving.present? %>
-        <%= markdown(@event.beschrijving).html_safe %>
-      <% else %>
-        <%= @event.description %>
-      <% end %>
+      <%= @event.description %>
     </p>
   </div>
 
@@ -44,7 +40,9 @@
         <% end %>
 
         <% if @event.usergroup %>
-          <p data-toggle="tooltip" data-placement="left" data-html="true" title="<b>Bijbehorende groep:</b><br><% @event.usergroup.users.each do |user| %><%= user.name %><br><% end %>">
+          <p data-toggle="tooltip" data-placement="left" data-html="true" title="<b>Bijbehorende groep:</b><br>
+            <% @event.usergroup.users.each do |user| %><%= user.name %><br>
+            <% end %>">
             <i class="fas fa-users fa-fw"></i>
             <%= @event.usergroup.name %>
           </p>
@@ -71,7 +69,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: {class: "form-inline"} do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "form-inline" } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">
@@ -99,7 +97,7 @@
           <% end %>
         </ul>
         <% if @event.open? %>
-          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: {class: "form-inline"} do |f| %>
+          <%= form_for @event.signups.build(event_id: @event.id, user_id: current_user.id, status: 0), html: { class: "form-inline" } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
             <div class="input-group input-group-sm">

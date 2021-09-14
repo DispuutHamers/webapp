@@ -32,7 +32,7 @@ module ParamsHelper
   end
 
   def review_params
-    params.require(:review).permit(:user_id, :beer_id, :description, :actiontext_description, :rating, :proefdatum)
+    params.require(:review).permit(:user_id, :beer_id, :description, :description, :rating, :proefdatum)
   end
 
   def micropost_params
@@ -40,7 +40,7 @@ module ParamsHelper
   end
 
   def event_params
-    params.require(:event).permit(:end_time, :deadline, :beschrijving, :public, :title, :date, :location, :description, :usergroup_id)
+    params.require(:event).permit(:end_time, :deadline, :public, :title, :date, :location, :description, :usergroup_id)
   end
 
   def beer_params
@@ -52,7 +52,7 @@ module ParamsHelper
   end
 
   def meeting_params
-    params.require(:meeting).permit(:agenda, :notes, :onderwerp, :date, :actiontext_notes, :chairman_id, :secretary_id, user_ids: [])
+    params.require(:meeting).permit(:agenda, :onderwerp, :date, :notes, :chairman_id, :secretary_id, user_ids: [])
   end
 
   def sticker_params
