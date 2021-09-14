@@ -9,6 +9,12 @@ class Review < ActiveRecord::Base
   after_initialize :set_proefdatum
 
   has_rich_text :actiontext_description
+  has_rich_text :description
+  
+  before_save do
+    self.description = self.actiontext_description
+    self.actiontext_description.destroy
+  end
 
   scope :with_user, -> { includes(:user) }
 

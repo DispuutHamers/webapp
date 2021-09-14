@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_201546) do
+ActiveRecord::Schema.define(version: 2021_09_14_134649) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -268,7 +268,6 @@ ActiveRecord::Schema.define(version: 2021_09_13_201546) do
   create_table "reviews", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "beer_id"
     t.integer "user_id"
-    t.text "description"
     t.integer "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
