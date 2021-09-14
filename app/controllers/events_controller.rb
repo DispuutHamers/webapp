@@ -45,7 +45,8 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    breadcrumb @event.title, edit_event_path(@event)
+    breadcrumb @event.title, event_path(@event)
+    breadcrumb "Aanpassen", edit_event_path(@event)
   end
 
   # POST /events
