@@ -2,7 +2,7 @@
   <div class="-mt-px w-0 flex-1 flex">
     <% if @pagy.prev -%>
       <a href="<%= pagy_url_for(@pagy, @pagy.prev) %>" class="page prev cursor-pointer group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-        <%=  heroicon('arrow-narrow-left', class_name: "mr-3 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500") %>
+        <%= heroicon('arrow-narrow-left', class_name: "mr-3 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500") %>
         Vorige
       </a>
     <% else -%>
@@ -24,8 +24,8 @@
           <%= item %>
         </span>
       <% elsif item == :gap %>
-        <span class="page gap">
-        TODO
+        <span class="page gap border-transparent text-gray-500 border-t-2 px-4 inline-flex items-center text-sm font-medium">
+          ...
         </span>
       <% end -%>
     <% end %>
