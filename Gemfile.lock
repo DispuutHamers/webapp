@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    any_login (1.4.4)
+      rails (>= 4.2.7)
     ast (2.4.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -364,6 +366,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  any_login
   binding_of_caller
   brakeman
   bullet

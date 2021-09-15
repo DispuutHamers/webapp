@@ -60,6 +60,7 @@ group :production do
 end
 
 group :development do
+  gem 'any_login'
   gem "brakeman", require: false
   gem 'web-console'
   gem 'pry'

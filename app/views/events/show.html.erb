@@ -91,10 +91,15 @@
       <div class="h-full pl-4 pr-6 md:pl-0">
         <div class="h-full relative" style="min-height: 12rem;">
           <div class="mt-6 mx-3 gap-y-6 gap-x-4">
-            <h4>Aanwezig <span class="text-muted small"><%= @event.signups.where(status: true).count %></span></h4>
-            <ul role="list" class="divide-y divide-gray-200">
+            <p class="flex w-full mx-5 justify-between">
+              <span class="font-semibold">Aanwezig</span>
+              <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                <%= @event.signups.where(status: true).count %>
+              </span>
+            </p>
+            <ul role="list" class="mb-2">
               <% @event.signups.where(status: true).each do |s| %>
-                <li class="py-4 flex">
+                <li class="flex py-1">
                   <%= gravatar_for s.user, class: "h-6 w-6 rounded-full" %>
                   <div class="ml-3">
                     <p class="text-sm font-medium text-gray-900"><%= s.user.name %></p>
@@ -104,10 +109,15 @@
               <% end %>
             </ul>
 
-            <h4>Afwezig <span class="text-muted small"><%= @event.signups.where(status: false).count %></span></h4>
-            <ul role="list" class="divide-y divide-gray-200">
+            <p class="flex w-full mx-5 justify-between">
+              <span class="font-semibold">Afwezig</span>
+              <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
+                <%= @event.signups.where(status: false).count %>
+              </span>
+            </p>
+            <ul role="list" class="mb-2">
               <% @event.signups.where(status: false).each do |s| %>
-                <li class="py-4 flex">
+                <li class="py-1 flex">
                   <%= gravatar_for s.user, class: "h-6 w-6 rounded-full" %>
                   <div class="ml-3">
                     <p class="text-sm font-medium text-gray-900"><%= s.user.name %></p>
@@ -118,10 +128,15 @@
             </ul>
 
             <% if @event.public? %>
-              <h4>Plebs <span class="text-muted small"><%= @event.external_signups.count %></span></h4>
-              <ul role="list" class="divide-y divide-gray-200">
+              <p class="flex w-full mx-5 justify-between">
+                <span class="font-semibold">Plebs</span>
+                <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                  <%= @event.external_signups.count %>
+                </span>
+              </p>
+              <ul role="list" class="mb-2">
                 <% @event.external_signups.each do |s| %>
-                  <li class="py-4 flex">
+                  <li class="py-1 flex">
                     <%= gravatar_for_email s.email, class: "h-6 w-6 rounded-full" %>
                     <div class="ml-3">
                       <p class="text-sm font-medium text-gray-900"><%= "#{s.first_name} #{s.last_name}" %></p>
@@ -132,17 +147,24 @@
               </ul>
             <% end %>
 
-            <h4>Onbekend <span class="text-muted small"><%= @unknown.count %></span></h4>
-            <ul role="list" class="divide-y divide-gray-200">
-              <% @unknown.each do |s| %>
-                <li class="py-4 flex">
-                  <%= gravatar_for s, class: "h-6 w-6 rounded-full" %>
-                  <div class="ml-3">
-                    <p class="text-sm font-medium text-gray-900"><%= s.name %></p>
-                  </div>
-                </li>
-              <% end %>
-            </ul>
+            <% if @unknown.any? %>
+              <p class="flex w-full mx-5 justify-between">
+                <span class="font-semibold">Onbekend</span>
+                <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+                  <%= @unknown.count %>
+                </span>
+              </p>
+              <ul role="list" class="mb-2">
+                <% @unknown.each do |s| %>
+                  <li class="py-1 flex">
+                    <%= gravatar_for s, class: "h-6 w-6 rounded-full" %>
+                    <div class="ml-3">
+                      <p class="text-sm font-medium text-gray-900"><%= s.name %></p>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            <% end %>
           </div>
         </div>
       </div>
