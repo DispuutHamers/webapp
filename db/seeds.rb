@@ -53,8 +53,8 @@ Quote.create!(user_id: 2, text: "Het mag ook een hele mooie, goed schoongemaakte
 Quote.create!(user_id: 3, text: "Ik hou wel van enorme lullen", reporter_id: 1)
 
 # Create beers
-Beer.create(name: "Leffe Blond", soort: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
-Beer.create(name: "Abt 12", soort: "Abbey Ale", brewer: "St. Bernardus", country: "Nederland", percentage: "10 %")
+Beer.create(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+Beer.create(name: "Abt 12", kind: "Abbey Ale", brewer: "St. Bernardus", country: "Nederland", percentage: "10 %")
 
 # Create reviews
 Review.create(user_id: 1, beer_id: 1, rating: 6, description: "Wel okay.")
