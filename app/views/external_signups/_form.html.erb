@@ -1,39 +1,62 @@
-<%= form_for @external_signup, url: create_external_signup_event_path(invitation_code: @invitation_code), html: {class: "form-horizontal"} do |f| %>
+<div class="mx-auto w-full max-w-sm lg:w-96">
+  <div>
+    <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+      Aanmelden
+    </h2>
+  </div>
+
   <% if @external_signup.errors.any? %>
     <div id="error_explanation">
       <ul>
         <% @external_signup.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <li><%= msg %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :first_name, "Voornaam", class: 'col-sm-3' %>
-    <div class="col-sm-9">
-      <%= f.text_field :first_name, class: "form-control" %>
+  <div class="mt-8">
+    <div class="mt-6">
+      <%= form_for @external_signup, url: create_external_signup_event_path(invitation_code: @invitation_code), html: {class: "space-y-6"} do |f| %>
+        <div>
+          <label for="first_name" class="block text-sm font-medium text-gray-700">
+            Voornaam
+          </label>
+          <div class="mt-1">
+          <%= f.text_field :first_name, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div>
+          <label for="last_name" class="block text-sm font-medium text-gray-700">
+            Achternaam
+          </label>
+          <div class="mt-1">
+          <%= f.text_field :last_name, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">
+            Email adres
+          </label>
+          <div class="mt-1">
+          <%= f.email_field :email, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div>
+          <label for="note" class="block text-sm font-medium text-gray-700">
+            Opmerkingen
+          </label>
+          <div class="mt-1">
+          <%= f.text_area :note, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+        </div>
+
+        <div class="pt-4">
+          <button type="submit"
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Aanmelden
+          </button>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="form-group">
-    <%= f.label :last_name, "Achternaam", class: 'col-sm-3' %>
-    <div class="col-sm-9">
-      <%= f.text_field :last_name, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :email, "E-mailadres", class: 'col-sm-3' %>
-    <div class="col-sm-9">
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :note, "Opmerkingen", class: 'col-sm-3' %>
-    <div class="col-sm-9">
-      <%= f.text_area :note, class: 'form-control' %>
-    </div>
-  </div>
-<div class="col-sm-9 col-sm-offset-3">
-  <%= f.submit :Verstuur, class: 'btn btn-primary' %>
 </div>
-<% end %>

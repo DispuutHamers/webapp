@@ -311,7 +311,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     stackprof (0.2.17)
-    switch_user (1.5.4)
     tailwindcss-rails-webpacker (0.1.2)
       rails (>= 6.0.0)
     terrapin (0.6.0)
@@ -410,7 +409,6 @@ DEPENDENCIES
   sprockets
   sqlite3
   stackprof
-  switch_user
   tailwindcss-rails-webpacker (~> 0.1.2)
   therubyracer
   turbo-rails
