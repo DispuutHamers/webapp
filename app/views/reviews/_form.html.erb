@@ -1,28 +1,12 @@
 <%= f.hidden_field :beer_id %>
 
-<div class="form-group">
-  <%= f.label "Je review", class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
-    <%= f.rich_text_area :actiontext_description, placeholder: 'Wat vonden we ervan?', class: 'form-control' %>
-  </div>
-</div>
+<%= f.label "Je review", class: label_classes %>
+<%= f.rich_text_area :actiontext_description, placeholder: 'Wat vonden we ervan?', class: input_classes %>
 
-<div class="form-group">
-  <%= f.label :Cijfer, class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
-    <%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {}, {class: 'form-control'} %>
-  </div>
-</div>
+<%= f.label :Cijfer, class: label_classes %>
+<%= f.select :rating, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], {}, { class: input_classes } %>
 
-<div class="form-group">
-  <%= f.label :Proefdatum, class: 'control-label col-sm-2' %>
-  <div class="col-sm-10">
-    <%= f.date_field :proefdatum, class: 'form-control' %>
-  </div>
-</div>
+<%= f.label :Proefdatum, class: label_classes %>
+<%= f.date_field :proefdatum, class: input_classes %>
 
-<div class="actions">
-  <div class="col-sm-offset-2 col-sm-10">
-    <%= f.submit "Verstuur", class: 'btn btn-primary' %>
-  </div>
-</div>
+<%= f.submit "Opslaan", class: submit_classes %>

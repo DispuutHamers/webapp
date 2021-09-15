@@ -1,4 +1,4 @@
-<%= form_for @beer, html: {class: 'form-horizontal'} do |f| %>
+<%= form_for @beer, html: {class: 'space-y-2 space-y'} do |f| %>
   <% if @beer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@beer.errors.count, 'error') %> prohibited this beer from being saved:</h2>
@@ -11,51 +11,26 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :name, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :picture, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :picture, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :soort, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :soort, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :percentage, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :percentage, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :brewer, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :brewer, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :country, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :country, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :URL, class: 'control-label col-sm-2' %>
-    <div class="col-sm-10">
-      <%= f.text_field :URL, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="actions">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit :Verstuur, class: 'btn btn-primary' %>
-    </div>
-  </div>
+  <%= f.label :name, class: label_classes %>
+  <%= f.text_field :name, class: input_classes %>
+
+  <%= f.label :picture, class: label_classes %>
+  <%= f.text_field :picture, class: input_classes %>
+
+  <%= f.label :soort, class: label_classes %>
+  <%= f.text_field :soort, class: input_classes %>
+
+  <%= f.label :percentage, class: label_classes %>
+  <%= f.text_field :percentage, class: input_classes %>
+
+  <%= f.label :brewer, class: label_classes %>
+  <%= f.text_field :brewer, class: input_classes %>
+
+  <%= f.label :country, class: label_classes %>
+  <%= f.text_field :country, class: input_classes %>
+
+  <%= f.label :URL, class: label_classes %>
+  <%= f.text_field :URL, class: input_classes %>
+
+  <%= f.submit :Verstuur, class: submit_classes %>
 <% end %>

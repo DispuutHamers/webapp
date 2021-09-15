@@ -13,7 +13,7 @@ class Beer < ActiveRecord::Base
     if grade
       return grade.round(2)
     else
-      return "No grade"
+      return "Nog geen cijfer"
     end
   end
 
