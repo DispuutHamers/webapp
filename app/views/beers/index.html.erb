@@ -40,8 +40,8 @@
     <% case params[:sort]
        when "name" %>
       <% name_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% when "soort" %>
-      <% soort_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
+    <% when "kind" %>
+      <% kind_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
     <% when "grade" %>
       <% grade_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
     <% when "brewer" %>
@@ -53,7 +53,7 @@
     <% end %>
 
     <th><%= link_to "Naam" + name_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :name, order: ordering}) %></th>
-    <th><%= link_to "Soort" + soort_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :soort, order: ordering}) %></th>
+    <th><%= link_to "Soort" + kind_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :kind, order: ordering}) %></th>
     <th><%= link_to "Cijfer" + grade_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :grade, order: ordering}) %></th>
     <th><%= link_to "Brouwer" + brewer_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :brewer, order: ordering}) %></th>
     <th><%= link_to "Land" + country_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :country, order: ordering}) %></th>
@@ -74,7 +74,7 @@
     <% end %>
 
     <td><%= link_to beer.name, beer %></td>
-    <td><%= beer.soort %></td>
+    <td><%= beer.kind %></td>
     <td><%= beer.cijfer? %></td>
     <td><%= beer.brewer %></td>
     <td><%= beer.country %></td>

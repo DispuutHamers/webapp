@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BeerTest < ActiveSupport::TestCase
   setup do
-    @beer = Beer.new(name: "Leffe Blond", soort: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+    @beer = Beer.new(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
   end
 
   test 'valid beer' do
@@ -30,11 +30,11 @@ class BeerTest < ActiveSupport::TestCase
     end
   end
 
-  test 'beer has new version when soort changes' do
+  test 'beer has new version when kind changes' do
     with_versioning do
       @beer.save
       assert_difference '@beer.versions.count', 1 do
-        @beer.soort = "Changed soort"
+        @beer.kind = "Changed kind"
         @beer.save
       end
     end
