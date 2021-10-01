@@ -30,7 +30,8 @@ Usergroup.create!(name: "9")
 Usergroup.create!(name: "10")
 
 group = Usergroup.create!(name: "Developer")
-group.logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
+# group.logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png', identify: false)
+# io: File.open(Rails.root.join('app', 'assets', 'images', 'no_image_available.jpg')),
 Usergroup.create!(name: "O-Lid")
 
 # Make users lid
