@@ -23,7 +23,9 @@ import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
+import '@rails/actiontext'
 import 'trix';
+import * as ActiveStorage from "@rails/activestorage"
 import "./application"
 
 Rails.start();
