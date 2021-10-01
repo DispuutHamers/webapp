@@ -21,18 +21,15 @@ end
 Usergroup.create!(name: "Triumviraat")
 Usergroup.create!(name: "2")
 Usergroup.create!(name: "3")
-Usergroup.create!(name: "Lid")
-Usergroup.create!(name: "A-Lid")
+Usergroup.create!(name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
+Usergroup.create!(name: "A-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
 Usergroup.create!(name: "Secretaris-Generaal")
 Usergroup.create!(name: "7")
 Usergroup.create!(name: "8")
 Usergroup.create!(name: "9")
 Usergroup.create!(name: "10")
-
-group = Usergroup.create!(name: "Developer")
-# group.logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png', identify: false)
-# io: File.open(Rails.root.join('app', 'assets', 'images', 'no_image_available.jpg')),
-Usergroup.create!(name: "O-Lid")
+Usergroup.create!(name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
+Usergroup.create!(name: "O-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
 
 # Make users lid
 User.all.each do |user|
