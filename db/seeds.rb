@@ -28,7 +28,9 @@ Usergroup.create!(name: "7")
 Usergroup.create!(name: "8")
 Usergroup.create!(name: "9")
 Usergroup.create!(name: "10")
-Usergroup.create!(name: "Developer")
+
+group = Usergroup.create!(name: "Developer")
+group.logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
 Usergroup.create!(name: "O-Lid")
 
 # Make users lid
