@@ -18,13 +18,13 @@ users.each do |email, options|
 end
 
 # Create groups
-tri = Usergroup.create!(name: "Triumviraat")
-lid = Usergroup.create!(name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
-olid = Usergroup.create!(name: "O-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
-alid = Usergroup.create!(name: "A-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
-devs = Usergroup.create!(name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
-haxer = Usergroup.create!(name: "H4x0rz").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
-poker = Usergroup.create!(name: "Pokerbazen").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/poker.png'), filename: 'poker.png', content_type: 'image/png')
+Usergroup.create!(name: "Triumviraat")
+Usergroup.create!(name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
+Usergroup.create!(name: "O-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
+Usergroup.create!(name: "A-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
+Usergroup.create!(name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
+Usergroup.create!(name: "H4x0rz").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
+Usergroup.create!(name: "Pokerbazen").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/poker.png'), filename: 'poker.png', content_type: 'image/png')
 
 # Make users lid
 User.all.each do |user|
@@ -33,9 +33,9 @@ User.all.each do |user|
 end
 
 # Fill Triumviraat
-Group.create!(user_id: 2, group_id: tri.id)
-Group.create!(user_id: 3, group_id: tri.id)
-Group.create!(user_id: 4, group_id: tri.id)
+Group.create!(user_id: 2, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 3, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 4, group_id: Usergroup.find_by_name("Triumviraat").id)
 
 # Fill the rest of the groups
 Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)
