@@ -2,7 +2,7 @@ class BeerFilter
   include Minidusen::Filter
 
   filter :text do |scope, phrases|
-    columns = [:name, :brewer, :soort]
+    columns = [:name, :brewer, :kind]
     scope.where_like(columns => phrases)
   end
 
@@ -21,8 +21,8 @@ class BeerFilter
     scope.where_like(columns => phrases)
   end
 
-  filter :soort do |scope, phrases|
-    columns = [:soort]
+  filter :kind do |scope, phrases|
+    columns = [:kind]
     scope.where_like(columns => phrases)
   end
 end

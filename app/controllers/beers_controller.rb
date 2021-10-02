@@ -3,8 +3,7 @@ class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
   breadcrumb 'Bieren', :beers_path
-
-  ALLOWED_SORTING_FIELDS = %w[name soort grade brewer country review_count]
+  ALLOWED_SORTING_FIELDS = %w[name kind grade brewer country review_count]
 
   # GET /beers
   # GET /beers.json
