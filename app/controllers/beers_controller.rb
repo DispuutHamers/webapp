@@ -2,6 +2,7 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
+  layout :set_template, only: [:index, :show]
   breadcrumb 'Bieren', :beers_path
   ALLOWED_SORTING_FIELDS = %w[name kind grade brewer country review_count]
 
@@ -25,7 +26,6 @@ class BeersController < ApplicationController
                            items: 16,
                            page: params[:page])
     end
-    render 'beers/index'
   end
 
   # GET /beers/1
@@ -75,5 +75,9 @@ class BeersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_beer
     @beer = Beer.find_by_id!(params[:id])
+  end
+
+  def set_template
+    'application_public' unless current_user&.active?
   end
 end

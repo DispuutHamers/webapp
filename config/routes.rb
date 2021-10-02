@@ -61,9 +61,9 @@ Hamers::Application.routes.draw do
       post '/edit/api_keys/new' => "api_keys#create", as: "api_key"
     end
     member do
-      get :usergroups
       get '/edit/password/' => "users#edit_password", as: "edit_password"
       # patch '/edit/password' => "users#update_password", as: "update_password"
+      get 'edit/usergroups/' => "users#edit_usergroups", as: "edit_usergroups"
     end
   end
 
