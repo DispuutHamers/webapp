@@ -95,6 +95,6 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def lid_since
-    groups.find_by(group_id: usergroups.find_by(name: "Lid").id).created_at
+    groups.find_by(group_id: 4).created_at
   end
 end

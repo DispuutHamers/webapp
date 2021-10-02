@@ -48,6 +48,6 @@ class UsergroupsController < ApplicationController
   private
 
   def set_group
-    @usergroup  ||= Usergroup.find_by_id!(params[:id])
+    @usergroup  ||= Usergroup.find_by_id!(params[:id]).includes(:users)
   end
 end
