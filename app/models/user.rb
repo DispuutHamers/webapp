@@ -33,10 +33,8 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :leden, -> { joins(:usergroups).where(usergroups: { name: "Lid" }) }
   scope :aspiranten, -> { joins(:usergroups).where(usergroups: { name: "A-lid" }) }
   scope :oud, -> { joins(:usergroups).where(usergroups: { name: "O-lid" }) }
-
-  internal_group_ids = Usergroup.where(name: %w[Lid O-lid A-lid]).pluck(:id)
-  scope :extern, -> { where.not(id: Group.where(group_id: internal_group_ids).pluck(:user_id).uniq) }
-  scope :intern, -> { where(id: Group.where(group_id: internal_group_ids).pluck(:user_id).uniq) }
+  scope :extern, -> { where.not(id: Group.where(group_id: Usergroup.where(name: %w[Lid O-lid A-lid]).pluck(:id)).pluck(:user_id).uniq) }
+  scope :intern, -> { where(id: Group.where(group_id: Usergroup.where(name: %w[Lid O-lid A-lid]).pluck(:id)).pluck(:user_id).uniq) }
 
   def active_for_authentication?
     super
