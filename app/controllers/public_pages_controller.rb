@@ -14,11 +14,9 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1
   # GET /public_pages/1.json
   def show
-    raise ActionController::RoutingError.new('Not Found') if params[:id] == "robots"
+    @public_page = PublicPage.where(title: params[:id]).first
+    raise ActionController::RoutingError.new('Not Found') unless @public_page&.public || current_user&.active?
 
-    @public_page = PublicPage.where(id: params[:id]).first
-    redirect_to root_path unless @public_page
-    redirect_to root_path unless @public_page.public && !current_user&.active?
     breadcrumb @public_page.title, public_page_path(@public_page)
   end
 
