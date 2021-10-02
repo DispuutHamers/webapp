@@ -9,6 +9,7 @@ users = {
   'questor@zondersikkel.nl': { name: "Hamers Questor", batch: 3 },
   'oudlid@zondersikkel.nl': { name: "Oud-lid 1", batch: 0 },
   'feut1@zondersikkel.nl': { name: "Feut 1", batch: 4 },
+  'extern@example.com': { name: "External user" }
 }
 
 users.each do |email, options|
@@ -33,19 +34,19 @@ Usergroup.create!(name: "O-Lid")
 
 # Make users lid
 User.all.each do |user|
-  next if [5, 6].include?(user.id)
-  Group.create!(user_id: user.id, group_id: 4)
+  next if [5, 6, 7].include?(user.id)
+  Group.create!(user: user, group_id: Usergroup.find_by_name("Lid").id)
 end
 
 # Fill Triumviraat
-Group.create!(user_id: 2, group_id: 1)
-Group.create!(user_id: 3, group_id: 1)
-Group.create!(user_id: 4, group_id: 1)
+Group.create!(user_id: 2, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 3, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 4, group_id: Usergroup.find_by_name("Triumviraat").id)
 
 # Fill the rest of the groups
-Group.create!(user_id: 1, group_id: 11)
-Group.create!(user_id: 5, group_id: 12)
-Group.create!(user_id: 6, group_id: 5)
+Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)
+Group.create!(user_id: 5, group_id: Usergroup.find_by_name("O-lid").id)
+Group.create!(user_id: 6, group_id: Usergroup.find_by_name("A-lid").id)
 
 # Create quotes
 Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
