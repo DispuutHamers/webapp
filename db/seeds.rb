@@ -19,29 +19,29 @@ users.each do |email, options|
 end
 
 # Create groups
-Usergroup.create!(name: "Triumviraat")
+Usergroup.create!(id: 2, name: "Triumviraat")
 Usergroup.create!(id: 4, name: "Lid")
 Usergroup.create!(id: 12, name: "Oud-leden")
 Usergroup.create!(id: 5, name: "Aspiranten")
-Usergroup.create!(name: "Developer")
-Usergroup.create!(name: "H4x0rz")
+Usergroup.create!(id: 11, name: "Developer")
+Usergroup.create!(id: 17, name: "H4x0rz")
 Usergroup.create!(name: "Pokerbazen")
 
 # Make users lid
 User.all.each do |user|
   next if [5, 6, 7].include?(user.id)
-  Group.create!(user: user, group_id: Usergroup.find_by_name("Lid").id)
+  Group.create!(user: user, group_id: 4)
 end
 
 # Fill Triumviraat
-Group.create!(user_id: 2, group_id: Usergroup.find_by_name("Triumviraat").id)
-Group.create!(user_id: 3, group_id: Usergroup.find_by_name("Triumviraat").id)
-Group.create!(user_id: 4, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 2, group_id: 2)
+Group.create!(user_id: 3, group_id: 2)
+Group.create!(user_id: 4, group_id: 2)
 
 # Fill the rest of the groups
-Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)
-Group.create!(user_id: 5, group_id: Usergroup.find_by_name("Oud-leden").id)
-Group.create!(user_id: 6, group_id: Usergroup.find_by_name("Aspiranten").id)
+Group.create!(user_id: 1, group_id: 11)
+Group.create!(user_id: 5, group_id: 12)
+Group.create!(user_id: 6, group_id: 5)
 
 # Create quotes
 Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
