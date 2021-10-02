@@ -19,7 +19,7 @@ end
 
 # Create groups
 Usergroup.create!(name: "Triumviraat")
-Usergroup.create!(name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
+Usergroup.create!(id: 4, name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
 Usergroup.create!(name: "O-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
 Usergroup.create!(name: "A-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
 Usergroup.create!(name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')

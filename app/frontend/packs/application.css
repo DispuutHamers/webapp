@@ -4,3 +4,4 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'trix/dist/trix';
+@import 'flatpickr/dist/flatpickr';

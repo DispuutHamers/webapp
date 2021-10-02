@@ -22,13 +22,11 @@ import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
-import 'trix/dist/trix.css'
 import 'trix/dist/trix.js'
 import '@rails/actiontext'
 import "./application"
 import * as ActiveStorage from "@rails/activestorage"
 import Flatpickr from 'stimulus-flatpickr'
-require("flatpickr/dist/flatpickr.css")
 
 ActiveStorage.start()
 Rails.start();
