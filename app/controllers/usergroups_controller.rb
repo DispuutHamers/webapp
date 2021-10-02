@@ -13,6 +13,16 @@ class UsergroupsController < ApplicationController
     breadcrumb @usergroup.name, group_path(@usergroup)
   end
 
+  def new
+    @group = Usergroup.new
+    breadcrumb "Groep toevoegen", new_usergroup_path
+  end
+
+  def edit
+    breadcrumb @group.name, group_path(@group)
+    breadcrumb "Aanpassen", edit_usergroup_path(@group)
+  end
+
   def create
     @group = Usergroup.new(usergroup_params)
     if @group.save
