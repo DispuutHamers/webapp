@@ -1,0 +1,82 @@
+<% content_for :title do %>
+  <%= @usergroup.name %>
+<% end %>
+
+<% content_for :subtitle do %>
+  <div class="mt-2 flex items-center text-sm text-gray-400">
+    <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    Aangemaakt op <%= @usergroup.created_at.strftime("%d-%m-%Y") %>
+  </div>
+
+  <div class="mt-2 flex items-center text-sm text-gray-400">
+    <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @usergroup.users.count %> leden
+  </div>
+<% end %>
+
+<h2 class="text-lg font-medium text-gray-900 mb-2">Leden</h2>
+
+<div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
+  <div>
+    <div class="sm:hidden">
+      <label for="tabs" class="sr-only">Select a tab</label>
+      <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
+        <option data-action="click->tabs#change" data-index="0">Huidige leden</option>
+        <option data-action="click->tabs#change" data-index="1">Oude leden</option>
+      </select>
+    </div>
+
+    <div class="hidden sm:block -mt-4">
+      <div class="border-b border-gray-200">
+        <nav class="-mb-px flex space-x-8">
+          <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Huidige leden
+          </button>
+          <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Oude leden
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden" data-tabs-target="panel">
+    <ul role="list" class="mt-5 border-t border-gray-200 divide-y divide-gray-200 sm:mt-0 sm:border-t-0">
+      <% @usergroup.users.each do |user| %>
+        <li>
+          <%= link_to user do %>
+            <div class="flex items-center py-5 px-4 sm:py-6 sm:px-0">
+              <div class="min-w-0 flex-1 flex items-center">
+                <div class="flex-shrink-0">
+                  <img class="h-12 w-12 rounded-full group-hover:opacity-75" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                </div>
+                <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                  <div>
+                    <p class="text-sm font-medium text-purple-600 truncate"><%= user.name %></p>
+                    <p class="mt-2 flex items-center text-sm text-gray-500">
+                      <%= heroicon('mail', style: :solid, class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+                      <span class="truncate"><%= user.email %></span>
+                    </p>
+                  </div>
+                  <div class="hidden md:block">
+                    <div>
+                      <p class="text-sm text-gray-900 mt-4">
+                        Lid sinds <%= Group.find_by(user_id: user.id, group_id: @usergroup.id).created_at.strftime("%d-%m-%Y") %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <%= heroicon('chevron-right', class_name: "h-5 w-5 text-gray-400 group-hover:text-gray-700") %>
+              </div>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="hidden" data-tabs-target="panel">
+    <%= @usergroup.old_members.count %>>
+  </div>
+</div>

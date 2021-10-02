@@ -10,4 +10,8 @@ class Usergroup < ActiveRecord::Base
   def empty?
     Group.where(group_id: id).count.zero?
   end
+
+  def old_members
+    Group.where(group_id: id).with_deleted
+  end
 end

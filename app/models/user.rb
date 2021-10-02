@@ -67,10 +67,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def in_group?(name)
-    usergroups.each do |group|
-      return true if group.name == name.to_s
-    end
-    false
+    usergroups.where(name: name).exists?
   end
 
   def lid?
@@ -95,5 +92,9 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def dev?
     in_group?('Developer')
+  end
+
+  def lid_since
+    groups.find_by(group_id: usergroups.find_by(name: "Lid").id).created_at
   end
 end
