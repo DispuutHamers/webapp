@@ -19,33 +19,28 @@ end
 
 # Create groups
 Usergroup.create!(name: "Triumviraat")
-Usergroup.create!(name: "2")
-Usergroup.create!(name: "3")
-Usergroup.create!(name: "Lid")
-Usergroup.create!(name: "A-Lid")
-Usergroup.create!(name: "Secretaris-Generaal")
-Usergroup.create!(name: "7")
-Usergroup.create!(name: "8")
-Usergroup.create!(name: "9")
-Usergroup.create!(name: "10")
-Usergroup.create!(name: "Developer")
-Usergroup.create!(name: "O-Lid")
+Usergroup.create!(name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
+Usergroup.create!(name: "O-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
+Usergroup.create!(name: "A-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
+Usergroup.create!(name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
+Usergroup.create!(name: "H4x0rz").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
+Usergroup.create!(name: "Pokerbazen").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/poker.png'), filename: 'poker.png', content_type: 'image/png')
 
 # Make users lid
 User.all.each do |user|
   next if [5, 6].include?(user.id)
-  Group.create!(user_id: user.id, group_id: 4)
+  Group.create!(user: user, group_id: Usergroup.find_by_name("Lid").id)
 end
 
 # Fill Triumviraat
-Group.create!(user_id: 2, group_id: 1)
-Group.create!(user_id: 3, group_id: 1)
-Group.create!(user_id: 4, group_id: 1)
+Group.create!(user_id: 2, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 3, group_id: Usergroup.find_by_name("Triumviraat").id)
+Group.create!(user_id: 4, group_id: Usergroup.find_by_name("Triumviraat").id)
 
 # Fill the rest of the groups
-Group.create!(user_id: 1, group_id: 11)
-Group.create!(user_id: 5, group_id: 12)
-Group.create!(user_id: 6, group_id: 5)
+Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)
+Group.create!(user_id: 5, group_id: Usergroup.find_by_name("O-lid").id)
+Group.create!(user_id: 6, group_id: Usergroup.find_by_name("A-lid").id)
 
 # Create quotes
 Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
@@ -53,8 +48,8 @@ Quote.create!(user_id: 2, text: "Het mag ook een hele mooie, goed schoongemaakte
 Quote.create!(user_id: 3, text: "Ik hou wel van enorme lullen", reporter_id: 1)
 
 # Create beers
-Beer.create(name: "Leffe Blond", soort: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
-Beer.create(name: "Abt 12", soort: "Abbey Ale", brewer: "St. Bernardus", country: "Nederland", percentage: "10 %")
+Beer.create(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+Beer.create(name: "Abt 12", kind: "Abbey Ale", brewer: "St. Bernardus", country: "Nederland", percentage: "10 %")
 
 # Create reviews
 Review.create(user_id: 1, beer_id: 1, rating: 6, description: "Wel okay.")
