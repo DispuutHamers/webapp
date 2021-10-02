@@ -10,7 +10,7 @@ module UsersHelper
   end
 
   def self.sunday_ratio_for(user)
-    date = user.groups.where(group_id: 4).first.created_at
+    date = user.lid_since
     drinks = Event.where(attendance: true).where("date > ?", date).where("deadline < ?", Date.today)
     total = 0.0
     sundays = 0.0
@@ -26,7 +26,6 @@ module UsersHelper
   end
 
   def self.missed_drinks_for(user)
-    # date = user.groups.where(group_id: 4).first.created_at
     date = user.lid_since
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     unattended = []
