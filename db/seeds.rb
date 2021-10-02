@@ -20,17 +20,12 @@ end
 
 # Create groups
 Usergroup.create!(name: "Triumviraat")
-Usergroup.create!(name: "2")
-Usergroup.create!(name: "3")
 Usergroup.create!(name: "Lid")
-Usergroup.create!(name: "A-Lid")
-Usergroup.create!(name: "Secretaris-Generaal")
-Usergroup.create!(name: "7")
-Usergroup.create!(name: "8")
-Usergroup.create!(name: "9")
-Usergroup.create!(name: "10")
-Usergroup.create!(name: "Developer")
 Usergroup.create!(name: "O-Lid")
+Usergroup.create!(name: "A-Lid")
+Usergroup.create!(name: "Developer")
+Usergroup.create!(name: "H4x0rz")
+Usergroup.create!(name: "Pokerbazen")
 
 # Make users lid
 User.all.each do |user|
