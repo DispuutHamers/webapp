@@ -40,8 +40,8 @@ Group.create!(user_id: 4, group_id: Usergroup.find_by_name("Triumviraat").id)
 
 # Fill the rest of the groups
 Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)
-Group.create!(user_id: 5, group_id: Usergroup.find_by_name("O-lid").id)
-Group.create!(user_id: 6, group_id: Usergroup.find_by_name("A-lid").id)
+Group.create!(user_id: 5, group_id: Usergroup.find_by_name("Oud-leden").id)
+Group.create!(user_id: 6, group_id: Usergroup.find_by_name("Aspiranten").id)
 
 # Create quotes
 Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
