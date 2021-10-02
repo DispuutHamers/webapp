@@ -11,7 +11,6 @@ last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_
 remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation]
   acts_as_paranoid ignore: [:weight]
   before_save { self.email = email.downcase }
-  #before_save { self.unhashed_invitation_token = self.raw_invitation_token if self.raw_invitation_token.present? }
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes
