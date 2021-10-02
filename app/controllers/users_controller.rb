@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy, :usergroups]
   breadcrumb 'Leden', :users_path
+  layout 'application_public', only: :index_public
 
   def index
     @leden = User.leden
