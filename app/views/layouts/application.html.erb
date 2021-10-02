@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hamers zonder Sikkel</title>
-  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
-  <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hamers zonder Sikkel</title>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
 
-  <%= csrf_meta_tags %>
-</head>
-<body class="h-full">
-<div class="bg-gray-100 min-h-screen h-full">
-  <div class="bg-gray-800 pb-32">
-    <%= render 'layouts/nav' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="h-full">
+    <div class="bg-gray-100 min-h-screen h-full">
+      <div class="bg-gray-800 pb-32">
+        <%= render 'layouts/nav' %>
 
-    <% if content_for?(:title) %>
-      <header class="py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 class="text-3xl font-bold text-white">
-            <%= yield :title %>
-          </h1>
-          <div class="flex">
-            <div class="flex-auto">
-              <%= render 'shared/breadcrumbs' %>
+        <% if content_for?(:title) %>
+          <header class="py-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h1 class="text-3xl font-bold text-white">
+                <%= yield :title %>
+              </h1>
+              <div class="flex">
+                <div class="flex-auto">
+                  <%= render 'shared/breadcrumbs' %>
+                </div>
+                <div class="flex-none"><%= yield :search %></div>
+              </div>
             </div>
-            <div class="flex-none"><%= yield :search %></div>
+          </header>
+        <% end %>
+      </div>
+
+      <main class="-mt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
+            <%= yield %>
           </div>
         </div>
-      </header>
-    <% end %>
-  </div>
+      </main>
 
-  <main class="-mt-32">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-        <%= yield %>
-      </div>
+      <%= render "layouts/footer" %>
     </div>
-  </main>
-
-  <%= render "layouts/footer" %>
-</div>
-<%= render 'layouts/alert' %>
-</body>
+    <%= render 'layouts/alert' %>
+  </body>
 </html>
