@@ -14,6 +14,13 @@ nl:
         phone_number: Telefoonnummer
         password: Wachtwoord
         password_confirmation: Wachtwoordbevestiging
+      beer:
+        brewer: Brouwerij
+        country: Land
+        kind: Soort
+        name: Naam
+        percentage: Percentage
+        picture: Afbeelding
     errors:
       messages:
         record_invalid: 'Validatie mislukt: %{errors}'

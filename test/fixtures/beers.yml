@@ -2,30 +2,30 @@
 
 one:
   name: Leffe Blond
-  soort: Blond
+  kind: Blond
   percentage: 6.6
 
 two:
   name: Hel & Verdoemenis
-  soort: Imperial Stout
+  kind: Imperial Stout
   percentage: 10.0
 
 three:
   name: Zundert
-  soort: Tripel
+  kind: Tripel
   percentage: 8.0
 
 four:
   name: Dikke Lul Drie Bier
-  soort: IPA
+  kind: IPA
   percentage: 5.6
 
 five:
   name: Achel
-  soort: Bruin
+  kind: Bruin
   percentage: 8.0
 
 six:
   name: Oesterstout
-  soort: Imperial Stout
+  kind: Imperial Stout
   percentage: 8.5

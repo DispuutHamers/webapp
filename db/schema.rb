@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_10_01_104737) do
 
   create_table "beers", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255
-    t.string "soort", limit: 255
+    t.string "kind", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "picture", limit: 255
