@@ -20,9 +20,9 @@ end
 
 # Create groups
 Usergroup.create!(name: "Triumviraat")
-Usergroup.create!(name: "Lid")
-Usergroup.create!(name: "O-Lid")
-Usergroup.create!(name: "A-Lid")
+Usergroup.create!(id: 4, name: "Lid")
+Usergroup.create!(id: 12, name: "Oud-leden")
+Usergroup.create!(id: 5, name: "Aspiranten")
 Usergroup.create!(name: "Developer")
 Usergroup.create!(name: "H4x0rz")
 Usergroup.create!(name: "Pokerbazen")
