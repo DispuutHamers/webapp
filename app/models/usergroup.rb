@@ -7,7 +7,7 @@ class Usergroup < ActiveRecord::Base
   has_many :events
   has_one_attached :logo
 
-  validates :signal_url, format: URI::regexp('https')
+  validates :signal_url, format: URI::regexp('https'), allow_blank: true
 
   def empty?
     groups.count.zero?
