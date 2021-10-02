@@ -9,6 +9,7 @@ users = {
   'questor@zondersikkel.nl': { name: "Hamers Questor", batch: 3 },
   'oudlid@zondersikkel.nl': { name: "Oud-lid 1", batch: 0 },
   'feut1@zondersikkel.nl': { name: "Feut 1", batch: 4 },
+  'extern@example.com': { name: "External user" }
 }
 
 users.each do |email, options|
@@ -18,29 +19,24 @@ users.each do |email, options|
 end
 
 # Create groups
-Usergroup.create!(name: "Triumviraat")
-Usergroup.create!(name: "2")
-Usergroup.create!(name: "3")
-Usergroup.create!(name: "Lid")
-Usergroup.create!(name: "A-Lid")
-Usergroup.create!(name: "Secretaris-Generaal")
-Usergroup.create!(name: "7")
-Usergroup.create!(name: "8")
-Usergroup.create!(name: "9")
-Usergroup.create!(name: "10")
-Usergroup.create!(name: "Developer")
-Usergroup.create!(name: "O-Lid")
+Usergroup.create!(id: 2, name: "Triumviraat")
+Usergroup.create!(id: 4, name: "Lid")
+Usergroup.create!(id: 12, name: "Oud-leden")
+Usergroup.create!(id: 5, name: "Aspiranten")
+Usergroup.create!(id: 11, name: "Developer")
+Usergroup.create!(id: 17, name: "H4x0rz")
+Usergroup.create!(name: "Pokerbazen")
 
 # Make users lid
 User.all.each do |user|
-  next if [5, 6].include?(user.id)
-  Group.create!(user_id: user.id, group_id: 4)
+  next if [5, 6, 7].include?(user.id)
+  Group.create!(user: user, group_id: 4)
 end
 
 # Fill Triumviraat
-Group.create!(user_id: 2, group_id: 1)
-Group.create!(user_id: 3, group_id: 1)
-Group.create!(user_id: 4, group_id: 1)
+Group.create!(user_id: 2, group_id: 2)
+Group.create!(user_id: 3, group_id: 2)
+Group.create!(user_id: 4, group_id: 2)
 
 # Fill the rest of the groups
 Group.create!(user_id: 1, group_id: 11)
