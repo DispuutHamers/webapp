@@ -14,8 +14,6 @@
   </div>
 <% end %>
 
-<h2 class="text-lg font-medium text-gray-900 mb-2">Leden</h2>
-
 <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
   <div>
     <div class="sm:hidden">
@@ -41,42 +39,13 @@
   </div>
 
   <div class="hidden" data-tabs-target="panel">
-    <ul role="list" class="mt-5 border-t border-gray-200 divide-y divide-gray-200 sm:mt-0 sm:border-t-0">
-      <% @usergroup.users.each do |user| %>
-        <li>
-          <%= link_to user do %>
-            <div class="flex items-center py-5 px-4 sm:py-6 sm:px-0">
-              <div class="min-w-0 flex-1 flex items-center">
-                <div class="flex-shrink-0">
-                  <img class="h-12 w-12 rounded-full group-hover:opacity-75" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                </div>
-                <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                  <div>
-                    <p class="text-sm font-medium text-purple-600 truncate"><%= user.name %></p>
-                    <p class="mt-2 flex items-center text-sm text-gray-500">
-                      <%= heroicon('mail', style: :solid, class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
-                      <span class="truncate"><%= user.email %></span>
-                    </p>
-                  </div>
-                  <div class="hidden md:block">
-                    <div>
-                      <p class="text-sm text-gray-900 mt-4">
-                        Lid sinds <%= Group.find_by(user_id: user.id, group_id: @usergroup.id).created_at.strftime("%d-%m-%Y") %>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <%= heroicon('chevron-right', class_name: "h-5 w-5 text-gray-400 group-hover:text-gray-700") %>
-              </div>
-            </div>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+    <%= render 'member_list', users: @usergroup.users %>
   </div>
   <div class="hidden" data-tabs-target="panel">
-    <%= @usergroup.old_members.count %>>
+    <% if @usergroup.old_members.any? %>
+      <%= render 'member_list', users: @usergroup.old_members %>
+    <% else %>
+      Er zijn geen oude leden van deze groep.
+    <% end %>
   </div>
 </div>

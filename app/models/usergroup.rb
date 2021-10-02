@@ -8,10 +8,11 @@ class Usergroup < ActiveRecord::Base
   has_one_attached :logo
 
   def empty?
-    Group.where(group_id: id).count.zero?
+    groups.count.zero?
   end
 
   def old_members
-    Group.where(group_id: id).with_deleted
+    user_ids = groups.only_deleted.pluck(:user_id)
+    User.where(id: user_ids)
   end
 end
