@@ -68,7 +68,7 @@ module ParamsHelper
   end
 
   def usergroup_params
-    params.require(:usergroup).permit(:name, :text)
+    params.require(:usergroup).permit(:name, :signal_url)
   end
 
   def configure_permitted_parameters
