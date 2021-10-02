@@ -9,6 +9,7 @@ users = {
   'questor@zondersikkel.nl': { name: "Hamers Questor", batch: 3 },
   'oudlid@zondersikkel.nl': { name: "Oud-lid 1", batch: 0 },
   'feut1@zondersikkel.nl': { name: "Feut 1", batch: 4 },
+  'extern@example.com': { name: "External user" }
 }
 
 users.each do |email, options|
@@ -28,7 +29,7 @@ Usergroup.create!(name: "Pokerbazen").logo.attach(io: File.open('test/fixtures/a
 
 # Make users lid
 User.all.each do |user|
-  next if [5, 6].include?(user.id)
+  next if [5, 6, 7].include?(user.id)
   Group.create!(user: user, group_id: Usergroup.find_by_name("Lid").id)
 end
 
