@@ -11,7 +11,7 @@ class EventsController < ApplicationController
     respond_to do |current_request|
       current_request.html do
         ilid?
-        @past_events = Event.past.order(date: :desc).paginate(page: params[:page])
+        @pagy, @past_events = pagy(Event.past.order(date: :desc), page: params[:page])
         @upcoming_events = Event.upcoming.order(date: :asc)
       end
 

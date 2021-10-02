@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy]
   breadcrumb 'Leden', :users_path
+  layout 'application_public', only: :index_public
 
   def index
     @leden = User.leden
@@ -27,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @quotes = @user.quotes.order('created_at DESC').paginate(page: params[:page])
+    @pagy, @quotes = pagy(@user.quotes.order('created_at DESC'))
     @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
     breadcrumb @user.name, user_path(@user)
   end

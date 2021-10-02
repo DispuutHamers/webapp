@@ -17,11 +17,7 @@
         </h4>
 
         <p>
-        <% if r.actiontext_description.present? %>
-          <%= r.actiontext_description %>
-        <% else %>
-          <i><%= simple_format(r.description) %></i>
-        <% end %>
+          <%= r.description %>
         </p>
 
         <p>
@@ -50,7 +46,7 @@
         <% if current_user&.active? && @beer.picture? %>
           <%= image_tag @beer.picture, class: 'img img-responsive center-block' %>
         <% else %>
-          <img src="https://placehold.it/500x500&text=Geen foto" class="img img-responsive center-block">
+          <img src="https://placehold.co/500x500?text=Geen foto" class="img img-responsive center-block">
         <% end %>
         <table class="table table-hover">
           <tr>
@@ -59,7 +55,7 @@
           </tr>
           <tr>
             <td>Soort:</td>
-            <td><%= @beer.soort %></td>
+            <td><%= @beer.kind %></td>
           </tr>
           <tr>
             <td>ALC:</td>

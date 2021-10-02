@@ -5,6 +5,7 @@ class Usergroup < ActiveRecord::Base
   has_many :groups, foreign_key: 'group_id', dependent: :destroy
   has_many :users, through: :groups
   has_many :events
+  has_one_attached :logo
 
   def empty?
     Group.where(group_id: id).count.zero?

@@ -116,7 +116,7 @@
       <ol class="microposts">
         <%= render partial: 'quotes/quote_stripped', collection: @quotes, as: :quote %>
       </ol>
-      <%= will_paginate @quotes %>
+      <%== pagy_nav(@pagy) %>
     <% end %>
   </div>
 

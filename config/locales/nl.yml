@@ -14,6 +14,13 @@ nl:
         phone_number: Telefoonnummer
         password: Wachtwoord
         password_confirmation: Wachtwoordbevestiging
+      beer:
+        brewer: Brouwerij
+        country: Land
+        kind: Soort
+        name: Naam
+        percentage: Percentage
+        picture: Afbeelding
     errors:
       messages:
         record_invalid: 'Validatie mislukt: %{errors}'
@@ -221,7 +228,3 @@ nl:
       long: "%d %B %Y %H:%M"
       short: "%d %b %H:%M"
     pm: "'s middags"
-
-  will_paginate:
-    previous_label: "&#8592;"
-    next_label: "&#8594;"
