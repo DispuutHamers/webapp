@@ -1111,6 +1111,11 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.4.tgz#ecda5712b61ac852c760d8b3c79c96adca5554e5"
   integrity sha512-eYm8vijH/hpzr/6/1CJ/V/Eb1xQFW2nnUKArb3z+yUWv7HTwj6M7SP957oMjfZjAHU6qpoNc2wQvIxBLWYa/Jg==
 
+"@hotwired/stimulus@>=3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.0.0.tgz#45171e61417af60f0e546665c52fae5b67295cee"
+  integrity sha512-UFIuuf7GjKJoIYromuTmqfzT8gZ8eu5zIB5m2QoEsopymGeN7rfDSTRPyRfwHIqP0x+0vWo4O1LFozw+/sWXxg==
+
 "@hotwired/turbo-rails@^7.0.1":
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/@hotwired/turbo-rails/-/turbo-rails-7.0.1.tgz#d39816eef215e83468fa306a963e7c874ffe70f7"
@@ -7228,12 +7233,12 @@ tablesort@^5.2.1:
   resolved "https://registry.yarnpkg.com/tablesort/-/tablesort-5.2.1.tgz#722f6f8b13062709ac22aa16bc03c126c6ccf558"
   integrity sha512-AmNSrtzyba5Bd+Fm8oJJj/xS2bj5acoHEsDHxER2/4Tzo+5noPORpEsSLT9dI15X2MIuXlNnj+BBQcpMsoeTXQ==
 
-tailwindcss-stimulus-components@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/tailwindcss-stimulus-components/-/tailwindcss-stimulus-components-2.2.2.tgz#aaa03d13a5b701044dc07a82010370712e6d6f08"
-  integrity sha512-JganwGTRXfKbie6iRoZytDbgyB+YK1Cmj8xiatuK8mJqKtdUFv47n+bzszh1RZfWGf9k0dGJ5427k5LC6uxcaA==
+tailwindcss-stimulus-components@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-stimulus-components/-/tailwindcss-stimulus-components-3.0.0.tgz#3bbe3a4cd10003536a85054c318c929059df86ef"
+  integrity sha512-nCqKev2l7i91wbI7/kBB2GSE+QUcqFK9SrLSVxFdoMzPdb+lcqjAkuun/bSAgMAHKn4CbAtPiK72Ajne2Puu9g==
   dependencies:
-    stimulus "^2.0.0"
+    "@hotwired/stimulus" ">=3.0.0"
 
 "tailwindcss@npm:@tailwindcss/postcss7-compat":
   version "2.2.10"

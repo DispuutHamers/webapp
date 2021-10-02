@@ -2,27 +2,19 @@
   Bieren
 <% end %>
 
-<div class="row">
-  <% if current_user&.active? %>
-    <%= link_to 'Voeg bier toe', new_beer_path, :class => 'btn btn-block btn-primary' %>
+<% content_for :search do %>
+  <%= form_tag beers_path, method: :get do %>
+    <span class="relative z-0 inline-flex shadow-sm rounded-md">
+        <%= text_field_tag :search, @sp,
+                           placeholder: 'Vind hier, je bier.',
+                           class: 'form-control shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-l-md' %>
+      <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
+      </span>
   <% end %>
+<% end %>
 
-  <div class="col-md-6">
-    <div class="pagination">
-      <div class="pagination">
-        <%= form_tag beers_path, class: "form-horizontal", method: :get do %>
-          <div class="input-group" id="adv-search">
-            <%= text_field_tag :search, @sp, class: 'form-control', placeholder: 'Vind hier, je bier' %>
-            <div class="input-group-btn">
-              <div class="btn-group" role="group">
-                <%= submit_tag "Zoek", class: "btn btn-primary" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
+<% if @pagy.page == 1 %>
+  <%= link_to 'Voeg bier toe', new_beer_path %>
+  <% end %>
 
 <%= render 'table' %>
