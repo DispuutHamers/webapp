@@ -3,9 +3,9 @@
 one:
   content: MyText
   title: MyString
-  public: false
+  public: true
 
 two:
-  content: MyText
-  title: MyString
+  content: MyText2
+  title: MyString2
   public: false
