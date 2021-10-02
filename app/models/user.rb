@@ -30,11 +30,11 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   validates :name, presence: true, length: {maximum: 50}, uniqueness: true
   validates :email, presence: true, format: Devise.email_regexp, uniqueness: {case_sensitive: false}
 
-  scope :leden, -> { joins(:usergroups).where(usergroups: { name: "Lid" }) }
-  scope :aspiranten, -> { joins(:usergroups).where(usergroups: { name: "A-lid" }) }
-  scope :oud, -> { joins(:usergroups).where(usergroups: { name: "O-lid" }) }
-  scope :extern, -> { where.not(id: Group.where(group_id: Usergroup.where(name: %w[Lid O-lid A-lid]).pluck(:id)).pluck(:user_id).uniq) }
-  scope :intern, -> { where(id: Group.where(group_id: Usergroup.where(name: %w[Lid O-lid A-lid]).pluck(:id)).pluck(:user_id).uniq) }
+  scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
+  scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
+  scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
+  scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
+  scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
 
   def active_for_authentication?
     super

@@ -1,6 +1,6 @@
 class UsergroupsController < ApplicationController
   before_action :logged_in?
-  before_action :admin_user?, only: [:create, :edit, :update, :destroy]
+  before_action :admin_user?, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Groepen', :groups_path
 
@@ -21,9 +21,9 @@ class UsergroupsController < ApplicationController
   def create
     @usergroup = Usergroup.new(usergroup_params)
     if @usergroup.save
-      redirect_to groups_path
+      redirect_to group_path(@usergroup)
     else
-      render 'usergroups/index'
+      render 'usergroups/new'
     end
   end
 
