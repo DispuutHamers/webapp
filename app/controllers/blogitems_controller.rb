@@ -3,6 +3,7 @@ class BlogitemsController < ApplicationController
   before_action :ilid?, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Blog', :blogitems_path
+  layout :set_template, only: [:index, :show]
 
   def index
     if current_user&.active?
@@ -53,8 +54,12 @@ class BlogitemsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_item
     @item = Blogitem.unscoped.find_by_id!(params[:id])
+  end
+
+  def set_template
+    'application_public' unless current_user&.active?
   end
 end
