@@ -1,19 +1,22 @@
 <div class="bg-white overflow-hidden shadow rounded-lg hidden md:block">
-  <div class="p-5">
+  <div class="p-4">
     <div class="flex items-center">
-      <div class="ml-5 w-0 flex-1">
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-xl font-extrabold tracking-tight text-gray-900">
-            <span class="block">Welkom <%= current_user.name %></span>
+      <div class="w-0 flex-1">
+        <div class="w-full mx-auto px-2">
+          <h2 class="text-xl font-bold tracking-tight text-gray-900">
+            Welkom <%= current_user.name %>
           </h2>
-          <span class="block font-extrabold">
-            Je bent <span class="text-indigo-400"><%= current_user.quotes.count %></span> keer geciteerd,
-            hebt <span class="text-indigo-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
-            <span class="text-indigo-400"><%= current_user.blogitems.count %></span> blogs geschreven en
-            bent bij <span
-              class="text-indigo-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
-            borrels geweest.
-          </span>
+          <div class="block font-medium">
+            Je bent <span class="text-hamers-red-400"><%= current_user.quotes.count %></span> keer geciteerd,
+            hebt <span class="text-hamers-red-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
+            <span class="text-hamers-red-400"><%= current_user.blogitems.count %></span> blogs geschreven,
+            bent bij <span class="text-hamers-red-400">
+              <%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %>
+            </span> borrels geweest<%- if current_user.weight %>,
+              geeft bier gemiddeld een <span class="text-hamers-red-400"><%= current_user.weight.round(2) %></span>
+            <% end %>
+            en bent ingelogd vanaf <span class="text-hamers-red-400"><%= current_user.last_sign_in_ip %></span>.
+          </div>
         </div>
       </div>
     </div>
