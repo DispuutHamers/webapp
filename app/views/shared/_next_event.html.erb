@@ -1,49 +1,49 @@
-<div class="bg-white overflow-hidden md:shadow md:rounded-lg">
-  <div class="md:p-5">
-    <div class="flex items-center justify-center">
-      <% if @next_event %>
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
+<div class="p-5 bg-white overflow-hidden md:shadow md:rounded-lg">
+  <div class="flex items-center justify-center">
+    <% if @next_event %>
+      <div class="w-full mx-auto">
+        <div>
           Volgende activiteit:
           <h2 class="text-xl tracking-tight sm:text-2xl">
             <span class="block font-semibold"><%= link_to @next_event.title, @next_event %></span>
             <span class="block font-medium text-hamers-red-400">in <%= time_ago_in_words(@next_event.date) %>.</span>
           </h2>
-          <div class="mt-8 flex">
-            <div class="inline-flex rounded-md shadow w-full">
+          <div class="mt-14 flex">
+            <div class="inline-flex rounded-md w-full">
               <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: {class: "w-full"} do |f| %>
                 <%= f.hidden_field :event_id %>
                 <%= f.hidden_field :status %>
-                <%= f.submit 'Aanwezig', class: 'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white border border-gray-300 text-gray-700 bg-white hover:bg-gray-50' %>
+                <%= f.submit 'Aanwezig', class: 'w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white border border-gray-300 text-gray-700 bg-white hover:bg-gray-50' %>
               <% end %>
             </div>
           </div>
         </div>
-      <% else %>
-        <div class="text-center">
-          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-            aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-          </svg>
-          <h3 class="mt-2 text-sm font-medium text-gray-900">Geen aankomende activiteiten :(</h3>
-          <p class="mt-1 text-sm text-gray-500">
-            Waarom maak je er niet een aan?
-          </p>
-          <div class="mt-6">
-            <%= button_to new_event_path, method: :get,
-              class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-              <!-- Heroicon name: solid/plus -->
-              <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                aria-hidden="true">
-                <path fill-rule="evenodd"
-                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                  clip-rule="evenodd" />
-              </svg>
-              Nieuwe activiteit
-            <% end %>
-          </div>
+      </div>
+    <% else %>
+      <div class="text-center">
+        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <h3 class="mt-2 text-sm font-medium text-gray-900">Geen aankomende activiteiten :(</h3>
+        <p class="mt-1 text-sm text-gray-500">
+          Waarom maak je er niet een aan?
+        </p>
+        <div class="mt-6">
+          <%= button_to new_event_path, method: :get,
+            class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+            <!-- Heroicon name: solid/plus -->
+            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+              aria-hidden="true">
+              <path fill-rule="evenodd"
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clip-rule="evenodd" />
+            </svg>
+            Nieuwe activiteit
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
