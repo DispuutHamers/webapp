@@ -2,58 +2,64 @@
   <%= @item.title %>
 <% end %>
 
-  <div class="flex-1 min-w-0 bg-white md:flex">
-    <div class="border-b border-gray-200 md:border-b-0 bg-white lg:min-w-0 lg:flex-1">
-      <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
-        <div class="relative h-full">
-          <div>
-            <%= @item.body %>
-          </div>
+<div class="flex-1 min-w-0 bg-white md:flex">
+  <div class="border-b border-gray-200 md:border-b-0 bg-white lg:min-w-0 lg:flex-1">
+    <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
+      <div class="relative h-full">
+        <div>
+          <%= @item.body %>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="border-gray-200 md:flex-shrink-0 md:w-64 md:-my-6 md:border-l md:border-gray-200 bg-white">
-      <div class="h-full ml-6 md:pt-8 md:pl-0">
-        <div class="h-full relative" style="min-height: 12rem;">
-          <div class="space-y-8 mb-4">
-            <%= gravatar_for @item.user, class: "mx-auto h-16 w-16 rounded-full xl:w-56 xl:h-56" %>
-            <div class="space-y-2">
-              <div class="text-lg leading-6 font-medium space-y-1">
-                <h3><%= @item.user.name %></h3>
-                <% if @item.user.lid? %>
-                  <p class="text-hamers-red-600">Hamerslid</p>
-                <% elsif @item.user.alid? %>
-                  <p class="text-hamers-red-600">Aspirant Hamerslid</p>
-                <% elsif @item.user.olid? %>
-                  <p class="text-hamers-red-600">Oud Hamerslid</p>
-                <% else %>
-                  <p class="text-hamers-red-600">Hamersvriend</p>
-                <% end %>
-              </div>
-              <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
-                <ul role="list" class="flex justify-center space-x-5 pt-4">
-                  <li>
-                    <%= link_to edit_blogitem_path(@item), class: "text-gray-400 hover:text-gray-500" do %>
-                      <span class="sr-only">edit</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                    <% end %>
-                  </li>
-                  <li>
-                    <%= link_to @item, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'text-gray-400 hover:text-gray-500' do %>
-                      <span class="sr-only">destroy</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
-                    <% end %>
-                  </li>
-                </ul>
+  <div class="border-gray-200 md:flex-shrink-0 md:w-64 md:-my-6 md:border-l md:border-gray-200 bg-white">
+    <div class="h-full ml-6 md:pt-8 md:pl-0">
+      <div class="h-full relative" style="min-height: 12rem;">
+        <div class="space-y-8 mb-4">
+          <%= gravatar_for @item.user, class: "mx-auto h-16 w-16 rounded-full xl:w-56 xl:h-56" %>
+          <div class="space-y-2">
+            <div class="text-lg leading-6 font-medium space-y-1">
+              <h3><%= @item.user.name %></h3>
+              <% if @item.user.lid? %>
+                <p class="text-hamers-red-600">Hamerslid</p>
+              <% elsif @item.user.alid? %>
+                <p class="text-hamers-red-600">Aspirant Hamerslid</p>
+              <% elsif @item.user.olid? %>
+                <p class="text-hamers-red-600">Oud Hamerslid</p>
+              <% else %>
+                <p class="text-hamers-red-600">Hamersvriend</p>
               <% end %>
             </div>
+            <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
+              <ul role="list" class="flex justify-center space-x-5 pt-4">
+                <li>
+                  <%= link_to edit_blogitem_path(@item), class: "text-gray-400 hover:text-gray-500" do %>
+                    <span class="sr-only">edit</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to @item, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'text-gray-400 hover:text-gray-500' do %>
+                    <span class="sr-only">destroy</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                  <% end %>
+                </li>
+              </ul>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="flex justify-center">
+  <% unless current_user&.active? %>
+    <%= button_to "Terug naar het overzicht", blogitems_path, method: :get, class: "cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" %>
+  <% end %>
+</div>
