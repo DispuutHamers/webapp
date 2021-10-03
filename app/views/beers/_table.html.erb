@@ -20,7 +20,7 @@
 
             <tbody class="bg-white divide-y divide-gray-200">
             <% @beers.each do |beer| %>
-              <tr>
+              <tr class="hover:bg-gray-100 cursor-pointer" onclick="Turbo.visit('<%= beer_path(beer) %>')">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="text-sm font-medium text-gray-900 popover"
