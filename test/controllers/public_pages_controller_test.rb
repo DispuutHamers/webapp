@@ -26,8 +26,8 @@ class PublicPagesControllerTest < ActionController::TestCase
   end
 
   test "should show public_page" do
-    get :show, params: { id: @public_page }
-    assert_response :redirect
+    get :show, params: { id: @public_page.title }
+    assert_response :success
   end
 
   test "should get edit" do
