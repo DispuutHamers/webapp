@@ -1,5 +1,5 @@
-<div class="mt-8">
-  <div class="max-w-6xl mx-auto px-2">
+<% if @pagy.page == 1 %>
+  <div class="max-w-6xl mx-auto px-2 mt-8">
     <div class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
       <%= render 'shared/user_info' %>
       <%= render 'shared/next_event' %>
@@ -9,17 +9,25 @@
       <%= render 'shared/random_biertje' %>
     </div>
   </div>
+<% end %>
 
-  <div class="relative md:my-4 -mx-5 sm:-mx-6">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-300"></div>
-    </div>
-    <div class="relative flex justify-center">
+<div class="relative md:my-4 -mx-5 sm:-mx-6">
+  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+    <div class="w-full border-t border-gray-300"></div>
+  </div>
+  <div class="relative flex justify-center">
       <span class="px-2 bg-white text-sm text-gray-500">
         Citaten
       </span>
-    </div>
   </div>
+</div>
 
-  <%= render 'layouts/list', list: @quotes %>
+<div class="-mt-6">
+  <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200 mb-6">
+    <%= render @quotes %>
+  </ul>
+
+  <div class="flex justify-center">
+    <%= render 'shared/pagination/default' %>
+  </div>
 </div>
