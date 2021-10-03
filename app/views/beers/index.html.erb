@@ -3,13 +3,11 @@
 <% end %>
 
 <% content_for :search do %>
-  <%= form_tag beers_path, method: :get do %>
-    <span class="relative z-0 inline-flex shadow-sm rounded-md">
-        <%= text_field_tag :search, @sp,
-                           placeholder: 'Vind hier, je bier.',
-                           class: 'form-control shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full pr-12 sm:text-sm border-gray-300 rounded-l-md' %>
-      <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
-      </span>
+  <%= form_tag beers_path, class: "flex shadow-sm rounded-md", method: :get do %>
+    <%= text_field_tag :search, @sp,
+                       placeholder: 'Vind hier, je bier.',
+                       class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md' %>
+    <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
   <% end %>
 <% end %>
 

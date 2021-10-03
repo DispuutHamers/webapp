@@ -14,16 +14,18 @@
         <%= render 'layouts/nav' %>
 
         <% if content_for?(:title) %>
-          <header class="py-10">
+          <header class="py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h1 class="text-3xl font-bold text-white">
                 <%= yield :title %>
               </h1>
-              <div class="flex">
-                <div class="flex-auto">
+              <div class="flex flex-wrap">
+                <div class="flex-auto py-2 mr-2">
                   <%= render 'shared/breadcrumbs' %>
                 </div>
-                <div class="flex-none"><%= yield :search %></div>
+                <div class="flex-grow flex-row-reverse max-w-md">
+                  <%= yield :search %>
+                </div>
               </div>
             </div>
           </header>
