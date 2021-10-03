@@ -5,9 +5,7 @@ class Blogitem < ApplicationRecord
   has_many :blogphotos, dependent: :destroy
   belongs_to :user
 
-  has_rich_text :actiontext_body
-  
-  def self.default_scope
-    where("length(title) > 1")
-  end
+  scope :public_blogs, -> { where(public: true) }
+
+  has_rich_text :body
 end
