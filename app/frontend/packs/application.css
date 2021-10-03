@@ -5,3 +5,8 @@
 @import 'tailwindcss/utilities';
 @import 'trix/dist/trix';
 @import 'flatpickr/dist/flatpickr';
+
+trix-editor.form-control {
+  min-height: 300px;
+  height: auto;
+}

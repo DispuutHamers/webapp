@@ -72,8 +72,8 @@
                   </div>
                   <%= f.hidden_field :event_id, value: @event.id %>
                   <div class="flex items-center justify-between mt-2 md:mt-0">
-                    <%= f.submit 'Aanwezig', class: 'mx-2 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' %>
-                    <%= f.submit 'Afwezig', class: 'mx-2 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500' %>
+                    <%= f.submit 'Aanwezig', class: 'cursor-pointer mx-2 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' %>
+                    <%= f.submit 'Afwezig', class: 'cursor-pointer mx-2 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500' %>
                   </div>
                 </div>
               <% end %>
