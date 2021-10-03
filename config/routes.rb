@@ -50,6 +50,8 @@ Hamers::Application.routes.draw do
 
   resources :signups
 
+  resources :usergroups, path: 'groups', only: [:index, :show]
+
   root 'static_pages#home'
 
   devise_for :users
@@ -84,7 +86,6 @@ Hamers::Application.routes.draw do
   resources :quotes, only: [:create, :destroy, :update, :edit]
 
   match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
-  match '/groups', to: 'usergroups#index', via: 'get'
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
