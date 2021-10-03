@@ -8,6 +8,6 @@ module FormsHelper
   end
 
   def submit_classes
-    "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500"
+    "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
   end
 end

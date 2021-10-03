@@ -41,7 +41,7 @@
     <%= render "users/table", users: @aspiranten %>
 
     <% if current_user&.admin? %>
-      <%= link_to new_user_invitation_path, class: "inline-flex items-center px-3 py-2 mt-4 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" do %>
+      <%= link_to new_user_invitation_path, class: "inline-flex items-center px-3 py-2 mt-4 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
         <%= heroicon('user-add', style: :outline, class_name: "h-4 w-4 mr-1") %> Aspirant uitnodigen
       <% end %>
     <% end %>
