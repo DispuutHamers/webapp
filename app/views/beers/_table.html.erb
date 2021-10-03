@@ -20,15 +20,22 @@
 
             <tbody class="bg-white divide-y divide-gray-200">
             <% @beers.each do |beer| %>
-              <tr>
+              <tr class="hover:bg-gray-100 cursor-pointer" onclick="Turbo.visit('<%= beer_path(beer) %>')">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
-                    <div class="text-sm font-medium text-gray-900">
+                    <div class="text-sm font-medium text-gray-900 popover"
+                         data-controller="popover"
+                         data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut"
+                         data-popover-translate-x="0"
+                         data-popover-translate-y="15%">
                       <%= beer.name %>
                       <% if current_user&.reviews&.find_by(beer: beer)&.rating %>
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= rating_color(current_user&.reviews&.find_by(beer: beer)&.rating) %>">
                           <%= current_user&.reviews&.find_by(beer: beer)&.rating %>
                         </span>
+                        <div class="content hidden absolute bg-gray-100 border border-gray-200 text-gray-700 rounded p-3" data-popover-target="content">
+                          Het cijfer dat jij dit biertje gegeven hebt.
+                        </div>
                       <% end %>
                     </div>
                   </div>
