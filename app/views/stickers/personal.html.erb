@@ -13,7 +13,7 @@
     <th>Admin stuff</th>
   </tr>
   </thead>
-  <%== pagy_nav(@pagy) %>
+  <%= render 'shared/pagination/default' %>
   <tbody>
   <% @stickers.each do |m| %>
     <tr>
@@ -45,4 +45,4 @@
   <% end %>
   </tbody>
 </table>
-<%== pagy_nav(@pagy) %>
+<%= render 'shared/pagination/default' %>

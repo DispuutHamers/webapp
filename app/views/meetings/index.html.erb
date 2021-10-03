@@ -10,7 +10,7 @@
       <% end %>
     </tr>
   </thead>
-  <%== pagy_nav(@pagy) %>
+  <%= render 'shared/pagination/default' %>
   <tbody>
     <% @meetings.each do |m| %>
       <tr>
@@ -20,7 +20,7 @@
     <% end %>
   </tbody>
 </table>
-<%== pagy_nav(@pagy) %>
+<%= render 'shared/pagination/default' %>
 <% if current_user.admin? %>
   <%= link_to 'Add vergadering', new_meeting_path, class: 'btn btn-block btn-primary' %>
 <% end %>
