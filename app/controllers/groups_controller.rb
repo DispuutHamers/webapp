@@ -5,12 +5,12 @@ class GroupsController < ApplicationController
 
   def create
     @user.join_group(@group)
-    redirect_to usergroups_user_path(@user)
+    redirect_to edit_usergroups_user_path(@user)
   end
 
   def destroy
     @user.remove_group(@group)
-    redirect_to usergroups_user_path(@user)
+    redirect_to edit_usergroups_user_path(@user)
   end
 
   private

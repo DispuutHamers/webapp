@@ -10,20 +10,24 @@
   </head>
   <body class="h-full">
     <div class="bg-gray-100 min-h-screen h-full">
-      <div class="bg-gray-800 pb-32">
+      <div class="bg-gray-900 pb-32">
         <%= render 'layouts/nav' %>
 
         <% if content_for?(:title) %>
-          <header class="py-10">
+          <header class="py-8 lg:py-12">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h1 class="text-3xl font-bold text-white">
-                <%= yield :title %>
-              </h1>
-              <div class="flex">
-                <div class="flex-auto">
-                  <%= render 'shared/breadcrumbs' %>
+              <div class="flex flex-wrap">
+                <div class="flex-auto mr-2">
+                  <h1 class="text-3xl font-bold text-white">
+                    <%= yield :title %>
+                  </h1>
+                  <div class="py-2">
+                    <%= render 'shared/breadcrumbs' %>
+                  </div>
                 </div>
-                <div class="flex-none"><%= yield :search %></div>
+                <div class="flex-grow flex-row-reverse max-w-md place-self-center">
+                  <%= yield :search %>
+                </div>
               </div>
             </div>
           </header>
