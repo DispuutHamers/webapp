@@ -2,6 +2,7 @@ class Blogitem < ApplicationRecord
   has_paper_trail on: [:update]
   serialize :body
   serialize :title
+  validates :title, presence: true
   has_many :blogphotos, dependent: :destroy
   belongs_to :user
 

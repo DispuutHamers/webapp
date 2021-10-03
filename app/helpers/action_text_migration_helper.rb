@@ -1,23 +1,23 @@
 # Module to help with migration of old fields to action texts,
 # so that we can finally ditch the old columns.
 module ActionTextMigrationHelper
-  def eligible_reviews
-    Review.all.with_rich_text_actiontext_description.where.not(description: [nil, ""])
+  def eligible_blogitems
+    Blogitem.all.with_rich_text_actiontext_body.where.not(body: [nil, ""])
   end
 
-  def convert_reviews
-    PaperTrail.request.disable_model(Review)
+  def convert_blogitems
+    PaperTrail.request.disable_model(Blogitem)
 
-    eligible_reviews.each do |review|
-      if review.actiontext_description.blank? && review.description
-        # Default situation -> Store description as new actiontext_description
-        review.update(actiontext_description: simple_format(review.description), description: nil)
-      elsif review.actiontext_description && review.description
-        #  Weird situation (both fields exist) -> Delete old description
-        review.update(description: nil)
+    eligible_blogitems.each do |blogitem|
+      if blogitem.actiontext_body.blank? && blogitem.body
+        # Default situation -> Store body as new actiontext_body
+        blogitem.update(actiontext_body: simple_format(blogitem.body), body: nil)
+      elsif blogitem.actiontext_body && blogitem.body
+        #  Weird situation (both fields exist) -> Delete old body
+        blogitem.update(body: nil)
       end
     end
 
-    PaperTrail.request.enable_model(Review)
+    PaperTrail.request.enable_model(Blogitem)
   end
 end
