@@ -2,9 +2,9 @@
   <%= @item.title %>
 <% end %>
 
-<div class="flex-1 min-w-0 bg-white md:flex">
-  <div class="border-b border-gray-200 md:border-b-0 bg-white lg:min-w-0 lg:flex-1">
-    <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
+<div class="flex-1 min-w-0 bg-white sm:flex">
+  <div class="border-b border-gray-200 sm:border-b-0 bg-white sm:min-w-0 sm:flex-1">
+    <div class="h-full py-6 px-4 sm:px-6">
       <div class="relative h-full">
         <div>
           <%= @item.body %>
@@ -13,11 +13,11 @@
     </div>
   </div>
 
-  <div class="border-gray-200 md:flex-shrink-0 md:w-64 md:-my-6 md:border-l md:border-gray-200 bg-white">
-    <div class="h-full ml-6 md:pt-8 md:pl-0">
-      <div class="h-full relative" style="min-height: 12rem;">
+  <div class="pt-4 sm:pt-0 border-gray-200 sm:flex-shrink-0 sm:w-64 sm:-my-6 sm:border-l bg-white">
+    <div class="h-full ml-6 sm:pt-8 md:pl-0">
+      <div class="h-full relative">
         <div class="space-y-8 mb-4">
-          <%= gravatar_for @item.user, class: "mx-auto h-16 w-16 rounded-full xl:w-56 xl:h-56" %>
+          <%= gravatar_for @item.user, size: 128, class: "mx-auto h-16 w-16 sm:h-24 sm:w-24 md:h-32 md:w-32 rounded-full xl:w-56 xl:h-56" %>
           <div class="space-y-2">
             <div class="text-lg leading-6 font-medium space-y-1">
               <h3><%= @item.user.name %></h3>

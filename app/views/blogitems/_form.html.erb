@@ -12,23 +12,21 @@
         </div>
     <% end %>
 
-    <div class="form-group">
-      <%= f.label :title %><br>
-      <%= f.text_field :title, class: 'form-control', required: true, minlength: 2%>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :body %><br>
-      <%= f.rich_text_area :body, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :public %><br>
-      <%= f.check_box :public %>
+    <div class="space-y-4">
+      <%= f.text_field :title, class: input_classes, required: true, minlength: 2, placeholder: "Titel" %>
+      <%= f.rich_text_area :body, class: 'form-control', placeholder: "blablabla" %>
+      <div class="flex items-start col-span-3 md:justify-left">
+        <div class="flex items-center h-5">
+          <%= f.check_box :public, { checked: @item.public, class: "focus:ring-hamers-red-500 h-4 w-4 text-hamers-red-600 border-gray-300 rounded" } %>
+        </div>
+        <div class="ml-3 text-sm">
+          <label class="font-medium text-gray-700">Ook voor plebs te lezen</label>
+        </div>
+      </div>
     </div>
 
     <div class="flex justify-center mt-5">
-      <%= f.submit "Opslaan", class: "inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= f.submit "Opslaan", class: submit_classes %>
     </div>
   <% end %>
 </div>

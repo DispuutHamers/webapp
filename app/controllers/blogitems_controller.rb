@@ -24,7 +24,10 @@ class BlogitemsController < ApplicationController
     @item = Blogitem.new
   end
 
-  def edit; end
+  def edit
+    breadcrumb @item.title, blogitem_path(@item)
+    breadcrumb "Aanpassen", edit_blogitem_path(@item)
+  end
 
   def update
     @item.user ||= current_user
