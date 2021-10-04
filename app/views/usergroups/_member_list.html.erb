@@ -18,7 +18,7 @@
               <div class="hidden md:block">
                 <div>
                   <p class="text-sm text-gray-900 mt-4">
-                    Lid sinds <%= Group.with_deleted.find_by(user_id: user.id, group_id: @usergroup.id).created_at.strftime("%d-%m-%Y") %>
+                    Lid sinds <%= Group.with_deleted.where(user_id: user.id, group_id: @usergroup.id).first.created_at.strftime("%d-%m-%Y") %>
                   </p>
                 </div>
               </div>
