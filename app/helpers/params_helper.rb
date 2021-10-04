@@ -20,7 +20,7 @@ module ParamsHelper
   end
 
   def blog_params
-    params.require(:blogitem).permit(:title, :body, :public, :actiontext_body)
+    params.require(:blogitem).permit(:title, :body, :public, :body)
   end
 
   def signup_params

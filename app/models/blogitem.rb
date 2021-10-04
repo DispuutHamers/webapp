@@ -6,6 +6,12 @@ class Blogitem < ApplicationRecord
   belongs_to :user
 
   has_rich_text :actiontext_body
+  has_rich_text :body
+
+  before_save do
+    self.body = self.actiontext_body
+    self.actiontext_body.destroy
+  end
   
   def self.default_scope
     where("length(title) > 1")
