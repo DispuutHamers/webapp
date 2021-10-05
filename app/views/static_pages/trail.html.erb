@@ -11,7 +11,7 @@
     <th>Hoe</th>
   </tr>
   </thead>
-  <%== pagy_nav(@pagy) %>
+  <%= render 'shared/pagination/default' %>
   <tbody>
   <% @trail.each do |t| %>
     <tr>
@@ -48,4 +48,4 @@
   <% end %>
   </tbody>
 </table>
-<%== pagy_nav(@pagy) %>
+<%= render 'shared/pagination/default' %>
