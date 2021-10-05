@@ -4,60 +4,59 @@ require 'test_helper'
 class ActionTextMigrationHelperTest < ActionView::TestCase
   setup do
     # Clear all current reviews
-    Review.destroy_all
+    Blogitem.destroy_all
 
     # Setup data
     @user = users(:one)
-    @beer = Beer.create(name: "Testbier", percentage: 0)
-    @review = Review.create(user: @user, beer: @beer, rating: 1)
+    @blogitem = Blogitem.create(user: @user, title: "boeitniet")
   end
 
-  # Test eligible_reviews method
-  test 'works on reviews with actiontext_description and description' do
-    assert_equal 0, eligible_reviews.count
-    @review.description = "Heeft oude description"
-    @review.actiontext_description = "Heeft nieuwe actiontext_description"
-    @review.save
-    assert_equal 1, eligible_reviews.count
+  # Test eligible_blogitems method
+  test 'works on reviews with actiontext_body and body' do
+    assert_equal 0, eligible_blogitems.count
+    @blogitem.body = "Heeft oude body"
+    @blogitem.actiontext_body = "Heeft nieuwe actiontext_body"
+    @blogitem.save
+    assert_equal 1, eligible_blogitems.count
   end
 
-  test 'works on reviews without actiontext_description but with description' do
-    assert_equal 0, eligible_reviews.count
-    @review.description = "Heeft oude description"
-    @review.save
-    assert_nil @review.actiontext_description
-    assert_equal 1, eligible_reviews.count
+  test 'works on reviews without actiontext_body but with body' do
+    assert_equal 0, eligible_blogitems.count
+    @blogitem.body = "Heeft oude body"
+    @blogitem.save
+    assert_nil @blogitem.actiontext_body
+    assert_equal 1, eligible_blogitems.count
   end
 
-  test 'ignores reviews with actiontext_description but without description' do
-    assert_equal 0, eligible_reviews.count
-    @review.actiontext_description = "Heeft nieuwe actiontext_description"
-    @review.save
-    assert_nil @review.description
-    assert_equal 0, eligible_reviews.count
+  test 'ignores reviews with actiontext_body but without body' do
+    assert_equal 0, eligible_blogitems.count
+    @blogitem.actiontext_body = "Heeft nieuwe actiontext_body"
+    @blogitem.save
+    assert_nil @blogitem.body
+    assert_equal 0, eligible_blogitems.count
   end
 
   # Test actual conversion method
-  test 'convert reviews without actiontext_description and with description' do
-    @review.description = "Oude description"
-    @review.save
+  test 'convert reviews without actiontext_body and with body' do
+    @blogitem.body = "Oude body"
+    @blogitem.save
 
-    convert_reviews
-    @review.reload
+    convert_blogitems
+    @blogitem.reload
 
-    assert_nil @review.description
-    assert_equal @review.actiontext_description.to_plain_text, "Oude description"
+    assert_nil @blogitem.body
+    assert_equal @blogitem.actiontext_body.to_plain_text, "Oude body"
   end
 
-  test 'deletes old description if actiontext_description exists' do
-    @review.description = "Exists"
-    @review.actiontext_description = "Exists also"
-    @review.save
+  test 'deletes old body if actiontext_body exists' do
+    @blogitem.body = "Exists"
+    @blogitem.actiontext_body = "Exists also"
+    @blogitem.save
 
-    convert_reviews
-    @review.reload
+    convert_blogitems
+    @blogitem.reload
 
-    assert_nil @review.description
-    assert_equal @review.actiontext_description.to_plain_text, "Exists also"
+    assert_nil @blogitem.body
+    assert_equal @blogitem.actiontext_body.to_plain_text, "Exists also"
   end
 end
