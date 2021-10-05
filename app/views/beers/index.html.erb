@@ -2,7 +2,7 @@
   Bieren
 <% end %>
 
-<% content_for :search do %>
+<% content_for :options do %>
   <%= form_tag beers_path, class: "flex shadow-sm rounded-md", method: :get do %>
     <%= text_field_tag :search, @sp,
                        placeholder: 'Vind hier, je bier.',

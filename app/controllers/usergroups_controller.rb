@@ -1,7 +1,7 @@
 class UsergroupsController < ApplicationController
   before_action :logged_in?
-  before_action :admin_user?, only: [:create, :destroy]
-  before_action :set_group, only: [:show, :destroy]
+  before_action :admin_user?, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_group, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Groepen', :groups_path
 
   def index
@@ -13,13 +13,27 @@ class UsergroupsController < ApplicationController
     breadcrumb @usergroup.name, group_path(@usergroup)
   end
 
+  def new
+    @usergroup = Usergroup.new
+    breadcrumb "Groep toevoegen", new_usergroup_path
+  end
+
   def create
-    @group = Usergroup.new(usergroup_params)
-    if @group.save
-      redirect_to groups_path
+    @usergroup = Usergroup.new(usergroup_params)
+    if @usergroup.save
+      redirect_to group_path(@usergroup)
     else
-      render 'usergroups/index'
+      render 'usergroups/new'
     end
+  end
+
+  def edit
+    breadcrumb @usergroup.name, group_path(@usergroup)
+    breadcrumb "Aanpassen", edit_usergroup_path(@usergroup)
+  end
+
+  def update
+    update_object(@usergroup, usergroup_params)
   end
 
   def destroy
