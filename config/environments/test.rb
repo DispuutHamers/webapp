@@ -46,6 +46,4 @@ Rails.application.configure do
   config.after_initialize do
     PaperTrail.enabled = false
   end
-
-  config.active_storage.service = :local
 end
