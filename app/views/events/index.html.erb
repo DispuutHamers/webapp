@@ -2,9 +2,9 @@
   Activiteiten
 <% end %>
 
-
 <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
-  <div class="flex items-center justify-between">
+  
+  <div class="flex items-center justify-between">    
     <div class="-mt-4">
       <div class="border-b border-gray-200">
         <nav class="-mb-px flex space-x-8">
@@ -25,22 +25,22 @@
         </svg>
       </span>
       <div class="content hidden absolute max-w-xs bg-gray-300 rounded p-2" data-popover-target="content">
-          <p>iCal links voor je API keys:</p>
-          <ul role="list" class="divide-y divide-gray-200">
-            <% current_user.api_keys.each do |ak| %>
-              <li class="py-2">
-                <div class="flex space-x-3">
-                  <div class="flex-1 space-y-1">
-                    <div class="flex items-center justify-between">
-                      <h3 class="text-sm font-medium"><%= ak.name %></h3>
-                    </div>
-                    <p class="text-sm text-gray-500"><%= request.base_url %>/ical/<%= ak.key %>.ics</p>
+        <p>iCal links voor je API keys:</p>
+        <ul role="list" class="divide-y divide-gray-200">
+          <% current_user.api_keys.each do |ak| %>
+            <li class="py-2">
+              <div class="flex space-x-3">
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-medium"><%= ak.name %></h3>
                   </div>
+                  <p class="text-sm text-gray-500"><%= request.base_url %>/ical/<%= ak.key %>.ics</p>
                 </div>
-              </li>
-            <% end %>
-          </ul>
-      </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>  
     </div>
   </div>
 
@@ -50,8 +50,9 @@
 
   <div class="hidden" data-tabs-target="panel">
     <%= render "events/table", events: @past_events %>
-    <%== pagy_nav(@pagy) %>
+    <%= render 'shared/pagination/default' %>
   </div>
+  
 </div>
 
 <div class="flex justify-center mt-5">

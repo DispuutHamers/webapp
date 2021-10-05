@@ -18,15 +18,18 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div class="flex flex-wrap">
                 <div class="flex-auto mr-2">
+                  <%= render 'shared/breadcrumbs' %>
                   <h1 class="text-3xl font-bold text-white">
                     <%= yield :title %>
                   </h1>
-                  <div class="py-2">
-                    <%= render 'shared/breadcrumbs' %>
-                  </div>
+                  <% if content_for?(:subtitle) %>
+                    <div class="flex flex-col my-2 sm:flex-row sm:flex-wrap sm:space-x-6">
+                      <%= yield :subtitle %>
+                    </div>
+                  <% end %>
                 </div>
-                <div class="flex-grow flex-row-reverse max-w-md place-self-center">
-                  <%= yield :search %>
+                <div class="flex-row-reverse max-w-md place-self-center">
+                  <%= yield :options %>
                 </div>
               </div>
             </div>

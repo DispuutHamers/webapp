@@ -1,9 +1,9 @@
 <li>
-  <div class="block hover:bg-gray-50">
+  <div class="block hover:bg-gray-50 rounded-xl">
     <div class="px-4 py-4 flex items-center sm:px-6">
       <div class="min-w-0">
-        <% if group.logo.attached? %>
-          <%= image_tag group.logo.representation(resize_to_limit: [100, 100]), class: "h-12 w-12 mr-4 rounded-full" %>
+        <% if usergroup.logo.attached? %>
+          <%= image_tag usergroup.logo.representation(resize_to_limit: [100, 100]), class: "h-12 w-12 mr-4 rounded-full" %>
         <% else %>
           <img class="h-12 w-12 mr-4 rounded-full" src="https://placehold.co/500x500?text=Geen logo" alt="Geen logo">
         <% end %>
@@ -11,12 +11,14 @@
       <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
         <div class="truncate">
           <div class="flex text-sm">
-            <p class="font-medium text-hamers-red-500 truncate"><%= group.name %></p>
+            <p class="font-medium text-hamers-red-500 truncate">
+              <%= link_to usergroup.name, usergroup %>
+            </p>
           </div>
         </div>
         <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
           <div class="flex overflow-hidden -space-x-1">
-            <% group.users.each do |user| %>
+            <% usergroup.users.each do |user| %>
               <%= link_to user, class: "inline-block" do %>
                 <%= gravatar_for user, class: "h-10 w-10 rounded-full ring-2 ring-white", alt: user.name %>
               <% end %>

@@ -2,25 +2,12 @@
   Groepen
 <% end %>
 
-<div class="bg-white shadow overflow-hidden sm:rounded-md">
-  <ul role="list" class="divide-y divide-gray-200">
-    <% @usergroups.each do |group| %>
-      <%= render 'usergroups/group', group: group %>
-    <% end %>
-  </ul>
-</div>
-
 <% if current_user.admin? %>
-  <div class="relative md:my-4">
-    <div class="absolute inset-0 flex items-center" aria-hidden="true">
-      <div class="w-full border-t border-gray-300"></div>
-    </div>
-    <div class="relative flex justify-center">
-      <span class="px-2 bg-white text-md text-gray-600">
-        Nieuwe groep
-      </span>
-    </div>
-  </div>
-
-  <%= render 'usergroups/form' %>
+  <% content_for :options do %>
+    <%= link_to 'Voeg groep toe', new_usergroup_path, class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <% end %>
 <% end %>
+
+<ul role="list" class="divide-y divide-gray-200 -m-6">
+  <%= render @usergroups %>
+</ul>
