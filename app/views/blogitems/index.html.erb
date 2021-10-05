@@ -9,11 +9,7 @@
         <div class="col-md-12 cta-contents">
           <h1 class="cta-title"><%= item.title %></h1>
           <div class="cta-desc">
-            <% if item.actiontext_body.blank? %>
-              <p><%= markdown truncate(item.body, length: 500).html_safe %></p>
-            <% else %>
-              <p><%= truncate(strip_tags(item.actiontext_body.to_s), length: 200) %></p>
-            <% end %>
+            <p><%= truncate(strip_tags(item.body.to_s), length: 200) %></p>
           </div>
         </div>
       <% end %>
