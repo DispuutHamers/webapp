@@ -3,13 +3,11 @@
 <% end %>
 
 <% if current_user.admin? %>
-  <% content_for :search do %>
+  <% content_for :options do %>
     <%= link_to 'Voeg groep toe', new_usergroup_path, class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
   <% end %>
 <% end %>
 
 <ul role="list" class="divide-y divide-gray-200 -m-6">
-  <% @usergroups.each do |group| %>
-    <%= render 'usergroups/group', group: group %>
-  <% end %>
+  <%= render @usergroups %>
 </ul>
