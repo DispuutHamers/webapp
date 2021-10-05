@@ -116,8 +116,11 @@
       <ol class="microposts">
         <%= render partial: 'quotes/quote_stripped', collection: @quotes, as: :quote %>
       </ol>
-      <%== pagy_nav(@pagy) %>
+      <%= render 'shared/pagination/default' %>
     <% end %>
   </div>
 
 </div>
+
+<!-- Lelijk maar ff handig voor debuggen. Deze pagina moet nog helemaal herschreven worden dus is moeite nu niet waard om het er goed in te zetten. -->
+<%= @user.lid_since %>
