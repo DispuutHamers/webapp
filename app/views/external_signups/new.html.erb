@@ -1,31 +1,45 @@
 <% content_for :title do %>
-  Schrijf je in voor <%= @event.title %>
+  Aanmelden voor <%= @event.title %>
 <% end %>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default" style="margin-top: 32px;">
-      <div class="panel-heading">
-        <h2 class="panel-title">Informatie over de activiteit</h2>
-      </div>
-      <div class="panel-body">
-        <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-        <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
-        <hr>
-        <i class="fa fa-map-marker"></i> Locatie: <%= @event.location %>
-        <hr>
-        <%= @event.description %>
-      </div>
+<div class="w-full grid grid-cols-1 md:grid-cols-2 px-5 md:px-0">
+  <div class="col-1">
+    <div class="flex border-b border-gray-200 mb-2 pb-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+      <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
     </div>
+
+    <%= @event.description %>
+
+    <% if @event.location.present? %>
+      <div class="border-t border-gray-200 mt-2 pt-2">
+        <div class="flex">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <%= @event.location %>
+        </div>
+        <div class="embed-responsive embed-responsive-4by3">
+          <iframe class="embed-responsive-item w-full" height="266" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <div class="col-md-6">
+
+  <div class="col-2">
     <% if @event.open? %>
-      <h2 class="text-center" style="margin-bottom: 24px;">Schrijf je in!</h2>
       <%= render "form" %>
     <% else %>
-      <div class="alert alert-info" style="margin-top: 32px;">
-        Het is helaas niet meer mogelijk je in te schrijven voor deze activiteit.
-      </div>
+
     <% end %>
   </div>
 </div>

@@ -1,27 +1,67 @@
-<table class="events table table-hover">
-  <thead>
-  <tr>
-    <th>Activiteit</th>
-    <th>Datum</th>
-    <th>Aanwezig</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% events.each do |event| %>
-    <tr>
-      <td>
-        <%= link_to event.title, event %>
-        <% if event.today? %><span class="label label-default">Vandaag</span><% end %>
-        <% if event.public? %><span class="label label-default">Publiek</span><% end %>
-        <% if event.usergroup %><span class="label label-default"><%= event.usergroup.name %></span><% end %>
-      </td>
-      <td><%= event.date.strftime('%d-%m-%Y') %>
-      <td>
-        <% event.signups.with_user.where(status: true).each do |s| %>
-          <%= s.user.name + ',' %>
-        <% end %>..jij?
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div class="bg-white sm:shadow overflow-hidden sm:rounded-md">
+  <ul role="list" class="divide-y divide-gray-200">
+    <% events.each do |event| %>
+    <li>
+      <%= link_to event, class: "block hover:bg-gray-50" do %>
+        <div class="px-4 py-4 flex items-center sm:px-6">
+          <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
+            <div class="truncate">
+              <div class="text-sm min-w-0 flex-1 sm:flex sm:items-center">
+                <div class="flex">
+                  <p class="font-medium text-indigo-600 truncate"><%= event.title %></p>
+                  <p class="ml-1 flex-shrink-0 font-normal text-gray-500">
+                    in <%= event.location %>
+                  </p>
+                </div>
+                <div class="flex flex-shrink-0 text-sm">
+                  <% if event.public?%>
+                    <p class="md:ml-2">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        Plebs
+                      </span>
+                    </p>
+                  <% end %>
+                  <% if event.usergroup %>
+                    <p class="md:ml-2">
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                        <%= event.usergroup.name %>
+                      </span>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="mt-2 flex">
+                <div class="flex items-center text-sm text-gray-500">
+                  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                  </svg>
+                  <p>
+                    <% if event.today? %>
+                      <time><%= event.date.strftime('Vandaag om %H:%M') %></time>
+                    <% else %>
+                      <time><%= event.date.strftime('Op %d-%m-%Y om %H:%M') %></time>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
+              <div class="flex overflow-hidden -space-x-1">
+                <% event.signups.with_user.where(status: true).each do |s| %>
+                  <%= gravatar_for s.user, class: "inline-block h-6 w-6 rounded-full ring-2 ring-white" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="ml-5 flex-shrink-0">
+            <!-- Heroicon name: solid/chevron-right -->
+            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

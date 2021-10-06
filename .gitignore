@@ -39,6 +39,7 @@ capybara-*.html
 **.orig
 rerun.txt
 pickle-email-*.html
+storage
 
 config/initializers/secret_token.rb
 config/secrets.yml
