@@ -27,8 +27,8 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :meetings_attended, through: :attendees, source: :meeting
   has_many :meetings_chaired, class_name: "Meeting", inverse_of: :secretary, foreign_key: :chairman_id
   has_many :meetings_minuted, class_name: "Meeting", inverse_of: :secretary, foreign_key: :secretary_id
-  validates :name, presence: true, length: {maximum: 50}, uniqueness: true
-  validates :email, presence: true, format: Devise.email_regexp, uniqueness: {case_sensitive: false}
+  validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
+  validates :email, presence: true, format: Devise.email_regexp, uniqueness: { case_sensitive: false }
 
   scope :leden, -> { joins(:groups).where(groups: { group_id: 4 }) }
   scope :aspiranten, -> { joins(:groups).where(groups: { group_id: 5 }) }
@@ -96,5 +96,13 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def lid_since
     groups.with_deleted.where(group_id: 4).first.created_at
+  end
+
+  def average_review_grade
+    if weight
+      weight.round(2)
+    else
+      "Nog onbekend"
+    end
   end
 end
