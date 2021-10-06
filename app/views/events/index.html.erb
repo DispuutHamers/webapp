@@ -2,9 +2,13 @@
   Activiteiten
 <% end %>
 
+<% content_for :options do %>
+  <%= button_to "Nieuwe activiteit", new_event_path, method: :get, class: "cursor-pointer inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" %>
+<% end %>
+
 <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
-  
-  <div class="flex items-center justify-between">    
+
+  <div class="flex items-center justify-between">
     <div class="-mt-4">
       <div class="border-b border-gray-200">
         <nav class="-mb-px flex space-x-8">
@@ -40,7 +44,7 @@
             </li>
           <% end %>
         </ul>
-      </div>  
+      </div>
     </div>
   </div>
 
@@ -52,9 +56,5 @@
     <%= render "events/table", events: @past_events %>
     <%= render 'shared/pagination/default' %>
   </div>
-  
-</div>
 
-<div class="flex justify-center mt-5">
-  <%= button_to "Nieuwe activiteit", new_event_path, method: :get, class: "inline-flex items-center px-6 py-3 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 </div>
