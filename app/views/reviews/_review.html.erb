@@ -1,32 +1,31 @@
-<div>
-  <h4>
-    <% if current_user&.active? || !review.user.anonymous? %>
-      <%= link_to review.user.name, review.user %>
-    <% else %>
-      Anonieme Hamer
-    <% end %>
+<li>
+  <div class="block hover:bg-gray-50">
+    <div class="flex items-center px-4 py-4 sm:px-6">
+      <div class="min-w-0 flex-1 flex items-center">
+        <div class="flex-grow-0">
+          <% if current_user&.active? || !review.user.anonymous? %>
+            <%= link_to gravatar_for(review.user, class: "h-12 w-12 rounded-full group-hover:opacity-75", alt: review.user.name), review.user %>
+          <% else %>
+            <img src="https://placehold.co/500x500?text=Anoniem" class="h-12 w-12 rounded-full group-hover:opacity-75">
+          <% end %>
+        </div>
+        <div class="min-w-0 flex-1 px-4 md:gap-4">
+          <div>
+            <p class="text-sm font-medium text-gray-900">
+              <%= review.description %>
+            </p>
+            <p class="mt-2 flex items-center text-sm text-gray-500">
+              <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+              <span class="truncate"><%= review.created_at.strftime("%d-%m-%Y") %></span>
 
-    zei over dit bier:
-  </h4>
-
-  <p>
-    <%= review.description %>
-  </p>
-
-  <p>
-    Dit biertje kreeg een <i><%= review.rating %></i> en is geproefd op
-    <i><%= review.proefdatum&.strftime('%d-%m-%Y') %></i>
-  </p>
-
-  <div class="btn-group pull-right">
-    <% if current_user&.active? %>
-      <%= link_to edit_review_path(review), class: 'btn btn-default btn-sm' do %>
-        <i class="fas fa-pencil-alt"></i>
-      <% end %>
-      <%= link_to review, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'btn btn-default btn-sm' do %>
-        <i class="far fa-trash-alt"></i>
-      <% end %>
-    <% end %>
+              <% if current_user&.active? %>
+                <%= link_to "Wijzig", edit_review_path(review), class: 'mx-1 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
+                <%= link_to "Verwijder", review, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'mx-1 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-<hr>
+</li>

@@ -24,19 +24,22 @@
 <% end %>
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
-  <div class="my-6 md:col-span-8 md:pr-6">
-    <%= render @reviews %>
+  <div class="-mx-6 md:col-span-9 md:pr-6">
+    <div class="overflow-hidden border-b sm:rounded-t-md">
+      <ul role="list" class="divide-y divide-gray-200">
+        <%= render @reviews %>
+      </ul>
+    </div>
   </div>
 
-  <aside class="md:col-span-4 md:pl-6">
+  <aside class="md:col-span-3 md:pl-6">
     <div class="mt-6">
-    <% if current_user&.active? && @beer.picture? %>
-      <%= image_tag @beer.picture, class: 'img img-responsive center-block' %>
-    <% else %>
-      <img src="https://placehold.co/500x500?text=Geen foto" class="img img-responsive center-block">
-    <% end %>
+      <% if current_user&.active? && @beer.picture? %>
+        <%= image_tag @beer.picture, class: "w-full" %>
+      <% else %>
+        <img src="https://placehold.co/500x500?text=Geen foto" class="w-full">
+      <% end %>
 
-    <div>
       <div class="mt-5 -mx-6 border-t border-gray-200">
         <dl class="sm:divide-y sm:divide-gray-200">
 
