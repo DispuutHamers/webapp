@@ -1,0 +1,32 @@
+<div>
+  <h4>
+    <% if current_user&.active? || !review.user.anonymous? %>
+      <%= link_to review.user.name, review.user %>
+    <% else %>
+      Anonieme Hamer
+    <% end %>
+
+    zei over dit bier:
+  </h4>
+
+  <p>
+    <%= review.description %>
+  </p>
+
+  <p>
+    Dit biertje kreeg een <i><%= review.rating %></i> en is geproefd op
+    <i><%= review.proefdatum&.strftime('%d-%m-%Y') %></i>
+  </p>
+
+  <div class="btn-group pull-right">
+    <% if current_user&.active? %>
+      <%= link_to edit_review_path(review), class: 'btn btn-default btn-sm' do %>
+        <i class="fas fa-pencil-alt"></i>
+      <% end %>
+      <%= link_to review, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'btn btn-default btn-sm' do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<hr>
