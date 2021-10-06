@@ -14,49 +14,70 @@
   </div>
 <% end %>
 
+<% if current_user == @user %>
+  <% content_for :options do %>
+    <%= link_to 'Instellingen', edit_user_path(current_user), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <% end %>
+<% end %>
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
   <aside class="md:col-span-4 md:pr-6">
-    <div class="mt-6">
-      <%= gravatar_for @user, size: 96, class: "h-12 w-12 rounded-full" %>
+    <%= gravatar_for @user, size: 96, class: "h-32 w-32 rounded-full m-4" %>
 
-      <div class="mt-5 -mx-6 border-t border-gray-200">
-        <div>
-          <% if @user.lid? %>
-            <% unless @missed_drinks.empty? %>
-              <h4>Gemiste Zondagborrels</h4>
-              <ul>
-                <% @missed_drinks.each do |md| %>
-                  <li><%= link_to md.date.strftime("%d-%m-%Y"), md %><br></li>
-                <% end %>
-              </ul>
-              <% end %>
+    <div class="mt-4 -mx-6 text-gray-900">
+      <div class="p-2 sm:p-4 border-t border-gray-200">
+        <h4>Groepen</h4>
+        <ul class="list-disc list-inside">
+          <% @user.usergroups.each do |group| %>
+            <li><%= link_to group.name, group %><br></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <% if current_user.admin? %>
+        <div class="p-2 sm:p-4 border-t border-gray-200">
+          <h4 class="mb-1">Wijzig lichting</h4>
+
+          <%= form_for @user, url: user_path(@user), html: { class: 'flex rounded-md' } do |f| %>
+            <%= f.number_field :batch, class: "focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md" %>
+            <%= f.submit "Opslaan", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
           <% end %>
         </div>
+      <% end %>
 
-        <dl class="sm:divide-y sm:divide-gray-200">
-          <% specs = {
-            "Aantal quotes": @user.quotes.count,
-            "Aantal reviews": @user.reviews.count,
-            "Gemiddeld reviewcijfer": @user.average_review_grade,
-            "Aantal eventementen georganiseerd": @user.blogitems.count,
-            "Aantal blogposts geschreven": @user.blogitems.count,
-            "Aantal vergaderingen bijgewoond": @user.meetings_attended.count,
-            "Aantal vergaderingen voorgezeten": @user.meetings_chaired.count,
-            "Aantal vergaderingen genotuleerd": @user.meetings_minuted.count,
-          } %>
-          <% specs.each do |name, value| %>
-            <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-              <dt class="mx-6 text-sm font-medium text-gray-500 0 sm:col-span-2">
-                <%= name %>
-              </dt>
-              <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-">
-                <%= value %>
-              </dd>
-            </div>
-          <% end %>
-        </dl>
+      <div class="p-2 sm:p-4 border-t border-gray-200">
+        <% unless @missed_drinks.empty? %>
+          <h4>Gemiste Zondagborrels</h4>
+          <ul class="list-disc list-inside">
+            <% @missed_drinks.each do |md| %>
+              <li><%= link_to md.date.strftime("%d-%m-%Y"), md %><br></li>
+            <% end %>
+          </ul>
+        <% end %>
       </div>
+
+      <dl class="border-t border-gray-200 sm:divide-y sm:divide-gray-200">
+        <% specs = {
+          "Aantal quotes": @user.quotes.count,
+          "Aantal reviews": @user.reviews.count,
+          "Gemiddeld reviewcijfer": @user.average_review_grade,
+          "Aantal eventementen georganiseerd": @user.blogitems.count,
+          "Aantal blogposts geschreven": @user.blogitems.count,
+          "Aantal vergaderingen bijgewoond": @user.meetings_attended.count,
+          "Aantal vergaderingen voorgezeten": @user.meetings_chaired.count,
+          "Aantal vergaderingen genotuleerd": @user.meetings_minuted.count,
+        } %>
+        <% specs.each do |name, value| %>
+          <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="mx-6 text-sm font-medium text-gray-500 0 sm:col-span-2">
+              <%= name %>
+            </dt>
+            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-">
+              <%= value %>
+            </dd>
+          </div>
+        <% end %>
+      </dl>
     </div>
   </aside>
 
@@ -65,6 +86,9 @@
       <ul role="list" class="divide-y divide-gray-200">
         <%= render @user.quotes %>
       </ul>
+    </div>
+    <div class="py-6">
+      <%= render 'shared/pagination/default' %>
     </div>
   </div>
 </div>
