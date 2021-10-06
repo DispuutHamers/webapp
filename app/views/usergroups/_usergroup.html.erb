@@ -1,4 +1,4 @@
-<li href="<%= usergroup_path(usergroup) %>" class="px-4 py-4 flex items-center sm:px-6 hover:bg-gray-50 cursor-pointer">
+<li onclick='Turbo.visit("<%= usergroup_path(usergroup) %>")' class="px-4 py-4 flex items-center sm:px-6 hover:bg-gray-50 cursor-pointer">
   <div class="min-w-0">
     <% if usergroup.logo.attached? %>
       <%= image_tag usergroup.logo.representation(resize_to_limit: [100, 100]), class: "h-12 w-12 mr-4 rounded-full" %>
