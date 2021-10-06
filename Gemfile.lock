@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    any_login (1.4.4)
+      rails (>= 4.2.7)
     ast (2.4.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -309,7 +311,6 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     stackprof (0.2.17)
-    switch_user (1.5.4)
     tailwindcss-rails-webpacker (0.1.2)
       rails (>= 6.0.0)
     terrapin (0.6.0)
@@ -364,6 +365,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  any_login
   binding_of_caller
   brakeman
   bullet
@@ -407,7 +409,6 @@ DEPENDENCIES
   sprockets
   sqlite3
   stackprof
-  switch_user
   tailwindcss-rails-webpacker (~> 0.1.2)
   therubyracer
   turbo-rails

@@ -1,13 +1,14 @@
 class ExternalSignupsController < ApplicationController
   before_action :check_invitation_code
   before_action :event
+  layout 'application_public'
 
   def new
-    redirect_to event_path(@event), notice: "Je bent al ingelogd" if current_user
+    redirect_to event_path(@event), notice: "Deze pagina is voor gasten" if current_user
     @external_signup = ExternalSignup.new
 
     breadcrumb @event.title, @event.invitation_link
-    breadcrumb "Schrijf je in", @event.invitation_link
+    breadcrumb "Aanmelden", @event.invitation_link
   end
 
   def create

@@ -10,6 +10,8 @@ module UsersHelper
   end
 
   def self.sunday_ratio_for(user)
+    return nil unless user.lid?
+
     date = user.lid_since
     drinks = Event.where(attendance: true).where("date > ?", date).where("deadline < ?", Date.today)
     total = 0.0
@@ -26,6 +28,8 @@ module UsersHelper
   end
 
   def self.missed_drinks_for(user)
+    return nil unless user.lid?
+
     date = user.lid_since
     drinks = Event.where(attendance: true).where("created_at > ?", date)
     unattended = []

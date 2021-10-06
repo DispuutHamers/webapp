@@ -5,4 +5,5 @@
       &copy; <%= Time.current.year %> - version <%= "#{`git rev-list HEAD --count`} (#{`git rev-parse --short HEAD`.chomp})" %>
     </p>
   </div>
+  <%= any_login_here if defined?(AnyLogin) %>
 </footer>

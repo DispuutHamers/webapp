@@ -30,7 +30,6 @@ gem 'rqrcode_png'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
-gem 'switch_user'
 gem 'tailwindcss-rails-webpacker', "~> 0.1.2"
 gem 'therubyracer'
 gem 'turbo-rails'
@@ -60,6 +59,7 @@ group :production do
 end
 
 group :development do
+  gem 'any_login'
   gem "brakeman", require: false
   gem 'web-console'
   gem 'pry'
