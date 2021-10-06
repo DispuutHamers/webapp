@@ -14,28 +14,32 @@ class UsersController < ApplicationController
   end
 
   def index_public
-    @users = User.order(batch: :desc).group_by { |user| user[:batch] }
     breadcrumb 'Openbaar', public_leden_path
+
+    @users = User.order(batch: :desc).group_by { |user| user[:batch] }
   end
 
   def edit_usergroups
-    @member = @user.usergroups
-    @notmember = Usergroup.where.not(id: @member)
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
     breadcrumb 'Groepen', edit_usergroups_user_path(@user)
+
+    @member = @user.usergroups
+    @notmember = Usergroup.where.not(id: @member)
     render 'users/settings/usergroups'
   end
 
   def show
+    breadcrumb @user.name, user_path(@user)
+
     @pagy, @quotes = pagy(@user.quotes.order('created_at DESC'))
     @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
-    breadcrumb @user.name, user_path(@user)
   end
 
   def new
-    @user = User.new
     breadcrumb 'Registreren', new_user_path
+
+    @user = User.new
   end
 
   def create

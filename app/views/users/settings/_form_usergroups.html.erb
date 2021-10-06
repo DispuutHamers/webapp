@@ -1,7 +1,7 @@
 <h2 class="text-2xl mt-4 text-center"><%= @user.name %> is lid van:</h2>
 <div class="mt-4">
   <div class="list-container">
-    <% @member.each_with_index do |group, index| %>
+    <% @member.each do |group| %>
       <div class="list-items flex flex-col sm:flex-row items-center justify-between max-w-lg mx-auto border-b py-4 dark:bg-gray-700 my-1 px-4">
         <div class="flex flex-row items-center space-x-4">
           <h1 class="tracking-tight dark:text-gray-100"><%= group.name %></h1>
@@ -25,13 +25,13 @@
   <h2 class="text-2xl mt-4 text-center"><%= @user.name %> is GEEN lid van:</h2>
   <div class="mt-4">
     <div class="list-container">
-      <% @notmember.each_with_index do |group, index| %>
+      <% @notmember.each do |group| %>
         <div class="list-items flex flex-col sm:flex-row items-center justify-between max-w-lg mx-auto border-b py-4 dark:bg-gray-700 my-1 px-4">
           <div class="flex flex-row items-center space-x-4">
             <h1 class="tracking-tight dark:text-gray-100"><%= group.name %></h1>
           </div>
           <div>
-            <%= form_for(@user.groups.new(group_id: group.id, user_id: @user.id)) do |f| %>
+            <%= form_for @user.groups.new(group_id: group.id, user_id: @user.id) do |f| %>
               <%= f.hidden_field :group_id %>
               <%= f.hidden_field :user_id %>
               <button type="submit" class="bg-green-100 rounded-md px-4 py-1 text-green-800 text-sm font-semibold mt-4 sm:mt-0">

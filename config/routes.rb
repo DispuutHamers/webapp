@@ -79,7 +79,7 @@ Hamers::Application.routes.draw do
   get 'leden', to: "users#index_public", as: "public_leden"
 
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
-  resources :groups, only: [:create, :destroy]
+  resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes, only: [:create, :destroy, :update, :edit]
 
   match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
