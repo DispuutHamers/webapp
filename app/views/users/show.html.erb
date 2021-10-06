@@ -34,7 +34,7 @@
     <% if @user.lid? %>
       <% unless @missed_drinks.empty? %>
         <section>
-          <h4>Gemiste Zondagborrels</h4>
+          <h4>Gemiste Dispuutsborrels</h4>
           <ul>
             <% @missed_drinks.each do |md| %>
               <li><%= link_to md.date.strftime("%d-%m-%Y"), md %><br></li>
