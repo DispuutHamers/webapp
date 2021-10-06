@@ -4,7 +4,7 @@
 
 <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
   <% content_for :options do %>
-    <ul role="list" class="flex justify-center space-x-5 pt-4">
+    <ul role="list" class="flex justify-center space-x-5">
       <li>
         <%= button_to edit_blogitem_path(@item), method: :get, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
           <span class="sr-only">edit</span>
