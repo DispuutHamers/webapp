@@ -29,8 +29,7 @@ class UsersController < ApplicationController
 
   def show
     @pagy, @quotes = pagy(@user.quotes.order('created_at DESC'))
-    # @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
-    @missed_drinks = Event.all
+    @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
     breadcrumb @user.name, user_path(@user)
   end
 
