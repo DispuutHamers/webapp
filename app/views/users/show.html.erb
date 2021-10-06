@@ -1,126 +1,111 @@
-<div class="row">
-  <aside class="col-md-5">
-    <section>
-      <h1>
-        <%= gravatar_for @user, size: 96 %>
-        <%= @user.name %>
-      </h1>
-    </section>
+<% content_for :title do %>
+  <% @user.name %>
+<% end %>
 
-    <% if current_user.admin? %>
-      <section>
-        <h4>Wijzig lichting</h4>
-        <%= form_for @user, url: users_path(@user), html: { class: 'form-inline' } do |f| %>
-          <%= f.number_field :batch, class: "form-control input-sm" %>
-          <%= f.submit "Opslaan", class: "btn btn-default btn-sm" %>
-        <% end %>
-      </section>
-    <% end %>
+<% content_for :subtitle do %>
+  <% if @user.lid? %>
+    <div class="flex items-center text-sm text-gray-400">
+      <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+      Lid sinds <%= @user.lid_since.strftime("%d-%m-%Y") %>
+    </div>
+  <% end %>
 
-    <% if @user.lid? %>
-      <% unless @missed_drinks.empty? %>
-        <section>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    Lichting <%= @user.batch %>
+  </div>
+<% end %>
+
+<% if current_user == @user %>
+  <% content_for :options do %>
+    <%= link_to 'Instellingen', edit_user_path(current_user), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <% end %>
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="md:col-span-3 md:pr-6">
+    <div class="flex justify-center">
+      <%= gravatar_for @user, size: 500, class: "h-32 w-32 rounded-full m-8" %>
+    </div>
+
+    <div class="-mx-6 text-gray-900">
+      <div class="p-2 sm:p-4 border-t border-gray-200">
+        <div class="flex justify-around">
+          <% @user.usergroups.each do |group| %>
+            <div class="h-12 w-12 mr-4 text-sm font-medium text-gray-900 popover"
+                 data-controller="popover"
+                 data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut"
+                 data-popover-translate-x="0"
+                 data-popover-translate-y="15%">
+              <% if group.logo.attached? %>
+                <%= image_tag group.logo.representation(resize_to_limit: [100, 100]), class: "rounded-full", alt: group.name %>
+              <% else %>
+                <img class="rounded-full" src="https://placehold.co/500x500?text=<%= group.name %>" alt="<%= group.name %>">
+              <% end %>
+              <div class="content hidden absolute bg-gray-100 border border-gray-200 text-gray-700 rounded p-3" data-popover-target="content">
+                <%= group.name %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <% if current_user.admin? %>
+        <div class="p-2 sm:p-4 border-t border-gray-200">
+          <h4 class="mb-1">Wijzig lichting</h4>
+
+          <%= form_for @user, url: user_path(@user), html: { class: 'flex rounded-md' } do |f| %>
+            <%= f.number_field :batch, class: "focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md" %>
+            <%= f.submit "Opslaan", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if @user.lid? && !@missed_drinks&.empty? %>
+        <div class="p-2 sm:p-4 border-t border-gray-200">
           <h4>Gemiste Zondagborrels</h4>
-          <ul>
+          <ul class="list-disc list-inside">
             <% @missed_drinks.each do |md| %>
-              <li><%= link_to md.date.strftime("%d-%m-%Y"), md %><br></li>
+              <li><%= link_to md.date.strftime("%d-%m-%Y"), md %></li>
             <% end %>
           </ul>
-        </section>
+        </div>
       <% end %>
-    <% end %>
 
-    <section>
-      <h4>Stats</h4>
-      <table class="table table-hover table-striped">
-        <tr>
-          <td>Aantal quotes</td>
-          <td><%= @user.quotes.count %></td>
-        </tr>
-        <tr>
-          <td>Aantal reviews</td>
-          <td><%= @user.reviews.count %></td>
-        </tr>
-        <tr>
-          <td>Aantal evenementen georganiseerd</td>
-          <td><%= @user.events.count %></td>
-        </tr>
-        <tr>
-          <td>Aantal blogposts geschreven</td>
-          <td><%= @user.blogitems.count %></td>
-        </tr>
-        <tr>
-          <td>Aantal vergaderingen bijgewoond</td>
-          <td><%= @user.meetings_attended.count %></td>
-        </tr>
-        <tr>
-          <td>Aantal vergaderingen voorgezeten</td>
-          <td><%= @user.meetings_chaired.count %></td>
-        </tr>
-        <tr>
-          <td>Aantal vergaderingen genotuleerd</td>
-          <td><%= @user.meetings_minuted.count %></td>
-        </tr>
-        <tr>
-          <td>Gemiddeld review cijfer</td>
-          <td>
-            <% if @user.weight %>
-              <%= @user.weight.round(2) %>
-            <% else %>
-              Nog onbekend
-            <% end %>
-          </td>
-        </tr>
-
-        <% if @user.lid? %>
-          <tr>
-            <td>Sunday ratio</td>
-            <td><%= @user.sunday_ratio.round(2) %></td>
-          </tr>
+      <dl class="border-t border-gray-200 sm:divide-y sm:divide-gray-200">
+        <% specs = {
+          "Aantal quotes": @user.quotes.count,
+          "Aantal reviews": @user.reviews.count,
+          "Gemiddeld reviewcijfer": @user.average_review_grade,
+          "Aantal eventementen georganiseerd": @user.blogitems.count,
+          "Aantal blogposts geschreven": @user.blogitems.count,
+          "Aantal vergaderingen bijgewoond": @user.meetings_attended.count,
+          "Aantal vergaderingen voorgezeten": @user.meetings_chaired.count,
+          "Aantal vergaderingen genotuleerd": @user.meetings_minuted.count,
+        } %>
+        <% specs.each do |name, value| %>
+          <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="mx-6 text-sm font-medium text-gray-500 0 sm:col-span-2">
+              <%= name %>
+            </dt>
+            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-">
+              <%= value %>
+            </dd>
+          </div>
         <% end %>
-
-        <tr>
-          <td>Account aangemaakt</td>
-          <td><%= @user.created_at.strftime('%d-%m-%Y') %></td>
-        </tr>
-
-        <% if @user.current_sign_in_at %>
-          <tr>
-            <td>Tijdstip huidige login</td>
-            <td><%= @user.current_sign_in_at.strftime('%d-%m-%Y %H:%M') %></td>
-          </tr>
-          <tr>
-            <td>IP huidige login</td>
-            <td><%= @user.current_sign_in_ip %></td>
-          </tr>
-        <% end %>
-
-        <% if @user.last_sign_in_at %>
-          <tr>
-            <td>Tijdstip laatste login</td>
-            <td><%= @user.last_sign_in_at.strftime('%d-%m-%Y %H:%M') %></td>
-          </tr>
-          <tr>
-            <td>IP laatste login</td>
-            <td><%= @user.last_sign_in_ip %></td>
-          </tr>
-        <% end %>
-      </table>
-    </section>
-
+      </dl>
+    </div>
   </aside>
 
-  <div class="col-md-7">
-    <% if @user.quotes.any? %>
-      <h2>Quotes</h2>
-      <ol class="microposts">
-        <%= render partial: 'quotes/quote_stripped', collection: @quotes, as: :quote %>
-      </ol>
+  <div class="md:col-span-9 md:pl-6">
+    <div class="overflow-hidden border-b sm:rounded-t-md">
+      <ul role="list" class="divide-y divide-gray-200">
+        <%= render @user.quotes %>
+      </ul>
+    </div>
+    <div class="py-6">
       <%= render 'shared/pagination/default' %>
-    <% end %>
+    </div>
   </div>
-
 </div>
 
-<!-- Lelijk maar ff handig voor debuggen. Deze pagina moet nog helemaal herschreven worden dus is moeite nu niet waard om het er goed in te zetten. -->
-<%= @user.lid_since %>

@@ -97,4 +97,8 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   def lid_since
     groups.with_deleted.where(group_id: 4)&.first&.created_at || "Pleb"
   end
+
+  def average_review_grade
+    weight&.round(2) || "Nog onbekend"
+  end
 end
