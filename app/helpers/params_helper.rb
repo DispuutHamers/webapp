@@ -20,7 +20,7 @@ module ParamsHelper
   end
 
   def blog_params
-    params.require(:blogitem).permit(:title, :body, :public, :actiontext_body)
+    params.require(:blogitem).permit(:title, :body, :public, :body)
   end
 
   def signup_params
@@ -68,7 +68,7 @@ module ParamsHelper
   end
 
   def usergroup_params
-    params.require(:usergroup).permit(:name, :text)
+    params.require(:usergroup).permit(:name, :signal_url)
   end
 
   def configure_permitted_parameters

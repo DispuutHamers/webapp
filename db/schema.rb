@@ -359,7 +359,6 @@ ActiveRecord::Schema.define(version: 2021_10_03_141754) do
     t.integer "invitations_count", default: 0
     t.string "phone_number", limit: 255
     t.date "birthday"
-    t.string "raw_invitation_token"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -380,8 +379,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_141754) do
     t.text "old_object", size: :long
     t.datetime "created_at"
     t.text "old_object_changes", size: :long
-    t.text "object", size: :long
-    t.text "object_changes", size: :long
+    t.json "object"
+    t.json "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 

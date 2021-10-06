@@ -14,10 +14,7 @@ class UsergroupTest < ActiveSupport::TestCase
 
     ug = Usergroup.create
 
-    g = Group.new
-    g.group_id = ug.id
-    g.user_id = u.id
-    g.save!
+    Group.create!(group_id: ug.id, user_id: u.id)
   end
 
   test 'Delete usergroup' do

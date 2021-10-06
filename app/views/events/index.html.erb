@@ -30,7 +30,7 @@
     </div>
     <div id="past" class="tab-pane fade">
       <%= render "events/table", events: @past_events %>
-      <%== pagy_nav(@pagy) %>
+      <%= render 'shared/pagination/default' %>
     </div>
   </div>
 

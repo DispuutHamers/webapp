@@ -95,7 +95,7 @@
                  data-dropdown-leaving-class="ease-in duration-100"
                  data-dropdown-leave-timeout="300">
               <div>
-                <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide" id="user-menu">
+                <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-hamers-yellow-500" data-action="click->dropdown#toggle click@window->dropdown#hide" id="user-menu">
                   <span class="sr-only">Open user menu</span>
                   <%= gravatar_for current_user, class: "h-8 w-8 rounded-full" %>
                 </button>
@@ -132,7 +132,7 @@
                data-dropdown-enter-timeout="300"
                data-dropdown-leaving-class="ease-in duration-100"
                data-dropdown-leave-timeout="300">
-            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
+            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
               <span class="sr-only">Open main menu</span>
               <%= heroicon('menu', style: :outline, class_name: "block h-6 w-6") %>
             </button>
@@ -166,7 +166,7 @@
                data-dropdown-enter-timeout="300"
                data-dropdown-leaving-class="ease-in duration-100"
                data-dropdown-leave-timeout="300">
-            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
+            <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
               <span class="sr-only">Open account menu</span>
               <%= gravatar_for current_user, class: "h-8 w-8 rounded-full" %>
             </button>
