@@ -1,93 +1,125 @@
 <%= form_for(@event) do |f| %>
-  <% if @event.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
-      <ul>
-        <% @event.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<% if @event.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@event.errors.count, 'error') %> prohibited this event from being saved:</h2>
+  <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="flex-grow w-full max-w-7md mx-auto lg:flex">
+  <div class="flex-1 min-w-0 bg-white md:flex">
+    <div
+      class="border-b border-gray-200 pb-4 md:border-b-0 md:flex-shrink-0 md:w-64 md:-my-6 md:border-r md:border-gray-200 bg-white">
+      <div class="h-full pl-4 pr-6 md:py-6 md:pl-0">
+        <div class="h-full relative" style="min-height: 12rem;">
+          <div class="mt-6 grid grid-cols-3 gap-y-6 gap-x-4">
+
+            <div class="col-span-3">
+              <label class="block text-sm font-medium text-gray-700">
+                Titel
+              </label>
+              <div class="mt-1">
+                <%= f.text_field :title, class: input_classes %>
+              </div>
+            </div>
+
+            <div class="col-span-3">
+              <label class="block text-sm font-medium text-gray-700">
+                Locatie
+              </label>
+              <div class="mt-1">
+                <%= f.text_field :location, class: input_classes %>
+              </div>
+            </div>
+
+            <div class="col-span-3">
+              <label class="block text-sm font-medium text-gray-700">
+                Wanneer
+              </label>
+              <div class="mt-1">
+                <%= f.text_field :date,
+                      class: input_classes,
+                      data: {
+                        controller: "flatpickr",
+                        flatpickr_default_date: @event.date&.strftime("%d-%m-%Y %H:%i"),
+                        flatpickr_date_format: "d-m-Y H:i",
+                        flatpickr_enable_time: true,
+                        flatpickr_time_24hr: true
+                      } %>
+              </div>
+            </div>
+
+            <div class="col-span-3">
+              <label class="block text-sm font-medium text-gray-700">
+                Tot
+              </label>
+              <div class="mt-1">
+                <%= f.text_field :end_time,
+                      class: input_classes,
+                      data: {
+                        controller: "flatpickr",
+                        flatpickr_default_date: @event.date&.strftime("%d-%m-%Y %H:%i"),
+                        flatpickr_date_format: "d-m-Y H:i",
+                        flatpickr_enable_time: true,
+                        flatpickr_time_24hr: true
+                      } %>
+              </div>
+            </div>
+
+            <div class="col-span-3">
+              <label class="block text-sm font-medium text-gray-700">
+                Inschrijven sluit op
+              </label>
+              <div class="mt-1">
+                <%= f.text_field :deadline,
+                      class: input_classes,
+                      data: {
+                        controller: "flatpickr",
+                        flatpickr_default_date: @event.date&.strftime("%d-%m-%Y %H:%i"),
+                        flatpickr_date_format: "d-m-Y H:i",
+                        flatpickr_enable_time: true,
+                        flatpickr_time_24hr: true
+                      } %>
+              </div>
+            </div>
+
+            <div class="col-span-3">
+              <label class="block text-sm font-medium text-gray-700">
+                Groep (optioneel)
+              </label>
+              <%= f.select :usergroup_id, Usergroup.all.collect { |x| [x.name, x.id] }, { include_blank: true }, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md" } %>
+            </div>
+
+            <div class="flex items-start col-span-3 md:justify-between">
+              <div class="flex items-center h-5">
+                <%= f.check_box :public, { checked: @event.invitation_code?, class: "focus:ring-hamers-red-500 h-4 w-4 text-hamers-red-600 border-gray-300 rounded" } %>
+              </div>
+              <div class="ml-3 text-sm">
+                <label class="font-medium text-gray-700">Plebs</label>
+                <p class="text-gray-500">Staan we plebs toe op deze activiteit?</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-  <div class="row">
-    <div class="col-md-7">
-      <%= f.rich_text_area :description, class: 'form-control higher form-input', placeholder: 'Wat gaan we doen?' %>
-    </div>
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-2">
-          <%= f.label :title, "Titel" %>
-        </div>
-        <div class="col-md-9">
-          <%= f.text_field :title, class: 'form-control form-input' %>
+
+    <div class="bg-white lg:min-w-0 lg:flex-1">
+      <div class="h-full py-6 px-4 sm:px-6 lg:pl-8">
+        <div class="relative h-full">
+          <%= f.rich_text_area :description, class: 'form-control', placeholder: 'Wat gaan we doen?' %>
+
+          <div class="flex justify-center mt-5">
+            <%= f.submit "Opslaan", class: submit_classes %>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-2">
-          <%= f.label :locatie, "Locatie" %>
-        </div>
-        <div class="col-md-9">
-          <%= f.text_field :location, class: 'form-control form-input' %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <%= f.label :date, "Datum" %>
-        </div>
-        <div class="col-md-9">
-          <%= f.text_field :date,
-                           class: 'form-control form-input',
-                           data: {
-                             controller: "flatpickr",
-                             flatpickr_default_date: @event.date&.strftime("%d-%m-%Y %H:%i"),
-                             flatpickr_date_format: "d-m-Y H:i",
-                             flatpickr_enable_time: true,
-                             flatpickr_time_24hr: true
-                           } %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <%= f.label :end_time, "Eindtijd" %>
-        </div>
-        <div class="col-md-9">
-          <%= f.text_field :end_time,
-                           class: 'form-control form-input',
-                           data: {
-                             controller: "flatpickr",
-                             flatpickr_default_date: @event.end_time&.strftime("%d-%m-%Y %H:%i"),
-                             flatpickr_date_format: "d-m-Y H:i",
-                             flatpickr_enable_time: true,
-                             flatpickr_time_24hr: true
-                           } %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <%= f.label :deadline, 'Inschrijf deadline' %>
-        </div>
-        <div class="col-md-9">
-          <%= f.text_field :deadline,
-                           class: 'form-control form-input',
-                           data: {
-                             controller: "flatpickr",
-                             flatpickr_default_date: @event.deadline&.strftime("%d-%m-%Y %H:%i"),
-                             flatpickr_date_format: "d-m-Y H:i",
-                             flatpickr_enable_time: true,
-                             flatpickr_time_24hr: true
-                           } %>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <%= f.label :usergroup_id, 'Groep (optioneel)' %>
-        </div>
-        <div class="col-md-9">
-          <%= f.select :usergroup_id, Usergroup.all.collect { |x| [x.name, x.id] }, include_blank: true %>
-        </div>
-      </div>
-      <%= f.check_box :public, { checked: @event.invitation_code? } %> <%= f.label :public, 'Staan we plebs toe op deze activiteit?' %>
-      <%= f.submit :Opslaan, class: 'btn btn-primary form-control' %>
     </div>
   </div>
+</div>
+
 <% end %>

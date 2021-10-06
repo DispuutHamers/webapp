@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   Lockbox.master_key = "10a6ce454101d0b7ca5a2c39d74101d976cffad4d043a4a1c0c68e2c021e570c"
+  config.active_storage.service = :test
 
   # The test environment is used exclusively to run your application's
   # test suite. You never need to work with it otherwise. Remember that
@@ -45,6 +46,4 @@ Rails.application.configure do
   config.after_initialize do
     PaperTrail.enabled = false
   end
-
-  config.active_storage.service = :local
 end

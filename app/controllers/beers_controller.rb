@@ -32,6 +32,8 @@ class BeersController < ApplicationController
   # GET /beers/1.json
   def show
     breadcrumb @beer.name, beer_path(@beer)
+
+    @reviews = @beer.reviews.with_user
   end
 
   def reviews

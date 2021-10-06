@@ -43,11 +43,6 @@ module UtilHelper
     redirect_to root_path
   end
 
-  def do_signup(user)
-    event = Event.find(params[:signup][:event_id])
-    user.signup(event, params[:signup][:status], params[:signup][:reason])
-  end
-
   # Tasks that are run automatically (with cron) and are monitored
 
   def self.create_drink

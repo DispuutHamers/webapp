@@ -2,92 +2,78 @@
   <%= @beer.name %>
 <% end %>
 
-<div class="row">
-  <div class="col-md-8">
-    <% @beer.reviews.with_user.each do |r| %>
-      <div class="review">
-        <h4>
-          <% if current_user&.active? || !r.user.anonymous? %>
-            <%= link_to r.user.name, r.user %>
-          <% else %>
-            Anonieme Hamer
-          <% end %>
-
-          zei over dit bier:
-        </h4>
-
-        <p>
-          <%= r.description %>
-        </p>
-
-        <p>
-          Dit biertje kreeg een <i><%= r.rating %></i> en is geproefd op
-          <i><%= r.proefdatum&.strftime('%d-%m-%Y') %></i>
-        </p>
-
-        <div class="btn-group pull-right">
-          <% if current_user&.active? %>
-            <%= link_to edit_review_path(r), class: 'btn btn-default btn-sm' do %>
-              <i class="fas fa-pencil-alt"></i>
-            <% end %>
-            <%= link_to r, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
-              <i class="far fa-trash-alt"></i>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <hr>
-    <% end %>
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    Aangemaakt op <%= @beer.created_at.strftime("%d-%m-%Y") %>
   </div>
-  <div id="beer-info-panel" class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <% if current_user&.active? && @beer.picture? %>
-          <%= image_tag @beer.picture, class: 'img img-responsive center-block' %>
-        <% else %>
-          <img src="https://placehold.co/500x500?text=Geen foto" class="img img-responsive center-block">
-        <% end %>
-        <table class="table table-hover">
-          <tr>
-            <td>Naam:</td>
-            <td><%= @beer.name %></td>
-          </tr>
-          <tr>
-            <td>Soort:</td>
-            <td><%= @beer.kind %></td>
-          </tr>
-          <tr>
-            <td>ALC:</td>
-            <td><%= @beer.percentage %></td>
-          </tr>
-          <tr>
-            <td>Brouwer:</td>
-            <td><%= @beer.brewer %></td>
-          </tr>
-          <tr>
-            <td>Land:</td>
-            <td><%= @beer.country %></td>
-          </tr>
-        </table>
-        <% if @beer.URL.present? %>
-          <%= link_to 'Meer info', @beer.URL, class: 'btn btn-default btn-block' %>
-        <% end %>
 
-        <% if current_user %>
-          <hr>
-          <div class="btn-group btn-group-vertical">
-            <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
-              <%= link_to reviews_beer_path(@beer), :class => 'btn btn-default' do %>
-                <i class="fas fa-edit"></i> Review dit bier
-              <% end %>
-            <% end %>
-            <%= link_to edit_beer_path(@beer), :class => 'btn btn-default' do %>
-              <i class="fas fa-pencil-alt"></i> Wijzig dit bier
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= pluralize @beer.reviews.count, 'review', 'reviews', locale: :nl %>
+  </div>
+<% end %>
+
+<% if current_user %>
+  <% content_for :options do %>
+    <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
+      <%= link_to "Review", reviews_beer_path(@beer), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <% end %>
+    <%= link_to "Wijzig", edit_beer_path(@beer), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <% end %>
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <div class="-mx-5 sm:-mx-6 md:col-span-9 md:pr-6">
+    <div class="overflow-hidden border-b sm:rounded-t-md">
+      <ul role="list" class="divide-y divide-gray-200">
+        <%= render @reviews %>
+      </ul>
     </div>
   </div>
+
+  <aside class="md:col-span-3 md:pl-6">
+    <div class="mt-6">
+      <% if current_user&.active? && @beer.picture? %>
+        <%= image_tag @beer.picture, class: "w-full" %>
+      <% else %>
+        <img src="https://placehold.co/500x500?text=Geen foto" class="w-full">
+      <% end %>
+
+      <div class="mt-5 -mx-6 border-t border-gray-200">
+        <dl class="sm:divide-y sm:divide-gray-200">
+
+          <% specs = {
+            Naam: @beer.name,
+            Soort: @beer.kind,
+            ALC: @beer.percentage,
+            Brouwer: @beer.brewer,
+            Land: @beer.country
+          } %>
+
+          <% specs.each do |name, value| %>
+            <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="mx-6 text-sm font-medium text-gray-500">
+                <%= name %>
+              </dt>
+              <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= value %>
+              </dd>
+            </div>
+          <% end %>
+
+          <% if @beer.URL %>
+            <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="mx-6 text-sm font-medium text-gray-500">
+                Meer informatie
+              </dt>
+              <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%= link_to "Link", @beer.URL %>
+              </dd>
+            </div>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+  </aside>
 </div>
