@@ -44,9 +44,7 @@ Group.create!(user_id: 5, group_id: Usergroup.find_by_name("O-lid").id)
 Group.create!(user_id: 6, group_id: Usergroup.find_by_name("A-lid").id)
 
 # Create quotes
-100.times do
-  Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
-end
+Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)
 Quote.create!(user_id: 2, text: "Het mag ook een hele mooie, goed schoongemaakte penis zijn..", reporter_id: 3)
 Quote.create!(user_id: 3, text: "Ik hou wel van enorme lullen", reporter_id: 1)
 
