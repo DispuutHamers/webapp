@@ -95,6 +95,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def lid_since
+    return "-" unless lid?
     groups.with_deleted.where(group_id: 4).first.created_at
   end
 end

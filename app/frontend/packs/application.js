@@ -39,12 +39,3 @@ import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
 application.register('dropdown', Dropdown)
 application.register('tabs', Tabs)
 application.register('popover', Popover)
-
-document.addEventListener("turbo:load", function () {
-    $(function () {
-        $("tr[data-link]").on("click", function () {
-            Turbo.visit($(this).data("link"))
-        });
-    });
-});
-

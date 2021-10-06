@@ -29,7 +29,7 @@
             <tbody class="bg-white divide-y divide-gray-200">
 
             <% users.each do |user| %>
-              <tr>
+              <tr onclick='Turbo.visit("<%= user_path(user) %>")' class="hover:bg-gray-50 cursor-pointer">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="flex-shrink-0 h-10 w-10">
