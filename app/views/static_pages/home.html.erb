@@ -25,13 +25,13 @@
         <% end %>
         <%= render 'shared/news' %>
       </section>
-      <section>
-        <%= link_to blogitems_path do %>
-          <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
-        <% end %>
-        <%= render 'shared/blog' %>
-      </section>
       <% unless current_user.alid? %>
+        <section>
+          <%= link_to blogitems_path do %>
+            <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
+          <% end %>
+          <%= render 'shared/blog' %>
+        </section>
         <section>
           <%= link_to trail_path do %>
             <h5><i class="fas fa-history"></i> Log</h5>

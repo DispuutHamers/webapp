@@ -1,6 +1,6 @@
 #Entry point for the blog resource
 class BlogitemsController < ApplicationController
-  before_action :ilid?, except: [:index, :show]
+  before_action :lid?, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Blog', :blogitems_path
 
