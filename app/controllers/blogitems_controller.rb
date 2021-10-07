@@ -5,7 +5,7 @@ class BlogitemsController < ApplicationController
   breadcrumb 'Blog', :blogitems_path
 
   def index
-    if current_user&.active?
+    if current_user&.lid? || current_user&.olid?
       @items = Blogitem.all.reverse
     else
       @items = Blogitem.where(public: true).reverse
@@ -13,7 +13,7 @@ class BlogitemsController < ApplicationController
   end
 
   def show
-    if !@item.public && !current_user&.active?
+    if !@item.public && !(current_user&.lid? || current_user&.olid?)
       redirect_to blogitems_path
     end
     @user = User.find_by(id: @item&.user_id)

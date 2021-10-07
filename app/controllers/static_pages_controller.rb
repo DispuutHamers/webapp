@@ -8,11 +8,15 @@ class StaticPagesController < ApplicationController
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take
     @quote = current_user.quotes.build
-    @blog = Blogitem.last(5).reverse
     @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
+    @blog = if current_user.alid?
+              Blogitem.where(public: true).last(5).reverse
+            else
+              Blogitem.last(5).reverse
+            end
   end
 
   def privacy
