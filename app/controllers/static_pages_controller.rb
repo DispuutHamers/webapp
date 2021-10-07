@@ -12,6 +12,9 @@ class StaticPagesController < ApplicationController
     @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
+
+    return if current_user?.alid?
+    @blog = @blog.where(public: true)
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
   end
 
