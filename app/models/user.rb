@@ -94,4 +94,17 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   def dev?
     in_group?('Developer')
   end
+
+  def birthday_ics
+    return unless u.birthday
+
+    date = u.birthday
+    date.year = Date.today.year
+
+    birthday = Icalendar::Event.new
+    birthday.dtstart = date
+    birthday.summary = "#{u.name} jarig (#{u.birthday.strftime('%Y')})"
+
+    birthday
+  end
 end

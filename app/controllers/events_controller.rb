@@ -102,12 +102,7 @@ class EventsController < ApplicationController
 
     User.all.each do |u|
       next unless u.birthday
-
-      birthday = Icalendar::Event.new
-      birthday.dtstart = u.birthday
-      birthday.summary = "#{u.name} jarig (#{u.birthday.strftime('%Y')})"
-
-      calendar.add_event(birthday)
+      calendar.add_event(u.birthday_ics)
     end
 
     calendar
