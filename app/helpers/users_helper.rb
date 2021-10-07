@@ -1,12 +1,9 @@
 module UsersHelper
-
-  def gravatar_for(user, options = {size: 64, class: 'gravatar img img-responsive img-rounded'})
-    options[:size] = 64 unless options[:size]
-    options[:class] = "gravatar img img-responsive img-rounded" unless options[:class]
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+  def gravatar_for(user, options = {size: 64, class: 'h-6 w-6 rounded-full'})
+    gravatar_id = Digest::MD5.hexdigest(user&.email&.downcase || 'system')
     size = options[:size]
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}&r=x&d=monsterid"
-    image_tag(gravatar_url, alt: user.name, class: options[:class])
+    image_tag(gravatar_url, alt: user&.name, class: options[:class])
   end
 
   def self.sunday_ratio_for(user)
