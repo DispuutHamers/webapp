@@ -96,15 +96,15 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def birthday_ics
-    return unless u.birthday
+    return unless birthday
 
-    date = u.birthday
-    date.year = Date.today.year
+    date = birthday
+    date = date.change(year: Date.today.year)
 
-    birthday = Icalendar::Event.new
-    birthday.dtstart = date
-    birthday.summary = "#{u.name} jarig (#{u.birthday.strftime('%Y')})"
+    ics = Icalendar::Event.new
+    ics.dtstart = date
+    ics.summary = "#{name} jarig (#{birthday.strftime('%Y')})"
 
-    birthday
+    ics
   end
 end
