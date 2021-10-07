@@ -13,11 +13,11 @@ class StaticPagesController < ApplicationController
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
 
-    @blogs = if current_user.alid?
-               @blogs.last(5).reverse.where(public: true)
-             else
-               @blogs.last(5).reverse
-             end
+    @blog = if current_user.alid?
+              Blogitem.where(public: true).last(5).reverse
+            else
+              Blogitem.where(public: true).last(5).reverse
+            end
   end
 
   def privacy
