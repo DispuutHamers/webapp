@@ -12,11 +12,10 @@ class StaticPagesController < ApplicationController
     @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
     @news = News.last(5).reverse
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
-
     @blog = if current_user.alid?
               Blogitem.where(public: true).last(5).reverse
             else
-              Blogitem.where(public: true).last(5).reverse
+              Blogitem.last(5).reverse
             end
   end
 
