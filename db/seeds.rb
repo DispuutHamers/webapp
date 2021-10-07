@@ -26,6 +26,7 @@ Usergroup.create!(id: 5, name: "A-Lid").logo.attach(io: File.open('test/fixtures
 Usergroup.create!(id: 11, name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
 Usergroup.create!(id: 17, name: "H4x0rz").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
 Usergroup.create!(name: "Pokerbazen").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/poker.png'), filename: 'poker.png', content_type: 'image/png')
+Usergroup.create!(id: 21, name: "Trajectcoördinatoren")
 
 # Make users lid
 User.all.each do |user|
