@@ -7,10 +7,6 @@ module ParamsHelper
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
-  def photo_params
-    params.require(:blogphoto).permit(:image, :blogitem_id, :description)
-  end
-
   def brew_params
     params.require(:brew).permit(:description, :actiontext_description, :recipe_id)
   end
@@ -20,7 +16,7 @@ module ParamsHelper
   end
 
   def blog_params
-    params.require(:blogitem).permit(:title, :body, :public, :body)
+    params.require(:blogitem).permit(:title, :body, :public, :body, :tags_as_string)
   end
 
   def signup_params
