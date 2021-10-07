@@ -99,7 +99,11 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return unless birthday
 
     date = birthday
-    date = date.change(year: Date.today.year)
+    date = if Time.current.yday > date.yday
+             date.change(year: Date.today.year + 1)
+           else
+             date.change(year: Date.today.year)
+           end
 
     ics = Icalendar::Event.new
     ics.dtstart = date

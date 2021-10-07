@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   validates :date, presence: true, allow_blank: false
 
   scope :with_signups, -> { includes(:signups) }
-  scope :upcoming, -> { where(['date >= ?', Date.today - 1.month]) }
+  scope :upcoming, -> { where(['date >= ?', Date.today]) }
   scope :past, -> { where(['date <= ?', Date.today]) }
   scope :are_public, -> { where.not(invitation_code: nil) }
 
