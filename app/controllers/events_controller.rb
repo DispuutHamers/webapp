@@ -100,7 +100,7 @@ class EventsController < ApplicationController
       calendar.add_event(feed_item.to_ics)
     end
 
-    User.all.each do |u|
+    User.active.each do |u|
       next unless u.birthday
       calendar.add_event(u.birthday_ics)
     end

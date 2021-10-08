@@ -99,7 +99,12 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return unless birthday
 
     date = birthday
-    date = date.change(day: 28) if date.day == 29
+
+    # Fix for people that are born on leap day
+    if date.day == 29 && date.month == 2 && date.leap?
+      date = date.change(day: 28)
+    end
+
     date = if Time.current.yday > date.yday
              date.change(year: Date.today.year + 1)
            else
