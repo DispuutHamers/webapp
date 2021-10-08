@@ -98,21 +98,13 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   def birthday_ics
     return unless birthday
 
-    date = birthday
-
-    # Fix for people that are born on leap day
-    if date.day == 29 && date.month == 2 && date.leap?
-      date = date.change(day: 28)
-    end
-
-    date = if Time.current.yday > date.yday
-             date.change(year: Date.today.year + 1)
-           else
-             date.change(year: Date.today.year)
-           end
+    y = Time.zone.today.year
+    mmdd = birthday.strftime('%m%d')
+    y += 1 if mmdd < Time.zone.today.strftime('%m%d')
+    mmdd = '0301' if mmdd == '0229' && !Date.parse("#{y}0101").leap?
 
     ics = Icalendar::Event.new
-    ics.dtstart = date
+    ics.dtstart = Date.parse("#{y}#{mmdd}")
     ics.summary = "#{name} jarig (#{birthday.strftime('%Y')})"
 
     ics
