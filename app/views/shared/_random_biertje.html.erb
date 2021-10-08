@@ -1,8 +1,7 @@
 <div class="bg-white overflow-hidden md:shadow md:rounded-lg hidden md:block md:p-4">
   <h2 class="text-hamers-red-400 text-xl font-extrabold mb-4">Uitgelicht biertje</h2>
   <div class="flex justify-center h-full">
-    <% if @random_beer %>
-
+    <% if false and @random_beer %>
       <div class="flex-shrink-0">
         <% if @random_beer.picture.present? %>
           <%= image_tag @random_beer.picture, class: "h-40 rounded" %>
@@ -12,36 +11,31 @@
       </div>
       <div class="ml-4 w-0 flex-1 items-center h-full">
         <%= link_to @random_beer, class: "flex-shrink-0 group block h-full" do %>
-                <h2 class="align-top font-bold text-xl">
-                  <%= @random_beer.name %>
-                </h2>
+          <h2 class="align-top font-bold text-xl">
+            <%= @random_beer.name %>
+          </h2>
           <h3 class="align-top text-gray-500">
             <%= @random_beer.brewer %>
           </h3>
-              <div class="col-span-1 flex flex-col justify-between">
-                <p class="object-bottom text-xl font-medium text-hamers-red-500">
-                  <%= @random_beer.cijfer? %>
-                </p>
-                <p class="object-bottom text-xs font-medium text-gray-500">
-                  <%= pluralize(@random_beer.reviews.count, 'review', 'reviews') %>
-                </p>
-              </div>
+          <div class="col-span-1 flex flex-col justify-between">
+            <p class="object-bottom text-xl font-medium text-hamers-red-500">
+              <%= @random_beer.cijfer? %>
+            </p>
+            <p class="object-bottom text-xs font-medium text-gray-500">
+              <%= pluralize(@random_beer.reviews.count, 'review', 'reviews') %>
+            </p>
+          </div>
         <% end %>
       </div>
     <% else %>
-      <div class="text-center">
-        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-             aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-        </svg>
-        <h3 class="mt-2 text-sm font-medium text-gray-900">Er zijn nog geen biertjes :(</h3>
+      <div class="w-full">
+        <h3 class="text-sm font-medium text-gray-900">Er zijn nog geen biertjes :(</h3>
         <p class="mt-1 text-sm text-gray-500">
           Waarom maak je er niet een aan?
         </p>
         <div class="mt-6">
           <%= button_to new_beer_path, method: :get,
-                        class: "inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" do %>
+                        class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600" do %>
             <!-- Heroicon name: solid/plus -->
             <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                  aria-hidden="true">
