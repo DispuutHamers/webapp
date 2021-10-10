@@ -27,7 +27,6 @@
             </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-
             <% @public_pages.each do |page| %>
               <tr onclick='Turbo.visit("<%= public_page_path(page) %>")' class="hover:bg-gray-50 cursor-pointer">
                 <td class="px-6 py-4 whitespace-nowrap">
