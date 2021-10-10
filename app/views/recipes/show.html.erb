@@ -2,34 +2,41 @@
   <%= @recipe.name %>
 <% end %>
 
-<div class="row">
-  <div class="col-md-9">
-    <%= @recipe.actiontext_description %>
-  </div>
-
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <% if @brews.any? %>
-          Uitvoeringen:
-          <ul>
-            <% @brews.each do |brew| %>
-              <li><%= link_to brew.created_at.strftime("%d-%m-%Y"), brew_path(@recipe, brew) %></li>
-            <% end %>
-          </ul>
-        <% else %>
-          Dit recept is nog niet uitgevoerd.
+<% content_for :options do %>
+  <ul role="list" class="flex justify-center space-x-5">
+      <li>
+        <%= button_to edit_recipe_path(@recipe), method: :get, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
+          <span class="sr-only">edit</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
         <% end %>
+      </li>
+      <li>
+        <%= button_to @recipe, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
+          <span class="sr-only">destroy</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        <% end %>
+      </li>
+    </ul>
+<% end %>
 
-        <hr>
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="ml-6 my-6 md:col-span-8 md:pr-6">
+    <%= @recipe.actiontext_description %>
+  </aside>
 
-        <div class="btn-group btn-group-vertical">
-          <%= link_to 'Recept bijwerken', edit_recipe_path(@recipe), class: 'btn btn-default' %>
-          <%= link_to 'Recept verwijderen', @recepe, method: :delete, class: 'btn btn-default', data: { confirm: 'Zeker weten? Je verwijdert het recept en alle keren dat het gebrouwen is!' } %>
-          <%= link_to 'Nieuwe uitvoering', new_brew_path(@recipe), class: 'btn btn-default' %>
-        </div>
-      </div>
-    </div>
+  <div class='md:col-span-4 md:pl-6 my-6'>
+    Uitvoeringen:
+
+    <ul>
+      <% @brews.each do |brew| %>
+        <li><%= link_to brew.created_at.strftime("%d-%m-%Y"), brew_path(@recipe, brew) %></li>
+      <% end %>
+    </ul>
+
+    <%= button_to "Brouwen!", new_brew_path(@recipe), method: :get, class: submit_classes %>
   </div>
 </div>
-

@@ -11,11 +11,10 @@
           </ul>
         </div>
     <% end %>
-    <div class="form-group">
-      <%= f.rich_text_area :actiontext_description, class: 'form-control' %>
+
+    <%= f.rich_text_area :actiontext_description, class: 'form-control', placeholder: "blablabla" %>
+    <div class="flex justify-center mt-5">
+      <%= f.submit "Opslaan", class: submit_classes %>
     </div>
-    <div class="actions">
-      <%= f.submit :Verstuur, class: 'btn btn-primary' %>
-    </div>
-<% end %>
+  <% end %>
 </div>
