@@ -1,7 +1,8 @@
-<%= form_for(@public_page) do |f| %>
+<div>
+  <%= form_for(@public_page) do |f| %>
     <% if @public_page.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@public_page.errors.count, 'error') %> prohibited this public_page from being saved:</h2>
+          <h2><%= pluralize(@public_page.errors.count, 'error') %> prohibited this public page from being saved:</h2>
 
           <ul>
             <% @public_page.errors.full_messages.each do |msg| %>
@@ -11,16 +12,21 @@
         </div>
     <% end %>
 
-    <div class="field">
-      <%= f.text_field :title %>
+    <div class="space-y-4">
+      <%= f.text_field :title, class: input_classes, required: true, minlength: 2, placeholder: "Titel" %>
+      <%= f.rich_text_area :content, class: 'form-control', placeholder: "blablabla" %>
+      <div class="flex items-start col-span-3 md:justify-left">
+        <div class="flex items-center h-5">
+          <%= f.check_box :public, { checked: @public_page.public, class: "focus:ring-hamers-red-500 h-4 w-4 text-hamers-red-600 border-gray-300 rounded" } %>
+        </div>
+        <div class="ml-3 text-sm">
+          <label class="font-medium text-gray-700">Ook voor plebs te zien</label>
+        </div>
+      </div>
     </div>
-    <div class="field">
-      <%= f.text_area :content, rows: 25 %>
+
+    <div class="flex justify-center mt-5">
+      <%= f.submit "Opslaan", class: submit_classes %>
     </div>
-    <div class="field">
-      <%= f.check_box :public %>
-    </div>
-    <div class="actions">
-      <%= f.submit 'Openbare pagina toevoegen', :class => 'btn btn-primary' %>
-    </div>
-<% end %>
+  <% end %>
+</div>

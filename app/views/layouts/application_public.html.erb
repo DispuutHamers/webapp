@@ -22,6 +22,25 @@
 
   <%= yield %>
 
+  <nav class="flex flex-wrap justify-center">
+    <% pages = { Leden: public_leden_path,
+                Bieren: beers_path,
+                Blog: blogitems_path,
+                Privacyverklaring: privacy_path } %>
+
+    <% pages.each do |name, path| %>
+      <div class="px-5 py-2">
+        <%= link_to name, path, class: "text-base text-gray-500 hover:text-gray-900" %>
+      </div>
+    <% end %>
+
+    <% PublicPage.where(public: true).each do |pp| %>
+      <div class="px-5 py-2">
+        <%= link_to pp.title, "/#{pp.title}", class: "text-base text-gray-500 hover:text-gray-900" %>
+      </div>
+    <% end %>
+  </nav>
+
   <%= render 'layouts/footer' %>
   <%= render 'layouts/debug' if Rails.env.development? && params[:debug] == "true" %>
 </div>

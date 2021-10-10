@@ -71,6 +71,10 @@ module ParamsHelper
     params.require(:usergroup).permit(:name, :signal_url)
   end
 
+  def public_page_params
+    params.require(:public_page).permit(:content, :title, :public)
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:update, keys: [:name, :anonymous, :batch])
