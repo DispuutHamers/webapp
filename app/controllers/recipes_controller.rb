@@ -1,7 +1,7 @@
-class RecipeController < ApplicationController
+class RecipesController < ApplicationController
   before_action :lid?
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Recepten', :recipe_index_path
+  breadcrumb 'Recepten', :recipes_path
 
   def index
     @pagy, @recipes = pagy(Recipe.all, page: params[:page])

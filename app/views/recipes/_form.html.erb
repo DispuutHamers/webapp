@@ -1,0 +1,25 @@
+<div>
+  <%= form_for(@recipe) do |f| %>
+    <% if @recipe.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@recipe.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
+
+          <ul>
+            <% @recipe.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="space-y-4">
+      <%= f.text_field :name, class: input_classes, required: true, minlength: 2, placeholder: "Naam" %>
+      <%= f.text_field :beer, class: input_classes, required: true, minlength: 2, placeholder: "Soort" %>
+      <%= f.rich_text_area :actiontext_description, class: 'form-control', placeholder: "blablabla" %>
+    </div>
+
+    <div class="flex justify-center mt-5">
+      <%= f.submit "Opslaan", class: submit_classes %>
+    </div>
+  <% end %>
+</div>
