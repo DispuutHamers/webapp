@@ -1,7 +1,7 @@
 class Blogitem < ApplicationRecord
   Gutentag::ActiveRecord.call self
 
-  has_paper_trail on: [:update, :create]
+  has_paper_trail
   serialize :body
   serialize :title
   has_many :blogphotos, dependent: :destroy
