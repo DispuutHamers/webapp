@@ -1,7 +1,7 @@
 <div class="overflow-hidden md:shadow md:rounded-lg md:p-4">
   <h1 class="text-hamers-red-500 text-xl font-bold">Volgende activiteit</h1>
   <% if @next_event %>
-    <h2 class="font-extrabold tracking-tight text-gray-900 text-2xl text-justify">
+    <h2 class="font-bold tracking-tight text-gray-900 text-2xl text-justify">
       <%= link_to @next_event.title, @next_event %>
     </h2>
     <h3 class="text-gray-600">In <%= time_ago_in_words(@next_event.date) %></h3>
@@ -10,7 +10,7 @@
         <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
           <%= f.hidden_field :event_id %>
           <%= f.hidden_field :status %>
-          <%= f.submit 'Aanwezig', class: 'w-full text-center font-bold p-4 border border-transparent text-base font-medium rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600' %>
+          <%= f.submit 'Aanwezig', class: 'cursor-pointer w-full text-center font-bold p-4 border border-transparent text-base font-medium rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600' %>
         <% end %>
       </div>
     </div>
