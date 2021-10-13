@@ -6,7 +6,7 @@ Hamers::Application.routes.draw do
   resources :notes
   resources :pushes, only: [:index, :show, :create, :new]
   resources :stickers
-  resources :recipes, path: "recipes" do
+  resources :recipes do
     member do
       resources :brews, except: [:index]
     end
