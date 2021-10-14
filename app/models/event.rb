@@ -18,14 +18,15 @@ class Event < ActiveRecord::Base
   scope :are_public, -> { where.not(invitation_code: nil) }
 
   def to_ics
+    url = "https://zondersikkel.nl/events/#{self.id}"
     event = Icalendar::Event.new
     event.dtstart = date.strftime('%Y%m%dT%H%M%S')
     event.dtend = end_time.strftime('%Y%m%dT%H%M%S')
     event.summary = title
-    event.description = description.to_plain_text
+    event.description = "#{description.to_plain_text} \n\n #{url}"
     event.location = location
     event.ip_class = 'PUBLIC'
-    event.url = "http://zondersikkel.nl/events/#{self.id}"
+    event.url = url
     event
   end
 
