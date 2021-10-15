@@ -2,7 +2,7 @@
   Notuleren
 <% end %>
 
-<%= form_with model: @meeting, data: {remote: true, controller: "autosave", target: "autosave.form", action: "ajax:success->autosave#success ajax:error->autosave#error"} do |f| %>
+<%= form_with model: @meeting, data: { remote: true, controller: "autosave", target: "autosave.form", action: "ajax:success->autosave#success ajax:error->autosave#error" } do |f| %>
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
@@ -15,15 +15,11 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :notes %><br>
-    <%= f.rich_text_area :notes, class: 'form-control higher', data: {action: 'keyup->autosave#save'} %>
-  </div>
-  <div class="actions">
-    <div class="btn-group">
-      <%= f.submit "Opslaan", class: 'btn btn-primary' %>
-      <%= f.submit "Annuleren", class: 'btn btn-default' %>
-    </div>
+  <%= f.rich_text_area :notes, class: input_classes, data: { action: 'keyup->autosave#save' } %>
+
+  <div class="mt-4">
+    <%= f.submit "Opslaan", class: submit_classes %>
+    <%= f.submit "Annuleren", class: "cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
     <span class="text-muted" data-target="autosave.status"></span>
   </div>
 <% end %>
