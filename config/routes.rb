@@ -82,7 +82,7 @@ Hamers::Application.routes.draw do
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes, only: [:create, :destroy, :update, :edit]
 
-  match '/notuleer/:id', to: 'meetings#notuleer', via: 'get'
+  match '/notuleer/:id', to: 'meetings#notuleer', via: 'get', as: 'notuleer'
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do

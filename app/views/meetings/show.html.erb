@@ -1,10 +1,63 @@
 <% content_for :title do %>
   <%= @meeting.onderwerp %>
 <% end %>
-<div class="row">
-  <div class="col-md-8">
+
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @meeting.date.strftime("%d-%m-%Y") %>
+  </div>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= pluralize @meeting.attendees.count, 'aanwezige', 'aanwezigen', locale: :nl %>
+  </div>
+<% end %>
+
+<% content_for :options do %>
+  <%= link_to "Notuleer", notuleer_path(@meeting), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <%= link_to "Wijzig", edit_meeting_path(@meeting), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <%= link_to "Verwijder", @meeting, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <div class="md:col-span-9 md:pr-6">
     <%= @meeting.notes %>
   </div>
+
+  <aside class="md:col-span-3 md:pl-6">
+    <div class="mt-6">
+      <div class="mt-5 -mx-6 border-t border-gray-200">
+        <dl class="sm:divide-y sm:divide-gray-200">
+
+          <%# specs.each do |name, value| %>
+          <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="mx-6 text-sm font-medium text-gray-500">
+              <%#= name %>
+            </dt>
+            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <%#= value %>
+            </dd>
+          </div>
+          <%# end %>
+
+          <% if true %>
+            <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+              <dt class="mx-6 text-sm font-medium text-gray-500">
+                Meer informatie
+              </dt>
+              <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                <%#= link_to "Link", @beer.URL %>
+              </dd>
+            </div>
+          <% end %>
+        </dl>
+      </div>
+    </div>
+  </aside>
+</div>
+
+
+<div class="row">
   <div class="col-md-4 info-panel">
     <div class="panel panel-default">
       <div class="panel-body">
@@ -50,7 +103,7 @@
               <%= link_to edit_meeting_path(@meeting), class: 'btn btn-default' do %>
                 <i class="fas fa-pencil-alt"></i> Wijzig vergadering
               <% end %>
-              <%= link_to @meeting, class: 'btn btn-default', method: :delete, data: {confirm: 'Weet je het zeker?'} do %>
+              <%= link_to @meeting, class: 'btn btn-default', method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
                 <i class="far fa-trash-alt"></i> Verwijder vergadering
               <% end %>
             </div>
