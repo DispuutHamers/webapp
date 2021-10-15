@@ -13,10 +13,12 @@
   </div>
 <% end %>
 
-<% content_for :options do %>
-  <%= link_to "Notuleer", notuleer_path(@meeting), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
-  <%= link_to "Wijzig", edit_meeting_path(@meeting), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
-  <%= link_to "Verwijder", @meeting, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+<% if current_user.admin? %>
+  <% content_for :options do %>
+    <%= link_to "Notuleer", notuleer_path(@meeting), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <%= link_to "Wijzig", edit_meeting_path(@meeting), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <%= link_to "Verwijder", @meeting, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <% end %>
 <% end %>
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
@@ -25,91 +27,43 @@
   </div>
 
   <aside class="md:col-span-3 md:pl-6">
-    <div class="mt-6">
-      <div class="mt-5 -mx-6 border-t border-gray-200">
-        <dl class="sm:divide-y sm:divide-gray-200">
-
-          <%# specs.each do |name, value| %>
-          <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="mx-6 text-sm font-medium text-gray-500">
-              <%#= name %>
-            </dt>
-            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <%#= value %>
-            </dd>
-          </div>
-          <%# end %>
-
-          <% if true %>
-            <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-              <dt class="mx-6 text-sm font-medium text-gray-500">
-                Meer informatie
-              </dt>
-              <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                <%#= link_to "Link", @beer.URL %>
-              </dd>
-            </div>
-          <% end %>
-        </dl>
-      </div>
-    </div>
-  </aside>
-</div>
-
-
-<div class="row">
-  <div class="col-md-4 info-panel">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p data-toggle="tooltip" data-placement="left" title="Datum">
-          <i class="fas fa-fw fa-clock"></i> <%= @meeting.date.strftime('%d-%m-%Y') %>
-        </p>
+    <div class="-mx-6 border-t border-b border-gray-200">
+      <dl class="sm:divide-y sm:divide-gray-200">
+        <div class="m-4">
+          <h4>Agenda <%= @meeting.onderwerp %></h4>
+          <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
+        </div>
 
         <% if @meeting.chairman %>
-          <p data-toggle="tooltip" data-placement="left" title="Voorgezeten door">
-            <i class="fas fa-fw fa-gavel"></i> <%= link_to @meeting.chairman.name, @meeting.chairman %>
-          </p>
+          <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="mx-6 text-sm font-medium text-gray-500">
+              Voorzitter
+            </dt>
+            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= link_to @meeting.chairman.name, @meeting.chairman %>
+            </dd>
+          </div>
         <% end %>
 
         <% if @meeting.secretary %>
-          <p data-toggle="tooltip" data-placement="left" title="Genotuleerd door">
-            <i class="fas fa-fw fa-keyboard"></i> <%= link_to @meeting.secretary.name, @meeting.secretary %>
-          </p>
-        <% end %>
-
-        <hr>
-
-        <h2>Agenda <%= @meeting.onderwerp %></h2>
-        <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
-
-        <% if @meeting.attendees.any? %>
-          <hr>
-          <h4>Aanwezigen <span class="text-muted small"><%= @meeting.attendees.count %></span></h4>
-          <div class="clearfix">
-            <% @meeting.attendees.each do |a| %>
-              <%= link_to gravatar_for(a.user), a.user, class: "small-profile-picture" %>
-            <% end %>
+          <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
+            <dt class="mx-6 text-sm font-medium text-gray-500">
+              Voorzitter
+            </dt>
+            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              <%= link_to @meeting.secretary.name, @meeting.secretary %>
+            </dd>
           </div>
         <% end %>
 
-        <% if current_user.admin? %>
-          <hr>
-
-          <td>
-            <div class="btn-group btn-group-vertical btn-group-sm">
-              <%= link_to "/notuleer/#{@meeting.id}", class: 'btn btn-default' do %>
-                <i class="fas fa-pencil-alt"></i> Wijzig notulen
-              <% end %>
-              <%= link_to edit_meeting_path(@meeting), class: 'btn btn-default' do %>
-                <i class="fas fa-pencil-alt"></i> Wijzig vergadering
-              <% end %>
-              <%= link_to @meeting, class: 'btn btn-default', method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
-                <i class="far fa-trash-alt"></i> Verwijder vergadering
-              <% end %>
-            </div>
-          </td>
+        <% if @meeting.attendees.any? %>
+          <div class="flex flex-wrap content-center justify-evenly">
+            <% @meeting.attendees.each do |a| %>
+              <%= gravatar_for a.user, size: 64, class: "h-10 w-10 rounded-full m-2" %>
+            <% end %>
+          </div>
         <% end %>
-      </div>
+      </dl>
     </div>
-  </div>
+  </aside>
 </div>
