@@ -1,26 +1,10 @@
 <% content_for :title do %>
   Vergaderingen
 <% end %>
-<table id="meeting" class="tablesorter table table-hover">
-  <thead>
-    <tr>
-      <th>Datum</th>
-      <th>Onderwerp</th>
-      <% if current_user.admin? %>
-      <% end %>
-    </tr>
-  </thead>
-  <%= render 'shared/pagination/default' %>
-  <tbody>
-    <% @meetings.each do |m| %>
-      <tr>
-        <td data-sort="<%= m.date.strftime('%Y%m%d') %>"><%= m.date.strftime('%d-%m-%Y') %></td>
-        <td><%= link_to m.onderwerp, m %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= render 'shared/pagination/default' %>
-<% if current_user.admin? %>
-  <%= link_to 'Add vergadering', new_meeting_path, class: 'btn btn-block btn-primary' %>
+
+<% content_for :options do %>
+  <%= link_to "Nieuwe vergadering", new_meeting_path, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
 <% end %>
+
+<%= render 'meetings/list', meetings: @meetings %>
+<%= render 'shared/pagination/default' %>

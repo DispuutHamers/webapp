@@ -85,4 +85,6 @@ News.create(title: "Test-nieuwsbericht", body: "Lorem ipsum.")
 News.create(title: "Nog een testbericht", body: "A different kind of lorem ipsum.")
 
 # Create meeting
-Meeting.create(onderwerp: "ALV VI", date: Date.today, agenda: "1. Opening\n2.Vaststellen agenda", chairman_id: 2, secretary_id: 3, user_ids: User.all.map(&:id))
+50.times do
+Meeting.create(onderwerp: "ALV VI", date: Date.today, agenda: "1. Opening\n2.Vaststellen agenda", chairman_id: 2, secretary_id: 3, user_ids: User.where.not(id: [6, 7]).map(&:id))
+end
