@@ -29,5 +29,5 @@
   <%= f.label :aanwezigen, class: label_classes %>
   <%= f.select :user_ids, User.intern.collect { |x| [x.name, x.id] }, {}, { class: select_classes, multiple: true } %>
 
-  <%= f.submit :Opslaan, class: submit_classes %>
+  <%= f.submit :Verstuur, class: submit_classes %>
 <% end %>

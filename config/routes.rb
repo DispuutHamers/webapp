@@ -28,7 +28,11 @@ Hamers::Application.routes.draw do
   post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
   post 'revert/:model/:id' => "static_pages#revert"
 
-  resources :meetings
+  resources :meetings do
+    member do
+      get '/notuleer' => 'meetings#notuleer', as: 'notuleer'
+    end
+  end
 
   resources :beers do
     member do
@@ -82,7 +86,6 @@ Hamers::Application.routes.draw do
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes, only: [:create, :destroy, :update, :edit]
 
-  match '/notuleer/:id', to: 'meetings#notuleer', via: 'get', as: 'notuleer'
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
   scope 'endpoints' do
