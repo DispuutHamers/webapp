@@ -7,4 +7,9 @@
 <% end %>
 
 <%= render 'meetings/list', meetings: @meetings %>
-<%= render 'shared/pagination/default' %>
+
+<% if @pagy.series.count > 1 %>
+  <div class="pt-12">
+    <%= render 'shared/pagination/default' %>
+  </div>
+<% end %>
