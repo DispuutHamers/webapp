@@ -19,10 +19,14 @@
               </div>
             </div>
             <div class="flex text-sm text-gray-500 items-center hidden sm:block">
-              <i class="fas fa-fw fa-gavel"></i> <%= meeting.chairman.name %>
-              <div class="mt-2">
-                <i class="fas fa-fw fa-keyboard"></i> <%= meeting.secretary.name %>
-              </div>
+              <% if meeting.chairman %>
+                <i class="fas fa-fw fa-gavel"></i> <%= meeting.chairman.name %>
+              <% end %>
+              <% if meeting.secretary %>
+                <div class="mt-2">
+                  <i class="fas fa-fw fa-keyboard"></i> <%= meeting.secretary.name %>
+                </div>
+              <% end %>
             </div>
             <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
               <div class="flex overflow-hidden -space-x-1">

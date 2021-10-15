@@ -6,7 +6,11 @@
   <%= link_to "Nieuwe vergadering", new_meeting_path, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
 <% end %>
 
-<%= render 'meetings/list', meetings: @meetings %>
+<% if @meetings.any? %>
+  <%= render 'meetings/list', meetings: @meetings %>
+<% else %>
+  Er zijn nog geen vergaderingen.
+<% end %>
 
 <% if @pagy.series.count > 1 %>
   <div class="pt-12">
