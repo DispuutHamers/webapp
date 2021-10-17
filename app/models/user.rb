@@ -34,6 +34,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
   scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
+  scope :leden_en_aspiranten, -> { where(id: Group.where(group_id: [4, 5]).pluck(:user_id).uniq) }
 
   def active_for_authentication?
     super
