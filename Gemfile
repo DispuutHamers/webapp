@@ -2,25 +2,21 @@ source 'https://rubygems.org'
 gem 'binding_of_caller'
 gem 'bootstrap-will_paginate'
 gem 'bootstrap_form'
-gem 'bullet'
 gem 'coffee-rails'
 gem 'devise'
 gem 'devise_invitable'
 gem 'diffy'
 gem 'doorkeeper'
 gem 'doorkeeper-i18n'
-gem 'flamegraph'
 gem 'icalendar'
 gem 'loaf'
 gem 'lockbox'
-gem 'memory_profiler'
 gem 'minidusen'
 gem 'net-http-persistent'
 gem 'paperclip'
 gem 'paper_trail'
 gem 'paranoia'
 gem 'rack-cors', require: 'rack/cors'
-gem 'rack-mini-profiler'
 gem 'rails'
 gem 'rails-i18n'
 gem 'rb-readline'
@@ -47,7 +43,11 @@ group :production, :development do
 end
 
 group :development, :test do
+  gem 'bullet'
+  gem 'flamegraph', require: false
+  gem 'memory_profiler', require: false
   gem 'puma'
+  gem 'rack-mini-profiler', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
