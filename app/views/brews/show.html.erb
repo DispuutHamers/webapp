@@ -3,11 +3,7 @@
 <% end %>
 <div class="row">
   <div class="col-md-9">
-    <% if @brew.actiontext_description.blank? %>
-      <%= markdown(@brew.description).html_safe %>
-    <% else %>
-      <%= @brew.actiontext_description %>
-    <% end %>
+    <%= @brew.description %>
   </div>
   <div class="col-md-3">
     <div class="panel panel-default">
