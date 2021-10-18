@@ -14,3 +14,23 @@ test:
   password: hamers
   host: 127.0.0.1
   strict: false
+
+staging:
+  adapter: mysql2
+  encoding: utf8mb4
+  host: localhost
+  database: hamers_staging
+  pool: 5
+  username: hamers
+  password: <%= Rails.application.secrets.database_password %>
+  socket: /var/run/mysqld/mysqld.sock
+
+production:
+  adapter: mysql2
+  encoding: utf8mb4
+  host: localhost
+  database: hamers
+  pool: 5
+  username: hamers
+  password: <%= Rails.application.secrets.database_password %>
+  socket: /var/run/mysqld/mysqld.sock
