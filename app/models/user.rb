@@ -99,7 +99,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   def next_birthday
     return unless birthday
 
-    Rails.cache.fetch("#{cache_key_with_version}/competing_price", expires_in: 7.days) do
+    Rails.cache.fetch("next_birthday/#{self.id}", expires_in: 7.days) do
       y = Time.zone.today.year
       mmdd = birthday.strftime('%m%d')
       y += 1 if mmdd < Time.zone.today.strftime('%m%d')
