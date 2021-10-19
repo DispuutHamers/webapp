@@ -113,7 +113,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return unless birthday
 
     ics = Icalendar::Event.new
-    ics.dtstart = Date.parse("#{self.next_birthday}")
+    ics.dtstart = Date.parse(self.next_birthday)
     ics.summary = "#{name} jarig (#{birthday.strftime('%Y')})"
 
     ics
