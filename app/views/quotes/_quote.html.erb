@@ -1,12 +1,23 @@
 <li class="py-4">
-  <div class="flex space-x-3">
+  <div class="flex space-x-3 text-sm">
     <%= gravatar_for quote.user, class: "h-8 w-8 rounded-full self-center" %>
-    <div class="flex-1 space-y-1">
+    <div class="flex-col flex-1 space-y-1">
       <div class="flex items-center justify-between align-items-center self-center">
-        <h3 class="text-sm font-medium"><%= quote.text %></h3>
-        <p class="text-sm text-gray-500"><%= time_ago_in_words(quote.created_at) %> geleden.</p>
+        <h3 class="flex-grow font-medium"><%= quote.text %></h3>
+        <span class="relative z-0 inline-flex rounded-md">
+          <%= link_to edit_quote_path(quote), class: 'inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-l-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+            <%= heroicon('pencil', class_name: "h-4 w-4") %>
+          <% end %>
+          <%= link_to quote, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: quote.text,
+                      class: '-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-r-md   text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+            <%= heroicon('trash', class_name: "h-4 w-4") %>
+        <% end %>
+          </span>
       </div>
-      <p class="text-sm text-gray-500"><%= quote.user.name %></p>
+      <div class="flex text-gray-500">
+        <div class="flex-grow"><%= quote.user.name %></div>
+        <p><%= time_ago_in_words(quote.created_at) %> geleden.</p>
+      </div>
     </div>
   </div>
 </li>
