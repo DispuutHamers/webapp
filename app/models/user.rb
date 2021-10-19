@@ -96,16 +96,24 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     in_group?('Developer')
   end
 
+  def next_birthday
+    return unless birthday
+
+    Rails.cache.fetch("#{cache_key_with_version}/competing_price", expires_in: 7.days) do
+      y = Time.zone.today.year
+      mmdd = birthday.strftime('%m%d')
+      y += 1 if mmdd < Time.zone.today.strftime('%m%d')
+      mmdd = '0301' if mmdd == '0229' && !Date.parse("#{y}0101").leap?
+
+      "#{y}#{mmdd}"
+    end
+  end
+
   def birthday_ics
     return unless birthday
 
-    y = Time.zone.today.year
-    mmdd = birthday.strftime('%m%d')
-    y += 1 if mmdd < Time.zone.today.strftime('%m%d')
-    mmdd = '0301' if mmdd == '0229' && !Date.parse("#{y}0101").leap?
-
     ics = Icalendar::Event.new
-    ics.dtstart = Date.parse("#{y}#{mmdd}")
+    ics.dtstart = Date.parse("#{self.next_birthday}")
     ics.summary = "#{name} jarig (#{birthday.strftime('%Y')})"
 
     ics
