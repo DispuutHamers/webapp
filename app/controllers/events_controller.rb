@@ -18,7 +18,7 @@ class EventsController < ApplicationController
       current_request.ics do
         apikey = ApiKey.where(key: params[:key]).first
         if apikey&.user&.active?
-          calendar = generate_calendar(apikey)
+          calendar = generate_calendar
           calendar.publish
           render plain: calendar.to_ical
         else
@@ -89,7 +89,7 @@ class EventsController < ApplicationController
     @event = Event.find_by_id!(params[:id])
   end
 
-  def generate_calendar(key)
+  def generate_calendar
     feed = Event.upcoming.order('date')
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"
@@ -98,6 +98,11 @@ class EventsController < ApplicationController
     calendar.add_timezone timezone
     feed.each do |feed_item|
       calendar.add_event(feed_item.to_ics)
+    end
+
+    User.intern.each do |u|
+      next unless u.birthday
+      calendar.add_event(u.birthday_ics)
     end
 
     calendar
