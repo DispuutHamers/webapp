@@ -1,5 +1,5 @@
 class RecipeController < ApplicationController
-  before_action :lid?
+  before_action :ilid?
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Recepten', :recipe_index_path
 

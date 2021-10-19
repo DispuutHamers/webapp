@@ -3,6 +3,7 @@ class ExternalSignup < ApplicationRecord
   belongs_to :event
   belongs_to :user, optional: true
 
+  validates :event, presence: true
   validates :first_name, presence: true, length: {minimum: 2}
   validates :last_name, presence: true, length: {minimum: 2}
   validates :email, presence: true, format: Devise.email_regexp
