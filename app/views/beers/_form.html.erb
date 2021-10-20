@@ -1,4 +1,4 @@
-<%= form_for @beer, html: {class: 'space-y-2 space-y'} do |f| %>
+<%= form_for @beer, html: { class: 'space-y-2 space-y' } do |f| %>
   <% if @beer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@beer.errors.count, 'error') %> prohibited this beer from being saved:</h2>
@@ -14,8 +14,11 @@
   <%= f.label :name, class: label_classes %>
   <%= f.text_field :name, class: input_classes %>
 
+  <% if @beer.image.attached? %>
+    <%= image_tag @beer.image.representation(resize_to_limit: [128, 128]) %>
+  <% end %>
   <%= f.label :image, class: label_classes %>
-  <%= f.text_field :image, class: input_classes %>
+  <%= f.file_field :image %>
 
   <%= f.label :kind, class: label_classes %>
   <%= f.text_field :kind, class: input_classes %>
