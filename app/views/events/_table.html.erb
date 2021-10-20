@@ -1,4 +1,4 @@
-<div class="bg-white sm:shadow overflow-hidden sm:rounded-md">
+<div class="bg-white overflow-hidden sm:rounded-md">
   <ul role="list" class="divide-y divide-gray-200">
     <% events.each do |event| %>
     <li>
@@ -8,7 +8,7 @@
             <div class="truncate">
               <div class="text-sm min-w-0 flex-1 sm:flex sm:items-center">
                 <div class="flex">
-                  <p class="font-medium text-indigo-600 truncate"><%= event.title %></p>
+                  <p class="font-medium text-gray-900 truncate"><%= event.title %></p>
                   <p class="ml-1 flex-shrink-0 font-normal text-gray-500">
                     in <%= event.location %>
                   </p>
