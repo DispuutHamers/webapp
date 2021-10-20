@@ -17,7 +17,7 @@ class BlogitemsController < ApplicationController
     @items = if current_user&.active?
                Blogitem.tagged_with(names: [params[:tag]], match: :any).reverse
              else
-               @items = Blogitem.public_blogs.tagged_with(names: [params[:tag]], match: :any).reverse
+               Blogitem.public_blogs.tagged_with(names: [params[:tag]], match: :any).reverse
              end
 
     render "blogitems/index"
