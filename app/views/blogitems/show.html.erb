@@ -60,9 +60,3 @@
     </div>
   </div>
 </div>
-
-<div class="flex justify-center">
-  <% unless current_user&.active? %>
-    <%= button_to "Terug naar het overzicht", blogitems_path, method: :get, class: button_classes %>
-  <% end %>
-</div>
