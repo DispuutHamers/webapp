@@ -8,12 +8,11 @@
       <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
       Lid sinds <%= @user.lid_since.strftime("%d-%m-%Y") %>
     </div>
+    <div class="flex items-center text-sm text-gray-400">
+      <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+      Lichting <%= @user.batch %>
+    </div>
   <% end %>
-
-  <div class="flex items-center text-sm text-gray-400">
-    <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
-    Lichting <%= @user.batch %>
-  </div>
 <% end %>
 
 <% if current_user == @user %>
