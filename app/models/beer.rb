@@ -3,10 +3,19 @@ class Beer < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail :ignore => [:grade]
   has_many :reviews, dependent: :destroy
+  has_one_attached :image
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
 
   scope :random, -> { order('RAND()') }
+
+  def download_image
+    if self.picture
+      filename = File.basename(self.picture)
+      file = Down.download(self.picture)
+      self.image.attach(io: file, filename: filename)
+    end
+  end
 
   def cijfer?
     grade = self.grade
