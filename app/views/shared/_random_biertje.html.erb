@@ -2,7 +2,7 @@
   <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
   <div class="flex justify-center h-full">
     <% if @random_quote %>
-      <div class="flex space-x-3 text-sm">
+      <div class="w-full flex space-x-3 text-sm">
         <%= gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full self-center" %>
         <div class="flex-col flex-1 space-y-1">
           <div class="flex flex-col sm:flex-row space-y-1 justify-between self-center">
