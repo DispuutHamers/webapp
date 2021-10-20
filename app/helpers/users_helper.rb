@@ -6,6 +6,13 @@ module UsersHelper
     image_tag(gravatar_url, alt: user&.name, class: options[:class])
   end
 
+  def gravatar_for_email(email, options = {size: 128, class: 'h-6 w-6 rounded-full'})
+    gravatar_id = Digest::MD5.hexdigest(email&.downcase || 'system')
+    size = options[:size]
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}&r=x&d=monsterid"
+    image_tag(gravatar_url, alt: email, class: options[:class])
+  end
+
   def self.sunday_ratio_for(user)
     return nil unless user.lid?
 
