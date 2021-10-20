@@ -1,52 +1,78 @@
 <div class="bg-white overflow-hidden md:shadow md:rounded-lg hidden md:block md:p-4">
-  <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Uitgelicht biertje</h2>
-  <div class="flex justify-center h-full">
-    <% if @random_beer %>
-      <div class="flex-shrink-0">
-        <% if @random_beer.image.attached? %>
-          <%= image_tag @random_beer.image, class: "h-40 rounded" %>
-        <% else %>
-          <%= image_tag 'beer_splash.jpg', class: "h-40 rounded" %>
-        <% end %>
-      </div>
-      <div class="ml-4 w-0 flex-1 items-center h-full">
-        <%= link_to @random_beer, class: "flex-shrink-0 group block h-full" do %>
-          <h2 class="align-top font-bold text-xl">
-            <%= @random_beer.name %>
-          </h2>
-          <h3 class="align-top text-gray-500">
-            <%= @random_beer.brewer %>
-          </h3>
-          <div class="col-span-1 flex flex-col justify-between">
-            <p class="object-bottom text-xl font-medium text-hamers-red-500">
-              <%= @random_beer.cijfer? %>
-            </p>
-            <p class="object-bottom text-xs font-medium text-gray-500">
-              <%= pluralize(@random_beer.reviews.count, 'review', 'reviews') %>
-            </p>
+  <div class="h-1/2">
+    <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
+    <div class="w-full flex justify-center h-1/2">
+      <% if @random_quote %>
+        <div class="w-full flex space-x-3 text-sm">
+          <%= gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full self-center" %>
+          <div class="flex-col flex-1 space-y-1">
+            <div class="flex flex-col sm:flex-row space-y-1 justify-between self-center">
+              <h3 class="flex-grow font-medium"><%= @random_quote.text %></h3>
+            </div>
+            <div class="flex flex-col sm:flex-row text-gray-500">
+              <div class="flex-grow"><%= @random_quote.user.name %></div>
+              <p><%= time_ago_in_words(@random_quote.created_at) %> geleden.</p>
+            </div>
           </div>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="w-full">
-        <h3 class="text-sm font-medium text-gray-900">Er zijn nog geen biertjes :(</h3>
-        <p class="mt-1 text-sm text-gray-500">
-          Waarom maak je er niet een aan?
-        </p>
-        <div class="mt-6">
-          <%= button_to new_beer_path, method: :get,
-                        class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600" do %>
-            <!-- Heroicon name: solid/plus -->
-            <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                 aria-hidden="true">
-              <path fill-rule="evenodd"
-                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                    clip-rule="evenodd"/>
-            </svg>
-            Nieuw biertje
+        </div>
+      <% else %>
+        <div class="w-full">
+          <h3 class="text-sm font-medium text-gray-900">Er zijn nog geen Quotes :(</h3>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="h-1/2">
+    <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Uitgelicht biertje</h2>
+    <div class="flex justify-center h-full">
+      <% if @random_beer %>
+        <div class="flex-shrink-0">
+          <% if @random_beer.image.attached? %>
+            <%= image_tag @random_beer.image, class: "h-40 rounded" %>
+          <% else %>
+            <%= image_tag 'beer_splash.jpg', class: "h-40 rounded" %>
           <% end %>
         </div>
-      </div>
-    <% end %>
+        <div class="ml-4 w-0 flex-1 items-center h-full">
+          <%= link_to @random_beer, class: "flex-shrink-0 group block h-full" do %>
+            <h2 class="align-top font-bold text-xl">
+              <%= @random_beer.name %>
+            </h2>
+            <h3 class="align-top text-gray-500">
+              <%= @random_beer.brewer %>
+            </h3>
+            <div class="col-span-1 flex flex-col justify-between">
+              <p class="object-bottom text-xl font-medium text-hamers-red-500">
+                <%= @random_beer.cijfer? %>
+              </p>
+              <p class="object-bottom text-xs font-medium text-gray-500">
+                <%= pluralize(@random_beer.reviews.count, 'review', 'reviews') %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="w-full">
+          <h3 class="text-sm font-medium text-gray-900">Er zijn nog geen biertjes :(</h3>
+          <p class="mt-1 text-sm text-gray-500">
+            Waarom maak je er niet een aan?
+          </p>
+          <div class="mt-6">
+            <%= button_to new_beer_path, method: :get,
+                          class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600" do %>
+              <!-- Heroicon name: solid/plus -->
+              <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                  aria-hidden="true">
+                <path fill-rule="evenodd"
+                      d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                      clip-rule="evenodd"/>
+              </svg>
+              Nieuw biertje
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

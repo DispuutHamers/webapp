@@ -9,12 +9,13 @@ class StaticPagesController < ApplicationController
     @quote = current_user.quotes.build
     @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
     @next_event = Event.upcoming.order(date: :asc).first
-    @trail = PaperTrail::Version.includes(:item).last(4).reverse
+    @trail = PaperTrail::Version.includes(:item).last(5).reverse
     @random_beer = Beer.random.take
+    @random_quote = Quote.random.take
     @blogitems = if current_user.alid?
-                   Blogitem.where(public: true).last(5).reverse
+                   Blogitem.where(public: true).includes(:user).last(5).reverse
                  else
-                   Blogitem.last(5).reverse
+                   Blogitem.includes(:user).last(5).reverse
                  end
 
     render layout: 'application'
