@@ -29,9 +29,9 @@ class StaticPagesController < ApplicationController
   end
 
   def trail
-    @pagy, @trail = pagy(PaperTrail::Version.includes(:item).all.order(created_at: "DESC"),
+    @pagy, @trail = pagy(PaperTrail::Version.includes(:item).all,
                          page: params[:page],
-                         items: 20)
+                         items: 20).reorder(created_at: "DESC")
     breadcrumb 'Log', trail_path
   end
 
