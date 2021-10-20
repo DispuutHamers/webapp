@@ -5,7 +5,6 @@ class Meeting < ActiveRecord::Base
   belongs_to :secretary, class_name: "User"
   has_many :attendees
   has_many :users, through: :attendees
-
   has_many :drafts, as: :entity, dependent: :destroy
 
   has_rich_text :notes
