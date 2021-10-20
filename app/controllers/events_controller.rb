@@ -22,7 +22,7 @@ class EventsController < ApplicationController
           calendar.publish
           render plain: calendar.to_ical
         else
-          render plain: "HTTP Token: Access denied.", status: :access_denied
+          render plain: "404", status: :not_found
         end
       end
     end

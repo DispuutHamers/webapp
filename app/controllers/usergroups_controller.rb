@@ -2,7 +2,7 @@ class UsergroupsController < ApplicationController
   before_action :logged_in?
   before_action :admin_user?, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Groepen', :groups_path
+  breadcrumb 'Groepen', :usergroups_path
 
   def index
     @usergroups = Usergroup.all
