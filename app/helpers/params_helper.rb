@@ -12,11 +12,11 @@ module ParamsHelper
   end
 
   def brew_params
-    params.require(:brew).permit(:description, :actiontext_description, :recipe_id)
+    params.require(:brew).permit(:description, :description, :recipe_id)
   end
 
   def recipe_params
-    params.require(:recipe).permit(:name, :beer, :description, :actiontext_description)
+    params.require(:recipe).permit(:name, :beer, :description, :description)
   end
 
   def blog_params

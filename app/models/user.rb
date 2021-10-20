@@ -35,6 +35,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   scope :oud, -> { joins(:groups).where(groups: { group_id: 12 }) }
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
   scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
+  scope :leden_en_aspiranten, -> { where(id: Group.where(group_id: [4, 5]).pluck(:user_id).uniq) }
 
   def active_for_authentication?
     super
@@ -100,5 +101,28 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def average_review_grade
     weight&.round(2) || "Nog onbekend"
+  end
+
+  def next_birthday
+    return unless birthday
+
+    Rails.cache.fetch("next_birthday/#{self.id}", expires_in: 7.days) do
+      y = Time.zone.today.year
+      mmdd = birthday.strftime('%m%d')
+      y += 1 if mmdd < Time.zone.today.strftime('%m%d')
+      mmdd = '0301' if mmdd == '0229' && !Date.parse("#{y}0101").leap?
+
+      "#{y}#{mmdd}"
+    end
+  end
+
+  def birthday_ics
+    return unless birthday
+
+    ics = Icalendar::Event.new
+    ics.dtstart = Date.parse(self.next_birthday)
+    ics.summary = "#{name} jarig (#{birthday.strftime('%Y')})"
+
+    ics
   end
 end

@@ -1,10 +1,9 @@
-<div class="bg-white overflow-hidden shadow rounded-lg hidden md:block">
-  <div class="px-5">
-    <h2 class="text-indigo-400 text-xl font-extrabold my-2 mx-5">Wat is er gebeurd?</h2>
-    <div class="flex items-center w-full">
-      <ul class=" divide-y divide-gray-200 w-full">
+<div class="bg-white overflow-hidden shadow rounded-lg hidden lg:block">
+    <h2 class="text-hamers-red-400 text-xl font-bold m-4">Wat is er gebeurd?</h2>
+    <div class="flex items-center">
+      <ul class="divide-y divide-gray-200 w-full">
         <% @trail.each do |t| %>
-          <li class="py-1 w-full">
+          <li class="py-2 px-4 w-full">
             <div class="flex space-x-3">
               <% if t.whodunnit %>
                 <%= gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" %>
@@ -52,5 +51,4 @@
         <% end %>
       </ul>
     </div>
-  </div>
 </div>

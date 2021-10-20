@@ -2,50 +2,62 @@
   Log
 <% end %>
 
-<table id="trail" class="tablesorter table table-hover">
-  <thead>
-  <tr>
-    <th>Wie</th>
-    <th>Wat</th>
-    <th>Waneer</th>
-    <th>Hoe</th>
-  </tr>
-  </thead>
-  <%= render 'shared/pagination/default' %>
-  <tbody>
-  <% @trail.each do |t| %>
-    <tr>
-      <td>
-        <% if t.whodunnit %>
-          <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
-        <% else %>
-          System
-        <% end %>
-      </td>
-      <% if t.event == "create" %>
-        <td>created <%= link_to t.item_type, t.item %></td>
-      <% elsif t.event == "destroy" %>
-        <td>destroyed <%= t.item_type + " #" + t.item_id.to_s %>
-          <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
-            <%= f.submit "Revert", class: 'btn btn-default' %>
-          <% end %>
-        </td>
-      <% else %>
-        <td><%= t.event %>d <%= link_to t.item_type + " #" + t.item_id.to_s, t.item %>
-          <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
-            <%= f.submit "Revert", class: 'btn btn-default' %>
-          <% end %>
-        </td>
-      <% end %>
-      <td><%= time_ago_in_words(t.created_at) %> geleden.</td>
-      <td>
-        <% t.changeset.each do |c, v| %>
-          <% next if c == 'updated_at' || c == 'created_at' %>
-          <%= raw c.to_s + ": " + Diffy::Diff.new(v[0], v[1]).to_s(:html) %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<div>
+  <ul role="list" class="divide-y divide-gray-200">
+    <% @trail.each do |t| %>
+      <% user = User.find(t.whodunnit) if t.whodunnit %>
+      <li class="py-4">
+        <div class="flex space-x-3">
+          <%= gravatar_for user %>
+          <div class="flex-1 space-y-1">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-medium"><%= user&.name || "webapp" %></h3>
+              <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+            </div>
+            <div class="flex justify-between">
+              <p class="text-sm text-gray-500">
+                <% case t.item_type %>
+                <% when "Quote" %>
+                  <% if t.item %>
+                    <span class="text-sm font-medium"><%= "citeerde #{t.item.user.name}" %></span>
+                  <% else %>
+                    <span class="text-sm font-medium"><%= "citeerde onjuist" %></span>
+                  <% end %>
+                <% when "Blogitem" %>
+                  <span class="text-sm font-medium"><%= link_to "schreef aan #{t.item.title}", t.item %></span>
+                <% when "Signup" %>
+                  <% if t.object %>
+                    <span class="text-sm font-medium"><%= link_to "heeft zich #{t.object["status"] ? "ingeschreven" : "uitgeschreven"} voor #{t.item.event.title}", t.item %></span>
+                  <% else %>
+                    <span class="text-sm font-medium"><%= link_to "heeft zich #{t.item.status ? "ingeschreven" : "uitgeschreven"} voor #{t.item.event.title}", t.item %></span>
+                  <% end %>
+                <% else %>
+                  <span class="text-sm font-medium"><%= link_to "#{t.event}d #{t.item_type}", t.item %></span>
+                <% end %>
+              </p>
+              <div>
+                <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
+                  <%= f.submit "Revert", class: submit_classes %>
+                <% end %>
+              </div>
+            </div>
+            <div class="divide-y-2 divide-hamers-red-500">
+            <% t.changeset.each do |c, v| %>
+            <% next if c == 'updated_at' || c == 'created_at' %>
+            <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt class="text-sm font-medium text-gray-500">
+                <%= c.to_s %>
+              </dt>
+              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 pr-16">
+                <%== Diffy::Diff.new(v[0], v[1]).to_s(:html_simple) %>
+              </dd>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
 <%= render 'shared/pagination/default' %>
