@@ -21,8 +21,8 @@ module UtilHelper
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else
-      flash[:error] = "Er ging iets stuk"
-      redirect_to root_path
+      flash[:error] = obj.errors.full_messages.join('<br>')
+      redirect_to polymorphic_url(obj, action: :edit)
     end
   end
 
