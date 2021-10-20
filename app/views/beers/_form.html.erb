@@ -14,8 +14,11 @@
   <%= f.label :name, class: label_classes %>
   <%= f.text_field :name, class: input_classes %>
 
-  <%= f.label :picture, class: label_classes %>
-  <%= f.text_field :picture, class: input_classes %>
+  <% if @beer.image.attached? %>
+    <%= image_tag @beer.image.representation(resize_to_limit: [128, 128]) %>
+  <% end %>
+  <%= f.label :image, class: label_classes %>
+  <%= f.file_field :image %>
 
   <%= f.label :kind, class: label_classes %>
   <%= f.text_field :kind, class: input_classes %>

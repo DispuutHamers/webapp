@@ -9,6 +9,7 @@ gem 'devise_invitable'
 gem 'diffy'
 gem 'doorkeeper'
 gem 'doorkeeper-i18n'
+gem "down", "~> 5.0"
 gem 'flamegraph'
 gem 'gutentag'
 gem 'icalendar'

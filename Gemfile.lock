@@ -122,6 +122,8 @@ GEM
       railties (>= 5)
     doorkeeper-i18n (5.2.2)
       doorkeeper (>= 5.2)
+    down (5.2.4)
+      addressable (~> 2.8)
     edge_rider (1.1.0)
       activerecord (>= 3.2)
     equalizer (0.0.11)
@@ -382,6 +384,7 @@ DEPENDENCIES
   diffy
   doorkeeper
   doorkeeper-i18n
+  down (~> 5.0)
   flamegraph
   gutentag
   honeybadger (~> 4.0)
