@@ -49,11 +49,11 @@
   </div>
 
   <div class="hidden" data-tabs-target="panel">
-    <%= render "events/table", events: @upcoming_events %>
+    <%= render 'events/list', events: @upcoming_events %>
   </div>
 
   <div class="hidden" data-tabs-target="panel">
-    <%= render "events/table", events: @past_events %>
+    <%= render 'events/list', events: @past_events %>
     <%= render 'shared/pagination/default' %>
   </div>
 

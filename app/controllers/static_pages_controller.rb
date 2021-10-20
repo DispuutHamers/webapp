@@ -10,8 +10,12 @@ class StaticPagesController < ApplicationController
     @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
     @next_event = Event.upcoming.order(date: :asc).first
     @trail = PaperTrail::Version.includes(:item).last(4).reverse
-    @blogitems = Blogitem.includes(:user).last(4).reverse
     @random_beer = Beer.random.take
+    @blogitems = if current_user.alid?
+                   Blogitem.where(public: true).last(5).reverse
+                 else
+                   Blogitem.last(5).reverse
+                 end
 
     render layout: 'application'
   end
@@ -35,10 +39,6 @@ class StaticPagesController < ApplicationController
     m = params[:model].constantize.unscoped.find(params[:id])
     m = m.paper_trail.previous_version
     m.save
-    redirect_to root_path
-  end
-
-  def quote
     redirect_to root_path
   end
 end

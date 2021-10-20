@@ -17,9 +17,9 @@
 <% if current_user %>
   <% content_for :options do %>
     <% unless current_user.reviews.find_by(beer_id: @beer.id) %>
-      <%= link_to "Review", reviews_beer_path(@beer), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+      <%= link_to "Review", reviews_beer_path(@beer), class: button_classes %>
     <% end %>
-    <%= link_to "Wijzig", edit_beer_path(@beer), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <%= link_to "Wijzig", edit_beer_path(@beer), class: button_classes %>
   <% end %>
 <% end %>
 

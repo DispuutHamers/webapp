@@ -1,21 +1,13 @@
-<div class="bg-white overflow-hidden shadow rounded-lg hidden md:block">
-  <div class="p-5">
-    <div class="flex items-center">
-      <div class="ml-5 w-0 flex-1">
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 class="text-xl font-extrabold tracking-tight text-gray-900">
-            <span class="block">Welkom <%= current_user.name %></span>
-          </h2>
-          <span class="block font-extrabold">
-            Je bent <span class="text-indigo-400"><%= current_user.quotes.count %></span> keer geciteerd,
-            hebt <span class="text-indigo-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
-            <span class="text-indigo-400"><%= current_user.blogitems.count %></span> blogs geschreven en
+<div class="hidden bg-white overflow-hidden shadow rounded-lg md:block p-4">
+  <h2 class="text-xl font-bold tracking-tight text-gray-900 mb-4 text-center mt-2">
+    Welkom <span class="text-hamers-red-400"><%= current_user.name %></span>
+  </h2>
+  <p class="block font-semibold text-justify">
+            Je bent <span class="text-hamers-red-400"><%= current_user.quotes.count %></span> keer geciteerd,
+            hebt <span class="text-hamers-red-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
+            <span class="text-hamers-red-400"><%= current_user.blogitems.count %></span> blogs geschreven en
             bent bij <span
-              class="text-indigo-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
+    class="text-hamers-red-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
             borrels geweest.
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+          </p>
 </div>

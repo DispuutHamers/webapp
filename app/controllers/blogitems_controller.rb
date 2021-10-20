@@ -9,7 +9,7 @@ class BlogitemsController < ApplicationController
     @items = if current_user&.active?
                Blogitem.all.reverse
              else
-               @items = Blogitem.public_blogs.reverse
+               Blogitem.public_blogs.reverse
              end
   end
 
@@ -25,7 +25,6 @@ class BlogitemsController < ApplicationController
 
   def show
     return redirect_to blogitems_path unless @item.public || current_user&.active?
-
     @user = User.find_by(id: @item&.user_id)
     breadcrumb @item.title, blogitem_path(@item)
   end

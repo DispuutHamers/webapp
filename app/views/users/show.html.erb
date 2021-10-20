@@ -74,8 +74,9 @@
 
       <dl class="border-t border-gray-200 sm:divide-y sm:divide-gray-200">
         <% specs = {
-          "Aantal quotes": @user.quotes.count,
-          "Aantal reviews": @user.reviews.count,
+          "Aantal keer gequote": @user.quotes.count,
+          "Aantal bieren gereviewd": @user.reviews.count,
+          "Aantal stickers geplakt": @user.stickers.count,
           "Gemiddeld reviewcijfer": @user.average_review_grade,
           "Aantal eventementen georganiseerd": @user.blogitems.count,
           "Aantal blogposts geschreven": @user.blogitems.count,
