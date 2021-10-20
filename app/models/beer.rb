@@ -9,14 +9,6 @@ class Beer < ActiveRecord::Base
 
   scope :random, -> { order('RAND()') }
 
-  def download_image
-    return unless self.picture
-
-    filename = File.basename(self.picture)
-    file = Down.download(self.picture)
-    self.image.attach(io: file, filename: filename)
-  end
-
   def cijfer?
     grade = self.grade
     if grade
