@@ -22,30 +22,13 @@
     </li>
   </ul>
 <% end %>
-<div class="row">
-  <div class="col-md-9">
-    <%= @brew.description %>
-  </div>
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        Uitvoeringen:
-        <ul>
-          <% @recipe.brews.each do |brew| %>
-            <li><%= link_to brew.created_at.strftime("%d-%m-%Y"), brew_path(@recipe, brew) %><br></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
   <aside class="ml-6 my-6 md:col-span-4 md:pr-6">
-    <%= @recipe.actiontext_description %>
+    <%= @recipe.description %>
   </aside>
 
   <div class='md:col-span-8 md:pl-6 my-6'>
-    <%= @brew.actiontext_description %>
+    <%= @brew.description %>
   </div>
 </div>
