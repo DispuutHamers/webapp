@@ -1,0 +1,68 @@
+<% content_for :title do %>
+  <%= @usergroup.name %>
+<% end %>
+
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    Aangemaakt op <%= @usergroup.created_at.strftime("%d-%m-%Y") %>
+  </div>
+
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('users', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= pluralize @usergroup.users.count, 'lid', 'leden', locale: :nl %>
+  </div>
+<% end %>
+
+<% content_for :options do %>
+  <span class="inline-flex">
+  <% if current_user.admin? %>
+    <%= link_to 'Wijzig groep', edit_usergroup_path(@usergroup), class: button_classes %>
+  <% end %>
+    <% if @usergroup.signal_url.present? %>
+    <%= link_to @usergroup.signal_url, target: "_blank", class: "ml-2 #{button_classes}" do %>
+      <%= image_tag 'signal.png', class: "h-5 w-5" %>
+    <% end %>
+  <% end %>
+  </span>
+<% end %>
+
+<div class="-m-5 sm:-m-6">
+  <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
+    <div>
+      <div class="sm:hidden m-4">
+        <label for="tabs" class="sr-only">Select a tab</label>
+        <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
+          <option data-action="click->tabs#change" data-index="0">Huidige leden</option>
+          <option data-action="click->tabs#change" data-index="1">Oude leden</option>
+        </select>
+      </div>
+
+      <div class="hidden sm:block -mt-4">
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px mx-6 flex space-x-8">
+            <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+              Huidige leden
+            </button>
+            <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+              Oude leden
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="hidden" data-tabs-target="panel">
+      <%= render 'member_list', users: @usergroup.users %>
+    </div>
+    <div class="hidden" data-tabs-target="panel">
+      <% if @usergroup.old_members.any? %>
+        <%= render 'member_list', users: @usergroup.old_members %>
+      <% else %>
+        <div class="p-6">
+          Er zijn geen oude leden van deze groep.
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

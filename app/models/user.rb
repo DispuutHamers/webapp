@@ -23,6 +23,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   has_many :drafts
   has_many :blogitems
   has_many :attendees
+  has_many :stickers
   has_many :meetings_attended, through: :attendees, source: :meeting
   has_many :meetings_chaired, class_name: "Meeting", inverse_of: :secretary, foreign_key: :chairman_id
   has_many :meetings_minuted, class_name: "Meeting", inverse_of: :secretary, foreign_key: :secretary_id
@@ -49,6 +50,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     return if event.attendance && status == "0" && reason.length < 6
 
     reason = UtilHelper.scramble_string(reason) if in_group?('Secretaris-generaal')
+
     signups.find_or_create_by(event_id: event.id).update(status: status, reason: reason)
     event
   end
@@ -66,10 +68,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def in_group?(name)
-    usergroups.each do |group|
-      return true if group.name == name.to_s
-    end
-    false
+    usergroups.where(name: name).exists?
   end
 
   def lid?
@@ -94,6 +93,14 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
 
   def dev?
     in_group?('Developer')
+  end
+
+  def lid_since
+    groups.with_deleted.where(group_id: 4)&.first&.created_at || "Pleb"
+  end
+
+  def average_review_grade
+    weight&.round(2) || "Nog onbekend"
   end
 
   def next_birthday

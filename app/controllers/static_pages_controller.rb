@@ -1,22 +1,23 @@
 # Static pages controller
 class StaticPagesController < ApplicationController
   before_action :lid?, only: %i[trail revert]
+  layout 'application_public', except: :trail
 
   def home
-    return unless current_user&.active?
+    return render 'frontpage' unless current_user&.active?
 
-    @random_beer = Beer.random.take
-    @random_quote = Quote.random.take
     @quote = current_user.quotes.build
-    @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
-    @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
-    @news = News.last(5).reverse
-    @trail = PaperTrail::Version.includes(:item).last(5).reverse
-    @blog = if current_user.alid?
-              Blogitem.where(public: true).last(5).reverse
-            else
-              Blogitem.last(5).reverse
-            end
+    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
+    @next_event = Event.upcoming.order(date: :asc).first
+    @trail = PaperTrail::Version.includes(:item).last(4).reverse
+    @random_beer = Beer.random.take
+    @blogitems = if current_user.alid?
+                   Blogitem.where(public: true).last(5).reverse
+                 else
+                   Blogitem.last(5).reverse
+                 end
+
+    render layout: 'application'
   end
 
   def privacy
@@ -27,12 +28,10 @@ class StaticPagesController < ApplicationController
     breadcrumb 'Account activeren', activate_account_path
   end
 
-  def console
-    redirect_to root_path unless current_user&.dev?
-  end
-
   def trail
-    @trail = PaperTrail::Version.includes(:item).all.order(created_at: "DESC").paginate(page: params[:page], :per_page => 20)
+    @pagy, @trail = pagy(PaperTrail::Version.includes(:item).all.order(created_at: "DESC"),
+                         page: params[:page],
+                         items: 20)
     breadcrumb 'Log', trail_path
   end
 
@@ -40,10 +39,6 @@ class StaticPagesController < ApplicationController
     m = params[:model].constantize.unscoped.find(params[:id])
     m = m.paper_trail.previous_version
     m.save
-    redirect_to root_path
-  end
-
-  def quote
     redirect_to root_path
   end
 end

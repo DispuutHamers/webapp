@@ -2,13 +2,13 @@
 class PublicPagesController < ApplicationController
   before_action :lid?, except: [:show]
   before_action :set_public_page, only: [:edit, :update, :destroy]
-  breadcrumb 'Openbare Paginas', :public_pages_path, except: [:show]
-
+  breadcrumb 'Openbare Paginas', :public_pages_path
+  layout :set_template, only: [:show]
 
   # GET /public_pages
   # GET /public_pages.json
   def index
-    @public_pages = PublicPage.all.paginate(page: params[:page])
+    @public_pages = PublicPage.all
   end
 
   # GET /public_pages/1
@@ -66,8 +66,7 @@ class PublicPagesController < ApplicationController
     @public_page = PublicPage.find_by_id!(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def public_page_params
-    params.require(:public_page).permit(:content, :title, :public)
+  def set_template
+    'application_public' unless current_user&.active?
   end
 end

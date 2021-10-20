@@ -1,46 +1,42 @@
 #Entry point for the blog resource
 class BlogitemsController < ApplicationController
-  before_action :ilid?, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :ilid?, except: %i[index show]
+  before_action :set_item, only: %i[show edit update destroy]
   breadcrumb 'Blog', :blogitems_path
+  layout :set_template, only: %i[index show]
 
   def index
-    if current_user&.lid? || current_user&.olid?
-      @items = Blogitem.all.reverse
-    else
-      @items = Blogitem.where(public: true).reverse
-    end
+    @items = if current_user&.active?
+               Blogitem.all.reverse
+             else
+               Blogitem.public_blogs.reverse
+             end
+  end
+
+  def tag
+    @items = if current_user&.active?
+               Blogitem.tagged_with(names: [params[:tag]], match: :any).reverse
+             else
+               Blogitem.public_blogs.tagged_with(names: [params[:tag]], match: :any).reverse
+             end
+
+    render "blogitems/index"
   end
 
   def show
-    if !@item.public && !(current_user&.lid? || current_user&.olid?)
-      redirect_to blogitems_path
-    end
+    return redirect_to blogitems_path unless @item.public || current_user&.active?
+
     @user = User.find_by(id: @item&.user_id)
     breadcrumb @item.title, blogitem_path(@item)
   end
 
-  def add_photo
-    photo = Blogphoto.create(photo_params)
-    blog = Blogitem.unscoped.find_by_id!(params[:id])
-    photo.save
-    redirect_to edit_blogitem_path(blog)
-  end
-
-  def destroy_photo
-    photo = Blogphoto.find(params[:blogphoto])
-    blog = Blogitem.unscoped.find(params[:blogitem])
-    photo.destroy
-    redirect_to edit_blogitem_path(blog)
-  end
-
   def new
-    @item = Blogitem.create
-    @photo = Blogphoto.new
+    @item = Blogitem.new
   end
 
   def edit
-    @photo = Blogphoto.new
+    breadcrumb @item.title, blogitem_path(@item)
+    breadcrumb "Aanpassen", edit_blogitem_path(@item)
   end
 
   def update
@@ -53,8 +49,12 @@ class BlogitemsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_item
     @item = Blogitem.unscoped.find_by_id!(params[:id])
+  end
+
+  def set_template
+    'application_public' unless current_user&.active?
   end
 end

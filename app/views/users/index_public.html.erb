@@ -2,39 +2,40 @@
   Leden
 <% end %>
 
-<div class="col-md-12 mb-5">
-  <figure class="figure">
-    <img src="<%= image_path('members.jpg') %>" class="img-responsive" alt="Responsive image">
-    <figcaption class="figure-caption">Hamers zonder Sikkel - 11 september 2019.</figcaption>
-  </figure>
+<div class="bg-white overflow-hidden shadow rounded-lg mb-8">
+  <div class="px-4 pt-5 sm:p-6">
+    <figure class="figure">
+            <img src="<%= image_path('members.jpg') %>" class="w-full" alt="Hamers zonder Sikkel - 11 september 2019">
+      <figcaption class="figure-caption">Hamers zonder Sikkel - 11 september 2019.</figcaption>
+    </figure>
+  </div>
+</div>
 
-  <hr>
 
-  <% @users.each do |group| %>
-    <div class='row'>
-      <% if group[0] %>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h1 class="panel-title text-center">
-              <%= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>
-            </h1>
+<% @users.each do |group| %>
+  <% if group[0] %>
+    <div class="relative">
+      <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t border-gray-300"></div>
+      </div>
+      <div class="relative flex justify-center">
+        <span class="px-3 py-4 bg-white text-lg font-medium text-gray-900">
+          <%= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>
+        </span>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap content-center justify-evenly">
+      <% group[1].each do |user| %>
+        <div class="flex flex-col justify-center align-center">
+          <div class="flex justify-center">
+            <%= gravatar_for user, size: 250, class: "h-32 w-32 rounded-full mx-4 my-2" %>
           </div>
-          <div class="panel-body center">
-            <% group[1].each do |user| %>
-              <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <div class="thumbnail thumbnail-member">
-                  <%= gravatar_for user, size: 150 %>
-                  <div class="caption">
-                    <h4>
-                      <%= user.name %> <%= '(Aspirant)' if user.alid? %>
-                    </h4>
-                  </div>
-                </div>
-              </div>
-            <% end %>
+          <div class="flex justify-center">
+            <%= user.name %> <%= '(Aspirant)' if user.alid? %>
           </div>
         </div>
       <% end %>
     </div>
   <% end %>
-</div>
+<% end %>

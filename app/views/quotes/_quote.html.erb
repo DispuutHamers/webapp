@@ -1,25 +1,23 @@
-<li id="quote_<%= quote.id %>">
-  <%= link_to gravatar_for(quote.user), quote.user %>
-  <span class="user">
-    <%= link_to quote.user.name, quote.user %>
-  </span>
-  <span class="content">
-    <%= quote.text %>
-  </span>
-  <span class="text-muted">
-    <i class="far fa-clock"></i> <%= time_ago_in_words(quote.created_at) %> geleden.
-  </span>
-  <div class="btn-group">
-    <%= link_to edit_quote_path(quote),
-      class: 'btn btn-default btn-sm' do %>
-      <i class="fas fa-pencil-alt"></i>
-    <% end %>
-    <%= link_to quote,
-      method: :delete,
-      data: {confirm: 'Weet je het zeker?'},
-      title: quote.text,
-      class: 'btn btn-default btn-sm' do %>
-      <i class="far fa-trash-alt"></i>
-    <% end %>
+<li class="py-4">
+  <div class="flex space-x-3 text-sm">
+    <%= gravatar_for quote.user, class: "h-8 w-8 rounded-full self-center" %>
+    <div class="flex-col flex-1">
+      <div class="flex flex-col sm:flex-row justify-between self-center">
+        <h3 class="flex-grow font-medium"><%= quote.text %></h3>
+        <span class="relative z-0 inline-flex rounded-md">
+          <%= link_to edit_quote_path(quote), class: 'inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-l-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+            <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
+          <% end %>
+          <%= link_to quote, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: quote.text,
+                      class: '-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-r-md   text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+            <%= heroicon('trash', class_name: "h-4 w-4") %> <span class="sm:hidden">Verwijderen</span>
+        <% end %>
+          </span>
+      </div>
+      <div class="flex flex-col sm:flex-row text-gray-500">
+        <div class="flex-grow"><%= quote.user.name %></div>
+        <p><%= time_ago_in_words(quote.created_at) %> geleden.</p>
+      </div>
+    </div>
   </div>
 </li>

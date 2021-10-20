@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :user, only: [:show, :usergroups, :edit, :update, :destroy]
+  before_action :user, only: [:show, :edit, :edit_usergroups, :edit_password, :update, :destroy]
   before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user?, only: [:destroy, :usergroups]
+  before_action :admin_user?, only: [:destroy]
   breadcrumb 'Leden', :users_path
+  layout 'application_public', only: :index_public
 
   def index
     @leden = User.leden
@@ -13,26 +14,32 @@ class UsersController < ApplicationController
   end
 
   def index_public
-    @users = User.order(batch: :desc).group_by { |user| user[:batch] }
     breadcrumb 'Openbaar', public_leden_path
+
+    @users = User.order(batch: :desc).group_by { |user| user[:batch] }
   end
 
-  def usergroups
+  def edit_usergroups
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Update', edit_user_path(@user)
+    breadcrumb 'Groepen', edit_usergroups_user_path(@user)
+
     @member = @user.usergroups
     @notmember = Usergroup.where.not(id: @member)
-    breadcrumb @user.name, user_path(@user)
-    breadcrumb 'Groepen', usergroups_user_path(@user)
+    render 'users/settings/usergroups'
   end
 
   def show
-    @quotes = @user.quotes.order('created_at DESC').paginate(page: params[:page])
-    @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
     breadcrumb @user.name, user_path(@user)
+
+    @pagy, @quotes = pagy(@user.quotes.order('created_at DESC'))
+    @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
   end
 
   def new
-    @user = User.new
     breadcrumb 'Registreren', new_user_path
+
+    @user = User.new
   end
 
   def create
@@ -42,10 +49,31 @@ class UsersController < ApplicationController
   def edit
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
+
+    render 'users/settings/main'
   end
 
   def update
     update_object(@user, user_params)
+  end
+
+  def edit_password
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Update', edit_user_path(@user)
+    breadcrumb 'Wachtwoord', edit_password_user_path(@user)
+
+    render 'users/settings/password'
+  end
+
+  def update_password
+    @user = current_user
+    if @user.update(user_password_params)
+      # Sign in the user bypassing validation in case their password changed
+      bypass_sign_in(@user)
+      redirect_to
+    else
+      render "users/settings/password"
+    end
   end
 
   def destroy

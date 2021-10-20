@@ -1,47 +1,59 @@
 <% content_for :title do %>
   Activiteiten
-  <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#uitlegbox">
-    <i class="fas fa-calendar-alt"></i></button>
 <% end %>
 
-<div class="row">
-  <div class="col-md-12">
-    <div id="uitlegbox" class="collapse">
-      <div class="well well-sm">
-        <p>Voeg onderstaande url toe aan je Google- of Applecalendar als je mooie integratie wilt. Als je nog geen API-key hebt aangemaakt, doe dat dan
-          <%= link_to 'hier', edit_user_path(current_user) %>.</p>
-        <ul>
-          <% current_user.api_keys.each do |ak| %>
-            <li><%= ak.name %> --> https://zondersikkel.nl/ical/<%= ak.key %>.ics</li>
-          <% end %>
-        </ul>
+<% content_for :options do %>
+  <%= button_to "Nieuwe activiteit", new_event_path, method: :get, class: button_classes %>
+<% end %>
+
+<div class="-m-5 sm:-m-6">
+  <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
+    <div class="flex items-center border-b border-gray-200 justify-between px-4">
+      <nav class="-mb-px flex space-x-8">
+        <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+          Binnenkort
+        </button>
+        <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+          Vroegâh
+        </button>
+      </nav>
+
+      <div data-controller="popover" data-popover-translate-x="-90%" data-popover-translate-y="0" data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <div class="content hidden absolute max-w-xs bg-gray-300 rounded p-2" data-popover-target="content">
+          <p>iCal links voor je API keys:</p>
+          <ul role="list" class="divide-y divide-gray-200">
+            <% current_user.api_keys.each do |ak| %>
+              <li class="py-2">
+                <div class="flex space-x-3">
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-sm font-medium"><%= ak.name %></h3>
+                    </div>
+                    <p class="text-sm text-gray-500"><%= request.base_url %>/ical/<%= ak.key %>.ics</p>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 
-  <ul class="nav nav-pills nav-justified" style="margin-bottom: 16px;">
-    <li class="presentation active"><a data-toggle="tab" href="#upcoming">Aankomend</a></li>
-    <li class="presentation"><a data-toggle="tab" href="#past">Vroegâh</a></li>
-  </ul>
-
-  <div class="tab-content">
-    <div id="upcoming" class="tab-pane fade in active">
-      <%= render "events/table", events: @upcoming_events %>
+    <div class="hidden" data-tabs-target="panel">
+      <%= render 'events/list', events: @upcoming_events %>
     </div>
-    <div id="past" class="tab-pane fade">
-      <%= render "events/table", events: @past_events %>
-      <%= will_paginate @past_events %>
-    </div>
-  </div>
 
-  <% if current_user&.active? %>
-    <%= link_to 'Nieuwe activiteit', new_event_path, class: 'btn btn-block btn-primary' %>
-  <% end %>
+    <div class="hidden" data-tabs-target="panel">
+      <%= render 'events/list', events: @past_events %>
+      <div class="py-6">
+        <%= render 'shared/pagination/default' %>
+      </div>
+    </div>
+
+  </div>
 </div>
-
-<script type="application/javascript">
-    document.addEventListener('turbolinks:render', function () {
-        if (/[?&]page=/.test(location.search))
-            $('.nav-pills a:last').tab('show')
-    }, false);
-</script>

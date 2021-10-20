@@ -62,6 +62,8 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    any_login (1.4.4)
+      rails (>= 4.2.7)
     ast (2.4.2)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -71,11 +73,6 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    bootstrap-will_paginate (1.0.0)
-      will_paginate
-    bootstrap_form (4.5.0)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
     brakeman (5.1.1)
     builder (3.2.4)
     bullet (6.1.5)
@@ -93,6 +90,7 @@ GEM
     chronic (0.10.2)
     chunky_png (1.4.0)
     climate_control (0.2.0)
+    coderay (1.1.3)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (5.0.0)
@@ -127,7 +125,7 @@ GEM
     equalizer (0.0.11)
     erubi (1.10.0)
     execjs (2.8.1)
-    ffi (1.15.1)
+    ffi (1.15.4)
     flamegraph (0.9.5)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -138,6 +136,8 @@ GEM
       rack (>= 1.3.0)
       rack-accept
       virtus (>= 1.0.0)
+    gutentag (2.6.1)
+      activerecord (>= 3.2.0)
     honeybadger (4.9.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -145,6 +145,9 @@ GEM
       ice_cube (~> 0.16)
     ice_cube (0.16.3)
     ice_nine (0.11.2)
+    image_processing (1.12.1)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     libv8 (3.16.14.19)
     loaf (0.10.0)
       railties (>= 3.2)
@@ -163,6 +166,7 @@ GEM
     mimemagic (0.3.10)
       nokogiri (~> 1)
       rake
+    mini_magick (4.11.0)
     mini_mime (1.1.1)
     mini_portile2 (2.6.1)
     minidusen (0.9)
@@ -182,6 +186,7 @@ GEM
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (4.11.0)
     paper_trail (12.1.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
@@ -196,6 +201,9 @@ GEM
       activerecord (>= 4.0, < 6.2)
     parser (3.0.2.0)
       ast (~> 2.4.1)
+    pry (0.13.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     public_suffix (4.0.6)
     puma (5.5.1)
       nio4r (~> 2.0)
@@ -238,6 +246,8 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
+    rails_heroicons (0.7.0)
+      activesupport (>= 6.0.3)
     railties (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -284,18 +294,10 @@ GEM
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.11.0)
+    ruby-vips (2.1.3)
+      ffi (~> 1.12)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.2)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
-    sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc-rails (2.1.2)
-      railties (>= 4.0.0)
-      sassc (>= 2.0)
-      sprockets (> 3.0)
-      sprockets-rails
-      tilt
     sdoc (2.2.0)
       rdoc (>= 5.0)
     secure_headers (6.3.3)
@@ -312,7 +314,8 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
     stackprof (0.2.17)
-    switch_user (1.5.4)
+    tailwindcss-rails-webpacker (0.1.2)
+      rails (>= 6.0.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     therubyracer (0.12.3)
@@ -320,7 +323,8 @@ GEM
       ref
     thor (1.1.0)
     thread_safe (0.3.6)
-    tilt (2.0.10)
+    turbo-rails (0.7.7)
+      rails (>= 6.0.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
@@ -353,7 +357,6 @@ GEM
     websocket-extensions (0.1.5)
     whenever (1.0.0)
       chronic (>= 0.6.3)
-    will_paginate (3.3.0)
     wine_bouncer (1.0.4)
       doorkeeper (>= 1.4, < 6.0)
       grape (>= 0.10, < 1.3)
@@ -365,9 +368,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  any_login
   binding_of_caller
-  bootstrap-will_paginate
-  bootstrap_form
   brakeman
   bullet
   capybara
@@ -378,23 +380,28 @@ DEPENDENCIES
   doorkeeper
   doorkeeper-i18n
   flamegraph
+  gutentag
   honeybadger (~> 4.0)
   icalendar
+  image_processing
   loaf
   lockbox
   memory_profiler
   minidusen
   mysql2
   net-http-persistent
+  pagy (~> 4.8)
   paper_trail
   paperclip
   paranoia
+  pry
   puma
   rack-cors
   rack-mini-profiler
   rails
   rails-controller-testing
   rails-i18n
+  rails_heroicons
   rb-readline
   redcarpet
   redis (~> 4.0)
@@ -402,21 +409,20 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
-  sass-rails
   sdoc
   secure_headers (~> 6.3)
   sprockets
   sqlite3
   stackprof
-  switch_user
+  tailwindcss-rails-webpacker (~> 0.1.2)
   therubyracer
+  turbo-rails
   tzinfo
   uglifier
   web-console
   webdrivers
   webpacker
   whenever
-  will_paginate
   wine_bouncer
 
 BUNDLED WITH

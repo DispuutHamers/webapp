@@ -2,8 +2,8 @@
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
+  layout :set_template, only: [:index, :show]
   breadcrumb 'Bieren', :beers_path
-  
   ALLOWED_SORTING_FIELDS = %w[name kind grade brewer country review_count]
 
   # GET /beers
@@ -13,23 +13,27 @@ class BeersController < ApplicationController
     ordering = params[:order] if %w[asc desc].include?(params[:order])
     @sp = params[:search] || ""
     if sorting == "review_count"
-      @beers = BeerFilter.new.filter(Beer.all, @sp)
-        .left_joins(:reviews)
-        .group(:beer_id)
-        .order("count(reviews.id) #{ordering}")
-        .paginate(page: params[:page], per_page: 10)
+      @pagy, @beers = pagy(BeerFilter.new.filter(Beer.all, @sp)
+                                     .left_joins(:reviews)
+                                     .group(:beer_id)
+                                     .order("count(reviews.id) #{ordering}"),
+                           items: 16,
+                           page: params[:page])
     else
       sorting = "name" unless sorting
       ordering = "ASC" unless ordering
-      @beers = BeerFilter.new.filter(Beer.all, @sp).order("#{sorting} #{ordering}").paginate(page: params[:page], per_page: 16)
+      @pagy, @beers = pagy(BeerFilter.new.filter(Beer.all, @sp).order("#{sorting} #{ordering}"),
+                           items: 16,
+                           page: params[:page])
     end
-    render 'beers/index'
   end
 
   # GET /beers/1
   # GET /beers/1.json
   def show
     breadcrumb @beer.name, beer_path(@beer)
+
+    @reviews = @beer.reviews.with_user
   end
 
   def reviews
@@ -69,8 +73,13 @@ class BeersController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_beer
     @beer = Beer.find_by_id!(params[:id])
+  end
+
+  def set_template
+    'application_public' unless current_user&.active?
   end
 end

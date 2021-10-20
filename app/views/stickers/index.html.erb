@@ -1,28 +1,40 @@
+<% content_for :title do %>
+  Stickers
+<% end %>
+
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('chip', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= pluralize Sticker.count, 'sticker', 'stickers', locale: :nl %>
+  </div>
+<% end %>
+
+<% content_for :options do %>
+  <%= link_to 'Sticker plakken', new_sticker_path, class: button_classes %>
+<% end %>
+
+
 <div style="height: 800px; margin-bottom: 12px;">
   <div id="map" style="height: 100%;"></div>
 </div>
-
-<%= link_to new_sticker_path, class: 'btn btn-block btn-primary' do %><i class="far fa-copy fa-fw"></i> Sticker plakken<% end %>
-
 <script type="application/javascript">
-function initMap() {
-  let map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: {lat: 52.14, lng: 6.53}
-  });
+  function initMap() {
+    let map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: {lat: 52.14, lng: 6.53}
+    });
 
-  <% @stickers.each do |s| %>
+    <% @stickers.each do |s| %>
     let sticker<%= s.id %> = {lat: <%= s.lat %>, lng: <%= s.lon %>};
     let marker<%= s.id %> = new google.maps.Marker({
-    position: sticker<%= s.id %>,
-    icon: '<%= image_path "pin.png" %>',
-    map: map,
-    optimized: false,
-    title: <% if s.notes.empty? %>'Sticker #<%= s.id %>'<% else %>'<%= s.notes %>'<% end %>,
-  });
-<% end %>
-}
+      position: sticker<%= s.id %>,
+      icon: '<%= image_path "pin.png" %>',
+      map: map,
+      optimized: false,
+      title: <% if s.notes.empty? %>'Sticker #<%= s.id %>'<% else %>'<%= s.notes %>'<% end %>,
+    });
+    <% end %>
+  }
 </script>
-<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&callback=initMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&callback=initMap">
 </script>

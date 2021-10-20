@@ -15,37 +15,29 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import 'jquery'
 import Rails from '@rails/ujs';
-import 'bootstrap/dist/js/bootstrap'
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
+import "@hotwired/turbo-rails"
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
-import Flatpickr from 'stimulus-flatpickr'
-import NProgress from 'nprogress'
 import '@fortawesome/fontawesome-free/js/all'
-import 'bootstrap-select/dist/js/bootstrap-select'
-import 'tablesort/dist/sorts/tablesort.number.min'
-import 'tablesort/dist/sorts/tablesort.date.min'
-import 'trix';
+import 'trix/dist/trix.js'
+import '@rails/actiontext'
+import "./application"
+import * as ActiveStorage from "@rails/activestorage"
+import Flatpickr from 'stimulus-flatpickr'
 
+ActiveStorage.start()
 Rails.start();
-require("turbolinks").start();
 
 const application = Application.start()
 const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
+
+// Other options: Alert, Autosave, Dropdown, Modal, Popover, Toggle, Slideover
+import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
+application.register('dropdown', Dropdown)
+application.register('tabs', Tabs)
+application.register('popover', Popover)
 application.register('flatpickr', Flatpickr)
-
-document.addEventListener("turbolinks:load", function() {
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('[data-toggle="popover"]').popover()
-        $("tr[data-link]").click(function() {
-            window.location = $(this).data("link")
-        })
-
-        document.querySelectorAll('.tablesorter').forEach((e) => new Tablesort(e));
-    })
-})

@@ -1,37 +1,30 @@
 <%= form_for @sticker do |f| %>
-  <div class="form-group">
-    <%= f.label :latitude %>
-    <%= f.text_field :lat, id: 'lat', class: 'form-control', pattern: '-?\d*\.\d*', required: true %>
-    <%= @sticker.errors.full_messages_for(:lat).first[3..] if @sticker.errors[:lat].any? %>
-  </div>
-  <div class="form-group">
-    <%= f.label :longitude %>
-    <%= f.text_field :lon, id: 'lon', class: 'form-control', pattern: '-?\d*\.\d*', required: true %>
-    <%= @sticker.errors.full_messages_for(:lon).first[3..] if @sticker.errors[:lon].any? %>
-  </div>
-  <div class="form-group">
-    <%= f.label :notes %>
-    <%= f.text_area :notes, class: 'form-control' %>
-  </div>
-  <div class="actions">
-    <div class="btn-group">
-      <%= f.submit :Verstuur, class: 'btn btn-primary' %>
-      <button class="btn btn-default" onclick="getLocation()">Get location</button>
-    </div>
-  </div>
+  <%= f.label :latitude, class: label_classes %>
+  <%= f.text_field :lat, id: 'lat', pattern: '-?\d*\.\d*', required: true, class: input_classes %>
+  <%= @sticker.errors.full_messages_for(:lat).first[3..] if @sticker.errors[:lat].any? %>
+
+  <%= f.label :longitude %>
+  <%= f.text_field :lon, id: 'lon', pattern: '-?\d*\.\d*', required: true, class: input_classes %>
+  <%= @sticker.errors.full_messages_for(:lon).first[3..] if @sticker.errors[:lon].any? %>
+
+  <%= f.label :notes %>
+  <%= f.text_area :notes, class: input_classes %>
+
+  <%= f.submit :Verstuur, class: submit_classes %>
+  <button class="<%= button_classes %>" onclick="getLocation()">Get location</button>
 <% end %>
 
 <script type="application/javascript">
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            x.innerHTML = "Geolocation is not supported by this browser.";
-        }
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
     }
+  }
 
-    function showPosition(position) {
-        document.getElementById("lat").value = position.coords.latitude;
-        document.getElementById("lon").value = position.coords.longitude;
-    }
+  function showPosition(position) {
+    document.getElementById("lat").value = position.coords.latitude;
+    document.getElementById("lon").value = position.coords.longitude;
+  }
 </script>

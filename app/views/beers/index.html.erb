@@ -2,88 +2,19 @@
   Bieren
 <% end %>
 
-<div class="row">
-  <div class="col-md-6">
-    <%= will_paginate %>
-  </div>
-  <div class="col-md-6">
-    <div class="pagination">
-      <div class="pagination">
-        <%= form_tag beers_path, class: "form-horizontal", method: :get do %>
-          <div class="input-group" id="adv-search">
-            <%= text_field_tag :search, @sp, class: 'form-control', placeholder: 'Vind hier, je bier' %>
-            <div class="input-group-btn">
-              <div class="btn-group" role="group">
-                <%= submit_tag "Zoek", class: "btn btn-primary" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<table id="bier" class="table table-hover table-responsive-sm">
-  <thead>
-  <tr>
-    <col width="20%">
-    <col width="20%">
-    <col width="10%">
-    <col width="20%">
-    <col width="20%">
-    <col width="10%">
-
-    <% ordering = params[:order] == "asc" ? "desc" : "asc" %>
-
-    <% case params[:sort]
-       when "name" %>
-      <% name_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% when "kind" %>
-      <% kind_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% when "grade" %>
-      <% grade_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% when "brewer" %>
-      <% brewer_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% when "country" %>
-      <% country_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% when "review_count" %>
-      <% review_count_arrow = params[:order] == "asc" ? " ↓" : " ↑" %>
-    <% end %>
-
-    <th><%= link_to "Naam" + name_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :name, order: ordering}) %></th>
-    <th><%= link_to "Soort" + kind_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :kind, order: ordering}) %></th>
-    <th><%= link_to "Cijfer" + grade_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :grade, order: ordering}) %></th>
-    <th><%= link_to "Brouwer" + brewer_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :brewer, order: ordering}) %></th>
-    <th><%= link_to "Land" + country_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :country, order: ordering}) %></th>
-    <th><%= link_to "Aantal reviews" + review_count_arrow.to_s, params.permit(:sort, :order, :search, :utf8).merge({sort: :review_count, order: ordering}) %></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @beers.each do |beer| %>
-    <% case current_user&.reviews&.find_by(beer: beer)&.rating
-       when 1..4 %>
-      <tr class="danger">
-    <% when 4..6 %>
-      <tr class="info">
-    <% when 6..10 %>
-      <tr class="success">
-    <% else %>
-      <tr class="default">
-    <% end %>
-
-    <td><%= link_to beer.name, beer %></td>
-    <td><%= beer.kind %></td>
-    <td><%= beer.cijfer? %></td>
-    <td><%= beer.brewer %></td>
-    <td><%= beer.country %></td>
-    <td><%= beer.reviews.count %></td>
-    </tr>
+<% content_for :options do %>
+  <%= form_tag beers_path, class: "flex shadow-sm rounded-md", method: :get do %>
+    <%= text_field_tag :search, @sp,
+                       placeholder: 'Vind hier, je bier.',
+                       class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md' %>
+    <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
   <% end %>
-  </tbody>
-</table>
-
-<% if current_user&.active? %>
-  <%= link_to 'Voeg bier toe', new_beer_path, :class => 'btn btn-block btn-primary' %>
 <% end %>
+
+<% if @pagy.page == 1 %>
+  <div class="flex flex-row-reverse">
+    <%= link_to 'Voeg bier toe', new_beer_path, class: button_classes %>
+  </div>
+<% end %>
+
+<%= render 'table' %>

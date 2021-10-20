@@ -11,8 +11,8 @@ class EventsController < ApplicationController
     respond_to do |current_request|
       current_request.html do
         ilid?
-        @past_events = Event.past.order(date: :desc).paginate(page: params[:page])
-        @upcoming_events = Event.upcoming.order(date: :asc)
+        @pagy, @past_events = pagy(Event.past.order(date: :desc), page: params[:page])
+        @upcoming_events = Event.upcoming.order(date: :asc).includes(:usergroup)
       end
 
       current_request.ics do
@@ -22,7 +22,7 @@ class EventsController < ApplicationController
           calendar.publish
           render plain: calendar.to_ical
         else
-          render plain: "HTTP Token: Access denied.", status: :access_denied
+          render plain: "404", status: :not_found
         end
       end
     end
@@ -45,7 +45,8 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    breadcrumb @event.title, edit_event_path(@event)
+    breadcrumb @event.title, event_path(@event)
+    breadcrumb "Aanpassen", edit_event_path(@event)
   end
 
   # POST /events

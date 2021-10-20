@@ -1,34 +1,54 @@
-<ul>
-  <% @trail.each do |t| %>
-    <li>
-      <% if t.whodunnit %>
-        <%= link_to User.find(t.whodunnit).name, User.find(t.whodunnit) %>
-      <% else %>
-        System
-      <% end %>
-
-      <% if t.event == "create" %>
-        <% if t.item_type == "Signup" %>
-          heeft zich ingeschreven voor
-          <% if t.item %>
-            <%= link_to t.item.event.title, t.item.event %>
-          <% else %>
-            een verwijderd event
-          <% end %>
-        <% else %>
-          created <%= link_to t.item_type, t.item %>
+<div class="bg-white overflow-hidden shadow rounded-lg hidden lg:block">
+    <h2 class="text-hamers-red-400 text-xl font-bold m-4">Wat is er gebeurd?</h2>
+    <div class="flex items-center">
+      <ul class="divide-y divide-gray-200 w-full">
+        <% @trail.each do |t| %>
+          <li class="py-2 px-4 w-full">
+            <div class="flex space-x-3">
+              <% if t.whodunnit %>
+                <%= gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" %>
+              <% end %>
+              <% case t.item_type %>
+              <% when "Quote" %>
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <% if t.item %>
+                      <span class="text-sm font-medium"><%= "citeerde #{t.item.user.name}" %></span>
+                    <% else %>
+                      <span class="text-sm font-medium"><%= "citeerde onjuist" %></span>
+                    <% end %>
+                  </div>
+                  <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+                </div>
+              <% when "Blogitem" %>
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium"><%= link_to "schreef aan #{t.item.title}", t.item %></span>
+                  </div>
+                  <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+                </div>
+              <% when "Signup" %>
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <% if t.object %>
+                      <span class="text-sm font-medium"><%= link_to "heeft zich #{t.object["status"] ? "ingeschreven" : "uitgeschreven"} voor #{t.item.event.title}", t.item %></span>
+                    <% else %>
+                      <span class="text-sm font-medium"><%= link_to "heeft zich #{t.item.status ? "ingeschreven" : "uitgeschreven"} voor #{t.item.event.title}", t.item %></span>
+                    <% end %>
+                  </div>
+                  <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+                </div>
+              <% else %>
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium"><%= link_to "#{t.event}d #{t.item_type}", t.item %></span>
+                  </div>
+                  <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+                </div>
+              <% end %>
+            </div>
+          </li>
         <% end %>
-      <% elsif t.event == "destroy" %>
-        destroyed <%= t.item_type %>
-      <% else %>
-        <% if t.item_type == "Signup" %>
-          heeft zijn inschrijving voor <%= link_to t.item.event.title, t.item.event %> geupdate
-        <% else %>
-          <%= t.event %>d <%= link_to t.item_type, t.item %>
-        <% end %>
-      <% end %>
-
-      <small class="text-muted">&hyphen; <%= time_ago_in_words(t.created_at) %> geleden</small>
-    </li>
-  <% end %>
-</ul>
+      </ul>
+    </div>
+</div>

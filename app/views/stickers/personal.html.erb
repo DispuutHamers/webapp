@@ -13,7 +13,7 @@
     <th>Admin stuff</th>
   </tr>
   </thead>
-  <%= will_paginate %>
+  <%= render 'shared/pagination/default' %>
   <tbody>
   <% @stickers.each do |m| %>
     <tr>
@@ -45,4 +45,4 @@
   <% end %>
   </tbody>
 </table>
-<%= will_paginate %>
+<%= render 'shared/pagination/default' %>

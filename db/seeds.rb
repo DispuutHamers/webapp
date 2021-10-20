@@ -20,12 +20,13 @@ end
 
 # Create groups
 Usergroup.create!(id: 2, name: "Triumviraat")
-Usergroup.create!(id: 4, name: "Lid")
-Usergroup.create!(id: 12, name: "Oud-leden")
-Usergroup.create!(id: 5, name: "Aspiranten")
-Usergroup.create!(id: 11, name: "Developer")
-Usergroup.create!(id: 17, name: "H4x0rz")
-Usergroup.create!(name: "Pokerbazen")
+Usergroup.create!(id: 4, name: "Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
+Usergroup.create!(id: 12, name: "O-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
+Usergroup.create!(id: 5, name: "A-Lid").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
+Usergroup.create!(id: 11, name: "Developer").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
+Usergroup.create!(id: 17, name: "H4x0rz").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
+Usergroup.create!(name: "Pokerbazen").logo.attach(io: File.open('test/fixtures/active_storage/user_groups/poker.png'), filename: 'poker.png', content_type: 'image/png')
+Usergroup.create!(id: 21, name: "Trajectcoördinatoren")
 
 # Make users lid
 User.all.each do |user|
@@ -39,9 +40,9 @@ Group.create!(user_id: 3, group_id: 2)
 Group.create!(user_id: 4, group_id: 2)
 
 # Fill the rest of the groups
-Group.create!(user_id: 1, group_id: 11)
-Group.create!(user_id: 5, group_id: 12)
-Group.create!(user_id: 6, group_id: 5)
+Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)
+Group.create!(user_id: 5, group_id: Usergroup.find_by_name("O-lid").id)
+Group.create!(user_id: 6, group_id: Usergroup.find_by_name("A-lid").id)
 
 # Create quotes
 Quote.create!(user_id: 1, text: "Turken doen aan eerwraak enzo. Negers swaffelen alleen maar", reporter_id: 2)

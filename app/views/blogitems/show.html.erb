@@ -1,34 +1,69 @@
 <% content_for :title do %>
   <%= @item.title %>
 <% end %>
-<div class="row">
-  <div class="col-md-9">
-    <%= @item.body %>
+
+<% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
+  <% content_for :options do %>
+    <ul role="list" class="flex justify-center space-x-5">
+      <li>
+        <%= button_to edit_blogitem_path(@item), method: :get, class: button_classes do %>
+          <span class="sr-only">edit</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+        <% end %>
+      </li>
+      <li>
+        <%= button_to @item, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: button_classes do %>
+          <span class="sr-only">destroy</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+<% end %>
+
+<div class="flex-1 min-w-0 bg-white sm:flex">
+  <div class="border-b border-gray-200 sm:border-b-0 bg-white sm:min-w-0 sm:flex-1">
+    <div class="h-full py-6 px-4 sm:px-6">
+      <div class="relative h-full">
+        <div>
+          <%= @item.body %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <% if @user %>
-          Blogpost door: <i><%= link_to @user.name, @user %></i>
-          <hr>
-        <% end %>
 
-        <% if @item.blogphotos.any? %>
-          <% @item.blogphotos.each do |p| %>
-            <%= image_tag p.image.url(:medium) %> <br>
-          <% end %>
-          <hr>
-        <% end %>
-
-        <div class="btn-group btn-group-vertical">
-          <% if current_user&.admin? || (current_user && current_user.id == @item.user_id) %>
-            <%= link_to edit_blogitem_path(@item), class: 'btn btn-default btn-sm' do %>
-              <i class="fas fa-pencil-alt"></i> Wijzig blogpost
+  <div class="pt-4 sm:pt-0 border-gray-200 sm:flex-shrink-0 sm:w-64 sm:-my-6 sm:border-l bg-white">
+    <div class="h-full ml-6 sm:pt-8 md:pl-0">
+      <div class="h-full relative">
+        <div class="space-y-8 mb-4">
+          <%= gravatar_for @item.user, size: 128, class: "mx-auto h-16 w-16 sm:h-24 sm:w-24 md:h-32 md:w-32 rounded-full xl:w-56 xl:h-56" %>
+          <div class="space-y-2">
+            <div class="text-lg leading-6 font-medium space-y-1">
+              <h3><%= @item.user.name %></h3>
+              <% if @item.user.lid? %>
+                <p class="text-hamers-red-600">Hamerslid</p>
+              <% elsif @item.user.alid? %>
+                <p class="text-hamers-red-600">Aspirant Hamerslid</p>
+              <% elsif @item.user.olid? %>
+                <p class="text-hamers-red-600">Oud Hamerslid</p>
+              <% else %>
+                <p class="text-hamers-red-600">Hamersvriend</p>
+              <% end %>
+            </div>
+          </div>
+          <div class="mt-2">
+            <% @item.tags.each do |tag| %>
+              <%= link_to blog_by_tag_path(tag.name) do %>
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                  <%= tag.name %>
+                </span>
+              <% end %>
             <% end %>
-            <%= link_to @item, method: :delete, data: {confirm: 'Weet je het zeker?'}, class: 'btn btn-default btn-sm' do %>
-              <i class="far fa-trash-alt"></i> Verwijder blogpost
-            <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -1,53 +1,29 @@
-<% if current_user&.active? %>
-  <div class="col-md-5">
-    <aside>
-      <section>
-        <%= render 'shared/user_info' %>
-      </section>
-      <section>
-        <%= render 'shared/random_biertje' %>
-      </section>
-      <section>
-        <%= render partial: 'quotes/quote', object: @random_quote %>
-      </section>
-      <section style="overflow: visible;">
-        <%= render 'shared/quote_form' %>
-      </section>
-      <section>
-        <%= link_to events_path do %>
-          <h5><i class="far fa-calendar-alt"></i> Aankomende activiteiten</h5>
-        <% end %>
-        <%= render 'shared/activiteiten' %>
-      </section>
-      <section>
-        <%= link_to news_index_path do %>
-          <h5><i class="far fa-newspaper"></i> Recent nieuws</h5>
-        <% end %>
-        <%= render 'shared/news' %>
-      </section>
-      <section>
-        <%= link_to blogitems_path do %>
-          <h5><i class="fa fa-rss"></i> Recente blogposts</h5>
-        <% end %>
-        <%= render 'shared/blog' %>
-      </section>
-      <% unless current_user.alid? %>
-        <section>
-          <%= link_to trail_path do %>
-            <h5><i class="fas fa-history"></i> Log</h5>
-          <% end %>
-          <%= render 'shared/trail' %>
-        </section>
-      <% end %>
-    </aside>
-  </div>
-  <div class="col-md-7">
-    <%= render 'shared/feed' %>
-  </div>
-<% else %>
-  <div class="center jumbotron">
-    <h1>Hamers zonder Sikkel</h1>
-    <h2>defenestraties voorbehouden</h2>
-    <b>Email: hamers [at] domeinnaam</b>
-  </div>
+<% if @pagy.page == 1 %>
+    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <%= render 'shared/user_info' %>
+      <%= render 'shared/next_event' %>
+      <%= render 'shared/quote_form' %>
+      <%= render 'shared/trail' unless current_user.alid? %>
+      <%= render 'shared/blog' %>
+      <%= render 'shared/random_biertje' %>
+    </div>
 <% end %>
+
+<div class="relative my-4 -mx-5 sm:-mx-6">
+  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+    <div class="w-full border-t border-gray-300"></div>
+  </div>
+  <div class="relative flex justify-center">
+      <span class="px-2 bg-white text-sm text-gray-500">
+        Citaten
+      </span>
+  </div>
+</div>
+
+<div class="-mt-6">
+  <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200 mb-6">
+    <%= render @quotes %>
+  </ul>
+
+  <%= render 'shared/pagination/default' %>
+</div>

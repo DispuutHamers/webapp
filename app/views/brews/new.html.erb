@@ -2,5 +2,12 @@
   Nieuwe uitvoering van <%= @recipe.name %>
 <% end %>
 
-<%= render "form" %>
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="ml-6 py-6 md:col-span-4 md:pr-6">
+    <%= @recipe.description %>
+  </aside>
 
+  <div class='md:col-span-8 md:pl-6 py-6'>
+    <%= render 'form' %>
+  </div>
+</div>

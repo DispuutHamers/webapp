@@ -10,7 +10,7 @@ class StickersController < ApplicationController
   end
 
   def personal
-    @stickers = Sticker.where(user_id: current_user.id).paginate(page: params[:page])
+    @pagy, @stickers = pagy(current_user.stickers, page: params[:page])
     breadcrumb 'Stickers aanpassen', personal_sticker_path
   end
 
@@ -28,7 +28,6 @@ class StickersController < ApplicationController
     @sticker = Sticker.new(sticker_params)
     @sticker.user_id = current_user.id
     return redirect_to stickers_path if @sticker.save
-    
     render :new
   end
 

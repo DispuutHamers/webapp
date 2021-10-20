@@ -1,0 +1,21 @@
+<%= form_for @usergroup, html: {class: 'space-y-2 space-y'} do |f| %>
+  <% if @usergroup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@usergroup.errors.count, 'error') %> prohibited this beer from being saved:</h2>
+
+      <ul>
+        <% @usergroup.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name, class: label_classes %>
+  <%= f.text_field :name, class: input_classes %>
+
+  <%= f.label :signal_url, class: label_classes %>
+  <%= f.text_field :signal_url, class: input_classes %>
+
+  <%= f.submit :Opslaan, class: submit_classes %>
+<% end %>

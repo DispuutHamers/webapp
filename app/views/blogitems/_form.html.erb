@@ -2,7 +2,7 @@
   <%= form_for(@item) do |f| %>
     <% if @item.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
+          <h2><%= pluralize(@item.errors.count, 'error') %> prohibited this blogitem from being saved:</h2>
 
           <ul>
             <% @item.errors.full_messages.each do |msg| %>
@@ -12,34 +12,27 @@
         </div>
     <% end %>
 
-    <div class="form-group">
-      <%= f.label :body %><br>
-      <%= f.rich_text_area :body, class: 'form-control' %>
+    <div class="space-y-4">
+      <%= f.text_field :title, class: input_classes, required: true, minlength: 2, placeholder: "Titel" %>
+      <%= f.rich_text_area :body, class: 'form-control', placeholder: "blablabla" %>
+      <div class="flex items-start col-span-3 md:justify-left">
+        <div class="flex items-center h-5">
+          <%= f.check_box :public, { checked: @item.public, class: "focus:ring-hamers-red-500 h-4 w-4 text-hamers-red-600 border-gray-300 rounded" } %>
+        </div>
+        <div class="ml-3 text-sm">
+          <label class="font-medium text-gray-700">Ook voor plebs te lezen</label>
+        </div>
+      </div>
+      <div class="mt-1 flex rounded-md shadow-sm">
+        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+          Tags
+        </span>
+        <%= f.text_field :tags_as_string, class: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm border-gray-300" %>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.label :title %><br>
-      <%= f.text_field :title, class: 'form-control', required: true, minlength: 2%>
+
+    <div class="flex justify-center mt-5">
+      <%= f.submit "Opslaan", class: submit_classes %>
     </div>
-    <div class="form-group">
-      <%= f.label :public %><br>
-      <%= f.check_box :public %>
-    </div>
-    <div class="actions">
-      <%= f.submit :Verstuur, class: 'btn btn-primary' %>
-    </div>
-<% end %>
-</div>
-<div class="photos">
-  <% @item.blogphotos.each do |p| %>
-    <%= image_tag p.image.url(:thumb) %>
-    <%= link_to 'x', "/blog/#{@item.id}/#{p.id}", method: :destroy, confirmation: "sure?" %>
   <% end %>
-</div>
-<div class="form-group">
-<%= form_for @photo, url: @item, html: { multipart: true } do |form| %>
-  <%= form.file_field :image %>
-  <%= form.text_field :description, placeholder: "Beschrijving" %>
-  <%= form.hidden_field :blogitem_id, value: @item.id %>
-  <%= form.submit :Upload %>
-<% end %>
 </div>

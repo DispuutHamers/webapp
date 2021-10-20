@@ -1,0 +1,36 @@
+<div class="overflow-hidden md:shadow md:rounded-lg md:p-4">
+  <h1 class="text-hamers-red-400 text-xl font-bold">Volgende activiteit</h1>
+  <% if @next_event %>
+    <h2 class="font-bold tracking-tight text-gray-900 text-2xl text-justify">
+      <%= link_to @next_event.title, @next_event %>
+    </h2>
+    <h3 class="text-gray-600">In <%= time_ago_in_words(@next_event.date) %></h3>
+    <div class="mt-8 flex">
+      <div class="inline-flex rounded-md shadow w-full">
+        <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
+          <%= f.hidden_field :event_id %>
+          <%= f.hidden_field :status %>
+          <%= f.submit 'Aanwezig', class: 'cursor-pointer w-full text-center font-bold p-4 border border-transparent text-base font-medium rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600' %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <h3 class="mt-2 text-sm font-medium text-gray-900">Geen aankomende activiteiten :(</h3>
+    <p class="mt-1 text-sm text-gray-500">
+      Waarom maak je er niet een aan?
+    </p>
+    <div class="mt-6">
+      <%= button_to new_event_path, method: :get,
+                    class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600" do %>
+        <!-- Heroicon name: solid/plus -->
+        <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+             aria-hidden="true">
+          <path fill-rule="evenodd"
+                d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clip-rule="evenodd"/>
+        </svg>
+        Nieuwe activiteit
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -3,41 +3,50 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hamers zonder Sikkel</title>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload' %>
 
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <%= render 'layouts/header' %>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <% if key == "notice" %>
-          <% key = "info" %>
-        <% elsif key == "error" || key == "alert" %>
-          <% key = "danger" %>
+  <body class="h-full">
+    <div class="bg-gray-100 min-h-screen h-full">
+      <div class="bg-gray-900 pb-32">
+        <%= render 'layouts/nav' %>
+
+        <% if content_for?(:title) %>
+          <header class="py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="flex flex-wrap">
+                <div class="flex-auto mr-2">
+                  <%= render 'shared/breadcrumbs' %>
+                  <h1 class="text-3xl font-bold text-white">
+                    <%= yield :title %>
+                  </h1>
+                  <% if content_for?(:subtitle) %>
+                    <div class="flex flex-col my-2 sm:flex-row sm:flex-wrap sm:space-x-6">
+                      <%= yield :subtitle %>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="flex-row-reverse max-w-md place-self-center">
+                  <%= yield :options %>
+                </div>
+              </div>
+            </div>
+          </header>
         <% end %>
-        <div class="alert alert-<%= key %> text-center" role="alert"><%= value %></div>
-      <% end %>
-      <% if content_for?(:title) %>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h1><%= yield(:title) %></h1>
-            <%= render 'shared/breadcrumbs' %>
+      </div>
+
+      <main class="-mt-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-white rounded-lg overflow-hidden shadow p-6">
+            <%= yield %>
           </div>
         </div>
-      <% end %>
-      <div class="row">
-        <div class="col-md-12">
-          <%= yield %>
-        </div>
-      </div>
-      <hr>
-      <%= render 'layouts/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      </main>
+
+      <%= render "layouts/footer" %>
     </div>
+    <%= render 'layouts/alert' %>
   </body>
 </html>

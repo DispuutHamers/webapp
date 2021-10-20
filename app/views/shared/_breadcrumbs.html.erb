@@ -1,8 +1,19 @@
-  <ul class='breadcrumb'>
-    <% breadcrumb_trail do |crumb| %>
-      <li class="<%= crumb.current? ? 'current' : '' %>">
-        <%= link_to crumb.name, crumb.url, (crumb.current? ? {'aria-current' => 'page'} : {}) %>
+<nav class="flex py-2">
+  <ol role="list" class="flex items-center space-x-4">
+    <% breadcrumb_trail.map do |crumb| %>
+      <li>
+        <div class="flex items-center">
+          <% if crumb.name == 'Home' %>
+            <%= link_to crumb.path, class: 'text-gray-400 hover:text-gray-500' do %>
+              <%= heroicon('home', class_name: "flex-shrink-0 h-5 w-5 text-gray-400") %>
+              <span class="sr-only">Home</span>
+            <% end %>
+          <% else %>
+            <%= heroicon('chevron-right', class_name: "flex-shrink-0 h-5 w-5 text-gray-400") %>
+            <%= link_to crumb.name, crumb.path, class: 'ml-4 text-sm font-medium text-gray-400 hover:text-gray-500' %>
+          <% end %>
+        </div>
       </li>
     <% end %>
-  </ul>
-
+  </ol>
+</nav>
