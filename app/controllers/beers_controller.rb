@@ -22,7 +22,7 @@ class BeersController < ApplicationController
     else
       sorting = "name" unless sorting
       ordering = "ASC" unless ordering
-      @pagy, @beers = pagy(BeerFilter.new.filter(Beer.all, @sp).reorder("#{sorting} #{ordering}"),
+      @pagy, @beers = pagy(BeerFilter.new.filter(Beer.all, @sp).order("#{sorting} #{ordering}"),
                            items: 16,
                            page: params[:page])
     end
