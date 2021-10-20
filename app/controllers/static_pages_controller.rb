@@ -13,9 +13,9 @@ class StaticPagesController < ApplicationController
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take
     @blogitems = if current_user.alid?
-                   Blogitem.where(public: true).last(4).reverse
+                   Blogitem.where(public: true).includes(:user).last(4).reverse
                  else
-                   Blogitem.last(4).reverse
+                   Blogitem.includes(:user).last(4).reverse
                  end
 
     render layout: 'application'
