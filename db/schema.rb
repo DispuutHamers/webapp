@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_183530) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-  create_table "gutentag_taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gutentag_taggings", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "tag_id", null: false
     t.integer "taggable_id", null: false
     t.string "taggable_type", null: false
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_183530) do
     t.index ["taggable_type", "taggable_id"], name: "index_gutentag_taggings_on_taggable_type_and_taggable_id"
   end
 
-  create_table "gutentag_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gutentag_tags", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
