@@ -2,7 +2,7 @@
   Notuleren
 <% end %>
 
-<%= form_with model: @meeting, data: { remote: true, controller: "autosave", target: "autosave.form", action: "ajax:success->autosave#success ajax:error->autosave#error" } do |f| %>
+<%= form_with model: @meeting, data: { remote: true, controller: "autosave", autosave-target: "form", action: "ajax:success->autosave#success ajax:error->autosave#error" } do |f| %>
   <% if @meeting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@meeting.errors.count, 'error') %> prohibited this meeting from being saved:</h2>
