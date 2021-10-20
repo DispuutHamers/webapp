@@ -23,8 +23,7 @@ Hamers::Application.routes.draw do
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
   resources :blogitems, path: 'blog'
-  post 'blog/:id' => "blogitems#add_photo"
-  post 'blog/:blogitem/:blogphoto' => "blogitems#destroy_photo"
+  get '/blog/tag/:tag' => 'blogitems#tag', as: 'blog_by_tag'
   post 'revert/:model/:id' => "static_pages#revert"
 
   resources :meetings do

@@ -13,6 +13,16 @@ class BlogitemsController < ApplicationController
              end
   end
 
+  def tag
+    @items = if current_user&.active?
+               Blogitem.tagged_with(names: [params[:tag]], match: :any).reverse
+             else
+               Blogitem.public_blogs.tagged_with(names: [params[:tag]], match: :any).reverse
+             end
+
+    render "blogitems/index"
+  end
+
   def show
     return redirect_to blogitems_path unless @item.public || current_user&.active?
 
