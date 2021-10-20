@@ -7,15 +7,17 @@ class StaticPagesController < ApplicationController
     return render 'frontpage' unless current_user&.active?
 
     @quote = current_user.quotes.build
-    @quotes = Quote.with_user.ordered.paginate(page: params[:page], :per_page => 12)
-    @events = Event.order('date').where(['date >= ?', Date.today]).limit(5)
-    @news = News.last(5).reverse
-    @trail = PaperTrail::Version.includes(:item).last(5).reverse
-    @blog = if current_user.alid?
-              Blogitem.where(public: true).last(5).reverse
-            else
-              Blogitem.last(5).reverse
-            end
+    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
+    @next_event = Event.upcoming.order(date: :asc).first
+    @trail = PaperTrail::Version.includes(:item).last(4).reverse
+    @random_beer = Beer.random.take
+    @blogitems = if current_user.alid?
+                   Blogitem.where(public: true).last(5).reverse
+                 else
+                   Blogitem.last(5).reverse
+                 end
+
+    render layout: 'application'
   end
 
   def privacy
