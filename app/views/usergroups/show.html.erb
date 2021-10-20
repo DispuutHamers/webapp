@@ -17,10 +17,10 @@
 <% content_for :options do %>
   <span class="inline-flex">
   <% if current_user.admin? %>
-    <%= link_to 'Wijzig groep', edit_usergroup_path(@usergroup), class: "px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <%= link_to 'Wijzig groep', edit_usergroup_path(@usergroup), class: button_classes %>
   <% end %>
     <% if @usergroup.signal_url.present? %>
-    <%= link_to @usergroup.signal_url, target: "_blank", class: "ml-2 inline-flex p-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500" do %>
+    <%= link_to @usergroup.signal_url, target: "_blank", class: "ml-2 #{button_classes}" do %>
       <%= image_tag 'signal.png', class: "h-5 w-5" %>
     <% end %>
   <% end %>

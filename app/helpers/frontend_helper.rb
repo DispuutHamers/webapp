@@ -12,7 +12,7 @@ module FrontendHelper
   end
 
   def select_classes
-    "selectpicker mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm"
+    "cursor-pointer selectpicker mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm"
   end
 
   def submit_classes
