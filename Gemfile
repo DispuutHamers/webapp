@@ -53,8 +53,9 @@ group :development, :test do
   gem 'rubocop-rails', require: false
 end
 
-group :production do
+group :production, :staging do
   gem "honeybadger", "~> 4.0"
+  gem "redis", "~> 4.0"
   gem 'whenever', require: false
 end
 
