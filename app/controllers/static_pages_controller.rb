@@ -11,10 +11,11 @@ class StaticPagesController < ApplicationController
     @next_event = Event.upcoming.order(date: :asc).first
     @trail = PaperTrail::Version.includes(:item).last(4).reverse
     @random_beer = Beer.random.take
+    @random_quote = Quote.random.take
     @blogitems = if current_user.alid?
-                   Blogitem.where(public: true).last(5).reverse
+                   Blogitem.where(public: true).last(4).reverse
                  else
-                   Blogitem.last(5).reverse
+                   Blogitem.last(4).reverse
                  end
 
     render layout: 'application'
