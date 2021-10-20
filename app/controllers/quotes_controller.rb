@@ -4,6 +4,11 @@ class QuotesController < ApplicationController
   breadcrumb 'Quotes', :quotes_path
 
   def index
+    redirect_to root_path
+  end
+
+  def show
+    redirect_to root_path
   end
 
   def create

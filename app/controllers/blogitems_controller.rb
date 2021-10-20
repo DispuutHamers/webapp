@@ -9,7 +9,7 @@ class BlogitemsController < ApplicationController
     @items = if current_user&.active?
                Blogitem.all.reverse
              else
-               @items = Blogitem.public_blogs.reverse
+               Blogitem.public_blogs.reverse
              end
   end
 
