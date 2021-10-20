@@ -22,7 +22,7 @@ module UtilHelper
       redirect_to obj
     else
       flash[:error] = "Er ging iets stuk"
-      redirect_to root_path
+      redirect_to polymorphic_url(obj, action: :edit)
     end
   end
 
