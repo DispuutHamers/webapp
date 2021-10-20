@@ -23,6 +23,9 @@
               <tr class="hover:bg-gray-100 cursor-pointer" onclick="Turbo.visit('<%= beer_path(beer) %>')">
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
+                    <% if beer.image.attached? %>
+                      <%= image_tag beer.image, class: 'w-6 -ml-4 mr-2' %>
+                      <% end %>
                     <div class="text-sm font-medium text-gray-900 popover"
                          data-controller="popover"
                          data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut"
