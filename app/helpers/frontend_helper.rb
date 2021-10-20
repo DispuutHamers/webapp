@@ -1,4 +1,8 @@
-module FormsHelper
+module FrontendHelper
+  def button_classes
+    "cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
+  end
+
   def label_classes
     "block text-sm font-medium text-gray-700"
   end
@@ -8,7 +12,7 @@ module FormsHelper
   end
 
   def select_classes
-    "selectpicker mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm"
+    "cursor-pointer selectpicker mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm"
   end
 
   def submit_classes

@@ -7,10 +7,6 @@ module ParamsHelper
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
-  def photo_params
-    params.require(:blogphoto).permit(:image, :blogitem_id, :description)
-  end
-
   def brew_params
     params.require(:brew).permit(:description, :description, :recipe_id)
   end
@@ -20,7 +16,7 @@ module ParamsHelper
   end
 
   def blog_params
-    params.require(:blogitem).permit(:title, :body, :public, :body)
+    params.require(:blogitem).permit(:title, :body, :public, :body, :tags_as_string)
   end
 
   def signup_params
@@ -69,6 +65,10 @@ module ParamsHelper
 
   def usergroup_params
     params.require(:usergroup).permit(:name, :signal_url)
+  end
+
+  def public_page_params
+    params.require(:public_page).permit(:content, :title, :public)
   end
 
   def configure_permitted_parameters

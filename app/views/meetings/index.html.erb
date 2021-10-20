@@ -1,26 +1,19 @@
 <% content_for :title do %>
   Vergaderingen
 <% end %>
-<table id="meeting" class="tablesorter table table-hover">
-  <thead>
-    <tr>
-      <th>Datum</th>
-      <th>Onderwerp</th>
-      <% if current_user.admin? %>
-      <% end %>
-    </tr>
-  </thead>
-  <%= render 'shared/pagination/default' %>
-  <tbody>
-    <% @meetings.each do |m| %>
-      <tr>
-        <td data-sort="<%= m.date.strftime('%Y%m%d') %>"><%= m.date.strftime('%d-%m-%Y') %></td>
-        <td><%= link_to m.onderwerp, m %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= render 'shared/pagination/default' %>
-<% if current_user.admin? %>
-  <%= link_to 'Add vergadering', new_meeting_path, class: 'btn btn-block btn-primary' %>
+
+<% content_for :options do %>
+  <%= link_to "Nieuwe vergadering", new_meeting_path, class: button_classes %>
+<% end %>
+
+<% if @meetings.any? %>
+  <%= render 'meetings/list', meetings: @meetings %>
+<% else %>
+  Er zijn nog geen vergaderingen.
+<% end %>
+
+<% if @pagy.series.count > 1 %>
+  <div class="pt-12">
+    <%= render 'shared/pagination/default' %>
+  </div>
 <% end %>

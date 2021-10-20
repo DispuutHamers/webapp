@@ -4,11 +4,11 @@
   Leden: { description: "Overzicht van onze leden", path: users_path, icon: 'user' },
   Groepen: { description: "Groepen binnen het dispuut", path: usergroups_path, icon: 'user-group' },
   Stickers: { description: "Waar hangen onze stickers?", path: stickers_path, icon: 'chip' },
-  Recepten: { description: "Wat hebben wij gebrouwen?", path: recipe_index_path, icon: 'beaker' },
+  Recepten: { description: "Wat hebben wij gebrouwen?", path: recipes_path, icon: 'beaker' },
   Vergaderingen: { description: "Lees hier de notulen", path: meetings_path, icon: 'chat-alt-2' },
   Log: { description: "Logs van de website", path: trail_path, icon: 'book-open' },
   Blog: { description: "Wat hebben we gedaan?", path: blogitems_path, icon: 'pencil-alt' },
-  Nieuws: { description: "Is er nog een nieuwtje?", path: news_index_path, icon: 'rss' },
+  Paginas: { description: "Voor op de website", path: public_pages_path, icon: 'rss' },
 } %>
 
 <% user_items = {
@@ -32,7 +32,7 @@
         <div class="flex items-center">
           <%= link_to root_path do %>
             <div class="flex-shrink-0">
-              <img class="h-8 w-6" src="<%= image_path('logo_transparant_background_small.png') %>" alt="Hamers">
+              <img class="h-10" src="<%= image_path('logo_transparant_background_small.png') %>" alt="Hamers">
             </div>
           <% end %>
         </div>

@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :options do %>
-  <%= button_to "Nieuwe blogpost", new_blogitem_path, method: :get, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <%= button_to "Nieuwe blogpost", new_blogitem_path, method: :get, class: button_classes %>
 <% end %>
 
 <div class="grid gap-16 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
@@ -12,6 +12,15 @@
     <%= link_to item do %>
       <p class="text-xl font-semibold text-gray-900">
         <%= item.title %>
+      </p>
+      <p>
+        <% item.tags.each do |tag| %>
+          <%= link_to blog_by_tag_path(tag.name) do %>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-800">
+              <%= tag.name %>
+            </span>
+          <% end %>
+        <% end %>
       </p>
       <p class="mt-3 text-base text-gray-500">
         <%= truncate(strip_tags(item.body.to_s), length: 150) %>
