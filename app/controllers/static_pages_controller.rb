@@ -41,8 +41,4 @@ class StaticPagesController < ApplicationController
     m.save
     redirect_to root_path
   end
-
-  def quote
-    redirect_to root_path
-  end
 end
