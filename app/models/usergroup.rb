@@ -7,7 +7,7 @@ class Usergroup < ActiveRecord::Base
   has_many :events
   has_one_attached :logo
 
-  validates :logo, attached: true, content_type: %w[image/png image/jpg], aspect_ratio: :square
+  validates :logo, content_type: %w[image/png image/jpg], aspect_ratio: :square
   validates :signal_url, format: URI::regexp('https'), allow_blank: true
 
   def empty?
