@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :options do %>
-  <%= link_to "Nieuwe vergadering", new_meeting_path, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+  <%= link_to "Nieuwe vergadering", new_meeting_path, class: button_classes %>
 <% end %>
 
 <% if @meetings.any? %>
