@@ -72,7 +72,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
   end
 
   def lid?
-    in_group?('Lid')
+    in_group?('Lid') || in_group?('O-Lid')
   end
 
   def alid?
