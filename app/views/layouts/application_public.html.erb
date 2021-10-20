@@ -23,10 +23,13 @@
   <%= yield %>
 
   <nav class="flex flex-wrap justify-center">
-    <% pages = { Leden: public_leden_path,
-                Bieren: beers_path,
-                Blog: blogitems_path,
-                Privacyverklaring: privacy_path } %>
+    <% pages = {
+      Home: root_path,
+      Leden: public_leden_path,
+      Bieren: beers_path,
+      Blog: blogitems_path,
+      Privacyverklaring: privacy_path
+    } %>
 
     <% pages.each do |name, path| %>
       <div class="px-5 py-2">
