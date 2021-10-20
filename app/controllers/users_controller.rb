@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def show
     breadcrumb @user.name, user_path(@user)
 
-    @pagy, @quotes = pagy(@user.quotes.ordered, items: 4, page: params[:page])
+    @pagy, @quotes = pagy(@user.quotes.ordered, items: 25, page: params[:page])
     @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.lid?
   end
 
