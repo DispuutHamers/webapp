@@ -4,7 +4,7 @@
     <% if @random_beer %>
       <div class="flex-shrink-0">
         <% if @random_beer.image.attached? %>
-          <%= image_tag @random_beer.image.representation(resize_to_limit: [1000, 1000]), class: "h-40 rounded" %>
+          <%= image_tag @random_beer.image, class: "h-40 rounded" %>
         <% else %>
           <%= image_tag 'beer_splash.jpg', class: "h-40 rounded" %>
         <% end %>
