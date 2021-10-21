@@ -8,12 +8,19 @@
     <div class="mt-8 flex">
       <div class="inline-flex rounded-md shadow w-full">
         <% if @signup %>
-        <% else %>
+          <button class="cursor-pointer w-full text-center p-4 border border-transparent text-base font-medium rounded-md text-gray-500 bg-gray-50">
+            Je hebt je al ingeschreven! 👍
+          </button>
+        <% elsif @next_event.open? %>
           <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
             <%= f.hidden_field :event_id %>
             <%= f.hidden_field :status %>
-            <%= f.submit 'Aanwezig', class: 'cursor-pointer w-full text-center font-bold p-4 border border-transparent text-base font-medium rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600' %>
+            <%= f.submit 'Aanwezig', class: 'cursor-pointer w-full text-center font-bold p-4 border border-transparent text-base rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600' %>
           <% end %>
+        <% else %>
+          <button class="cursor-pointer w-full text-center p-4 border border-transparent text-base font-medium rounded-md text-gray-500 bg-gray-50">
+            De inschrijving is gesloten!
+          </button>
         <% end %>
       </div>
     </div>
