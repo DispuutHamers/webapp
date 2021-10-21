@@ -45,14 +45,14 @@
               <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500' %>
             </div>
           <% end %>
-          <p class="text-right text-gray-500 py-2">Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %></p>
+          <p class="text-center sm:text-right text-gray-500 py-2">Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %></p>
         <% else %>
           <p class="text-center text-gray-500">De inschrijving is gesloten sinds <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') %>.</p>
         <% end %>
       </div>
 
       <% if @event.location.present? %>
-        <div class="pt-4 embed-responsive embed-responsive-4by3 hidden sm:visible">
+        <div class="pt-4 embed-responsive embed-responsive-4by3 hidden sm:block">
           <iframe class="embed-responsive-item w-full" height="256" style="border:0"
                   src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>"
                   allowfullscreen>
@@ -62,7 +62,7 @@
     </div>
   </div>
 
-  <div class="border-gray-200 md:flex-shrink-0 md:w-64 md:-my-6 md:border-l md:border-gray-200 bg-white">
+  <div class="border-gray-200 md:flex-shrink-0 md:w-72 md:-my-6 md:border-l md:border-gray-200 bg-white">
     <div class="w-full my-6 md:mx-6 md:pr-6">
       <p class="flex w-full justify-between">
         <span class="font-semibold pb-1">Aanwezig</span>

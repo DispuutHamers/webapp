@@ -14,7 +14,7 @@
     "popper.js": "^1.16.1",
     "postcss": "^7",
     "regenerator-runtime": "^0.13.7",
-    "stimulus": "^2.0.0",
+    "stimulus": "^3.0.0",
     "stimulus-flatpickr": "^1.4.0",
     "tablesort": "^5.2.1",
     "tailwind-colors": "^1.1.0",
