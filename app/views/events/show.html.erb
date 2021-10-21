@@ -27,6 +27,11 @@
     <div class="relative h-auto divide-y divide-gray-200">
 
       <div class="pb-4">
+        <% if @event.usergroup %>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+          <%= @event.usergroup.name %>
+        </span>
+        <% end %>
         <%= @event.description %>
       </div>
 
