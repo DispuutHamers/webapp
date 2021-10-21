@@ -30,24 +30,7 @@
     <div class="-mx-6 text-gray-900">
       <div class="p-2 sm:p-4 border-t border-gray-200">
         <div class="flex flex-wrap content-center justify-evenly">
-          <% @user.usergroups.each do |group| %>
-            <%= link_to usergroup_path(group),
-                        class: "h-12 w-12 m-2 text-sm font-medium text-gray-900 popover",
-                        data: { controller: "popover",
-                                action: "mouseover->popover#mouseOver mouseout->popover#mouseOut",
-                                popover_translate_x: "0",
-                                popover_translate_y: "15%",
-                        } do %>
-              <% if group.logo.attached? %>
-                <%= image_tag group.logo.representation(resize_to_limit: [100, 100]), class: "rounded-full", alt: group.name %>
-              <% else %>
-                <img class="rounded-full" src="https://placehold.co/500x500?text=<%= group.name %>" alt="<%= group.name %>">
-              <% end %>
-              <div class="content hidden absolute bg-gray-100 border border-gray-200 text-gray-700 rounded p-3" data-popover-target="content">
-                <%= group.name %>
-              </div>
-            <% end %>
-          <% end %>
+          <%= render 'usergroups/group_icon_list', user: @user %>
         </div>
       </div>
 

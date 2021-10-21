@@ -42,7 +42,9 @@
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  <%= user.usergroups.pluck(:name).to_sentence %>
+                  <div class="flex flex-wrap content-center justify-items-start">
+                   <%= render 'usergroups/group_icon_list', user: user %>
+                  </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= user.batch %>
