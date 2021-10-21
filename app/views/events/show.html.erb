@@ -36,8 +36,8 @@
             <div class="flex w-full md:justify-between md:items-center">
               <%= f.text_field :reason, placeholder: "Opmerkingen", class: input_classes %>
               <%= f.hidden_field :event_id, value: @event.id %>
-              <%= f.submit 'Aanwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500' %>
-              <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-gray-400 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
+              <%= f.submit 'Aanwezig', class: "ml-4 #{submit_classes}" %>
+              <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500' %>
             </div>
           <% end %>
           <p class="text-right text-gray-500 py-2">Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %></p>
