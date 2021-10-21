@@ -29,7 +29,7 @@
                 </div>
                 <div class="mt-2 flex items-center text-sm text-gray-500">
                   <div class="flex ">
-                    <%= heroicon('calendar', class_name: "flex-shrink-0 mx-1.5 h-4 w-4 text-gray-400 self-center") %>
+                    <%= heroicon('calendar', class_name: "flex-shrink-0 mr-1 h-4 w-4 text-gray-400 self-center") %>
                     <span>
                       <% if event.today? %>
                         <time><%= event.date.strftime('Vandaag om %H:%M') %></time>
@@ -40,7 +40,7 @@
                   </div>
                   <% if event.location %>
                     <div class="flex">
-                      <%= heroicon('location-marker', class_name: "flex-shrink-0 mx-1.5 h-4 w-4 text-gray-400 self-center") %>
+                      <%= heroicon('location-marker', class_name: "flex-shrink-0 mr-1 ml-2 h-4 w-4 text-gray-400 self-center") %>
                       <span><%= event.location %></span>
                     </div>
                   <% end %>

@@ -4,7 +4,7 @@ class ExternalSignupsController < ApplicationController
   layout 'application_public'
 
   def new
-    redirect_to event_path(@event), notice: "Deze pagina is voor gasten" if current_user
+    redirect_to event_path(@event), notice: "Deze pagina is voor gasten." if current_user
     @external_signup = ExternalSignup.new
 
     breadcrumb @event.title, @event.invitation_link
