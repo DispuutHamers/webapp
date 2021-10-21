@@ -18,7 +18,9 @@
               <div class="hidden md:block">
                 <div>
                   <p class="text-sm text-gray-900 mt-4">
-                    Lid sinds <%= Group.with_deleted.where(user_id: user.id, group_id: @usergroup.id).first.created_at.strftime("%d-%m-%Y") %>
+                    <% group = Group.with_deleted.where(user_id: user.id, group_id: @usergroup.id).first %>
+                    Lid sinds <%= group.created_at.strftime('%d-%m-%Y') %>
+                    <%= "tot #{group.deleted_at.strftime('%d-%m-%Y')}" if group.deleted_at %>
                   </p>
                 </div>
               </div>
