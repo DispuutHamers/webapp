@@ -2,42 +2,36 @@
   <% meetings.each do |meeting| %>
     <li>
       <%= link_to meeting, class: "block hover:bg-gray-50" do %>
-        <div class="px-4 py-4 flex items-center sm:px-6">
-          <div class="min-w-0 flex-1 sm:flex sm:items-center sm:justify-between">
-            <div class="truncate">
-              <div class="text-sm min-w-0 flex-1 sm:flex sm:items-center">
-                <div class="flex">
-                  <p class="font-medium text-gray-900 truncate"><%= meeting.onderwerp %></p>
-                </div>
-              </div>
-              <div class="mt-2 flex">
-                <div class="flex items-center text-sm text-gray-700">
-                  <p>
-                    <time><%= meeting.date.strftime('%d-%m-%Y') %></time>
-                  </p>
-                </div>
+        <div class="p-4 grid grid-cols-3 gap-4 items-center">
+          <div>
+            <div class="text-sm min-w-0 flex-1 sm:flex sm:items-center">
+              <div class="flex">
+                <p class="font-medium text-gray-900 truncate"><%= meeting.onderwerp %></p>
               </div>
             </div>
-            <div class="flex text-sm text-gray-500 items-center hidden sm:block">
-              <% if meeting.chairman %>
-                <i class="fas fa-fw fa-gavel"></i> <%= meeting.chairman.name %>
-              <% end %>
-              <% if meeting.secretary %>
-                <div class="mt-2">
-                  <i class="fas fa-fw fa-keyboard"></i> <%= meeting.secretary.name %>
-                </div>
-              <% end %>
-            </div>
-            <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
-              <div class="flex overflow-hidden -space-x-1">
-                <% meeting.attendees.with_user.each do |s| %>
-                  <%= gravatar_for s.user, class: "inline-block h-6 w-6 rounded-full ring-2 ring-white" %>
-                <% end %>
-              </div>
+            <div class="mt-2 flex">
+              <p class="flex items-center text-sm text-gray-500">
+                <time><%= meeting.date.strftime('%d-%m-%Y') %></time>
+              </p>
             </div>
           </div>
-          <div class="ml-5 flex-shrink-0">
-            <%= heroicon('chevron-right', class_name: "h-5 w-5 text-gray-400") %>
+          <div class="text-sm text-gray-500 items-center hidden sm:block">
+            <% if meeting.chairman %>
+              <i class="fas fa-fw fa-gavel"></i> <%= meeting.chairman.name %>
+            <% end %>
+            <% if meeting.secretary %>
+              <div class="mt-2">
+                <i class="fas fa-fw fa-keyboard"></i> <%= meeting.secretary.name %>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex justify-end overflow-hidden -space-x-1">
+            <% meeting.attendees.with_user.each do |s| %>
+              <%= gravatar_for s.user, class: "inline-block h-6 w-6 rounded-full ring-2 ring-white" %>
+            <% end %>
+            <div class="ml-8">
+              <%= heroicon('chevron-right', class_name: "h-6 w-6 text-gray-400") %>
+            </div>
           </div>
         </div>
       <% end %>
