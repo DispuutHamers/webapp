@@ -26,7 +26,7 @@
   <div class="border-b border-gray-200 md:border-b-0 bg-white md:min-w-0 md:flex-1 md:pr-4 font-medium text-gray-900">
     <div class="relative h-auto divide-y divide-gray-200">
 
-      <div class="py-4 border-t border-gray-200">
+      <div class="pb-4">
         <%= @event.description %>
       </div>
 
@@ -36,11 +36,11 @@
             <div class="flex w-full md:justify-between md:items-center">
               <%= f.text_field :reason, placeholder: "Opmerkingen", class: input_classes %>
               <%= f.hidden_field :event_id, value: @event.id %>
-              <%= f.submit 'Aanwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-3 py-1 border border-transparent text-base font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500' %>
-              <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-3 py-1 border border-transparent text-base font-bold rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-hamers-red-500' %>
+              <%= f.submit 'Aanwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500' %>
+              <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-gray-400 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
             </div>
           <% end %>
-          <p class="text-center text-gray-500 py-2">Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %></p>
+          <p class="text-right text-gray-500 py-2">Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %></p>
         <% else %>
           <p class="text-center text-gray-500">De inschrijving is gesloten sinds <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') %>.</p>
         <% end %>
