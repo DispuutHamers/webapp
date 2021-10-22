@@ -14,7 +14,7 @@
   <%= f.label :name, class: label_classes %>
   <%= f.text_field :name, class: input_classes %>
 
-  <% if @beer.image.attached? %>
+  <% if @beer.image.attached? && @beer.image.representable? %>
     <%= image_tag @beer.image.representation(resize_to_limit: [128, 128]) %>
   <% end %>
   <%= f.label :image, class: label_classes %>

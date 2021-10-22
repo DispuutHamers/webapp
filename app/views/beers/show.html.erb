@@ -34,7 +34,7 @@
 
   <aside class="md:col-span-3 md:pl-6">
     <div class="mt-6">
-      <% if current_user&.active? && @beer.image.attached? %>
+      <% if current_user&.active? && @beer.image.attached? && @beer.image.representable? %>
         <%= image_tag @beer.image, class: "w-full" %>
       <% else %>
         <img src="https://placehold.co/500x500?text=Geen foto" class="w-full">
