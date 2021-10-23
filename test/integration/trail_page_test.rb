@@ -80,10 +80,18 @@ class TrailPageTest < ApplicationSystemTestCase
     end
   end
 
-  # context 'blogitem' do
-  #   should 'update' do
-  #   end
-  # end
+  context 'blogitem' do
+    should 'create' do
+      Blogitem.create!(user_id: 3, title: 'Test gewone blogpost', body: "Lorem ipsum")
+    end
+    should 'update' do
+    end
+    should 'destroy' do
+    end
+    should 'do all' do
+
+    end
+  end
 
   def teardown
     take_screenshot
