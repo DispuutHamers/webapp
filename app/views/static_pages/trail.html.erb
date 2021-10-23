@@ -17,34 +17,7 @@
           </div>
           <div class="flex justify-between">
             <p class="text-sm text-gray-500 font-medium">
-              <% case t.item_type %>
-              <% when "Quote" %>
-                <% if t.item %>
-                  <%= "citeerde #{t.item.user.name}" %>
-                <% else %>
-                  <%= "citeerde onjuist" %>
-                <% end %>
-              <% when "Blogitem" %>
-                <%= link_to "schreef aan #{t.item.title}", t.item %>
-              <% when "Signup" %>
-                <% if t.object %>
-                  <%#= link_to "heeft zich #{t.object["status"] ? "ingeschreven" : "uitgeschreven"} voor #{t.item.event.title}", t.item %>
-                <% else %>
-                  <%= link_to "heeft zich #{t.item.status ? "ingeschreven" : "uitgeschreven"} voor #{t.item.event.title}", t.item %>
-                <% end %>
-              <% when "ActionText::RichText" %>
-                <%#= link_to "wijzigde opgemaakte tekst", t.item.record %>
-              <% else %>
-                <%= link_to t.item do %>
-                  <% case t.event %>
-                  <% when "destroy" %>
-                    verwijderde
-                  <% when "update" %>
-                    wijzigde
-                  <% end %>
-                <% end %>
-                <%= t.item_type %>
-              <% end %>
+              <%= presenter.message %>
             </p>
             <% unless t.item_type == "ActionText::RichText" %>
               <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
