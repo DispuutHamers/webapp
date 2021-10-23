@@ -17,7 +17,9 @@
           </div>
           <div class="flex justify-between">
             <span class="text-sm text-gray-500 font-medium">
-              <%= presenter.message %>
+              <%= link_to presenter.link do %>
+                <%= presenter.message %>
+              <% end %>
             </span>
             <% unless t.item_type == "ActionText::RichText" %>
               <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>

@@ -45,37 +45,44 @@ class TrailPageTest < ApplicationSystemTestCase
 
   context 'event' do
     should 'create' do
-      Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
+      Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
       visit trail_path
 
       assert_selector "span", text: "maakte activiteit"
+      assert_selector "span", text: "maakte opgemaakte tekst"
     end
 
     should 'update' do
-      e = events(:one)
+      e = Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
       e.date = '2029-01-01 12:00'
+      e.description = "Nieuwe beschrijving"
       e.save!
       visit trail_path
 
       assert_selector "span", text: "wijzigde activiteit"
+      assert_selector "span", text: "wijzigde opgemaakte tekst"
     end
 
     should 'destroy' do
-      events(:one).destroy
+      Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59').destroy
       visit trail_path
 
       assert_selector "span", text: "verwijderde activiteit"
+      assert_selector "span", text: "verwijderde opgemaakte tekst"
     end
 
     should 'do all' do
-      e = Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
+      e = Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
       e.user = users(:three)
+      e.description = "Nieuwe beschrijving"
       e.save!
       e.destroy
       visit trail_path
 
       assert_selector "span", text: "maakte activiteit"
+      assert_selector "span", text: "maakte opgemaakte tekst"
       assert_selector "span", text: "wijzigde activiteit"
+      assert_selector "span", text: "wijzigde opgemaakte tekst"
       assert_selector "span", text: "verwijderde activiteit"
     end
   end
@@ -102,6 +109,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_selector "span", text: "blogte Gaaf nieuws"
+      assert_selector "span", text: "maakte opgemaakte tekst"
     end
 
     should 'update' do
@@ -111,13 +119,15 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_selector "span", text: "schreef aan Gaaf nieuws"
+      assert_selector "span", text: "wijzigde opgemaakte tekst"
     end
 
     should 'destroy' do
-      blogitems(:one).destroy
+      Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum").destroy
       visit trail_path
 
       assert_selector "span", text: "verwijderde blog"
+      assert_selector "span", text: "verwijderde opgemaakte tekst"
     end
 
     should 'do all' do
@@ -128,8 +138,11 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_selector "span", text: "blogte Gaaf nieuws"
+      assert_selector "span", text: "maakte opgemaakte tekst"
       assert_selector "span", text: "schreef aan Gaaf nieuws"
+      assert_selector "span", text: "wijzigde opgemaakte tekst"
       assert_selector "span", text: "verwijderde blog"
+      assert_selector "span", text: "verwijderde opgemaakte tekst"
     end
   end
 
