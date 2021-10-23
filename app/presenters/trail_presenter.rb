@@ -21,12 +21,12 @@ class TrailPresenter
 
   def message
     case @trail.event
-    when "destroy"
-      "verwijderde #{type}"
+    when "create"
+      created_message
     when "update"
       updated_message
     else
-      created_message
+      destroyed_message
     end
   end
 
@@ -36,6 +36,8 @@ class TrailPresenter
       "citeerde #{user_name}"
     when "Blogitem"
       "blogte #{@trail.item.title}"
+    when "Event"
+      "maakte activiteit"
     when "Signup"
       status = @trail.item.status ? "in" : "uit"
       "schreef zich #{status} voor #{@trail.item.event.title}"
@@ -52,6 +54,8 @@ class TrailPresenter
       "wijzigde een citaat van #{user_name}"
     when "Blogitem"
       "schreef aan #{@trail.item.title}"
+    when "Event"
+      "wijzigde activiteit"
     when "Signup"
       "wijzigde zijn inschrijving voor #{@trail.item.event.title}"
     when "ActionText::RichText"
@@ -61,6 +65,10 @@ class TrailPresenter
     end
   end
 
+  def destroyed_message
+    "verwijderde #{type}"
+  end
+
   private
 
   def user
@@ -68,6 +76,7 @@ class TrailPresenter
   end
 
   def type
+    return "activiteit" if @trail.item_type == "Event"
     @trail.item_type.downcase
   end
 

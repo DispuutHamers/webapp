@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-quoteone:
+one:
   text_ciphertext: <%= Quote.generate_text_ciphertext("Dat neuken heb ik nog nooit geprobeerd, maar ik kijk wel eens poker.").inspect %>
   user_id: 1
   reporter_id: 2
 
-quotetwo:
+two:
   text_ciphertext: <%= Quote.generate_text_ciphertext("Het is het lelijkste dat ik ooit heb gezien - en ik heb baby's gezien.").inspect %>
   user_id: 2
   reporter_id: 1
 
-quotethree:
+three:
   text_ciphertext: <%= Quote.generate_text_ciphertext("Scintillianen zijn net joden.").inspect %>
   user_id: 2
   reporter_id: 4
