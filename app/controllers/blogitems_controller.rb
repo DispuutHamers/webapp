@@ -28,6 +28,17 @@ class BlogitemsController < ApplicationController
     render "blogitems/index"
   end
 
+  def create
+    @item = Blogitem.new(blog_params)
+    @item.user = current_user
+
+    if @item.save
+      redirect_to @item
+    else
+      render 'new'
+    end
+  end
+
   def show
     return redirect_to blogitems_path unless @item.public || current_user&.active?
 
