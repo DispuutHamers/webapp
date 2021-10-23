@@ -116,7 +116,7 @@ class TrailPresenter
       @trail.item.title
     elsif @trail.object # Update
       blog_id = JSON.parse(@trail.object)['id']
-      Blogitem.with_deleted.find(event_id).title
+      Blogitem.with_deleted.find(blog_id).title
     else # Delete
       blog_id = JSON.parse(@trail.object_changes)['id'].last
       Blogitem.with_deleted.find(blog_id).title

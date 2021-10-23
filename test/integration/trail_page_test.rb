@@ -80,7 +80,7 @@ class TrailPageTest < ApplicationSystemTestCase
     end
   end
 
-  context 'blogitem' do
+  context 'blog' do
     should 'create' do
       Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
       visit trail_path
@@ -105,7 +105,7 @@ class TrailPageTest < ApplicationSystemTestCase
     end
 
     should 'do all' do
-      b = Blogitem.create!(user_id: 3, title: 'Test gewone blogpost', body: "Lorem ipsum")
+      b = Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
       b.body = "Nieuwe body"
       b.save!
       b.destroy
