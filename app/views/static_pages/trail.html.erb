@@ -4,19 +4,15 @@
 
 <ul role="list" class="divide-y divide-gray-200">
   <% @trail.each do |t| %>
-    <% user = User.find(t.whodunnit) if t.whodunnit %>
+    <% presenter = TrailPresenter.new(t) %>
 
     <li class="py-2 flex flex-col">
       <div class="flex space-x-3 pb-2">
-        <% if user %>
-          <%= gravatar_for user, class: "h-6 w-6 rounded-full" %>
-        <% else %>
-          <%= image_tag 'hamer_square_256.png', class: "h-6 w-6 rounded-full" %>
-        <% end %>
+        <%= presenter.image %>
 
         <div class="flex-1 space-y-1">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-medium"><%= user&.name || "webapp" %></h3>
+            <h3 class="text-sm font-medium"><%= presenter.username %></h3>
             <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
           </div>
           <div class="flex justify-between">
