@@ -6,9 +6,15 @@
   <div class="flex items-center">
     <ul class="divide-y divide-gray-200 w-full">
       <% @trail.each do |t| %>
+        <% user = User.find(t.whodunnit) if t.whodunnit %>
+
         <li class="py-2 px-4 w-full">
           <div class="flex space-x-3">
-            <%= gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" if t.whodunnit %>
+            <% if user %>
+              <%= gravatar_for user, class: "h-6 w-6 rounded-full" %>
+            <% else %>
+              <%= image_tag 'hamer_square_256.png', class: "h-6 w-6 rounded-full" %>
+            <% end %>
 
             <% case t.item_type %>
             <% when "Quote" %>
