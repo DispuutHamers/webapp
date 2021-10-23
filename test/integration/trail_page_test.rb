@@ -108,11 +108,11 @@ class TrailPageTest < ApplicationSystemTestCase
 
   context 'blog' do
     should 'create' do
-      Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
+      b = Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
       visit trail_path
 
-      assert_selector "span", text: "blogte Gaaf nieuws"
-      assert_selector "span", text: "maakte opgemaakte tekst"
+      has_link? "blogte Gaaf nieuws", href: b
+      has_link? "maakte opgemaakte tekst", href: b
     end
 
     should 'update' do
@@ -121,8 +121,8 @@ class TrailPageTest < ApplicationSystemTestCase
       b.save!
       visit trail_path
 
-      assert_selector "span", text: "schreef aan Gaaf nieuws"
-      assert_selector "span", text: "wijzigde opgemaakte tekst"
+      has_link? "schreef aan Gaaf nieuws", href: b
+      has_link? "wijzigde opgemaakte tekst", href: b
     end
 
     should 'destroy' do
@@ -140,10 +140,10 @@ class TrailPageTest < ApplicationSystemTestCase
       b.destroy
       visit trail_path
 
-      assert_selector "span", text: "blogte Gaaf nieuws"
-      assert_selector "span", text: "maakte opgemaakte tekst"
-      assert_selector "span", text: "schreef aan Gaaf nieuws"
-      assert_selector "span", text: "wijzigde opgemaakte tekst"
+      has_link? "blogte Gaaf nieuws", href: b
+      has_link? "maakte opgemaakte tekst", href: b
+      has_link? "schreef aan Gaaf nieuws", href: b
+      has_link? "wijzigde opgemaakte tekst", href: b
       assert_selector "span", text: "verwijderde blog"
       assert_selector "span", text: "verwijderde opgemaakte tekst"
     end
