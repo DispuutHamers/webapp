@@ -16,7 +16,7 @@ module ParamsHelper
   end
 
   def blog_params
-    params.require(:blogitem).permit(:title, :body, :public, :body, :tags_as_string)
+    params.require(:blogitem).permit(:title, :body, :public, :tags_as_string)
   end
 
   def signup_params

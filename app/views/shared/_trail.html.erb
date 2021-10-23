@@ -23,12 +23,21 @@
                 <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
               </div>
             <% when "Blogitem" %>
-              <div class="flex-1 space-y-1">
-                <div class="flex items-center justify-between">
-                  <span class="text-sm font-medium"><%= link_to "schreef aan #{t.item.title}", t.item %></span>
+              <% if t.event == "destroy" %>
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium"><%= "verwijderde #{t.object["title"]}" %></span>
+                  </div>
+                  <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
                 </div>
-                <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
-              </div>
+              <% else %>
+                <div class="flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium"><%= link_to "schreef aan #{t.item.title}", t.item %></span>
+                  </div>
+                  <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+                </div>
+              <% end %>
             <% when "Signup" %>
               <div class="flex-1 space-y-1">
                 <div class="flex items-center justify-between">
