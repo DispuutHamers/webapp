@@ -89,7 +89,7 @@ class TrailPageTest < ApplicationSystemTestCase
     end
 
     should 'uitschrijving' do
-      users(:three).signup(events(:one), status: false, reason: "Kan niet")
+      Signup.find_or_create_by(user: users(:three), event: events(:one)).update(status: false, reason: "Kan niet")
       visit trail_path
 
       assert_selector "span", text: "schreef zich uit voor Dispuutsborrel"
