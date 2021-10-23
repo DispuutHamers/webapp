@@ -11,7 +11,7 @@ class TrailPageTest < ApplicationSystemTestCase
       Quote.create(user: users(:one), text: "Nieuwe quote", reporter: users(:two))
       visit trail_path
 
-      assert_selector "p", text: "citeerde Hamer Tester"
+      assert_selector "span", text: "citeerde Hamer Tester"
     end
 
     should 'update' do
@@ -20,35 +20,35 @@ class TrailPageTest < ApplicationSystemTestCase
       q.save!
       visit trail_path
 
-      assert_selector "p", text: "wijzigde een citaat van Hamer Tester"
+      assert_selector "span", text: "wijzigde een citaat van Hamer Tester"
     end
 
     should 'destroy' do
       quotes(:one).destroy
       visit trail_path
 
-      assert_selector "p", text: "verwijderde quote"
+      assert_selector "span", text: "verwijderde quote"
     end
 
-    should 'do all at once' do
+    should 'do all' do
       q = Quote.create(user: users(:one), text: "Nieuwe quote", reporter: users(:two))
       q.reporter = users(:three)
       q.save!
       q.destroy
       visit trail_path
 
-      assert_selector "p", text: "citeerde Hamer Tester"
-      assert_selector "p", text: "wijzigde een citaat van Hamer Tester"
-      assert_selector "p", text: "verwijderde quote"
+      assert_selector "span", text: "citeerde Hamer Tester"
+      assert_selector "span", text: "wijzigde een citaat van Hamer Tester"
+      assert_selector "span", text: "verwijderde quote"
     end
   end
 
   context 'event' do
     should 'create' do
-      Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 1)
+      Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
       visit trail_path
 
-      assert_selector "p", text: "maakte activiteit"
+      assert_selector "span", text: "maakte activiteit"
     end
 
     should 'update' do
@@ -57,16 +57,33 @@ class TrailPageTest < ApplicationSystemTestCase
       e.save!
       visit trail_path
 
-      assert_selector "p", text: "wijzigde activiteit"
+      assert_selector "span", text: "wijzigde activiteit"
     end
 
     should 'destroy' do
       events(:one).destroy
       visit trail_path
 
-      assert_selector "p", text: "verwijderde activiteit"
+      assert_selector "span", text: "verwijderde activiteit"
+    end
+
+    should 'do all' do
+      e = Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
+      e.user = users(:three)
+      e.save!
+      e.destroy
+      visit trail_path
+
+      assert_selector "span", text: "maakte activiteit"
+      assert_selector "span", text: "wijzigde activiteit"
+      assert_selector "span", text: "verwijderde activiteit"
     end
   end
+
+  # context 'blogitem' do
+  #   should 'update' do
+  #   end
+  # end
 
   def teardown
     take_screenshot
