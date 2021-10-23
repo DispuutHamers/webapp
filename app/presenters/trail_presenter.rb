@@ -33,7 +33,7 @@ class TrailPresenter
   def created_message
     case @trail.item_type
     when "Quote"
-      "citeerde #{@trail.item.user.name}"
+      "citeerde #{user_name}"
     when "Blogitem"
       "blogte #{@trail.item.title}"
     when "Signup"
@@ -49,7 +49,7 @@ class TrailPresenter
   def updated_message
     case @trail.item_type
     when "Quote"
-      # "wijzigde een citaat van #{@trail.item.user.name}"
+      "wijzigde een citaat van #{user_name}"
     when "Blogitem"
       "schreef aan #{@trail.item.title}"
     when "Signup"
@@ -79,6 +79,19 @@ class TrailPresenter
       @trail.item.record
     else
       @trail.item
+    end
+  end
+
+  def user_name
+    if @trail.item
+      @trail.item.user.name
+    elsif @trail.object
+      user_id = JSON.parse(@trail.object)['user_id']
+      User.find(user_id).name
+    else
+      # Object is deleted in the meantime
+      user_id = JSON.parse(@trail.object_changes)['user_id'].last
+      User.find(user_id).name
     end
   end
 end
