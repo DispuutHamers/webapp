@@ -82,14 +82,38 @@ class TrailPageTest < ApplicationSystemTestCase
 
   context 'blogitem' do
     should 'create' do
-      Blogitem.create!(user_id: 3, title: 'Test gewone blogpost', body: "Lorem ipsum")
-    end
-    should 'update' do
-    end
-    should 'destroy' do
-    end
-    should 'do all' do
+      Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
+      visit trail_path
 
+      assert_selector "span", text: "blogte Gaaf nieuws"
+    end
+
+    should 'update' do
+      b = Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
+      b.body = "Nieuwe body"
+      b.save!
+      visit trail_path
+
+      assert_selector "span", text: "schreef aan Gaaf nieuws"
+    end
+
+    should 'destroy' do
+      blogitems(:one).destroy
+      visit trail_path
+
+      assert_selector "span", text: "verwijderde blog"
+    end
+
+    should 'do all' do
+      b = Blogitem.create!(user_id: 3, title: 'Test gewone blogpost', body: "Lorem ipsum")
+      b.body = "Nieuwe body"
+      b.save!
+      b.destroy
+      visit trail_path
+
+      assert_selector "span", text: "blogte Gaaf nieuws"
+      assert_selector "span", text: "schreef aan Gaaf nieuws"
+      assert_selector "span", text: "verwijderde blog"
     end
   end
 

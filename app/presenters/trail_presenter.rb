@@ -35,7 +35,7 @@ class TrailPresenter
     when "Quote"
       "citeerde #{user_name}"
     when "Blogitem"
-      "blogte #{@trail.item.title}"
+      "blogte #{blog_title}"
     when "Event"
       "maakte activiteit"
     when "Signup"
@@ -53,7 +53,7 @@ class TrailPresenter
     when "Quote"
       "wijzigde een citaat van #{user_name}"
     when "Blogitem"
-      "schreef aan #{@trail.item.title}"
+      "schreef aan #{blog_title}"
     when "Event"
       "wijzigde activiteit"
     when "Signup"
@@ -76,8 +76,16 @@ class TrailPresenter
   end
 
   def type
-    return "activiteit" if @trail.item_type == "Event"
-    @trail.item_type.downcase
+    case @trail.item_type
+    when "Event"
+      "activiteit"
+    when "Blogitem"
+      "blog"
+    when "ActionText::RichText"
+      "opgemaakte tekst"
+    else
+      @trail.item_type.downcase
+    end
   end
 
   def link
@@ -92,15 +100,26 @@ class TrailPresenter
   end
 
   def user_name
-    if @trail.item
+    if @trail.item # Create
       @trail.item.user.name
-    elsif @trail.object
+    elsif @trail.object # Update
       user_id = JSON.parse(@trail.object)['user_id']
       User.find(user_id).name
-    else
-      # Object is deleted in the meantime
+    else # Delete
       user_id = JSON.parse(@trail.object_changes)['user_id'].last
       User.find(user_id).name
+    end
+  end
+
+  def blog_title
+    if @trail.item # Create
+      @trail.item.title
+    elsif @trail.object # Update
+      blog_id = JSON.parse(@trail.object)['id']
+      Blogitem.with_deleted.find(event_id).title
+    else # Delete
+      blog_id = JSON.parse(@trail.object_changes)['id'].last
+      Blogitem.with_deleted.find(blog_id).title
     end
   end
 end
