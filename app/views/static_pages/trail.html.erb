@@ -16,9 +16,9 @@
             <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
           </div>
           <div class="flex justify-between">
-            <p class="text-sm text-gray-500 font-medium">
+            <span class="text-sm text-gray-500 font-medium">
               <%= presenter.message %>
-            </p>
+            </span>
             <% unless t.item_type == "ActionText::RichText" %>
               <%= form_for "x", url: "/revert/#{t.item_type}/#{t.item_id}" do |f| %>
                 <%= f.submit "Revert", class: submit_classes %>
