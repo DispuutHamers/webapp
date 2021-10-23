@@ -4,7 +4,6 @@ class Blogitem < ApplicationRecord
   has_paper_trail
   serialize :body
   serialize :title
-  has_many :blogphotos, dependent: :destroy
   belongs_to :user
 
   scope :public_blogs, -> { where(public: true) }
