@@ -1,7 +1,7 @@
 <div class="bg-white overflow-hidden md:shadow md:rounded-lg hidden md:block md:p-4">
-  <div class="h-1/2">
+  <div>
     <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
-    <div class="w-full flex justify-center h-1/2">
+    <div class="w-full flex justify-center">
       <% if @random_quote %>
         <div class="w-full flex space-x-3 text-sm">
           <%= gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full self-center" %>
