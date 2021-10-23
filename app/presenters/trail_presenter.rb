@@ -15,7 +15,7 @@ class TrailPresenter
     if user
       gravatar_for(user, { class: "h-6 w-6 rounded-full" })
     else
-      image_tag('hamer_square_256.png', class: 'h-6 w-6 rounded-full')
+      ActionController::Base.helpers.image_tag('hamer_square_256.png', class: 'h-6 w-6 rounded-full')
     end
   end
 
@@ -33,7 +33,7 @@ class TrailPresenter
   def created_message
     case @trail.item_type
     when "Quote"
-      "Citeerde #{@trail.item.user.name}"
+      "citeerde #{@trail.item.user.name}"
     when "Blogitem"
       "blogte #{@trail.item.title}"
     when "Signup"
@@ -49,7 +49,7 @@ class TrailPresenter
   def updated_message
     case @trail.item_type
     when "Quote"
-      "wijzigde een citaat van #{@trail.item.user.name}"
+      # "wijzigde een citaat van #{@trail.item.user.name}"
     when "Blogitem"
       "schreef aan #{@trail.item.title}"
     when "Signup"

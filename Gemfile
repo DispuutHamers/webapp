@@ -74,6 +74,7 @@ end
 group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
+  gem 'shoulda-context'
   gem 'sqlite3'
   gem 'webdrivers'
 end
