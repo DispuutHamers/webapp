@@ -30,6 +30,8 @@ class TrailPresenter
     end
   end
 
+  private
+
   def created_message
     case @trail.item_type
     when "Quote"
@@ -38,9 +40,7 @@ class TrailPresenter
       "blogte #{blog_title}"
     when "Event"
       "maakte activiteit"
-    when "Signup"
-      status = @trail.item.status ? "in" : "uit"
-      "schreef zich #{status} voor #{@trail.item.event.title}"
+    # when "Signup" --> Alleen update wordt gebruikt momenteel
     when "ActionText::RichText"
       "maakte opgemaakte tekst"
     else
@@ -57,7 +57,8 @@ class TrailPresenter
     when "Event"
       "wijzigde activiteit"
     when "Signup"
-      "wijzigde zijn inschrijving voor #{@trail.item.event.title}"
+      status = @trail.item.status ? "in" : "uit"
+      "schreef zich #{status} voor #{@trail.item.event.title}"
     when "ActionText::RichText"
       "wijzigde opgemaakte tekst"
     else
@@ -68,8 +69,6 @@ class TrailPresenter
   def destroyed_message
     "verwijderde #{type}"
   end
-
-  private
 
   def user
     User.find(@trail.whodunnit) if @trail.whodunnit

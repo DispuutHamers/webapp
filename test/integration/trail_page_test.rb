@@ -80,6 +80,22 @@ class TrailPageTest < ApplicationSystemTestCase
     end
   end
 
+  context 'signup' do
+    should 'inschrijving' do
+      users(:three).signup(events(:one), status: true)
+      visit trail_path
+
+      assert_selector "span", text: "schreef zich in voor Dispuutsborrel"
+    end
+
+    should 'uitschrijving' do
+      users(:three).signup(events(:one), status: false, reason: "Kan niet")
+      visit trail_path
+
+      assert_selector "span", text: "schreef zich uit voor Dispuutsborrel"
+    end
+  end
+
   context 'blog' do
     should 'create' do
       Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")

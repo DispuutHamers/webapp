@@ -45,7 +45,7 @@ remember_token unconfirmed_email failed_attempts unlock_token locked_at weight u
     'Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.'
   end
 
-  def signup(event, status, reason)
+  def signup(event, status, reason = "")
     return if event.deadline < Time.now
     return if event.attendance && status == "0" && reason.length < 6
 
