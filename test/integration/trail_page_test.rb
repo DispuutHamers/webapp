@@ -45,11 +45,11 @@ class TrailPageTest < ApplicationSystemTestCase
 
   context 'event' do
     should 'create' do
-      Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
+      e = Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
       visit trail_path
 
-      assert_selector "span", text: "maakte activiteit"
-      assert_selector "span", text: "maakte opgemaakte tekst"
+      has_link? "maakte activiteit", href: e
+      has_link? "maakte opgemaakte tekst", href: e
     end
 
     should 'update' do
@@ -59,8 +59,8 @@ class TrailPageTest < ApplicationSystemTestCase
       e.save!
       visit trail_path
 
-      assert_selector "span", text: "wijzigde activiteit"
-      assert_selector "span", text: "wijzigde opgemaakte tekst"
+      has_link? "wijzigde activiteit", href: e
+      has_link? "wijzigde opgemaakte tekst", href: e
     end
 
     should 'destroy' do
@@ -79,11 +79,12 @@ class TrailPageTest < ApplicationSystemTestCase
       e.destroy
       visit trail_path
 
-      assert_selector "span", text: "maakte activiteit"
-      assert_selector "span", text: "maakte opgemaakte tekst"
-      assert_selector "span", text: "wijzigde activiteit"
-      assert_selector "span", text: "wijzigde opgemaakte tekst"
+      has_link? "maakte activiteit", href: e
+      has_link? "maakte opgemaakte tekst", href: e
+      has_link? "wijzigde activiteit", href: e
+      has_link? "wijzigde opgemaakte tekst", href: e
       assert_selector "span", text: "verwijderde activiteit"
+      assert_selector "span", text: "verwijderde opgemaakte tekst"
     end
   end
 
