@@ -93,14 +93,16 @@ class TrailPageTest < ApplicationSystemTestCase
       users(:three).signup(events(:one), status: true)
       visit trail_path
 
-      assert_selector "span", text: "schreef zich in voor Dispuutsborrel"
+      signup = users(:three).signups.where(event: events(:one)).first
+      has_link? "schreef zich in voor Dispuutsborrel", href: signup
     end
 
     should 'uitschrijving' do
       Signup.find_or_create_by(user: users(:three), event: events(:one)).update(status: false, reason: "Kan niet")
       visit trail_path
 
-      assert_selector "span", text: "schreef zich uit voor Dispuutsborrel"
+      signup = users(:three).signups.where(event: events(:one)).first
+      has_link? "schreef zich uit voor Dispuutsborrel", href: signup
     end
   end
 
