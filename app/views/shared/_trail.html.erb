@@ -14,7 +14,11 @@
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
                 <span class="text-sm font-medium">
-                  <% link_to presenter.message, presenter.link %>
+                  <% if presenter.has_link %>
+                    <%= link_to presenter.message, presenter.link %>
+                  <% else %>
+                    <%= presenter.message %>
+                  <% end %>
                 </span>
               </div>
               <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>

@@ -11,7 +11,7 @@ class TrailPageTest < ApplicationSystemTestCase
       Quote.create(user: users(:one), text: "Nieuwe quote", reporter: users(:two))
       visit trail_path
 
-      assert_selector "span", text: "citeerde Hamer Tester"
+      has_link? "citeerde Hammer Tester", href: root_path
     end
 
     should 'update' do
@@ -20,14 +20,14 @@ class TrailPageTest < ApplicationSystemTestCase
       q.save!
       visit trail_path
 
-      assert_selector "span", text: "wijzigde een citaat van Hamer Tester"
+      has_link? "wijzigde een citaat van Hamer Tester", href: root_path
     end
 
     should 'destroy' do
       quotes(:one).destroy
       visit trail_path
 
-      assert_selector "span", text: "verwijderde quote"
+      has_link? "verwijderde quote", href: root_path
     end
 
     should 'do all' do
@@ -37,9 +37,9 @@ class TrailPageTest < ApplicationSystemTestCase
       q.destroy
       visit trail_path
 
-      assert_selector "span", text: "citeerde Hamer Tester"
-      assert_selector "span", text: "wijzigde een citaat van Hamer Tester"
-      assert_selector "span", text: "verwijderde quote"
+      has_link? "citeerde Hamer Tester", href: root_path
+      has_link? "wijzigde een citaat van Hamer Tester", href: root_path
+      has_link? "verwijderde quote", href: root_path
     end
   end
 

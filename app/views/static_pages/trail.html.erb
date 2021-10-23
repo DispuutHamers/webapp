@@ -17,7 +17,9 @@
           </div>
           <div class="flex justify-between">
             <span class="text-sm text-gray-500 font-medium">
-              <%= link_to presenter.link do %>
+              <% if presenter.has_link %>
+                <%= link_to presenter.message, presenter.link %>
+              <% else %>
                 <%= presenter.message %>
               <% end %>
             </span>
