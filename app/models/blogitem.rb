@@ -1,6 +1,6 @@
 class Blogitem < ApplicationRecord
   Gutentag::ActiveRecord.call self
-
+  acts_as_paranoid
   has_paper_trail
   serialize :body
   serialize :title
