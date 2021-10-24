@@ -91,17 +91,6 @@ ActiveRecord::Schema.define(version: 2021_10_23_191103) do
     t.index ["deleted_at"], name: "index_blogitems_on_deleted_at"
   end
 
-  create_table "blogphotos", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.integer "blogitem_id"
-    t.string "description", limit: 255
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image_file_name", limit: 255
-    t.string "image_content_type", limit: 255
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
-  end
-
   create_table "brews", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.text "description"
     t.bigint "recipe_id"
