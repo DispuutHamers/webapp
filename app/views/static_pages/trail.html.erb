@@ -8,7 +8,7 @@
 
     <li class="py-2 flex flex-col">
       <div class="flex space-x-3 pb-2">
-        <%= presenter.image %>
+        <%= gravatar_for User.find_by_id(t.whodunnit) %>
 
         <div class="flex-1 space-y-1">
           <div class="flex items-center justify-between">

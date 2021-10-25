@@ -11,14 +11,6 @@ class TrailPresenter
     user&.name || "webapp"
   end
 
-  def image
-    if user
-      gravatar_for(user, { class: "h-6 w-6 rounded-full" })
-    else
-      ActionController::Base.helpers.image_tag('hamer_square_256.png', class: 'h-6 w-6 rounded-full')
-    end
-  end
-
   def message
     case @trail.event
     when "create"
@@ -31,6 +23,7 @@ class TrailPresenter
   end
 
   def has_link
+    # Todo: when object is deleted
     @trail.event != "destroy"
   end
 
@@ -94,7 +87,7 @@ class TrailPresenter
   end
 
   def user
-    User.find(@trail.whodunnit) if @trail.whodunnit
+    User.find_by_id(@trail.whodunnit) if @trail.whodunnit
   end
 
   def type

@@ -150,7 +150,7 @@ class TrailPageTest < ApplicationSystemTestCase
   end
 
   def teardown
-    take_screenshot
+    # take_screenshot
     PaperTrail.enabled = false
   end
 end
