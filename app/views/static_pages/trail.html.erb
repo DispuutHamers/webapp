@@ -4,23 +4,21 @@
 
 <ul role="list" class="divide-y divide-gray-200">
   <% @trail.each do |t| %>
-    <% presenter = TrailPresenter.new(t) %>
-
     <li class="py-2 flex flex-col">
       <div class="flex space-x-3 pb-2">
         <%= gravatar_for User.find_by_id(t.whodunnit) %>
 
         <div class="flex-1 space-y-1">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-medium"><%= presenter.username %></h3>
+            <h3 class="text-sm font-medium"><%= t.present.username %></h3>
             <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
           </div>
           <div class="flex justify-between">
             <span class="text-sm text-gray-500 font-medium">
-              <% if presenter.has_link %>
-                <%= link_to presenter.message, presenter.link %>
+              <% if t.present.has_link %>
+                <%= link_to t.present.message, t.present.link %>
               <% else %>
-                <%= presenter.message %>
+                <%= t.present.message %>
               <% end %>
             </span>
             <% unless t.item_type == "ActionText::RichText" %>
