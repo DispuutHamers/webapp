@@ -30,7 +30,7 @@ Usergroup.create!(id: 21, name: "Trajectcoördinatoren")
 
 # Make users lid
 User.all.each do |user|
-  next if [5, 6, 7].include?(user.id)
+  next if [6, 7].include?(user.id)
   Group.create!(user: user, group_id: 4)
 end
 
@@ -38,6 +38,9 @@ end
 Group.create!(user_id: 2, group_id: 2)
 Group.create!(user_id: 3, group_id: 2)
 Group.create!(user_id: 4, group_id: 2)
+
+# Set deleted_at for group objects so that o-lid are not lid anymore
+Group.find_by(user_id: 5, group_id: 4).destroy
 
 # Fill the rest of the groups
 Group.create!(user_id: 1, group_id: Usergroup.find_by_name("Developer").id)

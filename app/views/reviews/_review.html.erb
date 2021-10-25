@@ -19,11 +19,14 @@
               <span class="truncate"><%= review.created_at.strftime("%d-%m-%Y") %></span>
 
               <% if current_user&.active? %>
-                <%= link_to "Wijzig", edit_review_path(review), class: 'mx-1 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
-                <%= link_to "Verwijder", review, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'mx-1 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
+                <%= link_to "Wijzig", edit_review_path(review), class: 'ml-2 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
+                <%= link_to "Verwijder", review, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: 'ml-1 px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' %>
               <% end %>
             </p>
           </div>
+        </div>
+        <div class="flex-shrink-0 font-semibold text-lg">
+          <%= review.rating %>
         </div>
       </div>
     </div>

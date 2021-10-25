@@ -47,12 +47,7 @@ module UsersHelper
   end
 
   def self.update_weight_for(user)
-    cijfer = 0.0
-    user.reviews.each do |review|
-      cijfer += review.rating
-    end
-
-    weight = (cijfer / user.reviews.count) unless user.reviews.empty?
+    weight = user.reviews.average(:rating).to_f
     user.update(weight: weight)
   end
 
