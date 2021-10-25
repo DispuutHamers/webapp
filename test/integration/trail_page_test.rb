@@ -79,9 +79,9 @@ class TrailPageTest < ApplicationSystemTestCase
       e.destroy
       visit trail_path
 
-      has_link? "maakte activiteit", href: e
+      has_link? "maakte activiteit upcoming event", href: e
       has_link? "maakte opgemaakte tekst", href: e
-      has_link? "wijzigde activiteit", href: e
+      has_link? "wijzigde activiteit upcoming event", href: e
       has_link? "wijzigde opgemaakte tekst", href: e
       assert_selector "span", text: "verwijderde activiteit"
       assert_selector "span", text: "verwijderde opgemaakte tekst"

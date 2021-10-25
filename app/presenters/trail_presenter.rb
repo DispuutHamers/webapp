@@ -62,7 +62,7 @@ class TrailPresenter
     when "Blogitem"
       "blogte #{blog.title}"
     when "Event"
-      "maakte activiteit"
+      "maakte activiteit #{event.title}"
       # when "Signup" --> Alleen update wordt gebruikt momenteel
     when "ActionText::RichText"
       "maakte opgemaakte tekst"
@@ -78,7 +78,7 @@ class TrailPresenter
     when "Blogitem"
       "schreef aan #{blog.title}"
     when "Event"
-      "wijzigde activiteit"
+      "wijzigde activiteit #{event.title}"
     when "Signup"
       status = @trail.item.status ? "in" : "uit"
       "schreef zich #{status} voor #{@trail.item.event.title}"
@@ -120,6 +120,19 @@ class TrailPresenter
       # Delete
       user_id = JSON.parse(@trail.object_changes)['user_id'].last
       User.find(user_id).name
+    end
+  end
+
+  def event
+    if @trail.item # Create
+      @trail.item
+    elsif @trail.object # Update
+      event_id = JSON.parse(@trail.object)['id']
+      Event.with_deleted.find(event_id)
+    else
+      # Delete
+      event_id = JSON.parse(@trail.object_changes)['id'].last
+      Event.with_deleted.find(event_id)
     end
   end
 
