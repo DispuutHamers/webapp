@@ -39,10 +39,10 @@ class TrailPresenter
     end
 
     if @trail.item_type == "Blogitem"
-      return blog
+      return blogitem_path(blog)
     end
 
-    # Everything else, including quotes
+    # Everything else
     root_path
   end
 
