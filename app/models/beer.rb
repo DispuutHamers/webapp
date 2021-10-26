@@ -9,13 +9,8 @@ class Beer < ActiveRecord::Base
 
   scope :random, -> { order('RAND()') }
 
-  def cijfer?
-    grade = self.grade
-    if grade
-      return grade.round(2)
-    else
-      return "Nog geen cijfer"
-    end
+  def cijfer
+    self.grade&.round(2) || "Nog geen cijfer"
   end
 
   def update_cijfer
