@@ -55,11 +55,15 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= beer.country %>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap  overflow-hidden -space-x-3">
-                  <% beer.reviews.each.each do |review| %>
-                    <%= link_to review.user, class: "inline-block" do %>
-                      <%= gravatar_for review.user, class: "h-8 w-8 rounded-full ring-2 ring-white", alt: review.user.name %>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 overflow-hidden -space-x-3">
+                  <% if current_user&.active? %>
+                    <% beer.reviews.each.each do |review| %>
+                      <%= link_to review.user, class: "inline-block" do %>
+                        <%= gravatar_for review.user, class: "h-8 w-8 rounded-full ring-2 ring-white", alt: review.user.name %>
+                      <% end %>
                     <% end %>
+                  <% else %>
+                    <%= beer.reviews.count %> reviews
                   <% end %>
                 </td>
                 <td class="pr-6 whitespace-nowrap text-right text-sm font-medium">
