@@ -64,6 +64,11 @@ Review.create!(user_id: 3, beer_id: 2, rating: 1, description: "Wat voor bocht i
 Review.create!(user_id: 5, beer_id: 2, rating: 9, description: "Beste bier ooit!")
 Review.create!(user_id: 6, beer_id: 2, rating: 3, description: "Matig..")
 
+# Update average rating
+Beer.all.each do |b|
+  b.update_cijfer
+end
+
 # Create events
 Event.create!(title: 'Past event', date: '2020-01-01 20:30', end_time: '2020-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 5)
 Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 1)
