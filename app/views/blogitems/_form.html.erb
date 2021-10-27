@@ -19,8 +19,8 @@
         <div class="flex items-center h-5">
           <%= f.check_box :public, { checked: @item.public, class: checkbox_classes } %>
         </div>
-        <div class="ml-3 text-sm">
-          <label class="font-medium text-gray-700">Ook voor plebs te lezen</label>
+        <div class="ml-3 text-sm font-medium text-gray-700">
+          <%= f.label :public, "Ook voor plebs te lezen" %>
         </div>
       </div>
       <div class="mt-1 flex rounded-md shadow-sm">
