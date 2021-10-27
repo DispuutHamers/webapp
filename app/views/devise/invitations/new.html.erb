@@ -3,14 +3,9 @@
 <% end %>
 
 <%= render layout: 'layouts/small_width' do %>
-  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :post} do |f| %>
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { class: 'space-y-3 space-y', :method => :post } do |f| %>
     <%= devise_error_messages! %>
-
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-      <%= f.email_field :email, class: "form-control", placeholder: "E-mail adres" %>
-    </div>
-    &nbsp
-    <p><%= f.submit t("devise.invitations.new.submit_button"), class: "btn btn-large btn-primary" %></p>
+    <%= f.email_field :email, placeholder: "E-mailadres", class: input_classes %>
+    <p><%= f.submit t("devise.invitations.new.submit_button"), class: submit_classes %></p>
   <% end %>
 <% end %>
