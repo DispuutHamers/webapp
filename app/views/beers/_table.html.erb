@@ -1,85 +1,81 @@
 <% if @beers.any? %>
-  <div class="flex flex-col mt-6">
-    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-100">
-            <tr>
-              <% columns = %w[Naam Soort Cijfer Brouwer Land Reviews] %>
-              <% columns.each do |c| %>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  <%= c %>
-                </th>
-              <% end %>
-              <th scope="col" class="relative px-6 py-3">
-                <span class="sr-only">Link</span>
-              </th>
-            </tr>
-            </thead>
+  <div class="flex flex-col -m-6">
+    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-100">
+        <tr>
+          <% columns = %w[Naam Soort Cijfer Brouwer Land Reviews] %>
+          <% columns.each do |c| %>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <%= c %>
+            </th>
+          <% end %>
+          <th scope="col" class="relative px-6 py-3">
+            <span class="sr-only">Link</span>
+          </th>
+        </tr>
+        </thead>
 
-            <tbody class="bg-white divide-y divide-gray-200">
-            <% @beers.each do |beer| %>
-              <tr class="hover:bg-gray-100 cursor-pointer" onclick="Turbo.visit('<%= beer_path(beer) %>')">
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <% if beer.image.attached? %>
-                      <%= image_tag beer.image, class: 'w-6 -ml-4 mr-2' %>
-                    <% end %>
-                    <div class="text-sm font-medium text-gray-900 popover"
-                         data-controller="popover"
-                         data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut"
-                         data-popover-translate-x="0"
-                         data-popover-translate-y="15%">
-                      <%= beer.name %>
-                      <% if current_user&.reviews&.find_by(beer: beer)&.rating %>
+        <tbody class="bg-white divide-y divide-gray-200">
+        <% @beers.each do |beer| %>
+          <tr class="hover:bg-gray-100 cursor-pointer" onclick="Turbo.visit('<%= beer_path(beer) %>')">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <% if beer.image.attached? %>
+                  <%= image_tag beer.image, class: 'w-6 -ml-4 mr-2' %>
+                <% end %>
+                <div class="text-sm font-medium text-gray-900 popover"
+                     data-controller="popover"
+                     data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut"
+                     data-popover-translate-x="0"
+                     data-popover-translate-y="15%">
+                  <%= beer.name %>
+                  <% if current_user&.reviews&.find_by(beer: beer)&.rating %>
                         <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= rating_color(current_user&.reviews&.find_by(beer: beer)&.rating) %>">
                           <%= current_user&.reviews&.find_by(beer: beer)&.rating %>
                         </span>
-                        <div class="content hidden absolute bg-gray-100 border border-gray-200 text-gray-700 rounded p-3" data-popover-target="content">
-                          Het cijfer dat jij dit biertje gegeven hebt.
-                        </div>
-                      <% end %>
+                    <div class="content hidden absolute bg-gray-100 border border-gray-200 text-gray-700 rounded p-3" data-popover-target="content">
+                      Het cijfer dat jij dit biertje gegeven hebt.
                     </div>
-                  </div>
-                </td>
-                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-                  <%= beer.kind %>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= beer.cijfer %>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= beer.brewer %>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <%= beer.country %>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 overflow-hidden -space-x-3">
-                  <% if current_user&.active? %>
-                    <% beer.reviews.each.each do |review| %>
-                      <%= link_to review.user, class: "inline-block" do %>
-                        <%= gravatar_for review.user, class: "h-8 w-8 rounded-full ring-2 ring-white", alt: review.user.name %>
-                      <% end %>
-                    <% end %>
-                  <% else %>
-                    <%= beer.reviews.count %> reviews
                   <% end %>
-                </td>
-                <td class="pr-6 whitespace-nowrap text-right text-sm font-medium">
-                  <%= link_to beer, class: "float-right" do %>
-                    <%= heroicon('chevron-right', class_name: "flex-shrink-0 h-5 w-5 text-gray-400") %>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+              <%= beer.kind %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= beer.cijfer %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= beer.brewer %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= beer.country %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 overflow-hidden -space-x-3">
+              <% if current_user&.active? %>
+                <% beer.reviews.each.each do |review| %>
+                  <%= link_to review.user, class: "inline-block" do %>
+                    <%= gravatar_for review.user, class: "h-8 w-8 rounded-full ring-2 ring-white", alt: review.user.name %>
                   <% end %>
-                </td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
+                <% end %>
+              <% else %>
+                <%= beer.reviews.count %> reviews
+              <% end %>
+            </td>
+            <td class="pr-6 whitespace-nowrap text-right text-sm font-medium">
+              <%= link_to beer, class: "float-right" do %>
+                <%= heroicon('chevron-right', class_name: "flex-shrink-0 h-5 w-5 text-gray-400") %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-          <%= render 'shared/pagination/table' %>
+      <%= render 'shared/pagination/table' %>
 
-        </div>
-      </div>
     </div>
   </div>
 <% else %>
