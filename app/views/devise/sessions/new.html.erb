@@ -18,7 +18,7 @@
     <div class="flex items-center justify-between">
       <% if devise_mapping.rememberable? -%>
         <div class="flex items-center">
-          <%= f.check_box :remember_me, class: "h-4 w-4 text-hamers-red-600 focus:ring-hamers-red-500 border-gray-300 rounded" %>
+          <%= f.check_box :remember_me, class: checkbox_classes %>
           <%= f.label :remember_me, "Blijf ingelogd", class: "ml-2 block text-sm text-gray-900" %>
         </div>
       <% end %>
