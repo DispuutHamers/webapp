@@ -76,15 +76,21 @@ class TrailPageTest < ApplicationSystemTestCase
       e.user = users(:three)
       e.description = "Nieuwe beschrijving"
       e.save!
-      e.destroy
       visit trail_path
 
       assert page.has_link? "maakte activiteit Upcoming event", href: event_path(e)
       assert page.has_link? "maakte opgemaakte tekst", href: event_path(e)
       assert page.has_link? "wijzigde activiteit Upcoming event", href: event_path(e)
       assert page.has_link? "wijzigde opgemaakte tekst", href: event_path(e)
+
+      e.destroy
+      visit trail_path
       assert_text "verwijderde activiteit"
       assert_text "verwijderde opgemaakte tekst"
+      assert page.has_no_link? "maakte activiteit Upcoming event", href: event_path(e)
+      assert page.has_no_link? "maakte opgemaakte tekst", href: event_path(e)
+      assert page.has_no_link? "wijzigde activiteit Upcoming event", href: event_path(e)
+      assert page.has_no_link? "wijzigde opgemaakte tekst", href: event_path(e)
     end
   end
 
@@ -182,15 +188,22 @@ class TrailPageTest < ApplicationSystemTestCase
       b = Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
       b.body = "Nieuwe body"
       b.save!
-      b.destroy
       visit trail_path
 
       assert page.has_link? "blogte Gaaf nieuws", href: blogitem_path(b)
       assert page.has_link? "maakte opgemaakte tekst", href: blogitem_path(b)
       assert page.has_link? "schreef aan Gaaf nieuws", href: blogitem_path(b)
       assert page.has_link? "wijzigde opgemaakte tekst", href: blogitem_path(b)
+
+      b.destroy
+      visit trail_path
+
       assert_text "verwijderde blog"
       assert_text "verwijderde opgemaakte tekst"
+      assert page.has_no_link? "blogte Gaaf nieuws", href: blogitem_path(b)
+      assert page.has_no_link? "maakte opgemaakte tekst", href: blogitem_path(b)
+      assert page.has_no_link? "schreef aan Gaaf nieuws", href: blogitem_path(b)
+      assert page.has_no_link? "wijzigde opgemaakte tekst", href: blogitem_path(b)
     end
   end
 

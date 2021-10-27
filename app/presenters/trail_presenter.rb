@@ -38,10 +38,6 @@ class TrailPresenter
       return @trail.item
     end
 
-    if @trail.item_type == "Blogitem"
-      return blogitem_path(blog)
-    end
-
     # Everything else
     root_path
   end
