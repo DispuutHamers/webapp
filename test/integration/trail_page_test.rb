@@ -112,50 +112,47 @@ class TrailPageTest < ApplicationSystemTestCase
     end
   end
 
-  # context 'beer' do
-  #   should 'create' do
-  #     b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
-  #     visit trail_path
-  #
-  #     # assert page.has_link? "maakte bier Leffe Blond", href: b
-  #     assert page.has_link? "asdfasdfasdfmaakte opgemaakte tekst", href: b)
-  #   end
-  #
-  #   should 'update' do
-  #     b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
-  #     b.datb = '2029-01-01 12:00'
-  #     b.description = "Nieuwe beschrijving"
-  #     b.save!
-  #     visit trail_path
-  #
-  #     assert page.has_link? "wijzigde activiteit", href: b)
-  #     assert page.has_link? "wijzigde opgemaakte tekst", href: b)
-  #   end
-  #
-  #   should 'destroy' do
-  #     Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
-  #     visit trail_path
-  #
-  #     assert_text "verwijderde activiteit"
-  #     assert_text "verwijderde opgemaakte tekst"
-  #   end
-  #
-  #   should 'do all' do
-  #     b = Beer.create!(title: 'Upcoming beer', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59')
-  #     b.user = users(:three)
-  #     b.description = "Nieuwe beschrijving"
-  #     b.save!
-  #     b.destroy
-  #     visit trail_path
-  #
-  #     assert page.has_link? "maakte activiteit upcoming beer", href: b)
-  #     assert page.has_link? "maakte opgemaakte tekst", href: b)
-  #     assert page.has_link? "wijzigde activiteit upcoming beer", href: b)
-  #     assert page.has_link? "wijzigde opgemaakte tekst", href: b)
-  #     assert_text "verwijderde activiteit"
-  #     assert_text "verwijderde opgemaakte tekst"
-  #   end
-  # end
+  context 'beer' do
+    should 'create' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      visit trail_path
+
+      assert page.has_link? "maakte bier Leffe Blond", href: beer_path(b)
+    end
+
+    should 'update' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      b.percentage = "5.0%"
+      b.save!
+      visit trail_path
+
+      assert page.has_link? "wijzigde bier Leffe Blond", href: beer_path(b)
+    end
+
+    should 'destroy' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      b.destroy
+      visit trail_path
+
+      assert_text "verwijderde bier"
+    end
+
+    should 'do all' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      b.percentage = "5.0%"
+      b.save!
+      visit trail_path
+
+      assert page.has_link? "maakte bier Leffe Blond", href: beer_path(b)
+      assert page.has_link? "wijzigde bier Leffe Blond", href: beer_path(b)
+
+      b.destroy
+      visit trail_path
+      assert_text "verwijderde bier"
+      assert page.has_no_link? "maakte bier upcoming beer", href: beer_path(b)
+      assert page.has_no_link? "wijzigde bier Leffe Blond", href: beer_path(b)
+    end
+  end
 
   context 'blog' do
     should 'create' do

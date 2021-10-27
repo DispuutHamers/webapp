@@ -53,6 +53,8 @@ class TrailPresenter
     when "Event"
       "maakte activiteit #{event.title}"
       # when "Signup" --> Alleen update wordt gebruikt momenteel
+    when "Beer"
+      "maakte bier #{beer.name}"
     when "ActionText::RichText"
       "maakte opgemaakte tekst"
     else
@@ -71,6 +73,8 @@ class TrailPresenter
     when "Signup"
       status = @trail.item.status ? "in" : "uit"
       "schreef zich #{status} voor #{@trail.item.event.title}"
+    when "Beer"
+      "wijzigde bier #{beer.name}"
     when "ActionText::RichText"
       "wijzigde opgemaakte tekst"
     else
@@ -90,6 +94,8 @@ class TrailPresenter
     case @trail.item_type
     when "Event"
       "activiteit"
+    when "Beer"
+      "bier"
     when "Blogitem"
       "blog"
     when "ActionText::RichText"
@@ -122,6 +128,19 @@ class TrailPresenter
       # Delete
       event_id = JSON.parse(@trail.object_changes)['id'].last
       Event.with_deleted.find(event_id)
+    end
+  end
+
+  def beer
+    if @trail.item # Create
+      @trail.item
+    elsif @trail.object # Update
+      beer_id = JSON.parse(@trail.object)['id']
+      Beer.with_deleted.find(beer_id)
+    else
+      # Delete
+      beer_id = JSON.parse(@trail.object_changes)['id'].last
+      Beer.with_deleted.find(beer_id)
     end
   end
 
