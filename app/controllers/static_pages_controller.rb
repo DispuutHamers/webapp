@@ -7,12 +7,20 @@ class StaticPagesController < ApplicationController
     return render 'frontpage' unless current_user&.active?
 
     @quote = current_user.quotes.build
-    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12)
+    @pagy, @quotes = if current_user.otp_required_for_login? 
+                        pagy(Quote.with_user.ordered, page: params[:page], items: 12)
+                      else
+                        pagy(Quote.where(user_id: 0), page: params[:page])
+                      end
     @next_event = Event.upcoming.order(date: :asc).first
     @signup = @next_event&.signups&.where(user: current_user)&.exists?
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
     @random_beer = Beer.random.take
-    @random_quote = Quote.random.take
+    @random_quote = if current_user.otp_required_for_login 
+                      Quote.random.take
+                    else
+                      Quote.new(user: current_user, text: "Ik ben een droeftoeter zonder 2FA", created_at: Time.zone.now)
+                    end
     @blogitems = if current_user.alid?
                    Blogitem.where(public: true).includes(:user).last(5).reverse
                  else

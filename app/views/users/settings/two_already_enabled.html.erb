@@ -13,10 +13,16 @@
     </div>
 
     <% if @codes %>
-      <div class="flex justify-center my-6">
+      <div class="flex justify-center my-4">
         <p class="m-4">Sla de volgende back up codes op om toch je account in te kunnen als je je 2FA device kwijtraakt:</p>
         <p class="m-4"><%= @codes.join(", ") %></p>
       </div>
     <% end %>
+
+    <div class="flex justify-center my-6"> 
+      <%= form_with local: true, data: { turbo: false } do |f| %>
+        <%= f.submit "Disable", class: submit_classes %>
+      <% end %>
+    </div>
   </div>
 </div>
