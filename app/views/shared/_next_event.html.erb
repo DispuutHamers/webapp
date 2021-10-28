@@ -9,7 +9,7 @@
       <div class="inline-flex rounded-md shadow w-full">
         <% if @signup %>
           <button class="cursor-pointer w-full text-center p-4 border border-transparent text-base font-medium rounded-md text-gray-500 bg-gray-50">
-            Je hebt je al ingeschreven! 👍
+            <%= @signup&.status ? "Je hebt je al ingeschreven! 👍" : "Je hebt je uitgeschreven." %>
           </button>
         <% elsif @next_event.open? %>
           <%= form_for @next_event.signups.build(event_id: @next_event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
