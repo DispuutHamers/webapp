@@ -41,9 +41,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   config.i18n.raise_on_missing_translations = true
-
-  # PaperTrail is disabled by default to speed up tests
-  config.after_initialize do
-    PaperTrail.enabled = false
-  end
 end
