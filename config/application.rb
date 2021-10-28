@@ -18,7 +18,7 @@ module Hamers
       Doorkeeper::ApplicationsController.layout 'application'
       Doorkeeper::AuthorizationsController.layout 'application'
       Doorkeeper::AuthorizedApplicationsController.layout 'application'
-      
+
       Devise::SessionsController.layout 'application_public'
       Devise::RegistrationsController.layout 'application_public'
       Devise::ConfirmationsController.layout 'application_public'
@@ -26,5 +26,21 @@ module Hamers
       Devise::PasswordsController.layout 'application_public'
     end
 
+    config.exception_handler = {
+      # Turn on in development as needed:
+      # dev: 'on',
+      exceptions: {
+
+        all: {
+          layout: "error_pages/500",
+        },
+        404 => {
+          layout: "error_pages/404",
+        },
+        422 => {
+          layout: "error_pages/422"
+        }
+      }
+    }
   end
 end
