@@ -11,5 +11,12 @@
     <div class="flex justify-center mt-6">
       2FA staat aan 👍
     </div>
+
+    <% if @codes %>
+      <div class="flex justify-center my-6">
+        <p class="m-4">Sla de volgende back up codes op om toch je account in te kunnen als je je 2FA device kwijtraakt:</p>
+        <p class="m-4"><%= @codes.join(", ") %></p>
+      </div>
+    <% end %>
   </div>
 </div>

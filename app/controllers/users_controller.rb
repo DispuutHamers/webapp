@@ -58,6 +58,10 @@ class UsersController < ApplicationController
   end
 
   def edit_two_factor
+    breadcrumb current_user.name, user_path(current_user)
+    breadcrumb 'Update', edit_user_path(current_user)
+    breadcrumb '2FA', edit_two_factor_user_path(current_user)
+
     if current_user.otp_required_for_login 
       render 'users/settings/two_already_enabled'
     else
@@ -71,11 +75,16 @@ class UsersController < ApplicationController
   end
 
   def update_two_factor
+    breadcrumb current_user.name, user_path(current_user)
+    breadcrumb 'Update', edit_user_path(current_user)
+    breadcrumb '2FA', edit_two_factor_user_path(current_user)
+    
     current_user.otp_required_for_login = true
     current_user.otp_secret = params[:otp_secret]
+    @codes = current_user.generate_otp_backup_codes!
     current_user.save!
 
-    redirect_to edit_two_factor_user_path, notice: "2FA staat aan 👍"
+    render "users/settings/two_already_enabled", notice: "2FA staat aan 👍"
   end
 
   def edit_password

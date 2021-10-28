@@ -19,11 +19,11 @@
     </div>
 
     <div class="flex justify-center my-4">
-      <p>Scan de QR code met je 2FA app en klik op enable</p>
+      <p>Scan de QR code met je 2FA app of gebruik de secret: <%= @secret %> en klik op enable</p>
     </div>
 
     <div class="flex justify-center mb-6"> 
-      <%= form_with do |f| %>
+      <%= form_with local: true, data: { turbo: false } do |f| %>
         <%= f.hidden_field :otp_secret, value: @secret %>
         <%= f.submit "Enable", class: submit_classes %>
       <% end %>
