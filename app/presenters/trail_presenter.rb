@@ -47,12 +47,11 @@ class TrailPresenter
   def created_message
     case @trail.item_type
     when "Quote"
-      "citeerde #{user_name}"
+      "citeerde #{quote.user.name}"
     when "Blogitem"
       "blogte '#{blog.title}'"
     when "Event"
       "maakte activiteit '#{event.title}'"
-      # when "Signup" --> Alleen update wordt gebruikt momenteel
     when "Beer"
       "maakte bier '#{beer.name}'"
     when "Review"
@@ -67,7 +66,7 @@ class TrailPresenter
   def updated_message
     case @trail.item_type
     when "Quote"
-      "wijzigde een citaat van #{user_name}"
+      "wijzigde een citaat van #{quote.user.name}"
     when "Blogitem"
       "schreef aan '#{blog.title}'"
     when "Event"
@@ -87,7 +86,20 @@ class TrailPresenter
   end
 
   def destroyed_message
-    "verwijderde #{type}"
+    case @trail.item_type
+    when "Quote"
+      "verwijderde citaat van #{quote.user.name}"
+    when "Blogitem"
+      "verwijderde blog '#{blog.title}'"
+    when "Event"
+      "verwijderde activiteit '#{event.title}'"
+    when "Beer"
+      "verwijderde bier '#{beer.name}'"
+    when "Review"
+      "verwijderde een review van '#{review.beer.name}'"
+    else
+      "verwijderde #{type}"
+    end
   end
 
   def user
@@ -109,16 +121,16 @@ class TrailPresenter
     end
   end
 
-  def user_name
+  def quote
     if @trail.item # Create
-      @trail.item.user.name
+      @trail.item
     elsif @trail.object # Update
-      user_id = JSON.parse(@trail.object)['user_id']
-      User.find(user_id).name
+      quote_id = JSON.parse(@trail.object)['id']
+      Quote.with_deleted.find(quote_id)
     else
       # Delete
-      user_id = JSON.parse(@trail.object_changes)['user_id'].last
-      User.find(user_id).name
+      quote_id = JSON.parse(@trail.object_changes)['id'].last
+      Quote.with_deleted.find(quote_id)
     end
   end
 

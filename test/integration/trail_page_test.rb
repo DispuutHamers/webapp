@@ -7,7 +7,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
   context 'quote' do
     should 'create' do
-      q = Quote.create(user: users(:one), text: "Nieuwe quote", reporter: users(:two))
+      q = Quote.create(user: users(:one), text: "Nieuw citaat", reporter: users(:two))
       visit trail_path
 
       assert has_link? "citeerde Hamer Tester", href: quote_path(q)
@@ -26,11 +26,11 @@ class TrailPageTest < ApplicationSystemTestCase
       quotes(:one).destroy
       visit trail_path
 
-      assert_text "verwijderde quote"
+      assert_text "verwijderde citaat van Hamer Tester"
     end
 
     should 'do all' do
-      q = Quote.create(user: users(:one), text: "Nieuwe quote", reporter: users(:two))
+      q = Quote.create(user: users(:one), text: "Nieuw citaat", reporter: users(:two))
       q.reporter = users(:three)
       q.save!
       q.destroy
@@ -38,7 +38,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       assert page.has_link? "citeerde Hamer Tester", href: root_path
       assert page.has_link? "wijzigde een citaat van Hamer Tester", href: root_path
-      assert_text "verwijderde quote"
+      assert_text "verwijderde citaat van Hamer Tester"
     end
   end
 
@@ -66,7 +66,7 @@ class TrailPageTest < ApplicationSystemTestCase
       Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59').destroy
       visit trail_path
 
-      assert_text "verwijderde activiteit"
+      assert_text "verwijderde activiteit 'Upcoming event'"
       assert_text "verwijderde opgemaakte tekst"
     end
 
@@ -84,7 +84,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       e.destroy
       visit trail_path
-      assert_text "verwijderde activiteit"
+      assert_text "verwijderde activiteit 'Upcoming event'"
       assert_text "verwijderde opgemaakte tekst"
       assert page.has_no_link? "maakte activiteit 'Upcoming event'", href: event_path(e)
       assert page.has_no_link? "maakte opgemaakte tekst", href: event_path(e)
@@ -133,7 +133,7 @@ class TrailPageTest < ApplicationSystemTestCase
       b.destroy
       visit trail_path
 
-      assert_text "verwijderde bier"
+      assert_text "verwijderde bier 'Leffe Blond'"
     end
 
     should 'do all' do
@@ -147,7 +147,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       b.destroy
       visit trail_path
-      assert_text "verwijderde bier"
+      assert_text "verwijderde bier 'Leffe Blond'"
       assert page.has_no_link? "maakte bier 'Leffe Blond'", href: beer_path(b)
       assert page.has_no_link? "wijzigde bier 'Leffe Blond'", href: beer_path(b)
     end
@@ -175,6 +175,15 @@ class TrailPageTest < ApplicationSystemTestCase
 
     should 'destroy' do
       b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      Review.create!(user: users(:one), beer: b, rating: 6, description: "Wel okay.").destroy!
+      visit trail_path
+
+      assert_text "verwijderde een review van 'Leffe Blond'"
+      assert_text "verwijderde opgemaakte tekst"
+    end
+
+    should 'do all' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
       r = Review.create!(user: users(:one), beer: b, rating: 6, description: "Wel okay.")
       r.description = "Toch eigenlijk wel vies."
       r.save!
@@ -186,7 +195,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       r.destroy!
       visit trail_path
-      assert_text "verwijderde review"
+      assert_text "verwijderde een review van 'Leffe Blond'"
       assert_text "verwijderde opgemaakte tekst"
       assert page.has_no_link? "reviewde 'Leffe Blond'", href: review_path(r)
       assert page.has_no_link? "maakte opgemaakte tekst", href: review_path(r)
@@ -218,7 +227,7 @@ class TrailPageTest < ApplicationSystemTestCase
       Blogitem.create!(user_id: 3, title: "Gaaf nieuws", body: "Lorem ipsum").destroy
       visit trail_path
 
-      assert_text "verwijderde blog"
+      assert_text "verwijderde blog 'Gaaf nieuws'"
       assert_text "verwijderde opgemaakte tekst"
     end
 
@@ -236,7 +245,7 @@ class TrailPageTest < ApplicationSystemTestCase
       b.destroy
       visit trail_path
 
-      assert_text "verwijderde blog"
+      assert_text "verwijderde blog 'Gaaf nieuws'"
       assert_text "verwijderde opgemaakte tekst"
       assert page.has_no_link? "blogte 'Gaaf nieuws'", href: blogitem_path(b)
       assert page.has_no_link? "maakte opgemaakte tekst", href: blogitem_path(b)
