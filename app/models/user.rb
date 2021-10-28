@@ -2,9 +2,10 @@ class User < ActiveRecord::Base
   include UtilHelper
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :invitable, :database_authenticatable, #:registerable,
+  devise :invitable, #:registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable
+         :lockable, :two_factor_authenticatable,
+         :otp_secret_encryption_key => ENV.fetch("OTP_SECRET") { "d1eb0dd9527e0853e408e30e67a45d60208c209fb2f232514a2071fd5bad6f8d8ca8e1db70196567683d8dd9df9a27e79e6206a82263da5a3e04adcfca218a64" }
   has_paper_trail ignore: %i[sunday_ratio encrypted_password reset_password_token reset_password_sent_at
 remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip
 last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at

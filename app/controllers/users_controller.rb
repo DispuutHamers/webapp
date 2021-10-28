@@ -57,6 +57,27 @@ class UsersController < ApplicationController
     update_object(@user, user_params)
   end
 
+  def edit_two_factor
+    if current_user.otp_required_for_login 
+      render 'users/settings/two_already_enabled'
+    else
+      @secret = User.generate_otp_secret
+      current_user.otp_secret = @secret
+      url = current_user.otp_provisioning_uri("hamers:#{current_user.email}", issuer: "Hamers zonder Sikkel")
+      @qrcode = RQRCode::QRCode.new(url)
+
+      render 'users/settings/edit_two_factor'
+    end
+  end
+
+  def update_two_factor
+    current_user.otp_required_for_login = true
+    current_user.otp_secret = params[:otp_secret]
+    current_user.save!
+
+    redirect_to edit_two_factor_user_path, notice: "2FA staat aan 👍"
+  end
+
   def edit_password
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
