@@ -55,6 +55,8 @@ class TrailPresenter
       # when "Signup" --> Alleen update wordt gebruikt momenteel
     when "Beer"
       "maakte bier '#{beer.name}'"
+    when "Review"
+      "reviewde '#{review.beer.name}'"
     when "ActionText::RichText"
       "maakte opgemaakte tekst"
     else
@@ -75,6 +77,8 @@ class TrailPresenter
       "schreef zich #{status} voor '#{@trail.item.event.title}'"
     when "Beer"
       "wijzigde bier '#{beer.name}'"
+    when "Review"
+      "wijzigde review van '#{review.beer.name}'"
     when "ActionText::RichText"
       "wijzigde opgemaakte tekst"
     else
@@ -141,6 +145,19 @@ class TrailPresenter
       # Delete
       beer_id = JSON.parse(@trail.object_changes)['id'].last
       Beer.with_deleted.find(beer_id)
+    end
+  end
+
+  def review
+    if @trail.item # Create
+      @trail.item
+    elsif @trail.object # Update
+      review_id = JSON.parse(@trail.object)['id']
+      Review.with_deleted.find(review_id)
+    else
+      # Delete
+      review_id = JSON.parse(@trail.object_changes)['id'].last
+      Review.with_deleted.find(review_id)
     end
   end
 

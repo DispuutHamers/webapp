@@ -153,6 +153,48 @@ class TrailPageTest < ApplicationSystemTestCase
     end
   end
 
+  context 'review' do
+    should 'create' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      r = Review.create!(user: users(:one), beer: b, rating: 6, description: "Wel okay.")
+      visit trail_path
+
+      assert page.has_link? "reviewde 'Leffe Blond'", href: review_path(r)
+      assert page.has_link? "maakte opgemaakte tekst", href: review_path(r)
+    end
+
+    should 'update' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      r = Review.create!(user: users(:one), beer: b, rating: 6, description: "Wel okay.")
+      r.description = "Toch eigenlijk wel vies."
+      r.save!
+      visit trail_path
+
+      assert page.has_link? "wijzigde opgemaakte tekst", href: review_path(r)
+    end
+
+    should 'destroy' do
+      b = Beer.create!(name: "Leffe Blond", kind: "Blond", brewer: "Leffe", country: "België", percentage: "6.6 %")
+      r = Review.create!(user: users(:one), beer: b, rating: 6, description: "Wel okay.")
+      r.description = "Toch eigenlijk wel vies."
+      r.save!
+      visit trail_path
+
+      assert page.has_link? "reviewde 'Leffe Blond'", href: review_path(r)
+      assert page.has_link? "maakte opgemaakte tekst", href: review_path(r)
+      assert page.has_link? "wijzigde opgemaakte tekst", href: review_path(r)
+
+      r.destroy!
+      visit trail_path
+      assert_text "verwijderde review"
+      assert_text "verwijderde opgemaakte tekst"
+      assert page.has_no_link? "reviewde 'Leffe Blond'", href: review_path(r)
+      assert page.has_no_link? "maakte opgemaakte tekst", href: review_path(r)
+      assert page.has_no_link? "wijzigde review van 'Leffe Blond'", href: review_path(r)
+      assert page.has_no_link? "wijzigde opgemaakte tekst", href: review_path(r)
+    end
+  end
+
   context 'blog' do
     should 'create' do
       b = Blogitem.create!(user_id: 3, title: 'Gaaf nieuws', body: "Lorem ipsum")
@@ -201,9 +243,5 @@ class TrailPageTest < ApplicationSystemTestCase
       assert page.has_no_link? "schreef aan 'Gaaf nieuws'", href: blogitem_path(b)
       assert page.has_no_link? "wijzigde opgemaakte tekst", href: blogitem_path(b)
     end
-  end
-
-  def teardown
-    take_screenshot
   end
 end
