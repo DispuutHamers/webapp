@@ -127,6 +127,10 @@ GEM
     edge_rider (1.1.0)
       activerecord (>= 3.2)
     erubi (1.10.0)
+    exception_handler (0.8.0.2)
+      bundler
+      rails (>= 4.2.0)
+      responders
     execjs (2.8.1)
     ffi (1.15.4)
     flamegraph (0.9.5)
@@ -384,6 +388,7 @@ DEPENDENCIES
   doorkeeper
   doorkeeper-i18n
   down (~> 5.0)
+  exception_handler
   flamegraph
   gutentag
   honeybadger (~> 4.0)
