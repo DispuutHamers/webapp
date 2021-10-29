@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     @quote = current_user.quotes.build
     @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12) if current_user.otp_required_for_login? 
     @next_event = Event.upcoming.order(date: :asc).first
-    @signup = @next_event&.signups&.where(user: current_user)&.exists?
+    @signup = @next_event&.signups&.where(user: current_user)&.first
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
     @random_beer = Beer.random.take
     @random_quote = Quote.random.take if current_user.otp_required_for_login?

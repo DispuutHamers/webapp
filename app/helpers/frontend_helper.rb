@@ -15,6 +15,10 @@ module FrontendHelper
     "cursor-pointer selectpicker mt-2 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm"
   end
 
+  def checkbox_classes
+    "focus:ring-hamers-red-500 h-4 w-4 text-hamers-red-600 border-gray-300 rounded"
+  end
+
   def submit_classes
     "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-hamers-red-500 hover:bg-hamers-red-600 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
   end

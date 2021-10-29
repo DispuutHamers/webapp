@@ -53,7 +53,13 @@
     </div>
 
     <div class="hidden" data-tabs-target="panel">
-      <%= render 'member_list', users: @usergroup.users %>
+      <% if @usergroup.users.any? %>
+        <%= render 'member_list', users: @usergroup.users %>
+      <% else %>
+        <div class="p-6">
+          Er zijn (nog) geen leden van deze groep.
+        </div>
+      <% end %>
     </div>
     <div class="hidden" data-tabs-target="panel">
       <% if @usergroup.old_members.any? %>

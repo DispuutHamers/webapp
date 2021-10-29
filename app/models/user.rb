@@ -99,6 +99,10 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
     in_group?('Developer')
   end
 
+  def traject?
+    in_group?("Trajectcoördinatoren")
+  end
+
   def lid_since
     groups.with_deleted.where(group_id: 4)&.first&.created_at || "Pleb"
   end

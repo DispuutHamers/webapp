@@ -17,7 +17,7 @@
       <%= f.rich_text_area :content, class: 'form-control', placeholder: "blablabla" %>
       <div class="flex items-start col-span-3 md:justify-left">
         <div class="flex items-center h-5">
-          <%= f.check_box :public, { checked: @public_page.public, class: "focus:ring-hamers-red-500 h-4 w-4 text-hamers-red-600 border-gray-300 rounded" } %>
+          <%= f.check_box :public, { checked: @public_page.public, class: checkbox_classes } %>
         </div>
         <div class="ml-3 text-sm">
           <%= f.label :public, "Ook voor plebs te zien", class: "font-medium text-gray-700" %>

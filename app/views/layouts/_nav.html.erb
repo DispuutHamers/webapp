@@ -14,7 +14,8 @@
 <% user_items = {
   Profiel: { description: "Mijn account", path: current_user, icon: 'user-circle' },
   Instellingen: { description: "Mijn account aanpassen", path: edit_user_path(current_user), icon: 'pencil' },
-  Autorisaties: { description: "Mijn OAuth autorisaties", path: oauth_authorized_applications_path, icon: 'lock-closed' },
+  # Disable for now
+  # Autorisaties: { description: "Mijn OAuth autorisaties", path: oauth_authorized_applications_path, icon: 'lock-closed' },
   Uitloggen: { description: "Uitloggen van de website", path: destroy_user_session_path, icon: 'logout', method: :delete },
 } %>
 
