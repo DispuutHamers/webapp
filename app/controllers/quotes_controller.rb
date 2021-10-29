@@ -20,7 +20,7 @@ class QuotesController < ApplicationController
   def edit
     @quote = Quote.find_by_id!(params[:id])
     @userid = @quote.user_id
-    breadcrumb 'Edit Quote', edit_quote_path(@quote)
+    breadcrumb 'Wijzig citaat', edit_quote_path(@quote)
   end
 
   def update
