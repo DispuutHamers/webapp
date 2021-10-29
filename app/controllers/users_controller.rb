@@ -32,7 +32,11 @@ class UsersController < ApplicationController
   def show
     breadcrumb @user.name, user_path(@user)
 
-    @pagy, @quotes = pagy(@user.quotes.ordered, items: 25, page: params[:page])
+    @pagy, @quotes = if current_user.otp_required_for_login? 
+                        pagy(@user.quotes.ordered, items: 25, page: params[:page])
+                      else
+                        pagy(Quote.where(user_id: 0), page: params[:page])
+                      end
     @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.alid? || @user.in_group?("Lid")
   end
 
@@ -55,6 +59,48 @@ class UsersController < ApplicationController
 
   def update
     update_object(@user, user_params)
+  end
+
+  def edit_two_factor
+    breadcrumb current_user.name, user_path(current_user)
+    breadcrumb 'Update', edit_user_path(current_user)
+    breadcrumb '2FA', edit_two_factor_user_path(current_user)
+
+    if current_user.otp_required_for_login 
+      render 'users/settings/two_already_enabled'
+    else
+      @secret = User.generate_otp_secret
+      current_user.otp_secret = @secret
+      url = current_user.otp_provisioning_uri("hamers:#{current_user.email}", issuer: "Hamers zonder Sikkel")
+      @qrcode = RQRCode::QRCode.new(url)
+
+      render 'users/settings/edit_two_factor'
+    end
+  end
+
+  def update_two_factor
+    breadcrumb current_user.name, user_path(current_user)
+    breadcrumb 'Update', edit_user_path(current_user)
+    breadcrumb '2FA', edit_two_factor_user_path(current_user)
+
+    if params[:commit] == "Enable"
+      current_user.otp_required_for_login = true
+      current_user.otp_secret = params[:otp_secret]
+      @codes = current_user.generate_otp_backup_codes!
+      current_user.save!
+
+      render "users/settings/two_already_enabled", notice: "2FA staat aan 👍"
+    else
+      current_user.otp_required_for_login = false
+      current_user.save!
+
+      @secret = User.generate_otp_secret
+      current_user.otp_secret = @secret
+      url = current_user.otp_provisioning_uri("hamers:#{current_user.email}", issuer: "Hamers zonder Sikkel")
+      @qrcode = RQRCode::QRCode.new(url)
+
+      render "users/settings/edit_two_factor", notice: "2FA staat weer uit 😭"
+    end
   end
 
   def edit_password

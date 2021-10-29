@@ -11,7 +11,11 @@
       </div>
       <div>
         <label for="password" class="sr-only">Password</label>
-        <%= f.password_field :password, autocomplete: 'off', type: 'password', required: true, placeholder: 'Wachtwoord', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
+        <%= f.password_field :password, autocomplete: 'off', type: 'password', required: true, placeholder: 'Wachtwoord', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
+      </div>
+      <div>
+        <label for="otp_attempt" class="sr-only">OTP</label>
+        <%= f.text_field :otp_attempt, autocomplete: 'off', placeholder: 'OTP', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
       </div>
     </div>
 
