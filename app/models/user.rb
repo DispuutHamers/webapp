@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip
 last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at
 remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation
-encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backup_codes otp_secret]
+encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backup_codes otp_secret consumed_timestep]
   acts_as_paranoid ignore: [:weight]
   serialize :otp_backup_codes, Array
   before_save { self.email = email.downcase }
