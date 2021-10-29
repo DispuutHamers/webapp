@@ -1,8 +1,8 @@
 <div class="bg-white overflow-hidden md:shadow md:rounded-lg hidden md:block md:p-4">
-  <div>
-    <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
-    <div class="w-full flex justify-center">
-      <% if @random_quote %>
+  <% if @random_quote %>
+    <div class="mb-2">
+      <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
+      <div class="w-full flex justify-center">
         <div class="w-full flex space-x-3 text-sm">
           <%= link_to @random_quote.user, class: "self-center" do %>
             <% gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full" %>
@@ -17,13 +17,9 @@
             </div>
           </div>
         </div>
-      <% else %>
-        <div class="w-full">
-          <h3 class="text-sm font-medium text-gray-900">Er zijn nog geen Quotes :(</h3>
-        </div>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="h-1/2">
     <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Uitgelicht biertje</h2>
