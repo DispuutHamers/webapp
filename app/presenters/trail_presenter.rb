@@ -22,12 +22,9 @@ class TrailPresenter
     end
   end
 
-  def has_link
-    # Todo: when object is deleted
-    @trail.event != "destroy"
-  end
-
   def link
+    return nil if @trail.event == "destroy"
+
     if @trail.item # update
       # Rich text
       if @trail.item_type == "ActionText::RichText"
@@ -39,7 +36,7 @@ class TrailPresenter
     end
 
     # Everything else
-    root_path
+    nil
   end
 
   private

@@ -8,13 +8,11 @@
       <% @trail.each do |t| %>
         <li class="py-2 px-4 w-full">
           <div class="flex space-x-3">
-            <%= link_to User.find(t.whodunnit), class: "self-center" do %>
-              <% gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" %>
-            <% end %>
+            <%= gravatar_for User.find_by_id(t.whodunnit) %>
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
                 <span class="text-sm font-medium">
-                  <% if t.present.has_link %>
+                  <% if t.present.link %>
                     <%= link_to t.present.message, t.present.link %>
                   <% else %>
                     <%= t.present.message %>

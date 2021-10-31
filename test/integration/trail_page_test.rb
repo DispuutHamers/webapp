@@ -35,11 +35,15 @@ class TrailPageTest < ApplicationSystemTestCase
       q = Quote.create(user: users(:one), text: "Nieuw citaat", reporter: users(:two))
       q.reporter = users(:three)
       q.save!
-      q.destroy
       visit trail_path
 
-      assert page.has_link? "citeerde Hamer Tester", href: root_path
-      assert page.has_link? "wijzigde een citaat van Hamer Tester", href: root_path
+      assert page.has_link? "citeerde Hamer Tester", href: quote_path(q)
+      assert page.has_link? "wijzigde een citaat van Hamer Tester", href: quote_path(q)
+      assert_no_text "verwijderde citaat van Hamer Tester"
+
+      q.destroy
+      visit trail_path
+      assert page.has_no_link? "citeerde Hamer Tester", href: quote_path(q)
       assert_text "verwijderde citaat van Hamer Tester"
     end
   end
