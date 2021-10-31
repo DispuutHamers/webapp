@@ -2,6 +2,7 @@ require 'application_system_test_case'
 
 class TrailPageTest < ApplicationSystemTestCase
   def setup
+    PaperTrail.enabled = true
     sign_in(users(:one))
   end
 
@@ -252,5 +253,9 @@ class TrailPageTest < ApplicationSystemTestCase
       assert page.has_no_link? "schreef aan 'Gaaf nieuws'", href: blogitem_path(b)
       assert page.has_no_link? "wijzigde opgemaakte tekst", href: blogitem_path(b)
     end
+  end
+
+  def teardown
+    PaperTrail.enabled = false
   end
 end
