@@ -75,5 +75,6 @@ module ParamsHelper
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:update, keys: [:name, :anonymous, :batch])
     devise_parameter_sanitizer.permit(:accept_invitation, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:otp_attempt])
   end
 end

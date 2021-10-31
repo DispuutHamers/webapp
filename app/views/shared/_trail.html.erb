@@ -8,7 +8,9 @@
       <% @trail.each do |t| %>
         <li class="py-2 px-4 w-full">
           <div class="flex space-x-3">
-            <%= gravatar_for User.find_by_id(t.whodunnit) %>
+            <%= link_to User.find(t.whodunnit), class: "self-center" do %>
+              <% gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" %>
+            <% end %>
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
                 <span class="text-sm font-medium">

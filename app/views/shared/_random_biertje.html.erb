@@ -1,10 +1,12 @@
 <div class="bg-white overflow-hidden md:shadow md:rounded-lg hidden md:block md:p-4">
-  <div>
-    <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
-    <div class="w-full flex justify-center">
-      <% if @random_quote %>
+  <% if @random_quote %>
+    <div class="mb-2">
+      <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
+      <div class="w-full flex justify-center">
         <div class="w-full flex space-x-3 text-sm">
-          <%= gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full self-center" %>
+          <%= link_to @random_quote.user, class: "self-center" do %>
+            <% gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full" %>
+          <% end %>
           <div class="flex-col flex-1 space-y-1">
             <div class="flex flex-col sm:flex-row space-y-1 justify-between self-center">
               <h3 class="flex-grow font-medium"><%= @random_quote.text %></h3>
@@ -15,13 +17,9 @@
             </div>
           </div>
         </div>
-      <% else %>
-        <div class="w-full">
-          <h3 class="text-sm font-medium text-gray-900">Er zijn nog geen citaten :(</h3>
-        </div>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class="h-1/2">
     <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Uitgelicht biertje</h2>
@@ -63,7 +61,7 @@
                           class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600" do %>
               <!-- Heroicon name: solid/plus -->
               <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                  aria-hidden="true">
+                   aria-hidden="true">
                 <path fill-rule="evenodd"
                       d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
                       clip-rule="evenodd"/>

@@ -1,12 +1,12 @@
-<% if @pagy.page == 1 %>
-    <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-      <%= render 'shared/user_info' %>
-      <%= render 'shared/next_event' %>
-      <%= render 'shared/quote_form' %>
-      <%= render 'shared/trail' unless current_user.alid? %>
-      <%= render 'shared/blog' %>
-      <%= render 'shared/random_biertje' %>
-    </div>
+<% if !@current_user.otp_required_for_login? || @pagy.page == 1 %>
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <%= render 'shared/user_info' %>
+    <%= render 'shared/next_event' %>
+    <%= render 'shared/quote_form' %>
+    <%= render 'shared/trail' unless current_user.alid? %>
+    <%= render 'shared/blog' %>
+    <%= render 'shared/random_biertje' %>
+  </div>
 <% end %>
 
 <div class="relative my-4 -mx-5 sm:-mx-6">
@@ -21,9 +21,15 @@
 </div>
 
 <div class="-mt-6">
-  <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200 mb-6">
-    <%= render @quotes %>
-  </ul>
+  <% if current_user.otp_required_for_login? %>
+    <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200 mb-6">
+      <%= render @quotes %>
+    </ul>
 
-  <%= render 'shared/pagination/default' %>
+    <%= render 'shared/pagination/default' %>
+  <% else %>
+    <div class="flex justify-center font-black m-8">
+      <h1>Ik ben een droeftoeter zonder 2FA, daarom zijn mijn quotes weg.</h1>
+    </div>
+  <% end %>
 </div>

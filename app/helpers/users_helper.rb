@@ -1,5 +1,5 @@
 module UsersHelper
-  def gravatar_for(user, options = {size: 256, class: 'h-6 w-6 rounded-full'})
+  def gravatar_for(user, options = {size: 256, class: 'h-6 w-6 rounded-full self-center'})
     return image_tag('hamer_square_256.png', **options) unless user
 
     gravatar_id = Digest::MD5.hexdigest(user&.email&.downcase || 'system')
