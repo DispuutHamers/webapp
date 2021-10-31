@@ -3,6 +3,7 @@ require 'application_system_test_case'
 class TrailPageTest < ApplicationSystemTestCase
   def setup
     PaperTrail.enabled = true
+    PaperTrail.request.enabled = true
     sign_in(users(:one))
   end
 
@@ -257,5 +258,6 @@ class TrailPageTest < ApplicationSystemTestCase
 
   def teardown
     PaperTrail.enabled = false
+    PaperTrail.request.enabled = false
   end
 end
