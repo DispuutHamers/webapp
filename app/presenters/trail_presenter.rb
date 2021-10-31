@@ -119,67 +119,35 @@ class TrailPresenter
   end
 
   def quote
-    if @trail.item # Create
-      @trail.item
-    elsif @trail.object # Update
-      quote_id = JSON.parse(@trail.object)['id']
-      Quote.with_deleted.find(quote_id)
-    else
-      # Delete
-      quote_id = JSON.parse(@trail.object_changes)['id'].last
-      Quote.with_deleted.find(quote_id)
-    end
+    lookup_object(Quote)
   end
 
   def event
-    if @trail.item # Create
-      @trail.item
-    elsif @trail.object # Update
-      event_id = JSON.parse(@trail.object)['id']
-      Event.with_deleted.find(event_id)
-    else
-      # Delete
-      event_id = JSON.parse(@trail.object_changes)['id'].last
-      Event.with_deleted.find(event_id)
-    end
+    lookup_object(Event)
   end
 
   def beer
-    if @trail.item # Create
-      @trail.item
-    elsif @trail.object # Update
-      beer_id = JSON.parse(@trail.object)['id']
-      Beer.with_deleted.find(beer_id)
-    else
-      # Delete
-      beer_id = JSON.parse(@trail.object_changes)['id'].last
-      Beer.with_deleted.find(beer_id)
-    end
+    lookup_object(Beer)
   end
 
   def review
-    if @trail.item # Create
-      @trail.item
-    elsif @trail.object # Update
-      review_id = JSON.parse(@trail.object)['id']
-      Review.with_deleted.find(review_id)
-    else
-      # Delete
-      review_id = JSON.parse(@trail.object_changes)['id'].last
-      Review.with_deleted.find(review_id)
-    end
+    lookup_object(Review)
   end
 
   def blog
+    lookup_object(Blogitem)
+  end
+
+  def lookup_object(model)
     if @trail.item # Create
       @trail.item
     elsif @trail.object # Update
-      blog_id = JSON.parse(@trail.object)['id']
-      Blogitem.with_deleted.find(blog_id)
+      model_id = JSON.parse(@trail.object)['id']
+      model.with_deleted.find(model_id)
     else
       # Delete
-      blog_id = JSON.parse(@trail.object_changes)['id'].last
-      Blogitem.with_deleted.find(blog_id)
+      model_id = JSON.parse(@trail.object_changes)['id'].last
+      model.with_deleted.find(model_id)
     end
   end
 end
