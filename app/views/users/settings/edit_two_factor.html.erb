@@ -1,0 +1,32 @@
+<% content_for :title do %>
+  Schakel 2FA in
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="-ml-6 my-6 md:col-span-3 md:pr-6">
+    <%= render partial: 'users/settings/menu' %>
+  </aside>
+
+  <div class='md:col-span-9 md:pl-6'>
+    <div class="flex justify-center mt-6">
+      <%== @qrcode.as_svg(
+        color: "000",
+        shape_rendering: "crispEdges",
+        module_size: 4,
+        standalone: true,
+        use_path: true
+      ) %>
+    </div>
+
+    <div class="flex justify-center my-4">
+      <p>Scan de QR code met je 2FA app of gebruik de secret: <%= @secret %> en klik op enable</p>
+    </div>
+
+    <div class="flex justify-center mb-6"> 
+      <%= form_with local: true, data: { turbo: false } do |f| %>
+        <%= f.hidden_field :otp_secret, value: @secret %>
+        <%= f.submit "Enable", class: submit_classes %>
+      <% end %>
+    </div>
+  </div>
+</div>

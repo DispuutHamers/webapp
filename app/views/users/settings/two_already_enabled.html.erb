@@ -1,0 +1,28 @@
+<% content_for :title do %>
+  Schakel 2FA in
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="-ml-6 my-6 md:col-span-3 md:pr-6">
+    <%= render partial: 'users/settings/menu' %>
+  </aside>
+
+  <div class='md:col-span-9 md:pl-6'>
+    <div class="flex justify-center mt-6">
+      2FA staat aan 👍
+    </div>
+
+    <% if @codes %>
+      <div class="flex justify-center my-4">
+        <p class="m-4">Sla de volgende back up codes op om toch je account in te kunnen als je je 2FA device kwijtraakt:</p>
+        <p class="m-4"><%= @codes.join(", ") %></p>
+      </div>
+    <% end %>
+
+    <div class="flex justify-center my-6"> 
+      <%= form_with local: true, data: { turbo: false } do |f| %>
+        <%= f.submit "Disable", class: submit_classes %>
+      <% end %>
+    </div>
+  </div>
+</div>

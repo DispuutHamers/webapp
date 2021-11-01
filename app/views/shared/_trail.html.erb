@@ -8,7 +8,9 @@
         <li class="py-2 px-4 w-full">
           <div class="flex space-x-3">
             <% if t.whodunnit %>
-              <%= gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" %>
+              <%= link_to User.find(t.whodunnit), class: "self-center" do %>
+                <% gravatar_for User.find(t.whodunnit), class: "h-6 w-6 rounded-full" %>
+              <% end %>
             <% end %>
             <% case t.item_type %>
             <% when "Quote" %>
