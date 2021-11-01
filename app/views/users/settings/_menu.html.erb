@@ -1,12 +1,12 @@
 <nav class="space-y-1">
 
   <% items = {
-    Profiel: { path: edit_user_path(current_user), icon: 'user' },
+    Profiel: { path: edit_user_path(@user), icon: 'user' },
     Foto: { path: "https://gravatar.com/emails", icon: 'user-circle' },
-    Wachtwoord: { path: edit_password_user_path(current_user), icon: 'lock-closed' },
-    '2FA': { path: edit_two_factor_user_path(current_user), icon: 'sparkles' },
-    'API-sleutels': { path: user_api_keys_path(current_user), icon: 'key' },
-    'Groepen': { path: edit_usergroups_user_path(current_user), icon: 'user-group' }
+    Wachtwoord: { path: edit_password_user_path(@user), icon: 'lock-closed' },
+    '2FA': { path: edit_two_factor_user_path(@user), icon: 'sparkles' },
+    'API-sleutels': { path: user_api_keys_path(@user), icon: 'key' },
+    'Groepen': { path: edit_usergroups_user_path(@user), icon: 'user-group' }
   } %>
 
   <div class="hidden md:block">
