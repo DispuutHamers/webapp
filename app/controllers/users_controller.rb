@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :user, only: [:show, :edit, :edit_usergroups, :edit_password, :update, :destroy]
+  before_action :user, only: [:show, :edit, :edit_usergroups, :edit_password, :update, :destroy, :edit_two_factor, :update_two_factor]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy]
   breadcrumb 'Leden', :users_path
@@ -62,16 +62,16 @@ class UsersController < ApplicationController
   end
 
   def edit_two_factor
-    breadcrumb current_user.name, user_path(current_user)
-    breadcrumb 'Update', edit_user_path(current_user)
-    breadcrumb '2FA', edit_two_factor_user_path(current_user)
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Update', edit_user_path(@user)
+    breadcrumb '2FA', edit_two_factor_user_path(@user)
 
-    if current_user.otp_required_for_login 
+    if @user.otp_required_for_login 
       render 'users/settings/two_already_enabled'
     else
       @secret = User.generate_otp_secret
-      current_user.otp_secret = @secret
-      url = current_user.otp_provisioning_uri("hamers:#{current_user.email}", issuer: "Hamers zonder Sikkel")
+      @user.otp_secret = @secret
+      url = @user.otp_provisioning_uri("hamers:#{@_user.email}", issuer: "Hamers zonder Sikkel")
       @qrcode = RQRCode::QRCode.new(url)
 
       render 'users/settings/edit_two_factor'
@@ -79,24 +79,24 @@ class UsersController < ApplicationController
   end
 
   def update_two_factor
-    breadcrumb current_user.name, user_path(current_user)
-    breadcrumb 'Update', edit_user_path(current_user)
-    breadcrumb '2FA', edit_two_factor_user_path(current_user)
+    breadcrumb @user.name, user_path(@user)
+    breadcrumb 'Update', edit_user_path(@user)
+    breadcrumb '2FA', edit_two_factor_user_path(@user)
 
     if params[:commit] == "Enable"
-      current_user.otp_required_for_login = true
-      current_user.otp_secret = params[:otp_secret]
-      @codes = current_user.generate_otp_backup_codes!
-      current_user.save!
+      @user.otp_required_for_login = true
+      @user.otp_secret = params[:otp_secret]
+      @codes = @user.generate_otp_backup_codes!
+      @user.save!
 
       render "users/settings/two_already_enabled", notice: "2FA staat aan 👍"
     else
-      current_user.otp_required_for_login = false
-      current_user.save!
+      @user.otp_required_for_login = false
+      @user.save!
 
       @secret = User.generate_otp_secret
-      current_user.otp_secret = @secret
-      url = current_user.otp_provisioning_uri("hamers:#{current_user.email}", issuer: "Hamers zonder Sikkel")
+      @user.otp_secret = @secret
+      url = @user.otp_provisioning_uri("hamers:#{@user.email}", issuer: "Hamers zonder Sikkel")
       @qrcode = RQRCode::QRCode.new(url)
 
       render "users/settings/edit_two_factor", notice: "2FA staat weer uit 😭"
