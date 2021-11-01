@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     else
       @secret = User.generate_otp_secret
       @user.otp_secret = @secret
-      url = @user.otp_provisioning_uri("hamers:#{@_user.email}", issuer: "Hamers zonder Sikkel")
+      url = @user.otp_provisioning_uri("hamers:#{@user.email}", issuer: "Hamers zonder Sikkel")
       @qrcode = RQRCode::QRCode.new(url)
 
       render 'users/settings/edit_two_factor'
