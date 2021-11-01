@@ -10,7 +10,7 @@ class UsergroupsController < ApplicationController
   end
 
   def show
-    breadcrumb @usergroup.name, group_path(@usergroup)
+    breadcrumb @usergroup.name, usergroup_path(@usergroup)
   end
 
   def new
@@ -21,14 +21,14 @@ class UsergroupsController < ApplicationController
   def create
     @usergroup = Usergroup.new(usergroup_params)
     if @usergroup.save
-      redirect_to group_path(@usergroup)
+      redirect_to usergroup_path(@usergroup)
     else
       render 'usergroups/new'
     end
   end
 
   def edit
-    breadcrumb @usergroup.name, group_path(@usergroup)
+    breadcrumb @usergroup.name, usergroup_path(@usergroup)
     breadcrumb "Aanpassen", edit_usergroup_path(@usergroup)
   end
 
