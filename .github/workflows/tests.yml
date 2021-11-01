@@ -52,3 +52,40 @@ jobs:
 
       - name: Run tests
         run: bundle exec rails test:all
+
+  rubocop:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.0.2']
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      - name: Run RuboCop
+        continue-on-error: true
+        run: bundle exec rubocop --parallel
+
+  brakeman:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['3.0.2']
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+
+      - name: Run brakeman
+        continue-on-error: true
+        run: bundle exec brakeman
