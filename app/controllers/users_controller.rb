@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def show
     breadcrumb @user.name, user_path(@user)
 
-    @pagy, @quotes = if current_user.otp_required_for_login? 
+    @pagy, @quotes = if current_user.can_view_quotes?
                         pagy(@user.quotes.ordered, items: 25, page: params[:page])
                       else
                         pagy(Quote.where(user_id: 0), page: params[:page])

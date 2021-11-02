@@ -21,7 +21,7 @@
 </div>
 
 <div class="-mt-6">
-  <% if current_user.otp_required_for_login? %>
+  <% if @quotes %>
     <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200 mb-6">
       <%= render @quotes %>
     </ul>

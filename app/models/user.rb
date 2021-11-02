@@ -107,6 +107,10 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
     groups.with_deleted.where(group_id: 4)&.first&.created_at || "Pleb"
   end
 
+  def can_view_quotes?
+    otp_required_for_login? || Rails.env.development?
+  end
+
   def average_review_grade
     weight&.round(2) || "Nog onbekend"
   end
