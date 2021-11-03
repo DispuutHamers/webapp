@@ -34,7 +34,7 @@
                       <% end %>
                     </span>
                   </div>
-                  <% if event.location %>
+                  <% unless event.location.blank? %>
                     <div class="flex">
                       <%= heroicon('location-marker', class_name: "flex-shrink-0 mr-1 ml-2 h-4 w-4 text-gray-400 self-center") %>
                       <span><%= event.location %></span>
