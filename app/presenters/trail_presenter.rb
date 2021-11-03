@@ -7,7 +7,7 @@ class TrailPresenter
     @trail = trail
   end
 
-  def username
+  def name
     user&.name || "webapp"
   end
 
@@ -25,13 +25,8 @@ class TrailPresenter
   def link
     return nil if @trail.event == "destroy"
 
-    if @trail.item # update
-      # Rich text
-      if @trail.item_type == "ActionText::RichText"
-        if @trail.item&.record
-          return @trail.item.record
-        end
-      end
+    if @trail.item
+      return @trail.item.record if @trail.item_type == "ActionText::RichText" && @trail.item&.record
       return @trail.item
     end
 
