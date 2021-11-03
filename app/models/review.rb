@@ -7,6 +7,7 @@ class Review < ActiveRecord::Base
   validates :beer, presence: true
   validates :rating, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 10, only_integer: true }
   after_initialize :set_proefdatum
+  after_save { self.beer.update_cijfer }
 
   has_rich_text :description
 
