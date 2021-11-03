@@ -8,6 +8,6 @@ every :monday, at: "1900" do
   runner 'UtilHelper.remind_drink'
 end
 
-every :day, at: '0605' do
+every :week, at: '0605' do
   runner 'UtilHelper.cleanup'
 end
