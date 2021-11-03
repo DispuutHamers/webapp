@@ -11,7 +11,7 @@ Hamers::Application.routes.draw do
       resources :brews, except: [:index]
     end
   end
-  get '/mystickers' => 'stickers#personal', as: 'personal_sticker'
+  get '/mystickers' => 'stickers#personal', as: 'personal_stickers'
 
   resources :news
   get '/images' => 'albums#index', as: 'photo'

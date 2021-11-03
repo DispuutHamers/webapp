@@ -10,6 +10,7 @@
 <% end %>
 
 <% content_for :options do %>
+  <%= link_to 'Mijn stickers', personal_stickers_path, class: button_classes %>
   <%= link_to 'Sticker plakken', new_sticker_path, class: button_classes %>
 <% end %>
 
