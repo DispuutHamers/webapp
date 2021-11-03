@@ -3,11 +3,15 @@
     Welkom <span class="text-hamers-red-400"><%= current_user.name %></span>
   </h2>
   <p class="block font-semibold text-justify">
-            Je bent <span class="text-hamers-red-400"><%= current_user.quotes.count %></span> keer geciteerd,
-            hebt <span class="text-hamers-red-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
-            <span class="text-hamers-red-400"><%= current_user.blogitems.count %></span> blogs geschreven en
-            bent bij <span
-    class="text-hamers-red-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
-            borrels geweest.
-          </p>
+    Je bent
+    <% if current_user.alid? %>
+      <span class="text-hamers-red-400">feut</span>,
+    <% end %>
+    <span class="text-hamers-red-400"><%= current_user.quotes.count %></span> keer geciteerd,
+    hebt <span class="text-hamers-red-400"><%= current_user.reviews.count %></span> biertjes gereviewd,
+    <span class="text-hamers-red-400"><%= current_user.stickers.count %></span> stickers geplakt,
+    <span class="text-hamers-red-400"><%= current_user.blogitems.count %></span> blogs geschreven en
+    bent bij <span class="text-hamers-red-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
+    borrels geweest.
+  </p>
 </div>
