@@ -26,7 +26,7 @@
     <div class="flex justify-center h-full">
       <% if @random_beer %>
         <div class="flex-shrink-0">
-          <% if @random_beer.image.attached? %>
+          <% if @random_beer.image.attached? && @beer.image.representable? %>
             <%= image_tag @random_beer.image, class: "h-40 rounded" %>
           <% else %>
             <%= image_tag 'beer_splash.jpg', class: "h-40 rounded" %>
