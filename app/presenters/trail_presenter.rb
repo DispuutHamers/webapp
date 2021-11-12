@@ -49,7 +49,7 @@ class TrailPresenter
     when "Review"
       "reviewde '#{review.beer.name}'"
     when "ActionText::RichText"
-      "maakte opgemaakte tekst"
+      "maakte beschrijving #{action_text_title}"
     else
       "maakte #{type}"
     end
@@ -71,7 +71,7 @@ class TrailPresenter
     when "Review"
       "wijzigde review van '#{review.beer.name}'"
     when "ActionText::RichText"
-      "wijzigde opgemaakte tekst"
+      "wijzigde beschrijving #{action_text_title}"
     else
       "wijzigde #{type}"
     end
@@ -89,6 +89,8 @@ class TrailPresenter
       "verwijderde bier '#{beer.name}'"
     when "Review"
       "verwijderde een review van '#{review.beer.name}'"
+    when "ActionText::RichText"
+      "verwijderde beschrijving #{action_text_title}"
     else
       "verwijderde #{type}"
     end
@@ -99,18 +101,22 @@ class TrailPresenter
   end
 
   def type
-    case @trail.item_type
-    when "Event"
-      "activiteit"
-    when "Beer"
-      "bier"
-    when "Blogitem"
-      "blog"
-    when "ActionText::RichText"
-      "opgemaakte tekst"
-    else
-      @trail.item_type.downcase
-    end
+    @trail.item_type.downcase
+  end
+
+  def action_text_title
+    return nil unless @trail.item&.record
+
+    "van " + case @trail.item_type
+             when Blogitem
+               "blog '#{blog.title}'"
+             when Event
+               "activiteit '#{event.title}'"
+             when Review
+               "een review van #{review.beer.name}"
+             else
+               "iets?"
+             end
   end
 
   def quote
