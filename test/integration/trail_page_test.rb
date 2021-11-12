@@ -76,7 +76,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_text "verwijderde activiteit 'Upcoming event'"
-      assert_text "verwijderde beschrijving van een activiteit"
+      assert_text "verwijderde beschrijving van 'Upcoming event'"
     end
 
     should 'do all' do
@@ -94,7 +94,7 @@ class TrailPageTest < ApplicationSystemTestCase
       e.destroy
       visit trail_path
       assert_text "verwijderde activiteit 'Upcoming event'"
-      assert_text "verwijderde beschrijving van een activiteit"
+      assert_text "verwijderde beschrijving van 'Upcoming event'"
       assert page.has_no_link? "maakte activiteit 'Upcoming event'", href: event_path(e)
       assert page.has_no_link? "maakte beschrijving van activiteit 'Upcoming eventgs'", href: event_path(e)
       assert page.has_no_link? "wijzigde activiteit 'Upcoming event'", href: event_path(e)
