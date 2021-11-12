@@ -132,7 +132,7 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
     return unless birthday
 
     ics = Icalendar::Event.new
-    ics.dtstart = Date.parse(self.next_birthday).strftime("%Y-%m-%d")
+    ics.dtstart = Icalendar::Values::Date.new(next_birthday)
     ics.summary = "#{name} jarig (#{birthday.strftime('%Y')})"
 
     ics
