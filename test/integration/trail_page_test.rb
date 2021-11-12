@@ -57,7 +57,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert page.has_link? "maakte activiteit 'Upcoming event'", href: event_path(e)
-      assert page.has_link? "maakte beschrijving van 'Upcoming event'", href: event_path(e)
+      assert page.has_link? "maakte beschrijving van activiteit 'Upcoming event'", href: event_path(e)
     end
 
     should 'update' do
@@ -68,7 +68,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert page.has_link? "wijzigde activiteit 'Upcoming event'", href: event_path(e)
-      assert page.has_link? "wijzigde beschrijving van 'Upcoming event'", href: event_path(e)
+      assert page.has_link? "wijzigde beschrijving van activiteit 'Upcoming event'", href: event_path(e)
     end
 
     should 'destroy' do
@@ -76,7 +76,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_text "verwijderde activiteit 'Upcoming event'"
-      assert_text "verwijderde beschrijving van 'Upcoming event'"
+      assert_text "verwijderde beschrijving van activiteit 'Upcoming event'"
     end
 
     should 'do all' do
@@ -94,11 +94,11 @@ class TrailPageTest < ApplicationSystemTestCase
       e.destroy
       visit trail_path
       assert_text "verwijderde activiteit 'Upcoming event'"
-      assert_text "verwijderde beschrijving van"
+      assert_text "verwijderde beschrijving van activiteit 'Upcoming event'"
       assert page.has_no_link? "maakte activiteit 'Upcoming event'", href: event_path(e)
-      assert page.has_no_link? "maakte beschrijving van", href: event_path(e)
+      assert page.has_no_link? "maakte beschrijving van activiteit 'Upcoming eventgs'", href: event_path(e)
       assert page.has_no_link? "wijzigde activiteit 'Upcoming event'", href: event_path(e)
-      assert page.has_no_link? "wijzigde beschrijving van 'Upcoming event'", href: event_path(e)
+      assert page.has_no_link? "wijzigde beschrijving van activiteit 'Upcoming event'", href: event_path(e)
     end
   end
 

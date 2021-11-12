@@ -105,14 +105,17 @@ class TrailPresenter
   end
 
   def action_text_title
-    return nil unless @trail.item&.record
+    unless @trail.item&.record
+      pp @trail.item
+      return nil
+    end
 
-    "van " + case @trail.item_type
-             when Blogitem
+    "van " + case @trail.item.record_type
+             when "Blogitem"
                "blog '#{blog.title}'"
-             when Event
+             when "Event"
                "activiteit '#{event.title}'"
-             when Review
+             when "Review"
                "een review van #{review.beer.name}"
              else
                "iets?"
@@ -140,6 +143,13 @@ class TrailPresenter
   end
 
   def lookup_object(model)
+    # We are talking about a possibly deleted object,
+    # referenced trough a PaperTrail version object
+    if defined? @trail.item.record
+      return @trail.item.record
+    end
+
+    # Normal object
     if @trail.item # Create
       @trail.item
     elsif @trail.object # Update
