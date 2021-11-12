@@ -104,15 +104,22 @@ class TrailPresenter
     @trail.item_type.downcase
   end
 
+  def action_text_type
+    type = JSON.parse(@trail.object)['record_type'].downcase
+
+    return "activiteit" if type == "event"
+    type
+  end
+
   def action_text_title
     unless @trail.item&.record
-      pp @trail.item
+      return "van een #{action_text_type}" if @trail.object
       return nil
     end
 
     "van " + case @trail.item.record_type
              when "Blogitem"
-               "blog '#{blog.title}'"
+               "blogitem '#{blog.title}'"
              when "Event"
                "activiteit '#{event.title}'"
              when "Review"

@@ -76,7 +76,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_text "verwijderde activiteit 'Upcoming event'"
-      assert_text "verwijderde beschrijving van activiteit 'Upcoming event'"
+      assert_text "verwijderde beschrijving van een activiteit"
     end
 
     should 'do all' do
@@ -87,14 +87,14 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert page.has_link? "maakte activiteit 'Upcoming event'", href: event_path(e)
-      assert page.has_link? "maakte beschrijving van", href: event_path(e)
+      assert page.has_link? "maakte beschrijving van activiteit 'Upcoming event'", href: event_path(e)
       assert page.has_link? "wijzigde activiteit 'Upcoming event'", href: event_path(e)
-      assert page.has_link? "wijzigde beschrijving van", href: event_path(e)
+      assert page.has_link? "wijzigde beschrijving van activiteit 'Upcoming event'", href: event_path(e)
 
       e.destroy
       visit trail_path
       assert_text "verwijderde activiteit 'Upcoming event'"
-      assert_text "verwijderde beschrijving van activiteit 'Upcoming event'"
+      assert_text "verwijderde beschrijving van een activiteit"
       assert page.has_no_link? "maakte activiteit 'Upcoming event'", href: event_path(e)
       assert page.has_no_link? "maakte beschrijving van activiteit 'Upcoming eventgs'", href: event_path(e)
       assert page.has_no_link? "wijzigde activiteit 'Upcoming event'", href: event_path(e)
@@ -188,7 +188,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_text "verwijderde een review van 'Leffe Blond'"
-      assert_text "verwijderde beschrijving van een review van 'Leffe Blond'"
+      assert_text "verwijderde beschrijving van een review"
     end
 
     should 'do all' do
@@ -237,7 +237,7 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert_text "verwijderde blog 'Gaaf nieuws'"
-      assert_text "verwijderde beschrijving van 'Gaaf nieuws'"
+      assert_text "verwijderde beschrijving van een blogitem"
     end
 
     should 'do all' do
@@ -249,7 +249,7 @@ class TrailPageTest < ApplicationSystemTestCase
       assert page.has_link? "blogte 'Gaaf nieuws'", href: blogitem_path(b)
       assert page.has_link? "maakte beschrijving van", href: blogitem_path(b)
       assert page.has_link? "schreef aan 'Gaaf nieuws'", href: blogitem_path(b)
-      assert page.has_link? "wijzigde beschrijving van 'Gaaf nieuws'", href: blogitem_path(b)
+      assert page.has_link? "wijzigde beschrijving van blogitem 'Gaaf nieuws'", href: blogitem_path(b)
 
       b.destroy
       visit trail_path
@@ -259,7 +259,7 @@ class TrailPageTest < ApplicationSystemTestCase
       assert page.has_no_link? "blogte 'Gaaf nieuws'", href: blogitem_path(b)
       assert page.has_no_link? "maakte beschrijving van", href: blogitem_path(b)
       assert page.has_no_link? "schreef aan 'Gaaf nieuws'", href: blogitem_path(b)
-      assert page.has_no_link? "wijzigde beschrijving van 'Gaaf nieuws'", href: blogitem_path(b)
+      assert page.has_no_link? "wijzigde beschrijving van een blogitem'", href: blogitem_path(b)
     end
   end
 
