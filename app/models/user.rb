@@ -48,7 +48,7 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
     'Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.'
   end
 
-  def signup(event, status, reason)
+  def signup(event, status, reason = "")
     return if event.deadline < Time.now
     return if event.attendance && status == "0" && reason.length < 6
 
@@ -105,6 +105,10 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
 
   def lid_since
     groups.with_deleted.where(group_id: 4)&.first&.created_at || "Pleb"
+  end
+
+  def can_view_quotes?
+    otp_required_for_login? || Rails.env.development?
   end
 
   def average_review_grade

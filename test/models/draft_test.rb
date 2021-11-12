@@ -5,3 +5,4 @@ class DraftTest < ActiveSupport::TestCase
   #   assert true
   # end
 end
+

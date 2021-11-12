@@ -39,7 +39,7 @@ class SignupsControllerTest < ActionController::TestCase
 
   test "should update signup" do
     patch :update, params: { id: @signup, signup: { event_id: @signup.event_id, reason: @signup.reason, status: @signup.status, user_id: @signup.user_id } }
-    assert_redirected_to root_path
+    assert_redirected_to signup_path(@signup)
   end
 
   test "should destroy signup" do
