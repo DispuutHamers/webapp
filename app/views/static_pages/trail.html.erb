@@ -34,7 +34,7 @@
       </div>
       <div class="divide-y divide-hamers-red-500 px-8 text-sm font-medium">
         <% t.changeset.each do |c, v| %>
-          <% next if c == 'updated_at' || c == 'created_at' %>
+          <% next if c == 'updated_at' || c == 'created_at' || v.all? { |e| e.blank? } %>
           <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt class="text-gray-600">
               <%= c.to_s %>
