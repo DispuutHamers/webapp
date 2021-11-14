@@ -47,6 +47,8 @@
 
       <%= render "layouts/footer" %>
     </div>
-    <%= render 'layouts/alert' %>
+    <%= turbo_frame_tag "flash" do %>
+      <%= render 'layouts/alert' %>
+    <% end %>
   </body>
 </html>
