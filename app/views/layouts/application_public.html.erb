@@ -47,6 +47,9 @@
 
       <%= render 'layouts/footer' %>
       <%= render 'layouts/debug' if Rails.env.development? && params[:debug] == "true" %>
+      <%= turbo_frame_tag "flash" do %>
+        <%= render 'layouts/alert' %>
+      <% end %>
     </div>
   </body>
 </html>

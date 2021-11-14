@@ -5,8 +5,8 @@ module UtilHelper
       flash[:success] = "#{obj.class.name} succesvol aangemaakt."
       redirect_to obj
     else
-      flash[:error] = "Er ging iets stuk"
-      redirect_to root_path
+      flash.now[:error] =  obj.errors.full_messages.join('<br>')
+      render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
     end
   end
 
@@ -21,8 +21,8 @@ module UtilHelper
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else
-      flash[:error] = obj.errors.full_messages.join('<br>')
-      redirect_to polymorphic_url(obj, action: :edit)
+      flash.now[:error] =  obj.errors.full_messages.join('<br>')
+      render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
     end
   end
 
@@ -32,8 +32,8 @@ module UtilHelper
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else
-      flash[:error] = "Er ging iets stuk"
-      redirect_to root_path
+      flash.now[:error] =  obj.errors.full_messages.join('<br>')
+      render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
     end
   end
 
