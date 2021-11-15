@@ -1,4 +1,3 @@
-#entry point for beer resource
 class BeersController < ApplicationController
   before_action :set_beer, only: [:reviews, :show, :edit, :update, :destroy]
   before_action :ilid?, except: [:index, :show, :search]
@@ -9,23 +8,8 @@ class BeersController < ApplicationController
   # GET /beers
   # GET /beers.json
   def index
-    sorting = params[:sort] if ALLOWED_SORTING_FIELDS.include?(params[:sort])
-    ordering = params[:order] if %w[asc desc].include?(params[:order])
-    @sp = params[:search] || ""
-    if sorting == "review_count"
-      @pagy, @beers = pagy(BeerFilter.new.filter(Beer.all, @sp)
-                                     .left_joins(:reviews)
-                                     .group(:beer_id)
-                                     .order("count(reviews.id) #{ordering}"),
-                           items: 16,
-                           page: params[:page])
-    else
-      sorting = "name" unless sorting
-      ordering = "ASC" unless ordering
-      @pagy, @beers = pagy(BeerFilter.new.filter(Beer.all, @sp).order("#{sorting} #{ordering}"),
-                           items: 16,
-                           page: params[:page])
-    end
+    @search = Beer.ransack(params[:search])
+    @pagy, @beers = pagy(@search.result, items: 16, page: params[:page])
   end
 
   # GET /beers/1

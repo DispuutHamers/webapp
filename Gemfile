@@ -29,8 +29,9 @@ gem 'paranoia'
 gem 'rack-cors', require: 'rack/cors'
 gem 'rack-mini-profiler'
 gem 'rails'
-gem 'rails_heroicons'
 gem 'rails-i18n'
+gem 'rails_heroicons'
+gem 'ransack'
 gem 'rb-readline'
 gem 'redcarpet'
 gem 'rqrcode'
@@ -43,10 +44,6 @@ gem 'tzinfo'
 gem 'uglifier'
 gem "webpacker"
 gem 'wine_bouncer'
-
-group :doc do
-  gem 'sdoc', require: false
-end
 
 group :production, :development do
   gem 'mysql2'

@@ -3,11 +3,9 @@
 <% end %>
 
 <% content_for :options do %>
-    <%= link_to 'Nieuw bier', new_beer_path, class: button_classes %>
-  <%= form_tag beers_path, class: "inline-flex rounded-md", method: :get do %>
-    <%= text_field_tag :search, @sp,
-                       placeholder: 'Vind hier, je bier.',
-                       class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md' %>
+  <%= link_to 'Nieuw bier', new_beer_path, class: button_classes %>
+  <%= search_form_for @search, class: "inline-flex rounded-md" do |f| %>
+    <%= f.search_field :name_or_kind_or_brewer_or_country_cont, placeholder: 'Vind hier, je bier.', class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md' %>
     <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
   <% end %>
 <% end %>
