@@ -33,6 +33,9 @@ Hamers::Application.routes.draw do
     member do
       get :reviews
     end
+    collection do
+      get :table
+    end
   end
 
   resources :events do

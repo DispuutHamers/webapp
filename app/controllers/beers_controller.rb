@@ -9,6 +9,10 @@ class BeersController < ApplicationController
   # GET /beers.json
   def index
     @search = Beer.ransack(params[:search])
+  end
+
+  def table
+    @search = Beer.ransack(params[:search])
     @pagy, @beers = pagy(@search.result, items: 16, page: params[:page])
   end
 
