@@ -276,7 +276,6 @@ GEM
       activesupport (>= 5.2.4)
       i18n
     rb-readline (0.5.5)
-    rdoc (6.3.2)
     redcarpet (3.5.1)
     redis (4.5.1)
     regexp_parser (2.1.1)
@@ -314,8 +313,6 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sdoc (2.2.0)
-      rdoc (>= 5.0)
     secure_headers (6.3.3)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -428,7 +425,6 @@ DEPENDENCIES
   rubocop
   rubocop-performance
   rubocop-rails
-  sdoc
   secure_headers (~> 6.3)
   shoulda-context
   sprockets
