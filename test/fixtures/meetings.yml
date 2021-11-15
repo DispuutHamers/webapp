@@ -1,10 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  agenda: Agenda
   date: 2020-01-10 21:00:00
 
 two:
-  agenda: Agenda
   date: 2011-06-10 18:00:00
 
