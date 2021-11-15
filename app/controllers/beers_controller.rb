@@ -12,7 +12,6 @@ class BeersController < ApplicationController
   end
 
   def table
-    sleep 5
     @search = Beer.ransack(params[:search])
     @pagy, @beers = pagy(@search.result, items: 16, page: params[:page])
   end
