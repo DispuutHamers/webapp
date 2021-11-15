@@ -263,11 +263,10 @@ class TrailPageTest < ApplicationSystemTestCase
 
   context 'meeting' do
     should 'create' do
-      b = Meeting.create!(onderwerp: "ALV 1", date: Time.today)
+      m = Meeting.create!(onderwerp: "ALV 1", date: Time.zone.today)
       visit trail_path
 
-      assert page.has_link? "blogte 'Gaaf nieuws'", href: blogitem_path(b)
-      assert page.has_link? "maakte", href: blogitem_path(b)
+      assert page.has_link? "maakte meeting", href: meeting_path(m)
     end
   end
 

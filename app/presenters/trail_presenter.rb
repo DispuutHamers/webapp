@@ -124,16 +124,18 @@ class TrailPresenter
       return nil
     end
 
-    "van " + case @trail.item.record_type
-             when "Blogitem"
-               "blogitem '#{blog.title}'"
-             when "Event"
-               "activiteit '#{event.title}'"
-             when "Review"
-               "een review van #{review.beer.name}"
-             else
-               "iets?"
-             end
+    case @trail.item.record_type
+    when "Blogitem"
+      "blogitem '#{blog.title}'"
+    when "Event"
+      "activiteit '#{event.title}'"
+    when "Review"
+      "een review van #{review.beer.name}"
+    when "Meeting"
+    #  TODO: If agenda/notes
+    else
+      "iets?"
+    end
   end
 
   def quote
