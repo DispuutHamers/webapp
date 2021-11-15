@@ -49,7 +49,7 @@ class TrailPresenter
     when "Review"
       "reviewde '#{review.beer.name}'"
     when "ActionText::RichText"
-      "maakte beschrijving #{action_text_title}"
+      "maakte #{action_text_title}"
     else
       "maakte #{type}"
     end
@@ -71,7 +71,7 @@ class TrailPresenter
     when "Review"
       "wijzigde review van '#{review.beer.name}'"
     when "ActionText::RichText"
-      "wijzigde beschrijving #{action_text_title}"
+      "wijzigde #{action_text_title}"
     else
       "wijzigde #{type}"
     end
@@ -90,7 +90,7 @@ class TrailPresenter
     when "Review"
       "verwijderde een review van '#{review.beer.name}'"
     when "ActionText::RichText"
-      "verwijderde beschrijving #{action_text_title}"
+      "verwijderde #{action_text_title}"
     else
       "verwijderde #{type}"
     end
@@ -110,6 +110,9 @@ class TrailPresenter
     if type == "Event"
       object_id = JSON.parse(@trail.object)['record_id']
       return "'#{type.constantize.with_deleted.find(object_id).title}'"
+    elsif type == "Meeting"
+      object_id = JSON.parse(@trail.object)['record_id']
+      return "'#{type.constantize.with_deleted.find(object_id).onderwerp}'"
     end
 
     "een #{type.downcase}"
@@ -151,6 +154,10 @@ class TrailPresenter
 
   def blog
     lookup_object(Blogitem)
+  end
+
+  def meeting
+    lookup_object(Meeting)
   end
 
   def lookup_object(model)
