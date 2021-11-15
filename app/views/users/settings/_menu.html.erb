@@ -25,15 +25,11 @@
     <% end %>
   </div>
 
-  <div class="md:hidden ml-6">
+  <div class="md:hidden ml-6" data-controller="select-menu">
     <label for="selected-tab" class="sr-only">Select a tab</label>
-    <select id="selected-tab" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
+    <select data-action="change->select-menu#run" data-select-menu-target="select" id="selected-tab" class="mt-1 w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
       <% items.each do |name, options| %>
-        <option <%= 'selected' if current_page?(options[:path]) %>
-                data-controller="select-menu"
-                data-action="click->select-menu#run"
-                data-select-menu-target="option"
-                data-url="<%= options[:path] %>">
+        <option value="<%= options[:path] %>" <%= 'selected' if current_page?(options[:path]) %>>
           <%= name %>
         </option>
       <% end %>
