@@ -10,4 +10,8 @@
   <% end %>
 <% end %>
 
-<%= render 'table' %>
+<turbo-frame id="beer_table" src="/beers/table">
+  <div class="flex justify-center">
+    <%= image_tag "toast.gif"%>
+  </div>
+</turbo-frame>
