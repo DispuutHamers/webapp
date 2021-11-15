@@ -271,6 +271,10 @@ GEM
       thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.6)
+    ransack (2.4.2)
+      activerecord (>= 5.2.4)
+      activesupport (>= 5.2.4)
+      i18n
     rb-readline (0.5.5)
     rdoc (6.3.2)
     redcarpet (3.5.1)
@@ -416,6 +420,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n
   rails_heroicons
+  ransack
   rb-readline
   redcarpet
   redis (~> 4.0)
