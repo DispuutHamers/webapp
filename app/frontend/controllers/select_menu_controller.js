@@ -1,13 +1,11 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["option"]
-
+  static targets = ["select"]
   connect() {
-
   }
 
   run() {
-    Turbo.visit.href = this.optionTarget.dataset.url
+    Turbo.visit(this.selectTarget.value)
   }
 }
