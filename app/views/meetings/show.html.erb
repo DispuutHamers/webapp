@@ -22,7 +22,7 @@
 <% end %>
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
-  <div class="md:col-span-9 md:pr-6">
+  <div class="md:col-span-9 py-6 md:pr-6">
     <%= @meeting.notes %>
   </div>
 
@@ -31,7 +31,7 @@
       <dl class="sm:divide-y sm:divide-gray-200">
         <div class="m-4">
           <h4>Agenda <%= @meeting.onderwerp %></h4>
-          <%= markdown(@meeting.agenda).html_safe if @meeting.agenda %>
+          <%= @meeting.agenda %>
         </div>
 
         <% if @meeting.chairman %>

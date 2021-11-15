@@ -7,6 +7,7 @@ class Meeting < ActiveRecord::Base
   has_many :users, through: :attendees
   has_many :drafts, as: :entity, dependent: :destroy
 
+  has_rich_text :agenda
   has_rich_text :notes
 
   def save_draft(user)

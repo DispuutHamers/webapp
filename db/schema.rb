@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_210728) do
+ActiveRecord::Schema.define(version: 2021_11_15_185733) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -188,7 +188,6 @@ ActiveRecord::Schema.define(version: 2021_10_28_210728) do
   end
 
   create_table "meetings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.text "agenda"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "onderwerp", limit: 255

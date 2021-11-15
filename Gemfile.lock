@@ -276,7 +276,6 @@ GEM
       activesupport (>= 5.2.4)
       i18n
     rb-readline (0.5.5)
-    redcarpet (3.5.1)
     redis (4.5.1)
     regexp_parser (2.1.1)
     request_store (1.5.0)
@@ -419,7 +418,6 @@ DEPENDENCIES
   rails_heroicons
   ransack
   rb-readline
-  redcarpet
   redis (~> 4.0)
   rqrcode
   rubocop

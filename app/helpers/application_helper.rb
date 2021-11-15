@@ -1,16 +1,6 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-  def markdown(text)
-    return unless text
-
-    markdown = Redcarpet::Markdown.new(
-      Redcarpet::Render::HTML.new
-    )
-
-    markdown.render(text).html_safe
-  end
-
   def current_user?(user)
     current_user.id == user.id
   end
