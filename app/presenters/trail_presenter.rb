@@ -47,7 +47,7 @@ class TrailPresenter
     when "Review"
       "reviewde <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "maakte beschrijving #{action_text_title}"
+      "maakte #{action_text_title}"
     else
       "maakte #{type}"
     end
@@ -65,9 +65,9 @@ class TrailPresenter
       status = lookup_object.status ? "in" : "uit"
       "schreef zich #{status} voor <i>#{lookup_object.event}</i>"
     when "Review"
-      "wijzigde review van <i>#{lookup_object.beer.name}</i>"
+      "wijzigde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "wijzigde beschrijving #{action_text_title}"
+      "wijzigde #{action_text_title}"
     else
       "wijzigde #{type}"
     end
@@ -82,7 +82,7 @@ class TrailPresenter
     when "Review"
       "verwijderde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "verwijderde beschrijving #{action_text_title}"
+      "verwijderde #{action_text_title}"
     else
       "verwijderde #{type}"
     end
@@ -109,20 +109,20 @@ class TrailPresenter
 
   def action_text_title
     unless @trail.item&.record
-      return "van #{action_text_type}" if @trail.object
+      return "#{action_text_type}" if @trail.object
       return nil
     end
 
-    "van " + case @trail.item.record_type
-             when "Blogitem"
-               "blogitem <i>#{lookup_object}</i>"
-             when "Event"
-               "activiteit <i>#{lookup_object}</i>"
-             when "Review"
-               "een review van <i>#{lookup_object.beer.name}</i>"
-             else
-               "iets?"
-             end
+    case @trail.item.record_type
+    when "Blogitem"
+      "<i>#{lookup_object}</i>"
+    when "Event"
+      "<i>#{lookup_object}</i>"
+    when "Review"
+      "een review van <i>#{lookup_object.beer.name}</i>"
+    else
+      "iets?"
+    end
   end
 
   def lookup_object
