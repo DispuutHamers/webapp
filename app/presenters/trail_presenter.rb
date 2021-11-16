@@ -41,13 +41,13 @@ class TrailPresenter
     when "Quote"
       "citeerde #{quote.user.name}"
     when "Blogitem"
-      "blogte '#{blog.title}'"
+      "blogte <i>#{blog.title}</i>"
     when "Event"
-      "maakte activiteit '#{event.title}'"
+      "maakte activiteit <i>#{event.title}</i>"
     when "Beer"
-      "maakte bier '#{beer.name}'"
+      "maakte bier <i>#{beer.name}</i>"
     when "Review"
-      "reviewde '#{review.beer.name}'"
+      "reviewde <i>#{review.beer.name}</i>"
     when "ActionText::RichText"
       "maakte beschrijving #{action_text_title}"
     else
@@ -60,16 +60,16 @@ class TrailPresenter
     when "Quote"
       "wijzigde een citaat van #{quote.user.name}"
     when "Blogitem"
-      "schreef aan '#{blog.title}'"
+      "schreef aan <i>#{blog.title}</i>"
     when "Event"
-      "wijzigde activiteit '#{event.title}'"
+      "wijzigde activiteit <i>#{event.title}</i>"
     when "Signup"
       status = @trail.item.status ? "in" : "uit"
-      "schreef zich #{status} voor '#{@trail.item.event.title}'"
+      "schreef zich #{status} voor <i>#{@trail.item.event.title}</i>"
     when "Beer"
-      "wijzigde bier '#{beer.name}'"
+      "wijzigde bier <i>#{beer.name}</i>"
     when "Review"
-      "wijzigde review van '#{review.beer.name}'"
+      "wijzigde review van <i>#{review.beer.name}</i>"
     when "ActionText::RichText"
       "wijzigde beschrijving #{action_text_title}"
     else
@@ -82,13 +82,13 @@ class TrailPresenter
     when "Quote"
       "verwijderde citaat van #{quote.user.name}"
     when "Blogitem"
-      "verwijderde blog '#{blog.title}'"
+      "verwijderde blog <i>#{blog.title}</i>"
     when "Event"
-      "verwijderde activiteit '#{event.title}'"
+      "verwijderde activiteit <i>#{event.title}</i>"
     when "Beer"
-      "verwijderde bier '#{beer.name}'"
+      "verwijderde bier <i>#{beer.name}</i>"
     when "Review"
-      "verwijderde een review van '#{review.beer.name}'"
+      "verwijderde een review van <i>#{review.beer.name}</i>"
     when "ActionText::RichText"
       "verwijderde beschrijving #{action_text_title}"
     else
@@ -109,7 +109,7 @@ class TrailPresenter
 
     if type == "Event"
       object_id = JSON.parse(@trail.object)['record_id']
-      return "'#{type.constantize.with_deleted.find(object_id).title}'"
+      return "<i>#{type.constantize.with_deleted.find(object_id).title}</i>"
     end
 
     "een #{type.downcase}"
@@ -123,11 +123,11 @@ class TrailPresenter
 
     "van " + case @trail.item.record_type
              when "Blogitem"
-               "blogitem '#{blog.title}'"
+               "blogitem <i>#{blog.title}</i>"
              when "Event"
-               "activiteit '#{event.title}'"
+               "activiteit <i>#{event.title}</i>"
              when "Review"
-               "een review van #{review.beer.name}"
+               "een review van <i>#{review.beer.name}</i>"
              else
                "iets?"
              end
