@@ -59,4 +59,8 @@ class Event < ActiveRecord::Base
   def attendee_count
     self.signups.count + self.external_signups.count
   end
+
+  def to_s
+    title
+  end
 end

@@ -39,17 +39,15 @@ class TrailPresenter
   def created_message
     case @trail.item_type
     when "Quote"
-      "citeerde #{quote.user.name}"
+      "citeerde #{lookup_object.user.name}"
     when "Blogitem"
-      "blogte <i>#{blog.title}</i>"
-    when "Event"
-      "maakte activiteit <i>#{event.title}</i>"
-    when "Beer"
-      "maakte bier <i>#{beer.name}</i>"
+      "blogte <i>#{lookup_object}</i>"
+    when "Event", "Beer"
+      "maakte <i>#{lookup_object}</i>"
     when "Review"
-      "reviewde <i>#{review.beer.name}</i>"
+      "reviewde <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "maakte beschrijving #{action_text_title}"
+      "maakte #{action_text_title}"
     when "User"
       "maakte gebruiker"
     else
@@ -60,20 +58,18 @@ class TrailPresenter
   def updated_message
     case @trail.item_type
     when "Quote"
-      "wijzigde een citaat van #{quote.user.name}"
+      "wijzigde een citaat van #{lookup_object.user.name}"
     when "Blogitem"
-      "schreef aan <i>#{blog.title}</i>"
-    when "Event"
-      "wijzigde activiteit <i>#{event.title}</i>"
+      "schreef aan <i>#{lookup_object}</i>"
+    when "Event", "Beer"
+      "wijzigde <i>#{lookup_object}</i>"
     when "Signup"
-      status = @trail.item.status ? "in" : "uit"
-      "schreef zich #{status} voor <i>#{@trail.item.event.title}</i>"
-    when "Beer"
-      "wijzigde bier <i>#{beer.name}</i>"
+      status = lookup_object.status ? "in" : "uit"
+      "schreef zich #{status} voor <i>#{lookup_object.event}</i>"
     when "Review"
-      "wijzigde review van <i>#{review.beer.name}</i>"
+      "wijzigde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "wijzigde beschrijving #{action_text_title}"
+      "wijzigde #{action_text_title}"
     when "User"
       "wijzigde profiel"
     else
@@ -84,17 +80,13 @@ class TrailPresenter
   def destroyed_message
     case @trail.item_type
     when "Quote"
-      "verwijderde citaat van #{quote.user.name}"
-    when "Blogitem"
-      "verwijderde blog <i>#{blog.title}</i>"
-    when "Event"
-      "verwijderde activiteit <i>#{event.title}</i>"
-    when "Beer"
-      "verwijderde bier <i>#{beer.name}</i>"
+      "verwijderde citaat van #{lookup_object.user.name}"
+    when "Blogitem", "Event", "Beer"
+      "verwijderde <i>#{lookup_object}</i>"
     when "Review"
-      "verwijderde een review van <i>#{review.beer.name}</i>"
+      "verwijderde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "verwijderde beschrijving #{action_text_title}"
+      "verwijderde #{action_text_title}"
     when "User"
       "verwijderde gebruiker"
     else
@@ -123,43 +115,23 @@ class TrailPresenter
 
   def action_text_title
     unless @trail.item&.record
-      return "van #{action_text_type}" if @trail.object
+      return "#{action_text_type}" if @trail.object
       return nil
     end
 
-    "van " + case @trail.item.record_type
-             when "Blogitem"
-               "blogitem <i>#{blog.title}</i>"
-             when "Event"
-               "activiteit <i>#{event.title}</i>"
-             when "Review"
-               "een review van <i>#{review.beer.name}</i>"
-             else
-               "iets?"
-             end
+    case @trail.item.record_type
+    when "Blogitem"
+      "<i>#{lookup_object}</i>"
+    when "Event"
+      "<i>#{lookup_object}</i>"
+    when "Review"
+      "een review van <i>#{lookup_object.beer.name}</i>"
+    else
+      "iets?"
+    end
   end
 
-  def quote
-    lookup_object(Quote)
-  end
-
-  def event
-    lookup_object(Event)
-  end
-
-  def beer
-    lookup_object(Beer)
-  end
-
-  def review
-    lookup_object(Review)
-  end
-
-  def blog
-    lookup_object(Blogitem)
-  end
-
-  def lookup_object(model)
+  def lookup_object
     # We are talking about a possibly deleted object,
     # referenced trough a PaperTrail version object
     if defined? @trail.item.record
@@ -171,11 +143,11 @@ class TrailPresenter
       @trail.item
     elsif @trail.object # Update
       model_id = JSON.parse(@trail.object)['id']
-      model.with_deleted.find(model_id)
+      @trail.item_type.constantize.with_deleted.find(model_id)
     else
       # Delete
       model_id = JSON.parse(@trail.object_changes)['id'].last
-      model.with_deleted.find(model_id)
+      @trail.item_type.constantize.with_deleted.find(model_id)
     end
   end
 end

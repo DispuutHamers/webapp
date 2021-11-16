@@ -23,4 +23,8 @@ class Beer < ActiveRecord::Base
     self.grade = cijfer / avg unless avg == 0.0
     self.save
   end
+
+  def to_s
+    name
+  end
 end
