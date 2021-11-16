@@ -51,7 +51,7 @@ class TrailPresenter
     when "ActionText::RichText"
       "maakte beschrijving #{action_text_title}"
     when "User"
-      "maakte profiel"
+      "maakte gebruiker"
     else
       "maakte #{type}"
     end
@@ -96,7 +96,7 @@ class TrailPresenter
     when "ActionText::RichText"
       "verwijderde beschrijving #{action_text_title}"
     when "User"
-      "verwijderde profiel"
+      "verwijderde gebruiker"
     else
       "verwijderde #{type}"
     end
