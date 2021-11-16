@@ -67,7 +67,7 @@ class TrailPageTest < ApplicationSystemTestCase
       e.save!
       visit trail_path
 
-      assert page.has_link? "wijzigde activiteit Upcoming event", href: event_path(e)
+      assert page.has_link? "wijzigde Upcoming event", href: event_path(e)
       assert page.has_link? "wijzigde beschrijving van activiteit Upcoming event", href: event_path(e)
     end
 
@@ -88,7 +88,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       assert page.has_link? "maakte activiteit Upcoming event", href: event_path(e)
       assert page.has_link? "maakte beschrijving van activiteit Upcoming event", href: event_path(e)
-      assert page.has_link? "wijzigde activiteit Upcoming event", href: event_path(e)
+      assert page.has_link? "wijzigde Upcoming event", href: event_path(e)
       assert page.has_link? "wijzigde beschrijving van activiteit Upcoming event", href: event_path(e)
 
       e.destroy
@@ -97,7 +97,7 @@ class TrailPageTest < ApplicationSystemTestCase
       assert_text "verwijderde beschrijving van Upcoming event"
       assert page.has_no_link? "maakte activiteit Upcoming event", href: event_path(e)
       assert page.has_no_link? "maakte beschrijving van activiteit Upcoming event", href: event_path(e)
-      assert page.has_no_link? "wijzigde activiteit Upcoming event", href: event_path(e)
+      assert page.has_no_link? "wijzigde Upcoming event", href: event_path(e)
       assert page.has_no_link? "wijzigde beschrijving van activiteit Upcoming event", href: event_path(e)
     end
   end
@@ -134,7 +134,7 @@ class TrailPageTest < ApplicationSystemTestCase
       b.save!
       visit trail_path
 
-      assert page.has_link? "wijzigde bier Leffe Blond", href: beer_path(b)
+      assert page.has_link? "wijzigde Leffe Blond", href: beer_path(b)
     end
 
     should 'destroy' do
@@ -152,13 +152,13 @@ class TrailPageTest < ApplicationSystemTestCase
       visit trail_path
 
       assert page.has_link? "maakte bier Leffe Blond", href: beer_path(b)
-      assert page.has_link? "wijzigde bier Leffe Blond", href: beer_path(b)
+      assert page.has_link? "wijzigde Leffe Blond", href: beer_path(b)
 
       b.destroy
       visit trail_path
       assert_text "verwijderde Leffe Blond"
       assert page.has_no_link? "maakte bier Leffe Blond", href: beer_path(b)
-      assert page.has_no_link? "wijzigde bier Leffe Blond", href: beer_path(b)
+      assert page.has_no_link? "wijzigde Leffe Blond", href: beer_path(b)
     end
   end
 
