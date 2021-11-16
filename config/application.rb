@@ -26,6 +26,8 @@ module Hamers
       Devise::PasswordsController.layout 'application_public'
     end
 
+    Diffy::Diff.default_format = :html
+
     config.exception_handler = {
       # Turn on in development as needed:
       # dev: 'on',
