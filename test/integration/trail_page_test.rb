@@ -75,7 +75,7 @@ class TrailPageTest < ApplicationSystemTestCase
       Event.create!(title: 'Upcoming event', description: "Beschrijving", date: '2030-01-01 20:30', end_time: '2030-01-02 23:59').destroy
       visit trail_path
 
-      assert_text "verwijderde activiteit Upcoming event"
+      assert_text "verwijderde Upcoming event"
       assert_text "verwijderde beschrijving van Upcoming event"
     end
 
@@ -93,7 +93,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       e.destroy
       visit trail_path
-      assert_text "verwijderde activiteit Upcoming event"
+      assert_text "verwijderde Upcoming event"
       assert_text "verwijderde beschrijving van Upcoming event"
       assert page.has_no_link? "maakte activiteit Upcoming event", href: event_path(e)
       assert page.has_no_link? "maakte beschrijving van activiteit Upcoming event", href: event_path(e)
@@ -142,7 +142,7 @@ class TrailPageTest < ApplicationSystemTestCase
       b.destroy
       visit trail_path
 
-      assert_text "verwijderde bier Leffe Blond"
+      assert_text "verwijderde Leffe Blond"
     end
 
     should 'do all' do
@@ -156,7 +156,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       b.destroy
       visit trail_path
-      assert_text "verwijderde bier Leffe Blond"
+      assert_text "verwijderde Leffe Blond"
       assert page.has_no_link? "maakte bier Leffe Blond", href: beer_path(b)
       assert page.has_no_link? "wijzigde bier Leffe Blond", href: beer_path(b)
     end
@@ -236,7 +236,7 @@ class TrailPageTest < ApplicationSystemTestCase
       Blogitem.create!(user_id: 3, title: "Gaaf nieuws", body: "Lorem ipsum").destroy
       visit trail_path
 
-      assert_text "verwijderde blog Gaaf nieuws"
+      assert_text "verwijderde Gaaf nieuws"
       assert_text "verwijderde beschrijving van een blogitem"
     end
 
@@ -254,7 +254,7 @@ class TrailPageTest < ApplicationSystemTestCase
       b.destroy
       visit trail_path
 
-      assert_text "verwijderde blog Gaaf nieuws"
+      assert_text "verwijderde Gaaf nieuws"
       assert_text "verwijderde beschrijving van"
       assert page.has_no_link? "blogte Gaaf nieuws", href: blogitem_path(b)
       assert page.has_no_link? "maakte beschrijving van", href: blogitem_path(b)

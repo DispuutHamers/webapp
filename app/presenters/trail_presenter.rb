@@ -81,12 +81,8 @@ class TrailPresenter
     case @trail.item_type
     when "Quote"
       "verwijderde citaat van #{lookup_object.user.name}"
-    when "Blogitem"
-      "verwijderde blog <i>#{lookup_object}</i>"
-    when "Event"
-      "verwijderde activiteit <i>#{lookup_object}</i>"
-    when "Beer"
-      "verwijderde bier <i>#{lookup_object}</i>"
+    when "Blogitem", "Event", "Beer"
+      "verwijderde <i>#{lookup_object}</i>"
     when "Review"
       "verwijderde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
@@ -123,9 +119,9 @@ class TrailPresenter
 
     "van " + case @trail.item.record_type
              when "Blogitem"
-               "blogitem <i>#{lookup_object.title}</i>"
+               "blogitem <i>#{lookup_object}</i>"
              when "Event"
-               "activiteit <i>#{lookup_object.title}</i>"
+               "activiteit <i>#{lookup_object}</i>"
              when "Review"
                "een review van <i>#{lookup_object.beer.name}</i>"
              else
