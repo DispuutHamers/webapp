@@ -12,9 +12,9 @@
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-medium">
               <% if t.present.link %>
-                <%= link_to t.present.message, t.present.link %>
+                <%= link_to t.present.message.html_safe, t.present.link %>
               <% else %>
-                <%= t.present.message %>
+                <%= t.present.message.html_safe %>
               <% end %>
             </h3>
             <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>

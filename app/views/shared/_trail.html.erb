@@ -13,9 +13,9 @@
               <div class="flex items-center justify-between">
                 <span class="text-sm font-medium">
                   <% if t.present.link %>
-                    <%= link_to t.present.message, t.present.link %>
+                    <%= link_to t.present.message.html_safe, t.present.link %>
                   <% else %>
-                    <%= t.present.message %>
+                    <%= t.present.message.html_safe %>
                   <% end %>
                 </span>
               </div>
