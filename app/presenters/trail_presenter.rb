@@ -48,6 +48,8 @@ class TrailPresenter
       "reviewde <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
       "maakte #{action_text_title}"
+    when "User"
+      "maakte gebruiker"
     else
       "maakte #{type}"
     end
@@ -68,6 +70,8 @@ class TrailPresenter
       "wijzigde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
       "wijzigde #{action_text_title}"
+    when "User"
+      "wijzigde profiel"
     else
       "wijzigde #{type}"
     end
@@ -83,6 +87,8 @@ class TrailPresenter
       "verwijderde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
       "verwijderde #{action_text_title}"
+    when "User"
+      "verwijderde gebruiker"
     else
       "verwijderde #{type}"
     end
