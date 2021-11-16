@@ -50,6 +50,8 @@ class TrailPresenter
       "reviewde '#{review.beer.name}'"
     when "ActionText::RichText"
       "maakte beschrijving #{action_text_title}"
+    when "User"
+      "maakte profiel"
     else
       "maakte #{type}"
     end
@@ -72,6 +74,8 @@ class TrailPresenter
       "wijzigde review van '#{review.beer.name}'"
     when "ActionText::RichText"
       "wijzigde beschrijving #{action_text_title}"
+    when "User"
+      "wijzigde profiel"
     else
       "wijzigde #{type}"
     end
@@ -91,6 +95,8 @@ class TrailPresenter
       "verwijderde een review van '#{review.beer.name}'"
     when "ActionText::RichText"
       "verwijderde beschrijving #{action_text_title}"
+    when "User"
+      "verwijderde profiel"
     else
       "verwijderde #{type}"
     end
