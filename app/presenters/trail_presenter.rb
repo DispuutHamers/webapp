@@ -34,6 +34,23 @@ class TrailPresenter
     nil
   end
 
+  def processed_changes
+    changes = {}
+
+    @trail.changeset.each do |c, v|
+      next if c == 'updated_at' || c == 'created_at' || v.all? { |e| e.blank? }
+      # Decrypt quotes
+      if c == 'text_ciphertext'
+        v = v.map { |q| Quote.decrypt_text_ciphertext(q) }
+        c = "tekst"
+      end
+
+      changes[c.to_s] = Diffy::Diff.new(v[0], v[1])
+    end
+
+    changes
+  end
+
   private
 
   def created_message
