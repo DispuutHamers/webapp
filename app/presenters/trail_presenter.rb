@@ -66,7 +66,7 @@ class TrailPresenter
     when "ActionText::RichText"
       "maakte #{action_text_title}"
     when "User"
-      "maakte gebruiker"
+      "maakte gebruiker <i>#{lookup_object}</i>"
     else
       "maakte #{type}"
     end
@@ -107,7 +107,7 @@ class TrailPresenter
     when "ActionText::RichText"
       "verwijderde #{action_text_title}"
     when "User"
-      "verwijderde gebruiker"
+      "verwijderde gebruiker <i>#{lookup_object}</i>"
     else
       "verwijderde #{type}"
     end
