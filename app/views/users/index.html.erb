@@ -2,6 +2,10 @@
   Leden
 <% end %>
 
+<% content_for :options do %>
+  <%= link_to 'Publieke ledenpagina', public_leden_path, class: button_classes %>
+<% end %>
+
 <div data-controller="tabs select-tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
   <div>
     <div class="sm:hidden">
