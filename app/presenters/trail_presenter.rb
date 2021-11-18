@@ -88,7 +88,9 @@ class TrailPresenter
     when "ActionText::RichText"
       "wijzigde #{action_text_title}"
     when "User"
-      "wijzigde profiel"
+      s = "wijzigde profiel"
+      s += " van #{lookup_object}" if lookup_object != user
+      s
     else
       "wijzigde #{type}"
     end
