@@ -1,4 +1,18 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
+<% content_for :title do %>
+  Jouw stickers
+<% end %>
+
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('chip', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= pluralize @stickers.count, 'sticker', 'stickers', locale: :nl %>
+  </div>
+<% end %>
+
+<% content_for :options do %>
+  <%= link_to 'Sticker plakken', new_sticker_path, class: button_classes %>
+<% end %>
+
 <div class="flex flex-col">
   <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

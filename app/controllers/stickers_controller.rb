@@ -11,7 +11,7 @@ class StickersController < ApplicationController
 
   def personal
     @pagy, @stickers = pagy(current_user.stickers, page: params[:page])
-    breadcrumb 'Stickers aanpassen', personal_stickers_path
+    breadcrumb 'Jouw stickers', personal_stickers_path
   end
 
   def new
