@@ -7,11 +7,13 @@
   <%= f.text_field :lon, id: 'lon', pattern: '-?\d*\.\d*', required: true, class: input_classes %>
   <%= @sticker.errors.full_messages_for(:lon).first[3..] if @sticker.errors[:lon].any? %>
 
+  <button class="<%= button_classes %>" onclick="getLocation()">Bepaal locatie</button>
+
   <%= f.label :notes, class: label_classes %>
   <%= f.text_area :notes, class: input_classes %>
 
   <%= f.submit :Verstuur, class: submit_classes %>
-  <button class="<%= button_classes %>" onclick="getLocation()">Get location</button>
+
 <% end %>
 
 <script type="application/javascript">
