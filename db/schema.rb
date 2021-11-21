@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_124113) do
+ActiveRecord::Schema.define(version: 2021_11_21_125240) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -310,7 +310,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_124113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
-    t.datetime "image_updated_at"
+    t.string "address"
     t.index ["deleted_at"], name: "index_stickers_on_deleted_at"
   end
 

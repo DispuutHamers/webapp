@@ -3,8 +3,15 @@ class Sticker < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :user
   validates :lat, :lon, presence: true, format: { with: /\A(-?\d*\.\d*)\z/i, message: "Gast, dit is geen coördinaat" }
+  before_save :store_address
 
-  def adres
+  def store_address
+    self.address = resolve_address
+  end
+
+  private
+
+  def resolve_address
     jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{lat},#{lon}&key=AIzaSyAz0ENeS5X1Vh9A_-KxxENHBf-qQYB2z-U"))
     mdata = JSON.parse(jdata.body)
 
