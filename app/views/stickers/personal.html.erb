@@ -1,48 +1,52 @@
-<script type="text/javascript">
-    $(document).ready(function () {
-            $("#sticker").tablesorter();
-        }
-    );
-</script>
-<table id="sticker" class="tablesorter table table-hover">
-  <thead>
-  <tr>
-    <th>Datum</th>
-    <th>Coördinaten</th>
-    <th>Adres</th>
-    <th>Admin stuff</th>
-  </tr>
-  </thead>
-  <%= render 'shared/pagination/default' %>
-  <tbody>
-  <% @stickers.each do |m| %>
-    <tr>
-      <td><%= m.created_at.strftime('%d-%m-%Y %H:%M') %></td>
-      <td>
-        <%= "#{m.lat}, #{m.lon}" %>
-      </td>
-      <td>
-        <% jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{m.lat},#{m.lon}&key=AIzaSyAz0ENeS5X1Vh9A_-KxxENHBf-qQYB2z-U")) %>
-        <% mdata = JSON.parse(jdata.body) %>
-        <% if mdata["results"] && mdata["results"][0] && mdata["results"][0]["formatted_address"] %>
-          <%= mdata["results"][0]["formatted_address"] %>
-        <% else %>
-          Adres niet beschikbaar. Waarschijnlijk zijn de coordinaten malformed.
-        <% end %>
-      </td>
+<% content_for :title do %>
+  Jouw stickers
+<% end %>
 
-      <td>
-        <div class="btn-group btn-group-vertical">
-          <%= link_to edit_sticker_path(m), class: 'btn btn-default btn-sm' do %>
-            <i class="fas fa-pencil-alt"></i> Wijzig sticker
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('chip', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= pluralize @stickers.count, 'sticker', 'stickers', locale: :nl %>
+  </div>
+<% end %>
+
+<% content_for :options do %>
+  <%= link_to 'Sticker plakken', new_sticker_path, class: button_classes %>
+<% end %>
+
+<div class="flex flex-col">
+  <div class="overflow-x-auto align-middle inline-block min-w-full -m-6">
+    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+        <tr>
+          <% ["Datum", "Coördinaten", "Adres (geschat)", ""].each do |x| %>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <%= x %>
+            </th>
           <% end %>
-          <%= link_to m, class: 'btn btn-default btn-sm', method: :delete, data: {confirm: 'Weet je het zeker?'} do %>
-            <i class="far fa-trash-alt"></i> Verwijder sticker
-          <% end %>
-        </div>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<%= render 'shared/pagination/default' %>
+        </tr>
+        </thead>
+        <tbody>
+        <% @stickers.each do |m| %>
+          <tr class="even:bg-gray-50 odd:bg-white">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <%= m.created_at.strftime('%d-%m-%Y %H:%M') %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= "#{m.lat}, #{m.lon}" %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= m.address %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <%= link_to "Wijzig", edit_sticker_path(m), class: button_classes %>
+              <%= link_to "Verwijder", m, class: button_classes, method: :delete, data: { confirm: 'Weet je het zeker?' } %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= render 'shared/pagination/table' %>
+    </div>
+  </div>
+</div>
