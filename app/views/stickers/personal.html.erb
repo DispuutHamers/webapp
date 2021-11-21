@@ -14,47 +14,45 @@
 <% end %>
 
 <div class="flex flex-col">
-  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-      <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200">
-          <thead class="bg-gray-50">
-          <tr>
-            <% ["Datum", "Coördinaten", "Adres (geschat)", ""].each do |x| %>
-              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                <%= x %>
-              </th>
-            <% end %>
-          </tr>
-          </thead>
-          <%= render 'shared/pagination/default' %>
-          <tbody>
-          <% @stickers.each do |m| %>
-            <tr class="even:bg-gray-50 odd:bg-white">
-              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <%= m.created_at.strftime('%d-%m-%Y %H:%M') %>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <%= "#{m.lat}, #{m.lon}" %>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                <% jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{m.lat},#{m.lon}&key=AIzaSyAz0ENeS5X1Vh9A_-KxxENHBf-qQYB2z-U")) %>
-                <% mdata = JSON.parse(jdata.body) %>
-                <% if mdata["results"] && mdata["results"][0] && mdata["results"][0]["formatted_address"] %>
-                  <%= mdata["results"][0]["formatted_address"] %>
-                <% else %>
-                  Adres niet beschikbaar. Waarschijnlijk zijn de coordinaten misvormd.
-                <% end %>
-              </td>
-              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <%= link_to "Wijzig", edit_sticker_path(m), class: button_classes %>
-                <%= link_to "Verwijder", m, class: button_classes, method: :delete, data: { confirm: 'Weet je het zeker?' } %>
-              </td>
-            </tr>
+  <div class="overflow-x-auto align-middle inline-block min-w-full -m-6">
+    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+        <tr>
+          <% ["Datum", "Coördinaten", "Adres (geschat)", ""].each do |x| %>
+            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <%= x %>
+            </th>
           <% end %>
-          </tbody>
-        </table>
-      </div>
+        </tr>
+        </thead>
+        <%= render 'shared/pagination/default' %>
+        <tbody>
+        <% @stickers.each do |m| %>
+          <tr class="even:bg-gray-50 odd:bg-white">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              <%= m.created_at.strftime('%d-%m-%Y %H:%M') %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <%= "#{m.lat}, #{m.lon}" %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <% jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{m.lat},#{m.lon}&key=AIzaSyAz0ENeS5X1Vh9A_-KxxENHBf-qQYB2z-U")) %>
+              <% mdata = JSON.parse(jdata.body) %>
+              <% if mdata["results"] && mdata["results"][0] && mdata["results"][0]["formatted_address"] %>
+                <%= mdata["results"][0]["formatted_address"] %>
+              <% else %>
+                Adres niet beschikbaar. Waarschijnlijk zijn de coordinaten misvormd.
+              <% end %>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+              <%= link_to "Wijzig", edit_sticker_path(m), class: button_classes %>
+              <%= link_to "Verwijder", m, class: button_classes, method: :delete, data: { confirm: 'Weet je het zeker?' } %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
