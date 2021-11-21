@@ -26,7 +26,6 @@
           <% end %>
         </tr>
         </thead>
-        <%= render 'shared/pagination/default' %>
         <tbody>
         <% @stickers.each do |m| %>
           <tr class="even:bg-gray-50 odd:bg-white">
@@ -47,8 +46,7 @@
         <% end %>
         </tbody>
       </table>
+      <%= render 'shared/pagination/table' %>
     </div>
   </div>
 </div>
-
-<%= render 'shared/pagination/default' %>
