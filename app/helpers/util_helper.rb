@@ -52,9 +52,9 @@ module UtilHelper
                 'Voor de werkenden betekent het dat de werkweek doormidden is en naar het weekend uitgekeken kan worden. ' \
                 'Voor ons betekent het een gezellige avond, vol speciaalbier en vertier. Daarom wordt van ieder verwacht dat ' \
                 'ze hun overhemd aandoen en met gezwinde spoed naar de Vluchte gaan!'
-    date = Time.now + 1.weeks + 9.hours # Next wednesday, 21:00h
-    end_time = Time.now + 1.weeks + 14.hours # Next thursday, 02:00h
-    deadline = Time.now + 1.weeks + 6.hours # Next wednesday, 18:00h
+    date = Time.now + 1.weeks + 5.hours # Next wednesday, 17:00h
+    end_time = Time.now + 1.weeks + 8.hours # Next thursday, 20:00h
+    deadline = Time.now + 1.weeks + 3.hours # Next wednesday, 15:00h
 
     Event.new(description: description, attendance: true,  title: title, date: date, end_time: end_time, deadline: deadline, location: location).save
 
