@@ -1,0 +1,14 @@
+<% content_for :title do %>
+  Wijzig lichting
+<% end %>
+
+<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="-ml-6 my-6 md:col-span-3 md:pr-6">
+    <%= render partial: 'users/settings/menu' %>
+  </aside>
+
+  <div class='md:col-span-9 md:pl-6 space-y-4 py-2 md:py-4'>
+    <h2 class="text-2xl">Lichting:</h2>
+    <%= render 'users/settings/form_batch' %>
+  </div>
+</div>

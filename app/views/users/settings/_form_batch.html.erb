@@ -1,0 +1,6 @@
+<%= form_for @user, url: user_path(@user), html: { class: 'space-y-6 space-y my-6' } do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.number_field :batch, class: input_classes %>
+  <%= f.submit "Opslaan", class: submit_classes %>
+<% end %>
