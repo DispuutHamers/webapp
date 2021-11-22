@@ -15,9 +15,9 @@
   <% end %>
 <% end %>
 
-<% if current_user == @user %>
+<% if current_user == @user || current_user.admin? %>
   <% content_for :options do %>
-    <%= link_to 'Instellingen', edit_user_path(current_user), class: button_classes %>
+    <%= link_to 'Instellingen', edit_user_path(@user), class: button_classes %>
   <% end %>
 <% end %>
 

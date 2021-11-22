@@ -2,7 +2,14 @@
 <div class="list-container divide-y divide-gray-200">
   <% @member.each do |group| %>
     <div class="list-items flex flex-row items-center justify-between p-2">
-      <p class="text-gray-900"><%= group.name %></p>
+      <div class="flex min-w-0">
+        <% if group.logo.attached? %>
+          <%= image_tag group.logo.representation(resize_to_limit: [100, 100]), class: "h-10 w-10 mr-4 rounded-full" %>
+        <% else %>
+          <img class="h-10 w-10 mr-4 rounded-full" src="https://placehold.co/500x500?text=Geen logo" alt="Geen logo">
+        <% end %>
+        <p class="text-gray-900 self-center"><%= group.name %></p>
+      </div>
       <% if current_user.admin? %>
         <div>
           <%= form_for(@user.groups.find_by(group_id: group.id, user_id: @user.id), html: { method: :delete }) do |f| %>
@@ -17,12 +24,20 @@
     </div>
   <% end %>
 </div>
+
 <% if current_user.admin? %>
   <h2 class="text-2xl"><%= @user.name %> is GEEN lid van:</h2>
   <div class="list-container divide-y divide-gray-200">
     <% @notmember.each do |group| %>
       <div class="list-items flex flex-row items-center justify-between p-2">
-        <p class="text-gray-900"><%= group.name %></p>
+        <div class="flex min-w-0">
+          <% if group.logo.attached? %>
+            <%= image_tag group.logo.representation(resize_to_limit: [100, 100]), class: "h-10 w-10 mr-4 rounded-full" %>
+          <% else %>
+            <img class="h-10 w-10 mr-4 rounded-full" src="https://placehold.co/500x500?text=Geen logo" alt="Geen logo">
+          <% end %>
+          <p class="text-gray-900 self-center"><%= group.name %></p>
+        </div>
         <div>
           <%= form_for @user.groups.new(group_id: group.id, user_id: @user.id) do |f| %>
             <%= f.hidden_field :group_id %>
