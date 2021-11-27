@@ -1,6 +1,7 @@
 # Usergroup class
 class Usergroup < ActiveRecord::Base
   acts_as_paranoid
+  has_paper_trail
   belongs_to :user
   has_many :groups, foreign_key: 'group_id', dependent: :destroy
   has_many :users, through: :groups
@@ -18,4 +19,9 @@ class Usergroup < ActiveRecord::Base
     user_ids = groups.only_deleted.pluck(:user_id)
     User.where(id: user_ids)
   end
+
+  def to_s
+    name
+  end
 end
+
