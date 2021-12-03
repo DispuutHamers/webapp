@@ -4,7 +4,7 @@
   <% fields = %i[name email phone_number] %>
   <% fields.each do |field| %>
     <div class="sm:col-span-6">
-      <%= f.label field, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.label field, class: label_classes %>
       <div class="mt-1">
         <%= f.text_field field, class: input_classes %>
       </div>
@@ -12,11 +12,20 @@
   <% end %>
 
   <div class="sm:col-span-6">
-    <%= f.label :birthday, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.label :birthday, class: label_classes %>
     <div class="mt-1">
-      <%= f.date_field :birthday, class: "shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 rounded-md" %>
+      <%= f.date_field :birthday, class: input_classes %>
     </div>
   </div>
+
+  <% if current_user.admin? %>
+    <div class="sm:col-span-6">
+      <%= f.label :batch, class: label_classes %>
+      <div class="mt-1">
+        <%= f.number_field :batch, class: input_classes %>
+      </div>
+    </div>
+  <% end %>
 
   <legend class="sr-only">Notifications</legend>
   <div class="relative flex items-start">

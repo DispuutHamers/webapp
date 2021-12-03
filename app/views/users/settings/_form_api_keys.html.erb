@@ -3,7 +3,7 @@
     <label for="email" class="<%= label_classes %>">Sleutel toevoegen</label>
     <div class="mt-1 flex rounded-md shadow-sm">
       <div class="relative flex items-stretch flex-grow focus-within:z-10">
-        <%= f.text_field :name, placeholder: 'Sleutelnaam', class: input_classes %>
+        <%= f.text_field :name, placeholder: 'Sleutelnaam', class: "mr-2 #{input_classes}" %>
       </div>
       <%= f.submit 'Toevoegen', class: "-ml-px relative space-x-2 #{button_classes}" %>
     </div>
