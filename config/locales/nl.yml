@@ -9,6 +9,7 @@ nl:
   activerecord:
     attributes:
       user:
+        batch: Lichting
         birthday: Verjaardag
         current_password: Huidige wachtwoord
         phone_number: Telefoonnummer
