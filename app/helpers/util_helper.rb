@@ -5,7 +5,7 @@ module UtilHelper
       flash[:success] = "#{obj.class.name} succesvol aangemaakt."
       redirect_to obj
     else
-      flash.now[:error] =  obj.errors.full_messages.join('<br>')
+      flash.now[:error] = obj.errors.full_messages.join('<br>')
       render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
     end
   end
@@ -21,7 +21,7 @@ module UtilHelper
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else
-      flash.now[:error] =  obj.errors.full_messages.join('<br>')
+      flash.now[:error] = obj.errors.full_messages.join('<br>')
       render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
     end
   end
@@ -32,7 +32,7 @@ module UtilHelper
       flash[:success] = 'Succesvol bijgewerkt.'
       redirect_to obj
     else
-      flash.now[:error] =  obj.errors.full_messages.join('<br>')
+      flash.now[:error] = obj.errors.full_messages.join('<br>')
       render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
     end
   end
@@ -52,11 +52,11 @@ module UtilHelper
                 'Voor de werkenden betekent het dat de werkweek doormidden is en naar het weekend uitgekeken kan worden. ' \
                 'Voor ons betekent het een gezellige avond, vol speciaalbier en vertier. Daarom wordt van ieder verwacht dat ' \
                 'ze hun overhemd aandoen en met gezwinde spoed naar de Vluchte gaan!'
-    date = Time.now + 1.weeks + 9.hours # Next wednesday, 21:00h
-    end_time = Time.now + 1.weeks + 14.hours # Next thursday, 02:00h
-    deadline = Time.now + 1.weeks + 6.hours # Next wednesday, 18:00h
+    date = (Time.now + 1.weeks).beginning_of_day + 5.hours # Next wednesday, 17:00h
+    end_time = (Time.now + 1.weeks).beginning_of_day + 8.hours # Next thursday, 20:00h
+    deadline = (Time.now + 1.weeks).beginning_of_day + 3.hours # Next wednesday, 15:00h
 
-    Event.new(description: description, attendance: true,  title: title, date: date, end_time: end_time, deadline: deadline, location: location).save
+    Event.new(description: description, attendance: true, title: title, date: date, end_time: end_time, deadline: deadline, location: location).save
 
     # Ping Honeybadger for monitoring purposes
     Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/P0Imk4'))
@@ -73,9 +73,9 @@ module UtilHelper
   end
 
   def self.cleanup
-    User.intern.each{ |u| UsersHelper.update_weight_for(u) }
-    User.leden.each{ |u| UsersHelper.sunday_ratio_for(u) }
-    Beer.all.each{ |b| b.update_cijfer }
+    User.intern.each { |u| UsersHelper.update_weight_for(u) }
+    User.leden.each { |u| UsersHelper.sunday_ratio_for(u) }
+    Beer.all.each { |b| b.update_cijfer }
     Blogitem.unscoped.where("title is NULL OR length(title) < 1").delete_all
 
     # Ping Honeybadger for monitoring purposes
