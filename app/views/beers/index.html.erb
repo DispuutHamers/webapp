@@ -10,7 +10,7 @@
   <% end %>
 <% end %>
 
-<turbo-frame id="beer_table" src="/beers/table">
+<turbo-frame id="beer_table" src="/beers/table?<%= request.query_parameters.to_query %>">
   <div class="flex justify-center">
     <%= image_tag "toast.gif"%>
   </div>
