@@ -29,14 +29,6 @@ class UsersController < ApplicationController
     render 'users/settings/usergroups'
   end
 
-  def edit_batch
-    breadcrumb @user.name, user_path(@user)
-    breadcrumb 'Update', edit_user_path(@user)
-    breadcrumb 'Lichting', edit_usergroups_user_path(@user)
-
-    render 'users/settings/batch'
-  end
-
   def show
     breadcrumb @user.name, user_path(@user)
 
