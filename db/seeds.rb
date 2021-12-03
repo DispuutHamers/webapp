@@ -6,10 +6,11 @@ users = {
   'dev@zondersikkel.nl': { id: 1, name: "Hamers Developer", batch: 0, admin: true },
   'praeses@zondersikkel.nl': { id: 2, name: "Hamers Praeses", batch: 1 },
   'abactis@zondersikkel.nl': { id: 3, name: "Hamers Abactis", batch: 2 },
-  'questor@zondersikkel.nl': { id: 4, name: "Hamers Questor", batch: 3 },
+  'questor@zondersikkel.nl': { id: 4, name: "Hamers Questor", batch: 2 },
   'oudlid@zondersikkel.nl': { id: 5, name: "Oud-lid 1", batch: 0 },
   'feut1@zondersikkel.nl': { id: 6, name: "Feut 1", batch: 4 },
-  'extern@example.com': { id: 7, name: "External user" }
+  'extern@example.com': { id: 7, name: "External user" },
+  'lid@zondersikkel.nl': { id: 8, name: "Algemeen lid", batch: 3 }
 }
 
 users.each do |email, options|
