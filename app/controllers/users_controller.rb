@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :user, only: [:show, :edit, :edit_usergroups, :edit_batch, :edit_password, :update, :destroy, :edit_two_factor, :update_two_factor]
+  before_action :user, only: [:show, :edit, :edit_usergroups, :edit_password, :update, :destroy, :edit_two_factor, :update_two_factor]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user?, only: [:destroy]
   breadcrumb 'Leden', :users_path

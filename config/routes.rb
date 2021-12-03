@@ -68,7 +68,6 @@ Hamers::Application.routes.draw do
       get '/edit/password/' => "users#edit_password", as: "edit_password"
       # patch '/edit/password' => "users#update_password", as: "update_password"
       get 'edit/usergroups/' => "users#edit_usergroups", as: "edit_usergroups"
-      get 'edit/batch/' => "users#edit_batch", as: "edit_batch"
       get '/edit/two_factor' => "users#edit_two_factor", as: "edit_two_factor"
       post '/edit/two_factor' => "users#update_two_factor", as: "update_two_factor"
     end

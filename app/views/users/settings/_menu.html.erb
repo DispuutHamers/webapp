@@ -2,13 +2,12 @@
 
   <% items = {
     Profiel: { path: edit_user_path(@user), icon: 'user' },
-    Lichting: ({ path: edit_batch_user_path(@user), icon: 'user-group' } if current_user.admin?),
     'Groepen': { path: edit_usergroups_user_path(@user), icon: 'user-group' },
     Wachtwoord: { path: edit_password_user_path(@user), icon: 'lock-closed' },
     '2FA': { path: edit_two_factor_user_path(@user), icon: 'sparkles' },
     'API-sleutels': { path: user_api_keys_path(@user), icon: 'key' },
     Foto: { path: "https://gravatar.com/emails", icon: 'user-circle' },
-  }.compact %>
+  } %>
 
   <div class="hidden md:block">
     <% items.each do |name, options| %>
