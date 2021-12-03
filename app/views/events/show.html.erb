@@ -19,7 +19,7 @@
 <% content_for :options do %>
   <%= link_to "Schop mensen", reminder_path(@event), data: { confirm: "Je gaat alle mensen op onbekend een mail sturen, weet je het zeker?" }, class: button_classes if @event.open? %>
   <%= link_to "Wijzig", edit_event_path(@event), class: button_classes %>
-  <%= link_to "Verwijder", @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: button_classes if current_user.admin? %>
+  <%= link_to "Verwijder", @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: button_classes if @event.can_be_deleted_by?(current_user) %>
 <% end %>
 
 <div class="flex-1 min-w-0 bg-white md:flex">

@@ -50,6 +50,10 @@ class Event < ActiveRecord::Base
     deadline != nil and deadline > Time.now
   end
 
+  def can_be_deleted_by?(user)
+    user == self.user || user.admin?
+  end
+
   def invitation_link
     return unless invitation_code
 
