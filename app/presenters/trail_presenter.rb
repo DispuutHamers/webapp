@@ -67,6 +67,8 @@ class TrailPresenter
       "maakte #{action_text_title}"
     when "User"
       "maakte gebruiker <i>#{lookup_object}</i>"
+    when "Usergroup"
+      "maakte groep <i>#{lookup_object}</i>"
     else
       "maakte #{type}"
     end
@@ -91,6 +93,8 @@ class TrailPresenter
       s = "wijzigde profiel"
       s += " van #{lookup_object}" if lookup_object != user
       s
+    when "Usergroup"
+      "wijzigde groep <i>#{lookup_object}</i>"
     else
       "wijzigde #{type}"
     end
@@ -108,6 +112,8 @@ class TrailPresenter
       "verwijderde #{action_text_title}"
     when "User"
       "verwijderde gebruiker <i>#{lookup_object}</i>"
+    when "Usergroup"
+      "verwijderde groep <i>#{lookup_object}</i>"
     else
       "verwijderde #{type}"
     end
