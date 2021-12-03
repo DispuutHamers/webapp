@@ -18,4 +18,9 @@ class Blogitem < ApplicationRecord
   def tags_as_string=(string)
     self.tag_names = string.split(/,\s*/)
   end
+
+
+  def to_s
+    title
+  end
 end

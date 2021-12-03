@@ -137,4 +137,8 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
 
     ics
   end
+
+  def to_s
+    name
+  end
 end

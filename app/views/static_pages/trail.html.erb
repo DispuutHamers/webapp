@@ -12,9 +12,9 @@
           <div class="flex items-center justify-between">
             <h3 class="text-sm font-medium">
               <% if t.present.link %>
-                <%= link_to t.present.message, t.present.link %>
+                <%= link_to t.present.message.html_safe, t.present.link %>
               <% else %>
-                <%= t.present.message %>
+                <%= t.present.message.html_safe %>
               <% end %>
             </h3>
             <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
@@ -33,16 +33,11 @@
 
       </div>
       <div class="divide-y divide-hamers-red-500 px-8 text-sm font-medium">
-        <% t.changeset.each do |c, v| %>
-          <% next if c == 'updated_at' || c == 'created_at' || v.all? { |e| e.blank? } %>
+        <% t.present.processed_changes.each do |name, diffy| %>
           <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="text-gray-600">
-              <%= c.to_s %>
-            </dt>
+            <dt class="text-gray-600"><%= name %></dt>
             <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
-              <% v[0] = Quote.decrypt_text_ciphertext(v[0]) if c == 'text_ciphertext' %>
-              <% v[1] = Quote.decrypt_text_ciphertext(v[1]) if c == 'text_ciphertext' %>
-              <%== Diffy::Diff.new(v[0], v[1]).to_s(:html_simple) %>
+              <%== diffy %>
             </dd>
           </div>
         <% end %>

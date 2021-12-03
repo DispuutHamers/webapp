@@ -11,7 +11,7 @@ class StickersController < ApplicationController
 
   def personal
     @pagy, @stickers = pagy(current_user.stickers, page: params[:page])
-    breadcrumb 'Stickers aanpassen', personal_stickers_path
+    breadcrumb 'Jouw stickers', personal_stickers_path
   end
 
   def new
@@ -27,8 +27,7 @@ class StickersController < ApplicationController
   def create
     @sticker = Sticker.new(sticker_params)
     @sticker.user_id = current_user.id
-    return redirect_to stickers_path if @sticker.save
-    render :new
+    save_object(@sticker)
   end
 
   def update

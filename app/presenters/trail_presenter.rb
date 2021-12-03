@@ -34,22 +34,41 @@ class TrailPresenter
     nil
   end
 
+  def processed_changes
+    changes = {}
+
+    @trail.changeset.each do |c, v|
+      next if c == 'updated_at' || c == 'created_at' || v.all? { |e| e.blank? }
+      # Decrypt quotes
+      if c == 'text_ciphertext'
+        v = v.map { |q| Quote.decrypt_text_ciphertext(q) }
+        c = "tekst"
+      end
+
+      changes[c.to_s] = Diffy::Diff.new(v[0], v[1])
+    end
+
+    changes
+  end
+
   private
 
   def created_message
     case @trail.item_type
     when "Quote"
-      "citeerde #{quote.user.name}"
+      "citeerde #{lookup_object.user.name}"
     when "Blogitem"
-      "blogte '#{blog.title}'"
-    when "Event"
-      "maakte activiteit '#{event.title}'"
-    when "Beer"
-      "maakte bier '#{beer.name}'"
+      "blogte <i>#{lookup_object}</i>"
+    when "Event", "Beer"
+      "maakte <i>#{lookup_object}</i>"
     when "Review"
-      "reviewde '#{review.beer.name}'"
+      "reviewde <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "maakte beschrijving #{action_text_title}"
+      "maakte #{action_text_title}"
+    when "User"
+      "maakte gebruiker <i>#{lookup_object}</i>"
+    when "Usergroup"
+      "maakte groep <i>#{lookup_object}</i>"
     else
       "maakte #{type}"
     end
@@ -58,20 +77,24 @@ class TrailPresenter
   def updated_message
     case @trail.item_type
     when "Quote"
-      "wijzigde een citaat van #{quote.user.name}"
+      "wijzigde een citaat van #{lookup_object.user.name}"
     when "Blogitem"
-      "schreef aan '#{blog.title}'"
-    when "Event"
-      "wijzigde activiteit '#{event.title}'"
+      "schreef aan <i>#{lookup_object}</i>"
+    when "Event", "Beer"
+      "wijzigde <i>#{lookup_object}</i>"
     when "Signup"
-      status = @trail.item.status ? "in" : "uit"
-      "schreef zich #{status} voor '#{@trail.item.event.title}'"
-    when "Beer"
-      "wijzigde bier '#{beer.name}'"
+      status = lookup_object.status ? "in" : "uit"
+      "schreef zich #{status} voor <i>#{lookup_object.event}</i>"
     when "Review"
-      "wijzigde review van '#{review.beer.name}'"
+      "wijzigde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "wijzigde beschrijving #{action_text_title}"
+      "wijzigde #{action_text_title}"
+    when "User"
+      s = "wijzigde profiel"
+      s += " van #{lookup_object}" if lookup_object != user
+      s
+    when "Usergroup"
+      "wijzigde groep <i>#{lookup_object}</i>"
     else
       "wijzigde #{type}"
     end
@@ -80,17 +103,17 @@ class TrailPresenter
   def destroyed_message
     case @trail.item_type
     when "Quote"
-      "verwijderde citaat van #{quote.user.name}"
-    when "Blogitem"
-      "verwijderde blog '#{blog.title}'"
-    when "Event"
-      "verwijderde activiteit '#{event.title}'"
-    when "Beer"
-      "verwijderde bier '#{beer.name}'"
+      "verwijderde citaat van #{lookup_object.user.name}"
+    when "Blogitem", "Event", "Beer"
+      "verwijderde <i>#{lookup_object}</i>"
     when "Review"
-      "verwijderde een review van '#{review.beer.name}'"
+      "verwijderde een review van <i>#{lookup_object.beer.name}</i>"
     when "ActionText::RichText"
-      "verwijderde beschrijving #{action_text_title}"
+      "verwijderde #{action_text_title}"
+    when "User"
+      "verwijderde gebruiker <i>#{lookup_object}</i>"
+    when "Usergroup"
+      "verwijderde groep <i>#{lookup_object}</i>"
     else
       "verwijderde #{type}"
     end
@@ -109,7 +132,7 @@ class TrailPresenter
 
     if type == "Event"
       object_id = JSON.parse(@trail.object)['record_id']
-      return "'#{type.constantize.with_deleted.find(object_id).title}'"
+      return "<i>#{type.constantize.with_deleted.find(object_id).title}</i>"
     end
 
     "een #{type.downcase}"
@@ -117,43 +140,23 @@ class TrailPresenter
 
   def action_text_title
     unless @trail.item&.record
-      return "van #{action_text_type}" if @trail.object
+      return "#{action_text_type}" if @trail.object
       return nil
     end
 
-    "van " + case @trail.item.record_type
-             when "Blogitem"
-               "blogitem '#{blog.title}'"
-             when "Event"
-               "activiteit '#{event.title}'"
-             when "Review"
-               "een review van #{review.beer.name}"
-             else
-               "iets?"
-             end
+    case @trail.item.record_type
+    when "Blogitem"
+      "<i>#{lookup_object}</i>"
+    when "Event"
+      "<i>#{lookup_object}</i>"
+    when "Review"
+      "een review van <i>#{lookup_object.beer.name}</i>"
+    else
+      "iets?"
+    end
   end
 
-  def quote
-    lookup_object(Quote)
-  end
-
-  def event
-    lookup_object(Event)
-  end
-
-  def beer
-    lookup_object(Beer)
-  end
-
-  def review
-    lookup_object(Review)
-  end
-
-  def blog
-    lookup_object(Blogitem)
-  end
-
-  def lookup_object(model)
+  def lookup_object
     # We are talking about a possibly deleted object,
     # referenced trough a PaperTrail version object
     if defined? @trail.item.record
@@ -165,11 +168,11 @@ class TrailPresenter
       @trail.item
     elsif @trail.object # Update
       model_id = JSON.parse(@trail.object)['id']
-      model.with_deleted.find(model_id)
+      @trail.item_type.constantize.with_deleted.find(model_id)
     else
       # Delete
       model_id = JSON.parse(@trail.object_changes)['id'].last
-      model.with_deleted.find(model_id)
+      @trail.item_type.constantize.with_deleted.find(model_id)
     end
   end
 end

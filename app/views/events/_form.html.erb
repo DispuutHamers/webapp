@@ -18,7 +18,7 @@
             <div class="mt-6 grid grid-cols-3 gap-y-6 gap-x-4">
 
               <div class="col-span-3">
-                <label class="block text-sm font-medium text-gray-700">
+                <label class=<%= label_classes %>>
                   Titel
                 </label>
                 <div class="mt-1">
@@ -27,7 +27,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class="block text-sm font-medium text-gray-700">
+                <label class=<%= label_classes %>>
                   Locatie
                 </label>
                 <div class="mt-1">
@@ -36,7 +36,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class="block text-sm font-medium text-gray-700">
+                <label class=<%= label_classes %>>
                   Wanneer
                 </label>
                 <div class="mt-1">
@@ -53,7 +53,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class="block text-sm font-medium text-gray-700">
+                <label class=<%= label_classes %>>
                   Tot
                 </label>
                 <div class="mt-1">
@@ -70,7 +70,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class="block text-sm font-medium text-gray-700">
+                <label class=<%= label_classes %>>
                   Inschrijven sluit op
                 </label>
                 <div class="mt-1">
@@ -87,7 +87,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class="block text-sm font-medium text-gray-700">
+                <label class=<%= label_classes %>>
                   Groep (optioneel)
                 </label>
                 <%= f.select :usergroup_id, Usergroup.all.collect { |x| [x.name, x.id] }, { include_blank: true }, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md" } %>
