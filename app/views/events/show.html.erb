@@ -59,7 +59,7 @@
       <% if @event.location.present? %>
         <div class="pt-4 embed-responsive embed-responsive-4by3 hidden sm:block">
           <iframe class="embed-responsive-item w-full" height="256" style="border:0"
-                  src="https://www.google.com/maps/embed/v1/place?key=<%= Rails.application.secrets.google_api_key %>=<%= @event.location %>"
+                  src="https://www.google.com/maps/embed/v1/place?key=<%= Rails.application.secrets.google_api_key %>&q=<%= @event.location %>"
                   allowfullscreen>
           </iframe>
         </div>
@@ -72,8 +72,8 @@
       <p class="flex w-full justify-between">
         <span class="font-semibold pb-1">Aanwezig</span>
         <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
-            <%= @event.signups.where(status: true).count %>
-          </span>
+          <%= @event.signups.where(status: true).count %>
+        </span>
       </p>
       <ul role="list" class="mb-2 space-y-2">
         <% @event.signups.where(status: true).each do |s| %>
