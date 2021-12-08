@@ -48,7 +48,7 @@ module UtilHelper
   def self.create_drink
     title = 'Dispuutsborrel'
     location = 'De Vluchte'
-    description = 'Woensdag is een speciale dag. Voor de oude Germanen betekent dat \'de dag van Wodan\', hun oppergod.' \
+    description = 'Woensdag is een speciale dag. Voor de oude Germanen betekent dat \'de dag van Wodan\', hun oppergod. ' \
                 'Voor de werkenden betekent het dat de werkweek doormidden is en naar het weekend uitgekeken kan worden. ' \
                 'Voor ons betekent het een gezellige avond, vol speciaalbier en vertier. Daarom wordt van ieder verwacht dat ' \
                 'ze hun overhemd aandoen en met gezwinde spoed naar de Vluchte gaan!'
