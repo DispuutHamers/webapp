@@ -15,7 +15,7 @@
       </p>
       <p>
         <% item.tags.each do |tag| %>
-          <%= link_to blog_by_tag_path(tag.name) do %>
+          <%= link_to blog_by_tag_blogitems_path(tag.name) do %>
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-800">
               <%= tag.name %>
             </span>
