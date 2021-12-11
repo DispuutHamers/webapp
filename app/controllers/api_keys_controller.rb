@@ -1,6 +1,6 @@
 class ApiKeysController < ApplicationController
   before_action :ilid?
-  before_action :user, only: [:index, :show]
+  before_action :user, only: %i[index show]
   before_action :correct_user?, only: %i[show]
 
   def index
