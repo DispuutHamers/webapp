@@ -16,8 +16,8 @@ class BlogitemsController < ApplicationController
   def tag
     tag = params[:tag]
 
-    breadcrumb "Tag", blog_by_tag_path(tag)
-    breadcrumb tag, blog_by_tag_path(tag)
+    breadcrumb "Tag", blog_by_tag_blogitems_path(tag)
+    breadcrumb tag, blog_by_tag_blogitems_path(tag)
 
     @items = if current_user&.active?
                Blogitem.tagged_with(names: [tag], match: :any).reverse

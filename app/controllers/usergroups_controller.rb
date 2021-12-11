@@ -1,5 +1,5 @@
 class UsergroupsController < ApplicationController
-  before_action :logged_in?
+  before_action :ilid?
   before_action :admin_user?, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_group, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Groepen', :usergroups_path

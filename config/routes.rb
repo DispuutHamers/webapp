@@ -12,15 +12,16 @@ Hamers::Application.routes.draw do
   get '/mystickers' => 'stickers#personal', as: 'personal_stickers'
 
   resources :news
-  resources :blogitems, path: 'blog'
+  resources :blogitems, path: 'blog' do
+    collection do
+      get 'tag/:tag' => 'blogitems#tag', as: 'blog_by_tag'
+    end
+  end
 
   get '/trail' => 'static_pages#trail', as: 'trail'
   get '/remind/:id' => 'events#remind', as: 'reminder'
-
-  match '/webconsole', to: 'static_pages#console', via: 'get'
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
-  get '/blog/tag/:tag' => 'blogitems#tag', as: 'blog_by_tag'
   post 'revert/:model/:id' => "static_pages#revert"
 
   resources :meetings do
@@ -48,8 +49,7 @@ Hamers::Application.routes.draw do
   get '/ical/:key' => "events#index"
   get '/ical/:key/cal' => "events#index"
 
-  resources :signups
-
+  resources :signups, except: %i[index new edit]
   resources :usergroups, path: 'groups'
 
   root 'static_pages#home'
@@ -66,7 +66,6 @@ Hamers::Application.routes.draw do
     end
     member do
       get '/edit/password/' => "users#edit_password", as: "edit_password"
-      # patch '/edit/password' => "users#update_password", as: "update_password"
       get 'edit/usergroups/' => "users#edit_usergroups", as: "edit_usergroups"
       get '/edit/two_factor' => "users#edit_two_factor", as: "edit_two_factor"
       post '/edit/two_factor' => "users#update_two_factor", as: "update_two_factor"
@@ -79,16 +78,11 @@ Hamers::Application.routes.draw do
     end
   end
 
-  match '/external_accounts', to: 'users#index_extern', via: 'get', as: 'external_accounts'
   get 'leden', to: "users#index_public", as: "public_leden"
-
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes
 
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
-  scope 'endpoints' do
-    get 'email' => 'endpoints/email#create'
-  end
 end

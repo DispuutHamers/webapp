@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :ilid?, except: [:edit, :update, :new, :create, :index_public]
-  before_action :user, only: [:show, :edit, :edit_usergroups, :edit_password, :update, :destroy, :edit_two_factor, :update_two_factor]
-  before_action :correct_user, only: [:edit, :update]
-  before_action :admin_user?, only: [:destroy]
+  before_action :ilid?, except: %i[new create index_public]
+  before_action :user, except: %i[index index_public new create]
+  before_action :correct_user, only: %i[edit update]
+  before_action :admin_user?, only: :destroy
   breadcrumb 'Leden', :users_path
   layout 'application_public', only: :index_public
 
@@ -33,11 +33,11 @@ class UsersController < ApplicationController
     breadcrumb @user.name, user_path(@user)
 
     @pagy, @quotes = if current_user.can_view_quotes?
-                        pagy(@user.quotes.ordered, items: 25, page: params[:page])
-                      else
-                        pagy(Quote.where(user_id: 0), page: params[:page])
-                      end
-    @missed_drinks = UsersHelper.missed_drinks_for(@user) if @user.alid? || @user.in_group?("Lid")
+                       pagy(@user.quotes.ordered, items: 25, page: params[:page])
+                     else
+                       pagy(Quote.where(user_id: 0), page: params[:page])
+                     end
+    @missed_drinks = UsersHelper.missed_drinks_for(@user) unless @user.olid?
   end
 
   def new
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
     breadcrumb 'Update', edit_user_path(@user)
     breadcrumb '2FA', edit_two_factor_user_path(@user)
 
-    if @user.otp_required_for_login 
+    if @user.otp_required_for_login
       render 'users/settings/two_already_enabled'
     else
       @secret = User.generate_otp_secret

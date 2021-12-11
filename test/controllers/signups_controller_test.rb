@@ -6,18 +6,6 @@ class SignupsControllerTest < ActionController::TestCase
     sign_in users(:one)
   end
 
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:signups)
-  end
-
-  test "should get new" do
-    skip("This test does not work currently.")
-    get :new
-    assert_response :success
-  end
-
   test "should create signup" do
     skip("This test does not work currently.")
     assert_difference('Signup.count') do
@@ -25,16 +13,6 @@ class SignupsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to signup_path(assigns(:signup))
-  end
-
-  test "should show signup" do
-    get :show, params: { id: @signup }
-    assert_response :redirect
-  end
-
-  test "should get edit" do
-    get :edit, params: { id: @signup }
-    assert_response :success
   end
 
   test "should update signup" do
