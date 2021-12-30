@@ -22,6 +22,7 @@ gem 'memory_profiler'
 gem 'minidusen'
 gem 'mini_magick'
 gem 'net-http-persistent'
+gem 'net-smtp', require: false
 gem 'pagy', '~> 4.8'
 gem 'paperclip'
 gem 'paper_trail'
