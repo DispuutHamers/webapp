@@ -22,9 +22,6 @@ gem 'memory_profiler'
 gem 'minidusen'
 gem 'mini_magick'
 gem 'net-http-persistent'
-gem 'net-imap', require: false
-gem 'net-pop', require: false
-gem 'net-smtp', require: false
 gem 'pagy', '~> 4.8'
 gem 'paperclip'
 gem 'paper_trail'
@@ -77,4 +74,11 @@ group :test do
   gem 'shoulda-context'
   gem 'sqlite3'
   gem 'webdrivers'
+end
+
+group :bundler do
+  gem 'matrix', require: false
+  gem 'net-imap', require: false
+  gem 'net-pop', require: false
+  gem 'net-smtp', require: false
 end
