@@ -27,7 +27,7 @@
           </div>
           <div class="flex justify-end overflow-hidden -space-x-1">
             <% meeting.attendees.with_user.each do |s| %>
-              <%= gravatar_for s.user, class: "inline-block h-6 w-6 rounded-full ring-2 ring-white" %>
+              <%= gravatar_for s.user, class: user_icon_stack_image %>
             <% end %>
             <div class="ml-8">
               <%= heroicon('chevron-right', class_name: "h-6 w-6 text-gray-400") %>
