@@ -45,7 +45,7 @@
               <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
                 <div class="flex overflow-hidden -space-x-1">
                   <% event.signups.with_user.where(status: true).each do |s| %>
-                    <%= gravatar_for s.user, class: "inline-block h-6 w-6 rounded-full ring-2 ring-white" %>
+                    <%= gravatar_for s.user, class: user_icon_stack_image %>
                   <% end %>
                 </div>
               </div>

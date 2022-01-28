@@ -73,7 +73,7 @@ end
 # Create events
 Event.create!(title: 'Past event', date: '2020-01-01 20:30', end_time: '2020-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 5)
 Event.create!(title: 'Upcoming event', date: '2030-01-01 20:30', end_time: '2030-01-02 23:59', deadline: '2030-01-01 20:00', user_id: 1)
-Event.create!(title: 'Public event', date: '2022-01-01 20:00', end_time: '2022-01-01 23:00', deadline: '2021-12-31 12:00', invitation_code: SecureRandom.uuid)
+Event.create!(title: 'Public event', date: '2022-01-01 20:00', end_time: '2022-01-01 23:00', deadline: '2030-01-01 12:00', invitation_code: SecureRandom.uuid)
 
 # Create signups
 Signup.create!(event_id: 1, user_id: 1)
