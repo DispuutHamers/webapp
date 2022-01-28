@@ -22,4 +22,8 @@ module FrontendHelper
   def submit_classes
     "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-hamers-red-500 hover:bg-hamers-red-600 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
   end
+
+  def user_icon_stack_image(size = 6)
+    "h-#{size} w-#{size} rounded-full bg-white ring-2 ring-white inline-block"
+  end
 end
