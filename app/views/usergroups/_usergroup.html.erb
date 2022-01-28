@@ -16,7 +16,7 @@
       <div class="mt-4 flex-shrink-0 sm:mt-0 sm:ml-5">
         <div class="flex overflow-hidden -space-x-1">
           <% usergroup.users.each do |user| %>
-            <%= gravatar_for user, class: "h-10 w-10 rounded-full ring-2 ring-white inline-block", alt: user.name %>
+            <%= gravatar_for user, class: user_icon_stack_image(10), alt: user.name %>
           <% end %>
         </div>
       </div>

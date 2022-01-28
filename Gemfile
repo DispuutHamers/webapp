@@ -75,3 +75,10 @@ group :test do
   gem 'sqlite3'
   gem 'webdrivers'
 end
+
+group :bundler do
+  gem 'matrix', require: false
+  gem 'net-imap', require: false
+  gem 'net-pop', require: false
+  gem 'net-smtp', require: false
+end
