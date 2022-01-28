@@ -26,7 +26,10 @@ class TrailPresenter
     return nil if @trail.event == "destroy"
 
     if @trail.item
-      return @trail.item.record if @trail.item_type == "ActionText::RichText" && @trail.item&.record
+      if @trail.item_type == "ActionText::RichText"
+        return nil if @trail.item.record_type == "Draft"
+        return @trail.item.record if @trail.item&.record
+      end
       return @trail.item
     end
 
@@ -151,6 +154,10 @@ class TrailPresenter
       "<i>#{lookup_object}</i>"
     when "Review"
       "een review van <i>#{lookup_object.beer.name}</i>"
+    when "Meeting"
+      "notulen"
+    when "Draft"
+      "conceptnotulen"
     else
       "iets?"
     end
