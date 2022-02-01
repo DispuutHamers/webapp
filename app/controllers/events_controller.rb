@@ -85,9 +85,19 @@ class EventsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find_by_id!(params[:id])
+  end
+
+  def next_dies
+    Rails.cache.fetch("next_dies", expires_in: 7.days) do
+      y = Time.zone.today.year
+      y = y + 1 if Time.zone.today > Date.new(y, 4, 1)
+
+      Icalendar::Values::Date.new("#{y}0317")
+    end
   end
 
   def generate_calendar
@@ -101,6 +111,13 @@ class EventsController < ApplicationController
       calendar.add_event(feed_item.to_ics)
     end
 
+    # Dispuut birthday (dies)
+    dies = Icalendar::Event.new
+    dies.dtstart = next_dies
+    dies.summary = "Hamers Dies (2014)"
+    calendar.add_event(dies)
+
+    # User birthdays
     User.intern.each do |u|
       next unless u.birthday
       calendar.add_event(u.birthday_ics)
