@@ -37,7 +37,7 @@ gem 'rqrcode'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
-gem 'tailwindcss-rails-webpacker', "~> 0.1.2"
+gem 'tailwindcss-rails-webpacker', "~> 0.2.1"
 gem 'turbo-rails'
 gem 'tzinfo'
 gem 'uglifier'
