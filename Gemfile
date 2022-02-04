@@ -37,7 +37,7 @@ gem 'rqrcode'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
-gem 'tailwindcss-rails-webpacker', "~> 0.1.2"
+gem 'tailwindcss-rails-webpacker', "~> 0.2.1"
 gem 'turbo-rails'
 gem 'tzinfo'
 gem 'uglifier'
@@ -74,4 +74,11 @@ group :test do
   gem 'shoulda-context'
   gem 'sqlite3'
   gem 'webdrivers'
+end
+
+group :bundler do
+  gem 'matrix', require: false
+  gem 'net-imap', require: false
+  gem 'net-pop', require: false
+  gem 'net-smtp', require: false
 end
