@@ -396,6 +396,27 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.check_constraint "json_valid(`object`)", name: "object"
   end
 
+  create_table "chugs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reporter_id"
+    t.integer "secs", limit: 2
+    t.integer "milis", limit: 2
+    t.string "comment", limit: 255
+    t.integer "event_id"
+    t.integer "chug_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_chugs_on_deleted_at"
+  end
+
+  create_table "chug_type", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "amount"
+    t.string "description", limit: 1023
+    t.string "image_url", limit: 255
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "brews", "recipes"

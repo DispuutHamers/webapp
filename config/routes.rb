@@ -82,6 +82,7 @@ Hamers::Application.routes.draw do
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes
+  resources :chugs
 
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
