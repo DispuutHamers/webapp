@@ -1,18 +1,37 @@
 <div>
-  <%= form_for @brew do |f| %>
-    <% if @brew.errors.any? %>
+  <%= form_for @chug do |f| %>
+    <% if @chug.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@brew.errors.count, 'error') %> prohibited this brew from being saved:</h2>
-
+          <h2><%= pluralize(@chug.errors.count, 'error') %> prohibited this chug from being saved:</h2>
           <ul>
-            <% @brew.errors.full_messages.each do |msg| %>
+            <% @chug.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>
         </div>
     <% end %>
 
-    <%= f.rich_text_area :description, class: 'form-control', placeholder: "blablabla" %>
+    Adt getrokken door
+    <% users_array = User.all.map { |user| [user.name, user.id] } %>
+    <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
+
+    <div style="margin-top: 1rem">
+      Tijd
+    </div>
+    <div class="grid grid-cols-6 gap-4">
+      <div>
+        <%= f.number_field :secs, class: input_classes, required: true, placeholder: "s" %>
+      </div>
+      <div>
+        <%= f.number_field :milis, class: input_classes, required: true, placeholder: "ms" %>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem">
+      Opmerkingen
+    </div>
+    <%= f.text_field :comment, class: input_classes, required: true, minlength: 2, placeholder: "Opmerkingen" %>
+
     <div class="flex justify-center mt-5">
       <%= f.submit "Opslaan", class: submit_classes %>
     </div>

@@ -83,7 +83,7 @@ Hamers::Application.routes.draw do
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes
 
-  resources :chug_types do
+  resources :chugtypes do
     member do
       resources :chugs, except: [:index]
     end

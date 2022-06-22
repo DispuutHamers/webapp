@@ -1,11 +1,11 @@
 <div>
-  <%= form_for(@chug_type) do |f| %>
-    <% if @chug_type.errors.any? %>
+  <%= form_for(@chugtype) do |f| %>
+    <% if @chugtype.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(@chug_type.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
+          <h2><%= pluralize(@chugtype.errors.count, 'error') %> prohibited this chug type from being saved:</h2>
 
           <ul>
-            <% @chug_type.errors.full_messages.each do |msg| %>
+            <% @chugtype.errors.full_messages.each do |msg| %>
                 <li><%= msg %></li>
             <% end %>
           </ul>

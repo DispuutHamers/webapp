@@ -1,37 +1,34 @@
-class BrewsController < ApplicationController
+class ChugsController < ApplicationController
   before_action :ilid?
-  before_action :set_brew, only: [:show, :edit, :update, :destroy]
+  before_action :set_chug, only: [:show, :edit, :update, :destroy]
   breadcrumb 'Adtjes', :chug_path
 
   def show
-    @chug_type = @chug.chug_type
-
-    breadcrumb @chug_type.name, chug_types_path(@chug_type)
-    breadcrumb "Adtjes", chug_types_path(@chug_type)
-    breadcrumb @chug.created_at.strftime("%d-%m-%Y"), chug_path(@chug)
+    redirect_to chugtype_path(@chug.chugtype)
   end
 
   def new
-    @chug_type = Chug_Type.find_by_id!(params[:id])
-    @chug = @chug_type.chugs.build(recipe_id: @chug_type.id)
+    @chugtype = Chugtype.find_by_id!(params[:id])
+    @chug = @chugtype.chugs.build(chugtype_id: @chugtype.id)
 
-    breadcrumb @chug_type.name, chug_type_path(@chug_type)
-    breadcrumb 'Nieuwe adt', new_chug_path(@recipe)
+    breadcrumb @chugtype.name, chugtype_path(@chugtype)
+    breadcrumb 'Nieuwe adt', new_chug_path(@chugtype)
   end
 
   def create
     chug = Chug.new(chug_params)
-    chug.chug_type = Chug_Type.find_by_id!(params[:id])
+    chug.chugtype = Chugtype.find_by_id!(params[:id])
     save_object(chug)
   end
 
-  def edit
-    @chug_type = @chug.chug_type
 
-    breadcrumb @chug_type.name, chug_type_path(@chug_type)
-    breadcrumb "Adtjes", chug_type_path(@chug_type)
-    breadcrumb @chug_type.created_at.strftime("%d-%m-%Y"), chug_path(@brew)
-    breadcrumb 'Wijzig', edit_chug_path(@chug)
+  def edit
+    @chugtype = @chug.chugtype
+
+    breadcrumb @chugtype.name, chugtype_path(@chugtype)
+    breadcrumb "Adtjes", chugtype_path(@chugtype)
+    breadcrumb @chugtype.created_at.strftime("%d-%m-%Y"), chug_path(@chug)
+    breadcrumb 'Wijzig Adt', edit_chug_path(@chug)
   end
 
   def update
@@ -44,7 +41,7 @@ class BrewsController < ApplicationController
 
   private
 
-  def set_brew
+  def set_chug
     @chug ||= Chug.find_by_id!(params[:id])
   end
 end

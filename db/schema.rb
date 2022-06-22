@@ -397,18 +397,17 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
   end
 
   create_table "chugs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.integer "reporter_id"
-    t.integer "secs", limit: 2
-    t.integer "milis", limit: 2
+    t.integer "secs", limit: 4
+    t.integer "milis", limit: 4
     t.string "comment", limit: 255
-    t.integer "event_id"
-    t.integer "chug_type_id"
+    t.integer "chugtype_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "chug_types", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "chugtypes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255
     t.integer "amount"
     t.datetime "created_at", null: false
