@@ -7,12 +7,16 @@ module ParamsHelper
     params.require(:quote).permit(:user_id, :text, :reporter)
   end
 
-  def chug_params
-    params.require(:chug).permit(:user_id, :secs, :milis, :comment, :reporter_id)
-  end
-
   def brew_params
     params.require(:brew).permit(:description, :description, :recipe_id)
+  end
+
+  def chug_type_params
+    params.require(:chug_type).permit(:name, :amount)
+  end
+
+  def chug_params
+    params.require(:chug).permit(:user_id, :secs, :milis, :comment, :reporter_id)
   end
 
   def recipe_params

@@ -1,0 +1,24 @@
+<div>
+  <%= form_for(@chug_type) do |f| %>
+    <% if @chug_type.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@chug_type.errors.count, 'error') %> prohibited this recipe from being saved:</h2>
+
+          <ul>
+            <% @chug_type.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="space-y-4">
+      <%= f.text_field :name, class: input_classes, required: true, minlength: 2, placeholder: "Naam" %>
+      <%= f.text_field :amount, class: input_classes, required: true, minlength: 2, placeholder: "Hoeveelheid (in ml)" %>
+    </div>
+
+    <div class="flex justify-center mt-5">
+      <%= f.submit "Opslaan", class: submit_classes %>
+    </div>
+  <% end %>
+</div>
