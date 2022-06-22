@@ -25,12 +25,11 @@
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
   <aside class="ml-6 py-6 md:col-span-4 md:pr-6">
-    Ben jij de volgende die de <%= @chug_type.name %> van <%= @chug_type.amount %>ml gaat vouwen?
+    Ben jij de volgende die de <%= @chug_type.name %> van <%= @chug_type.amount %> ml gaat vouwen?
   </aside>
 
   <div class='md:col-span-8 md:pl-6 py-6'>
     Adtjes:
-
     <ul>
       <% @chugs.each do |chug| %>
         <li><%= link_to chug.created_at.strftime("%d-%m-%Y"), chug_path(@chug_type, chug) %></li>
