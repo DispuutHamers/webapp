@@ -9,7 +9,7 @@ module UsersHelper
 
   def gravatar_for_email(email, options = {size: 256, class: 'h-6 w-6 rounded-full'})
     gravatar_id = Digest::MD5.hexdigest(email&.downcase || 'system')
-    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{options[:size]}&r=x&d=monsterid"
+    gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{options[:size]}&r=x&d=https%3A%2F%2Fpreviews.123rf.com%2Fimages%2Folesiabilkei%2Folesiabilkei1611%2Folesiabilkei161100112%2F66299032-cheerful-boy-with-disability-at-rehabilitation-center-for-kids-with-special-needs.jpg"
     image_tag(gravatar_url, alt: email, class: options[:class])
   end
 
