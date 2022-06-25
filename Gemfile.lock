@@ -129,7 +129,7 @@ GEM
     devise_invitable (2.0.6)
       actionmailer (>= 5.0)
       devise (>= 4.6)
-    diffy (3.4.0)
+    diffy (3.4.1)
     digest (3.1.0)
     doorkeeper (5.5.4)
       railties (>= 5)
