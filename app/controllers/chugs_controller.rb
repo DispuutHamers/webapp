@@ -27,7 +27,7 @@ class ChugsController < ApplicationController
 
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
     breadcrumb "Adtjes", chugtype_path(@chugtype)
-    breadcrumb @chugtype.created_at.strftime("%d-%m-%Y"), chug_path(@chug)
+    breadcrumb "#{@chug.user.name}'s adt van #{@chug.secs}.#{@chug.milis}s", chug_path(@chug)
     breadcrumb 'Wijzig Adt', edit_chug_path(@chug)
   end
 

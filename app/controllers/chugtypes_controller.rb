@@ -5,11 +5,11 @@ class ChugtypesController < ApplicationController
   breadcrumb 'Adt categorieën', :chugtypes_path
 
   def index
-    @pagy, @chugtypes = pagy(Chugtype.all, page: params[:page])
+    @pagy, @chugtypes = pagy(Chugtype.all.order('name ASC'), page: params[:page])
   end
 
   def show
-    @chugs = @chugtype.chugs
+    @pagy, @chugs = pagy(@chugtype.chugs.order('secs ASC, milis ASC, created_at DESC'), items: 10, page: params[:page])
     breadcrumb @chugtype.name, chugtypes_path(@chugs)
   end
 

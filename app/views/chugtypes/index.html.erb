@@ -22,6 +22,9 @@
                 Hoeveelheid
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Snelste tijd
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Aantal x gevouwen
               </th>
               <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -40,6 +43,14 @@
                 </td>
                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                   <%= chugtype.amount %> ml
+                </td>
+                <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+                  <% @fastest = chugtype.chugs.order('secs ASC, milis ASC, created_at DESC').first %>
+                  <% if @fastest.nil? %>
+                    -
+                  <% else %>
+                    <strong><%= @fastest.secs %>.<%= @fastest.milis %>s</strong> door <%= @fastest.user.name %>
+                  <% end %>
                 </td>
                 <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
                   <%= chugtype.chugs.count %>

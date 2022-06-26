@@ -35,23 +35,50 @@
   <div class='md:col-span-8 md:pl-6 py-6'>
     <aside class="ml-6 py-6 md:col-span-4 md:pr-6">
       <% if @chugs.any? %>
+
         <ul role="list" class="divide-y divide-gray-200">
-          <% @chugs.each do |chug| %>
+          <% @chugs.each_with_index do |chug, index| %>
+            <% if index == 0 %>
+              <li class="podium">
+                <div class="relative z-0 w-3/12 mt-4">
+                  <img src="/assets/medal_gold.png">
+                  <div class="absolute inset-0 flex justify-center items-center z-10">
+                    <%= link_to chug.user, class: "mt-2 self-center" do %>
+                      <% gravatar_for chug.user, class: "w-full rounded-full" %>
+                    <% end %>
+                  </div>
+                  <div class="absolute inset-0 flex justify-center z-9 -mt-4">
+                    <strong><%= chug.secs %>.<%= chug.milis %>s</strong>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+            <% if index == 1 %>
+              <li class="podium-2">
+                <%= chug.user.name %>
+              </li>
+            <% end %>
+            <% if index == 2 %>
+              <li class="podium-3">
+                <%= chug.user.name %>
+              </li>
+            <% end %>
+            <% if index > 2 %>
             <li class="py-4">
               <div class="flex space-x-3 text-sm">
                 <%= link_to chug.user, class: "self-center" do %>
-                  <% gravatar_for chug.user, class: "h-12 w-12 rounded-full" %>
+                  <% gravatar_for chug.user, class: "h-8 w-8 rounded-full" %>
                 <% end %>
                 <div class="flex-col flex-1">
                   <div class="flex flex-col sm:flex-row justify-between self-center">
-                    <h3 class="flex-grow font-medium"><strong><%= chug.secs %>.<%= chug.milis %>s</strong><% if chug.comment? %><%= chug.comment %><% end %></h3>
+                    <h3 class="flex-grow font-medium"><%= chug.secs %>.<%= chug.milis %></h3>
                     <span class="relative z-0 inline-flex rounded-md">
                       <%= link_to edit_chug_path(chug), class: 'inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-l-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
                         <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
                       <% end %>
-                      <%= link_to chug, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: chug.user.name,
-                        class: '-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-r-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
-                      <%= heroicon('trash', class_name: "h-4 w-4") %> <span class="sm:hidden">Verwijderen</span>
+                                  <%= link_to chug, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: chug.user.name,
+                                              class: '-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-r-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+                        <%= heroicon('trash', class_name: "h-4 w-4") %> <span class="sm:hidden">Verwijderen</span>
                       <% end %>
                     </span>
                   </div>
@@ -62,6 +89,8 @@
                 </div>
               </div>
             </li>
+            <% end %>
+
           <% end %>
         </ul>
       <% else %>
