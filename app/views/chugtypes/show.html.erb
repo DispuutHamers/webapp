@@ -30,6 +30,11 @@
     <div class="flex justify-center mt-5" style="margin-left: -2rem;">
       <%= button_to "Adt!", new_chug_path(@chugtype), method: :get, class: submit_classes %>
     </div>
+    <% if @chugtype.description %>
+      <p>
+        <%= @chugtype.description %>
+      </p>
+    <% end %>
   </aside>
 
   <div class='md:col-span-8 md:pl-6 py-6'>
