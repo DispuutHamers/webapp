@@ -10,7 +10,7 @@
     <% if @fastest.nil? %>
       -
     <% else %>
-      <strong><%= @fastest.secs %>.<%= @fastest.milis %>s</strong> door <%= @fastest.user.name %>
+      <strong><%= @fastest.secs %>.<%= sprintf("%02d", @fastest.milis) %>s</strong> door <%= @fastest.user.name %>
     <% end %>
   </td>
   <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">

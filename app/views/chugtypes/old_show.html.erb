@@ -48,7 +48,7 @@
                     <% end %>
                   </div>
                   <div class="absolute inset-0 flex justify-center z-9 -mt-4">
-                    <strong><%= chug.secs %>.<%= chug.milis %>s</strong>
+                    <strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %>s</strong>
                   </div>
                 </div>
               </li>
@@ -71,7 +71,7 @@
                 <% end %>
                 <div class="flex-col flex-1">
                   <div class="flex flex-col sm:flex-row justify-between self-center">
-                    <h3 class="flex-grow font-medium"><%= chug.secs %>.<%= chug.milis %></h3>
+                    <h3 class="flex-grow font-medium"><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></h3>
                     <span class="relative z-0 inline-flex rounded-md">
                       <%= link_to edit_chug_path(chug), class: 'inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-l-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
                         <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
