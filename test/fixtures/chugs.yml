@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+snel:
+  user: two
+  secs: 2
+  milis: 42
+  comment: SNELLL
+  chugtype: grolsch
+
+traag:
+  user: one
+  secs: 15
+  milis: 32
+  comment: Traaggg
+  chugtype: ice
