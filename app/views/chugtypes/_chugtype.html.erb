@@ -1,0 +1,27 @@
+<tr onclick='Turbo.visit("<%= chugtype_path(chugtype) %>")' class="hover:bg-gray-50 cursor-pointer">
+  <td class="px-6 py-4 whitespace-nowrap">
+    <%= chugtype.name %>
+  </td>
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+    <%= chugtype.amount %> ml
+  </td>
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+    <% @fastest = chugtype.chugs.order('secs ASC, milis ASC, created_at DESC').first %>
+    <% if @fastest.nil? %>
+      -
+    <% else %>
+      <strong><%= @fastest.secs %>.<%= @fastest.milis %>s</strong> door <%= @fastest.user.name %>
+    <% end %>
+  </td>
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+    <%= chugtype.chugs.count %>
+  </td>
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+    <%= chugtype.created_at.strftime("%d-%m-%Y") %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+    <%= link_to chugtype, class: "float-right" do %>
+      <%= heroicon('chevron-right', class_name: "flex-shrink-0 h-5 w-5 text-gray-400") %>
+    <% end %>
+  </td>
+</tr>
