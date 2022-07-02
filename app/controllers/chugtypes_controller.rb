@@ -9,8 +9,10 @@ class ChugtypesController < ApplicationController
   end
 
   def show
-    @pagy, @chugs = pagy(@chugtype.chugs.order('secs ASC, milis ASC, created_at DESC'), items: 10, page: params[:page])
-    breadcrumb @chugtype.name, chugtypes_path(@chugs)
+    @pagy, @chugs_all_newest = pagy(@chugtype.chugs.order('created_at DESC'), items: 10, page: params[:page])
+    @chugs_unique = @chugtype.chugs.order('secs ASC, milis ASC, created_at DESC').uniq
+
+    breadcrumb @chugtype.name, chugtypes_path(@chugtype)
   end
 
   def edit
