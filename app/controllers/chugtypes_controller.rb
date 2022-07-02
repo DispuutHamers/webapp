@@ -12,7 +12,7 @@ class ChugtypesController < ApplicationController
     @pagy, @chugs_all_newest = pagy(@chugtype.chugs.order('created_at DESC'), items: 10, page: params[:page])
     @chugs_unique = @chugtype.chugs.order('secs ASC, milis ASC, created_at DESC').uniq
 
-    breadcrumb @chugtype.name, chugtypes_path(@chugtype)
+    breadcrumb @chugtype.name, chugtype_path(@chugtype)
   end
 
   def edit
