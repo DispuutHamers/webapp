@@ -4,7 +4,7 @@
       <% if index == 0 %>
         <li class="flex items-center justify-center">
           <div class="podium py-4">
-            <img class="medal gold" src="/assets/medal_gold.png" alt="Gold medal">
+            <img class="medal gold" src="/img/medal_gold.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
               <% gravatar_for chug.user, class: "gravatar gold-gravatar rounded-full" %>
             <% end %>
@@ -13,7 +13,7 @@
               <br> <i style="font-size: 0.85rem;"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 1 %>
-            <img class="medal silver" src="/assets/medal_silver.png" alt="Gold medal">
+            <img class="medal silver" src="/img/medal_silver.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
               <% gravatar_for chug.user, class: "gravatar silver-gravatar rounded-full" %>
             <% end %>
@@ -22,7 +22,7 @@
                 <br> <i style="font-size: 0.85rem;"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 2 %>
-            <img class="medal bronze" src="/assets/medal_bronze.png" alt="Gold medal">
+            <img class="medal bronze" src="/img/medal_bronze.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
               <% gravatar_for chug.user, class: "gravatar bronze-gravatar rounded-full" %>
             <% end %>

@@ -72,6 +72,10 @@ class TrailPresenter
       "maakte gebruiker <i>#{lookup_object}</i>"
     when "Usergroup"
       "maakte groep <i>#{lookup_object}</i>"
+    when "Chugtype"
+      "maakte adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+    when "Chug"
+      "trok een #{lookup_object.chugtype.name.downcase} die #{lookup_object.secs}.#{sprintf("%02d", lookup_object.milis)}s duurde"
     else
       "maakte #{type}"
     end
@@ -90,6 +94,10 @@ class TrailPresenter
       "schreef zich #{status} voor <i>#{lookup_object.event}</i>"
     when "Review"
       "wijzigde een review van <i>#{lookup_object.beer.name}</i>"
+    when "Chugtype"
+      "wijzigde adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+    when "Chug"
+      "wijzigde #{lookup_object.chugtype.name.downcase} die #{lookup_object.secs}.#{sprintf("%02d", lookup_object.milis)}s duurde"
     when "ActionText::RichText"
       "wijzigde #{action_text_title}"
     when "User"
@@ -117,6 +125,10 @@ class TrailPresenter
       "verwijderde gebruiker <i>#{lookup_object}</i>"
     when "Usergroup"
       "verwijderde groep <i>#{lookup_object}</i>"
+    when "Chugtype"
+      "verwijderde adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+    when "Chug"
+      "verwijderde #{lookup_object.chugtype.name.downcase} die #{lookup_object.secs}.#{sprintf("%02d", lookup_object.milis)}s duurde"
     else
       "verwijderde #{type}"
     end
@@ -158,6 +170,10 @@ class TrailPresenter
       "notulen"
     when "Draft"
       "conceptnotulen"
+    when "Chug"
+      "#{lookup_object.chugtype.name.downcase} die #{lookup_object.secs}.#{sprintf("%02d", lookup_object.milis)}s duurde"
+    when "Chugtype"
+      "adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     else
       "iets?"
     end
