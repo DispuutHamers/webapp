@@ -99,6 +99,24 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
   end
 
+  create_table "chugs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "reporter_id"
+    t.integer "secs", limit: 4
+    t.integer "milis", limit: 4
+    t.string "comment", limit: 255
+    t.integer "chugtype_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "chugtypes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+    t.string "name", limit: 255
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "drafts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "entity_type", limit: 255
     t.bigint "entity_id"
@@ -394,24 +412,6 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
     t.check_constraint "json_valid(`object_changes`)", name: "object_changes"
     t.check_constraint "json_valid(`object`)", name: "object"
-  end
-
-  create_table "chugs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "reporter_id"
-    t.integer "secs", limit: 4
-    t.integer "milis", limit: 4
-    t.string "comment", limit: 255
-    t.integer "chugtype_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "chugtypes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.string "name", limit: 255
-    t.integer "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

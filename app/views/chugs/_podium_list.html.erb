@@ -2,8 +2,8 @@
   <% if chugs.count >= 3 %>
     <% chugs.each_with_index do |chug, index|  %>
       <% if index == 0 %>
-        <div class="flex items-center justify-center">
-          <li class="podium py-4">
+        <li class="flex items-center justify-center">
+          <div class="podium py-4">
             <img class="medal gold" src="/assets/medal_gold.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
               <% gravatar_for chug.user, class: "gravatar gold-gravatar rounded-full" %>
@@ -30,8 +30,8 @@
               <p class="text-center bronze-text" style="width: 100px; line-height: 1.1rem"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
                 <br> <i style="font-size: 0.85rem;"><%= chug.user.name %></i></p>
             </div>
-          </li>
-        </div>
+          </div>
+        </li>
       <% else %>
         <%= render 'chugs/chug', chug: chug %>
       <% end %>

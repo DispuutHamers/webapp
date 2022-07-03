@@ -5,6 +5,10 @@ class Chug < ActiveRecord::Base
   belongs_to :reporter, class_name: "User"
   has_rich_text :comment
 
-  scope :ordered, -> { order('secs DESC, milis DESC') }
+  validates :chugtype, presence: true
+  validates :user, presence: true
+  validates :reporter, presence: true
+  validates :secs, presence: true, numericality: { greater_than: 0 }
+  validates :milis, presence: true, numericality: { greater_than: 0, less_than: 1000 }
+  validates :comment, length: { maximum: 500 }
 end
-
