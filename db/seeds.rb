@@ -115,4 +115,3 @@ Chug.create!(user_id: 2, chugtype_id: 1, secs: 4, milis: 34)
 Chug.create!(user_id: 3, chugtype_id: 1, secs: 5, milis: 45)
 Chug.create!(user_id: 4, chugtype_id: 1, secs: 6, milis: 99, comment:"Net snel genoeg.")
 Chug.create!(user_id: 1, chugtype_id: 2, secs: 6, milis: 77)
-

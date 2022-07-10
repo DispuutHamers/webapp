@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
 
   create_table "chugs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "reporter_id"
     t.integer "secs", limit: 4
     t.integer "milis", limit: 4
     t.string "comment", limit: 255
