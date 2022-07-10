@@ -10,10 +10,13 @@ class ChugtypesController < ApplicationController
 
   def show
     @pagy, @chugs_all_newest = pagy(@chugtype.chugs.order('created_at DESC'), items: 10, page: params[:page])
+    # @chugs_unique = @chugtype.chugs.order('secs ASC, milis ASC, created_at ASC').distinct('user_id')
+    # @chugs_unique = @chugtype.chugs.all.group_by(&:user_id).map { |k, v| [k, v.first] }
     @chugs_unique = Chug.all.order('secs ASC, milis ASC, created_at ASC')
                         .select{|chug| chug.chugtype == @chugtype}
                         .uniq{|chug| chug.user}
                         .sort_by{|chug| [chug.secs, chug.milis]}
+
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
   end
 
