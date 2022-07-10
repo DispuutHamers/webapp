@@ -4,7 +4,6 @@ class Chug < ActiveRecord::Base
   belongs_to :chugtype
   belongs_to :user
   belongs_to :reporter, class_name: "User"
-  has_rich_text :comment
 
   validates :chugtype, presence: true
   validates :user, presence: true
