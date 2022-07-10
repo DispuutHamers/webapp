@@ -105,3 +105,13 @@ Meeting.create!(onderwerp: "ALV VI", date: Date.today, agenda: "1. Opening\n2.Va
 # Create stickers
 Sticker.create!(user_id: 1, lat: 52.252731, lon: 6.8610066, notes: "Witbreuksweg 393-C")
 Sticker.create!(user_id: 1, lat: 51.9641653, lon: 7.6234247, notes: "Munster")
+
+# Create chugtypes with chugs
+Chugtype.create!(id: 1, name: "Grolsch Glas", amount: 300)
+Chugtype.create!(id: 2, name: "Smirnoff Ice", amount: 700)
+
+Chug.create!(user_id: 1, chugtype_id: 1, secs: 3, milis: 23)
+Chug.create!(user_id: 2, chugtype_id: 1, secs: 4, milis: 34)
+Chug.create!(user_id: 3, chugtype_id: 1, secs: 5, milis: 45)
+Chug.create!(user_id: 1, chugtype_id: 2, secs: 6, milis: 77)
+
