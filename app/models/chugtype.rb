@@ -1,4 +1,5 @@
 class Chugtype < ActiveRecord::Base
+  acts_as_paranoid
   has_paper_trail
   has_many :chugs
   has_rich_text :description
