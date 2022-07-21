@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_125240) do
+ActiveRecord::Schema.define(version: 2022_07_21_113409) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -99,20 +99,20 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
   end
 
-  create_table "chugs", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "secs", null: false, default: 0
-    t.integer "milis", null: false, default: 0
-    t.string "comment", limit: 255
+  create_table "chugs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "chugtype_id", null: false
+    t.integer "user_id", null: false
+    t.integer "secs", default: 0, null: false
+    t.integer "milis", default: 0, null: false
+    t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
   end
 
-  create_table "chugtypes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
-    t.string "name", limit: 255
-    t.integer "amount", null: false, default: 0
+  create_table "chugtypes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-  create_table "gutentag_taggings", charset: "utf8mb4", force: :cascade do |t|
+  create_table "gutentag_taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "tag_id", null: false
     t.integer "taggable_id", null: false
     t.string "taggable_type", null: false
@@ -185,7 +185,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.index ["taggable_type", "taggable_id"], name: "index_gutentag_taggings_on_taggable_type_and_taggable_id"
   end
 
-  create_table "gutentag_tags", charset: "utf8mb4", force: :cascade do |t|
+  create_table "gutentag_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
