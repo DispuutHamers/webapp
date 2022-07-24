@@ -4,7 +4,7 @@
     <% users_array = User.all.map { |user| [user.name, user.id] } %>
     <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
 
-    <div style="margin-top: 1rem">
+    <div class="mt-4">
       Tijd
     </div>
     <div class="grid grid-cols-6 gap-4">
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <div style="margin-top: 1rem">
+    <div class="mt-4">
       Opmerkingen
     </div>
     <%= f.text_field :comment, class: input_classes, placeholder: "Opmerkingen" %>

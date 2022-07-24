@@ -20,7 +20,7 @@ class ChugsController < ApplicationController
     chug.chugtype = Chugtype.find_by_id!(params[:id])
     save_object(chug)
   end
-  
+
   def edit
     @chugtype = @chug.chugtype
 
