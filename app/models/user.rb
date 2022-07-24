@@ -119,7 +119,7 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
   def fastest_chug
     @chug = chugs.order('secs ASC, milis ASC').first
     unless @chug
-      "Nog geen bakken gevouwen"
+      return "Nog onbekend"
     end
     "#{@chug.secs}.#{sprintf("%02d", @chug.milis)}s"
   end
