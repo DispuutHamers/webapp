@@ -1,16 +1,5 @@
 <div>
   <%= form_for @chug do |f| %>
-    <% if @chug.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@chug.errors.count, 'error') %> prohibited this chug from being saved:</h2>
-          <ul>
-            <% @chug.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
     Adt getrokken door
     <% users_array = User.all.map { |user| [user.name, user.id] } %>
     <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>

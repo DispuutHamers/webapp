@@ -1,17 +1,5 @@
 <div>
   <%= form_for(@chugtype) do |f| %>
-    <% if @chugtype.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@chugtype.errors.count, 'error') %> prohibited this chug type from being saved:</h2>
-
-          <ul>
-            <% @chugtype.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
     <div class="space-y-4">
       <%= f.text_field :name, class: input_classes, required: true, minlength: 2, placeholder: "Naam" %>
       <%= f.text_field :amount, class: input_classes, required: true, minlength: 2, placeholder: "Hoeveelheid (in ml)" %>
