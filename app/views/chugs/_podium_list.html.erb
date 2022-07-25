@@ -9,8 +9,8 @@
               <% gravatar_for chug.user, class: "gravatar gold-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center gold-text" style="width: 100px; line-height: 1.1rem"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
-              <br> <i style="font-size: 0.85rem;"><%= chug.user.name %></i></p>
+              <p class="text-center gold-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 1 %>
             <img class="medal silver" src="/img/medal_silver.png" alt="Gold medal">
@@ -18,8 +18,8 @@
               <% gravatar_for chug.user, class: "gravatar silver-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center silver-text" style="width: 100px; line-height: 1.1rem"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
-                <br> <i style="font-size: 0.85rem;"><%= chug.user.name %></i></p>
+              <p class="text-center silver-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+                <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 2 %>
             <img class="medal bronze" src="/img/medal_bronze.png" alt="Gold medal">
@@ -27,8 +27,8 @@
               <% gravatar_for chug.user, class: "gravatar bronze-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center bronze-text" style="width: 100px; line-height: 1.1rem"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
-                <br> <i style="font-size: 0.85rem;"><%= chug.user.name %></i></p>
+              <p class="text-center bronze-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+                <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
           </div>
         </li>
