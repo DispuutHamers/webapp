@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :strict_transport_security
   before_action do
-    Rack::MiniProfiler.authorize_request if current_user&.dev?
+    Rack::MiniProfiler.authorize_request if current_user&.dev? && !Rails.env.production?
   end
   breadcrumb 'Home', :root_path
 
