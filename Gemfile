@@ -49,7 +49,7 @@ end
 group :development, :test do
   gem 'memory_profiler', require: false
   gem 'puma'
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
