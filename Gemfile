@@ -10,7 +10,7 @@ gem 'devise-two-factor'
 gem 'diffy'
 gem 'doorkeeper'
 gem 'doorkeeper-i18n'
-gem "down", "~> 5.0"
+gem 'down', '~> 5.0'
 gem 'exception_handler'
 gem 'flamegraph'
 gem 'gutentag'
@@ -18,7 +18,6 @@ gem 'icalendar'
 gem 'image_processing'
 gem 'loaf'
 gem 'lockbox'
-gem 'memory_profiler'
 gem 'minidusen'
 gem 'mini_magick'
 gem 'net-http-persistent'
@@ -27,21 +26,20 @@ gem 'paperclip'
 gem 'paper_trail'
 gem 'paranoia'
 gem 'rack-cors', require: 'rack/cors'
-gem 'rack-mini-profiler'
 gem 'rails', '<7'
-gem 'rails-i18n'
 gem 'rails_heroicons'
+gem 'rails-i18n'
 gem 'ransack'
 gem 'rb-readline'
 gem 'rqrcode'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
 gem 'stackprof'
-gem 'tailwindcss-rails-webpacker', "~> 0.2.1"
+gem 'tailwindcss-rails-webpacker', '~> 0.2.1'
 gem 'turbo-rails'
 gem 'tzinfo'
 gem 'uglifier'
-gem "webpacker"
+gem 'webpacker'
 gem 'wine_bouncer'
 
 group :production, :development do
@@ -49,6 +47,7 @@ group :production, :development do
 end
 
 group :development, :test do
+  gem 'memory_profiler', require: false
   gem 'puma'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
@@ -56,16 +55,17 @@ group :development, :test do
 end
 
 group :production, :staging do
-  gem "honeybadger", "~> 4.0"
-  gem "redis", "~> 4.0"
+  gem 'honeybadger', '~> 4.0'
+  gem 'redis', '~> 4.0'
   gem 'whenever', require: false
 end
 
 group :development do
   gem 'any_login'
-  gem "brakeman", require: false
+  gem 'brakeman', require: false
+  gem 'pry', require: false
+  gem 'rack-mini-profiler', require: false
   gem 'web-console'
-  gem 'pry'
 end
 
 group :test do
