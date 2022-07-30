@@ -49,6 +49,7 @@ end
 group :development, :test do
   gem 'memory_profiler', require: false
   gem 'puma'
+  gem 'rack-mini-profiler', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
@@ -64,7 +65,6 @@ group :development do
   gem 'any_login'
   gem 'brakeman', require: false
   gem 'pry', require: false
-  gem 'rack-mini-profiler', require: false
   gem 'web-console'
 end
 
