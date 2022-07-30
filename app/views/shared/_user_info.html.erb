@@ -12,6 +12,10 @@
     <span class="text-hamers-red-400"><%= current_user.stickers.count %></span> stickers geplakt,
     <span class="text-hamers-red-400"><%= current_user.blogitems.count %></span> blogs geschreven en
     bent bij <span class="text-hamers-red-400"><%= Signup.where(event_id: Event.where(attendance: true).pluck(:id), user: current_user).count %></span>
-    borrels geweest.
+    borrels geweest, met een inschrijfpercentage van <span class="text-hamers-red-400"><%= current_user.drink_ratio %>%</span> in het afgelopen jaar.
+
+    <% if current_user.drink_ratio < 0.8 %>
+      <em>Probeer je vaker in of uit te schrijven!</em>
+    <% end %>
   </p>
 </div>
