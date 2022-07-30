@@ -74,7 +74,7 @@ module UtilHelper
 
   def self.cleanup
     User.intern.each { |u| UsersHelper.update_weight_for(u) }
-    User.leden.each { |u| UsersHelper.sunday_ratio_for(u) }
+    User.leden.each { |u| UsersHelper.drink_ratio_for(u) }
     Beer.all.each { |b| b.update_cijfer }
     Blogitem.unscoped.where("title is NULL OR length(title) < 1").delete_all
 

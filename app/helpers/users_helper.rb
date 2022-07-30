@@ -28,7 +28,7 @@ module UsersHelper
     end
 
     ratio = (sundays / total) * 100
-    user.update(sunday_ratio: ratio)
+    user.update(drink_ratio: ratio)
   end
 
   def self.missed_drinks_for(user)
