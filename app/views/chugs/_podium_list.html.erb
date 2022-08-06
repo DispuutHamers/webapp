@@ -6,7 +6,7 @@
           <div class="relative py-4 w-80 h-72">
             <img class="w-28 h-28 absolute z-10 ml-28" src="/img/medal_gold.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "absolute z-20 w-16 h-16 gold-gravatar rounded-full" %>
+              <% gravatar_for chug.user, class: "absolute z-20 gravatar gold-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
               <p class="text-center absolute gold-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
@@ -15,7 +15,7 @@
       <% elsif index == 1 %>
             <img class="w-28 h-28 absolute z-10 mt-12" src="/img/medal_silver.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "absolute z-20 w-16 h-16 silver-gravatar rounded-full" %>
+              <% gravatar_for chug.user, class: "absolute z-20 gravatar silver-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
               <p class="text-center absolute silver-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
@@ -24,7 +24,7 @@
       <% elsif index == 2 %>
             <img class="w-28 h-28 absolute z-10 ml-56 mt-24" src="/img/medal_bronze.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "absolute z-20 w-16 h-16 bronze-gravatar rounded-full" %>
+              <% gravatar_for chug.user, class: "absolute z-20 gravatar bronze-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
               <p class="text-center absolute bronze-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
@@ -47,6 +47,10 @@
 </ul>
 
 <style>
+  .gravatar {
+      width: 70px;
+      height: 70px;
+  }
 
   .gold-gravatar { margin-top: 24px; margin-left: 137px; }
   .silver-gravatar { margin-top: 74px; margin-left: 22px; }
