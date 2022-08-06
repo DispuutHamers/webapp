@@ -1,8 +1,14 @@
 <div>
   <%= form_for(@chugtype) do |f| %>
     <div class="space-y-4">
-      <%= f.text_field :name, class: input_classes, required: true, minlength: 2, placeholder: "Naam" %>
-      <%= f.text_field :amount, class: input_classes, required: true, minlength: 2, placeholder: "Hoeveelheid (in ml)" %>
+      <div class="mt-4 mb-2">
+        Naam
+      </div>
+      <%= f.text_field :name, class: input_classes, required: true, minlength: 2, placeholder: "Bijv. Grolsch Beugel" %>
+      <div class="mt-4 mb-2">
+        Hoeveelheid (in ml)
+      </div>
+      <%= f.text_field :amount, class: input_classes, required: true, placeholder: "330" %>
     </div>
 
     <div class="flex justify-center mt-5">

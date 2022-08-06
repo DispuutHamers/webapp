@@ -1,4 +1,3 @@
-
 class ChugtypesController < ApplicationController
   before_action :ilid?
   before_action :set_chugtype, only: [:show, :edit, :update, :destroy]
@@ -11,9 +10,9 @@ class ChugtypesController < ApplicationController
   def show
     @pagy, @chugs_all_newest = pagy(@chugtype.chugs.order('created_at DESC'), items: 10, page: params[:page])
     @chugs_unique = Chug.all.order('secs ASC, milis ASC, created_at ASC')
-                        .select{|chug| chug.chugtype == @chugtype}
-                        .uniq{|chug| chug.user}
-                        .sort_by{|chug| [chug.secs, chug.milis]}
+                        .select { |chug| chug.chugtype == @chugtype }
+                        .uniq { |chug| chug.user }
+                        .sort_by { |chug| [chug.secs, chug.milis] }
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
   end
 

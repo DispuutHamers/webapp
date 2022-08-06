@@ -3,31 +3,31 @@
     <% chugs.each_with_index do |chug, index|  %>
       <% if index == 0 %>
         <li class="flex items-center justify-center">
-          <div class="podium py-4">
-            <img class="medal gold" src="/img/medal_gold.png" alt="Gold medal">
+          <div class="relative py-4 w-80 h-72">
+            <img class="w-28 h-28 absolute z-10 ml-28" src="/img/medal_gold.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "gravatar gold-gravatar rounded-full" %>
+              <% gravatar_for chug.user, class: "absolute z-20 w-16 h-16 gold-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center gold-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <p class="text-center absolute gold-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
               <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 1 %>
-            <img class="medal silver" src="/img/medal_silver.png" alt="Gold medal">
+            <img class="w-28 h-28 absolute z-10 mt-12" src="/img/medal_silver.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "gravatar silver-gravatar rounded-full" %>
+              <% gravatar_for chug.user, class: "absolute z-20 w-16 h-16 silver-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center silver-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <p class="text-center absolute silver-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
                 <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 2 %>
-            <img class="medal bronze" src="/img/medal_bronze.png" alt="Gold medal">
+            <img class="w-28 h-28 absolute z-10 ml-56 mt-24" src="/img/medal_bronze.png" alt="Gold medal">
             <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "gravatar bronze-gravatar rounded-full" %>
+              <% gravatar_for chug.user, class: "absolute z-20 w-16 h-16 bronze-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center bronze-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <p class="text-center absolute bronze-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
                 <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
           </div>
@@ -47,45 +47,21 @@
 </ul>
 
 <style>
-  .podium {
-      position: relative;
-      width: 320px;
-      height: 290px;
-  }
-  .medal {
-      position: absolute;
-      width: 110px;
-      height: 110px;
-      z-index: 1;
-  }
-  .gold { margin-left: 115px; margin-top: 0; }
-  .silver { margin-left: 0; margin-top: 50px; }
-  .bronze { margin-left: 210px; margin-top: 90px; }
-
-  .gravatar {
-      position: absolute;
-      height: 68px;
-      width: 68px;
-      z-index: 2;
-  }
 
   .gold-gravatar { margin-top: 24px; margin-left: 137px; }
   .silver-gravatar { margin-top: 74px; margin-left: 22px; }
-  .bronze-gravatar { margin-top: 115px; margin-left: 232px; }
+  .bronze-gravatar { margin-top: 122px; margin-left: 246px; }
 
   .gold-text {
-      position: absolute;
       margin-top: 275px;
       margin-left: 22px;
   }
   .silver-text {
-      position: absolute;
       margin-top: 380px;
       margin-left: -205px;
   }
   .bronze-text {
-      position: absolute;
-      margin-top: 450px;
+      margin-top: 455px;
       margin-left: 215px;
   }
 </style>
