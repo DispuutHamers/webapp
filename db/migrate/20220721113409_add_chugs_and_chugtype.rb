@@ -3,8 +3,7 @@ class AddChugsAndChugtype < ActiveRecord::Migration[6.1]
     create_table :chugs do |t|
       t.integer :chugtype_id, null: false, foreign_key: true
       t.integer :user_id, null: false, foreign_key: true
-      t.integer :secs, null: false, default: 0
-      t.integer :milis, null: false, default: 0
+      t.float :time, null: false, default: 0.0
       t.string :comment, default: nil
       t.datetime :created_at, null: false
       t.datetime :updated_at, null: false

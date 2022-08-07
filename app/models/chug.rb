@@ -6,7 +6,6 @@ class Chug < ActiveRecord::Base
 
   validates :chugtype, presence: true
   validates :user, presence: true
-  validates :secs, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :milis, presence: true, numericality: { greater_than_or_equal_to: 0, less_than: 1000 }
+  validates :time, presence: true, numericality: { greater_than_or_equal_to: 0.0, less_than: 1000.0 }
   validates :comment, length: { maximum: 500 }
 end

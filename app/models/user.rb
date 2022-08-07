@@ -117,11 +117,11 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
   end
 
   def fastest_chug
-    @chug = chugs.order('secs ASC, milis ASC').first
+    @chug = chugs.order('time ASC').first
     unless @chug
       return "-"
     end
-    "#{@chug.secs}.#{sprintf("%02d", @chug.milis)}s"
+    "#{@chug.time.round(2)}s"
   end
 
   def next_birthday

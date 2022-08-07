@@ -9,7 +9,7 @@
               <% gravatar_for chug.user, class: "absolute z-20 gravatar gold-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center absolute gold-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <p class="text-center absolute gold-text w-24 text-sm"><strong><%= chug.time.round(2) %></strong>s
               <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 1 %>
@@ -18,7 +18,7 @@
               <% gravatar_for chug.user, class: "absolute z-20 gravatar silver-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center absolute silver-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <p class="text-center absolute silver-text w-24 text-sm"><strong><%= chug.time.round(2) %></strong>s
                 <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
       <% elsif index == 2 %>
@@ -27,7 +27,7 @@
               <% gravatar_for chug.user, class: "absolute z-20 gravatar bronze-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center absolute bronze-text w-24 text-sm"><strong><%= chug.secs %>.<%= sprintf("%02d", chug.milis) %></strong>s
+              <p class="text-center absolute bronze-text w-24 text-sm"><strong><%= chug.time.round(2) %></strong>s
                 <br> <i class="text-sm"><%= chug.user.name %></i></p>
             </div>
           </div>

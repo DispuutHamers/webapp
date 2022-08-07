@@ -6,11 +6,11 @@
     <%= chugtype.amount %> ml
   </td>
   <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
-    <% @fastest = chugtype.chugs.order('secs ASC, milis ASC, created_at DESC').first %>
+    <% @fastest = chugtype.chugs.order('time ASC, created_at DESC').first %>
     <% if @fastest.nil? %>
       -
     <% else %>
-      <strong><%= @fastest.secs %>.<%= sprintf("%02d", @fastest.milis) %>s</strong> door <%= @fastest.user.name %>
+      <strong><%= @fastest.time.round(2) %>s</strong> door <%= @fastest.user.name %>
     <% end %>
   </td>
   <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">

@@ -23,10 +23,11 @@ class ChugsController < ApplicationController
 
   def edit
     @chugtype = @chug.chugtype
+    @userid = @chug.user_id
 
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
     breadcrumb "Adtjes", chugtype_path(@chugtype)
-    breadcrumb "#{@chug.user.name}'s adt van #{@chug.secs}.#{format('%02d', @chug.milis)}s", chug_path(@chug)
+    breadcrumb "#{@chug.user.name}'s adt van #{@chug.time.round(2)}s", chug_path(@chug)
     breadcrumb 'Wijzig Adt', edit_chug_path(@chug)
   end
 

@@ -102,9 +102,8 @@ ActiveRecord::Schema.define(version: 2022_07_21_113409) do
   create_table "chugs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "chugtype_id", null: false
     t.integer "user_id", null: false
-    t.integer "secs", default: 0, null: false
-    t.integer "milis", default: 0, null: false
-    t.string "comment"
+    t.float "time", default: 0.0, null: false
+    t.string "comment", null: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "deleted_at"

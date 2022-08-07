@@ -16,7 +16,7 @@ module ParamsHelper
   end
 
   def chug_params
-    params.require(:chug).permit(:user_id, :secs, :milis, :comment, :chugtype_id)
+    params.require(:chug).permit(:user_id, :time, :comment, :chugtype_id)
   end
 
   def recipe_params
