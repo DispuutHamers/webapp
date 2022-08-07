@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
   belongs_to :usergroup
   validates :title, presence: true, allow_blank: false
   validates :date, presence: true, allow_blank: false
+  validate :begin_before_end_time
 
   scope :with_signups, -> { includes(:signups) }
   scope :upcoming, -> { where(['date >= ?', Time.zone.now]) }
@@ -71,5 +72,12 @@ class Event < ActiveRecord::Base
 
   def to_s
     title
+  end
+
+  private
+
+  def begin_before_end_time
+    return unless date && end_time
+    errors.add(:end_time, 'De activiteit eindigt voordat hij begint.') if date > end_time
   end
 end
