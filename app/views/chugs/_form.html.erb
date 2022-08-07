@@ -1,16 +1,16 @@
 <div>
   <%= form_for @chug do |f| %>
-    Adt getrokken door
+    <div>
+      Adt getrokken door:
+    </div>
     <% users_array = User.all.map { |user| [user.name, user.id] } %>
     <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
 
     <div class="mt-4 mb-2">
-      Tijd
+      Tijd (in seconden)
     </div>
-    <div class="grid grid-cols-6 gap-4">
-      <div>
-        <%= f.number_field :time, step: :any, class: input_classes, required: true, placeholder: "_.__s" %>
-      </div>
+    <div class="w-full">
+      <%= f.number_field :time, step: :any, class: input_classes, required: true, placeholder: "_.__" %>
     </div>
 
     <div class="mt-4 mb-2">
