@@ -97,7 +97,7 @@ class TrailPresenter
     when "Chugtype"
       "wijzigde adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
-      "wijzigde #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
+      "wijzigde een adt van een #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     when "ActionText::RichText"
       "wijzigde #{action_text_title}"
     when "User"
