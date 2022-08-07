@@ -106,8 +106,8 @@ Meeting.create!(onderwerp: 'ALV VI', date: Date.today, agenda: "1. Opening\n2.Va
                 secretary_id: 3, user_ids: User.leden_en_aspiranten.map(&:id))
 
 # Create stickers
-Sticker.create!(user_id: 1, lat: 52.252731, lon: 6.8610066, notes: "Witbreuksweg 393-C")
-Sticker.create!(user_id: 1, lat: 51.9641653, lon: 7.6234247, notes: "Munster")
+Sticker.create!(user_id: 1, lat: 52.252731, lon: 6.8610066, notes: 'Witbreuksweg 393-C')
+Sticker.create!(user_id: 1, lat: 51.9641653, lon: 7.6234247, notes: 'Munster')
 
 # Create chugtypes with chugs
 Chugtype.create!(id: 1, name: 'Grolsch Glas', amount: 250)
