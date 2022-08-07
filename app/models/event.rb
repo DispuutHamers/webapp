@@ -21,7 +21,12 @@ class Event < ActiveRecord::Base
     url = "https://zondersikkel.nl/events/#{self.id}"
     event = Icalendar::Event.new
     event.dtstart = date.strftime('%Y%m%dT%H%M%S')
-    event.dtend = end_time.strftime('%Y%m%dT%H%M%S')
+    if end_time.nil?
+      event.dtend = end_time.strftime('%Y%m%dT%H%M%S')
+    else
+      # standard endtime is + one hour for activities, since an endtime has to be defined within an ics activity and not on our site
+      event.dtend = (date + 1.hour).strftime('%Y%m%dT%H%M%S')
+    end
     event.summary = title
     event.description = "#{description.to_plain_text} \n\n #{url}"
     event.location = location
