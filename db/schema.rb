@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_21_125240) do
+ActiveRecord::Schema.define(version: 2022_07_30_113421) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -352,7 +352,7 @@ ActiveRecord::Schema.define(version: 2021_11_21_125240) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token", limit: 255
     t.datetime "locked_at"
-    t.float "sunday_ratio", default: 0.0
+    t.float "drink_ratio", default: 0.0
     t.string "invitation_token", limit: 255
     t.datetime "invitation_created_at"
     t.datetime "invitation_sent_at"
