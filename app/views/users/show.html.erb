@@ -48,7 +48,7 @@
       <dl class="border-t border-gray-200 sm:divide-y sm:divide-gray-200">
         <% specs = {
           "Lichting": @user.batch,
-          "Inschrijfratio (laatste jaar)": @user.drink_ratio.to_s + "%",
+          "Inschrijfratio (laatste jaar)": @user.drink_ratio.round(0).to_s + "%",
           "Aantal keer geciteerd": @user.quotes.count,
           "Aantal bieren gereviewd": @user.reviews.count,
           "Aantal stickers geplakt": @user.stickers.count,

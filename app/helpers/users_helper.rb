@@ -14,7 +14,10 @@ module UsersHelper
   end
 
   def self.drink_ratio_for(user)
-    drinks = Event.where(attendance: true).where('date > ?', Date.today - 1.year).where('deadline < ?', Date.today)
+    drinks = Event.where(attendance: true)
+                  .where('date > ?', Date.today - 1.year)
+                  .where('date > ?', user.lid_since)
+                  .where('deadline < ?', Date.today)
     total = 0.0
     attended = 0.0
     drinks.each do |drink|
