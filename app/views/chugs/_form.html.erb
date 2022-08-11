@@ -1,0 +1,25 @@
+<div>
+  <%= form_for @chug do |f| %>
+    <div>
+      Adt getrokken door:
+    </div>
+    <% users_array = User.all.map { |user| [user.name, user.id] } %>
+    <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
+
+    <div class="mt-4 mb-2">
+      Tijd (in seconden)
+    </div>
+    <div class="w-full">
+      <%= f.number_field :time, step: :any, class: input_classes, required: true, placeholder: "_.__" %>
+    </div>
+
+    <div class="mt-4 mb-2">
+      Opmerkingen
+    </div>
+    <%= f.text_field :comment, class: input_classes, placeholder: "Opmerkingen" %>
+
+    <div class="flex justify-center mt-5">
+      <%= f.submit "Opslaan", class: submit_classes %>
+    </div>
+  <% end %>
+</div>
