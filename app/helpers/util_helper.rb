@@ -6,13 +6,14 @@ module UtilHelper
       redirect_to obj
     else
       flash.now[:error] = obj.errors.full_messages.join('<br>')
-      render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
+      render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
   end
 
   def self.scramble_string(string)
-    return if string.length < 1
-    string << " Overigens ben ik van mening dat correct taalgebruik zeer belangrijk is!"
+    return if string.empty?
+
+    string << ' Overigens ben ik van mening dat correct taalgebruik zeer belangrijk is!'
   end
 
   def update_object(obj, obj_params)
@@ -22,7 +23,7 @@ module UtilHelper
       redirect_to obj
     else
       flash.now[:error] = obj.errors.full_messages.join('<br>')
-      render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
+      render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
   end
 
@@ -33,13 +34,13 @@ module UtilHelper
       redirect_to obj
     else
       flash.now[:error] = obj.errors.full_messages.join('<br>')
-      render turbo_stream: turbo_stream.update("flash", partial: "layouts/alert")
+      render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
   end
 
   def delete_object(obj)
     obj.destroy
-    flash[:success] = "Succesvol verwijderd"
+    flash[:success] = 'Succesvol verwijderd'
     redirect_to root_path
   end
 
@@ -74,9 +75,9 @@ module UtilHelper
 
   def self.cleanup
     User.intern.each { |u| UsersHelper.update_weight_for(u) }
-    User.leden.each { |u| UsersHelper.sunday_ratio_for(u) }
-    Beer.all.each { |b| b.update_cijfer }
-    Blogitem.unscoped.where("title is NULL OR length(title) < 1").delete_all
+    User.leden.each { |u| UsersHelper.drink_ratio_for(u) }
+    Beer.all.each(&:update_cijfer)
+    Blogitem.unscoped.where('title is NULL OR length(title) < 1').delete_all
 
     # Ping Honeybadger for monitoring purposes
     Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/oWI2ay'))

@@ -25,6 +25,7 @@ gem 'pagy'
 gem 'paperclip'
 gem 'paper_trail'
 gem 'paranoia'
+gem 'psych', '< 4' # https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
 gem 'rack-cors', require: 'rack/cors'
 gem 'rails', '<7'
 gem 'rails_heroicons'

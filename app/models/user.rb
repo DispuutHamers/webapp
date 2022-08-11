@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :two_factor_authenticatable,
          :otp_secret_encryption_key => Rails.configuration.OTP_SECRET
-  has_paper_trail ignore: %i[sunday_ratio encrypted_password reset_password_token reset_password_sent_at
+  has_paper_trail ignore: %i[drink_ratio encrypted_password reset_password_token reset_password_sent_at
 remember_created_at sign_in_count current_sign_in_at last_sign_in_at current_sign_in_ip
 last_sign_in_ip password_salt confirmation_token confirmed_at confirmation_sent_at
 remember_token unconfirmed_email failed_attempts unlock_token locked_at weight updated_at remember_token password_digest password password_confirmation
@@ -40,10 +40,6 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
   scope :extern, -> { where.not(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
   scope :intern, -> { where(id: Group.where(group_id: [4, 5, 12]).pluck(:user_id).uniq) }
   scope :leden_en_aspiranten, -> { where(id: Group.where(group_id: [4, 5]).pluck(:user_id).uniq) }
-
-  def active_for_authentication?
-    super
-  end
 
   def inactive_message
     'Je account heeft (nog) geen status in ons systeem, we kunnen je dus niet verder helpen.'
