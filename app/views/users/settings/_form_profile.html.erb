@@ -37,6 +37,15 @@
       <span id="comments-description" class="text-gray-500"><span class="sr-only">Anoniem op publieke pagina's  </span>(je staat wel op de ledenpagina).</span>
     </div>
   </div>
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :new_event_mail, class: checkbox_classes %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :new_event_mail, "Ontvang een email wanneer een nieuwe activiteit wordt aangemaakt.", class: "font-medium text-gray-700" %>
+      <span id="comments-description" class="text-gray-500"><span class="sr-only">Ontvang een email wanneer een nieuwe activiteit wordt aangemaakt. </span></span>
+    </div>
+  </div>
 
   <%= f.submit "Opslaan", class: submit_classes %>
 <% end %>

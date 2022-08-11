@@ -56,6 +56,8 @@ class EventsController < ApplicationController
     event.invitation_code = SecureRandom.uuid if event_params[:public] == "1"
     event.user_id = current_user.id
     save_object(event)
+    # Send new event to all leden who have new_event_email enabled
+    User.leden.where(new_event_mail:true).each { |user| UserMailer.mail_event_reminder(user, event).deliver }
   end
 
   def remind

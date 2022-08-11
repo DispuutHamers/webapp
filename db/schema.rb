@@ -369,6 +369,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_113421) do
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login"
     t.text "otp_backup_codes"
+    t.boolean "new_event_mail", null: false, default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
