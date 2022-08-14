@@ -1,7 +1,7 @@
 class ChugtypesController < ApplicationController
   before_action :ilid?
   before_action :set_chugtype, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Adt categorieën', :chugtypes_path
+  breadcrumb 'Ad-categorieën', :chugtypes_path
 
   def index
     @pagy, @chugtypes = pagy(Chugtype.all.order('name ASC'), page: params[:page])
@@ -18,7 +18,7 @@ class ChugtypesController < ApplicationController
 
   def edit
     breadcrumb @chugtype.name, chugtypes_path(@chugtype)
-    breadcrumb 'Wijzig adt categorie', chugtypes_path(@chugtype)
+    breadcrumb 'Wijzig ad categorie', chugtypes_path(@chugtype)
   end
 
   def update
@@ -27,7 +27,7 @@ class ChugtypesController < ApplicationController
 
   def new
     @chugtype = Chugtype.new
-    breadcrumb 'Nieuwe adt categorie', new_chugtype_path
+    breadcrumb 'Nieuwe ad categorie', new_chugtype_path
   end
 
   def create

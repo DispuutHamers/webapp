@@ -1,7 +1,7 @@
 class ChugsController < ApplicationController
   before_action :ilid?
   before_action :set_chug, only: [:show, :edit, :update, :destroy]
-  breadcrumb 'Adtjes', :chug_path
+  breadcrumb 'Adjes', :chug_path
 
   def show
     redirect_to chugtype_path(@chug.chugtype)
@@ -12,7 +12,7 @@ class ChugsController < ApplicationController
     @chug = @chugtype.chugs.build(chugtype_id: @chugtype.id)
 
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
-    breadcrumb 'Nieuwe adt', new_chug_path(@chugtype)
+    breadcrumb 'Nieuwe ad', new_chug_path(@chugtype)
   end
 
   def create
@@ -26,9 +26,9 @@ class ChugsController < ApplicationController
     @userid = @chug.user_id
 
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
-    breadcrumb "Adtjes", chugtype_path(@chugtype)
-    breadcrumb "#{@chug.user.name}'s adt van #{@chug.time.round(2)}s", chug_path(@chug)
-    breadcrumb 'Wijzig Adt', edit_chug_path(@chug)
+    breadcrumb "Adjes", chugtype_path(@chugtype)
+    breadcrumb "#{@chug.user.name}'s ad van #{@chug.time.round(2)}s", chug_path(@chug)
+    breadcrumb 'Wijzig ad', edit_chug_path(@chug)
   end
 
   def update
