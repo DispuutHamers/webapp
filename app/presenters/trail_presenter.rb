@@ -75,7 +75,7 @@ class TrailPresenter
     when "Chugtype"
       "maakte ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
-      "trok een #{lookup_object.chugtype.name.downcase} dat #{lookup_object.time.round(2)}s duurde"
+      "trok een #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     else
       "maakte #{type}"
     end
@@ -97,7 +97,7 @@ class TrailPresenter
     when "Chugtype"
       "wijzigde ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
-      "wijzigde een ad van een #{lookup_object.chugtype.name.downcase} dat #{lookup_object.time.round(2)}s duurde"
+      "wijzigde een ad van een #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     when "ActionText::RichText"
       "wijzigde #{action_text_title}"
     when "User"
@@ -128,7 +128,7 @@ class TrailPresenter
     when "Chugtype"
       "verwijderde ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
-      "verwijderde #{lookup_object.chugtype.name.downcase} dat #{lookup_object.time.round(2)}s duurde"
+      "verwijderde #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     else
       "verwijderde #{type}"
     end
@@ -171,7 +171,7 @@ class TrailPresenter
     when "Draft"
       "conceptnotulen"
     when "Chug"
-      "#{lookup_object.chugtype.name.downcase} dat #{lookup_object.time.round(2)}s duurde"
+      "#{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     when "Chugtype"
       "ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     else
