@@ -36,7 +36,6 @@ class ChugtypesController < ApplicationController
   end
 
   def destroy
-    @chugtype.chugs.each { |chug| chug.destroy }
     delete_object(@chugtype)
   end
 
