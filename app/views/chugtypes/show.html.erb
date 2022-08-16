@@ -25,8 +25,7 @@
 
 <div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
   <aside class="py-6 md:col-span-4 md:pr-6">
-    Ben jij de volgende die een <%= @chugtype.name.downcase %> van <%= @chugtype.amount %> ml in één keer leeg gaat
-    trekken?
+    Ben jij de volgende die een <%= @chugtype.name.downcase %> van <%= @chugtype.amount %> ml in één keer leeg gaat trekken?
     <div class="flex justify-center mt-5 -ml-8">
       <%= button_to "Ad!", new_chug_path(@chugtype), method: :get, class: submit_classes %>
     </div>
