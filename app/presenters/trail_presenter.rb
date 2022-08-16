@@ -73,7 +73,7 @@ class TrailPresenter
     when "Usergroup"
       "maakte groep <i>#{lookup_object}</i>"
     when "Chugtype"
-      "maakte adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+      "maakte ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
       "trok een #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     else
@@ -95,9 +95,9 @@ class TrailPresenter
     when "Review"
       "wijzigde een review van <i>#{lookup_object.beer.name}</i>"
     when "Chugtype"
-      "wijzigde adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+      "wijzigde ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
-      "wijzigde een adt van een #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
+      "wijzigde een ad van een #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     when "ActionText::RichText"
       "wijzigde #{action_text_title}"
     when "User"
@@ -126,7 +126,7 @@ class TrailPresenter
     when "Usergroup"
       "verwijderde groep <i>#{lookup_object}</i>"
     when "Chugtype"
-      "verwijderde adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+      "verwijderde ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
       "verwijderde #{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     else
@@ -173,7 +173,7 @@ class TrailPresenter
     when "Chug"
       "#{lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     when "Chugtype"
-      "adtcategorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+      "ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     else
       "iets?"
     end

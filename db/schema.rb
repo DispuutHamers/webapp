@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_150623) do
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
   end
 
-  create_table "chugs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "chugs", charset: "utf8mb4", force: :cascade do |t|
     t.integer "chugtype_id", null: false
     t.integer "user_id", null: false
     t.float "time", default: 0.0, null: false
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_150623) do
     t.datetime "deleted_at"
   end
 
-  create_table "chugtypes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "chugtypes", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_150623) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-  create_table "gutentag_taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gutentag_taggings", charset: "utf8mb4", force: :cascade do |t|
     t.integer "tag_id", null: false
     t.integer "taggable_id", null: false
     t.string "taggable_type", null: false
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_150623) do
     t.index ["taggable_type", "taggable_id"], name: "index_gutentag_taggings_on_taggable_type_and_taggable_id"
   end
 
-  create_table "gutentag_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gutentag_tags", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

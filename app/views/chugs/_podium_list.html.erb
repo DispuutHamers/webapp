@@ -1,6 +1,6 @@
 <ul role="list" class="divide-y divide-gray-200">
   <% if chugs.count >= 3 %>
-    <% chugs.each_with_index do |chug, index|  %>
+    <% chugs.each_with_index do |chug, index| %>
       <% if index == 0 %>
         <li class="flex items-center justify-center">
           <div class="relative py-4 w-80 h-80">
@@ -10,27 +10,27 @@
             <% end %>
             <div class="flex items-center justify-center">
               <p class="text-center absolute gold-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-              <br><i class="text-sm"><%= chug.user.name %></i></p>
-            </div>
-      <% elsif index == 1 %>
-            <%= image_tag 'medal_silver.png', class: "w-28 h-28 absolute z-10 mt-12" %>
-            <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "absolute z-20 gravatar silver-gravatar rounded-full" %>
-            <% end %>
-            <div class="flex items-center justify-center">
-              <p class="text-center absolute silver-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
                 <br><i class="text-sm"><%= chug.user.name %></i></p>
             </div>
+      <% elsif index == 1 %>
+        <%= image_tag 'medal_silver.png', class: "w-28 h-28 absolute z-10 mt-12" %>
+        <%= link_to chug.user, class: "self-center" do %>
+          <% gravatar_for chug.user, class: "absolute z-20 gravatar silver-gravatar rounded-full" %>
+        <% end %>
+        <div class="flex items-center justify-center">
+          <p class="text-center absolute silver-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
+            <br><i class="text-sm"><%= chug.user.name %></i></p>
+        </div>
       <% elsif index == 2 %>
-            <%= image_tag 'medal_bronze.png', class: "w-28 h-28 absolute z-10 ml-56 mt-24" %>
-            <%= link_to chug.user, class: "self-center" do %>
-              <% gravatar_for chug.user, class: "absolute z-20 gravatar bronze-gravatar rounded-full" %>
-            <% end %>
-            <div class="flex items-center justify-center">
-              <p class="text-center absolute bronze-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-                <br><i><%= chug.user.name %></i></p>
-            </div>
-          </div>
+        <%= image_tag 'medal_bronze.png', class: "w-28 h-28 absolute z-10 ml-56 mt-24" %>
+        <%= link_to chug.user, class: "self-center" do %>
+          <% gravatar_for chug.user, class: "absolute z-20 gravatar bronze-gravatar rounded-full" %>
+        <% end %>
+        <div class="flex items-center justify-center">
+          <p class="text-center absolute bronze-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
+            <br><i><%= chug.user.name %></i></p>
+        </div>
+        </div>
         </li>
       <% else %>
         <%= render 'chugs/chug', chug: chug %>
@@ -40,7 +40,7 @@
     <%= render chugs %>
     <div class="py-4 pb-4">
       <i>
-        Er moeten minimaal 3 keer geadt zijn om het scorebord te kunnen zien.
+        Er moeten minimaal drie adjes zijn om het scorebord te zien.
       </i>
     </div>
   <% end %>
