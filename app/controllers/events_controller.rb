@@ -55,9 +55,14 @@ class EventsController < ApplicationController
     event = Event.new(event_params)
     event.invitation_code = SecureRandom.uuid if event_params[:public] == "1"
     event.user_id = current_user.id
-    save_object(event)
-    # Send new event to all leden who have new_event_email enabled
-    User.leden.where(new_event_mail:true).each { |user| UserMailer.mail_event_reminder(user, event).deliver }
+    if event.save
+      send_new_event_email(event)
+      flash[:success] = "Activiteit succesvol aangemaakt."
+      redirect_to event
+    else
+      flash.now[:error] = event.errors.full_messages.join('<br>')
+      render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+    end
   end
 
   def remind
@@ -126,5 +131,12 @@ class EventsController < ApplicationController
     end
 
     calendar
+  end
+
+  def send_new_event_email(event)
+    # Send new event to all leden who have new_event_email enabled
+    unless event.attendance
+      User.leden_en_aspiranten.where(new_event_mail:true).each { |user| UserMailer.mail_new_event(user, event).deliver }
+    end
   end
 end
