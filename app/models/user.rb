@@ -27,6 +27,7 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
   has_many :blogitems
   has_many :attendees
   has_many :stickers
+  has_many :chugs
   has_many :meetings_attended, through: :attendees, source: :meeting
   has_many :meetings_chaired, class_name: "Meeting", inverse_of: :secretary, foreign_key: :chairman_id
   has_many :meetings_minuted, class_name: "Meeting", inverse_of: :secretary, foreign_key: :secretary_id
@@ -109,6 +110,14 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
 
   def average_review_grade
     weight&.round(2) || "Nog onbekend"
+  end
+
+  def fastest_chug
+    @chug = chugs.order('time ASC').first
+    unless @chug
+      return "-"
+    end
+    "#{@chug.time.round(2)}s"
   end
 
   def next_birthday

@@ -23,3 +23,15 @@ trix-editor.form-control {
 .diff ins strong{font-weight:normal;background:#9f9;}
 .diff li.diff-comment { display: none; }
 .diff li.diff-block-info { background: none repeat scroll 0 0 gray; }
+
+/* START Chugs Podium CSS */
+.gravatar { width: 70px; height: 72px; }
+
+.gold-gravatar { margin-top: 23px; margin-left: 134px; }
+.silver-gravatar { margin-top: 71px; margin-left: 22px; }
+.bronze-gravatar { margin-top: 120px; margin-left: 246px; }
+
+.gold-text { margin-top: 290px; margin-left: 22px; }
+.silver-text { margin-top: 390px; margin-left: -205px; }
+.bronze-text { margin-top: 480px; margin-left: 245px; }
+/* END Chugs Podium CSS */

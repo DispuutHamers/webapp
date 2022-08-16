@@ -83,6 +83,12 @@ Hamers::Application.routes.draw do
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes
 
+  resources :chugtypes do
+    member do
+      resources :chugs, except: [:index]
+    end
+  end
+
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
 end
