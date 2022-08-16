@@ -64,7 +64,7 @@ module ParamsHelper
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :phone_number, :birthday, :batch, :anonymous)
+    params.require(:user).permit(:name, :email, :phone_number, :birthday, :batch, :anonymous, :new_event_mail)
   end
 
   def user_password_params

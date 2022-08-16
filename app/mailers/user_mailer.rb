@@ -1,6 +1,7 @@
 # Sends emails to our users
 class UserMailer < ApplicationMailer
   layout 'mailer', only: %i[mail_event_reminder]
+  layout 'mail_new_event', only: %i[mail_new_event]
   layout 'reservation', only: %i[mail_reservation]
 
   def mail_event_reminder(user, event)
@@ -14,4 +15,9 @@ class UserMailer < ApplicationMailer
     mail(to: 'han@devluchte.nl', subject: "Hamers: #{event.signups.where(status: true).count} personen")
   end
 
+  def mail_new_event(user, event)
+    @event = event
+    @user = user
+    mail(to: @user.email, subject: "Nieuwe activiteit: #{event.title}")
+  end
 end
