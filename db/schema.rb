@@ -411,7 +411,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_150623) do
     t.text "object", size: :long, collation: "utf8mb4_bin"
     t.text "object_changes", size: :long, collation: "utf8mb4_bin"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-    t.check_constraint "json_valid(`object_changes)`", name: "object_changes"
+    t.check_constraint "json_valid(`object_changes`)", name: "object_changes"
     t.check_constraint "json_valid(`object`)", name: "object"
   end
 
