@@ -137,7 +137,8 @@ class EventsController < ApplicationController
     # Send new event to all leden who have new_event_email enabled
     if event.usergroup_id.nil?
       unless event.attendance # If not dispuutsborrel
-        User.leden.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, event).deliver }
+        users = User.leden + User.aspiranten + User.oud
+        users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, event).deliver }
       end
     else
       event.usergroup.users.where(new_event_mail: true).each { |user| puts user.name; UserMailer.mail_new_event(user, event).deliver }
