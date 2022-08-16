@@ -1,7 +1,7 @@
 <div>
   <%= form_for @chug do |f| %>
     <div>
-      Adt getrokken door:
+      Ad getrokken door:
     </div>
     <% users_array = User.all.map { |user| [user.name, user.id] } %>
     <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
