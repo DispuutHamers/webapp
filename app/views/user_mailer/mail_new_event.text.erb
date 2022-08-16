@@ -1,0 +1,15 @@
+Hallo <%= @user.name %>,
+
+Er is een nieuwe activiteit genaamd '<%= @event.title %>' aangemaakt.
+Schrijf je zo snel mogelijk in dan wel uit op https://www.zondersikkel.nl/events/<%= @event.id %>
+
+We hopen je daar te zien!
+
+
+Details van de activiteit:
+<%= @event.title %>
+<%= @event.date.strftime("%d-%m-%Y") %> om <%= @event.date.strftime("%H:%M") %><% unless @event.end_time.nil? %> en eindigt op <%= @event.end_time.strftime("%d-%m-%Y") %> om <%= @event.end_time.strftime("%H:%M") %><% end %>
+<% unless @event.location.nil? %>Locatie: <%= @event.location %><% end %>
+<% unless @event.description.nil? %>Beschrijving:
+  <%= @event.description %>
+<% end %>
