@@ -10,14 +10,15 @@
   <body>
     <p>Hallo <%= @user.name %>,</p>
     <p>Er is een nieuwe activiteit genaamd '<%= @event.title %>' aangemaakt.</p>
-    <p>Schrijf je zo snel mogelijk in dan wel uit op <%= event_url(event, host:"https://zondersikkel.nl") %></p>
+    <p>Schrijf je zo snel mogelijk in dan wel uit op <%= event_url(@event, host:"https://zondersikkel.nl") %></p>
     <p>We hopen je daar te zien!</p>
     <p>Details van de activiteit:</p>
-    <p>Titel: <%= @event.title %></p>
-    <p>Datum en tijd: begint op <%= @event.date.strftime("%d-%m-%Y") %> om <%= @event.date.strftime("%H:%M") %><% unless @event.end_time.nil? %> en eindigt op <%= @event.end_time.strftime("%d-%m-%Y") %> om <%= @event.end_time.strftime("%H:%M") %><% end %></p>
-    <% unless @event.location.blank? %><p>Locatie: <%= @event.location %></p><% end %>
-    <% unless @event.description.blank? %><p>Beschrijving:
+    <p>Titel: <%= @event.title %>
+    <br>Datum en tijd: begint op <%= @event.date.strftime("%d-%m-%Y") %> om <%= @event.date.strftime("%H:%M") %><% unless @event.end_time.nil? %> en eindigt op <%= @event.end_time.strftime("%d-%m-%Y") %> om <%= @event.end_time.strftime("%H:%M") %><% end %>
+    <% unless @event.location.blank? %><br>Locatie: <%= @event.location %><% end %>
+    <% unless @event.description.blank? %><br>Beschrijving:
 <%= @event.description.to_plain_text %>
-    </p><% end %>
+    <% end %>
+    </p>
   </body>
 </html>
