@@ -2,7 +2,25 @@
   Leden
 <% end %>
 
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('user', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @leden.count %> leden
+  </div>
+  <% if @aspiranten.any? %>
+    <div class="flex items-center text-sm text-gray-400">
+      <%= heroicon('user-add', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+      <%= @aspiranten.count %> aspiranten
+    </div>
+  <% end %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('academic-cap', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @oudelullen.count %> oud-leden
+  </div>
+<% end %>
+
 <% content_for :options do %>
+  <%= link_to "Aspirant uitnodigen", new_user_invitation_path, class: button_classes if current_user&.admin? %>
   <%= link_to 'Publieke ledenpagina', public_leden_path, class: button_classes %>
 <% end %>
 
@@ -43,12 +61,6 @@
   </div>
   <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
     <%= render "users/table", users: @aspiranten %>
-
-    <% if current_user&.admin? %>
-      <%= link_to new_user_invitation_path, class: "inline-flex items-center px-3 py-2 mt-4 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
-        <%= heroicon('user-add', style: :outline, class_name: "h-4 w-4 mr-1") %> Aspirant uitnodigen
-      <% end %>
-    <% end %>
   </div>
   <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
     <%= render "users/table", users: @oudelullen %>
