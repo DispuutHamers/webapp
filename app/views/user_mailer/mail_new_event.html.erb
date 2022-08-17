@@ -10,7 +10,7 @@
   <body>
     <p>Hallo <%= @user.name %>,</p>
     <p>Er is een nieuwe activiteit genaamd '<%= @event.title %>' aangemaakt.</p>
-    <p>Schrijf je zo snel mogelijk in dan wel uit op <%= event_url(event, host:"https://zondersikkel.nl") %></p>
+    <p>Schrijf je zo snel mogelijk in dan wel uit op <%= event_url(@event, host:"https://zondersikkel.nl") %></p>
     <p>We hopen je daar te zien!</p>
     <p>Details van de activiteit:</p>
     <p>Titel: <%= @event.title %></p>
