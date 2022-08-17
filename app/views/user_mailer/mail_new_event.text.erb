@@ -1,7 +1,7 @@
 Hallo <%= @user.name %>,
 
 Er is een nieuwe activiteit genaamd '<%= @event.title %>' aangemaakt.
-Schrijf je zo snel mogelijk in dan wel uit op https://www.zondersikkel.nl/events/<%= @event.id %>
+Schrijf je zo snel mogelijk in dan wel uit op <%= event_url(event, host:"https://zondersikkel.nl") %>
 
 We hopen je daar te zien!
 
