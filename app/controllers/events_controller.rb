@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     event.invitation_code = SecureRandom.uuid if event_params[:public] == "1"
     event.user_id = current_user.id
     if event.save
-      send_new_event_email(event)
+      event.send_new_event_email
       flash[:success] = "Activiteit succesvol aangemaakt."
       redirect_to event
     else

@@ -70,17 +70,6 @@ class Event < ActiveRecord::Base
     self.signups.count + self.external_signups.count
   end
 
-  def to_s
-    title
-  end
-
-  private
-
-  def begin_before_end_time
-    return unless date && end_time
-    errors.add(:end_time, 'De activiteit eindigt voordat hij begint.') if date > end_time
-  end
-
   def send_new_event_email
     # Send new event to all leden who have new_event_email enabled
     if self.usergroup_id.nil?
@@ -90,5 +79,16 @@ class Event < ActiveRecord::Base
     else
       self.usergroup.users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
     end
+  end
+
+  def to_s
+    title
+  end
+
+  private
+
+  def begin_before_end_time
+    return unless date && end_time
+    errors.add(:end_time, 'De activiteit eindigt voordat hij begint.') if date > end_time
   end
 end
