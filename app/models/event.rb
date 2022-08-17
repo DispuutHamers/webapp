@@ -80,4 +80,15 @@ class Event < ActiveRecord::Base
     return unless date && end_time
     errors.add(:end_time, 'De activiteit eindigt voordat hij begint.') if date > end_time
   end
+
+  def send_new_event_email
+    # Send new event to all leden who have new_event_email enabled
+    if self.usergroup_id.nil?
+      unless self.attendance # If not dispuutsborrel
+        User.intern.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
+      end
+    else
+      self.usergroup.users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
+    end
+  end
 end
