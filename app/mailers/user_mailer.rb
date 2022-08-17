@@ -18,6 +18,6 @@ class UserMailer < ApplicationMailer
   def mail_new_event(user, event)
     @event = event
     @user = user
-    mail(to: @user.email, subject: "Nieuwe activiteit: #{event.title}")
+    mail(to: user.email, subject: "Nieuwe activiteit: #{event.title}")
   end
 end

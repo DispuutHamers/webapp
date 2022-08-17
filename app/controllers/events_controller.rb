@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     event.invitation_code = SecureRandom.uuid if event_params[:public] == "1"
     event.user_id = current_user.id
     if event.save
-      send_new_event_email(event)
+      event.send_new_event_email
       flash[:success] = "Activiteit succesvol aangemaakt."
       redirect_to event
     else
@@ -131,17 +131,5 @@ class EventsController < ApplicationController
     end
 
     calendar
-  end
-
-  def send_new_event_email(event)
-    # Send new event to all leden who have new_event_email enabled
-    if event.usergroup_id.nil?
-      unless event.attendance # If not dispuutsborrel
-        users = User.leden + User.aspiranten + User.oud
-        users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, event).deliver }
-      end
-    else
-      event.usergroup.users.where(new_event_mail: true).each { |user| puts user.name; UserMailer.mail_new_event(user, event).deliver }
-    end
   end
 end
