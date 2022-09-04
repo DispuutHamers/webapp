@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :ilid?, except: %i[new create index_public]
+  before_action :ilid?, except: %i[new create index_public edit_two_factor update_two_factor]
   before_action :user, except: %i[index index_public new create]
   before_action :correct_user, only: %i[edit update]
   before_action :admin_user?, only: :destroy
@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def index_public
     breadcrumb 'Openbaar', public_leden_path
-
     @users = User.order(batch: :desc).group_by { |user| user[:batch] }
   end
 
@@ -65,6 +64,12 @@ class UsersController < ApplicationController
     breadcrumb @user.name, user_path(@user)
     breadcrumb 'Update', edit_user_path(@user)
     breadcrumb '2FA', edit_two_factor_user_path(@user)
+
+    # we must check user because we cannot call ilid because of an endless redirect
+    unless current_user&.active?
+      redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
+      return false
+    end
 
     if @user.otp_required_for_login
       render 'users/settings/two_already_enabled'
