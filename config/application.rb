@@ -11,15 +11,16 @@ module Hamers
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.time_zone = "Amsterdam"
+    config.time_zone = 'Amsterdam'
     config.autoload_paths += Dir[Rails.root.join('app', '*')]
-    config.i18n.default_locale = :'nl'
+    config.i18n.default_locale = :nl
     config.to_prepare do
       Doorkeeper::ApplicationsController.layout 'application'
       Doorkeeper::AuthorizationsController.layout 'application'
       Doorkeeper::AuthorizedApplicationsController.layout 'application'
 
       Devise::SessionsController.layout 'application_public'
+      Devise::InvitationsController.layout 'application_public'
       Devise::RegistrationsController.layout 'application_public'
       Devise::ConfirmationsController.layout 'application_public'
       Devise::UnlocksController.layout 'application_public'
@@ -34,13 +35,13 @@ module Hamers
       exceptions: {
 
         all: {
-          layout: "error_pages/500",
+          layout: 'error_pages/500'
         },
         404 => {
-          layout: "error_pages/404",
+          layout: 'error_pages/404'
         },
         422 => {
-          layout: "error_pages/422"
+          layout: 'error_pages/422'
         }
       }
     }
