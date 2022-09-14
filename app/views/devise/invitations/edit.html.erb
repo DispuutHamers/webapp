@@ -3,7 +3,7 @@
 <% end %>
 
 <%= render layout: 'layouts/small_width' do %>
-  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :put} do |f| %>
+  <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :put, :class => "-mt-16"} do |f| %>
     <%= devise_error_messages! %>
     <%= f.hidden_field :invitation_token, readonly: true %>
   
@@ -24,7 +24,7 @@
     <div>
       <%= f.label :password, class: label_classes %>
       <div class="mt-1">
-        <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
+        <%= f.password_field :password, autocomplete: "off", type: "password", class: input_classes, placeholder: "wachtwoord" %>
       </div>
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
@@ -33,7 +33,7 @@
   
     <div>
       <%= f.label :password_confirmation, class: label_classes %>
-      <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: input_classes, placeholder: "bevestig wachtwoord" %>
     </div>
 
     <%= link_to "Privacy Statement", "/privacy" %>
