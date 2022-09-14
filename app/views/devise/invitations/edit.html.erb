@@ -1,38 +1,43 @@
 <% content_for :title do %>
-  Registreren
+  Meld je aan als 🔨🔨💩👶
 <% end %>
 
 <%= render layout: 'layouts/small_width' do %>
   <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => {:method => :put} do |f| %>
     <%= devise_error_messages! %>
     <%= f.hidden_field :invitation_token, readonly: true %>
+  
+    <div>
+      <%= f.label :name, class: label_classes %>
+      <div class="mt-1">
+        <%= f.text_field :name, class: input_classes, placeholder: "name" %>
+      </div>
+    </div>
 
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
-      <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Naam" %>
+    <div>
+      <%= f.label :email, class: label_classes %>
+      <div class="mt-1">
+        <%= f.email_field :email, class: input_classes, placeholder: "Email" %>
+      </div>
     </div>
-    &nbsp;
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-      <%= f.email_field :email, autofocus: false, class: "form-control", readonly: true %>
+
+    <div>
+      <%= f.label :password, class: label_classes %>
+      <div class="mt-1">
+        <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
+      <% end %>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
     </div>
-    &nbsp;
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <%= f.password_field :password, autocomplete: "off", type: "password", class: "form-control", placeholder: "wachtwoord" %>
-    </div>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br/>
-    &nbsp;
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
+  
+    <div>
+      <%= f.label :password_confirmation, class: label_classes %>
       <%= f.password_field :password_confirmation, autocomplete: "off", type: "password", class: "form-control", placeholder: "bevestig wachtwoord" %>
     </div>
-    <br>
+
     <%= link_to "Privacy Statement", "/privacy" %>
-    <div class="actions">
-      <p><%= f.submit t('devise.invitations.edit.submit_button'), class: 'btn btn-large btn-success' %></p>
-    </div>
+      
+    <%= f.submit "Sla op en wordt 🔨🔨💩👶", class: submit_classes %>
   <% end %>
 <% end %>
