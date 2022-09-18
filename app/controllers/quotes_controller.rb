@@ -13,10 +13,6 @@ class QuotesController < ApplicationController
 
   def create
     quote = User.find(micropost_params[:user_id]).quotes.build(micropost_params)
-    if quote.user.id == current_user.id
-      flash.now[:error] = 'Je kan jezelf toch niet quoten!'
-      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
-    end
     quote.reporter_id = current_user.id
     save_object(quote)
   end
