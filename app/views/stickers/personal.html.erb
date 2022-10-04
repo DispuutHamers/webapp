@@ -5,7 +5,7 @@
 <% content_for :subtitle do %>
   <div class="flex items-center text-sm text-gray-400">
     <%= heroicon('chip', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
-    <%= pluralize @stickers.count, 'sticker', 'stickers', locale: :nl %>
+    <%= pluralize current_user.stickers.count, 'sticker', 'stickers', locale: :nl %>
   </div>
 <% end %>
 
