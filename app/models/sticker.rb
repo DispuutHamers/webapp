@@ -12,8 +12,13 @@ class Sticker < ActiveRecord::Base
   private
 
   def resolve_address
+    puts "https://maps.googleapis.com/maps/api/geocode/json?latlng=#{lat},#{lon}&key=#{Rails.application.secrets.google_api_key}"
     jdata = Net::HTTP.get_response(URI.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{lat},#{lon}&key=#{Rails.application.secrets.google_api_key}"))
     mdata = JSON.parse(jdata.body)
+    puts jdata.body
+
+    puts mdata
+    puts mdata["results"]
 
     if mdata["results"] && mdata["results"][0] && mdata["results"][0]["formatted_address"]
       mdata["results"][0]["formatted_address"]
