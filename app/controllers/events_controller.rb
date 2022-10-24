@@ -13,7 +13,9 @@ class EventsController < ApplicationController
       current_request.html do
         ilid?
         @search = Event.ransack(params[:search])
-        @events = if params[:search].nil? || params[:search].empty? then Event.past.order(date: :desc) else @search.result.order(date: :desc) end
+        @events = if params[:search].nil? || params[:search].empty?
+                  then Event.past.order(date: :desc) 
+                  else @search.result.order(date: :desc) end
         @page, @past_events = pagy(@events, items: 10, page: params[:page])
         @upcoming_events = Event.upcoming.order(date: :asc)
       end
