@@ -74,10 +74,10 @@ class Event < ActiveRecord::Base
     # Send new event to all leden who have new_event_email enabled
     if self.usergroup_id.nil?
       unless self.attendance # If not dispuutsborrel
-        User.intern.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
+        User.intern.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver_later(queue: "low") }
       end
     else
-      self.usergroup.users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
+      self.usergroup.users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver_later(queue: "low") }
     end
   end
 
