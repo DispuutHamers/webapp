@@ -17,11 +17,8 @@ class ChugsController < ApplicationController
 
   def create
     chug = Chug.new(chug_params)
+    chug.reporter_id = current_user.id
     chug.chugtype = Chugtype.find_by_id!(params[:id])
-    if chug.user.id == current_user.id
-      flash.now[:error] = 'Je gaat toch niet je eigen tijd noteren!'
-      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
-    end
     save_object(chug)
   end
 

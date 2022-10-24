@@ -18,7 +18,7 @@ class Quote < ActiveRecord::Base
   private
 
   def reporter_and_user_differ
-    return unless reporter.id == user.id
+    return unless reporter_id == user.id
 
     errors.add(:user, "Je kan toch niet jezelf quoten!")
   end
