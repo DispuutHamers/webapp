@@ -10,7 +10,16 @@
             <% end %>
             <div class="flex items-center justify-center">
               <p class="text-center absolute gold-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-                <br><i class="text-sm"><%= chug.user.name %></i></p>
+                <% if chug.user.id == 7 # If extern, show comment %>
+                  <% if chug.comment.blank? %>
+                    <br><i><%= chug.user.name %></i>
+                  <% else %>
+                    <br><i><%= chug.comment %></i>
+                  <% end %>
+                <% else %>
+                  <br><i><%= chug.user.name %></i>
+                <% end %>
+              </p>
             </div>
       <% elsif index == 1 %>
         <%= image_tag 'medal_silver.png', class: "w-28 h-28 absolute z-10 mt-12" %>
@@ -19,7 +28,16 @@
         <% end %>
         <div class="flex items-center justify-center">
           <p class="text-center absolute silver-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-            <br><i class="text-sm"><%= chug.user.name %></i></p>
+            <% if chug.user.id == 7 # If extern, show comment %>
+              <% if chug.comment.blank? %>
+                <br><i><%= chug.user.name %></i>
+              <% else %>
+                <br><i><%= chug.comment %></i>
+              <% end %>
+            <% else %>
+              <br><i><%= chug.user.name %></i>
+            <% end %>
+           </p>
         </div>
       <% elsif index == 2 %>
         <%= image_tag 'medal_bronze.png', class: "w-28 h-28 absolute z-10 ml-56 mt-24" %>
@@ -28,7 +46,16 @@
         <% end %>
         <div class="flex items-center justify-center">
           <p class="text-center absolute bronze-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-            <br><i><%= chug.user.name %></i></p>
+            <% if chug.user.id == 7 # If extern, show comment %>
+              <% if chug.comment.blank? %>
+                <br><i><%= chug.user.name %></i>
+              <% else %>
+                <br><i><%= chug.comment %></i>
+              <% end %>
+            <% else %>
+              <br><i><%= chug.user.name %></i>
+            <% end %>
+          </p>
         </div>
         </div>
         </li>
