@@ -17,6 +17,6 @@ class Chug < ActiveRecord::Base
   def reporter_and_user_differ
     return unless reporter_id == user_id
 
-    errors.add(:user, "Je kan toch niet jezelf quoten!")
+    errors.add(:user, ": Je gaat toch niet je eigen tijd noteren!")
   end
 end
