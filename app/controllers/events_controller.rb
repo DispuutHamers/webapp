@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   before_action :ilid?, except: [:index]
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
   breadcrumb 'Activiteiten', :events_path
+  ALLOWED_SORTING_FIELDS = %w[title location]
 
   # GET /events
   # GET /events.json
@@ -11,8 +12,10 @@ class EventsController < ApplicationController
     respond_to do |current_request|
       current_request.html do
         ilid?
-        @pagy, @past_events = pagy(Event.past.order(date: :desc), page: params[:page])
-        @upcoming_events = Event.upcoming.order(date: :asc).includes(:usergroup)
+        @search = Event.ransack(params[:search])
+        @events = if params[:search].nil? || params[:search].empty? then Event.past.order(date: :desc) else @search.result.order(date: :desc) end
+        @page, @past_events = pagy(@events, items: 10, page: params[:page])
+        @upcoming_events = Event.upcoming.order(date: :asc)
       end
 
       current_request.ics do

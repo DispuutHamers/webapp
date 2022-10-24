@@ -3,7 +3,10 @@
 <% end %>
 
 <% content_for :options do %>
-  <%= button_to "Nieuwe activiteit", new_event_path, method: :get, class: button_classes %>
+  <%= search_form_for @search, class: "inline-flex rounded-md" do |f| %>
+    <%= f.search_field :title_and_location, placeholder: 'Zoek hier naar alle activiteiten', class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm border-gray-300 rounded-l-md' %>
+    <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
+  <% end %>
 <% end %>
 
 <div class="-m-5 sm:-m-6">
