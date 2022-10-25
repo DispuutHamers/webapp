@@ -12,12 +12,18 @@ class EventsController < ApplicationController
     respond_to do |current_request|
       current_request.html do
         ilid?
-        @search = Event.ransack(params[:search])
-        @events = if params[:search].nil? || params[:search].empty?
-                  then Event.past.order(date: :desc) 
-                  else @search.result.order(date: :desc) end
-        @page, @past_events = pagy(@events, items: 10, page: params[:page])
-        @upcoming_events = Event.upcoming.order(date: :asc)
+        @search = Event.ransack(params[:search], search_key: :search)
+        if params[:search].present?
+          if (not params[:search]["title_or_location"]) or params[:search]["title_or_location"] == ""
+            # We redirect to events here so that we see the normal binnenkort and vroegah view again
+            redirect_to events_path
+            return
+          end
+          @pagy, @search_events = pagy(@search.result.order(date: :desc), items: 10, page: params[:page])
+        else
+          @upcoming_events = Event.upcoming.order(date: :asc)
+          @pagy, @past_events = pagy(Event.past.order(date: :desc), items: 10, page: params[:page])
+        end
       end
 
       current_request.ics do
