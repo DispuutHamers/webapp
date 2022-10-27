@@ -7,10 +7,19 @@ class Quote < ActiveRecord::Base
   validates :reporter, presence: true
   validates :text, presence: true
   serialize :text
+  validate :reporter_and_user_differ
 
   encrypts :text
 
   scope :ordered, -> { order('created_at DESC') }
   scope :random, -> { order('RAND()') }
   scope :with_user, -> { includes(:user) }
+
+  private
+
+  def reporter_and_user_differ
+    return unless reporter_id == user_id
+
+    errors.add(:user, ": Je kan toch niet jezelf quoten!")
+  end
 end

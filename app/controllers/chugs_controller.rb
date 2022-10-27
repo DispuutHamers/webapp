@@ -17,6 +17,7 @@ class ChugsController < ApplicationController
 
   def create
     chug = Chug.new(chug_params)
+    chug.reporter_id = current_user.id
     chug.chugtype = Chugtype.find_by_id!(params[:id])
     save_object(chug)
   end
