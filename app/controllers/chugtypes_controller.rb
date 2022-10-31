@@ -10,7 +10,7 @@ class ChugtypesController < ApplicationController
   def show
     @pagy, @chugs_all_newest = pagy(Chug.newest(@chugtype), items: 10, page: params[:page])
     @chugs_unique = Chug.unique_not_extern(@chugtype) + Chug.extern(@chugtype)
-    @chugs_unique_sorted = @unique.sort_by { |chug| [chug.time] }
+    @chugs_unique_sorted = @chugs_unique.sort_by { |chug| [chug.time] }
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
   end
 
