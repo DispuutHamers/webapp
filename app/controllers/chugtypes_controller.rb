@@ -8,13 +8,9 @@ class ChugtypesController < ApplicationController
   end
 
   def show
-    @pagy, @chugs_all_newest = pagy(@chugtype.chugs.order('created_at DESC'), items: 10, page: params[:page])
-    @chugs_unique = (Chug.all.order('time ASC, created_at ASC')
-                        .select { |chug| chug.chugtype == @chugtype }
-                        .uniq { |chug| chug.user }
-                        .reject { |chug| chug.user.id == 7 } +
-                        Chug.all.select { |chug| chug.user.id == 7 && chug.chugtype == @chugtype })
-                        .sort_by { |chug| [chug.time] }
+    @pagy, @newest = pagy(Chug.newest(@chugtype), items: 10, page: params[:page])
+    @unique = Chug.unique_not_extern(@chugtype) + Chug.extern(@chugtype)
+    @unique_sorted = @unique.sort_by { |chug| [chug.time] }
     breadcrumb @chugtype.name, chugtype_path(@chugtype)
   end
 

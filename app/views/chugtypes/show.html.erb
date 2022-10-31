@@ -37,7 +37,7 @@
   </aside>
 
   <div class='md:col-span-8'>
-    <% if @chugs_all_newest.count > 0 %>
+    <% if @newest.count > 0 %>
       <div data-controller="tabs select-tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
         <div>
           <div class="ml-4">
@@ -55,12 +55,12 @@
         </div>
         <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
           <div class="md:pl-6">
-            <%= render 'chugs/podium_list', chugs: @chugs_unique %>
+            <%= render 'chugs/podium_list', chugs: @unique_sorted %>
           </div>
         </div>
         <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
           <div class="md:pl-6">
-            <%= render 'chugs/list', chugs: @chugs_all_newest %>
+            <%= render 'chugs/list', chugs: @newest %>
             <div class="py-6">
               <%= render 'shared/pagination/default' %>
             </div>
