@@ -75,7 +75,7 @@ class TrailPresenter
     when "Chugtype"
       "maakte ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
     when "Chug"
-      "trok een #{lookup_object.chugtype.nil? ? "een ad" : lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
+      "zag dat #{lookup_object.user.name} een #{lookup_object.chugtype.nil? ? "een ad" : lookup_object.chugtype.name.downcase} trok die #{lookup_object.time.round(2)}s duurde"
     else
       "maakte #{type}"
     end
@@ -170,10 +170,10 @@ class TrailPresenter
       "notulen"
     when "Draft"
       "conceptnotulen"
-    when "Chug"
-      "#{lookup_object.chugtype.nil? ? "een ad" : lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     when "Chugtype"
       "ad-categorie <i>#{lookup_object.name}</i> - #{lookup_object.amount}ml"
+    when "Chug"
+      "#{lookup_object.chugtype.nil? ? "een ad" : lookup_object.chugtype.name.downcase} die #{lookup_object.time.round(2)}s duurde"
     else
       "iets?"
     end
