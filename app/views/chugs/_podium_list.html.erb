@@ -10,15 +10,7 @@
             <% end %>
             <div class="flex items-center justify-center">
               <p class="text-center absolute gold-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-                <% if chug.user.id == 7 # If extern, show comment %>
-                  <% if chug.comment.blank? %>
-                    <br><i><%= chug.user.name %></i>
-                  <% else %>
-                    <br><i><%= chug.comment %></i>
-                  <% end %>
-                <% else %>
-                  <br><i><%= chug.user.name %></i>
-                <% end %>
+                <br><i><%= chug.user.id == 7 && chug.comment.present? ? chug.comment : chug.user.name %></i>
               </p>
             </div>
       <% elsif index == 1 %>
@@ -28,16 +20,8 @@
         <% end %>
         <div class="flex items-center justify-center">
           <p class="text-center absolute silver-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-            <% if chug.user.id == 7 # If extern, show comment %>
-              <% if chug.comment.blank? %>
-                <br><i><%= chug.user.name %></i>
-              <% else %>
-                <br><i><%= chug.comment %></i>
-              <% end %>
-            <% else %>
-              <br><i><%= chug.user.name %></i>
-            <% end %>
-           </p>
+            <br><i><%= chug.user.id == 7 && chug.comment.present? ? chug.comment : chug.user.name %></i>
+          </p>
         </div>
       <% elsif index == 2 %>
         <%= image_tag 'medal_bronze.png', class: "w-28 h-28 absolute z-10 ml-56 mt-24" %>
@@ -46,15 +30,7 @@
         <% end %>
         <div class="flex items-center justify-center">
           <p class="text-center absolute bronze-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
-            <% if chug.user.id == 7 # If extern, show comment %>
-              <% if chug.comment.blank? %>
-                <br><i><%= chug.user.name %></i>
-              <% else %>
-                <br><i><%= chug.comment %></i>
-              <% end %>
-            <% else %>
-              <br><i><%= chug.user.name %></i>
-            <% end %>
+            <br><i><%= chug.user.id == 7 && chug.comment.present? ? chug.comment : chug.user.name %></i>
           </p>
         </div>
         </div>
