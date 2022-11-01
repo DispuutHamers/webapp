@@ -53,11 +53,7 @@ class Event < ActiveRecord::Base
   end
 
   def open?
-    if deadline.nil?
-      date.future?
-    else
-      deadline.future?
-    end
+    (deadline || date).future?
   end
 
   def can_be_deleted_by?(user)
