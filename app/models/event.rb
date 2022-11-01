@@ -53,7 +53,7 @@ class Event < ActiveRecord::Base
   end
 
   def open?
-    deadline != nil and deadline > Time.now
+    (deadline || date).future?
   end
 
   def can_be_deleted_by?(user)
@@ -68,6 +68,14 @@ class Event < ActiveRecord::Base
 
   def attendee_count
     self.signups.count + self.external_signups.count
+  end
+
+  def deadline_passed?
+    if deadline
+      deadline < Time.now
+    else
+      false
+    end
   end
 
   def send_new_event_email
