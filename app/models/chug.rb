@@ -12,6 +12,10 @@ class Chug < ActiveRecord::Base
   validates :comment, length: { maximum: 500 }
   validate :reporter_and_user_differ
 
+  scope :newest, -> chugtype { where(chugtype: chugtype).order('created_at DESC') }
+  scope :unique_not_extern, -> chugtype { where(chugtype: chugtype).order('time ASC, created_at ASC').uniq { |chug| chug.user }.reject { |chug| chug.user == 7 } }
+  scope :extern, -> chugtype { where(chugtype: chugtype).select { |chug| chug.user.id == 7 } }
+
   private
 
   def reporter_and_user_differ
