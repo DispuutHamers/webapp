@@ -52,7 +52,7 @@
           <% end %>
           <p class="text-center sm:text-right text-gray-500 py-2">Inschrijven kan tot <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') || @event.date.strftime('%d-%m-%Y %H:%M') %></p>
         <% else %>
-          <p class="text-center text-gray-500">De inschrijving is gesloten sinds <%= @event.deadline&.strftime('%d-%m-%Y %H:%M') %>.</p>
+          <p class="text-center text-gray-500">De inschrijving is gesloten sinds <%= (@event.deadline || event.date)&.strftime('%d-%m-%Y %H:%M') %>.</p>
         <% end %>
       </div>
 
