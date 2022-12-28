@@ -70,14 +70,6 @@ class Event < ActiveRecord::Base
     self.signups.count + self.external_signups.count
   end
 
-  def deadline_passed?
-    if deadline
-      deadline < Time.now
-    else
-      false
-    end
-  end
-
   def send_new_event_email
     # Send new event to all leden who have new_event_email enabled
     if self.usergroup_id.nil?
