@@ -10,7 +10,7 @@
       Tijd (in seconden)
     </div>
     <div class="w-full">
-      <%= f.text_field :time, step: :any, inputmode: 'decimal' ,class: input_classes, required: true, placeholder: "_.__", value: '',
+      <%= f.text_field :time, step: :any, inputmode: 'decimal' ,class: input_classes, required: true, placeholder: "_.__",
                        oninput: "this.value = this.value.replace(',','.')"
       %>
     </div>
