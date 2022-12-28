@@ -17,7 +17,7 @@ module UsersHelper
     drinks = Event.where(attendance: true)
                   .where('date > ?', Date.today - 1.year)
                   .where('date > ?', user.lid_since)
-                  .where('deadline < ?', Date.today)
+                  .where('deadline IS NOT NULL AND deadline < ?', Date.today)
     total = 0.0
     attended = 0.0
     drinks.each do |drink|

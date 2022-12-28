@@ -15,7 +15,7 @@ class Signup < ActiveRecord::Base
   private
 
   def event_deadline_has_passed
-    return unless event&.deadline&.past?
+    return unless event.deadline&.past?
 
     errors.add(:event_id, "Event deadline has already passed")
   end
