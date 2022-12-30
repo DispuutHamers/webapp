@@ -14,7 +14,7 @@ class Event < ActiveRecord::Base
   validate :begin_before_end_time
 
   scope :with_signups, -> { includes(:signups) }
-  scope :upcoming, -> { where(['date >= ?', Time.zone.now]) }
+  scope :upcoming, -> { where(['(end_time IS NOT NULL AND end_time >= ?) OR date >= ?', Time.zone.now, Time.zone.now]) }
   scope :past, -> { where(['date <= ?', Time.zone.now]) }
   scope :are_public, -> { where.not(invitation_code: nil) }
 

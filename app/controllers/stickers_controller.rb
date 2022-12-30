@@ -36,7 +36,12 @@ class StickersController < ApplicationController
   end
 
   def show
-    redirect_to personal_stickers_path
+    sticker = Sticker.find_by_id!(params[[:id]])
+    if sticker.user.id == current_user.id
+      redirect_to personal_stickers_path
+      return
+    end
+    redirect_to stickers_path
   end
 
   def destroy
