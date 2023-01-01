@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_175101) do
+ActiveRecord::Schema.define(version: 2023_01_01_142403) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -341,6 +341,8 @@ ActiveRecord::Schema.define(version: 2022_12_28_175101) do
     t.string "name", limit: 255
     t.datetime "deleted_at"
     t.string "signal_url"
+    t.string "description"
+    t.boolean "archived", default: false
     t.index ["deleted_at"], name: "index_usergroups_on_deleted_at"
   end
 
@@ -414,8 +416,8 @@ ActiveRecord::Schema.define(version: 2022_12_28_175101) do
     t.text "object", size: :long, collation: "utf8mb4_bin"
     t.text "object_changes", size: :long, collation: "utf8mb4_bin"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
-    t.check_constraint "son_valid(`object_changes`", name: "object_changes"
-    t.check_constraint "son_valid(`object`", name: "object"
+    t.check_constraint "json_valid(`object_changes`)", name: "object_changes"
+    t.check_constraint "json_valid(`object`)", name: "object"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
