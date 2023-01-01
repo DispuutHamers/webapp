@@ -37,8 +37,14 @@ class QuotesController < ApplicationController
 
   def destroy
     quote = Quote.find_by_id!(params[:id])
-    # TODO make sure this does not end up in quote.versions
-    delete_object(quote)
+    quote.destroy
+    if quote.anonymous
+      quote.versions.each do |version|
+        version.destroy
+      end
+    end
+    flash[:success] = 'Quote succesvol verwijderd'
+    redirect_to root_path
   end
 
   def anonymous
@@ -47,14 +53,11 @@ class QuotesController < ApplicationController
       quote.anonymous = true
       quote.reporter = nil
       quote.user = nil
-
-      quote.versions.each do |version|
-        version.whodunnit = nil
-        version.save
-      end
-
       if quote.save
         flash[:success] = 'Quote is nu anoniem'
+        quote.versions.each do |version|
+          version.destroy
+        end
         return redirect_to root_path
       else
         flash.now[:error] = quote.errors.full_messages.join('<br>')
