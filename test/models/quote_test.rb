@@ -15,16 +15,6 @@ class QuoteTest < ActiveSupport::TestCase
     assert @quote.valid?
   end
 
-  test 'invalid without user' do
-    @quote.user = nil
-    refute @quote.valid?
-  end
-
-  test 'invalid without reporter' do
-    @quote.reporter = nil
-    refute @quote.valid?
-  end
-
   test 'invalid without text' do
     @quote.text = nil
     refute @quote.valid?
@@ -56,5 +46,21 @@ class QuoteTest < ActiveSupport::TestCase
     assert @quote.deleted_at.nil?
     @quote.delete
     refute @quote.deleted_at.nil?
+  end
+
+  test 'quote anonymous' do
+    @quote.anonymous = true
+    @quote.user = nil
+    @quote.reporter = nil
+    assert @quote.valid?
+  end
+
+  test 'quote anonymous then user and reporter should be nil' do
+    @quote.anonymous = true
+    refute @quote.valid?
+    @quote.user = nil
+    refute @quote.valid?
+    @quote.reporter = nil
+    assert @quote.valid?
   end
 end
