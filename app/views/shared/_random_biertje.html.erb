@@ -4,15 +4,21 @@
       <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
       <div class="w-full flex justify-center">
         <div class="w-full flex space-x-3 text-sm">
-          <%= link_to @random_quote.user, class: "self-center" do %>
-            <% gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full" %>
+          <% if @random_quote.anonymous %>
+            <div class="self-center">
+              <%= image_tag 'anonymous.svg', class: "w-7 h-7 rounded-full" %>
+            </div>
+          <% else %>
+            <%= link_to @random_quote.user, class: "self-center" do %>
+              <% gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full" %>
+            <% end %>
           <% end %>
           <div class="flex-col flex-1 space-y-1">
             <div class="flex flex-col sm:flex-row space-y-1 justify-between self-center">
               <h3 class="flex-grow font-medium"><%= @random_quote.text %></h3>
             </div>
             <div class="flex flex-col sm:flex-row text-gray-500">
-              <div class="flex-grow"><%= @random_quote.user.name %></div>
+              <div class="flex-grow"><%= @random_quote.anonymous ? 'Anoniem' : @random_quote.user.name %></div>
               <p><%= time_ago_in_words(@random_quote.created_at) %> geleden.</p>
             </div>
           </div>
