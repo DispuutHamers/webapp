@@ -1,23 +1,35 @@
 <li class="py-4">
   <div class="flex space-x-3 text-sm">
-    <%= link_to quote.user, class: "self-center" do %>
-      <% gravatar_for quote.user, class: "h-8 w-8 rounded-full" %>
+    <% if quote.anonymous %>
+      <div class="self-center">
+        <%= image_tag 'anonymous.svg', class: "w-7 h-7 rounded-full" %>
+      </div>
+    <% else %>
+      <%= link_to quote.user, class: "self-center" do %>
+        <% gravatar_for quote.user, class: "h-8 w-8 rounded-full" %>
+      <% end %>
     <% end %>
     <div class="flex-col flex-1">
       <div class="flex flex-col sm:flex-row justify-between self-center">
         <h3 class="flex-grow font-medium"><%= quote.text %></h3>
         <span class="relative z-0 inline-flex rounded-md">
-          <%= link_to edit_quote_path(quote), class: 'inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-l-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+          <%= unless quote.anonymous
+                link_to anonymous_quote_path(quote), method: :post, data: { confirm: 'Weet je zeker dat je deze quote wilt anonimiseren? Dit kan je niet ongedaan maken.' }, title: quote.text,
+                        class: small_button_classes + ' rounded-l-md' do %>
+          <%= image_tag 'anonymous.svg', class: "w-4 h-4" %><span class="sm:hidden">Anonimiseer</span>
+            <% end %>
+          <% end %>
+          <%= link_to edit_quote_path(quote), class: small_button_classes + (quote.anonymous ? ' rounded-l-md' : '') do %>
             <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
           <% end %>
           <%= link_to quote, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: quote.text,
-                      class: '-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium rounded-r-md text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
+                      class: small_button_classes + ' rounded-r-md' do %>
             <%= heroicon('trash', class_name: "h-4 w-4") %> <span class="sm:hidden">Verwijderen</span>
-        <% end %>
+          <% end %>
           </span>
       </div>
       <div class="flex flex-col sm:flex-row text-gray-500">
-        <div class="flex-grow"><%= quote.user.name %></div>
+        <div class="flex-grow"><%= quote.anonymous ? 'Anoniem' : quote.user.name %></div>
         <p><%= time_ago_in_words(quote.created_at) %> geleden.</p>
       </div>
     </div>
