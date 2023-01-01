@@ -168,8 +168,6 @@ ActiveRecord::Schema.define(version: 2023_01_01_142403) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "deleted_at"
-    t.text "description"
-    t.boolean "archived", default: false
     t.index ["deleted_at"], name: "index_groups_on_deleted_at"
     t.index ["group_id"], name: "index_groups_on_group_id"
     t.index ["user_id", "group_id"], name: "index_groups_on_user_id_and_group_id", unique: true
