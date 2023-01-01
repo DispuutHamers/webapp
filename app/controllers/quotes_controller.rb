@@ -25,32 +25,43 @@ class QuotesController < ApplicationController
 
   def update
     quote = Quote.find_by_id!(params[:id])
+    puts quote_params
+    puts quote.user_id
+    puts params[:user_id]
+    if quote.anonymous && (params[:user_id] && quote.user_id != params[:user_id].to_i)
+      flash.now[:error] = 'Je kan geen anonieme quote bewerken.'
+      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+    end
     update_object(quote, quote_params)
   end
 
   def destroy
     quote = Quote.find_by_id!(params[:id])
+    # TODO make sure this does not end up in quote.versions
     delete_object(quote)
   end
 
   def anonymous
     quote = Quote.find_by_id!(params[:id])
     if (quote && quote.user_id == current_user.id) || current_user.admin?
-      puts "Quote #{quote.id} is now anonymous"
       quote.anonymous = true
       quote.reporter = nil
       quote.user = nil
-      # TODO go back in time and remove all versions of this quote
+
+      quote.versions.each do |version|
+        version.whodunnit = nil
+        version.save
+      end
+
       if quote.save
         flash[:success] = 'Quote is nu anoniem'
-        redirect_to root_path
+        return redirect_to root_path
       else
         flash.now[:error] = quote.errors.full_messages.join('<br>')
-        render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
       end
     else
       flash.now[:error] = 'Alleen een admin of de eigenaar van een quote kan deze anoniem maken.'
-      render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
+    render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
   end
 end
