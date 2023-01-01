@@ -14,6 +14,9 @@
   <%= f.label :name, class: label_classes %>
   <%= f.text_field :name, class: input_classes %>
 
+  <%= f.label :description, class: label_classes %>
+  <%= f.text_field :description, placeholder: 'Wat voor groep is dit?', class: input_classes %>
+
   <% if @usergroup.logo.attached? %>
     <%= image_tag @usergroup.logo.representation(resize_to_limit: [128, 128]) %>
   <% end %>
@@ -22,6 +25,16 @@
 
   <%= f.label :signal_url, class: label_classes %>
   <%= f.text_field :signal_url, class: input_classes %>
+
+  <div class="relative flex items-start">
+    <div class="flex items-center h-5">
+      <%= f.check_box :archived, class: checkbox_classes %>
+    </div>
+    <div class="ml-3 text-sm">
+      <%= f.label :archived, "Gearchiveerd", class: "font-medium text-gray-700" %>
+      <span id="comments-description" class="text-gray-500"><span class="sr-only">Archiveer deze groep.</span></span>
+    </div>
+  </div>
 
   <%= f.submit :Opslaan, class: submit_classes %>
 <% end %>
