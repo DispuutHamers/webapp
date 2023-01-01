@@ -28,6 +28,13 @@
 <% end %>
 
 <div class="-m-5 sm:-m-6">
+  <% unless @usergroup.description.blank? %>
+    <div class="bg-white rounded-lg shadow p-4 mb-4">
+      <div class="text-md text-gray-600">
+        <%=simple_format @usergroup.description %>
+      </div>
+    </div>
+  <% end %>
   <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
     <div>
       <div class="sm:hidden m-4">
