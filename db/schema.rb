@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_24_181316) do
+ActiveRecord::Schema.define(version: 2023_01_01_170036) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(version: 2022_10_24_181316) do
     t.datetime "updated_at"
     t.datetime "deleted_at"
     t.text "text_ciphertext"
+    t.boolean "anonymous", default: false
     t.index ["deleted_at"], name: "index_quotes_on_deleted_at"
     t.index ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at"
   end
