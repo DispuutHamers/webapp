@@ -5,7 +5,8 @@ class UsergroupsController < ApplicationController
   breadcrumb 'Groepen', :usergroups_path
 
   def index
-    @usergroups = Usergroup.all
+    @usergroups = Usergroup.not_archived
+    @archived_usergroups = Usergroup.archived
     @group = Usergroup.new
   end
 
