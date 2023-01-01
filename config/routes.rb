@@ -81,7 +81,11 @@ Hamers::Application.routes.draw do
   get 'leden', to: "users#index_public", as: "public_leden"
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy], path: 'group_members'
-  resources :quotes
+  resources :quotes do
+    member do
+      post '/anonymous' => "quotes#anonymous", as: "anonymous"
+    end
+  end
 
   resources :chugtypes do
     member do

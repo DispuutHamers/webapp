@@ -3,8 +3,6 @@ class Quote < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :user
   belongs_to :reporter, class_name: "User"
-  validates :user, presence: true
-  validates :reporter, presence: true
   validates :text, presence: true
   serialize :text
   validate :reporter_and_user_differ
@@ -18,7 +16,7 @@ class Quote < ActiveRecord::Base
   private
 
   def reporter_and_user_differ
-    return unless reporter_id == user_id
+    return unless reporter_id == user_id && !anonymous
 
     errors.add(:user, ": Je kan toch niet jezelf quoten!")
   end

@@ -32,4 +32,25 @@ class QuotesController < ApplicationController
     quote = Quote.find_by_id!(params[:id])
     delete_object(quote)
   end
+
+  def anonymous
+    quote = Quote.find_by_id!(params[:id])
+    if (quote && quote.user_id == current_user.id) || current_user.admin?
+      puts "Quote #{quote.id} is now anonymous"
+      quote.anonymous = true
+      quote.reporter = nil
+      quote.user = nil
+      # TODO go back in time and remove all versions of this quote
+      if quote.save
+        flash[:success] = 'Quote is nu anoniem'
+        redirect_to root_path
+      else
+        flash.now[:error] = quote.errors.full_messages.join('<br>')
+        render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+      end
+    else
+      flash.now[:error] = 'Alleen een admin of de eigenaar van een quote kan deze anoniem maken.'
+      render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+    end
+  end
 end

@@ -4,7 +4,7 @@ module ParamsHelper
   end
 
   def quote_params
-    params.require(:quote).permit(:user_id, :text, :reporter)
+    params.require(:quote).permit(:user_id, :text, :reporter, :anonymous)
   end
 
   def brew_params
