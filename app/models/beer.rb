@@ -4,7 +4,7 @@ class Beer < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_one_attached :image
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
-  validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
+  validates :percentage, allow_blank: true, format: {with: VALID_PERCENTAGE_REGEX}
 
   scope :random, -> { order('RAND()') }
 
