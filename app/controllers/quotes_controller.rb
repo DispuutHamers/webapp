@@ -41,21 +41,17 @@ class QuotesController < ApplicationController
 
   def anonymous
     quote = Quote.find_by_id!(params[:id])
-    if (quote && quote.user_id == current_user.id) || current_user.admin?
-      quote.anonymous = true
-      quote.reporter = nil
-      quote.user = nil
-      if quote.save
-        flash[:success] = 'Quote is nu anoniem'
-        delete_all_versions(quote)
-        return redirect_to root_path
-      else
-        flash.now[:error] = quote.errors.full_messages.join('<br>')
-      end
-    else
+    unless quote.user_id == current_user.id || current_user.admin?
       flash.now[:error] = 'Alleen een admin of de eigenaar van een quote kan deze anoniem maken.'
+      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
-    render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+    unless quote.update(anonymous: true, reporter: nil, user: nil)
+      flash.now[:error] = quote.errors.full_messages.join('<br>').html_safe
+      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+    end
+    flash[:success] = 'Quote is nu anoniem'
+    delete_all_versions(quote)
+    redirect_to root_path
   end
 
   private
