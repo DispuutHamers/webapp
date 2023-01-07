@@ -35,12 +35,12 @@
 
     <div class="hidden" data-tabs-target="panel">
       <ul role="list" class="divide-y divide-gray-200 rounded-xl">
-        <%= render @usergroups %>
+        <%= render @usergroups.not_archived %>
       </ul>
     </div>
     <div class="hidden" data-tabs-target="panel">
       <ul role="list" class="divide-y divide-gray-200 rounded-xl">
-        <%= render @archived_usergroups %>
+        <%= render @usergroups.archived %>
       </ul>
     </div>
   </div>
