@@ -6,7 +6,7 @@
           <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-100">
             <tr>
-              <% %w[Naam Groepen Lichting Citaten Reviews 2FA Inschrijfpercentage].each do |x| %>
+              <% %w[Naam Groepen Lichting Citaten Reviews Gepannenkoekt 2FA Inschrijfpercentage].each do |x| %>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   <%= x %>
                 </th>
@@ -44,6 +44,9 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= user.reviews.count %>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <%= user.pancaked %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <%= user.otp_required_for_login? ? "✅" : "🤡" %>
