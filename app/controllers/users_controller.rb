@@ -127,6 +127,19 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+
+  def pancake_add
+    @user.pancaked += 1
+    @user.save
+    redirect_to user_path(@user)
+  end
+
+  def pancake_deduct
+    @user.pancaked -= 1
+    @user.save
+    redirect_to user_path(@user)
+  end
+
   private
 
   def user

@@ -65,10 +65,14 @@ Hamers::Application.routes.draw do
       post '/edit/api_keys/new' => "api_keys#create", as: "api_key"
     end
     member do
+      # User settings
       get '/edit/password/' => "users#edit_password", as: "edit_password"
       get 'edit/usergroups/' => "users#edit_usergroups", as: "edit_usergroups"
       get '/edit/two_factor' => "users#edit_two_factor", as: "edit_two_factor"
       post '/edit/two_factor' => "users#update_two_factor", as: "update_two_factor"
+      # Pancake settings
+      post '/pancake/add' => "users#pancake_add", as: "pancake_add"
+      post '/pancake/deduct' => "users#pancake_deduct", as: "pancake_deduct"
     end
   end
 
