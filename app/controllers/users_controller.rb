@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :ilid?, except: %i[new create index_public]
   before_action :user, except: %i[index index_public new create]
   before_action :correct_user, only: %i[edit update]
-  before_action :admin_user?, only: :destroy
+  before_action :admin_user?, only: %i[destroy pancake_add pancake_deduct]
   breadcrumb 'Leden', :users_path
   layout 'application_public', only: :index_public
 

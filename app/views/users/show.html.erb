@@ -76,17 +76,23 @@
           <dt class="mx-6 text-sm font-medium text-gray-500 0 sm:col-span-2">
             Pannenkoek
           </dt>
-          <dd class="mx-6 md:mx-2 mt-1 text-sm text-gray-900 sm:mt- flex flex-row">
-            <%= link_to pancake_deduct_user_url(@user), method: :post, class: small_button_classes + ' rounded-l-md' do %>
-              <%= heroicon('minus', class_name: "h-3 w-3") %>
-            <% end %>
-            <div class="<%= small_button_classes %>">
+          <% if current_user&.admin? %>
+            <dd class="mx-6 md:mx-2 mt-1 text-sm text-gray-900 sm:mt- flex flex-row">
+              <%= link_to pancake_deduct_user_url(@user), method: :post, class: small_button_classes + ' rounded-l-md' do %>
+                <%= heroicon('minus', class_name: "h-3 w-3") %>
+              <% end %>
+              <div class="<%= small_button_classes %>">
+                <%= @user.pancaked %>
+              </div>
+              <%= link_to pancake_add_user_url(@user), method: :post, class: small_button_classes + ' rounded-r-md' do %>
+                <%= heroicon('plus', class_name: "h-3 w-3") %>
+              <% end %>
+            </dd>
+          <% else %>
+            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-">
               <%= @user.pancaked %>
-            </div>
-            <%= link_to pancake_add_user_url(@user), method: :post, class: small_button_classes + ' rounded-r-md' do %>
-              <%= heroicon('plus', class_name: "h-3 w-3") %>
-            <% end %>
-          </dd>
+            </dd>
+          <% end %>
         </div>
       </dl>
 
