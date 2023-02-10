@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2023_02_10_172758) do
     t.datetime "deleted_at"
     t.float "grade", limit: 53
     t.integer "recipe"
-    t.integer "chug"
+    t.integer "chugtype"
     t.index ["deleted_at"], name: "index_beers_on_deleted_at"
   end
 
