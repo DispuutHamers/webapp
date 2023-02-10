@@ -26,4 +26,8 @@ module FrontendHelper
   def user_icon_stack_image(size = 6)
     "h-#{size} w-#{size} rounded-full bg-white ring-2 ring-white inline-block"
   end
+
+  def small_button_classes
+    "-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium text-gray-900 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
+  end
 end

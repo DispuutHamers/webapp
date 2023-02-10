@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :ilid?, except: %i[new create index_public]
   before_action :user, except: %i[index index_public new create]
   before_action :correct_user, only: %i[edit update]
-  before_action :admin_user?, only: :destroy
+  before_action :admin_user?, only: %i[destroy pancake_add pancake_deduct]
   breadcrumb 'Leden', :users_path
   layout 'application_public', only: :index_public
 
@@ -125,6 +125,19 @@ class UsersController < ApplicationController
   def destroy
     @user.groups.each(&:destroy)
     redirect_to users_path
+  end
+
+
+  def pancake_add
+    @user.pancaked += 1
+    @user.save
+    redirect_to user_path(@user)
+  end
+
+  def pancake_deduct
+    @user.pancaked -= 1
+    @user.save
+    redirect_to user_path(@user)
   end
 
   private
