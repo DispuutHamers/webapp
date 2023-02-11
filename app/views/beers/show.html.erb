@@ -75,6 +75,17 @@
               </dd>
             </div>
           <% end %>
+
+          <% if @beer.recipe %>
+            <div class="px-6 py-2 sm:py-4 text-sm font-medium text-hamers-red-600">
+              <%= link_to "Recept", recipe_url(@beer.recipe) %>
+            </div>
+          <% end %>
+          <% if @beer.chugtype %>
+            <div class="px-6 py-2 sm:py-4 text-sm font-medium text-hamers-red-600">
+              <%= link_to "Ad-categorie", chugtype_url(@beer.chugtype) %>
+            </div>
+          <% end %>
         </dl>
       </div>
     </div>
