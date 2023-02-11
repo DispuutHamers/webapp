@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 2023_02_10_172758) do
     t.string "URL", limit: 255
     t.datetime "deleted_at"
     t.float "grade", limit: 53
-    t.integer "recipe"
-    t.integer "chugtype"
+    t.integer "recipe_id"
+    t.integer "chugtype_id"
     t.index ["deleted_at"], name: "index_beers_on_deleted_at"
   end
 
