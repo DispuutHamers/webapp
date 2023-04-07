@@ -8,6 +8,9 @@ class Quote < ActiveRecord::Base
   validate :reporter_and_user_differ
   validate :anonymous_user_and_reporter_nil
 
+  after_save :delete_all_versions
+  after_destroy :delete_all_versions
+
   encrypts :text
 
   scope :ordered, -> { order('created_at DESC') }
@@ -26,5 +29,13 @@ class Quote < ActiveRecord::Base
     return unless anonymous? && (user_id.present? || reporter_id.present?)
 
     errors.add(:user, ": Je kan toch niet jezelf quoten!")
+  end
+
+  def delete_all_versions
+    if anonymous?
+      versions.each do |version|
+        version.destroy
+      end
+    end
   end
 end
