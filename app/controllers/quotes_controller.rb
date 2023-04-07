@@ -25,7 +25,7 @@ class QuotesController < ApplicationController
 
   def update
     quote = Quote.find_by_id!(params[:id])
-    if quote.anonymous && (params[:user_id] && quote.user_id != params[:user_id].to_i)
+    if quote.anonymous? && quote.user_id != params[:user_id]&.to_i
       flash.now[:error] = 'Je kan geen anonieme quote bewerken.'
       return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
