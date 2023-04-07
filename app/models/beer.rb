@@ -2,6 +2,8 @@ class Beer < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail :ignore => [:grade]
   has_many :reviews, dependent: :destroy
+  belongs_to :recipe
+  belongs_to :chugtype
   has_one_attached :image
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, allow_blank: true, format: {with: VALID_PERCENTAGE_REGEX}

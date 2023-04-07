@@ -48,7 +48,7 @@ module ParamsHelper
   end
 
   def beer_params
-    params.require(:beer).permit(:name, :kind, :image, :percentage, :country, :brewer, :URL)
+    params.require(:beer).permit(:name, :kind, :image, :percentage, :country, :brewer, :URL, :recipe_id, :chugtype_id)
   end
 
   def news_params
