@@ -13,7 +13,7 @@ class Chug < ActiveRecord::Base
   validate :reporter_and_user_differ
 
   scope :newest, -> chugtype { where(chugtype: chugtype).order('created_at DESC') }
-  scope :unique_not_extern, -> chugtype { where(chugtype: chugtype).order('time ASC, created_at ASC').uniq { |chug| chug.user }.reject { |chug| chug.user == 7 } }
+  scope :unique_not_extern, -> chugtype { where(chugtype: chugtype).order('time ASC, created_at ASC').uniq { |chug| chug.user }.reject { |chug| chug.user.id == 7 } }
   scope :extern, -> chugtype { where(chugtype: chugtype).select { |chug| chug.user.id == 7 } }
 
   private

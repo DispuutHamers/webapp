@@ -46,7 +46,7 @@ encrypted_otp_secret encrypted_otp_secret_iv encrypted_otp_secret_salt otp_backu
   end
 
   def signup(event, status, reason = "")
-    return if event.deadline < Time.now
+    return if event.deadline&.past?
     return if event.attendance && status == "0" && reason.length < 6
 
     reason = UtilHelper.scramble_string(reason) if in_group?('Secretaris-generaal')

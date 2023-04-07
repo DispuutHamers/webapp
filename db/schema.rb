@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_24_181316) do
+ActiveRecord::Schema.define(version: 2023_02_10_172758) do
 
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 2022_10_24_181316) do
     t.string "URL", limit: 255
     t.datetime "deleted_at"
     t.float "grade", limit: 53
+    t.integer "recipe_id"
+    t.integer "chugtype_id"
     t.index ["deleted_at"], name: "index_beers_on_deleted_at"
   end
 
@@ -339,6 +341,8 @@ ActiveRecord::Schema.define(version: 2022_10_24_181316) do
     t.string "name", limit: 255
     t.datetime "deleted_at"
     t.string "signal_url"
+    t.string "description"
+    t.boolean "archived", default: false
     t.index ["deleted_at"], name: "index_usergroups_on_deleted_at"
   end
 

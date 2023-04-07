@@ -4,7 +4,7 @@ class GroupsTest < ActiveSupport::TestCase
   test 'Create group' do
     u = users(:one)
 
-    ug = Usergroup.create
+    ug = Usergroup.create(name: 'test')
 
     old_count = Group.count
 

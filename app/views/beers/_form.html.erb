@@ -35,5 +35,11 @@
   <%= f.label :URL, class: label_classes %>
   <%= f.text_field :URL, class: input_classes %>
 
+  <%= f.label :recipe, class: label_classes %>
+  <%= f.number_field :recipe_id, class: input_classes %>
+
+  <%= f.label "Ad-categorie", class: label_classes %>
+  <%= f.number_field :chugtype_id, class: input_classes %>
+
   <%= f.submit :Verstuur, class: submit_classes %>
 <% end %>
