@@ -13,21 +13,18 @@
       <div class="flex flex-col sm:flex-row justify-between self-center">
         <h3 class="flex-grow font-medium"><%= quote.text %></h3>
         <span class="relative z-0 inline-flex rounded-md">
-          <% show_anonymous = (quote.user == current_user || current_user.admin?) && !quote.anonymous? %>
-          <% show_editable = !(quote.anonymous? && !current_user.admin?) %>
+          <% show_anonymous = (quote.user == current_user || current_user.admin?) && !quote.anonymous %>
           <%= if show_anonymous
                 link_to anonymous_quote_path(quote), method: :post, data: { confirm: 'Weet je zeker dat je deze quote wilt anonimiseren? Dit kan je niet ongedaan maken.' }, title: quote.text,
                         class: small_button_classes + ' rounded-l-md' do %>
           <%= image_tag 'anonymous.svg', class: "w-4 h-4" %><span class="sm:hidden">Anonimiseer</span>
             <% end %>
           <% end %>
-          <% if show_editable %>
-            <%= link_to edit_quote_path(quote), class: small_button_classes + (show_anonymous ? '' : ' rounded-l-md') do %>
-              <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
-            <% end %>
+          <%= link_to edit_quote_path(quote), class: small_button_classes + (show_anonymous ? '' : ' rounded-l-md') do %>
+            <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
           <% end %>
           <%= link_to quote, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: quote.text,
-                      class: small_button_classes + (show_editable ? ' rounded-r-md' : ' rounded-md') do %>
+                      class: small_button_classes + ' rounded-r-md' do %>
             <%= heroicon('trash', class_name: "h-4 w-4") %> <span class="sm:hidden">Verwijderen</span>
           <% end %>
           </span>
