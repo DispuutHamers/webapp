@@ -42,7 +42,7 @@ class QuotesController < ApplicationController
     quote = Quote.find_by_id!(params[:id])
     return anonymous_error('Alleen de eigenaar van een quote of een admin kan deze anoniem maken.') if quote.user_id != current_user.id && !current_user.admin?
     return anonymous_error('Deze quote is al anoniem.') if quote.anonymous?
-    return anonymous_error(quote.errors.full_messages.join('<br>').html_safe) if quote.update(anonymous: true, reporter: nil, user: nil)
+    return anonymous_error(quote.errors.full_messages.join('<br>').html_safe) unless quote.update(anonymous: true, reporter: nil, user: nil)
     flash[:success] = 'Quote is nu anoniem'
     redirect_to root_path
   end
