@@ -5,13 +5,17 @@
 <%= render layout: 'layouts/small_width' do %>
   <%= form_for @quote, html: {class: 'space-y-3 space-y'} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <%= f.label :text %>
-    <%= f.text_area :text, class: input_classes %>
+    <div>
+      <%= f.label 'Quote:' %>
+      <%= f.text_area :text, class: input_classes %>
+    </div>
 
     <% unless @quote.anonymous? %>
-      <%= f.label :user_id %>
-      <% users_array = User.all.map { |user| [user.name, user.id] } %>
-      <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
+      <div>
+        <%= f.label 'User:' %>
+        <% users_array = User.all.map { |user| [user.name, user.id] } %>
+        <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
+      </div>
     <% end %>
 
     <%= f.submit :Opslaan, class: submit_classes %>
