@@ -25,10 +25,6 @@ class QuotesController < ApplicationController
 
   def update
     quote = Quote.find_by_id!(params[:id])
-    if quote.anonymous? && quote.user_id != params[:user_id]&.to_i
-      flash.now[:error] = 'Je kan geen anonieme quote bewerken.'
-      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
-    end
     update_object(quote, quote_params)
   end
 
@@ -37,16 +33,16 @@ class QuotesController < ApplicationController
     delete_object(quote)
   end
 
+  def anonymous_error(text)
+    flash.now[:error] = text
+    render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
+  end
+
   def anonymous
     quote = Quote.find_by_id!(params[:id])
-    unless quote.user_id == current_user.id || current_user.admin?
-      flash.now[:error] = 'Alleen de eigenaar van een quote of een admin kan deze anoniem maken.'
-      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
-    end
-    unless quote.update(anonymous: true, reporter: nil, user: nil)
-      flash.now[:error] = quote.errors.full_messages.join('<br>').html_safe
-      return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
-    end
+    return anonymous_error('Alleen de eigenaar van een quote of een admin kan deze anoniem maken.') if quote.user_id != current_user.id && !current_user.admin?
+    return anonymous_error('Deze quote is al anoniem.') if quote.anonymous?
+    return anonymous_error(quote.errors.full_messages.join('<br>').html_safe) if quote.update(anonymous: true, reporter: nil, user: nil)
     flash[:success] = 'Quote is nu anoniem'
     redirect_to root_path
   end
