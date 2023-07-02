@@ -4,7 +4,11 @@
     <h2 class="font-bold tracking-tight text-gray-900 text-2xl text-justify">
       <%= link_to @next_event.title, @next_event %>
     </h2>
-    <h3 class="text-gray-600">Over <%= time_ago_in_words(@next_event.date) %></h3>
+    <% if @next_event.past? %>
+      <h3 class="text-gray-600">Activiteit is bezig</h3>
+    <% else %>
+      <h3 class="text-gray-600">Over <%= time_ago_in_words(@next_event.date) %></h3>
+    <% end %>
     <div class="mt-8 flex">
       <div class="inline-flex rounded-md shadow w-full">
         <% if @signup %>
