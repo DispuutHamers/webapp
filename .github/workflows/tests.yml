@@ -6,8 +6,6 @@ on:
       - master
       - staging
   pull_request:
-    branches:
-      - '*'
 
 env:
   RAILS_ENV: test
@@ -19,10 +17,10 @@ jobs:
       matrix:
         ruby-version: ['3.1.2']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v2
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
@@ -60,10 +58,10 @@ jobs:
         ruby-version: ['3.1.2']
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v2
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
@@ -78,10 +76,10 @@ jobs:
       matrix:
         ruby-version: ['3.1.2']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up ruby
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v2
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
