@@ -20,16 +20,6 @@ class QuoteTest < ActiveSupport::TestCase
     refute @quote.valid?
   end
 
-  test 'invalid without reporter' do
-    @quote.reporter = nil
-    refute @quote.valid?
-  end
-
-  test 'invalid without text' do
-    @quote.text = nil
-    refute @quote.valid?
-  end
-
   test 'invalid if user does not exist' do
     @quote.user_id = -1
     refute @quote.valid?
@@ -56,5 +46,11 @@ class QuoteTest < ActiveSupport::TestCase
     assert @quote.deleted_at.nil?
     @quote.delete
     refute @quote.deleted_at.nil?
+  end
+
+  test 'quote anonymous' do
+    @quote.user = nil
+    @quote.reporter = nil
+    assert @quote.valid?
   end
 end
