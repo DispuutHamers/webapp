@@ -45,7 +45,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: yarn install
-        run: yarn install --prefer-offline --frozen-lockfile --check-files
+        run: yarn install --prefer-offline --frozen-lockfile --check-files --openssl-legacy-provider
 
       - name: Procompile assets
         run: bundle exec rails assets:precompile
