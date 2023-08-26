@@ -82,7 +82,6 @@ Hamers::Application.routes.draw do
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes
-  resources :quote_anonymous, only: [:show]
 
   resources :chugtypes do
     member do

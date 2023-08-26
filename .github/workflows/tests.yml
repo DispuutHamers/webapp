@@ -19,7 +19,7 @@ jobs:
       matrix:
         ruby-version: ['3.1.2']
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
@@ -48,7 +48,7 @@ jobs:
         run: yarn install --prefer-offline --frozen-lockfile --check-files
 
       - name: Procompile assets
-        run: bundle exec rails assets:precompile NODE_OPTIONS="--openssl-legacy-provider"
+        run: bundle exec rails assets:precompile
 
       - name: Run tests
         run: bundle exec rails test:all
@@ -60,7 +60,7 @@ jobs:
         ruby-version: ['3.1.2']
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
@@ -78,7 +78,7 @@ jobs:
       matrix:
         ruby-version: ['3.1.2']
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
