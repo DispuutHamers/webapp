@@ -79,6 +79,10 @@ module ParamsHelper
     params.require(:public_page).permit(:content, :title, :public)
   end
 
+  def vluchte_params
+    params.require(:sec)
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     devise_parameter_sanitizer.permit(:update, keys: [:name, :anonymous, :batch])
