@@ -6,8 +6,7 @@ class BlogitemsController < ApplicationController
   layout :set_template, only: %i[index show]
 
   def index
-    @items = if current_user&.active?
-               return unless otp_required?
+    @items = if current_user&.active? && otp_required?
                Blogitem.all.reverse
              else
                Blogitem.public_blogs.reverse

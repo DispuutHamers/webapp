@@ -39,13 +39,11 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    unless current_user&.active?
+    if current_user&.active?
+      otp_required?
+    else
       redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
-      return false
     end
-
-    otp_required?
-    true
   end
 
   def admin_user?
