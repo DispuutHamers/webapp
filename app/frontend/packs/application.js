@@ -19,14 +19,15 @@ import Rails from '@rails/ujs';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import {Application} from "stimulus"
+import {definitionsFromContext} from "stimulus/webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
 import 'trix/dist/trix.js'
 import '@rails/actiontext'
 import "./application"
 import * as ActiveStorage from "@rails/activestorage"
 import Flatpickr from 'stimulus-flatpickr'
+import 'select2'
 
 ActiveStorage.start()
 Rails.start();
@@ -36,8 +37,14 @@ const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
 // Other options: Alert, Autosave, Dropdown, Modal, Popover, Toggle, Slideover
-import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
+import {Dropdown, Tabs, Popover} from "tailwindcss-stimulus-components"
+
 application.register('dropdown', Dropdown)
 application.register('tabs', Tabs)
 application.register('popover', Popover)
 application.register('flatpickr', Flatpickr)
+
+// for each select2 element on the page call select2
+$(document).ready(() => $('.auto-select2').select2({
+
+}));

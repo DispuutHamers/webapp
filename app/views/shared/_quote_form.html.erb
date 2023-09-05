@@ -11,9 +11,8 @@
                 class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md' %>
           </div>
         </div>
-        <div class="col-span-6 sm:col-span-3">
-          <% users_array = User.all.reverse.map { |user| [user.name, user.id] } %>
-          <%= f.select :user_id, options_for_select(users_array), {}, class: select_classes %>
+        <div class="mt-2 col-span-6 sm:col-span-3">
+          <%= render 'shared/user_select', data: User.all.reverse %>
         </div>
         <div class="text-right mt-4 sm:w-full">
           <%= f.submit 'Citeer', class: submit_classes %>

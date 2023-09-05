@@ -1,0 +1,15 @@
+<label>
+  <select class="<%= select_classes %> auto-select2">
+    <% data.each do |user| %>
+      <option
+        class="flex space-x-2"
+        value="<%= user.id %>"
+      >
+        <%= gravatar_for user, class: "h-10 w-10 rounded-full" %>
+        <span><%= user.name %></span>
+      </option>
+    <% end %>
+  </select>
+</label>
+
+
