@@ -8,7 +8,7 @@ class SignupTest < ActiveSupport::TestCase
                           end_time: DateTime.now + 1.day + 2.hours,
                           deadline: DateTime.now + 5,
                           user: @user)
-    @signup = Signup.new(event: @event, user: @user)
+    @signup = Signup.new(event: @event, user: @user) # Status is true by default
   end
 
   test 'valid signup' do
@@ -60,5 +60,38 @@ class SignupTest < ActiveSupport::TestCase
   test 'invalid if signup has empty status' do
     @signup.status = nil
     refute @signup.valid?
+  end
+
+  test 'has versions (papertrail)' do
+    assert_nothing_raised { @signup.versions }
+  end
+
+  test 'has a new version when status changes' do
+    with_versioning do
+      @signup.save
+      assert_difference '@signup.versions.count' do
+        @signup.status = false
+        @signup.save
+      end
+    end
+  end
+
+  test 'has a new version when reason changes' do
+    with_versioning do
+      @signup.save
+      assert_difference '@signup.versions.count' do
+        @signup.reason = "New reason"
+        @signup.save
+      end
+    end
+  end
+
+  test 'has a new version when it is deleted' do
+    with_versioning do
+      @signup.save
+      assert_difference 'PaperTrail::Version.count' do
+        @signup.destroy
+      end
+    end
   end
 end
