@@ -4,18 +4,22 @@ one:
   id: 1
   name: Hamer Tester
   email: testhamer@zondersikkel.nl
+  otp_required_for_login: true
 
 two:
   id: 2
   name: Hamer Tester 2
   email: testhamer2@zondersikkel.nl
+  otp_required_for_login: true
 
 three:
   id: 3
   name: Hamer Tester 3
   email: testhamer3@zondersikkel.nl
+  otp_required_for_login: true
 
 four:
   id: 4
   name: Hamer Tester 4
   email: testhamer4@zondersikkel.nl
+  otp_required_for_login: true

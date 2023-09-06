@@ -6,7 +6,7 @@ class BlogitemsController < ApplicationController
   layout :set_template, only: %i[index show]
 
   def index
-    @items = if current_user&.active?
+    @items = if current_user&.active? && otp_required?
                Blogitem.all.reverse
              else
                Blogitem.public_blogs.reverse
@@ -41,6 +41,8 @@ class BlogitemsController < ApplicationController
 
   def show
     return redirect_to blogitems_path unless @item.public || current_user&.active?
+
+    return unless otp_required?
 
     @user = User.find_by(id: @item&.user_id)
     breadcrumb @item.title, blogitem_path(@item)

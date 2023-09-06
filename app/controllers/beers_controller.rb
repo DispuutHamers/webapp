@@ -70,4 +70,8 @@ class BeersController < ApplicationController
   def set_template
     'application_public' unless current_user&.active?
   end
+
+  def ilid_and_otp_required?
+    current_user&.active? && !otp_required?
+  end
 end

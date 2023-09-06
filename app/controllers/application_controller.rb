@@ -39,16 +39,24 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    return true if current_user&.active?
-
-    redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
-    false
+    if current_user&.active?
+      otp_required?
+    else
+      redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
+    end
   end
 
   def admin_user?
     return true if logged_in? && current_user&.admin?
 
     redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.'
+    false
+  end
+
+  def otp_required?
+    return true if current_user&.otp_required_for_login
+
+    redirect_to edit_two_factor_user_path(current_user), notice:"Je moet je 2FA instellen voordat je verder kunt gaan."
     false
   end
 
