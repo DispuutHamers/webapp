@@ -33,9 +33,9 @@ class Quote < ActiveRecord::Base
   private
 
   def reporter_and_user_differ
-    return if anonymous? || user_id != reporter_id
+    return if anonymous?
 
-    errors.add(:user, ": Je kan toch niet jezelf quoten!")
+    errors.add(:user, ": Je kan toch niet jezelf quoten!") if user_id == reporter_id
   end
 
   def destroy_versions

@@ -4,7 +4,7 @@
       <h2 class="text-hamers-red-400 text-xl font-bold mb-4">Citaat van de pagelaad</h2>
       <div class="w-full flex justify-center">
         <div class="w-full flex space-x-3 text-sm">
-          <%= link_to @random_quote.user, class: "self-center" do %> <!-- Quote is never anonymous-->
+          <%= link_to @random_quote.user, class: "self-center" do %> <%# Quote is never anonymous %>
             <% gravatar_for @random_quote.user, class: "h-8 w-8 rounded-full" %>
           <% end %>
           <div class="flex-col flex-1 space-y-1">
