@@ -89,6 +89,8 @@ Hamers::Application.routes.draw do
     end
   end
 
+  resources :vluchte, only: [:create]
+
   match '/register', to: 'users#new', via: 'get'
   match '/:id', to: 'public_pages#show', via: 'get'
 end

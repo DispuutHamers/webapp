@@ -1,41 +1,33 @@
 # Entry point for the webhook resource
 class VluchteController < ApplicationController
-  before_action :validate, only: [:post]
+  skip_before_action :verify_authenticity_token
+  before_action :validate, only: [:create]
 
-  def post
-    data = JSON.parse(request.body.read)
-    not_found = []
-    data.each do |bill|
-      user = User.find_by(email: bill['user']['email'])
-      unless user&.active?
-        not_found << bill['user']['email']
-        next
+  def create
+    begin
+      data = JSON.parse(request.body.read)
+      not_found = Vluchte::Bill.perform_async(data)
+
+      puts "Not found: #{not_found}"
+      if not_found.empty?
+        json_response(200, 'OK')
+      else
+        json_response(200, "OK, but #{not_found.join(', ')} not found")
       end
-
-      UserMailer.mail_vluchte_bill(bill, user).deliver
-    end
-
-    if not_found.empty?
-      response(200, 'OK')
-    else
-      response(200, "OK, but #{not_found.join(', ')} not found")
+    rescue JSON::ParserError => e
+      return json_response(400, "Invalid JSON: #{e}")
     end
   end
 
   private
 
-  def response(code, message)
-    render json: { code: code, message: message }, status: code
+  def json_response(code, message)
+    render json: { message: message }, status: code
   end
 
   def validate
-    if params[:secret] != Rails.application.secrets.vluchte_webhook
-      return response(401, 'Unauthorized')
-    end
-
-    if request.body.read.nil?
-      return response(400, 'No body')
-    end
+    return json_response(401, 'Unauthorized') unless params[:secret] == Rails.application.secrets.vluchte_webhook
+    return json_response(400, 'No body') if request.body.read.blank?
 
     true
   end
