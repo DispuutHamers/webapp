@@ -12,8 +12,8 @@ module ApplicationHelper
   end
 
   def ilid?
-    return unless logged_in?
+    return if logged_in?
 
-    redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.active?
+    redirect_to root_path, notice: "Je account mag niet bij deze resource."
   end
 end
