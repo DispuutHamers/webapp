@@ -67,7 +67,7 @@ module UtilHelper
     event = Event.where(attendance: true).last
     signed_users = event.users
     unsigned_users = User.leden - signed_users
-    unsigned_users.each { |user| UserMailer.mail_event_reminder(user, event).deliver }
+    EventReminderEmail.perform_later(unsigned_users, event)
 
     # Ping Honeybadger for monitoring purposes
     Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/RYI9a8'))
