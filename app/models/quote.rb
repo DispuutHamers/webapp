@@ -6,7 +6,7 @@ class Quote < ActiveRecord::Base
   validates :text, presence: true
   serialize :text
   validate :reporter_and_user_differ
-  after_save :destroy_versions if self.anonymous?
+  after_save :destroy_versions if :anonymous?
 
   encrypts :text
 
@@ -28,6 +28,12 @@ class Quote < ActiveRecord::Base
     return 'Anoniem' if anonymous?
 
     user.name
+  end
+
+  def anonymize!
+    self.user_id = nil
+    self.reporter_id = nil
+    self.save!
   end
 
   private

@@ -1,5 +1,5 @@
 # Entry point for the quotes_anonymous resource
-class QuoteAnonymousController < ApplicationController
+class QuotesAnonymizationController < ApplicationController
   before_action :ilid?
 
   def update
@@ -10,9 +10,7 @@ class QuoteAnonymousController < ApplicationController
       return render turbo_stream: turbo_stream.update('flash', partial: 'layouts/alert')
     end
 
-    quote.user_id = nil
-    quote.reporter_id = nil
-    quote.save!
+    quote.anonymize!
     redirect_to root_path
   end
 end

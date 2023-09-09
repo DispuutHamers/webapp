@@ -14,7 +14,7 @@
         <h3 class="flex-grow font-medium"><%= quote.text %></h3>
         <span class="relative z-0 inline-flex rounded-md">
           <%= if quote.can_be_anonymized_by?(current_user)
-                link_to quote_anonymou_path(quote), method: :put, data: { confirm: 'Weet je zeker dat je deze quote wilt anonimiseren? Dit kan je niet ongedaan maken.' }, title: quote.text,
+                link_to anonymization_path(quote), method: :put, data: { confirm: 'Weet je zeker dat je deze quote wilt anonimiseren? Dit kan je niet ongedaan maken.' }, title: quote.text,
                         class: small_button_classes + ' rounded-l-md' do %>
             <%=  image_tag 'anonymous.svg', class: "w-4 h-4"  %><span class="sm:hidden">Anonimiseer</span>
           <% end %>
