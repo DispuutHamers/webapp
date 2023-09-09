@@ -21,7 +21,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ secrets.USERNAME }}
+          username: ${{ github.actor }}
           password: ${{ secrets.ACCESS_TOKEN }}
 
       - id: docker-build
@@ -33,5 +33,5 @@ jobs:
 
       - name: "📝 Set output"
         run: |
-          echo "IMAGE=" >> $GITHUB_STEP_SUMMARY
-          echo '`${{ steps.docker-build.outputs.imageid }}`' >> $GITHUB_STEP_SUMMARY
+          echo "Docker image" >> $GITHUB_STEP_SUMMARY
+          echo "${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
