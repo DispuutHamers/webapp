@@ -1,0 +1,24 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+
+  rails:
+    build: .
+    command: bundle exec rails s -p 3000 -b
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
