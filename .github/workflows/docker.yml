@@ -23,9 +23,14 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.ACCESS_TOKEN }}
 
-      - name: "🏗 Build image"
+      - id: docker-build
+        name: "🏗 Build image"
         run: |
           docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
           docker tag ghcr.io/${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
           docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
-          
+
+      - name: "📝 Set output"
+        run: |
+          echo "IMAGE=" >> $GITHUB_STEP_SUMMARY
+          echo '`${{ steps.docker-build.outputs.imageid }}`' >> $GITHUB_STEP_SUMMARY
