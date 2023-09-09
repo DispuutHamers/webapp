@@ -20,4 +20,8 @@ services:
     volumes:
       - .:/app
     depends_on:
+      - sidekiq
       - redis
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=production
