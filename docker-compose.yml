@@ -8,16 +8,12 @@ services:
   sidekiq:
     build: .
     command: bundle exec sidekiq
-    volumes:
-      - .:/app
     depends_on:
       - redis
 
   rails:
     build: .
     command: bundle exec rails server -b '0.0.0.0'
-    volumes:
-      - .:/app
     ports:
       - "30123:3000"
     depends_on:
