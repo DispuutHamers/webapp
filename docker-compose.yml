@@ -9,7 +9,7 @@ services:
   sidekiq:
     container_name: sidekiq
     build: .
-    command: bundle install && bundle exec sidekiq
+    command: bundle exec sidekiq
     depends_on:
       - redis
     environment:

@@ -470,7 +470,7 @@ DEPENDENCIES
   rubocop-rails
   secure_headers (~> 6.3)
   shoulda-context
-  sidekiq (= 7.1.2)
+  sidekiq
   sprockets
   sqlite3
   stackprof

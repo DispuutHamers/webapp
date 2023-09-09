@@ -84,4 +84,4 @@ group :bundler do
   gem 'net-smtp', require: false
 end
 
-gem "sidekiq", "= 7.1.2"
+gem "sidekiq"
