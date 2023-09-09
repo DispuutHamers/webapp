@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  github_repository: "https://ghcr.io/dispuuthamers/webapp"
+  github_repository: ghcr.io/dispuut-hamers/webapp
 
 jobs:
   build-image:
