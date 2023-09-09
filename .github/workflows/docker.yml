@@ -6,12 +6,13 @@ on:
       - master
   pull_request:
 
+env:
+  github_repository: "https://ghcr.io/dispuuthamers/webapp"
+
 jobs:
   build-image:
     name: "🏗 Build Docker image"
     runs-on: ubuntu-latest
-    outputs:
-      api_image: ghcr.io/${{ github.repository }}:${{ github.sha }}
     steps:
       - name: "📂 Checkout"
         uses: actions/checkout@v3
@@ -26,9 +27,9 @@ jobs:
       - id: docker-build
         name: "🏗 Build image"
         run: |
-          docker build -t ghcr.io/${{ github.repository }}:${{ github.sha }} .
-          docker tag ghcr.io/${{ github.repository }}:${{ github.sha }} ghcr.io/${{ github.repository }}:latest
-          docker push ghcr.io/${{ github.repository }}:${{ github.sha }}
+          docker build -t ${{ env.github_repository }}:${{ github.sha }} .
+          docker tag ${{ env.github_repository }}:${{ github.sha }} ${{ env.github_repository }}:latest
+          docker push ${{ env.github_repository }}:${{ github.sha }}
 
       - name: "📝 Set output"
         run: |
