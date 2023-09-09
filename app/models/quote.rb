@@ -6,7 +6,7 @@ class Quote < ActiveRecord::Base
   validates :text, presence: true
   serialize :text
   validate :reporter_and_user_differ
-  after_save :destroy_versions if :anonymous?
+  after_save :destroy_versions
 
   encrypts :text
 
@@ -21,7 +21,9 @@ class Quote < ActiveRecord::Base
   end
 
   def can_be_anonymized_by?(user)
-    !anonymous? && user.admin? || user.id == user_id
+    return false if anonymous?
+
+    user.admin? || user.id == user_id
   end
 
   def name
@@ -45,6 +47,7 @@ class Quote < ActiveRecord::Base
   end
 
   def destroy_versions
+    return unless anonymous?
     versions.destroy_all
   end
 end
