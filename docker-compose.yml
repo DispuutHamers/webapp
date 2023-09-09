@@ -20,4 +20,4 @@ services:
       - redis
     environment:
       - REDIS_URL=redis://redis:6379/0
-      - RAILS_ENV=production
+      - RAILS_ENV=${RAILS_ENV:-development}
