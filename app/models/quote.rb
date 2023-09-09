@@ -48,6 +48,7 @@ class Quote < ActiveRecord::Base
 
   def destroy_versions
     return unless anonymous?
+    
     versions.destroy_all
   end
 end
