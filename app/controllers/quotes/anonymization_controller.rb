@@ -1,5 +1,5 @@
 # Entry point for the quotes_anonymous resource
-class QuotesAnonymizationController < ApplicationController
+class Quotes::AnonymizationController < ApplicationController
   before_action :ilid?
 
   def update

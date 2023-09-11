@@ -83,7 +83,7 @@ Hamers::Application.routes.draw do
   resources :groups, only: [:create, :destroy], path: 'group_members'
   resources :quotes do
     member do
-      resource :anonymization, only: [:update], controller: 'quotes_anonymization', path: 'anonymize'
+      resource :anonymization, only: [:update], controller: 'quotes/anonymization', path: 'anonymize'
     end
   end
 

@@ -1,12 +1,11 @@
 class Quote < ActiveRecord::Base
-  has_paper_trail ignore: %i[text]
+  has_paper_trail skip: %i[text], unless: Proc.new { |q| q.anonymous? }
   acts_as_paranoid
   belongs_to :user, optional: true
   belongs_to :reporter, optional: true, class_name: "User"
   validates :text, presence: true
   serialize :text
   validate :reporter_and_user_differ
-  after_save :destroy_versions
 
   encrypts :text
 
@@ -36,6 +35,8 @@ class Quote < ActiveRecord::Base
     self.user_id = nil
     self.reporter_id = nil
     self.save!
+
+    destroy_versions!
   end
 
   private
@@ -46,9 +47,7 @@ class Quote < ActiveRecord::Base
     errors.add(:user, ": Je kan toch niet jezelf quoten!") if user_id == reporter_id
   end
 
-  def destroy_versions
-    return unless anonymous?
-    
+  def destroy_versions!
     versions.destroy_all
   end
 end
