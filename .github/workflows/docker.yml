@@ -22,6 +22,7 @@ jobs:
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
+        if: github.event_name != 'pull_request'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -30,9 +31,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          push: true
-          images: ${{ env.github_repository }}
-          # only tag the image if it's not a pull request
-          tags: |
-            ${{ github.sha }}
-            ${{ github.event_name != 'pull_request' && 'latest' }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags:
+            ${{ env.github_repository }}:latest
+            ${{ env.github_repository }}:${{ github.sha }}
