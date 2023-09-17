@@ -42,6 +42,7 @@ gem 'tzinfo'
 gem 'uglifier'
 gem 'webpacker'
 gem 'wine_bouncer'
+gem "sidekiq"
 
 group :production, :development do
   gem 'mysql2'
@@ -83,5 +84,3 @@ group :bundler do
   gem 'net-pop', require: false
   gem 'net-smtp', require: false
 end
-
-gem "sidekiq"
