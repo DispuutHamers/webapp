@@ -1,6 +1,6 @@
 FROM ruby:3.1.2
 
-RUN apt-get update -qq && apt-get install -y curl vim nano build-essential nodejs default-libmysqlclient-dev
+RUN apt-get update -qq && apt-get install -y build-essential nodejs default-libmysqlclient-dev
 
 RUN mkdir /app
 WORKDIR /app
