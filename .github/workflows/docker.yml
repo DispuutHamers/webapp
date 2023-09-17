@@ -33,4 +33,6 @@ jobs:
           push: true
           image: ${{ env.github_repository }}
           # only tag the image if it's not a pull request
-          tags: ${{ github.event_name != 'pull_request' && (env.github_repository + ':latest') }}
+          tags: |
+            ${{ github.sha }}
+            ${{ github.event_name != 'pull_request' && 'latest' }}
