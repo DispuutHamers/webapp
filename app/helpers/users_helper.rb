@@ -30,7 +30,7 @@ module UsersHelper
   end
 
   def self.missed_drinks_for(user)
-    return nil unless user.lid?
+    return nil unless user.active?
 
     date = user.lid_since
     drinks = Event.where(attendance: true).where('created_at > ?', date)
