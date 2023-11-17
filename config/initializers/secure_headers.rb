@@ -4,7 +4,7 @@ SecureHeaders::Configuration.default do |config|
     httponly: true
   }
   config.csp = {
-    default_src: %w('self' www.google.com),
+    default_src: %w('self' www.google.com maps.googleapis.com),
     base_uri: %w('self'),
     img_src: %w(* data:),
     script_src: %w('self' 'unsafe-inline' www.google.com www.gstatic.com maps.googleapis.com cdnjs.cloudflare.com),
