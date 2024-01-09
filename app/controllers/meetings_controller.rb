@@ -6,7 +6,7 @@ class MeetingsController < ApplicationController
   breadcrumb 'Vergaderingen', :meetings_path
 
   def index
-    @pagy, @meetings = pagy(Meeting.all, page: params[:page])
+    @pagy, @meetings = pagy(Meeting.all.order(date: :desc), page: params[:page])
   end
 
   def show
