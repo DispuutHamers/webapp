@@ -20,4 +20,10 @@ class UserMailer < ApplicationMailer
     @user = user
     mail(to: user.email, subject: "Nieuwe activiteit: #{event.title}")
   end
+
+  def mail_vluchte_bill(bill, user)
+    @bill = bill
+    @user = user
+    mail(to: user.email, subject: "Vluchte rekening: #{bill.date.strftime('%d-%m-%Y')}")
+  end
 end

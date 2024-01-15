@@ -83,3 +83,5 @@ group :bundler do
   gem 'net-pop', require: false
   gem 'net-smtp', require: false
 end
+
+gem "sidekiq", "= 7.1.2"
