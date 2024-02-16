@@ -6,9 +6,9 @@ module ApplicationHelper
   end
 
   def lid?
-    return unless logged_in?
+    return if logged_in?
 
-    redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.lid? || current_user&.olid?
+    redirect_to root_path, notice: "Je account mag niet bij deze resource." unless current_user&.lid?
   end
 
   def ilid?
