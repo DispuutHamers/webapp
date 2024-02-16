@@ -191,7 +191,7 @@ GEM
       rake
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.4)
+    mini_portile2 (2.8.5)
     minidusen (0.10)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
@@ -220,7 +220,7 @@ GEM
       net-protocol
       timeout
     nio4r (2.7.0)
-    nokogiri (1.15.4)
+    nokogiri (1.16.2)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
@@ -247,7 +247,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.8)
       nio4r (~> 2.0)
-    racc (1.7.1)
+    racc (1.7.3)
     rack (2.2.8)
     rack-accept (0.4.5)
       rack (>= 0.4)
