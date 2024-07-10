@@ -23,3 +23,4 @@ services:
       - redis
     environment:
       RAILS_ENV: ${RAILS_ENV:-development}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-secret}
