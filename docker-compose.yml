@@ -22,4 +22,4 @@ services:
       - sidekiq
       - redis
     environment:
-      REDIS_URL: redis://redis:6379/0
+      RAILS_ENV: ${RAILS_ENV:-development}
