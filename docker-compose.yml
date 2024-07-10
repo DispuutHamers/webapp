@@ -17,10 +17,9 @@ services:
     build: .
     command: bundle exec rails server -b '0.0.0.0'
     ports:
-      - "30123:3000"
+      - "3000:3000"
     depends_on:
       - sidekiq
       - redis
     environment:
       REDIS_URL: redis://redis:6379/0
-      RAILS_ENV: ${RAILS_ENV:-development}
