@@ -11,6 +11,7 @@ services:
       MYSQL_USER: staging
       MYSQL_DATABASE: staging
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     ports:
       - "3306:3306"
 
