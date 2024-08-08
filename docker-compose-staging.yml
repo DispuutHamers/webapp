@@ -5,6 +5,15 @@ services:
     ports:
       - "6379:6379"
 
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: staging
+      MYSQL_DATABASE: staging
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+
   sidekiq:
     build: .
     command: bundle exec sidekiq
