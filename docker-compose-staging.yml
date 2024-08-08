@@ -1,0 +1,36 @@
+version: '3'
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: staging
+      MYSQL_DATABASE: staging
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    ports:
+      - "3306:3306"
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379/0
+
+  rails:
+    build: .
+    command: bundle exec rails server -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    depends_on:
+      - sidekiq
+      - redis
+    environment:
+      RAILS_ENV: ${RAILS_ENV:-development}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE:-secret}

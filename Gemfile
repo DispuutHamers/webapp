@@ -42,6 +42,7 @@ gem 'tzinfo'
 gem 'uglifier'
 gem 'webpacker'
 gem 'wine_bouncer'
+gem "sidekiq"
 
 group :production, :development do
   gem 'mysql2'

@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   def remind
     if DateTime.now < (@event.deadline || @event.date)
       unsigned_users = User.leden - @event.users
-      unsigned_users.each { |user| UserMailer.mail_event_reminder(user, @event).deliver }
+      EventReminderEmail.perform_later(unsigned_users, @event)
       flash[:success] = "Mail verzonden"
     else
       flash[:error] = "Mag niet"
