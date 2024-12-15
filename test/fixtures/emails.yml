@@ -4,8 +4,12 @@ one:
   from: MyString
   to: MyString
   body: MyText
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
 
 two:
   from: MyString
   to: MyString
   body: MyText
+  created_at: <%= Time.now %>
+  updated_at: <%= Time.now %>
