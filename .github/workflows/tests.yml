@@ -7,7 +7,7 @@ on:
       - staging
   pull_request:
     branches:
-      - '*'
+      - "*"
 
 env:
   RAILS_ENV: test
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.1.2']
+        ruby-version: ["3.1.2"]
     steps:
       - uses: actions/checkout@v3
 
@@ -28,10 +28,7 @@ jobs:
           bundler-cache: true
 
       - name: Set up database
-        run: |
-          sudo systemctl start mysql
-          cp config/database-ci.yml config/database.yml
-          bundle exec rails db:setup
+        run: bundle exec rails db:setup
 
       - name: Get yarn cache directory
         id: yarn-cache-dir-path
@@ -57,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.1.2']
+        ruby-version: ["3.1.2"]
 
     steps:
       - uses: actions/checkout@v3
@@ -76,9 +73,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ['3.1.2']
+        ruby-version: ["3.1.2"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
