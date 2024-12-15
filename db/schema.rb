@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2023_08_26_135442) do
 
-  create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", limit: 255, null: false
-    t.text "body", size: :long
+    t.text "body"
     t.string "record_type", limit: 255, null: false
     t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -22,17 +22,17 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
-  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+  create_table "active_storage_blobs", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "api_keys", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "api_keys", force: :cascade do |t|
     t.string "key", limit: 255
     t.integer "user_id"
     t.string "name", limit: 255
@@ -60,14 +60,14 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
   end
 
-  create_table "attendees", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "attendees", force: :cascade do |t|
     t.bigint "meeting_id", null: false
     t.bigint "user_id", null: false
     t.index ["meeting_id"], name: "index_attendees_on_meeting_id"
     t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
-  create_table "beers", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "beers", force: :cascade do |t|
     t.string "name", limit: 255
     t.string "kind", limit: 255
     t.datetime "created_at"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_beers_on_deleted_at"
   end
 
-  create_table "blogitems", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "blogitems", force: :cascade do |t|
     t.string "title", limit: 255
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -93,15 +93,15 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_blogitems_on_deleted_at"
   end
 
-  create_table "brews", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "brews", force: :cascade do |t|
     t.text "description"
-    t.bigint "recipe_id"
+    t.integer "recipe_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recipe_id"], name: "index_brews_on_recipe_id"
   end
 
-  create_table "chugs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "chugs", force: :cascade do |t|
     t.integer "chugtype_id", null: false
     t.integer "user_id", null: false
     t.float "time", default: 0.0, null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.integer "reporter_id"
   end
 
-  create_table "chugtypes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "chugtypes", force: :cascade do |t|
     t.string "name", null: false
     t.integer "amount", default: 0, null: false
     t.datetime "created_at", null: false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.datetime "deleted_at"
   end
 
-  create_table "drafts", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "drafts", force: :cascade do |t|
     t.string "entity_type", limit: 255
     t.bigint "entity_id"
     t.integer "user_id"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["entity_type", "entity_id"], name: "index_drafts_on_entity_type_and_entity_id"
   end
 
-  create_table "emails", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "emails", force: :cascade do |t|
     t.string "from", limit: 255
     t.string "to", limit: 255
     t.text "body"
@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "events", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "title", limit: 255, null: false
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_events_on_deleted_at"
   end
 
-  create_table "external_signups", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "external_signups", force: :cascade do |t|
     t.string "first_name", limit: 255
     t.string "last_name", limit: 255
     t.string "email", limit: 255
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.integer "user_id"
   end
 
-  create_table "groups", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "groups", force: :cascade do |t|
     t.integer "user_id"
     t.integer "group_id"
     t.datetime "created_at"
@@ -176,7 +176,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
-  create_table "gutentag_taggings", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gutentag_taggings", force: :cascade do |t|
     t.integer "tag_id", null: false
     t.integer "taggable_id", null: false
     t.string "taggable_type", null: false
@@ -187,7 +187,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["taggable_type", "taggable_id"], name: "index_gutentag_taggings_on_taggable_type_and_taggable_id"
   end
 
-  create_table "gutentag_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "gutentag_tags", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["taggings_count"], name: "index_gutentag_tags_on_taggings_count"
   end
 
-  create_table "images", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
     t.string "title", limit: 255
     t.string "image_id", limit: 255
     t.string "description", limit: 255
@@ -208,7 +208,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_images_on_deleted_at"
   end
 
-  create_table "meetings", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "meetings", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "onderwerp", limit: 255
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_meetings_on_deleted_at"
   end
 
-  create_table "news", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "news", force: :cascade do |t|
     t.string "cat", limit: 255
     t.text "body"
     t.string "title", limit: 255
@@ -231,7 +231,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_news_on_deleted_at"
   end
 
-  create_table "oauth_access_grants", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "oauth_access_grants", force: :cascade do |t|
     t.integer "resource_owner_id", null: false
     t.integer "application_id", null: false
     t.string "token", limit: 255, null: false
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true
   end
 
-  create_table "oauth_access_tokens", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer "resource_owner_id"
     t.integer "application_id"
     t.string "token", limit: 255, null: false
@@ -261,7 +261,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true
   end
 
-  create_table "oauth_applications", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "oauth_applications", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.string "uid", limit: 255, null: false
     t.string "secret", limit: 255, null: false
@@ -272,7 +272,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "public_pages", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "public_pages", force: :cascade do |t|
     t.string "title", limit: 255
     t.boolean "public"
     t.datetime "created_at"
@@ -281,7 +281,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_public_pages_on_deleted_at"
   end
 
-  create_table "quotes", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "quotes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "reporter_id"
     t.datetime "created_at"
@@ -292,7 +292,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["user_id", "created_at"], name: "index_quotes_on_user_id_and_created_at"
   end
 
-  create_table "recipes", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "recipes", force: :cascade do |t|
     t.string "name", limit: 255
     t.string "beer", limit: 255
     t.text "description"
@@ -300,7 +300,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reviews", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "reviews", force: :cascade do |t|
     t.integer "beer_id"
     t.integer "user_id"
     t.integer "rating"
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["user_id", "beer_id"], name: "index_reviews_on_user_id_and_beer_id", unique: true
   end
 
-  create_table "signups", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "signups", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
     t.boolean "status", default: true
@@ -323,7 +323,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_signups_on_deleted_at"
   end
 
-  create_table "stickers", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "stickers", force: :cascade do |t|
     t.string "lat", limit: 255
     t.string "lon", limit: 255
     t.text "notes"
@@ -335,7 +335,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_stickers_on_deleted_at"
   end
 
-  create_table "usergroups", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "usergroups", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "name", limit: 255
@@ -346,7 +346,7 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["deleted_at"], name: "index_usergroups_on_deleted_at"
   end
 
-  create_table "users", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name", limit: 255
     t.string "email", limit: 255, null: false
     t.datetime "created_at"
@@ -405,16 +405,16 @@ ActiveRecord::Schema.define(version: 2023_08_26_135442) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  create_table "versions", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
+  create_table "versions", force: :cascade do |t|
     t.string "item_type", null: false
     t.integer "item_id", null: false
     t.string "event", limit: 255, null: false
     t.string "whodunnit", limit: 255
-    t.text "old_object", size: :long
+    t.text "old_object"
     t.datetime "created_at"
-    t.text "old_object_changes", size: :long
-    t.text "object", size: :long, collation: "utf8mb4_bin"
-    t.text "object_changes", size: :long, collation: "utf8mb4_bin"
+    t.text "old_object_changes"
+    t.text "object"
+    t.text "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
     t.check_constraint "json_valid(`object_changes`)", name: "object_changes"
     t.check_constraint "json_valid(`object`)", name: "object"
