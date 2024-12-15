@@ -35,6 +35,7 @@ gem 'rb-readline'
 gem 'rqrcode'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
+gem 'sqlite3'
 gem 'stackprof'
 gem 'tailwindcss-rails-webpacker', '~> 0.2.1'
 gem 'turbo-rails'
@@ -42,10 +43,6 @@ gem 'tzinfo'
 gem 'uglifier'
 gem 'webpacker'
 gem 'wine_bouncer'
-
-group :production, :development do
-  gem 'mysql2'
-end
 
 group :development, :test do
   gem 'memory_profiler', require: false
@@ -73,7 +70,6 @@ group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
   gem 'shoulda-context'
-  gem 'sqlite3'
   gem 'webdrivers'
 end
 
