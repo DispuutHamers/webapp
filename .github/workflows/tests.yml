@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - staging
   pull_request:
     branches:
       - "*"
@@ -16,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ["3.3.6"]
+        ruby-version: ["3.1.6"]
     steps:
       - uses: actions/checkout@v3
 
@@ -44,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ["3.3.6"]
+        ruby-version: ["3.1.6"]
 
     steps:
       - uses: actions/checkout@v3
@@ -63,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ruby-version: ["3.3.6"]
+        ruby-version: ["3.1.6"]
     steps:
       - uses: actions/checkout@v4
 
