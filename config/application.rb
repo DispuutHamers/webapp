@@ -8,11 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Hamers
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.0
     config.time_zone = 'Amsterdam'
-    config.autoload_paths += Dir[Rails.root.join('app', '*')]
     config.i18n.default_locale = :nl
     config.to_prepare do
       Doorkeeper::ApplicationsController.layout 'application'
@@ -29,21 +27,12 @@ module Hamers
 
     Diffy::Diff.default_format = :html
 
-    config.exception_handler = {
-      # Turn on in development as needed:
-      # dev: 'on',
-      exceptions: {
-
-        all: {
-          layout: 'error_pages/500'
-        },
-        404 => {
-          layout: 'error_pages/404'
-        },
-        422 => {
-          layout: 'error_pages/422'
-        }
-      }
-    }
+    # Configuration for the application, engines, and railties goes here.
+    #
+    # These settings can be overridden in specific environments using the files
+    # in config/environments, which are processed later.
+    #
+    # config.time_zone = "Central Time (US & Canada)"
+    # config.eager_load_paths << Rails.root.join("extras")
   end
 end

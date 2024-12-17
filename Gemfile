@@ -11,7 +11,6 @@ gem 'diffy'
 gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 gem 'down', '~> 5.0'
-gem 'exception_handler'
 gem 'flamegraph'
 gem 'gutentag'
 gem 'icalendar'
@@ -27,7 +26,7 @@ gem 'paper_trail'
 gem 'paranoia'
 gem 'psych', '< 4' # https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
 gem 'rack-cors', require: 'rack/cors'
-gem 'rails', '<7'
+gem 'rails'
 gem 'rails_heroicons'
 gem 'rails-i18n'
 gem 'ransack'
@@ -35,14 +34,13 @@ gem 'rb-readline'
 gem 'rqrcode'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
-gem 'sqlite3', '< 2.0'
+gem 'sqlite3'
 gem 'stackprof'
 gem 'tailwindcss-rails-webpacker', '~> 0.2.1'
 gem 'turbo-rails'
 gem 'tzinfo'
 gem 'uglifier'
 gem 'webpacker'
-gem 'wine_bouncer'
 
 group :development, :test do
   gem 'memory_profiler', require: false
@@ -62,6 +60,7 @@ end
 group :development do
   gem 'any_login'
   gem 'brakeman', require: false
+  gem 'listen'
   gem 'pry', require: false
   gem 'web-console'
 end

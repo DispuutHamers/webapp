@@ -1,7 +1,7 @@
-Hamers::Application.routes.draw do
+Rails.application.routes.draw do
   use_doorkeeper
   get 'privacy' => 'static_pages#privacy'
-  get 'activate_account' => 'static_pages#activate_account', as: "activate_account"
+  get 'activate_account' => 'static_pages#activate_account', as: 'activate_account'
 
   resources :stickers
   resources :recipes do
@@ -22,7 +22,7 @@ Hamers::Application.routes.draw do
   get '/remind/:id' => 'events#remind', as: 'reminder'
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
-  post 'revert/:model/:id' => "static_pages#revert"
+  post 'revert/:model/:id' => 'static_pages#revert'
 
   resources :meetings do
     member do
@@ -41,13 +41,13 @@ Hamers::Application.routes.draw do
 
   resources :events do
     member do
-      get '/public_signup' => "external_signups#new", as: "new_external_signup"
-      post '/public_signup' => "external_signups#create", as: "create_external_signup"
-      get '/see_you_soon' => "external_signups#see_you_soon", as: "see_you_soon"
+      get '/public_signup' => 'external_signups#new', as: 'new_external_signup'
+      post '/public_signup' => 'external_signups#create', as: 'create_external_signup'
+      get '/see_you_soon' => 'external_signups#see_you_soon', as: 'see_you_soon'
     end
   end
-  get '/ical/:key' => "events#index"
-  get '/ical/:key/cal' => "events#index"
+  get '/ical/:key' => 'events#index'
+  get '/ical/:key/cal' => 'events#index'
 
   resources :signups, except: %i[index new edit]
   resources :usergroups, path: 'groups'
@@ -56,31 +56,31 @@ Hamers::Application.routes.draw do
 
   devise_for :users
   devise_scope :user do
-    get 'signin', to: 'devise/sessions#new', as: "signin"
+    get 'signin', to: 'devise/sessions#new', as: 'signin'
   end
 
   resources :users do
     resources :api_keys do
-      get '/edit/api_keys/' => "api_keys#index"
-      post '/edit/api_keys/new' => "api_keys#create", as: "api_key"
+      get '/edit/api_keys/' => 'api_keys#index'
+      post '/edit/api_keys/new' => 'api_keys#create', as: 'api_key'
     end
     member do
-      get '/edit/password/' => "users#edit_password", as: "edit_password"
-      get 'edit/usergroups/' => "users#edit_usergroups", as: "edit_usergroups"
-      get '/edit/two_factor' => "users#edit_two_factor", as: "edit_two_factor"
-      post '/edit/two_factor' => "users#update_two_factor", as: "update_two_factor"
+      get '/edit/password/' => 'users#edit_password', as: 'edit_password'
+      get 'edit/usergroups/' => 'users#edit_usergroups', as: 'edit_usergroups'
+      get '/edit/two_factor' => 'users#edit_two_factor', as: 'edit_two_factor'
+      post '/edit/two_factor' => 'users#update_two_factor', as: 'update_two_factor'
     end
   end
 
   resource :user, only: [:edit] do
     collection do
-      patch 'update_password' => "users#update_password"
+      patch 'update_password' => 'users#update_password'
     end
   end
 
-  get 'leden', to: "users#index_public", as: "public_leden"
-  resources :reviews, only: [:show, :create, :destroy, :update, :edit]
-  resources :groups, only: [:create, :destroy], path: 'group_members'
+  get 'leden', to: 'users#index_public', as: 'public_leden'
+  resources :reviews, only: %i[show create destroy update edit]
+  resources :groups, only: %i[create destroy], path: 'group_members'
   resources :quotes do
     member do
       resource :anonymization, only: [:update], controller: 'quotes/anonymization', path: 'anonymize'
