@@ -8,7 +8,7 @@ class Beer < ActiveRecord::Base
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, allow_blank: true, format: {with: VALID_PERCENTAGE_REGEX}
 
-  scope :random, -> { order('RAND()') }
+  scope :random, -> { order('RANDOM()') }
 
   def cijfer
     self.grade&.round(2) || "Nog geen cijfer"

@@ -10,7 +10,7 @@ class Quote < ActiveRecord::Base
   encrypts :text
 
   scope :ordered, -> { order('created_at DESC') }
-  scope :random, -> { order('RAND()') }
+  scope :random, -> { order('RANDOM()') }
   scope :with_user, -> { includes(:user) }
   scope :anonymous, -> { where(user_id: nil) }
   scope :not_anonymous, -> { where.not(user_id: nil) }
