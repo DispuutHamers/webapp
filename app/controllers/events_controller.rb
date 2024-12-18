@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   before_action :ilid?, except: [:index]
   before_action :set_event, only: [:remind, :show, :edit, :update, :destroy]
   breadcrumb 'Activiteiten', :events_path
+  ALLOWED_SORTING_FIELDS = %w[title location]
 
   # GET /events
   # GET /events.json
@@ -11,8 +12,18 @@ class EventsController < ApplicationController
     respond_to do |current_request|
       current_request.html do
         ilid?
-        @pagy, @past_events = pagy(Event.past.order(date: :desc), page: params[:page])
-        @upcoming_events = Event.upcoming.order(date: :asc).includes(:usergroup)
+        @search = Event.ransack(params[:search], search_key: :search)
+        if params[:search].present?
+          if (not params[:search]["title_or_location"]) or params[:search]["title_or_location"] == ""
+            # We redirect to events here so that we see the normal binnenkort and vroegah view again
+            redirect_to events_path
+            return
+          end
+          @pagy, @search_events = pagy(@search.result.order(date: :desc), items: 10, page: params[:page])
+        else
+          @upcoming_events = Event.upcoming.order(date: :asc)
+          @pagy, @past_events = pagy(Event.past.order(date: :desc), items: 10, page: params[:page])
+        end
       end
 
       current_request.ics do
