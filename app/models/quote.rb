@@ -7,7 +7,7 @@ class Quote < ActiveRecord::Base
   serialize :text
   validate :reporter_and_user_differ
 
-  encrypts :text
+  lockbox_encrypts :text
 
   scope :ordered, -> { order('created_at DESC') }
   scope :random, -> { order('RANDOM()') }
