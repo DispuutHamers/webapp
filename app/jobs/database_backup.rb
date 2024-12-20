@@ -12,7 +12,7 @@ class DatabaseBackup < ApplicationJob
       scope: 'https://www.googleapis.com/auth/drive'
     )
 
-    filename = "database_backup_#{Time.now.strftime('%Y-%m-%d_%H:%M:%S')}.sqllite3"
+    filename = "database_backup_#{Time.now.strftime('%Y-%m-%d_%H:%M:%S')}.sqlite3"
     database_file = Google::Apis::DriveV3::File.new(name: filename, parents: ['1fP9MXN2lhypkzaxIYyy7ZHb7e_M1jD5a'])
     # TODO: add correct source
     result = drive.create_file(database_file, upload_source: 'test.txt', supports_team_drives: true)
@@ -28,11 +28,11 @@ class DatabaseBackup < ApplicationJob
         supports_team_drives: true,
       ).files.each do |file|
         puts "Checking file #{file.name}"
-        if file.name.match?(/database_backup_(\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2})\.sqllite3/)
-          date = Time.parse(Regexp.last_match(1))  # TODO parser fails
-          if date < 0.days.ago
+        if file.name.match?(/database_backup_(\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2})\.sqlite3/)
+          date = Date.strptime(file.name, 'database_backup_%Y-%m-%d_%H:%M:%S.sqlite3')
+          if date < (Time.now - 60.days)
             puts "Deleting old backup #{file.name}"
-            # TODO: drive.delete_file(file.id)
+            drive.delete_file(file.id, supports_team_drives: true)
           end
         else
           puts "Skipping file #{file.name}"
