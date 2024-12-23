@@ -40,7 +40,7 @@ class DatabaseBackup < ApplicationJob
       end
 
       # Call check if backup was successful
-      # TODO call check if backup was successful
+      Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/xoIqO4'))
       true
     else
       puts "Error uploading database backup"
