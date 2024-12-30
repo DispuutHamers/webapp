@@ -1,4 +1,4 @@
-#entry point for events
+# entry point for events
 class EventsController < ApplicationController
   require 'icalendar/tzinfo'
   before_action :ilid?, except: [:index]
@@ -18,8 +18,7 @@ class EventsController < ApplicationController
       current_request.ics do
         apikey = ApiKey.where(key: params[:key]).first
         if apikey&.user&.active?
-          calendar = generate_calendar
-          calendar.publish
+          calendar = generate_calendar(apikey.user)
           render plain: calendar.to_ical
         else
           render plain: "404", status: :not_found
@@ -108,15 +107,48 @@ class EventsController < ApplicationController
     end
   end
 
-  def generate_calendar
-    feed = Event.upcoming.order('date')
+  def generate_calendar(user)
+    events = Event.upcoming.order('date').with_signups
     calendar = Icalendar::Calendar.new
     tzid = "Europe/Amsterdam"
     tz = TZInfo::Timezone.get tzid
-    timezone = tz.ical_timezone feed.first.date
+    timezone = tz.ical_timezone events.first.date
     calendar.add_timezone timezone
-    feed.each do |feed_item|
-      calendar.add_event(feed_item.to_ics)
+
+    calendar.ip_method = "REQUEST"
+
+    events.each do |event|
+      ics = Icalendar::Event.new
+      url = "https://zondersikkel.nl/events/#{event.id}"
+      ics.dtstart = event.date.strftime('%Y%m%dT%H%M%S')
+      if event.end_time.nil?
+        # standard endtime is + one hour for activities, since an endtime has to be defined within an ics activity and not on our site
+        ics.dtend = (event.date + 1.hour).strftime('%Y%m%dT%H%M%S')
+      else
+        ics.dtend = event.end_time.strftime('%Y%m%dT%H%M%S')
+      end
+      ics.summary = event.title
+      ics.description = "#{event.description.to_plain_text} \r\n\r\n #{url}"
+      ics.location = event.location
+      ics.ip_class = 'PUBLIC'
+      ics.url = url
+
+      status = event.signups.where(user_id: user.id).first&.status
+      partstat =
+        case status
+        when true
+          'ACCEPTED'
+        when false
+          'DECLINED' # TODO change to possibly continue?
+        else
+          'NEEDS-ACTION'
+        end
+
+      ics.append_custom_property("ORGANIZER;CN=Hamers zonder Sikkel", "mailto:koen@zondersikkel.nl")
+      ics.append_custom_property("ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;CN=Koen de Jong;RSVP=TRUE;PARTSTAT=#{partstat}", "mailto:mail@koendejong.net")
+      ics.append_custom_property("STATUS", "CONFIRMED")
+
+      calendar.add_event(ics)
     end
 
     # Dispuut birthday (dies)

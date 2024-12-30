@@ -29,10 +29,10 @@ class Event < ActiveRecord::Base
       event.dtend = end_time.strftime('%Y%m%dT%H%M%S')
     end
     event.summary = title
-    event.description = "#{description.to_plain_text} \n\n #{url}"
+    event.description = "#{description.to_plain_text} \r\n\r\n #{url}"
     event.location = location
     event.ip_class = 'PUBLIC'
-    event.url = url
+    event.uid = event.url = url
     event
   end
 
