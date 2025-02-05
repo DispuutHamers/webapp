@@ -1,10 +1,10 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  secret_key_base = Rails.application.secrets.secret_key_base
-  config.OTP_SECRET = Rails.application.secrets.otp_secret
+  secret_key_base = Rails.application.credentials.secret_key_base
+  config.OTP_SECRET = Rails.application.credentials.otp_secret
 
   # Lockbox encryption key
-  Lockbox.master_key = Rails.application.secrets.lockbox_master_key
+  Lockbox.master_key = Rails.application.credentials.lockbox_master_key
 
   # Code is not reloaded between requests.
   config.cache_classes = true
@@ -55,7 +55,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_cache_store, { url: Rails.application.secrets.redis_host }
+  config.cache_store = :redis_cache_store, { url: Rails.application.credentials.redis_host }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -68,7 +68,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'zondersikkel.nl',
     user_name:            'webapp@zondersikkel.nl',
-    password:             Rails.application.secrets.smtp_password,
+    password:             Rails.application.credentials.smtp_password,
     authentication:       :plain,
     enable_starttls_auto: true
   }
