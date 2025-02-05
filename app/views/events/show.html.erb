@@ -59,7 +59,7 @@
       <% if @event.location.present? %>
         <div class="pt-4 embed-responsive embed-responsive-4by3 hidden sm:block">
           <iframe class="embed-responsive-item w-full" height="256" style="border:0"
-                  src="https://www.google.com/maps/embed/v1/place?key=<%= Rails.application.secrets.google_api_key %>&q=<%=u @event.location %>"
+                  src="https://www.google.com/maps/embed/v1/place?key=<%= Rails.application.credentials.google_api_key %>&q=<%=u @event.location %>"
                   allowfullscreen>
           </iframe>
         </div>
