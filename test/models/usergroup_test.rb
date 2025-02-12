@@ -10,7 +10,7 @@ class UsergroupTest < ActiveSupport::TestCase
   end
 
   test 'Add group to usergroup' do
-    u = users(:one)
+    u = users(:three)
 
     ug = Usergroup.create(name: 'test')
 
