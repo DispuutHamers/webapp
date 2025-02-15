@@ -1,3 +1,5 @@
+<% require "dotenv"; Dotenv.load(".env") %>
+
 service: hamers-webapp
 image: dispuuthamers/webapp
 
@@ -14,7 +16,8 @@ proxy:
 
 registry:
   server: ghcr.io
-  username: koenjdejong
+  username:
+    - KAMAL_REGISTRY_USERNAME
   password:
     - KAMAL_REGISTRY_PASSWORD
 
