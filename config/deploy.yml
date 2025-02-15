@@ -9,6 +9,8 @@ proxy:
   ssl: false
   host: 130.89.148.88
   app_port: 3000
+  healthcheck:
+    path: /
 
 registry:
   server: ghcr.io
