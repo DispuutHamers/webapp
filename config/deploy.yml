@@ -1,0 +1,36 @@
+service: hamers-webapp
+image: dispuuthamers/webapp
+
+servers:
+  web:
+    hosts:
+      - 130.89.148.88
+
+proxy:
+  ssl: true
+  host: vps.zondersikkel.nl
+
+registry:
+  server: ghcr.io
+  username: koenjdejong
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+env:
+  clear:
+    RAILS_ENV: production
+    RAILS_LOG_TO_STDOUT: true
+  secret:
+    - RAILS_MASTER_KEY
+
+aliases:
+  console: app exec --interactive --reuse "rails console"
+  shell: app exec --interactive --reuse "bash"
+
+asset_path: /app/assets
+
+# volumes:
+#   - "app_storage:/app/storage"
