@@ -6,9 +6,9 @@ servers:
     hosts:
       - 130.89.148.88
 
-proxy:
-  ssl: true
-  host: vps.zondersikkel.nl
+#proxy:
+#  ssl: true
+#  host: zondersikkel.nl
 
 registry:
   server: ghcr.io
