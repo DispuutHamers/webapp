@@ -1,6 +1,6 @@
 FROM ruby:3.4.1-slim
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs \
+RUN apt-get update -qq && apt-get install -y build-essential nodejs shared-mime-info \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /app
