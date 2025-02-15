@@ -5,9 +5,10 @@ servers:
   web:
     - 130.89.148.88
 
-#proxy:
-#  ssl: true
-#  host: zondersikkel.nl
+proxy:
+  ssl: false
+  host: 130.89.148.88
+  app_port: 3000
 
 registry:
   server: ghcr.io
