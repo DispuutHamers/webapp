@@ -3,8 +3,7 @@ image: dispuuthamers/webapp
 
 servers:
   web:
-    hosts:
-      - 130.89.148.88
+    - 130.89.148.88
 
 #proxy:
 #  ssl: true
@@ -23,6 +22,13 @@ env:
   clear:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: true
+  secret:
+    - SECRET_KEY_BASE
+    - OTP_SECRET
+    - LOCKBOX_MASTER_KEY
+    - SMTP_PASSWORD
+    - GOOGLE_API_KEY
+    - HONEYBADGER_API_KEY
 
 aliases:
   console: app exec --interactive --reuse "rails console"
