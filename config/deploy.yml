@@ -30,7 +30,7 @@ aliases:
   console: app exec --interactive --reuse "rails console"
   shell: app exec --interactive --reuse "bash"
 
-asset_path: /app/assets
+asset_path: /app/app/assets
 
 # volumes:
 #   - "app_storage:/app/storage"
