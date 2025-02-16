@@ -1,17 +1,22 @@
 FROM ruby:3.4.1-slim
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs shared-mime-info \
+RUN apt-get update -qq && apt-get install -y build-essential nodejs yarn shared-mime-info \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /app
-WORKDIR /app
+RUN corepack enable
 
-COPY Gemfile /app/Gemfile
-COPY Gemfile.lock /app/Gemfile.lock
+RUN mkdir /webapp
+WORKDIR /webapp
+
+COPY Gemfile /webapp/Gemfile
+COPY Gemfile.lock /webapp/Gemfile.lock
 
 RUN bundle install
 
-COPY . /app
+COPY . /webapp
+
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 
 EXPOSE 3000
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+ENTRYPOINT ["entrypoint.sh"]

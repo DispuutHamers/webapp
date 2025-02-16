@@ -11,3 +11,7 @@ webapp voor https://www.zondersikkel.nl/
 - Start a development server by running `rails s`
 - You can now connect to localhost:3000 to see a local instance of the web app 
 - credentials for logging in locally are: dev@zondersikkel.nl:12345678
+
+# Deploying to production
+- The app is deployed with Kamal. 
+- Automatic deployments are set up for the master branch.
