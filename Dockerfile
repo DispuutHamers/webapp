@@ -19,6 +19,7 @@ RUN bundle install
 COPY . /webapp
 
 RUN bundle exec rails assets:precompile
+RUN bundle exec rails webpacker:compile
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
