@@ -6,8 +6,8 @@ if [ -f tmp/pids/server.pid ]; then
   rm tmp/pids/server.pid
 fi
 
-echo "Precompiling assets..."
-bundle exec rails assets:precompile
+#echo "Precompiling assets..."
+#bundle exec rails assets:precompile
 
 echo "Apply database migrations..."
 bundle exec rails db:migrate
