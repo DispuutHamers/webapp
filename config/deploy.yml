@@ -1,0 +1,48 @@
+<% require "dotenv"; Dotenv.load(".env") %>
+
+service: hamers-webapp
+image: dispuuthamers/webapp
+
+servers:
+  web:
+    - 130.89.148.88
+
+proxy:
+  ssl: false
+  host: 130.89.148.88
+  app_port: 3000
+  response_timeout: 300
+  healthcheck:
+    path: /
+    timeout: 300
+
+registry:
+  server: ghcr.io
+  username:
+    - KAMAL_REGISTRY_USERNAME
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+
+env:
+  clear:
+    RAILS_ENV: production
+    RAILS_LOG_TO_STDOUT: true
+  secret:
+    - SECRET_KEY_BASE
+    - OTP_SECRET
+    - LOCKBOX_MASTER_KEY
+    - SMTP_PASSWORD
+    - GOOGLE_API_KEY
+    - HONEYBADGER_API_KEY
+
+aliases:
+  console: app exec --interactive --reuse "rails console"
+  shell: app exec --interactive --reuse "bash"
+
+asset_path: /webapp/public/assets
+
+volumes:
+ - db:/webapp/db

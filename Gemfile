@@ -15,6 +15,7 @@ gem 'flamegraph'
 gem 'gutentag'
 gem 'icalendar'
 gem 'image_processing'
+gem "kamal"
 gem 'loaf'
 gem 'lockbox'
 gem 'minidusen'
