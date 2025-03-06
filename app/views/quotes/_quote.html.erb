@@ -31,6 +31,9 @@
       <div class="flex flex-col sm:flex-row text-gray-500">
         <div class="flex-grow"><%= quote.name %></div>
         <p><%= time_ago_in_words(quote.created_at) %> geleden.</p>
+        <%= if quote.reporter %>
+          <%= heroicon('magnifying-glass', class_name: "h-4 w-4", title: "Gequote door #{quote.reporter.name}")%>
+        <% end %>
       </div>
     </div>
   </div>
