@@ -28,6 +28,6 @@ module FrontendHelper
   end
 
   def small_button_classes
-    "-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium text-gray-900 dark:text-gray-200 bg-white dark:bg-gray-900 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
+    "-ml-px inline-flex items-center p-1 border border-gray-300 text-xs font-medium text-gray-900 dark:text-gray-200 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500"
   end
 end

@@ -63,7 +63,7 @@
                     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                     <div class="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                         <% menu_items.each do |name, options| %>
-                          <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
+                          <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800" do %>
                             <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
                               <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
                             </div>
