@@ -148,7 +148,7 @@
 
             <div class="absolute z-50 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
+                <div class="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
 
                   <% menu_items.each do |name, options| %>
                     <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50" do %>
@@ -156,7 +156,7 @@
                         <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
                       </div>
                       <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900"><%= name %></p>
+                        <p class="text-base font-medium text-gray-900 dark:text-gray-200"><%= name %></p>
                       </div>
                     <% end %>
                   <% end %>
@@ -183,7 +183,7 @@
 
             <div class="absolute z-50 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
+                <div class="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
                   <% user_items.each do |name, options| %>
                     <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50", method: (options[:method] if options[:method]) do %>
                       <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
@@ -191,7 +191,7 @@
                       </div>
 
                       <div class="ml-4">
-                        <p class="text-base font-medium text-gray-900"><%= name %></p>
+                        <p class="text-base font-medium text-gray-900 dark:text-gray-200"><%= name %></p>
                       </div>
                     <% end %>
                   <% end %>
