@@ -109,18 +109,18 @@
                 </button>
               </div>
 
-              <div class="z-50 origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 scale-95" role="menu" tabindex="-1" data-dropdown-target="menu">
+              <div class="z-50 origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 scale-95" role="menu" tabindex="-1" data-dropdown-target="menu">
                 <div class="overflow-hidden">
-                  <div class="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
+                  <div class="relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                     <% user_items.each do |name, options| %>
-                      <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50", method: (options[:method] if options[:method]) do %>
+                      <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800", method: (options[:method] if options[:method]) do %>
                         <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
                           <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
                         </div>
 
                         <div class="ml-4">
-                          <p class="text-base font-medium text-gray-900"><%= name %></p>
-                          <p class="mt-1 text-sm text-gray-500"><%= options[:description] %></p>
+                          <p class="text-base font-medium text-gray-900 dark:text-gray-200"><%= name %></p>
+                          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400"><%= options[:description] %></p>
                         </div>
                       <% end %>
                     <% end %>
