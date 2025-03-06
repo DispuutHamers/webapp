@@ -11,7 +11,7 @@
     <% end %>
     <div class="flex-col flex-1">
       <div class="flex flex-col sm:flex-row justify-between self-center">
-        <h3 class="flex-grow font-medium dark:text-gray-200"><%= quote.text %></h3>
+        <h3 class="flex-grow font-medium"><%= quote.text %></h3>
         <span class="relative z-0 inline-flex rounded-md">
           <%= if quote.can_be_anonymized_by?(current_user)
                 link_to anonymization_path(quote), method: :put, data: { confirm: 'Weet je zeker dat je deze quote wilt anonimiseren? Dit kan je niet ongedaan maken.' }, title: quote.text,
@@ -28,7 +28,7 @@
           <% end %>
           </span>
       </div>
-      <div class="flex flex-col sm:flex-row text-gray-500 dark:text-gray-400">
+      <div class="flex flex-col sm:flex-row text-gray-500">
         <div class="flex-grow"><%= quote.name %></div>
         <p><%= time_ago_in_words(quote.created_at) %> geleden.</p>
       </div>

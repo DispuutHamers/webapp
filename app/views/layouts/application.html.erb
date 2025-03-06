@@ -17,8 +17,8 @@
     <%= csrf_meta_tags %>
   </head>
   <body class="h-full">
-    <div class="bg-gray-100 dark:bg-black min-h-screen h-full">
-      <div class="bg-gray-900 dark:bg-black pb-32">
+    <div class="bg-gray-100 min-h-screen h-full">
+      <div class="bg-gray-900 pb-32">
         <%= render 'layouts/nav' %>
 
         <% if content_for?(:title) %>
@@ -47,7 +47,7 @@
 
       <main class="-mt-32">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow p-6">
+          <div class="bg-white rounded-lg overflow-hidden shadow p-6">
             <%= yield %>
           </div>
         </div>
