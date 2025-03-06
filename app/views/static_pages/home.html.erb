@@ -11,10 +11,10 @@
 
 <div class="relative my-4 -mx-5 sm:-mx-6">
   <div class="absolute inset-0 flex items-center" aria-hidden="true">
-    <div class="w-full border-t border-gray-300"></div>
+    <div class="w-full border-t border-gray-300 dark:border-gray-400"></div>
   </div>
   <div class="relative flex justify-center">
-      <span class="px-2 bg-white text-sm text-gray-500">
+      <span class="px-2 bg-white dark:bg-gray-900 text-sm text-gray-500 dark:text-gray-200">
         Citaten
       </span>
   </div>
@@ -22,13 +22,13 @@
 
 <div class="-mt-6">
   <% if @quotes %>
-    <ul role="list" class="divide-y divide-gray-200 border-b border-gray-200 mb-6">
+    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700 border-b border-gray-200 dark:border-gray-700 mb-6">
       <%= render @quotes %>
     </ul>
 
     <%= render 'shared/pagination/default' %>
   <% else %>
-    <div class="flex justify-center font-black m-8">
+    <div class="flex justify-center font-black dark:text-gray-200 m-8">
       <h1>Ik ben een droeftoeter zonder 2FA, daarom zijn mijn quotes weg.</h1>
     </div>
   <% end %>
