@@ -22,37 +22,37 @@
   <%= link_to "Verwijder", @event, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: button_classes if @event.can_be_deleted_by?(current_user) %>
 <% end %>
 
-<div class="flex-1 min-w-0 bg-white md:flex">
-  <div class="border-b border-gray-200 md:border-b-0 bg-white md:min-w-0 md:flex-1 md:pr-4 font-medium text-gray-900">
-    <div class="relative h-auto divide-y divide-gray-200">
+<div class="flex-1 min-w-0 md:flex">
+  <div class="border-b border-gray-200 dark:border-gray-700 md:border-b-0 md:min-w-0 md:flex-1 md:pr-4 font-medium text-gray-900 dark:text-gray-200">
+    <div class="relative h-auto divide-y divide-gray-200 dark:divide-gray-700">
 
       <div class="pb-4">
         <% if @event.public? %>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100">
             Publiek
           </span>
         <% end %>
         <% if @event.usergroup %>
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-800 text-yellow-800 dark:text-yellow-100">
             <%= @event.usergroup.name %>
           </span>
         <% end %>
         <%= @event.description %>
       </div>
 
-      <div class="flex flex-col w-full border-b border-gray-200 pt-4">
+      <div class="flex flex-col w-full border-b border-gray-200 dark:border-gray-700 pt-4">
         <% if @event.open? %>
           <%= form_for @event.signups.new(event_id: @event.id, user_id: current_user.id, status: 1), html: { class: "w-full" } do |f| %>
             <div class="flex w-full md:justify-between md:items-center">
               <%= f.text_field :reason, placeholder: "Opmerkingen", class: input_classes %>
               <%= f.hidden_field :event_id, value: @event.id %>
               <%= f.submit 'Aanwezig', class: "ml-4 #{submit_classes}" %>
-              <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-gray-400 hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500' %>
+              <%= f.submit 'Afwezig', class: 'cursor-pointer ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white dark:text-gray-200 bg-gray-400 dark:bg-gray-700 hover:bg-gray-500 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:focus:ring-gray-700' %>
             </div>
           <% end %>
-          <p class="text-center sm:text-right text-gray-500 py-2">Inschrijven kan tot <%= (@event.deadline || @event.date).strftime('%d-%m-%Y %H:%M') %></p>
+          <p class="text-center sm:text-right text-gray-500 dark:text-gray-400 py-2">Inschrijven kan tot <%= (@event.deadline || @event.date).strftime('%d-%m-%Y %H:%M') %></p>
         <% else %>
-          <p class="text-center text-gray-500">De inschrijving is gesloten sinds <%= (@event.deadline || @event.date).strftime('%d-%m-%Y %H:%M') %>.</p>
+          <p class="text-center text-gray-500 dark:text-gray-400">De inschrijving is gesloten sinds <%= (@event.deadline || @event.date).strftime('%d-%m-%Y %H:%M') %>.</p>
         <% end %>
       </div>
 
@@ -67,11 +67,11 @@
     </div>
   </div>
 
-  <div class="border-gray-200 md:flex-shrink-0 md:w-72 md:-my-6 md:border-l md:border-gray-200 bg-white">
+  <div class="border-gray-200 dark:border-gray-700 md:flex-shrink-0 md:w-72 md:-my-6 md:border-l md:border-gray-200 md:dark:border-gray-700">
     <div class="w-full my-6 md:mx-6 md:pr-6">
       <p class="flex w-full justify-between">
-        <span class="font-semibold pb-1">Aanwezig</span>
-        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+        <span class="font-semibold pb-1 dark:text-gray-100">Aanwezig</span>
+        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 dark:bg-green-700 text-green-800 dark:text-green-100">
           <%= @event.signups.where(status: true).count %>
         </span>
       </p>
@@ -80,9 +80,9 @@
           <li class="flex">
             <%= gravatar_for s.user, class: "h-8 w-8 rounded-full self-center" %>
             <div class="ml-3 self-center">
-              <p class="text-sm font-medium text-gray-900 self-center"><%= s.user.name %></p>
+              <p class="text-sm font-medium text-gray-900 dark:text-gray-200 self-center"><%= s.user.name %></p>
               <% if s.reason.present? %>
-                <p class="text-sm text-gray-500"><%= s.reason %></p>
+                <p class="text-sm text-gray-500 dark:text-gray-400"><%= s.reason %></p>
               <% end %>
             </div>
           </li>
@@ -90,8 +90,8 @@
       </ul>
 
       <p class="flex w-full justify-between">
-        <span class="font-semibold pb-1">Afwezig</span>
-        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 text-red-800">
+        <span class="font-semibold pb-1 dark:text-gray-100">Afwezig</span>
+        <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-red-100 dark:bg-red-700 text-red-800 dark:text-red-100">
           <%= @event.signups.where(status: false).count %>
         </span>
       </p>
@@ -100,9 +100,9 @@
           <li class="flex">
             <%= gravatar_for s.user, class: "h-8 w-8 rounded-full self-center" %>
             <div class="ml-3 self-center">
-              <p class="text-sm font-medium text-gray-900"><%= s.user.name %></p>
+              <p class="text-sm font-medium text-gray-900 dark:text-gray-200"><%= s.user.name %></p>
               <% if s.reason.present? %>
-                <p class="text-sm text-gray-500"><%= s.reason %></p>
+                <p class="text-sm text-gray-500 dark:text-gray-400"><%= s.reason %></p>
               <% end %>
             </div>
           </li>
@@ -111,12 +111,12 @@
 
       <% if @event.public? %>
         <div class="flex w-full justify-between">
-          <span class="font-semibold pb-1">Plebs</span>
-          <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800">
+          <span class="font-semibold pb-1 dark:text-gray-100">Plebs</span>
+          <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 dark:bg-green-700 text-green-800 dark:text-green-100">
             <%= @event.external_signups.count %>
           </span>
         </div>
-        <p class="text-sm text-gray-500">
+        <p class="text-sm text-gray-500 dark:text-gray-400">
           Deze activiteit is publiek. Externen kunnen zich inschrijven via <%= link_to "deze link", @event.invitation_link, target: "_blank" %>.
         </p>
         <ul role="list" class="mb-2 space-y-2">
@@ -124,9 +124,9 @@
             <li class="flex">
               <%= gravatar_for_email s.email, class: "h-8 w-8 rounded-full self-center" %>
               <div class="ml-3 self-center">
-                <p class="text-sm font-medium text-gray-900"><%= "#{s.first_name} #{s.last_name}" %></p>
+                <p class="text-sm font-medium text-gray-900 dark:text-gray-200"><%= "#{s.first_name} #{s.last_name}" %></p>
                 <% if s.note %>
-                  <p class="text-sm text-gray-500"><%= s.note %></p>
+                  <p class="text-sm text-gray-500 dark:text-gray-400"><%= s.note %></p>
                 <% end %>
               </div>
             </li>
@@ -136,13 +136,13 @@
 
       <% if @unknown.any? %>
         <div class="flex w-full justify-between pb-1">
-          <span class="font-semibold">Onbekend</span>
-          <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800">
+          <span class="font-semibold dark:text-gray-100">Onbekend</span>
+          <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-yellow-100 dark:bg-yellow-700 text-yellow-800 dark:text-yellow-100">
               <%= @unknown.count %>
             </span>
         </div>
         <% if @event.usergroup %>
-          <p class="text-sm text-gray-500">
+          <p class="text-sm text-gray-500 dark:text-gray-400">
             Omdat deze activiteit een bijbehorende groep heeft worden alleen onbekenden uit die groep weergegeven.
           </p>
         <% end %>
@@ -150,7 +150,7 @@
           <% @unknown.each do |s| %>
             <li class="flex">
               <%= gravatar_for s, class: "h-8 w-8 rounded-full mr-3" %>
-              <p class="text-sm font-medium text-gray-900 self-center"><%= s.name %></p>
+              <p class="text-sm font-medium text-gray-900 dark:text-gray-200 self-center"><%= s.name %></p>
             </li>
           <% end %>
         </ul>
