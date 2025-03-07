@@ -28,13 +28,13 @@
       </div>
     </div>
   <% else %>
-    <h3 class="mt-2 text-sm font-medium text-gray-900">Geen aankomende activiteiten :(</h3>
-    <p class="mt-1 text-sm text-gray-500">
+    <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-200">Geen aankomende activiteiten :(</h3>
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
       Waarom maak je er niet een aan?
     </p>
     <div class="mt-6">
       <%= button_to new_event_path, method: :get,
-                    class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white bg-hamers-red-500 hover:bg-hamers-red-600" do %>
+                    class: "inline-flex items-center px-4 py-2 text-sm font-bold rounded-md text-white dark:text-gray-200 bg-hamers-red-500 hover:bg-hamers-red-600 dark:hover:bg-hamers-red-400" do %>
         <!-- Heroicon name: solid/plus -->
         <svg class="-ml-1 mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
              aria-hidden="true">
