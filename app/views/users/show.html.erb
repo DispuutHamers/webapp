@@ -21,21 +21,21 @@
   <% end %>
 <% end %>
 
-<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+<div class="divide-y divide-gray-200 dark:divide-gray-700 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
   <aside class="md:col-span-3 md:pr-6">
     <div class="flex justify-center">
       <%= gravatar_for @user, size: 500, class: "h-48 w-48 rounded-full m-8" %>
     </div>
 
     <div class="-mx-6 text-gray-900">
-      <div class="p-2 sm:p-4 border-t border-gray-200">
+      <div class="p-2 sm:p-4 border-t border-gray-200 dark:border-gray-700">
         <div class="flex flex-wrap content-center justify-evenly">
           <%= render 'usergroups/group_icon_list', user: @user %>
         </div>
       </div>
 
       <% if @missed_drinks&.any? %>
-        <div class="p-2 sm:p-4 border-t border-gray-200">
+        <div class="p-2 sm:p-4 border-t border-gray-200 dark:border-gray-700">
           <h4>Gemiste dispuutsborrels</h4>
           <ul class="list-disc list-inside">
             <% @missed_drinks.each do |md| %>
@@ -45,7 +45,7 @@
         </div>
       <% end %>
 
-      <dl class="border-t border-gray-200 sm:divide-y sm:divide-gray-200">
+      <dl class="border-t border-gray-200 dark:border-gray-700 sm:divide-y sm:divide-gray-200 sm:dark:divide-gray-700">
         <% specs = {
           "Lichting": @user.batch,
           "Inschrijfratio (laatste jaar)": @user.drink_ratio.round(0).to_s + "%",
@@ -63,10 +63,10 @@
         } %>
         <% specs.each do |name, value| %>
           <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="mx-6 text-sm font-medium text-gray-500 0 sm:col-span-2">
+            <dt class="mx-6 text-sm font-medium text-gray-500 dark:text-gray-400 0 sm:col-span-2">
               <%= name %>
             </dt>
-            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-">
+            <dd class="mx-6 mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-">
               <%= value %>
             </dd>
           </div>
@@ -74,15 +74,15 @@
       </dl>
 
       <% if @user.alid? && current_user.traject? %>
-        <div class="p-2 sm:p-4 border-t border-gray-200">
+        <div class="p-2 sm:p-4 border-t border-gray-200 dark:border-gray-700">
           <h4>
             Gereviewde bieren
-            <span class="text-gray-500"><%= @user.reviews.count %></span>
+            <span class="text-gray-500 dark:text-gray-400"><%= @user.reviews.count %></span>
           </h4>
           <ul class="list-disc list-inside">
             <% @user.reviews.each do |r| %>
               <%= link_to r.beer do %>
-                <li><%= r.beer.name %> <span class="text-gray-500">(<%= r.beer.kind %>)</span></li>
+                <li><%= r.beer.name %> <span class="text-gray-500 dark:text-gray-400">(<%= r.beer.kind %>)</span></li>
               <% end %>
             <% end %>
           </ul>
@@ -92,8 +92,8 @@
   </aside>
 
   <div class="md:col-span-9 md:pl-6">
-    <div class="overflow-hidden border-b sm:rounded-t-md">
-      <ul role="list" class="divide-y divide-gray-200">
+    <div class="overflow-hidden border-b dark:border-gray-700 sm:rounded-t-md">
+      <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
         <%= render @quotes %>
       </ul>
     </div>
