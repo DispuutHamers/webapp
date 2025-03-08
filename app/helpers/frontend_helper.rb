@@ -4,11 +4,11 @@ module FrontendHelper
   end
 
   def label_classes
-    "block text-sm font-medium text-gray-700"
+    "block text-sm font-medium text-gray-700 dark:text-gray-200"
   end
 
   def input_classes
-    "shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800"
+    "shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full sm:text-sm border-gray-300 dark:border-gray-700 rounded-md dark:bg-gray-800 dark:text-gray-200"
   end
 
   def select_classes
