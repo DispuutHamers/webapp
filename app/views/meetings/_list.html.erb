@@ -1,21 +1,21 @@
-<ul role="list" class="-m-6 divide-y divide-gray-200">
+<ul role="list" class="-m-6 divide-y divide-gray-200 dark:divide-gray-700">
   <% meetings.each do |meeting| %>
     <li>
-      <%= link_to meeting, class: "block hover:bg-gray-50" do %>
+      <%= link_to meeting, class: "block hover:bg-gray-50 dark:hover:bg-gray-800" do %>
         <div class="p-4 grid grid-cols-2 sm:grid-cols-3 gap-4 items-center">
           <div>
             <div class="text-sm min-w-0 flex-1 sm:flex sm:items-center">
               <div class="flex">
-                <p class="font-medium text-gray-900 truncate"><%= meeting.onderwerp %></p>
+                <p class="font-medium text-gray-900 dark:text-gray-200 truncate"><%= meeting.onderwerp %></p>
               </div>
             </div>
             <div class="mt-2 flex">
-              <p class="flex items-center text-sm text-gray-500">
+              <p class="flex items-center text-sm text-gray-500 dark:text-gray-400">
                 <time><%= meeting.date.strftime('%d-%m-%Y') %></time>
               </p>
             </div>
           </div>
-          <div class="text-sm text-gray-500 items-center hidden sm:block">
+          <div class="text-sm text-gray-500 dark:text-gray-400 items-center hidden sm:block">
             <% if meeting.chairman %>
               <i class="fas fa-fw fa-gavel"></i> <%= meeting.chairman.name %>
             <% end %>
