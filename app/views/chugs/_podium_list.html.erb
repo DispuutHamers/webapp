@@ -1,4 +1,4 @@
-<ul role="list" class="divide-y divide-gray-200">
+<ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
   <% if chugs.count >= 3 %>
     <% chugs.each_with_index do |chug, index| %>
       <% if index == 0 %>
@@ -9,7 +9,7 @@
               <% gravatar_for chug.user, class: "absolute z-20 gravatar gold-gravatar rounded-full" %>
             <% end %>
             <div class="flex items-center justify-center">
-              <p class="text-center absolute gold-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
+              <p class="text-center absolute gold-text w-24 text-sm dark:text-gray-200"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
                 <br><i><%= chug.user.id == 7 && chug.comment.present? ? chug.comment : chug.user.name %></i>
               </p>
             </div>
@@ -19,7 +19,7 @@
           <% gravatar_for chug.user, class: "absolute z-20 gravatar silver-gravatar rounded-full" %>
         <% end %>
         <div class="flex items-center justify-center">
-          <p class="text-center absolute silver-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
+          <p class="text-center absolute silver-text w-24 text-sm dark:text-gray-200"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
             <br><i><%= chug.user.id == 7 && chug.comment.present? ? chug.comment : chug.user.name %></i>
           </p>
         </div>
@@ -29,7 +29,7 @@
           <% gravatar_for chug.user, class: "absolute z-20 gravatar bronze-gravatar rounded-full" %>
         <% end %>
         <div class="flex items-center justify-center">
-          <p class="text-center absolute bronze-text w-24 text-sm"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
+          <p class="text-center absolute bronze-text w-24 text-sm dark:text-gray-200w"><strong style="font-size: large"><%= chug.time.round(2) %></strong>s
             <br><i><%= chug.user.id == 7 && chug.comment.present? ? chug.comment : chug.user.name %></i>
           </p>
         </div>
@@ -41,7 +41,7 @@
     <% end %>
   <% else %>
     <%= render chugs %>
-    <div class="py-4 pb-4">
+    <div class="py-4 pb-4 dark:text-gray-200">
       <i>
         Er moeten minimaal drie adjes zijn om het scorebord te zien.
       </i>

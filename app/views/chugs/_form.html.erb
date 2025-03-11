@@ -1,23 +1,23 @@
 <div>
   <%= form_for @chug do |f| %>
-    <div>
+    <label class="<%= label_classes %> mb-1">
       Ad getrokken door:
-    </div>
+    </label>
     <% users_array = User.all.map { |user| [user.name, user.id] } %>
     <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
 
-    <div class="mt-4 mb-2">
+    <label class="<%= label_classes %> mb-1 mt-3">
       Tijd (in seconden)
-    </div>
+    </label>
     <div class="w-full">
       <%= f.text_field :time, step: :any, inputmode: 'decimal' ,class: input_classes, required: true, placeholder: "_.__", value: @chug.time != 0.0 ? @chug.time : '', autofocus: true,
                        oninput: "this.value = this.value.replace(',','.')"
       %>
     </div>
 
-    <div class="mt-4 mb-2">
+    <label class="<%= label_classes %> mb-1 mt-3">
       Opmerkingen
-    </div>
+    </label>
     <%= f.text_field :comment, class: input_classes, placeholder: "Opmerkingen" %>
 
     <div class="flex justify-center mt-5">
