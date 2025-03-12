@@ -64,7 +64,7 @@
     <% if @usergroup.users.any? %>
       <%= render 'member_list', users: @usergroup.users %>
     <% else %>
-      <div class="p-6">
+      <div class="p-6 dark:text-gray-200">
         Er zijn (nog) geen leden van deze groep.
       </div>
     <% end %>

@@ -5,7 +5,7 @@
 <%= render layout: 'layouts/small_width' do %>
   <%= form_for @quote, html: {class: 'space-y-3 space-y'} do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
-    <%= f.label :text %>
+    <%= f.label :text, class: label_classes %>
     <%= f.text_area :text, class: input_classes %>
 
     <% unless @quote.anonymous? %>
