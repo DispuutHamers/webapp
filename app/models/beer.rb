@@ -26,6 +26,15 @@ class Beer < ActiveRecord::Base
     self.save
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "kind", "grade", "brewer", "country", "review_count"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["reviews"]
+  end
+
+
   def to_s
     name
   end
