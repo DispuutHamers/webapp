@@ -7,15 +7,15 @@
     <div class="rounded-md shadow-sm -space-y-px">
       <div>
         <label for="email-address" class="sr-only">Email address</label>
-        <%= f.email_field :email, autofocus: true, required: true, placeholder: 'E-mail adres', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
+        <%= f.email_field :email, autofocus: true, required: true, placeholder: 'E-mail adres', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-200 dark:bg-gray-800 rounded-t-md focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
       </div>
       <div>
         <label for="password" class="sr-only">Password</label>
-        <%= f.password_field :password, autocomplete: 'off', type: 'password', required: true, placeholder: 'Wachtwoord', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
+        <%= f.password_field :password, autocomplete: 'off', type: 'password', required: true, placeholder: 'Wachtwoord', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-200 dark:bg-gray-800 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
       </div>
       <div>
         <label for="otp_attempt" class="sr-only">OTP</label>
-        <%= f.text_field :otp_attempt, autocomplete: 'off', placeholder: 'OTP', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
+        <%= f.text_field :otp_attempt, autocomplete: 'off', placeholder: 'OTP', class: 'appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-gray-200 dark:bg-gray-800 rounded-b-md focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 focus:z-10 sm:text-sm' %>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
       <% if devise_mapping.rememberable? -%>
         <div class="flex items-center">
           <%= f.check_box :remember_me, class: checkbox_classes %>
-          <%= f.label :remember_me, "Blijf ingelogd", class: "ml-2 block text-sm text-gray-900" %>
+          <%= f.label :remember_me, "Blijf ingelogd", class: "ml-2 block text-sm text-gray-900 dark:text-gray-400" %>
         </div>
       <% end %>
 
@@ -32,6 +32,6 @@
       <% end -%>
     </div>
 
-    <%= f.button "Log in", type: 'submit', class: "w-full justify-center inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <%= f.button "Log in", type: 'submit', class: "w-full justify-center inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 dark:bg-hamer-red-500 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
   <% end %>
 <% end %>

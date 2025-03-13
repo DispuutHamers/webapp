@@ -2,7 +2,7 @@
   Log
 <% end %>
 
-<ul role="list" class="divide-y divide-gray-200">
+<ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
   <% @trail.each do |t| %>
     <li class="py-2 flex flex-col">
       <div class="flex space-x-3 pb-2">
@@ -10,17 +10,17 @@
 
         <div class="flex-1 space-y-1">
           <div class="flex items-center justify-between">
-            <h3 class="text-sm font-medium">
+            <h3 class="text-sm font-medium dark:text-gray-200">
               <% if t.present.link %>
                 <%= link_to t.present.message.html_safe, t.present.link %>
               <% else %>
                 <%= t.present.message.html_safe %>
               <% end %>
             </h3>
-            <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+            <p class="text-sm text-gray-500 dark:text-gray-400"><%= time_ago_in_words(t.created_at) %> geleden.</p>
           </div>
           <div class="flex justify-between">
-            <span class="text-sm text-gray-500 font-medium">
+            <span class="text-sm text-gray-500 dark:text-gray-400 font-medium">
               <%= t.present.name %>
             </span>
             <% unless t.item_type == "ActionText::RichText" %>
@@ -32,11 +32,11 @@
         </div>
 
       </div>
-      <div class="divide-y divide-hamers-red-500 px-8 text-sm font-medium">
+      <div class="divide-y divide-hamers-red-500 dark:divide-hamers-red-400 px-8 text-sm font-medium">
         <% t.present.processed_changes.each do |name, diffy| %>
           <div class="py-2 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="text-gray-600"><%= name %></dt>
-            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+            <dt class="text-gray-600 dark:text-gray-300"><%= name %></dt>
+            <dd class="mt-1 text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">
               <%== diffy %>
             </dd>
           </div>

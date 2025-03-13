@@ -5,11 +5,11 @@
 <main class="mx-auto items-center justify-center mt-16 mb-32 max-w-md w-full py-12 px-4 sm:px-6 lg:px-8">
   <%= form_for "", :url => "users/invitation/accept", html: { :method => :get } do |f| %>
     <div class="relative rounded-md shadow-sm">
-      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none dark:text-gray-200">
         <i class="fa fa-key"></i>
       </div>
-      <%= f.text_field :invitation_token, autofocus: true, class: 'focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full pl-10 sm:text-sm border-gray-300 rounded-md', placeholder: "Uitnodigingscode" %>
+      <%= f.text_field :invitation_token, autofocus: true, class: 'focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full pl-10 sm:text-sm border-gray-300 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200 rounded-md', placeholder: "Uitnodigingscode" %>
     </div>
-    <%= f.button "Registreer", type: 'submit', class: "w-full justify-center inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
+    <%= f.button "Registreer", type: 'submit', class: "w-full justify-center inline-flex items-center px-4 py-2 mt-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-hamers-red-600 hover:bg-hamers-red-700 dark:hover:bg-hamers-red-500 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
   <% end %>
 </main>

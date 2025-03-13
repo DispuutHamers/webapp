@@ -21,25 +21,25 @@
   <% end %>
 <% end %>
 
-<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
-  <div class="md:col-span-9 py-6 md:pr-6">
+<div class="divide-y divide-gray-200 dark:divide-gray-700 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <div class="md:col-span-9 py-6 md:pr-6 dark:text-gray-200">
     <%= @meeting.notes %>
   </div>
 
   <aside class="md:col-span-3 md:pl-6">
-    <div class="-mx-6 border-t border-b border-gray-200">
-      <dl class="sm:divide-y sm:divide-gray-200">
-        <div class="m-4">
+    <div class="-mx-6 border-t border-b border-gray-200 dark:border-gray-700">
+      <dl class="sm:divide-y sm:divide-gray-200 sm:dark:divide-gray-700">
+        <div class="m-4 dark:text-gray-200">
           <h4>Agenda <%= @meeting.onderwerp %></h4>
           <%= @meeting.agenda %>
         </div>
 
         <% if @meeting.chairman %>
           <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="mx-6 text-sm font-medium text-gray-500">
+            <dt class="mx-6 text-sm font-medium text-gray-500 dark:text-gray-400">
               Voorzitter
             </dt>
-            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd class="mx-6 mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">
               <%= link_to @meeting.chairman.name, @meeting.chairman %>
             </dd>
           </div>
@@ -47,10 +47,10 @@
 
         <% if @meeting.secretary %>
           <div class="py-2 sm:py-4 sm:grid sm:grid-cols-3 sm:gap-4">
-            <dt class="mx-6 text-sm font-medium text-gray-500">
+            <dt class="mx-6 text-sm font-medium text-gray-500 dark:text-gray-400">
               Secretaris
             </dt>
-            <dd class="mx-6 mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd class="mx-6 mt-1 text-sm text-gray-900 dark:text-gray-200 sm:mt-0 sm:col-span-2">
               <%= link_to @meeting.secretary.name, @meeting.secretary %>
             </dd>
           </div>

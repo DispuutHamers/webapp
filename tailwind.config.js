@@ -10,7 +10,7 @@ module.exports = {
       './app/frontend/**/*.js',
     ],
   },
-  darkMode: 'class', // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
@@ -46,7 +46,8 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
