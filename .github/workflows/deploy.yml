@@ -1,0 +1,33 @@
+name: Deploy Kamal
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  repo: ghcr.io/dispuuthamers/webapp
+
+jobs:
+  deploy:
+    name: "🚀 Deploy"
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: publish
+    runs-on: ubuntu-latest
+    env:
+      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+
+      KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
+      KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+
+    steps:
+      - name: "📂 Checkout"
+        uses: actions/checkout@v4
+
+      - name: "🔑 Write SSH key"
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: "Kamal 🐪"
+        run: echo "Kamal is a great guy"
