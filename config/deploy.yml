@@ -42,7 +42,7 @@ aliases:
   console: app exec --interactive --reuse "rails console"
   shell: app exec --interactive --reuse "bash"
 
-asset_path: /webapp/public/assets
+#asset_path: /webapp/public/assets
 
 volumes:
  - db:/webapp/db
