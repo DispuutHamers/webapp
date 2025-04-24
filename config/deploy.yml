@@ -25,6 +25,9 @@ registry:
 
 builder:
   arch: amd64
+  args:
+    GIT_COMMIT_COUNT: $(git rev-list --count HEAD)
+    GIT_COMMIT: $(git rev-parse HEAD)
 
 env:
   clear:
@@ -41,8 +44,9 @@ env:
 aliases:
   console: app exec --interactive --reuse "rails console"
   shell: app exec --interactive --reuse "bash"
+  db: app exec --interactive --reuse "rails dbconsole"
 
-#asset_path: /webapp/public/assets
+retain_containers: 3
 
 volumes:
  - db:/webapp/db

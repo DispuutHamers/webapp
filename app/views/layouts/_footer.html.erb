@@ -2,7 +2,7 @@
   <div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
     <p class="text-center text-base text-gray-400">
       <a href="<%= root_url %>">Hamers zonder Sikkel</a> <br>
-      &copy; <%= Time.current.year %> - version (TODO)
+      &copy; <%= Time.current.year %> - version <%= "#{ ENV['GIT_COMMIT_COUNT'] } (#{ ENV['GIT_COMMIT_HASH']&.chomp})" %>
     </p>
   </div>
   <%= any_login_here if defined?(AnyLogin) %>

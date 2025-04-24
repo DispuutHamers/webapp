@@ -1,10 +1,13 @@
 # Hamers zonder Sikkel
 webapp voor https://www.zondersikkel.nl/
 
+# Prerequisites
+- [Ruby 3.4.1](.ruby-version)
+- [Node.js 16 LTS](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/)
+
 # Setting up a development environment 
 - Install the version of ruby specified in .ruby-version (protip: use rvm or rbenv)
-- Install npm and yarn
-- Setup a local instance of mysql and add the credentials to `config/database.yml`
 - Install dependecies by running `bundle install` in the root of the repository
 - Install javascript dependencies by running `yarn install` 
 - Initialeze the database schema by running `rails db:setup`
