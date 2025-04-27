@@ -23,10 +23,5 @@ RUN bundle exec rails assets:precompile
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
-ARG GIT_COMMIT_COUNT
-ARG GIT_COMMIT_HASH
-ENV GIT_COMMIT_COUNT=$GIT_COMMIT_COUNT
-ENV GIT_COMMIT_HASH=$GIT_COMMIT_HASH
-
 EXPOSE 3000
 ENTRYPOINT ["entrypoint.sh"]

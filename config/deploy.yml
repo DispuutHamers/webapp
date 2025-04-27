@@ -25,9 +25,6 @@ registry:
 
 builder:
   arch: amd64
-  args:
-    GIT_COMMIT_COUNT: $(git rev-list --count HEAD)
-    GIT_COMMIT: $(git rev-parse HEAD)
 
 env:
   clear:
