@@ -3,7 +3,7 @@ name: Deploy Kamal
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   repo: ghcr.io/dispuuthamers/webapp

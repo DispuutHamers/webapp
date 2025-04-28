@@ -1,6 +1,6 @@
 FROM ruby:3.4.1-slim
 
-RUN apt-get update -qq && apt-get install -y cron curl build-essential shared-mime-info \
+RUN apt-get update -qq && apt-get install -y cron curl build-essential shared-mime-info sqlite3 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install NodeJS 16 for webpacker and precompile assets
