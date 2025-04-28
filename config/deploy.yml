@@ -43,7 +43,5 @@ aliases:
   shell: app exec --interactive --reuse "bash"
   db: app exec --interactive --reuse "rails dbconsole"
 
-retain_containers: 3
-
 volumes:
  - db:/webapp/db
