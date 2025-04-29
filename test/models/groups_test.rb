@@ -2,7 +2,7 @@ require 'test_helper'
 
 class GroupsTest < ActiveSupport::TestCase
   test 'Create group' do
-    u = users(:two)
+    u = users(:one)
 
     ug = Usergroup.create(name: 'test')
 

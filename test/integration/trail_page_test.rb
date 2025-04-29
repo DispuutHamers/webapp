@@ -192,7 +192,7 @@ class TrailPageTest < ApplicationSystemTestCase
 
       assert page.has_link? "reviewde Leffe Blond", href: review_path(r)
       assert page.has_link? "maakte een review van Leffe Blond", href: review_path(r)
-      assert page.has_link? "wijzigde een review van Leffe Blond", href: review_path(r), count: 3
+      assert page.has_link? "wijzigde een review van Leffe Blond", href: review_path(r), count: 2
 
       r.destroy!
       visit trail_path
