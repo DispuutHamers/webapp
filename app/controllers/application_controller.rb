@@ -40,7 +40,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_for_maintenance
-    puts "Checking for maintenance mode"
     if ENV['MAINTENANCE_MODE'] == 'true'
       render template: 'static_pages/maintenance', layout: 'application_public'
     end
@@ -65,7 +64,6 @@ class ApplicationController < ActionController::Base
     return true if current_user&.otp_required_for_login
 
     redirect_to edit_two_factor_user_path(current_user), notice:"Je moet je 2FA instellen voordat je verder kunt gaan."
-    false
   end
 
   def after_sign_in_path_for(resource_or_scope)
