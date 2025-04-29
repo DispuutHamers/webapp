@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :strict_transport_security
+  before_action :check_for_maintenance
   before_action do
     Rack::MiniProfiler.authorize_request if current_user&.dev? && !Rails.env.production?
   end
@@ -36,6 +37,13 @@ class ApplicationController < ActionController::Base
     response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
     response.headers['Pragma'] = 'no-cache'
     response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
+  end
+
+  def check_for_maintenance
+    puts "Checking for maintenance mode"
+    if ENV['MAINTENANCE_MODE'] == 'true'
+      render template: 'static_pages/maintenance', layout: 'application_public'
+    end
   end
 
   def logged_in?
