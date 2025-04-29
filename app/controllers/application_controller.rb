@@ -50,6 +50,7 @@ class ApplicationController < ActionController::Base
       otp_required?
     else
       redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
+      false
     end
   end
 
@@ -64,6 +65,7 @@ class ApplicationController < ActionController::Base
     return true if current_user&.otp_required_for_login
 
     redirect_to edit_two_factor_user_path(current_user), notice:"Je moet je 2FA instellen voordat je verder kunt gaan."
+    false
   end
 
   def after_sign_in_path_for(resource_or_scope)

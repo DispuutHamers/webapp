@@ -15,6 +15,7 @@ class UsergroupTest < ActiveSupport::TestCase
     ug = Usergroup.create(name: 'test')
 
     Group.create!(group_id: ug.id, user_id: u.id)
+    assert Group.where(group_id: ug.id, user_id: u.id).count == 1
   end
 
   test 'Delete usergroup' do

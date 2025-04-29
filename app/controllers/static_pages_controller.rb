@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   def home
     return render 'frontpage' unless current_user&.active?
 
-    return if otp_required?
+    return unless otp_required?
 
     @quote = current_user.quotes.build
     @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12) if current_user.can_view_quotes?
