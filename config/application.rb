@@ -34,7 +34,6 @@ module Hamers
       # Turn on in development as needed:
       # dev: 'on',
       exceptions: {
-
         all: {
           layout: 'error_pages/500'
         },

@@ -8,13 +8,13 @@ servers:
     - 130.89.148.88
 
 proxy:
-  ssl: false
-  host: 130.89.148.88
+  ssl: true
+  host: vps.zondersikkel.nl
   app_port: 3000
-  response_timeout: 300
+  response_timeout: 60
   healthcheck:
     path: /
-    timeout: 300
+    timeout: 60
 
 registry:
   server: ghcr.io
