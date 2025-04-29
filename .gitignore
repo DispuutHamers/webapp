@@ -1,5 +1,4 @@
 config/database.yml
-.env
 
 # Ignore bundler config.
 /.bundle
