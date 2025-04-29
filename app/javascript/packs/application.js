@@ -19,8 +19,8 @@ import Rails from '@rails/ujs';
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
-import { Application } from "stimulus"
-import { definitionsFromContext } from "stimulus/webpack-helpers"
+import { Application } from "@hotwired/stimulus"
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
 import 'trix/dist/trix.js'
 import '@rails/actiontext'
@@ -32,7 +32,7 @@ ActiveStorage.start()
 Rails.start();
 
 const application = Application.start()
-const context = require.context("controllers", true, /\.js$/)
+const context = require.context("../controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 
 // Other options: Alert, Autosave, Dropdown, Modal, Popover, Toggle, Slideover
