@@ -45,3 +45,5 @@ aliases:
 
 volumes:
  - db:/webapp/db
+ - log:/webapp/log # includes cron logs
+ - storage:/webapp/storage
