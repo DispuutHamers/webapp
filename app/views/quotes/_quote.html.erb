@@ -96,7 +96,7 @@
       </div>
       <div class="flex flex-col sm:flex-row text-gray-500 dark:text-gray-400">
         <div class="flex-grow"><%= quote.name %></div>
-        <p><%= time_ago_in_words(quote.created_at) %> geleden geciteerd<% unless quote.reporter.nil? %> door <%= quote.reporter.name %><% end %>.</p>
+        <p><%= time_ago_in_words(quote.created_at) %> geleden geciteerd<%= " door #{quote.reporter.name}" if quote.reporter.present? %>.</p>
       </div>
     </div>
   </div>
