@@ -24,7 +24,7 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
 import 'trix/dist/trix.js'
 import '@rails/actiontext'
-import "./application"
+import "../stylesheets/application.css"
 import * as ActiveStorage from "@rails/activestorage"
 import Flatpickr from 'stimulus-flatpickr'
 

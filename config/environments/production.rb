@@ -17,18 +17,17 @@ Rails.application.configure do
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.public_file_server.enabled = false
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -46,16 +45,20 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
+  config.force_ssl = false
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_cache_store, { url: Rails.application.credentials.redis_host }
+  # TODO determine if this is necessary
+  config.action_controller.perform_caching = true
+  config.cache_store = :memory_store
+  # config.cache_store = :redis_cache_store, { url: Rails.application.credentials.redis_host }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
