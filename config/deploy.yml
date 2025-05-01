@@ -42,6 +42,6 @@ aliases:
   db: app exec --interactive --reuse "rails dbconsole"
 
 volumes:
- - db:/webapp/db
- - log:/webapp/log # includes cron logs
- - storage:/webapp/storage
+ - /app/db:/webapp/db
+ - /app/log:/webapp/log # includes cron logs
+ - /app/storage:/webapp/storage
