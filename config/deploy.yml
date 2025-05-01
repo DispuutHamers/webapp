@@ -25,6 +25,9 @@ registry:
 
 builder:
   arch: amd64
+  args:
+    GIT_COMMIT_HASH: <%= `git rev-parse --short HEAD`.strip %>
+    GIT_COMMIT_COUNT: <%= `git rev-list --count HEAD`.strip %>
 
 env:
   clear:

@@ -1,5 +1,10 @@
 FROM ruby:3.4.1-slim
 
+ARG GIT_COMMIT_HASH
+ARG GIT_COMMIT_COUNT
+ENV GIT_COMMIT_HASH=$GIT_COMMIT_HASH
+ENV GIT_COMMIT_COUNT=$GIT_COMMIT_COUNT
+
 RUN apt-get update -qq && apt-get install -y cron curl build-essential shared-mime-info sqlite3 \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
