@@ -18,6 +18,14 @@ jobs:
       - name: "📂 Checkout"
         uses: actions/checkout@v4
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4.1
+
+      - name: Install dependencies
+        run: bundle install
+
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
