@@ -9,7 +9,7 @@ servers:
 
 proxy:
   ssl: true
-  host: vps.zondersikkel.nl
+  host: zondersikkel.nl
   app_port: 3000
   response_timeout: 60
   healthcheck:
