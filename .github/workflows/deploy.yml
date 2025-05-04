@@ -1,0 +1,31 @@
+name: Deploy Kamal
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: "🚀 Deploy"
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
+      KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+
+    steps:
+      - name: "📂 Checkout"
+        uses: actions/checkout@v4
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: "🔐 Write production.key for Rails"
+        run: mkdir -p config/credentials && echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
+
+      - name: "🐪 Kamal deploy"
+        run: kamal deploy

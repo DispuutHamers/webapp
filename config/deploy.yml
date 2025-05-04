@@ -1,0 +1,47 @@
+<% require "dotenv"; Dotenv.load(".env") %>
+
+service: hamers-webapp
+image: dispuuthamers/webapp
+
+servers:
+  web:
+    - 130.89.148.88
+
+proxy:
+  ssl: true
+  host: vps.zondersikkel.nl
+  app_port: 3000
+  response_timeout: 60
+  healthcheck:
+    path: /
+    timeout: 60
+
+registry:
+  server: ghcr.io
+  username:
+    - KAMAL_REGISTRY_USERNAME
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+builder:
+  arch: amd64
+  args:
+    GIT_COMMIT_HASH: <%= `git rev-parse --short HEAD`.strip %>
+    GIT_COMMIT_COUNT: <%= `git rev-list --count HEAD`.strip %>
+
+env:
+  clear:
+    RAILS_ENV: production
+    RAILS_LOG_TO_STDOUT: true
+  secret:
+    - RAILS_MASTER_KEY
+
+aliases:
+  console: app exec --interactive --reuse "rails console"
+  shell: app exec --interactive --reuse "bash"
+  db: app exec --interactive --reuse "rails dbconsole"
+
+volumes:
+ - /app/db:/webapp/db
+ - /app/log:/webapp/log # includes cron logs
+ - /app/storage:/webapp/storage
