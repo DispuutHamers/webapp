@@ -17,6 +17,8 @@ jobs:
     strategy:
       matrix:
         ruby-version: ["3.3.6"]
+    env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
     steps:
       - uses: actions/checkout@v3
 

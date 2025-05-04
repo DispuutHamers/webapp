@@ -1,17 +1,17 @@
-<div class="bg-white overflow-hidden shadow rounded-lg hidden lg:block">
+<div class="bg-white dark:bg-gray-900 overflow-hidden shadow rounded-lg hidden lg:block">
   <%= link_to trail_path do %>
     <h2 class="text-hamers-red-400 text-xl font-bold m-4">Wat is er gebeurd?</h2>
   <% end %>
 
   <div class="flex items-center">
-    <ul class="divide-y divide-gray-200 w-full">
+    <ul class="divide-y divide-gray-200 dark:divide-gray-700 w-full">
       <% @trail.each do |t| %>
         <li class="py-2 px-4 w-full">
           <div class="flex space-x-3">
             <%= gravatar_for User.find_by_id(t.whodunnit) %>
             <div class="flex-1 space-y-1">
               <div class="flex items-center justify-between">
-                <span class="text-sm font-medium">
+                <span class="text-sm font-medium dark:text-gray-200">
                   <% if t.present.link %>
                     <%= link_to t.present.message.html_safe, t.present.link %>
                   <% else %>
@@ -19,7 +19,7 @@
                   <% end %>
                 </span>
               </div>
-              <p class="text-sm text-gray-500"><%= time_ago_in_words(t.created_at) %> geleden.</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400"><%= time_ago_in_words(t.created_at) %> geleden.</p>
             </div>
           </div>
         </li>

@@ -29,53 +29,53 @@
 
 <div class="-m-5 sm:-m-6">
   <% unless @usergroup.description.blank? %>
-    <div class="bg-white rounded-lg border-b border-gray-200 p-4 mb-4">
-      <div class="text-md text-gray-600">
+    <div class="rounded-lg border-b border-gray-200 dark:border-gray-700 p-4 mb-4">
+      <div class="text-md text-gray-600 dark:text-gray-300">
         <%=simple_format @usergroup.description %>
       </div>
     </div>
   <% end %>
-  <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
+
+  <div data-controller="tabs select-tabs" data-tabs-active-tab="border-hamers-red-500 font-bold text-hamers-red-500 dark:text-hamers-red-500 hover:border-hamers-red-600 hover:text-hamers-red-600 dark:hover:border-hamers-red-600 dark:hover:text-hamers-red-600">
     <div>
       <div class="sm:hidden m-4">
         <label for="tabs" class="sr-only">Select a tab</label>
-        <select id="tabs" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
-          <option data-action="click->tabs#change" data-index="0">Huidige leden</option>
-          <option data-action="click->tabs#change" data-index="1">Oude leden</option>
+        <select id="tabs" data-action="change->select-tabs#change" data-select-tabs-target="tab" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
+          <option value="0">Huidige leden</option>
+          <option value="1">Oude leden</option>
         </select>
       </div>
 
       <div class="hidden sm:block -mt-4">
-        <div class="border-b border-gray-200">
-          <nav class="-mb-px mx-6 flex space-x-8">
-            <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-              Huidige leden
-            </button>
-            <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-              Oude leden
-            </button>
-          </nav>
-        </div>
+      <div class="border-b border-gray-200 dark:border-gray-700">
+        <nav class="-mb-px mx-6 flex space-x-8">
+          <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Huidige leden
+          </button>
+          <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+            Oude leden
+          </button>
+        </nav>
       </div>
     </div>
+  </div>
 
-    <div class="hidden" data-tabs-target="panel">
-      <% if @usergroup.users.any? %>
-        <%= render 'member_list', users: @usergroup.users %>
-      <% else %>
-        <div class="p-6">
-          Er zijn (nog) geen leden van deze groep.
-        </div>
-      <% end %>
-    </div>
-    <div class="hidden" data-tabs-target="panel">
-      <% if @usergroup.old_members.any? %>
-        <%= render 'member_list', users: @usergroup.old_members %>
-      <% else %>
-        <div class="p-6">
-          Er zijn geen oude leden van deze groep.
-        </div>
-      <% end %>
-    </div>
+  <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
+    <% if @usergroup.users.any? %>
+      <%= render 'member_list', users: @usergroup.users %>
+    <% else %>
+      <div class="p-6 dark:text-gray-200">
+        Er zijn (nog) geen leden van deze groep.
+      </div>
+    <% end %>
+  </div>
+  <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
+    <% if @usergroup.old_members.any? %>
+      <%= render 'member_list', users: @usergroup.old_members %>
+    <% else %>
+      <div class="p-6 dark:text-gray-200">
+        Er zijn geen oude leden van deze groep.
+      </div>
+    <% end %>
   </div>
 </div>

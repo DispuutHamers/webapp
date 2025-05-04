@@ -1,5 +1,5 @@
 <div class="mx-auto w-full max-w-sm lg:w-96">
-  <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+  <h2 class="mt-6 text-3xl font-extrabold text-gray-900 dark:text-gray-200">
     Aanmelden
   </h2>
 
@@ -16,7 +16,7 @@
   <div class="mt-8">
     <%= form_for @external_signup, url: create_external_signup_event_path(invitation_code: @invitation_code), html: {class: "space-y-6"} do |f| %>
       <div>
-        <label for="first_name" class="block text-sm font-medium text-gray-700">
+        <label for="first_name" class="<%= label_classes %>">
           Voornaam
         </label>
         <div class="mt-1">
@@ -24,7 +24,7 @@
       </div>
 
       <div>
-        <label for="last_name" class="block text-sm font-medium text-gray-700">
+        <label for="last_name" class="<%= label_classes %>">
           Achternaam
         </label>
         <div class="mt-1">
@@ -32,7 +32,7 @@
       </div>
 
       <div>
-        <label for="email" class="block text-sm font-medium text-gray-700">
+        <label for="email" class="<%= label_classes %>" >
           Email adres
         </label>
         <div class="mt-1">
@@ -40,7 +40,7 @@
       </div>
 
       <div>
-        <label for="note" class="block text-sm font-medium text-gray-700">
+        <label for="note" class="<%= label_classes %>">
           Opmerkingen
         </label>
         <div class="mt-1">
