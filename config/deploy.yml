@@ -25,18 +25,16 @@ registry:
 
 builder:
   arch: amd64
+  args:
+    GIT_COMMIT_HASH: <%= `git rev-parse --short HEAD`.strip %>
+    GIT_COMMIT_COUNT: <%= `git rev-list --count HEAD`.strip %>
 
 env:
   clear:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: true
   secret:
-    - SECRET_KEY_BASE
-    - OTP_SECRET
-    - LOCKBOX_MASTER_KEY
-    - SMTP_PASSWORD
-    - GOOGLE_API_KEY
-    - HONEYBADGER_API_KEY
+    - RAILS_MASTER_KEY
 
 aliases:
   console: app exec --interactive --reuse "rails console"
@@ -44,4 +42,6 @@ aliases:
   db: app exec --interactive --reuse "rails dbconsole"
 
 volumes:
- - db:/webapp/db
+ - /app/db:/webapp/db
+ - /app/log:/webapp/log # includes cron logs
+ - /app/storage:/webapp/storage

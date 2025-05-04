@@ -3,7 +3,7 @@ name: Deploy Kamal
 on:
   push:
     branches:
-      - master
+      - vps/master
 
 env:
   repo: ghcr.io/dispuuthamers/webapp
@@ -15,8 +15,6 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     env:
-      PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-
       KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
       KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
 
@@ -24,10 +22,14 @@ jobs:
       - name: "📂 Checkout"
         uses: actions/checkout@v4
 
-      - name: "🔑 Write SSH key"
-        uses: webfactory/ssh-agent@v0.9.0
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
         with:
-          ssh-private-key: ${{ secrets.PRIVATE_KEY }}
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-      - name: "Kamal 🐪"
+      - name: "🔐 Write production.key for Rails"
+        run: echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
+
+      - name: "🐪 Kamal deploy"
         run: echo This is where we would run kamal deploy
