@@ -3,16 +3,12 @@ name: Deploy Kamal
 on:
   push:
     branches:
-      - vps/master
-
-env:
-  repo: ghcr.io/dispuuthamers/webapp
+      - master
 
 jobs:
   deploy:
     name: "🚀 Deploy"
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: publish
     runs-on: ubuntu-latest
     env:
       KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
@@ -29,7 +25,7 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
       - name: "🔐 Write production.key for Rails"
-        run: echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
+        run: mkdir -p config/credentials && echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
 
       - name: "🐪 Kamal deploy"
-        run: echo This is where we would run kamal deploy
+        run: kamal deploy
