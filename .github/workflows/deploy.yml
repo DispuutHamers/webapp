@@ -32,8 +32,22 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
+      - name: "?? Create credentials directory"
+        run: mkdir -p config/credentials
+
       - name: "🔐 Write production.key for Rails"
-        run: mkdir -p config/credentials && echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
+        run: echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
+
+      - name: "🔐 Write Google Drive credentials"
+        run: echo "${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}" > config/credentials/google-drive.json
 
       - name: "🐪 Kamal deploy"
         run: kamal deploy
+
+      - name: "Honeybadger deploy"
+        run: bundle exec honeybadger deploy \
+            --repository https://github.com/dispuuthamers/webapp \
+            --revision ${{ github.sha }} \
+            --environment production \
+            --user ${{ github.actor }} \
+            --api-key ${{ secrets.HONEYBADGER_API_KEY }}

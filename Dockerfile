@@ -5,7 +5,8 @@ ARG GIT_COMMIT_COUNT
 ENV GIT_COMMIT_HASH=$GIT_COMMIT_HASH
 ENV GIT_COMMIT_COUNT=$GIT_COMMIT_COUNT
 
-RUN apt-get update -qq && apt-get install -y cron curl build-essential shared-mime-info sqlite3 \
+# sqlite3 is needed for dbconsole, tar is needed for storage backup tar
+RUN apt-get update -qq && apt-get install -y cron curl build-essential shared-mime-info sqlite3 tar \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install NodeJS 16 for webpacker and precompile assets

@@ -13,6 +13,7 @@ gem 'doorkeeper-i18n'
 gem 'down', '~> 5.0'
 gem 'flamegraph'
 gem 'gutentag'
+gem 'google-apis-drive_v3'
 gem 'icalendar'
 gem 'image_processing'
 gem "kamal"
