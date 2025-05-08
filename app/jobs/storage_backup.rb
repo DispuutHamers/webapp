@@ -20,7 +20,7 @@ class StorageBackup < ApplicationJob
     File.delete(temp_file) if File.exist?(temp_file)
 
     if result.id
-      puts "Database backup uploaded successfully"
+      puts "Storage backup uploaded successfully"
 
       # delete files older than 60 days in Shared Drive 'Developers' -> 'storage backups'
       drive.list_files(
@@ -46,7 +46,7 @@ class StorageBackup < ApplicationJob
       Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/b3Ije4'))
       true
     else
-      puts "Error uploading database backup"
+      puts "Error uploading storage backup"
       false
     end
   end

@@ -11,6 +11,7 @@ jobs:
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
       KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
       KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
 
@@ -31,15 +32,6 @@ jobs:
         with:
           key: ${{ secrets.PRIVATE_KEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
-
-      - name: "?? Create credentials directory"
-        run: mkdir -p config/credentials
-
-      - name: "🔐 Write production.key for Rails"
-        run: echo "${{ secrets.RAILS_MASTER_KEY }}" > config/credentials/production.key
-
-      - name: "🔐 Write Google Drive credentials"
-        run: echo "${{ secrets.GOOGLE_DRIVE_CREDENTIALS }}" > config/credentials/google-drive.json
 
       - name: "🐪 Kamal deploy"
         run: kamal deploy
