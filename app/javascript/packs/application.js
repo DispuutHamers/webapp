@@ -22,7 +22,8 @@ import "@hotwired/turbo-rails"
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 import '@fortawesome/fontawesome-free/js/all'
-import 'trix/dist/trix.js'
+import 'trix'
+import 'trix/dist/trix.css'
 import '@rails/actiontext'
 import "../stylesheets/application.css"
 import * as ActiveStorage from "@rails/activestorage"
