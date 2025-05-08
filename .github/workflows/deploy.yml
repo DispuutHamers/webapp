@@ -37,9 +37,4 @@ jobs:
         run: kamal deploy
 
       - name: "Honeybadger deploy"
-        run: bundle exec honeybadger deploy \
-            --repository https://github.com/dispuuthamers/webapp \
-            --revision ${{ github.sha }} \
-            --environment production \
-            --user ${{ github.actor }} \
-            --api-key ${{ secrets.HONEYBADGER_API_KEY }}
+        run: bundle exec honeybadger deploy --repository https://github.com/dispuuthamers/webapp --revision ${{ github.sha }} --environment production --user ${{ github.actor }} --api-key ${{ secrets.HONEYBADGER_API_KEY }}
