@@ -1,5 +1,6 @@
 require 'google/apis/drive_v3'
 require 'googleauth'
+require 'stringio'
 
 class DatabaseBackup < ApplicationJob
   queue_as :default
@@ -7,7 +8,7 @@ class DatabaseBackup < ApplicationJob
   def perform
     drive = Google::Apis::DriveV3::DriveService.new
     drive.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open('config/credentials/google-drive.json'),
+      json_key_io: StringIO.new(Rails.application.credentials.google_drive_service_account.to_json),
       scope: 'https://www.googleapis.com/auth/drive'
     )
 

@@ -7,7 +7,7 @@ class StorageBackup < ApplicationJob
   def perform
     drive = Google::Apis::DriveV3::DriveService.new
     drive.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open('config/credentials/google-drive.json'),
+      json_key_io: File.open("#{Rails.root}/config/credentials/google-drive.json"),
       scope: 'https://www.googleapis.com/auth/drive'
     )
 
@@ -19,7 +19,7 @@ class StorageBackup < ApplicationJob
     File.delete(temp_file) if File.exist?(temp_file)
 
     if result.id
-      puts "Database backup uploaded successfully"
+      puts "Storage backup uploaded successfully"
 
       # delete files older than 60 days in Shared Drive 'Developers' -> 'storage backups'
       drive.list_files(
@@ -45,7 +45,7 @@ class StorageBackup < ApplicationJob
       Net::HTTP.get(URI.parse('https://api.honeybadger.io/v1/check_in/b3Ije4'))
       true
     else
-      puts "Error uploading database backup"
+      puts "Error uploading storage backup"
       false
     end
   end
