@@ -15,3 +15,11 @@ end
 every :week, at: '0605' do
   runner 'UtilHelper.cleanup'
 end
+
+every :day, at: '0300' do
+  runner 'DatabaseBackup.perform_now'
+end
+
+every :day, at: '0310' do
+  runner 'StorageBackup.perform_now'
+end
