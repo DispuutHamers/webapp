@@ -11,14 +11,14 @@
   <% end %>
 
   <div class="flex-grow w-full max-w-7md mx-auto lg:flex">
-    <div class="flex-1 min-w-0 bg-white md:flex">
-      <div class="border-b border-gray-200 pb-4 md:border-b-0 md:flex-shrink-0 md:w-1/4 md:-my-6 md:border-r md:border-gray-200 bg-white">
+    <div class="flex-1 min-w-0 md:flex">
+      <div class="border-b border-gray-200 dark:border-gray-700 pb-4 md:border-b-0 md:flex-shrink-0 md:w-1/4 md:-my-6 md:border-r md:border-gray-200 md:dark:border-gray-700">
         <div class="h-full pl-4 pr-6 md:py-6 md:pl-0">
           <div class="h-full relative" style="min-height: 12rem;">
             <div class="mt-6 grid grid-cols-3 gap-y-6 gap-x-4">
 
               <div class="col-span-3">
-                <label class=<%= label_classes %>>
+                <label class="<%= label_classes %>">
                   Titel
                 </label>
                 <div class="mt-1">
@@ -27,7 +27,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class=<%= label_classes %>>
+                <label class="<%= label_classes %>">
                   Locatie
                 </label>
                 <div class="mt-1">
@@ -36,7 +36,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class=<%= label_classes %>>
+                <label class="<%= label_classes %>">
                   Wanneer
                 </label>
                 <div class="mt-1">
@@ -53,7 +53,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class=<%= label_classes %>>
+                <label class="<%= label_classes %>">
                   Tot
                 </label>
                 <div class="mt-1">
@@ -70,7 +70,7 @@
               </div>
 
               <div class="col-span-3">
-                <label class=<%= label_classes %>>
+                <label class="<%= label_classes %>">
                   Inschrijven sluit op
                 </label>
                 <div class="mt-1">
@@ -87,10 +87,10 @@
               </div>
 
               <div class="col-span-3">
-                <label class=<%= label_classes %>>
+                <label class="<%= label_classes %>">
                   Groep (optioneel)
                 </label>
-                <%= f.select :usergroup_id, Usergroup.all.collect { |x| [x.name, x.id] }, { include_blank: true }, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md" } %>
+                <%= f.select :usergroup_id, Usergroup.all.collect { |x| [x.name, x.id] }, { include_blank: true }, { class: select_classes } %>
               </div>
 
               <div class="flex items-start col-span-3 md:justify-between">
@@ -98,9 +98,9 @@
                   <%= f.check_box :public, { checked: @event.invitation_code?, class: checkbox_classes } %>
                 </div>
                 <div class="ml-3 text-sm">
-                  <%= f.label :public, class: "font-medium text-gray-700" do %>
+                  <%= f.label :public, class: "font-medium text-gray-700 dark:text-gray-200" do %>
                     <p>Publiek</p>
-                    <span class="text-gray-500">Staan we plebs toe op deze activiteit?</span>
+                    <span class="text-gray-500 dark:text-gray-400">Staan we plebs toe op deze activiteit?</span>
                   <% end %>
                 </div>
               </div>
@@ -109,10 +109,10 @@
         </div>
       </div>
 
-      <div class="bg-white lg:min-w-0 lg:flex-1">
+      <div class="lg:min-w-0 lg:flex-1">
         <div class="h-full py-6 px-4 sm:px-6 lg:pl-8">
           <div class="relative h-full">
-            <%= f.rich_text_area :description, class: 'form-control', placeholder: 'Wat gaan we doen?' %>
+            <%= f.rich_text_area :description, class: ' form-control dark:text-gray-200 trix-toolbar trix-editor', placeholder: 'Wat gaan we doen?' %>
 
             <div class="flex justify-center mt-5">
               <%= f.submit "Opslaan", class: submit_classes %>

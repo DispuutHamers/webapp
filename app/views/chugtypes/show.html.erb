@@ -5,7 +5,7 @@
 <% content_for :options do %>
   <ul role="list" class="flex justify-center space-x-5">
     <li>
-      <%= button_to edit_chugtype_path(@chugtype), method: :get, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
+      <%= button_to edit_chugtype_path(@chugtype), method: :get, class: button_classes do %>
         <span class="sr-only">edit</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
@@ -13,7 +13,7 @@
       <% end %>
     </li>
     <li>
-      <%= button_to @chugtype, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: "cursor-pointer px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" do %>
+      <%= button_to @chugtype, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: button_classes do %>
         <span class="sr-only">destroy</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -23,8 +23,8 @@
   </ul>
 <% end %>
 
-<div class="divide-y divide-gray-200 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
-  <aside class="py-6 md:col-span-4 md:pr-6">
+<div class="divide-y divide-gray-200 dark:divide-gray-700 -my-6 md:grid md:grid-cols-12 md:divide-y-0 md:divide-x">
+  <aside class="py-6 md:col-span-4 md:pr-6 dark:text-gray-200">
     Ben jij de volgende die een <%= @chugtype.name.downcase %> van <%= @chugtype.amount %> ml in één keer leeg gaat trekken?
     <div class="flex justify-center mt-5 -ml-8">
       <%= button_to "Ad!", new_chug_path(@chugtype), method: :get, class: submit_classes %>
@@ -38,15 +38,15 @@
 
   <div class='md:col-span-8'>
     <% if @chugs_all_newest.count > 0 %>
-      <div data-controller="tabs select-tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
+      <div data-controller="tabs select-tabs" data-tabs-active-tab="border-hamers-red-500 font-bold text-hamers-red-500 dark:text-hamers-red-500 hover:border-hamers-red-600 hover:text-hamers-red-600 dark:hover:border-hamers-red-600 dark:hover:text-hamers-red-600">
         <div>
           <div class="ml-4">
-            <div class="border-b border-gray-200">
+            <div class="border-b border-gray-200 dark:border-gray-700">
               <nav class="-mb-px flex space-x-8">
-                <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                   Per lid
                 </button>
-                <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                   Meest recent
                 </button>
               </nav>
@@ -55,7 +55,7 @@
         </div>
         <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
           <div class="md:pl-6">
-            <%= render 'chugs/podium_list', chugs: @chugs_unique %>
+            <%= render 'chugs/podium_list', chugs: @chugs_unique_sorted %>
           </div>
         </div>
         <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
@@ -68,7 +68,7 @@
         </div>
       </div>
     <% else %>
-      <div class="md:pl-6 py-6">
+      <div class="md:pl-6 py-6 dark:text-gray-200">
         <p>
           Wat een geluk, jij bent de eerste die een <%= @chugtype.name.downcase %> mag gaan atten!
         </p>

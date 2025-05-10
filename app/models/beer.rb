@@ -2,11 +2,13 @@ class Beer < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail :ignore => [:grade]
   has_many :reviews, dependent: :destroy
+  belongs_to :recipe
+  belongs_to :chugtype
   has_one_attached :image
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
-  validates :percentage, presence: true, format: {with: VALID_PERCENTAGE_REGEX}
+  validates :percentage, allow_blank: true, format: {with: VALID_PERCENTAGE_REGEX}
 
-  scope :random, -> { order('RAND()') }
+  scope :random, -> { order('RANDOM()') }
 
   def cijfer
     self.grade&.round(2) || "Nog geen cijfer"
@@ -23,6 +25,15 @@ class Beer < ActiveRecord::Base
     self.grade = cijfer / avg unless avg == 0.0
     self.save
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "kind", "grade", "brewer", "country", "review_count"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["reviews"]
+  end
+
 
   def to_s
     name

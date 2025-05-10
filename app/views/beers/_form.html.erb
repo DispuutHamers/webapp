@@ -18,7 +18,7 @@
     <%= image_tag @beer.image.representation(resize_to_limit: [128, 128]) %>
   <% end %>
   <%= f.label :image, class: label_classes %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, class: 'dark:text-gray-200 cursor-pointer w-full' %>
 
   <%= f.label :kind, class: label_classes %>
   <%= f.text_field :kind, class: input_classes %>
@@ -34,6 +34,12 @@
 
   <%= f.label :URL, class: label_classes %>
   <%= f.text_field :URL, class: input_classes %>
+
+  <%= f.label :recipe, class: label_classes %>
+  <%= f.number_field :recipe_id, class: input_classes %>
+
+  <%= f.label "Ad-categorie", class: label_classes %>
+  <%= f.number_field :chugtype_id, class: input_classes %>
 
   <%= f.submit :Verstuur, class: submit_classes %>
 <% end %>

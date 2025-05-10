@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "abbrev"
 gem 'active_storage_validations'
 gem 'binding_of_caller'
 gem 'bullet'
@@ -11,11 +12,12 @@ gem 'diffy'
 gem 'doorkeeper'
 gem 'doorkeeper-i18n'
 gem 'down', '~> 5.0'
-gem 'exception_handler'
 gem 'flamegraph'
 gem 'gutentag'
+gem 'google-apis-drive_v3'
 gem 'icalendar'
 gem 'image_processing'
+gem "kamal"
 gem 'loaf'
 gem 'lockbox'
 gem 'minidusen'
@@ -27,7 +29,7 @@ gem 'paper_trail'
 gem 'paranoia'
 gem 'psych', '< 4' # https://stackoverflow.com/questions/71191685/visit-psych-nodes-alias-unknown-alias-default-psychbadalias
 gem 'rack-cors', require: 'rack/cors'
-gem 'rails', '<7'
+gem 'rails', '~> 8.0.0'
 gem 'rails_heroicons'
 gem 'rails-i18n'
 gem 'ransack'
@@ -35,17 +37,14 @@ gem 'rb-readline'
 gem 'rqrcode'
 gem 'secure_headers', '~> 6.3'
 gem 'sprockets'
+gem 'sprockets-rails'
+gem 'sqlite3'
 gem 'stackprof'
 gem 'tailwindcss-rails-webpacker', '~> 0.2.1'
 gem 'turbo-rails'
 gem 'tzinfo'
 gem 'uglifier'
 gem 'webpacker'
-gem 'wine_bouncer'
-
-group :production, :development do
-  gem 'mysql2'
-end
 
 group :development, :test do
   gem 'memory_profiler', require: false
@@ -73,7 +72,6 @@ group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
   gem 'shoulda-context'
-  gem 'sqlite3'
   gem 'webdrivers'
 end
 

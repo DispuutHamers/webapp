@@ -1,11 +1,11 @@
-<tr onclick='Turbo.visit("<%= chugtype_path(chugtype) %>")' class="hover:bg-gray-50 cursor-pointer">
-  <td class="px-6 py-4 whitespace-nowrap">
+<tr onclick='Turbo.visit("<%= chugtype_path(chugtype) %>")' class="hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+  <td class="px-6 py-4 whitespace-nowrap dark:text-gray-200">
     <%= chugtype.name %>
   </td>
-  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 dark:text-gray-400">
     <%= chugtype.amount %> ml
   </td>
-  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 dark:text-gray-400">
     <% @fastest = chugtype.chugs.order('time ASC, created_at DESC').first %>
     <% if @fastest.nil? %>
       -
@@ -13,10 +13,10 @@
       <strong><%= @fastest.time.round(2) %>s</strong> door <%= @fastest.user.name %>
     <% end %>
   </td>
-  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 dark:text-gray-400">
     <%= chugtype.chugs.count %>
   </td>
-  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500">
+  <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 dark:text-gray-400">
     <%= chugtype.created_at.strftime("%d-%m-%Y") %>
   </td>
   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

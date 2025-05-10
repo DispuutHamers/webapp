@@ -1,4 +1,5 @@
 config/database.yml
+.env
 
 # Ignore bundler config.
 /.bundle
@@ -67,3 +68,7 @@ tags
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/config/master.key
+/config/credentials/production.key
+/config/credentials/google-drive.json

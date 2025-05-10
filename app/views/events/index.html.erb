@@ -21,34 +21,33 @@
       <%= render 'shared/pagination/default' %>
     </div>
   <% else %>
-    <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 text-hamers-red-600 hover:border-hamers-red-600 hover:text-hamers-red-700">
-      <div class="flex items-center border-b border-gray-200 justify-between px-4">
-        <nav class="-mb-px flex space-x-8">
-          <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-            Binnenkort
-          </button>
-          <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-            Vroegâh
-          </button>
-        </nav>
-        <div data-controller="popover" data-popover-translate-x="-90%" data-popover-translate-y="0" data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut">
-          <span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-            </svg>
-          </span>
-          <div class="content hidden absolute bg-gray-300 rounded p-2" data-popover-target="content">
-            <p>iCal-links voor je API-sleutels:</p>
-            <ul role="list" class="divide-y divide-gray-200">
-              <% current_user.api_keys.each do |ak| %>
-                <li class="py-2">
-                  <div class="flex space-x-3">
-                    <div class="flex-1 space-y-1">
-                      <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-medium"><%= ak.name %></h3>
-                      </div>
-                      <p class="text-sm text-gray-500"><%= request.base_url %>/ical/<%= ak.key %>.ics</p>
+  <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 font-bold text-hamers-red-500 dark:text-hamers-red-500 hover:border-hamers-red-600 hover:text-hamers-red-600 dark:hover:border-hamers-red-600 dark:hover:text-hamers-red-600">
+    <div class="flex items-center border-b border-gray-200 dark:border-gray-700 justify-between px-4">
+      <nav class="-mb-px flex space-x-8">
+        <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+          Binnenkort
+        </button>
+        <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+          Vroegâh
+        </button>
+      </nav>
+      <div data-controller="popover" data-popover-translate-x="-90%" data-popover-translate-y="0" data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut">
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current dark:text-gray-300" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+        <div class="content hidden absolute bg-gray-300 dark:bg-gray-800 rounded p-2" data-popover-target="content">
+          <p class="font-bold dark:text-gray-200">iCal-links voor je API-sleutels:</p>
+          <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <% current_user.api_keys.each do |ak| %>
+              <li class="py-2">
+                <div class="flex space-x-3">
+                  <div class="flex-1 space-y-1">
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-sm font-medium dark:text-gray-200"><%= ak.name %></h3>
                     </div>
+                    <p class="text-sm text-gray-500 dark:text-gray-400"><%= request.base_url %>/ical/<%= ak.key %>.ics</p>
                   </div>
                 </li>
               <% end %>

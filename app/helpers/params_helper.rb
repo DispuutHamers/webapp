@@ -48,7 +48,7 @@ module ParamsHelper
   end
 
   def beer_params
-    params.require(:beer).permit(:name, :kind, :image, :percentage, :country, :brewer, :URL)
+    params.require(:beer).permit(:name, :kind, :image, :percentage, :country, :brewer, :URL, :recipe_id, :chugtype_id)
   end
 
   def news_params
@@ -72,7 +72,7 @@ module ParamsHelper
   end
 
   def usergroup_params
-    params.require(:usergroup).permit(:name, :logo, :signal_url)
+    params.require(:usergroup).permit(:name, :description, :logo, :signal_url, :archived)
   end
 
   def public_page_params

@@ -54,9 +54,9 @@ Hamers::Application.routes.draw do
 
   root 'static_pages#home'
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'sessions' }
   devise_scope :user do
-    get 'signin', to: 'devise/sessions#new', as: "signin"
+    get 'signin', to: 'sessions#new', as: "signin"
   end
 
   resources :users do
@@ -81,7 +81,11 @@ Hamers::Application.routes.draw do
   get 'leden', to: "users#index_public", as: "public_leden"
   resources :reviews, only: [:show, :create, :destroy, :update, :edit]
   resources :groups, only: [:create, :destroy], path: 'group_members'
-  resources :quotes
+  resources :quotes do
+    member do
+      resource :anonymization, only: [:update], controller: 'quotes/anonymization', path: 'anonymize'
+    end
+  end
 
   resources :chugtypes do
     member do

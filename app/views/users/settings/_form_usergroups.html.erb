@@ -1,5 +1,5 @@
-<h2 class="text-2xl"><%= @user.name %> is lid van:</h2>
-<div class="list-container divide-y divide-gray-200">
+<h2 class="text-2xl dark:text-gray-200"><%= @user.name %> is lid van:</h2>
+<div class="list-container divide-y divide-gray-200 dark:divide-gray-700">
   <% @member.each do |group| %>
     <div class="list-items flex flex-row items-center justify-between p-2">
       <div class="flex min-w-0">
@@ -8,14 +8,14 @@
         <% else %>
           <img class="h-10 w-10 mr-4 rounded-full" src="https://placehold.co/500x500?text=Geen logo" alt="Geen logo">
         <% end %>
-        <p class="text-gray-900 self-center"><%= group.name %></p>
+        <p class="text-gray-900 dark:text-gray-200 self-center"><%= group.name %></p>
       </div>
       <% if current_user.admin? %>
         <div>
           <%= form_for(@user.groups.find_by(group_id: group.id, user_id: @user.id), html: { method: :delete }) do |f| %>
             <%= f.hidden_field :group_id %>
             <%= f.hidden_field :user_id %>
-            <button type="submit" class="cursor-pointer bg-red-100 hover:bg-red-200 rounded-md px-4 py-2 text-red-800 text-sm font-semibold flex items-center">
+            <button type="submit" class="cursor-pointer bg-red-100 dark:bg-red-700 hover:bg-red-200 dark:hover:bg-red-900 rounded-md px-4 py-2 text-red-800 dark:text-red-100 text-sm font-semibold flex items-center">
               <%= heroicon('trash', style: :outline, class_name: "h-4 w-4 mr-1") %> Verwijder
             </button>
           <% end %>
@@ -26,8 +26,8 @@
 </div>
 
 <% if current_user.admin? %>
-  <h2 class="text-2xl"><%= @user.name %> is GEEN lid van:</h2>
-  <div class="list-container divide-y divide-gray-200">
+  <h2 class="text-2xl dark:text-gray-200"><%= @user.name %> is <b><i>geen</b></i> lid van:</h2>
+  <div class="list-container divide-y divide-gray-200 dark:divide-gray-700">
     <% @notmember.each do |group| %>
       <div class="list-items flex flex-row items-center justify-between p-2">
         <div class="flex min-w-0">
@@ -36,13 +36,13 @@
           <% else %>
             <img class="h-10 w-10 mr-4 rounded-full" src="https://placehold.co/500x500?text=Geen logo" alt="Geen logo">
           <% end %>
-          <p class="text-gray-900 self-center"><%= group.name %></p>
+          <p class="text-gray-900 dark:text-gray-200 self-center"><%= group.name %></p>
         </div>
         <div>
           <%= form_for @user.groups.new(group_id: group.id, user_id: @user.id) do |f| %>
             <%= f.hidden_field :group_id %>
             <%= f.hidden_field :user_id %>
-            <button type="submit" class="cursor-pointer bg-green-100 hover:bg-green-200 rounded-md px-4 py-2 text-green-800 text-sm font-semibold flex items-center">
+            <button type="submit" class="cursor-pointer bg-green-100 dark:bg-green-700 hover:bg-green-200 dark:hover:bg-green-900 rounded-md px-4 py-2 text-green-800 dark:text-green-100 text-sm font-semibold flex items-center">
               <%= heroicon('plus', style: :outline, class_name: "h-4 w-4 mr-1") %>Voeg toe
             </button>
           <% end %>

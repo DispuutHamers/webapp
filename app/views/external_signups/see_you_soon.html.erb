@@ -2,19 +2,22 @@
   Bedankt voor je inschrijving!
 <% end %>
 
-<div class="row">
+<div class="row dark:text-gray-200">
   <div class="col-md-6">
     <div class="panel panel-default" style="margin-top: 32px;">
       <div class="panel-body">
-        <i class="far fa-clock"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
+      <div class="border-b dark:border-gray-700 mb-2 pb-2">
+        <i class="far fa-clock mr-2"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
         <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
-        <hr>
-        <i class="fa fa-map-marker"></i> Locatie: <%= @event.location %>
-        <hr>
+      </div>  
+      <div class="border-b dark:border-gray-700 mb-2 pb-2">
+        <i class="fa fa-map-marker mr-2"></i> Locatie: <%= @event.location %>
+      </div>
+      <div class="border-b dark:border-gray-700 mb-2 pb-2">
         <%= @event.description %>
-        <hr>
+      </div>
         <%= link_to "#{@event.title}.ics?invitation_code=#{@event.invitation_code}", class: "btn btn-default" do %>
-          <i class="fas fa-calendar-plus"></i> Toevoegen aan je kalender
+          <i class="fas fa-calendar-plus mr-2"></i> Toevoegen aan je kalender
         <% end %>
       </div>
     </div>

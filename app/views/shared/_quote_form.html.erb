@@ -1,4 +1,4 @@
-<div class="bg-white overflow-hidden md:shadow md:rounded-lg md:p-4">
+<div class="bg-white dark:bg-gray-900 overflow-hidden md:shadow md:rounded-lg md:p-4">
     <h2 class="text-hamers-red-400 text-xl font-bold">Quote</h2>
     <div class="flex items-center mt-2">
       <%= form_for @quote, html: { class: "w-full" } do |f| %>
@@ -8,7 +8,8 @@
             <%= f.text_area :text,
                 placeholder: 'Wat zei die lul of kut?',
                 rows: 2,
-                class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md' %>
+                class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 mt-1 block w-full sm:text-sm border border-gray-300 dark:border-gray-700 
+                  dark:bg-gray-800 dark:text-gray-200 rounded-md' %>
           </div>
         </div>
         <div class="col-span-6 sm:col-span-3">

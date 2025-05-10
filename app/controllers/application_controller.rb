@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :set_paper_trail_whodunnit
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :strict_transport_security
+  before_action :check_for_maintenance
   before_action do
     Rack::MiniProfiler.authorize_request if current_user&.dev? && !Rails.env.production?
   end
@@ -38,17 +39,32 @@ class ApplicationController < ActionController::Base
     response.headers['Expires'] = 'Fri, 01 Jan 1990 00:00:00 GMT'
   end
 
-  def logged_in?
-    return true if current_user&.active?
+  def check_for_maintenance
+    if ENV['MAINTENANCE_MODE'] == 'true'
+      render template: 'static_pages/maintenance', layout: 'application_public'
+    end
+  end
 
-    redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
-    false
+  def logged_in?
+    if current_user&.active?
+      otp_required?
+    else
+      redirect_to signin_url, notice: 'Deze webapp is een safe space, voor toegang neem dus contact op met een der leden.'
+      false
+    end
   end
 
   def admin_user?
     return true if logged_in? && current_user&.admin?
 
     redirect_to root_url, notice: 'Deze actie is momenteel alleen beschikbaar voor leden van het triumviraat.'
+    false
+  end
+
+  def otp_required?
+    return true if current_user&.otp_required_for_login
+
+    redirect_to edit_two_factor_user_path(current_user), notice:"Je moet je 2FA instellen voordat je verder kunt gaan."
     false
   end
 

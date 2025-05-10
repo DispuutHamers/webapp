@@ -20,14 +20,15 @@ users.each do |email, options|
 end
 
 # Create groups
-Usergroup.create!(id: 2, name: 'Triumviraat')
-Usergroup.create!(id: 4, name: 'Lid').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
-Usergroup.create!(id: 12, name: 'O-Lid').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
-Usergroup.create!(id: 5, name: 'A-Lid').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
-Usergroup.create!(id: 11, name: 'Developer').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
-Usergroup.create!(id: 17, name: 'H4x0rz').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
+Usergroup.create!(id: 2, name: 'Triumviraat', description: 'Het triumviraat bestuurt onze vereniging en bestaat uit een praeses, ab actis en quaestor')
+Usergroup.create!(id: 4, name: 'Lid', description: 'In deze groep zitten alle actieve leden van de vereniging, zodat ze de juisten rechten hebben.').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hamers.png'), filename: 'hamers.png', content_type: 'image/png')
+Usergroup.create!(id: 12, name: 'O-lid', description: 'In deze groep zitten alle oud-leden van de vereniging, zodat wij ze altijd kunnen herinneren.').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/oudjes.png'), filename: 'oudjes.png', content_type: 'image/png')
+Usergroup.create!(id: 5, name: 'A-lid', description: 'In deze groep zitten alle aspirant leden van de vereniging, zodat ze de juisten rechten hebben.').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/aspiranten.png'), filename: 'aspiranten.png', content_type: 'image/png')
+Usergroup.create!(id: 11, name: 'Developer', description: 'Onze developers onderhouden deze website.').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/developers.png'), filename: 'developers.png', content_type: 'image/png')
+Usergroup.create!(id: 17, name: 'H4x0rz', description: 'In deze groep zitten leden die een CTF eens in de zoveel tijd leuk vinden.').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/hackers.png'), filename: 'hackers.png', content_type: 'image/png')
 Usergroup.create!(name: 'Pokerbazen').logo.attach(io: File.open('test/fixtures/active_storage/user_groups/poker.png'), filename: 'poker.png', content_type: 'image/png')
 Usergroup.create!(id: 21, name: 'Trajectcoördinatoren')
+Usergroup.create!(id: 22, name: 'Archived group', archived: true, description: 'Deze groep is gearchiveerd.')
 
 # Make users lid
 User.all.each do |user|
@@ -52,6 +53,7 @@ Group.create!(user_id: 6, group_id: Usergroup.find_by_name('A-lid').id)
 Quote.create!(user_id: 1, text: 'Turken doen aan eerwraak enzo. Negers swaffelen alleen maar', reporter_id: 2)
 Quote.create!(user_id: 2, text: 'Het mag ook een hele mooie, goed schoongemaakte penis zijn..', reporter_id: 3)
 Quote.create!(user_id: 3, text: 'Ik hou wel van enorme lullen', reporter_id: 1)
+Quote.create!(user_id: nil, text: 'Dit is een anonieme quote', reporter_id: nil)
 
 # Create beers
 Beer.create!(name: 'Leffe Blond', kind: 'Blond', brewer: 'Leffe', country: 'België', percentage: '6.6 %')
@@ -113,8 +115,8 @@ Sticker.create!(user_id: 1, lat: 51.9641653, lon: 7.6234247, notes: 'Munster')
 Chugtype.create!(id: 1, name: 'Grolsch Glas', amount: 250)
 Chugtype.create!(id: 2, name: 'Smirnoff Ice', amount: 700)
 
-Chug.create!(user_id: 1, chugtype_id: 1, time: 3.232)
-Chug.create!(user_id: 2, chugtype_id: 1, time: 4.3434)
-Chug.create!(user_id: 3, chugtype_id: 1, time: 5.45454)
-Chug.create!(user_id: 4, chugtype_id: 1, time: 6.99, comment:'Net snel genoeg.')
-Chug.create!(user_id: 1, chugtype_id: 2, time: 6.77)
+Chug.create!(user_id: 1, chugtype_id: 1, reporter_id: 2, time: 3.232)
+Chug.create!(user_id: 2, chugtype_id: 1, reporter_id: 1, time: 4.3434)
+Chug.create!(user_id: 3, chugtype_id: 1, reporter_id: 2, time: 5.45454)
+Chug.create!(user_id: 4, chugtype_id: 1, reporter_id: 1, time: 6.99, comment:'Net snel genoeg.')
+Chug.create!(user_id: 1, chugtype_id: 2, reporter_id: 2, time: 6.77)

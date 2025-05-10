@@ -2,9 +2,9 @@ require 'test_helper'
 
 class GroupsTest < ActiveSupport::TestCase
   test 'Create group' do
-    u = users(:one)
+    u = users(:two)
 
-    ug = Usergroup.create
+    ug = Usergroup.create(name: 'test')
 
     old_count = Group.count
 
