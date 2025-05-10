@@ -1,4 +1,6 @@
 env :PATH, ENV['PATH']
+env :GEM_HOME, ENV['GEM_HOME']
+env :GEM_PATH, ENV['GEM_PATH']
 
 set :chronic_options, hours24: true
 set :environment, ENV['RAILS_ENV']

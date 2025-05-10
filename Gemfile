@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "abbrev"
 gem 'active_storage_validations'
 gem 'binding_of_caller'
 gem 'bullet'

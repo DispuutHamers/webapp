@@ -12,7 +12,7 @@
           <div class="flex-1 space-y-1">
             <div class="flex items-center justify-between">
               <span class="text-sm dark:text-gray-200 font-medium"><%= link_to b.title, b %></span>
-              <% if b.public %>
+              <% if !!b.public %>  <!-- !! is used to convert the value to a boolean, prod has 0 or 1. -->
                   <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-600 text-blue-800 dark:text-blue-100">
                     Openbaar
                   </span>
