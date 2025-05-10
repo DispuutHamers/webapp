@@ -8,7 +8,7 @@ class Beer < ActiveRecord::Base
   VALID_PERCENTAGE_REGEX = /\d?\d(\.\d)?/
   validates :percentage, allow_blank: true, format: {with: VALID_PERCENTAGE_REGEX}
 
-  scope :random, -> { order('RAND()') }
+  scope :random, -> { order('RANDOM()') }
 
   def cijfer
     self.grade&.round(2) || "Nog geen cijfer"
@@ -25,6 +25,15 @@ class Beer < ActiveRecord::Base
     self.grade = cijfer / avg unless avg == 0.0
     self.save
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "kind", "grade", "brewer", "country", "review_count"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["reviews"]
+  end
+
 
   def to_s
     name

@@ -10,11 +10,12 @@ class UsergroupTest < ActiveSupport::TestCase
   end
 
   test 'Add group to usergroup' do
-    u = users(:one)
+    u = users(:three)
 
     ug = Usergroup.create(name: 'test')
 
     Group.create!(group_id: ug.id, user_id: u.id)
+    assert Group.where(group_id: ug.id, user_id: u.id).count == 1
   end
 
   test 'Delete usergroup' do

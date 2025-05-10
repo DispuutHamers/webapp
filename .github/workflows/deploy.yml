@@ -1,0 +1,40 @@
+name: Deploy Kamal
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: "🚀 Deploy"
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+      KAMAL_REGISTRY_USERNAME: ${{ secrets.KAMAL_REGISTRY_USERNAME }}
+      KAMAL_REGISTRY_PASSWORD: ${{ secrets.KAMAL_REGISTRY_PASSWORD }}
+
+    steps:
+      - name: "📂 Checkout"
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4.1
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.PRIVATE_KEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+      - name: "🐪 Kamal deploy"
+        run: kamal deploy
+
+      - name: "Honeybadger deploy"
+        run: bundle exec honeybadger deploy --repository https://github.com/dispuuthamers/webapp --revision ${{ github.sha }} --environment production --user ${{ github.actor }} --api-key ${{ secrets.HONEYBADGER_API_KEY }}

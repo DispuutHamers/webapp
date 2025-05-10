@@ -1,9 +1,0 @@
-# See https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu2004-README.md#mysql
-test:
-  adapter: mysql2
-  encoding: utf8mb4
-  database: hamers
-  username: root
-  password: root
-  host: 127.0.0.1
-  strict: false

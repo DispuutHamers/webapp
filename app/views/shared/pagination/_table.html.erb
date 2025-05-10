@@ -1,14 +1,14 @@
 <% if @pagy.series.count > 1 %>
-  <nav class="border-t border-gray-200 px-4 flex items-center justify-between sm:px-0">
+  <nav class="border-t border-gray-200 dark:border-gray-700 px-4 flex items-center justify-between sm:px-0">
     <div class="-mt-px w-0 flex-1 flex">
       <% if @pagy.prev -%>
-        <a href="<%= pagy_url_for(@pagy, @pagy.prev) %>" class="page prev cursor-pointer group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
-          <%= heroicon('arrow-narrow-left', class_name: "mr-3 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500") %>
+        <a href="<%= pagy_url_for(@pagy, @pagy.prev) %>" class="page prev cursor-pointer group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200">
+          <%= heroicon('arrow-narrow-left', class_name: "mr-3 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-200") %>
           Vorige
         </a>
       <% else -%>
-      <span class="page prev disabled cursor-not-allowed group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-300 hover:text-gray-500 hover:border-gray-300">
-        <%= heroicon('arrow-narrow-left', class_name: "mr-3 ml-2 h-5 w-5 text-gray-300 group-hover:text-gray-400") %>
+      <span class="page prev disabled cursor-not-allowed group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-300 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200">
+        <%= heroicon('arrow-narrow-left', class_name: "mr-3 ml-2 h-5 w-5 text-gray-300 dark:text-gray-500 group-hover:text-gray-400 dark:group-hover:text-gray-200") %>
         Vorige
       </span>
       <% end -%>
@@ -17,7 +17,7 @@
     <div class="hidden md:-mt-px md:flex">
       <% @pagy.series.each do |item| %>
         <% if item.is_a?(Integer) %>
-          <a href="<%= pagy_url_for(@pagy, item) %>" class="page border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 border-t-2 py-4 px-4 inline-flex items-center text-sm font-medium">
+          <a href="<%= pagy_url_for(@pagy, item) %>" class="page border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 border-t-2 py-4 px-4 inline-flex items-center text-sm font-medium">
             <%== item %>
           </a>
         <% elsif item.is_a?(String) %>
@@ -25,7 +25,7 @@
           <%= item %>
         </span>
         <% elsif item == :gap %>
-        <span class="page gap border-transparent text-gray-500 border-t-2 px-4 inline-flex items-center text-sm font-medium">
+        <span class="page gap border-transparent text-gray-500 dark:text-gray-400 border-t-2 px-4 inline-flex items-center text-sm font-medium">
           ...
         </span>
         <% end -%>
@@ -33,14 +33,14 @@
     </div>
     <div class="-mt-px w-0 flex-1 flex justify-end">
       <% if @pagy.next -%>
-        <a href="<%= pagy_url_for(@pagy, @pagy.next) %>" class="page prev cursor-pointer group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300">
+        <a href="<%= pagy_url_for(@pagy, @pagy.next) %>" class="page prev cursor-pointer group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200">
           Volgende
-          <%= heroicon('arrow-narrow-right', class_name: "mr-3 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500") %>
+          <%= heroicon('arrow-narrow-right', class_name: "mr-3 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-200") %>
         </a>
       <% else -%>
-        <a href="#" class="page prev disabled cursor-not-allowed group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-300 hover:text-gray-500 hover:border-gray-300">
+        <a href="#" class="page prev disabled cursor-not-allowed group border-t-2 border-transparent py-4 pr-1 inline-flex items-center text-sm font-medium text-gray-300 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200">
           Volgende
-          <%= heroicon('arrow-narrow-right', class_name: "mr-3 ml-2 h-5 w-5 text-gray-300 group-hover:text-gray-400") %>
+          <%= heroicon('arrow-narrow-right', class_name: "mr-3 ml-2 h-5 w-5 text-gray-300 dark:text-gray-500 group-hover:text-gray-400 dark:group-hover:text-gray-200") %>
         </a>
       <% end -%>
     </div>

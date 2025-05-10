@@ -3,6 +3,9 @@ Rails.application.configure do
   Lockbox.master_key = "10a6ce454101d0b7ca5a2c39d74101d976cffad4d043a4a1c0c68e2c021e570c"
   config.OTP_SECRET = "063c0ab68f7a870dcfd8d95b5bc3ccaf613b7d730a74713fab24786c4f1a2fa1b0f9a44ed1c776412a35d97de2b39483ab155fa61337374984d0b217aea03dd1"
 
+  config.active_record.encryption.primary_key = "unsecure_primary_key"
+  config.active_record.encryption.key_derivation_salt = "unsecure_key_derivation_salt"
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
