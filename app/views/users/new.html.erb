@@ -1,19 +1,28 @@
 <% content_for :title do %>
     Registeren
 <% end %>
+
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span-6 offset-3">
     <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation, 'Confirmation' %>
-        <%= f.password_field :password_confirmation %>
-        <%= f.submit 'Maak account', class: 'btn btn-large btn-primary' %>
+        <div class="row mb-4">
+          <%= f.label :name, class: label_classes %>
+          <%= f.text_field :name, class: input_classes %>
+        </div>
+        <div class="row mb-4">
+          <%= f.label :email, class: label_classes %>
+          <%= f.text_field :email, class: input_classes %>
+        </div>
+        <div class="row mb-4">
+          <%= f.label :password, class: label_classes %>
+          <%= f.password_field :password, class: input_classes %>
+        </div>
+        <div class="row mb-4">
+          <%= f.label :password_confirmation, 'Confirmation', class: label_classes %>
+          <%= f.password_field :password_confirmation, class: input_classes %>
+        </div>  
+          <%= f.submit 'Maak account', class: "cursor-pointer inline-flex items-center px-4 py-2 border border-transparent text-sm font-bold rounded-md shadow-sm text-white bg-hamers-red-500 hover:bg-hamers-red-600 dark:hover:bg-hamers-red-400 focus:outline-none focus:ring-2 focus:ring-hamers-red-500" %>
     <% end %>
   </div>
 </div>

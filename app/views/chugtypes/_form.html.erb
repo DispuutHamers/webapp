@@ -1,13 +1,13 @@
 <div>
   <%= form_for(@chugtype) do |f| %>
     <div class="space-y-4">
-      <div class="mt-4 mb-2">
+      <label class="<%= label_classes %>">
         Naam
-      </div>
+      </label>
       <%= f.text_field :name, class: input_classes, required: true, minlength: 2, placeholder: "Bijv. Grolsch Beugel" %>
-      <div class="mt-4 mb-2">
+      <label class="<%= label_classes %>">
         Hoeveelheid (in ml)
-      </div>
+      </label>
       <%= f.number_field :amount, class: input_classes, required: true, placeholder: "330" %>
     </div>
 

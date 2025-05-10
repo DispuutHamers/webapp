@@ -14,13 +14,13 @@
 
     <div class="space-y-4">
       <%= f.text_field :title, class: input_classes, required: true, minlength: 2, placeholder: "Titel" %>
-      <%= f.rich_text_area :content, class: 'form-control', placeholder: "blablabla" %>
+      <%= f.rich_text_area :content, class: 'form-control dark:text-gray-200', placeholder: "blablabla" %>
       <div class="flex items-start col-span-3 md:justify-left">
         <div class="flex items-center h-5">
           <%= f.check_box :public, { checked: @public_page.public, class: checkbox_classes } %>
         </div>
         <div class="ml-3 text-sm">
-          <%= f.label :public, "Ook voor plebs te zien", class: "font-medium text-gray-700" %>
+          <%= f.label :public, "Ook voor plebs te zien", class: "font-medium text-gray-700 dark:text-gray-400" %>
         </div>
       </div>
     </div>

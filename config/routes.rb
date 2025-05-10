@@ -54,9 +54,9 @@ Hamers::Application.routes.draw do
 
   root 'static_pages#home'
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'sessions' }
   devise_scope :user do
-    get 'signin', to: 'devise/sessions#new', as: "signin"
+    get 'signin', to: 'sessions#new', as: "signin"
   end
 
   resources :users do

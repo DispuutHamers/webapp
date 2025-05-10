@@ -7,10 +7,10 @@ class Quote < ActiveRecord::Base
   serialize :text
   validate :reporter_and_user_differ
 
-  encrypts :text
+  has_encrypted :text
 
   scope :ordered, -> { order('created_at DESC') }
-  scope :random, -> { order('RAND()') }
+  scope :random, -> { order('RANDOM()') }
   scope :with_user, -> { includes(:user) }
   scope :anonymous, -> { where(user_id: nil) }
   scope :not_anonymous, -> { where.not(user_id: nil) }

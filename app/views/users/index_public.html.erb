@@ -2,11 +2,11 @@
   Leden
 <% end %>
 
-<div class="bg-white overflow-hidden shadow rounded-lg mb-8">
+<div class="bg-white dark:bg-gray-900 overflow-hidden shadow rounded-lg mb-8">
   <div class="px-4 pt-5 sm:p-6">
     <figure class="figure">
-            <img src="<%= image_path('members.jpg') %>" class="w-full" alt="Hamers zonder Sikkel - 11 september 2019">
-      <figcaption class="figure-caption">Hamers zonder Sikkel - 25 november 2022.</figcaption>
+            <img src="<%= image_path('members_2024_03_21.jpg') %>" class="w-full" alt="Hamers zonder Sikkel - 21 maart 2024">
+      <figcaption class="figure-caption dark:text-gray-200">Hamers zonder Sikkel - 21 maart 2024.</figcaption>
     </figure>
   </div>
 </div>
@@ -16,10 +16,10 @@
   <% if group[0] %>
     <div class="relative">
       <div class="absolute inset-0 flex items-center" aria-hidden="true">
-        <div class="w-full border-t border-gray-300"></div>
+        <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
       </div>
       <div class="relative flex justify-center">
-        <span class="px-3 py-4 bg-white text-lg font-medium text-gray-900">
+        <span class="px-3 py-4 bg-white dark:bg-gray-900 text-lg font-medium text-gray-900 dark:text-gray-200">
           <%= group[0] == 0 ? 'Oprichters' : 'Lichting ' + group[0].to_s %>
         </span>
       </div>
@@ -31,7 +31,7 @@
           <div class="flex justify-center">
             <%= gravatar_for user, size: 250, class: "h-32 w-32 rounded-full mx-4 my-2" %>
           </div>
-          <div class="flex justify-center">
+          <div class="flex justify-center dark:text-gray-200">
             <%= user.name %> <%= '(Aspirant)' if user.alid? %>
           </div>
         </div>

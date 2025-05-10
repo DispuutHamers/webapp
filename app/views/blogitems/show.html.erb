@@ -25,25 +25,25 @@
   <% end %>
 <% end %>
 
-<div class="flex-1 min-w-0 bg-white sm:flex">
-  <div class="border-b border-gray-200 sm:border-b-0 bg-white sm:min-w-0 sm:flex-1">
+<div class="flex-1 min-w-0 sm:flex">
+  <div class="border-b border-gray-200 dark:border-gray-700 sm:border-b-0 sm:min-w-0 sm:flex-1">
     <div class="h-full py-6 px-4 sm:px-6">
       <div class="relative h-full">
-        <div>
+        <div class="dark:text-gray-200">
           <%= @item.body %>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="pt-4 sm:pt-0 border-gray-200 sm:flex-shrink-0 sm:w-64 sm:-my-6 sm:border-l bg-white">
+  <div class="pt-4 sm:pt-0 border-gray-200 dark:border-gray-700 sm:flex-shrink-0 sm:w-64 sm:-my-6 sm:border-l">
     <div class="h-full ml-6 sm:pt-8 md:pl-0">
       <div class="h-full relative">
         <div class="space-y-8 mb-4">
           <%= gravatar_for @item.user, size: 256, class: "mx-auto h-16 w-16 sm:h-24 sm:w-24 md:h-32 md:w-32 rounded-full xl:w-56 xl:h-56" %>
           <div class="space-y-2">
             <div class="text-lg leading-6 font-medium space-y-1">
-              <h3><%= @item.user.name %></h3>
+              <h3 class="dark:text-gray-200"><%= @item.user.name %></h3>
               <% if @item.user.lid? %>
                 <p class="text-hamers-red-600">Hamerslid</p>
               <% elsif @item.user.alid? %>
@@ -58,7 +58,7 @@
           <div class="mt-2">
             <% @item.tags.each do |tag| %>
               <%= link_to blog_by_tag_blogitems_path(tag.name) do %>
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 text-gray-800">
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-sm font-medium bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
                   <%= tag.name %>
                 </span>
               <% end %>
