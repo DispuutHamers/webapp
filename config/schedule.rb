@@ -4,7 +4,7 @@ env :GEM_PATH, ENV['GEM_PATH']
 
 set :chronic_options, hours24: true
 set :environment, ENV['RAILS_ENV']
-set :bundle_command, 'bundle exec'
+set :bundle_command, '/usr/local/bin/bundle exec'
 set :output, "#{path}/log/cron.log"
 
 job_type :runner, "cd :path && :bundle_command rails runner -e :environment ':task' :output"
