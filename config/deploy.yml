@@ -37,9 +37,10 @@ env:
     - RAILS_MASTER_KEY
 
 aliases:
-  console: app exec --interactive --reuse "rails console"
-  shell: app exec --interactive --reuse "bash"
   db: app exec --interactive --reuse "rails dbconsole"
+  console: app exec --interactive --reuse "rails console"
+  logs: app logs --follow
+  shell: app exec --interactive --reuse "bash"
 
 retain_containers: 3
 
