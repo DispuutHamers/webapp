@@ -6,6 +6,12 @@ image: dispuuthamers/webapp
 servers:
   web:
     - 130.89.148.88
+  cron:
+    hosts:
+      - 130.89.148.88
+    cmd: bash -c "bundle exec whenever --update-crontab && env > /etc/environment && cron -f"
+    options:
+      user: root
 
 proxy:
   ssl: true
