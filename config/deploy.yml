@@ -9,9 +9,10 @@ servers:
   cron:
     hosts:
       - 130.89.148.88
-    cmd: bash -c "bundle exec whenever --update-crontab && env > /etc/environment && cron -f"
+    cmd: -c "bundle exec whenever --update-crontab && env > /etc/environment && cron -f"
     options:
       user: root
+      entrypoint: bash
 
 proxy:
   ssl: true
