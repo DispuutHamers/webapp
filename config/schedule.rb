@@ -2,7 +2,7 @@ set :chronic_options, hours24: true
 set :environment, ENV['RAILS_ENV']
 set :bundle_command, 'bundle exec'
 
-job_type :runner, "cd :path cd :path && bin/cron-executor.sh && :bundle_command rails runner -e :environment ':task' :output"
+job_type :runner, "cd :path && bin/cron-executor.sh && :bundle_command rails runner -e :environment ':task' :output"
 
 
 every :wednesday, at: '1200' do
