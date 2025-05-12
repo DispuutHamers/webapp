@@ -29,8 +29,8 @@ RUN bundle exec rails assets:precompile
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 
-COPY bin/cron-executor.sh /webapp/bin/cron-executor.sh
-RUN chmod +x /webapp/bin/cron-executor.sh
+COPY cron-executor.sh /webapp/cron-executor.sh
+RUN chmod +x /webapp/cron-executor.sh
 
 EXPOSE 3000
 ENTRYPOINT ["entrypoint.sh"]

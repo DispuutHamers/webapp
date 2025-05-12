@@ -3,7 +3,7 @@ set :environment, ENV['RAILS_ENV']
 set :bundle_command, 'bundle exec'
 set :output, "#{path}/log/cron.log"
 
-job_type :runner, "cd :path && bin/cron-executor.sh && :bundle_command rails runner -e :environment ':task' :output"
+job_type :runner, "cd :path && cron-executor.sh && :bundle_command rails runner -e :environment ':task' :output"
 
 
 every :wednesday, at: '1200' do
