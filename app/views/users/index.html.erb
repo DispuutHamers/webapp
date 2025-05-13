@@ -2,6 +2,23 @@
   Leden
 <% end %>
 
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('user', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @leden.count %> leden
+  </div>
+  <% if @aspiranten.any? %>
+    <div class="flex items-center text-sm text-gray-400">
+      <%= heroicon('user-add', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+      <%= @aspiranten.count %> aspirant(en)
+    </div>
+  <% end %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('academic-cap', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @oudelullen.count %> oud-leden
+  </div>
+<% end %>
+
 <% content_for :options do %>
   <% if current_user&.admin? %>
     <%= link_to new_user_invitation_path, class: button_classes do %>
@@ -17,7 +34,9 @@
       <label for="tabs" class="sr-only">Select a tab</label>
       <select id="tabs" data-action="change->select-tabs#change" data-select-tabs-target="tab" name="tabs" class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 focus:outline-none focus:ring-hamers-red-500 focus:border-hamers-red-500 sm:text-sm rounded-md">
         <option value="0">Leden</option>
-        <option value="1">Aspirant-leden</option>
+        <% if @aspiranten.any? %>
+          <option value="1">Aspirant-leden</option>
+        <% end %>
         <option value="2">Oud-leden</option>
         <option value="3">Overige accounts</option>
       </select>
@@ -29,9 +48,11 @@
           <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
             Leden
           </button>
+          <% if @aspiranten.any? %>
           <button data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
             Aspirant-leden
           </button>
+          <% end %>
           <button href="#" data-action="click->tabs#change" data-tabs-target="tab" class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
             Oud-leden
           </button>
@@ -46,9 +67,11 @@
   <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
     <%= render "users/table", users: @leden, ratio: true %>
   </div>
+  <% if @aspiranten.any? %>
   <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
     <%= render "users/table", users: @aspiranten %>
   </div>
+  <% end %>
   <div class="hidden" data-tabs-target="panel" data-select-tabs-target="panel">
     <%= render "users/table", users: @oudelullen %>
   </div>
