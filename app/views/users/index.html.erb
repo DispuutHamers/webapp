@@ -2,6 +2,23 @@
   Leden
 <% end %>
 
+<% content_for :subtitle do %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('user', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @leden.count %> leden
+  </div>
+  <% if @aspiranten.any? %>
+    <div class="flex items-center text-sm text-gray-400">
+      <%= heroicon('user-add', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+      <%= @aspiranten.count %> aspirant(en)
+    </div>
+  <% end %>
+  <div class="flex items-center text-sm text-gray-400">
+    <%= heroicon('academic-cap', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
+    <%= @oudelullen.count %> oud-leden
+  </div>
+<% end %>
+
 <% content_for :options do %>
   <% if current_user&.admin? %>
     <%= link_to new_user_invitation_path, class: button_classes do %>
