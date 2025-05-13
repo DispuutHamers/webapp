@@ -6,7 +6,7 @@
           <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead class="bg-gray-100 dark:bg-black">
             <tr>
-              <% %w[Naam Groepen Lichting Citaten Reviews 2FA Inschrijfpercentage].each do |x| %>
+              <% %w[Naam Groepen Lichting Citaten Reviews Inschrijfpercentage].each do |x| %>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                   <%= x %>
                 </th>
@@ -46,9 +46,6 @@
                   <%= user.reviews.count %>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-                  <%= user.otp_required_for_login? ? "✅" : "🤡" %>
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                   <%= user.drink_ratio.round(0) %> %
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -66,5 +63,7 @@
     </div>
   </div>
 <% else %>
-  Geen data beschikbaar.
+  <p class="m-2 text-gray-500 dark:text-gray-400">
+    Geen data beschikbaar.
+  </p>
 <% end %>
