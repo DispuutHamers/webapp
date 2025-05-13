@@ -47,9 +47,11 @@ aliases:
   db: app exec --interactive --reuse "rails dbconsole"
   console: app exec --interactive --reuse "rails console"
   logs: app logs --follow
+  cron: app logs -r cron --follow
   shell: app exec --interactive --reuse "bash"
+  ssh: server exec --interactive "/bin/bash"
 
-retain_containers: 3
+retain_containers: 4
 
 volumes:
  - /app/db:/webapp/db

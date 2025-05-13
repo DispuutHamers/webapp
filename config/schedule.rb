@@ -3,7 +3,7 @@ set :environment, ENV['RAILS_ENV']
 set :bundle_command, 'bundle exec'
 set :output, "#{path}/log/cron.log"
 
-job_type :runner, "cd :path && cron-executor.sh && :bundle_command rails runner -e :environment ':task' :output"
+job_type :runner, "./cron-executor.sh && :bundle_command rails runner -e :environment ':task' :output"
 
 
 every :wednesday, at: '1200' do
@@ -24,4 +24,9 @@ end
 
 every :day, at: '0310' do
   runner 'StorageBackup.perform_now'
+end
+
+# Temporary cron job to test if the cron is running
+every 5.minutes do
+  runner 'puts "Cron is running"'
 end
