@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     name: "🚀 Deploy"
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
@@ -36,5 +35,12 @@ jobs:
       - name: "🐪 Kamal deploy"
         run: kamal deploy
 
-      - name: "Honeybadger deploy"
-        run: bundle exec honeybadger deploy --repository https://github.com/dispuuthamers/webapp --revision ${{ github.sha }} --environment production --user ${{ github.actor }} --api-key ${{ secrets.HONEYBADGER_API_KEY }}
+  honeybadger:
+    name: "🍯 Honeybadger Notify"
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: honeybadger-io/github-notify-deploy-action@v1
+        with:
+          api_key: ${{ secrets.HONEYBADGER_API_KEY }}
