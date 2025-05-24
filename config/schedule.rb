@@ -25,8 +25,3 @@ end
 every :day, at: '0310' do
   runner 'StorageBackup.perform_now'
 end
-
-# Temporary cron job to test if the cron is running
-every 5.minutes do
-  runner 'puts "Cron is running"'
-end
