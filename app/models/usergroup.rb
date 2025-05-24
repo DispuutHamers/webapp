@@ -30,4 +30,3 @@ class Usergroup < ActiveRecord::Base
     name
   end
 end
-

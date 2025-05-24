@@ -9,7 +9,7 @@ servers:
   cron:
     hosts:
       - 130.89.148.88
-    cmd: -c "bundle exec whenever --update-crontab && env > /etc/environment && cron -f"
+    cmd: -c "cd /webapp && bundle exec whenever --update-crontab && env > /etc/environment && cron -f"
     options:
       user: root
       entrypoint: bash
