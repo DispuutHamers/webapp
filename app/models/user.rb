@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
   acts_as_paranoid ignore: [:weight]
   serialize :otp_backup_codes, type: Array
   before_save { self.email = email.downcase }
+  attribute :admin, :boolean, default: false
+  attribute :anonymous, :boolean
+  attribute :otp_required_for_login, :boolean
+  attribute :new_event_email, :boolean, default: false
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes

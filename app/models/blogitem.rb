@@ -4,6 +4,7 @@ class Blogitem < ApplicationRecord
   has_paper_trail
   serialize :body
   serialize :title
+  attribute :public, :boolean, default: false
   belongs_to :user
 
   scope :public_blogs, -> { where(public: true) }

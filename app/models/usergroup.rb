@@ -2,6 +2,7 @@
 class Usergroup < ActiveRecord::Base
   acts_as_paranoid
   has_paper_trail
+  attribute :archived, :boolean, default: false
   belongs_to :user
   has_many :groups, foreign_key: 'group_id', dependent: :destroy
   has_many :users, through: :groups

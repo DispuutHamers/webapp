@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
   attr_accessor :public
   acts_as_paranoid
   has_paper_trail
+  attribute :attendance, :boolean, default: false
   has_many :signups, dependent: :destroy
   has_many :signups_with_user, -> { with_user }, foreign_key: 'event_id', class_name: 'Signup'
   has_many :external_signups
