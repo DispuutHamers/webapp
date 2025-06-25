@@ -15,7 +15,7 @@ class PublicPagesController < ApplicationController
   # GET /public_pages/1.json
   def show
     @public_page = PublicPage.where(title: params[:id]).first
-    raise ActionController::RoutingError.new('Not Found') unless @public_page&.public
+    return render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found unless @public_page&.public
 
     breadcrumb @public_page.title, public_page_path(@public_page)
   end
