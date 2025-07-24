@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :stickers
   has_many :chugs
   has_many :meetings_attended, through: :attendees, source: :meeting
-  has_many :meetings_chaired, class_name: 'Meeting', inverse_of: :secretary, foreign_key: :chairman_id
+  has_many :meetings_chaired, class_name: 'Meeting', inverse_of: :chairman, foreign_key: :chairman_id
   has_many :meetings_minuted, class_name: 'Meeting', inverse_of: :secretary, foreign_key: :secretary_id
   validates :name, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :email, presence: true, format: Devise.email_regexp, uniqueness: { case_sensitive: false }
