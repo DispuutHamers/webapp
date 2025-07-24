@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_15_192053) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_24_170340) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", limit: 255, null: false
     t.text "body"
@@ -385,9 +385,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_15_192053) do
     t.integer "invitations_count", default: 0
     t.string "phone_number", limit: 255
     t.date "birthday"
-    t.string "encrypted_otp_secret"
-    t.string "encrypted_otp_secret_iv"
-    t.string "encrypted_otp_secret_salt"
     t.integer "consumed_timestep"
     t.boolean "otp_required_for_login"
     t.text "otp_backup_codes"
