@@ -32,9 +32,11 @@ class DatabaseBackup < ApplicationJob
           if date < (Time.now - 60.days)
             puts "Deleting old backup #{file.name}"
             drive.delete_file(file.id, supports_team_drives: true)
+          else
+            puts "Keeping recent backup #{file.name}"
           end
         else
-          puts "Skipping file #{file.name}"
+          puts "Filename does not match expected pattern: #{file.name}"
         end
       end
 
