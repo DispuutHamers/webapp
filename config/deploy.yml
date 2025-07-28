@@ -40,6 +40,7 @@ env:
   clear:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: true
+    MAINTENANCE_MODE: true
   secret:
     - RAILS_MASTER_KEY
 
@@ -54,6 +55,6 @@ aliases:
 retain_containers: 4
 
 volumes:
- - /app/db:/webapp/db
+ - /app/db/production.sqlite3:/webapp/db/production.sqlite3
  - /app/log:/webapp/log # includes cron logs
  - /app/storage:/webapp/storage
