@@ -1,5 +1,5 @@
 # Hamers zonder Sikkel
-webapp voor https://www.zondersikkel.nl/
+webapp voor https://zondersikkel.nl/
 
 # Prerequisites
 - [Ruby 3.4.1](.ruby-version)

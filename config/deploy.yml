@@ -40,7 +40,7 @@ env:
   clear:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: true
-    MAINTENANCE_MODE: true
+    MAINTENANCE_MODE: false
   secret:
     - RAILS_MASTER_KEY
 
