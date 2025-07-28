@@ -1,7 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   secret_key_base = Rails.application.credentials.secret_key_base
-  config.OTP_SECRET = Rails.application.credentials.otp_secret
 
   # Lockbox encryption key
   Lockbox.master_key = Rails.application.credentials.lockbox_master_key
