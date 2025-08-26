@@ -2,6 +2,7 @@ Hamers::Application.routes.draw do
   use_doorkeeper
   get 'privacy' => 'static_pages#privacy'
   get 'activate_account' => 'static_pages#activate_account', as: "activate_account"
+  mount MissionControl::Jobs::Engine, at: "/jobs"
 
   resources :stickers
   resources :recipes do

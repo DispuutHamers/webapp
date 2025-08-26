@@ -9,11 +9,6 @@ ENV GIT_COMMIT_COUNT=$GIT_COMMIT_COUNT
 RUN apt-get update -qq && apt-get install -y cron curl build-essential shared-mime-info sqlite3 tar \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install NodeJS 16 for webpacker and precompile assets
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
-RUN corepack enable
-
 RUN mkdir /webapp
 WORKDIR /webapp
 

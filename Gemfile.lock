@@ -111,13 +111,6 @@ GEM
     chunky_png (1.4.0)
     climate_control (0.2.0)
     coderay (1.1.3)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
     crass (1.0.6)
@@ -151,7 +144,8 @@ GEM
     edge_rider (2.4.0)
       activerecord (>= 3.2)
     erubi (1.13.1)
-    execjs (2.10.0)
+    et-orbi (1.3.0)
+      tzinfo
     faraday (2.13.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -161,6 +155,9 @@ GEM
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     flamegraph (0.9.5)
+    fugit (1.11.2)
+      et-orbi (~> 1, >= 1.2.11)
+      raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
     google-apis-core (0.17.0)
@@ -201,6 +198,10 @@ GEM
     image_processing (1.14.0)
       mini_magick (>= 4.9.5, < 6)
       ruby-vips (>= 2.0.17, < 3)
+    importmap-rails (2.2.2)
+      actionpack (>= 6.0.0)
+      activesupport (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.8.0)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -254,6 +255,16 @@ GEM
       activesupport (>= 3.2)
       edge_rider (>= 0.2.5)
     minitest (5.25.5)
+    mission_control-jobs (1.1.0)
+      actioncable (>= 7.1)
+      actionpack (>= 7.1)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      importmap-rails (>= 1.2.1)
+      irb (~> 1.13)
+      railties (>= 7.1)
+      stimulus-rails
+      turbo-rails
     multi_json (1.15.0)
     mutex_m (0.3.0)
     net-http (0.6.0)
@@ -302,6 +313,10 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.4.0)
+    propshaft (1.2.1)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -309,14 +324,13 @@ GEM
     public_suffix (6.0.2)
     puma (6.6.0)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.16)
     rack-cors (2.0.2)
       rack (>= 2.0.0)
     rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
-    rack-proxy (0.7.7)
-      rack
     rack-session (2.1.1)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -425,21 +439,19 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    semantic_range (3.1.0)
     shoulda-context (2.0.0)
     signet (0.20.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    sprockets (4.2.2)
-      concurrent-ruby (~> 1.0)
-      logger
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.5.2)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      sprockets (>= 3.0.0)
+    solid_queue (1.2.1)
+      activejob (>= 7.1)
+      activerecord (>= 7.1)
+      concurrent-ruby (>= 1.3.1)
+      fugit (~> 1.11.0)
+      railties (>= 7.1)
+      thor (>= 1.3.1)
     sqlite3 (2.6.0-arm64-darwin)
     sqlite3 (2.6.0-x86_64-linux-gnu)
     sshkit (1.24.0)
@@ -450,8 +462,13 @@ GEM
       net-ssh (>= 2.8.0)
       ostruct
     stackprof (0.2.27)
-    tailwindcss-rails-webpacker (0.2.1)
-      rails (>= 6.0.0)
+    stimulus-rails (1.3.4)
+      railties (>= 6.0.0)
+    tailwindcss-rails (3.3.2)
+      railties (>= 7.0.0)
+      tailwindcss-ruby (~> 3.0)
+    tailwindcss-ruby (3.4.17-arm64-darwin)
+    tailwindcss-ruby (3.4.17-x86_64-linux)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
     thor (1.4.0)
@@ -463,8 +480,6 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uber (0.1.0)
-    uglifier (4.2.1)
-      execjs (>= 0.3.0, < 3)
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
@@ -482,11 +497,6 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (~> 4.0, < 4.11)
-    webpacker (5.4.4)
-      activesupport (>= 5.2)
-      rack-proxy (>= 0.6.1)
-      railties (>= 5.2)
-      semantic_range (>= 2.3.0)
     websocket (1.2.11)
     websocket-driver (0.7.7)
       base64
@@ -510,7 +520,6 @@ DEPENDENCIES
   brakeman
   bullet
   capybara
-  coffee-rails
   devise
   devise-two-factor
   devise_invitable
@@ -524,6 +533,7 @@ DEPENDENCIES
   honeybadger (~> 4.0)
   icalendar
   image_processing
+  importmap-rails
   kamal
   loaf
   lockbox
@@ -531,6 +541,7 @@ DEPENDENCIES
   memory_profiler
   mini_magick
   minidusen
+  mission_control-jobs
   net-http-persistent
   net-imap
   net-pop
@@ -539,6 +550,7 @@ DEPENDENCIES
   paper_trail
   paperclip
   paranoia
+  propshaft
   pry
   psych (< 4)
   puma
@@ -557,17 +569,15 @@ DEPENDENCIES
   rubocop-rails
   secure_headers (~> 6.3)
   shoulda-context
-  sprockets
-  sprockets-rails
+  solid_queue
   sqlite3
   stackprof
-  tailwindcss-rails-webpacker (~> 0.2.1)
+  tailwindcss-rails (= 3.3.2)
+  tailwindcss-ruby (= 3.4.17)
   turbo-rails
   tzinfo
-  uglifier
   web-console
   webdrivers
-  webpacker
   whenever
 
 BUNDLED WITH

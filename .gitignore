@@ -1,4 +1,3 @@
-config/database.yml
 .env
 
 # Ignore bundler config.
@@ -72,3 +71,6 @@ yarn-debug.log*
 /config/master.key
 /config/credentials/production.key
 /config/credentials/google-drive.json
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
