@@ -28,7 +28,6 @@ Rails.application.configure do
   config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
@@ -65,7 +64,10 @@ Rails.application.configure do
   # config.cache_store = :redis_cache_store, { url: Rails.application.credentials.redis_host }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  # config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter = :solid_queue
+  config.solid_queue.connects_to = { database: { writing: :queue } }
+  MissionControl::Jobs.base_controller_class = "MissionController"
+
   # config.active_job.queue_name_prefix = "hamers_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'zondersikkel.nl' }

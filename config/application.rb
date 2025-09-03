@@ -1,7 +1,6 @@
 require_relative 'boot'
 
 require 'rails/all'
-require 'sprockets/railtie'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -14,6 +13,7 @@ module Hamers
     # -- all .rb files in that directory are automatically loaded.
     config.time_zone = 'Amsterdam'
     config.autoload_paths += Dir[Rails.root.join('app', '*')]
+    config.autoload_lib(ignore: %w[apps gems rails_ext assets tasks])
     config.i18n.default_locale = :nl
     config.to_prepare do
       Doorkeeper::ApplicationsController.layout 'application'
@@ -29,6 +29,8 @@ module Hamers
     end
 
     Diffy::Diff.default_format = :html
+    config.mission_control.jobs.base_controller_class = "MissionController"
+    config.mission_control.jobs.http_basic_auth_enabled = false
 
     config.exception_handler = {
       # Turn on in development as needed:

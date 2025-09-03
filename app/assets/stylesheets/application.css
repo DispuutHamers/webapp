@@ -1,10 +1,5 @@
 /*@import '~flatpickr';*/
 /*@import '~tablesort';*/
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import 'trix/dist/trix';
-@import 'flatpickr/dist/flatpickr';
 
 trix-editor.form-control {
   min-height: 300px;

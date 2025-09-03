@@ -28,11 +28,6 @@ jobs:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-          cache: "yarn"
-
       - name: Set up database
         run: bundle exec rails db:setup
 

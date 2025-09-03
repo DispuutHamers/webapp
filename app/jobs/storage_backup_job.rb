@@ -2,7 +2,7 @@ require 'google/apis/drive_v3'
 require 'googleauth'
 require 'stringio'
 
-class StorageBackup < ApplicationJob
+class StorageBackupJob < ApplicationJob
   queue_as :default
 
   def perform

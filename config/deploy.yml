@@ -41,6 +41,7 @@ env:
     RAILS_ENV: production
     RAILS_LOG_TO_STDOUT: true
     MAINTENANCE_MODE: false
+    SOLID_QUEUE_IN_PUMA: true
   secret:
     - RAILS_MASTER_KEY
 
