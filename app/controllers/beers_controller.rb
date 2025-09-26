@@ -13,7 +13,7 @@ class BeersController < ApplicationController
 
   def table
     @search = Beer.ransack(params[:search])
-    @pagy, @beers = pagy(@search.result, items: 16, page: params[:page])
+    @pagy, @beers = pagy(@search.result, limit: params[:limit] || 16, page: params[:page])
   end
 
   # GET /beers/1
