@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     return unless otp_required?
 
     @quote = current_user.quotes.build
-    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], items: 12) if current_user.can_view_quotes?
+    @pagy, @quotes = pagy(Quote.with_user.ordered, page: params[:page], limit: params[:limit]) if current_user.can_view_quotes?
     @next_event = Event.upcoming.order(date: :asc).first
     @signup = @next_event&.signups&.where(user: current_user)&.first
     @trail = PaperTrail::Version.includes(:item).last(5).reverse
@@ -35,7 +35,7 @@ class StaticPagesController < ApplicationController
   def trail
     @pagy, @trail = pagy(PaperTrail::Version.includes(:item).all.order(created_at: "DESC"),
                          page: params[:page],
-                         items: 20)
+                         limit: params[:limit])
     breadcrumb 'Log', trail_path
   end
 
