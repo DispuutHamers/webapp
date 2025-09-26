@@ -20,6 +20,8 @@ WORKDIR /webapp
 COPY Gemfile /webapp/Gemfile
 COPY Gemfile.lock /webapp/Gemfile.lock
 
+# These gems are needed to run 'bundle install' on ruby:3.4.1-slim
+RUN gem install abbrev matrix net-pop base64 racc drb rake mutex_m
 RUN bundle install
 
 COPY . /webapp
