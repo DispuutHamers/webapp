@@ -14,7 +14,11 @@ class DatabaseBackup < ApplicationJob
 
     filename = "database_backup_#{Time.now.strftime('%Y-%m-%d_%H:%M:%S')}.sqlite3"
     database_file = Google::Apis::DriveV3::File.new(name: filename, parents: ['1fP9MXN2lhypkzaxIYyy7ZHb7e_M1jD5a'])
-    result = drive.create_file(database_file, upload_source: 'db/production.sqlite3', supports_team_drives: true)
+    temp_file = "#{Rails.root}/tmp/#{filename}"
+    system("tar -czf #{temp_file} -C #{Rails.root}/db .")
+    result = drive.create_file(database_file, upload_source: temp_file, supports_team_drives: true)
+    File.delete(temp_file) if File.exist?(temp_file)
+
     if result.id
       puts "Database backup uploaded successfully"
 
@@ -27,9 +31,9 @@ class DatabaseBackup < ApplicationJob
         supports_team_drives: true,
       ).files.each do |file|
         puts "Checking file #{file.name}"
-        if file.name.match?(/database_backup_(\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2})\.sqlite3/)
-          date = Date.strptime(file.name, 'database_backup_%Y-%m-%d_%H:%M:%S.sqlite3')
-          if date < (Time.now - 60.days)
+        if file.name.match?(/database_backup_(\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2})\.tar.gz/)
+          date = Date.strptime(file.name, 'database_backup_%Y-%m-%d_%H:%M:%S.tar.gz')
+          if date < (Time.now - 90.days)
             puts "Deleting old backup #{file.name}"
             drive.delete_file(file.id, supports_team_drives: true)
           else

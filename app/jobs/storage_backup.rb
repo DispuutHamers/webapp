@@ -31,9 +31,9 @@ class StorageBackup < ApplicationJob
         supports_team_drives: true,
         ).files.each do |file|
         puts "Checking file #{file.name}"
-        if file.name.match?(/storage_backup_(\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2})\.sqlite3/)
-          date = Date.strptime(file.name, 'storage_backup_%Y-%m-%d_%H:%M:%S.sqlite3')
-          if date < (Time.now - 60.days)
+        if file.name.match?(/storage_backup_(\d{4}-\d{2}-\d{2}_\d{2}:\d{2}:\d{2})\.tar.gz/)
+          date = Date.strptime(file.name, 'storage_backup_%Y-%m-%d_%H:%M:%S.tar.gz')
+          if date < (Time.now - 90.days)
             puts "Deleting old backup #{file.name}"
             drive.delete_file(file.id, supports_team_drives: true)
           end
