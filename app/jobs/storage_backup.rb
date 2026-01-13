@@ -22,7 +22,7 @@ class StorageBackup < ApplicationJob
     if result.id
       puts "Storage backup uploaded successfully"
 
-      # delete files older than 60 days in Shared Drive 'Developers' -> 'storage backups'
+      # delete files older than 90 days in Shared Drive 'Developers' -> 'storage backups'
       drive.list_files(
         drive_id: '0ADfPfTkhdOdoUk9PVA',
         q: "name contains 'storage_backup_'",
