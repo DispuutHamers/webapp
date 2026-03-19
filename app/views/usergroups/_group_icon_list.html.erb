@@ -2,7 +2,7 @@
   <%= link_to usergroup_path(group),
               class: "h-12 w-12 m-2 text-sm font-medium text-gray-900 popover",
               data: { controller: "popover",
-                      action: "mouseover->popover#mouseOver mouseout->popover#mouseOut",
+                      action: "mouseover->popover#show mouseout->popover#hide",
                       popover_translate_x: "0",
                       popover_translate_y: "15%",
               } do %>
