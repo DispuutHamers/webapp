@@ -32,19 +32,19 @@
                   <% if beer.image.attached? %>
                     <%= image_tag beer.image, class: 'w-6 -ml-4 mr-2' %>
                   <% end %>
-                  <div class="text-sm font-medium text-gray-900 dark:text-gray-200 popover"
-                      data-controller="popover"
-                      data-action="mouseover->popover#show mouseout->popover#hide"
-                      data-popover-translate-x="0"
-                      data-popover-translate-y="15%">
+                  <div class="text-sm font-medium text-gray-900 dark:text-gray-200">
                     <%= beer.name %>
                     <% if current_user&.reviews&.find_by(beer: beer)&.rating %>
-                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= rating_color(current_user&.reviews&.find_by(beer: beer)&.rating) %>">
-                            <%= current_user&.reviews&.find_by(beer: beer)&.rating %>
-                          </span>
-                      <div class="content hidden absolute bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded p-3" data-popover-target="content">
-                        Het cijfer dat jij dit biertje hebt gegeven.
-                      </div>
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= rating_color(current_user&.reviews&.find_by(beer: beer)&.rating) %>  popover"
+                            data-controller="popover"
+                            data-action="mouseover->popover#show mouseout->popover#hide"
+                            data-popover-translate-x="0"
+                            data-popover-translate-y="15%">
+                        <%= current_user&.reviews&.find_by(beer: beer)&.rating %>
+                        <div class="content hidden absolute bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded p-3" data-popover-target="content">
+                          Het cijfer dat jij dit biertje hebt gegeven.
+                        </div>
+                      </span>
                     <% end %>
                   </div>
                 </div>
