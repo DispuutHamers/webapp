@@ -27,4 +27,30 @@ class EventTest < ActiveSupport::TestCase
     assert_equal 4, @event.attendee_count
   end
 
+  test 'send_new_event_email always sends email to creator' do
+    ActionMailer::Base.deliveries.clear
+    @event.send_new_event_email
+    creator_emails = ActionMailer::Base.deliveries.select { |m| m.to.include?(users(:one).email) }
+    assert_not_empty creator_emails, "Creator should receive an email when they create an event"
+  end
+
+  test 'send_new_event_email sends email to creator even for attendance events' do
+    attendance_event = Event.create(title: 'Dispuutsborrel',
+                                    date: DateTime.now + 1.day,
+                                    user: users(:one),
+                                    attendance: true)
+    ActionMailer::Base.deliveries.clear
+    attendance_event.send_new_event_email
+    creator_emails = ActionMailer::Base.deliveries.select { |m| m.to.include?(users(:one).email) }
+    assert_not_empty creator_emails, "Creator should receive an email even for attendance events"
+  end
+
+  test 'send_new_event_email does not send duplicate email to creator when they have new_event_mail enabled' do
+    users(:one).update!(new_event_mail: true)
+    ActionMailer::Base.deliveries.clear
+    @event.send_new_event_email
+    creator_emails = ActionMailer::Base.deliveries.select { |m| m.to.include?(users(:one).email) }
+    assert_equal 1, creator_emails.count, "Creator should receive exactly one email, not duplicates"
+  end
+
 end

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   attribute :admin, :boolean, default: false
   attribute :anonymous, :boolean
   attribute :otp_required_for_login, :boolean
-  attribute :new_event_email, :boolean, default: false
+  attribute :new_event_mail, :boolean, default: false
   has_many :groups, foreign_key: 'user_id'
   has_many :usergroups, through: :groups, foreign_key: 'group_id'
   has_many :quotes

@@ -72,13 +72,16 @@ class Event < ActiveRecord::Base
   end
 
   def send_new_event_email
-    # Send new event to all leden who have new_event_email enabled
+    # Always notify the creator of the event
+    UserMailer.mail_new_event(self.user, self).deliver
+
+    # Send new event to all leden who have new_event_mail enabled, excluding the creator
     if self.usergroup_id.nil?
       unless self.attendance # If not dispuutsborrel
-        User.intern.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
+        User.intern.where(new_event_mail: true).where.not(id: self.user_id).each { |user| UserMailer.mail_new_event(user, self).deliver }
       end
     else
-      self.usergroup.users.where(new_event_mail: true).each { |user| UserMailer.mail_new_event(user, self).deliver }
+      self.usergroup.users.where(new_event_mail: true).where.not(id: self.user_id).each { |user| UserMailer.mail_new_event(user, self).deliver }
     end
   end
 
