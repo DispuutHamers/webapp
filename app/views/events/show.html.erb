@@ -117,7 +117,7 @@
           </span>
         </div>
         <p class="text-sm text-gray-500 dark:text-gray-400">
-          Deze activiteit is publiek. Externen kunnen zich inschrijven via <%= link_to "deze link", @event.invitation_link, target: "_blank" %>.
+          Deze activiteit is publiek. Externen kunnen zich inschrijven via <%= link_to "deze link", @event.invitation_link, target: "_blank", class: "text-hamers-red-500 hover:text-hamers-red-700" %>.
         </p>
         <ul role="list" class="mb-2 space-y-2">
           <% @event.external_signups.each do |s| %>

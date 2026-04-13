@@ -28,7 +28,7 @@
         </div>
         <div class="embed-responsive embed-responsive-4by3">
           <iframe class="embed-responsive-item w-full" height="266" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCd7hcvDILgo-1XLUCIKwwmy8vVCNLrLK8&q=<%= @event.location %>"
+            src="https://www.google.com/maps/embed/v1/place?key=<%= Rails.application.credentials.google_api_key %>&q=<%= @event.location %>"
             allowfullscreen>
           </iframe>
         </div>

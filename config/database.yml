@@ -2,6 +2,7 @@ default: &default
   adapter: sqlite3
   pool: 5
   timeout: 5000
+  journal_mode: delete  # No WAL mode, performace decrease but able to backup database files safely
 
 development:
   <<: *default
