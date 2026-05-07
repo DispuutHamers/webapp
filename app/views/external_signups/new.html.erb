@@ -9,8 +9,8 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-      <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
+      <%= l(@event.date, format: :with_day_name) %>
+      <%= "tot #{l(@event.end_time, format: :with_day_name)}" if @event.end_time? %>
     </div>
 
   

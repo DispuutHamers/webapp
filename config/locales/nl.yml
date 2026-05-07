@@ -227,4 +227,6 @@ nl:
       default: "%a %d %b %Y %H:%M:%S %Z"
       long: "%d %B %Y %H:%M"
       short: "%d %b %H:%M"
+      with_day_name: "%A %d-%m-%Y %H:%M"
+      with_day_name_prefixed: "Op %A %d-%m-%Y om %H:%M"
     pm: "'s middags"
