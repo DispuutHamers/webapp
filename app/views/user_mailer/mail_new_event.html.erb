@@ -14,7 +14,7 @@
     <p>We hopen je daar te zien!</p>
     <p>Details van de activiteit:</p>
     <p>Titel: <%= @event.title %>
-    <br>Datum en tijd: begint op <%= @event.date.strftime("%d-%m-%Y") %> om <%= @event.date.strftime("%H:%M") %><% unless @event.end_time.nil? %> en eindigt op <%= @event.end_time.strftime("%d-%m-%Y") %> om <%= @event.end_time.strftime("%H:%M") %><% end %>
+    <br>Datum en tijd: begint op <%= l(@event.date, format: "%A %d-%m-%Y") %> om <%= @event.date.strftime("%H:%M") %><% unless @event.end_time.nil? %> en eindigt op <%= l(@event.end_time, format: "%A %d-%m-%Y") %> om <%= @event.end_time.strftime("%H:%M") %><% end %>
     <% unless @event.location.blank? %><br>Locatie: <%= @event.location %><% end %>
     <% unless @event.description.blank? %><br>Beschrijving:
 <%= @event.description.to_plain_text %>

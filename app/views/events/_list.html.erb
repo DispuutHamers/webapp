@@ -30,7 +30,7 @@
                       <% if event.today? %>
                         <time><%= event.date.strftime('Vandaag om %H:%M') %></time>
                       <% else %>
-                        <time><%= event.date.strftime('Op %d-%m-%Y om %H:%M') %></time>
+                        <time><%= l(event.date, format: :with_day_name_prefixed) %></time>
                       <% end %>
                     </span>
                   </div>

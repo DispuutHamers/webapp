@@ -7,8 +7,8 @@
     <div class="panel panel-default" style="margin-top: 32px;">
       <div class="panel-body">
       <div class="border-b dark:border-gray-700 mb-2 pb-2">
-        <i class="far fa-clock mr-2"></i> <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-        <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
+        <i class="far fa-clock mr-2"></i> <%= l(@event.date, format: :with_day_name) %>
+        <%= "tot #{l(@event.end_time, format: :with_day_name)}" if @event.end_time? %>
       </div>  
       <div class="border-b dark:border-gray-700 mb-2 pb-2">
         <i class="fa fa-map-marker mr-2"></i> Locatie: <%= @event.location %>

@@ -5,8 +5,8 @@
 <% content_for :subtitle do %>
   <div class="flex items-center text-sm text-gray-400">
     <%= heroicon('clock', class_name: "flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400") %>
-    <%= @event.date.strftime('%d-%m-%Y %H:%M') %>
-    <%= "tot #{@event.end_time.strftime('%d-%m-%Y %H:%M')}" if @event.end_time? %>
+    <%= l(@event.date, format: :with_day_name) %>
+    <%= "tot #{l(@event.end_time, format: :with_day_name)}" if @event.end_time? %>
   </div>
   <% if @event.location.present? %>
     <div class="flex items-center text-sm text-gray-400">
