@@ -3,8 +3,7 @@
     <label class="<%= label_classes %> mb-1">
       Ad getrokken door:
     </label>
-    <% users_array = User.all.map { |user| [user.name, user.id] } %>
-    <%= f.select :user_id, options_for_select(users_array, @userid), {}, class: select_classes %>
+    <%= render 'shared/user_select', f: f %>
 
     <label class="<%= label_classes %> mb-1 mt-3">
       Tijd (in seconden)
