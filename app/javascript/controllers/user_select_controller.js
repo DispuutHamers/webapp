@@ -12,12 +12,14 @@ export default class extends Controller {
     this.outsideClick = (event) => {
       if (!this.element.contains(event.target)) this.close()
     }
+    this.reposition = () => this.position()
     document.addEventListener("click", this.outsideClick)
     this.renderSelected()
   }
 
   disconnect() {
     document.removeEventListener("click", this.outsideClick)
+    this.stopTracking()
   }
 
   toggle() {
@@ -30,6 +32,9 @@ export default class extends Controller {
     this.searchTarget.value = ""
     this.filter()
     this.searchTarget.focus()
+    // Track scrolling in any container, so the fixed panel stays attached to the button
+    window.addEventListener("scroll", this.reposition, true)
+    window.addEventListener("resize", this.reposition)
   }
 
   close() {
@@ -37,6 +42,32 @@ export default class extends Controller {
 
     this.panelTarget.classList.add("hidden")
     this.buttonTarget.setAttribute("aria-expanded", "false")
+    this.stopTracking()
+  }
+
+  // The panel is position: fixed so an overflow-hidden ancestor can't clip it.
+  // It opens below the button, or above when there is more room there.
+  position() {
+    const margin = 4
+    const rect = this.buttonTarget.getBoundingClientRect()
+    const panel = this.panelTarget
+    panel.style.left = `${rect.left}px`
+    panel.style.width = `${rect.width}px`
+
+    const spaceBelow = window.innerHeight - rect.bottom - margin
+    const spaceAbove = rect.top - margin
+    if (panel.offsetHeight > spaceBelow && spaceAbove > spaceBelow) {
+      panel.style.top = ""
+      panel.style.bottom = `${window.innerHeight - rect.top + margin}px`
+    } else {
+      panel.style.bottom = ""
+      panel.style.top = `${rect.bottom + margin}px`
+    }
+  }
+
+  stopTracking() {
+    window.removeEventListener("scroll", this.reposition, true)
+    window.removeEventListener("resize", this.reposition)
   }
 
   filter() {
@@ -46,6 +77,7 @@ export default class extends Controller {
     })
     this.emptyTarget.classList.toggle("hidden", this.visibleOptions.length > 0)
     this.setActive(0)
+    this.position()
   }
 
   keydown(event) {
