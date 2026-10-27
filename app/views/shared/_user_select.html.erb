@@ -1,0 +1,49 @@
+<%#
+  Searchable user picker with profile pictures. Enhances a regular select, which
+  stays the submitted field (and the fallback without JS).
+
+  Locals:
+    f         - form builder (required)
+    attribute - attribute to set (default: :user_id)
+    users     - users to choose from (default: User.all.reverse)
+    selected  - preselected user id (default: the attribute's current value)
+%>
+<% attribute = local_assigns.fetch(:attribute, :user_id) %>
+<% users = local_assigns.fetch(:users) { User.all.reverse } %>
+<% selected = local_assigns.fetch(:selected) { f.object.public_send(attribute) } %>
+<div class="relative" data-controller="user-select">
+  <%= f.select attribute, options_for_select(users.map { |user| [user.name, user.id] }, selected),
+        {}, class: select_classes, data: { user_select_target: 'select' } %>
+  <div class="hidden" data-user-select-target="widget">
+    <button type="button"
+            class="<%= select_classes %> flex items-center text-left"
+            aria-haspopup="listbox" aria-expanded="false"
+            data-user-select-target="button"
+            data-action="user-select#toggle">
+      <img src="" alt="" class="h-6 w-6 rounded-full mr-2 flex-shrink-0" data-user-select-target="selectedAvatar">
+      <span class="truncate" data-user-select-target="selectedName"></span>
+    </button>
+    <div class="hidden fixed z-50 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-lg"
+         data-user-select-target="panel">
+      <div class="p-2">
+        <input type="text" placeholder="Zoek een Hamer..." autocomplete="off"
+               class="block w-full py-1 px-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 rounded-md sm:text-sm focus:ring-hamers-red-500 focus:border-hamers-red-500"
+               data-user-select-target="search"
+               data-action="input->user-select#filter keydown->user-select#keydown">
+      </div>
+      <ul class="max-h-60 overflow-auto py-1 sm:text-sm dark:text-gray-200" role="listbox">
+        <% users.each do |user| %>
+          <li class="flex items-center px-3 py-2 cursor-pointer" role="option"
+              data-user-select-target="option"
+              data-value="<%= user.id %>"
+              data-label="<%= user.name %>"
+              data-action="click->user-select#select mouseenter->user-select#hover">
+            <%= gravatar_for user, size: 64, class: "h-6 w-6 rounded-full mr-2 flex-shrink-0" %>
+            <span class="truncate"><%= user.name %></span>
+          </li>
+        <% end %>
+        <li class="hidden px-3 py-2 text-gray-500" data-user-select-target="empty">Geen Hamer gevonden</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -21,10 +21,10 @@
   <%= f.date_field :date, required: true, class: input_classes %>
 
   <%= f.label :voorzitter, class: label_classes %>
-  <%= f.select :chairman_id, User.intern.collect { |x| [x.name, x.id] }, { include_blank: true }, { class: select_classes } %>
+  <%= render 'shared/user_select', f: f, attribute: :chairman_id, users: User.intern, include_blank: 'Niemand' %>
 
   <%= f.label :notulist, class: label_classes %>
-  <%= f.select :secretary_id, User.intern.collect { |x| [x.name, x.id] }, { include_blank: true }, { class: select_classes } %>
+  <%= render 'shared/user_select', f: f, attribute: :secretary_id, users: User.intern, include_blank: 'Niemand' %>
 
   <%= f.label :aanwezigen, class: label_classes %>
   <%= f.select :user_ids, User.intern.collect { |x| [x.name, x.id] }, {}, { class: select_classes, multiple: true } %>

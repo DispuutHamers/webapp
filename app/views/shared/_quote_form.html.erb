@@ -1,4 +1,4 @@
-<div class="bg-white dark:bg-gray-900 overflow-hidden md:shadow md:rounded-lg md:p-4">
+<div class="bg-white dark:bg-gray-900 md:shadow md:rounded-lg md:p-4">
     <h2 class="text-hamers-red-400 text-xl font-bold">Quote</h2>
     <div class="flex items-center mt-2">
       <%= form_for @quote, html: { class: "w-full" } do |f| %>
@@ -13,8 +13,7 @@
           </div>
         </div>
         <div class="col-span-6 sm:col-span-3">
-          <% users_array = User.all.reverse.map { |user| [user.name, user.id] } %>
-          <%= f.select :user_id, options_for_select(users_array), {}, class: select_classes %>
+          <%= render 'shared/user_select', f: f %>
         </div>
         <div class="text-right mt-4 sm:w-full">
           <%= f.submit 'Citeer', class: submit_classes %>
