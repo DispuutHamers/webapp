@@ -3,10 +3,25 @@
 <% end %>
 
 <% content_for :options do %>
-  <%= button_to "Nieuwe activiteit", new_event_path, method: :get, class: button_classes %>
+  <div class="flex flex-row flex-wrap p-1">
+    <%= search_form_for @search, class: "inline-flex rounded-md" do |f| %>
+      <%= f.search_field :title, placeholder: 'Zoek hier naar activiteiten', class: 'shadow-sm focus:ring-hamers-red-500 focus:border-hamers-red-500 block w-full text-sm dark:text-gray-200 dark:bg-gray-800 border-gray-300 dark:border-gray-700 rounded-l-md' %>
+      <%= submit_tag "Zoek", class: "-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-hamers-red-500 focus:border-hamers-red-500" %>
+    <% end %>
+    <div class="mt-2 sm:mt-0 sm:ml-2">
+      <%= button_to "Nieuwe activiteit", new_event_path, method: :get, class: button_classes %>
+    </div>
+  </div>
 <% end %>
 
 <div class="-m-5 sm:-m-6">
+  <% if @search_events %>
+    <%= button_to "Terug naar alle activiteiten", events_path, method: :get, class: 'm-4 ' + button_classes %>
+    <%= render 'events/list', events: @search_events %>
+    <div class="py-6">
+      <%= render 'shared/pagination/default' %>
+    </div>
+  <% else %>
   <div data-controller="tabs" data-tabs-active-tab="border-hamers-red-500 font-bold text-hamers-red-500 dark:text-hamers-red-500 hover:border-hamers-red-600 hover:text-hamers-red-600 dark:hover:border-hamers-red-600 dark:hover:text-hamers-red-600">
     <div class="flex items-center border-b border-gray-200 dark:border-gray-700 justify-between px-4">
       <nav class="-mb-px flex space-x-8">
@@ -38,20 +53,21 @@
                 </div>
               </li>
             <% end %>
-          </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="hidden" data-tabs-target="panel">
+        <%= render 'events/list', events: @upcoming_events %>
+      </div>
+
+      <div class="hidden" data-tabs-target="panel">
+        <%= render 'events/list', events: @past_events %>
+        <div class="py-6">
+          <%= render 'shared/pagination/default' %>
         </div>
       </div>
     </div>
-
-    <div class="hidden" data-tabs-target="panel">
-      <%= render 'events/list', events: @upcoming_events %>
-    </div>
-
-    <div class="hidden" data-tabs-target="panel">
-      <%= render 'events/list', events: @past_events %>
-      <div class="py-6">
-        <%= render 'shared/pagination/default' %>
-      </div>
-    </div>
-  </div>
+  <% end %>
 </div>
