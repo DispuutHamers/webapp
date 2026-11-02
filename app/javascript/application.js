@@ -1,6 +1,5 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
-import Rails from "@rails/ujs"
 import "trix"
 import "@rails/actiontext"
 import { Application } from "@hotwired/stimulus"
@@ -11,8 +10,6 @@ import AutosaveController from "controllers/autosave_controller"
 import FlatpickrController from "controllers/flatpickr_controller"
 import SelectMenuController from "controllers/select_menu_controller"
 import SelectTabsController from "controllers/select_tabs_controller"
-
-Rails.start()
 
 const application = Application.start()
 

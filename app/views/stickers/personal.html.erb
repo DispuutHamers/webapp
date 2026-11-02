@@ -40,7 +40,7 @@
             </td>
             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <%= link_to "Wijzig", edit_sticker_path(m), class: button_classes %>
-              <%= link_to "Verwijder", m, class: button_classes, method: :delete, data: { confirm: 'Weet je het zeker?' } %>
+              <%= link_to "Verwijder", m, class: button_classes, data: { turbo_method: :delete, turbo_confirm: 'Weet je het zeker?' } %>
             </td>
           </tr>
         <% end %>

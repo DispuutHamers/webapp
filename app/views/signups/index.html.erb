@@ -22,7 +22,7 @@
         <td><%= signup.reason %></td>
         <td><%= link_to 'Show', signup %></td>
         <td><%= link_to 'Edit', edit_signup_path(signup) %></td>
-        <td><%= link_to 'Destroy', signup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', signup, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>

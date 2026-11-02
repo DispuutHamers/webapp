@@ -11,6 +11,6 @@ class Quotes::AnonymizationController < ApplicationController
     end
 
     quote.anonymize!
-    redirect_to root_path
+    redirect_to root_path, status: :see_other
   end
 end

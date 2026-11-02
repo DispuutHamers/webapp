@@ -20,7 +20,7 @@ Hamers::Application.routes.draw do
   end
 
   get '/trail' => 'static_pages#trail', as: 'trail'
-  get '/remind/:id' => 'events#remind', as: 'reminder'
+  post '/remind/:id' => 'events#remind', as: 'reminder'
   resources :public_pages, except: [:show]
   get '/public_pages/:id' => 'public_pages#find_id'
   post 'revert/:model/:id' => "static_pages#revert"

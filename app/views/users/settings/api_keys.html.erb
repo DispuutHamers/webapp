@@ -33,7 +33,7 @@
                     <%= key.key %>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <%= link_to [current_user, key], method: :delete, data: { confirm: 'Zeker weten?' }, class: 'float-right text-hamers-red-500 hover:text-hamers-red-600' do %>
+                    <%= link_to [current_user, key], data: { turbo_method: :delete, turbo_confirm: 'Zeker weten?' }, class: 'float-right text-hamers-red-500 hover:text-hamers-red-600' do %>
                       <%= heroicon('trash', style: :outline, class_name: "h-6 w-6") %>
                     <% end %>
                   </td>

@@ -7,7 +7,6 @@ pin "@hotwired/turbo", to: "@hotwired--turbo.js" # @8.0.13
 pin "@rails/actioncable/src", to: "@rails--actioncable--src.js" # @8.0.201
 pin "trix" # @2.1.15
 pin "@rails/actiontext", to: "actiontext.esm.js"
-pin "@rails/ujs", to: "rails-ujs.esm.js"
 pin "@hotwired/stimulus", to: "@hotwired--stimulus.js" # @3.2.2
 pin "@rails/request.js", to: "@rails--request.js.js" # @0.0.12
 pin "@tailwindcss/forms", to: "@tailwindcss--forms.js" # @0.5.10
