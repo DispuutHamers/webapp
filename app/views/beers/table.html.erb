@@ -32,21 +32,20 @@
                   <% if beer.image.attached? %>
                     <%= image_tag beer.image, class: 'w-6 -ml-4 mr-2' %>
                   <% end %>
-                  <div class="text-sm font-medium text-gray-900 dark:text-gray-200 popover"
-                      data-controller="popover"
-                      data-action="mouseover->popover#mouseOver mouseout->popover#mouseOut"
-                      data-popover-translate-x="0"
-                      data-popover-translate-y="15%">
+                  <% rating = current_user&.reviews&.find_by(beer: beer)&.rating %>
+                  <%# Only a rated beer has popover content; v6 popovers require a content target %>
+                  <%= tag.div class: "text-sm font-medium text-gray-900 dark:text-gray-200 popover",
+                              data: (rating ? { controller: "popover", action: "mouseenter->popover#show mouseleave->popover#hide" } : {}) do %>
                     <%= beer.name %>
-                    <% if current_user&.reviews&.find_by(beer: beer)&.rating %>
-                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= rating_color(current_user&.reviews&.find_by(beer: beer)&.rating) %>">
-                            <%= current_user&.reviews&.find_by(beer: beer)&.rating %>
+                    <% if rating %>
+                          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium <%= rating_color(rating) %>">
+                            <%= rating %>
                           </span>
-                      <div class="content hidden absolute bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded p-3" data-popover-target="content">
+                      <div class="content hidden absolute bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded p-3" style="transform: translate(0, 15%)" data-popover-target="content">
                         Het cijfer dat jij dit biertje hebt gegeven.
                       </div>
                     <% end %>
-                  </div>
+                  <% end %>
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-normal text-sm text-gray-500 dark:text-gray-400">
