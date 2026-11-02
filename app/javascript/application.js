@@ -1,29 +1,28 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "controllers"
-import Rails from '@rails/ujs';
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
 import "@hotwired/turbo-rails"
+import Rails from "@rails/ujs"
+import "trix"
+import "@rails/actiontext"
 import { Application } from "@hotwired/stimulus"
-import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-import '@fortawesome/fontawesome-free/js/all'
-import 'trix'
-import 'trix/dist/trix.css'
-import '@rails/actiontext'
-import "../stylesheets/application.css"
-import * as ActiveStorage from "@rails/activestorage"
-import Flatpickr from 'stimulus-flatpickr'
+import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
 
-ActiveStorage.start()
-Rails.start();
+import AlertController from "controllers/alert_controller"
+import AutosaveController from "controllers/autosave_controller"
+import FlatpickrController from "controllers/flatpickr_controller"
+import SelectMenuController from "controllers/select_menu_controller"
+import SelectTabsController from "controllers/select_tabs_controller"
+
+Rails.start()
 
 const application = Application.start()
-const context = require.context("../controllers", true, /\.js$/)
-application.load(definitionsFromContext(context))
+
+application.register("alert", AlertController)
+application.register("autosave", AutosaveController)
+application.register("select-menu", SelectMenuController)
+application.register("select-tabs", SelectTabsController)
 
 // Other options: Alert, Autosave, Dropdown, Modal, Popover, Toggle, Slideover
-import { Dropdown, Tabs, Popover } from "tailwindcss-stimulus-components"
-application.register('dropdown', Dropdown)
-application.register('tabs', Tabs)
-application.register('popover', Popover)
-application.register('flatpickr', Flatpickr)
+application.register("dropdown", Dropdown)
+application.register("tabs", Tabs)
+application.register("popover", Popover)
+application.register("flatpickr", FlatpickrController)
