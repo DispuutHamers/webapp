@@ -572,6 +572,7 @@ DEPENDENCIES
   solid_queue
   sqlite3
   stackprof
+  stimulus-rails
   tailwindcss-rails (= 3.3.2)
   tailwindcss-ruby (= 3.4.17)
   turbo-rails

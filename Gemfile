@@ -41,6 +41,7 @@ gem 'secure_headers', '~> 6.3'
 gem 'solid_queue'
 gem 'sqlite3'
 gem 'stackprof'
+gem 'stimulus-rails'
 gem 'tailwindcss-rails', "3.3.2"
 gem "tailwindcss-ruby", "3.4.17"
 gem 'turbo-rails'
