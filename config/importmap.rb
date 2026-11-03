@@ -1,7 +1,6 @@
 # Pin npm packages by running ./bin/importmap
 
 pin "application"
-pin "flatpickr" # @4.6.13
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
 pin "trix" # @2.1.15
 pin "@rails/actiontext", to: "actiontext.esm.js"
