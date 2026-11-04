@@ -6,8 +6,7 @@
     <i class="far fa-clock"></i> <%= time_ago_in_words(quote.created_at) %> geleden
   </span>
   <%= link_to quote,
-              method: :delete,
-              data: {confirm: 'You sure?'},
+              data: { turbo_method: :delete, turbo_confirm: 'You sure?' },
               title: quote.text,
               class: 'btn btn-default btn-sm' do %>
     <i class="far fa-trash-alt"></i>

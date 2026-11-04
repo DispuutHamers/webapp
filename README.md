@@ -2,7 +2,7 @@
 webapp voor https://zondersikkel.nl/
 
 # Prerequisites
-- [Ruby 3.4.1](.ruby-version)
+- [Ruby 3.4.2](.ruby-version)
 - [Node.js 16 LTS](https://nodejs.org/en/)
 - [Yarn](https://yarnpkg.com/)
 

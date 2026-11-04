@@ -13,7 +13,7 @@
       <% end %>
     </li>
     <li>
-      <%= button_to @chugtype, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: button_classes do %>
+      <%= button_to @chugtype, method: :delete, form: { data: { turbo_confirm: 'Weet je het zeker?' } }, class: button_classes do %>
         <span class="sr-only">destroy</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -38,7 +38,7 @@
 
   <div class='md:col-span-8'>
     <% if @chugs_all_newest.count > 0 %>
-      <div data-controller="tabs select-tabs" data-tabs-active-tab="border-hamers-red-500 font-bold text-hamers-red-500 dark:text-hamers-red-500 hover:border-hamers-red-600 hover:text-hamers-red-600 dark:hover:border-hamers-red-600 dark:hover:text-hamers-red-600">
+      <div data-controller="tabs select-tabs" data-tabs-active-tab-class="border-hamers-red-500 font-bold text-hamers-red-500 dark:text-hamers-red-500 hover:border-hamers-red-600 hover:text-hamers-red-600 dark:hover:border-hamers-red-600 dark:hover:text-hamers-red-600" data-tabs-inactive-tab-class="border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:border-gray-300 dark:hover:border-gray-200">
         <div>
           <div class="ml-4">
             <div class="border-b border-gray-200 dark:border-gray-700">

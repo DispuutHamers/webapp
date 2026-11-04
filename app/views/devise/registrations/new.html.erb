@@ -6,7 +6,7 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= devise_error_messages! %>
     <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user-o"></i></span>
+      <span class="input-group-addon"><i class="far fa-user"></i></span>
       <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Naam" %>
     </div>
     &nbsp;
@@ -30,7 +30,7 @@
     <br>
     <%= link_to "Privacy Statement", "/privacy" %>
     <div class="actions">
-      <%= f.submit "Sign up", class: "btn btn-large btn-success", data: {confirm: "Door te registreren ga je akkoord met onze privacy statement."} %>
+      <%= f.submit "Sign up", class: "btn btn-large btn-success", data: { turbo_confirm: "Door te registreren ga je akkoord met onze privacy statement." } %>
     </div>
     <%= render "devise/shared/links" %>
   <% end %>

@@ -30,7 +30,7 @@
                   <%= link_to edit_news_path(n), class: 'btn btn-default btn-sm' do %>
                       <i class="fas fa-pencil-alt"></i>
                   <% end %>
-                  <%= link_to n, method: :delete, data: {confirm: 'Weet je het zeker?'}, title: n.title, class: 'btn btn-default btn-sm' do %>
+                  <%= link_to n, data: { turbo_method: :delete, turbo_confirm: 'Weet je het zeker?' }, title: n.title, class: 'btn btn-default btn-sm' do %>
                       <i class="far fa-trash-alt"></i>
                   <% end %>
                 </div>

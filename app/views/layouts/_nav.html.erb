@@ -48,18 +48,12 @@
           <div class="ml-4 flex items-center md:ml-6">
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
-                <div data-controller="dropdown"
-                     data-dropdown-invisible-class="opacity-0 scale-95"
-                     data-dropdown-visible-class="opacity-100 scale-100"
-                     data-dropdown-entering-class="ease-out duration-100"
-                     data-dropdown-enter-timeout="300"
-                     data-dropdown-leaving-class="ease-in duration-100"
-                     data-dropdown-leave-timeout="300">
+                <div data-controller="dropdown">
                      <button class="text-gray-300 dark:text-gray-200 px-3 py-2 rounded-md text-sm font-medium" data-action="click->dropdown#toggle click@window->dropdown#hide" id="leden-menu">
                     <%= heroicon('menu', style: :outline, class_name: "block h-6 w-6") %>
                   </button>
 
-                  <div class="absolute z-50 -ml-4 mt-2 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
+                  <div class="absolute z-50 -ml-4 mt-2 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2 hidden" data-dropdown-target="menu">
                     <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                     <div class="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                         <% menu_items.each do |name, options| %>
@@ -95,13 +89,7 @@
         <% unless current_user.nil? %>
         <div class="hidden md:block">
           <div class="ml-4 flex items-center md:ml-6">
-            <div class="ml-3 relative" data-controller="dropdown"
-                 data-dropdown-invisible-class="opacity-0 scale-95"
-                 data-dropdown-visible-class="opacity-100 scale-100"
-                 data-dropdown-entering-class="ease-out duration-100"
-                 data-dropdown-enter-timeout="300"
-                 data-dropdown-leaving-class="ease-in duration-100"
-                 data-dropdown-leave-timeout="300">
+            <div class="ml-3 relative" data-controller="dropdown">
               <div>
                 <button type="button" class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:ring-2 focus:ring-hamers-red-500" data-action="click->dropdown#toggle click@window->dropdown#hide">
                   <span class="sr-only">Open user menu</span>
@@ -109,11 +97,11 @@
                 </button>
               </div>
 
-              <div class="z-50 origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none opacity-0 scale-95" role="menu" tabindex="-1" data-dropdown-target="menu">
+              <div class="z-50 origin-top-right absolute right-0 mt-2 w-screen max-w-md rounded-md shadow-lg py-1 bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" tabindex="-1" data-dropdown-target="menu">
                 <div class="overflow-hidden">
                   <div class="relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
                     <% user_items.each do |name, options| %>
-                      <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800", method: (options[:method] if options[:method]) do %>
+                      <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800", data: { turbo_method: options[:method] } do %>
                         <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
                           <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
                         </div>
@@ -134,19 +122,13 @@
 
         <div class="-mr-2 flex md:hidden">
           <!-- Mobile menu button -->
-          <div data-controller="dropdown"
-               data-dropdown-invisible-class="opacity-0 scale-95"
-               data-dropdown-visible-class="opacity-100 scale-100"
-               data-dropdown-entering-class="ease-out duration-100"
-               data-dropdown-enter-timeout="300"
-               data-dropdown-leaving-class="ease-in duration-100"
-               data-dropdown-leave-timeout="300">
+          <div data-controller="dropdown">
             <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
               <span class="sr-only">Open main menu</span>
               <%= heroicon('menu', style: :outline, class_name: "block h-6 w-6") %>
             </button>
 
-            <div class="absolute z-50 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
+            <div class="absolute z-50 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 hidden" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
 
@@ -169,23 +151,17 @@
         <% unless current_user.nil? %>
         <div class="-mr-2 flex md:hidden">
           <!-- Mobile menu button -->
-          <div data-controller="dropdown"
-               data-dropdown-invisible-class="opacity-0 scale-95"
-               data-dropdown-visible-class="opacity-100 scale-100"
-               data-dropdown-entering-class="ease-out duration-100"
-               data-dropdown-enter-timeout="300"
-               data-dropdown-leaving-class="ease-in duration-100"
-               data-dropdown-leave-timeout="300">
+          <div data-controller="dropdown">
             <button type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-gray-800 focus:ring-white" data-action="click->dropdown#toggle click@window->dropdown#hide">
               <span class="sr-only">Open account menu</span>
               <%= gravatar_for current_user, class: "h-8 w-8 rounded-full" %>
             </button>
 
-            <div class="absolute z-50 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 opacity-0 scale-95" data-dropdown-target="menu">
+            <div class="absolute z-50 -ml-1 mt-3 transform px-2 w-screen max-w sm:px-0 ml-0 left-1/2 -translate-x-1/2 hidden" data-dropdown-target="menu">
               <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div class="relative grid gap-6 bg-white dark:bg-gray-900 px-5 py-6 sm:gap-8 sm:p-8 grid-cols-2">
                   <% user_items.each do |name, options| %>
-                    <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50", method: (options[:method] if options[:method]) do %>
+                    <%= link_to options[:path], class: "-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50", data: { turbo_method: options[:method] } do %>
                       <div class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-hamers-red-500 text-white sm:h-12 sm:w-12">
                         <%= heroicon(options[:icon], style: :outline, class_name: "h-6 w-6") %>
                       </div>
