@@ -12,7 +12,7 @@
           <%= link_to edit_chug_url(chug), class: 'inline-flex items-center p-1 border border-gray-300 dark:border-gray-700 text-xs font-medium rounded-l-md text-gray-900 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
             <%= heroicon('pencil', class_name: "h-4 w-4") %> <span class="sm:hidden">Wijzigen</span>
           <% end %>
-          <%= link_to chug, method: :delete, data: { confirm: 'Weet je het zeker?' }, title: chug.user.name,
+          <%= link_to chug, data: { turbo_method: :delete, turbo_confirm: 'Weet je het zeker?' }, title: chug.user.name,
                       class: '-ml-px inline-flex items-center p-1 border border-gray-300 dark:border-gray-700 text-xs font-medium rounded-r-md text-gray-900 dark:text-gray-200 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-hamers-red-500' do %>
           <%= heroicon('trash', class_name: "h-4 w-4") %> <span class="sm:hidden">Verwijderen</span>
           <% end %>

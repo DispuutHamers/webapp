@@ -17,7 +17,7 @@
   <% content_for :options do %>
     <%= link_to "Notuleer", notuleer_meeting_path(@meeting), class: button_classes %>
     <%= link_to "Wijzig", edit_meeting_path(@meeting), class: button_classes %>
-    <%= link_to "Verwijder", @meeting, method: :delete, data: { confirm: 'Weet je het zeker?' }, class: button_classes %>
+    <%= link_to "Verwijder", @meeting, data: { turbo_method: :delete, turbo_confirm: 'Weet je het zeker?' }, class: button_classes %>
   <% end %>
 <% end %>
 

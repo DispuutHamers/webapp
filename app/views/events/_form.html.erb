@@ -40,15 +40,7 @@
                   Wanneer
                 </label>
                 <div class="mt-1">
-                  <%= f.text_field :date,
-                                   class: input_classes,
-                                   data: {
-                                     controller: "flatpickr",
-                                     flatpickr_default_date: @event.date&.strftime("%d-%m-%Y %H:%M"),
-                                     flatpickr_date_format: "d-m-Y H:i",
-                                     flatpickr_enable_time: true,
-                                     flatpickr_time_24hr: true
-                                   } %>
+                  <%= f.datetime_local_field :date, include_seconds: false, class: "#{input_classes} dark:[color-scheme:dark]" %>
                 </div>
               </div>
 
@@ -57,15 +49,7 @@
                   Tot
                 </label>
                 <div class="mt-1">
-                  <%= f.text_field :end_time,
-                                   class: input_classes,
-                                   data: {
-                                     controller: "flatpickr",
-                                     flatpickr_default_date: @event.end_time&.strftime("%d-%m-%Y %H:%M"),
-                                     flatpickr_date_format: "d-m-Y H:i",
-                                     flatpickr_enable_time: true,
-                                     flatpickr_time_24hr: true
-                                   } %>
+                  <%= f.datetime_local_field :end_time, include_seconds: false, class: "#{input_classes} dark:[color-scheme:dark]" %>
                 </div>
               </div>
 
@@ -74,15 +58,7 @@
                   Inschrijven sluit op
                 </label>
                 <div class="mt-1">
-                  <%= f.text_field :deadline,
-                                   class: input_classes,
-                                   data: {
-                                     controller: "flatpickr",
-                                     flatpickr_default_date: @event.deadline&.strftime("%d-%m-%Y %H:%M"),
-                                     flatpickr_date_format: "d-m-Y H:i",
-                                     flatpickr_enable_time: true,
-                                     flatpickr_time_24hr: true
-                                   } %>
+                  <%= f.datetime_local_field :deadline, include_seconds: false, class: "#{input_classes} dark:[color-scheme:dark]" %>
                 </div>
               </div>
 

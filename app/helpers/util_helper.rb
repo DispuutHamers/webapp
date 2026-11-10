@@ -41,7 +41,8 @@ module UtilHelper
   def delete_object(obj)
     obj.destroy
     flash[:success] = 'Succesvol verwijderd'
-    redirect_to root_path
+    # 303 so the browser follows up with a GET, also after a Turbo DELETE request
+    redirect_to root_path, status: :see_other
   end
 
   # Tasks that are run automatically (with cron) and are monitored
